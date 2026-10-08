@@ -1,0 +1,5 @@
+{
+  "cases": ["ghz:8", "qft:6", "brick:6:6:1"],
+  "devices": ["linear:8", "grid:3x3", "fake:FakeTorino"],
+  "adapters": ["qiskit:1:target", "qiskit:3:target", "tket:2", "psf:default", "psf:recommended"]
+}
