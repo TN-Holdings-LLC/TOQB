@@ -77,8 +77,14 @@ compilers.
 - **Repeats.** One warm-up compile is discarded. Then there are five timed compiles; the fastest and the slowest are
   dropped and the rest averaged.
 - **Limits.** A compile that exceeds ten times the budget is stopped, and the whole process has a wall-clock limit.
-- **Recorded.** The machine, the versions, every time, whether the result was within budget, and the output's
-  metrics.
+- **Checked, outside the timed part.**
+  - Structure: every gate is in the device's basis and every two-qubit gate is on a coupled pair.
+  - Equivalence: the input and the output are simulated from |0...0> and from three random product states, with
+    each input qubit placed where the compiler put it at the start and read where it is at the end. A state
+    infidelity above 1e-6 is "not equivalent". Outputs that touch more than 12 qubits, and inputs that measure or
+    reset mid-circuit, are reported as not checked.
+- **Recorded.** The machine, the versions, every time, whether the result was within budget, the output's metrics and
+  the checks.
 
 ## Adapters (`toqb/adapters.py`)
 
@@ -87,7 +93,9 @@ A compiler takes part through an adapter with two methods:
 - `version()`;
 - `compile(circuit, device)`, which returns a circuit for `device`.
 
-The built-in adapters cover Qiskit (any level, with or without the target), TKET and PSF-Zero. An external one can be
+The built-in adapters cover Qiskit (any level, with or without the target), TKET (the default compilation pass of
+pytket-qiskit's IBM backend at the given optimisation level, built offline from the device's map and gate set) and
+PSF-Zero (its default call, and its recommended call when the device has a target). An external one can be
 named as `package.module:factory`. The adapter receives exactly the device information its division allows.
 
 ## Layout

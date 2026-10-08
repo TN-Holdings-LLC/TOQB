@@ -43,3 +43,63 @@ def metrics(out, device):
         except Exception as exc:  # noqa: BLE001 - recorded, not fatal
             m["duration_s"] = f"n/a: {type(exc).__name__}"
     return m
+
+
+EQUIV_MAX_QUBITS = 12   # the check simulates state vectors on the qubits the output touches
+EQUIV_TRIALS = 3        # random product input states, besides |0...0>
+EQUIV_TOL = 1e-6        # state infidelity above this is "not equivalent"
+
+
+def placements(out, n):
+    """(initial, final): the device qubit holding each of the n input qubits before and after the circuit.
+    From `metadata` (TKET adapter), else from Qiskit's layout, else the identity."""
+    md = getattr(out, "metadata", None) or {}
+    if "toqb_initial" in md:
+        return list(md["toqb_initial"]), list(md["toqb_final"])
+    lay = getattr(out, "layout", None)
+    if lay is not None:
+        return (list(lay.initial_index_layout(filter_ancillas=True))[:n],
+                list(lay.final_index_layout(filter_ancillas=True))[:n])
+    return list(range(n)), list(range(n))
+
+
+def equivalence(logical, out):
+    """{"checked": True, "infidelity": x, "equivalent": bool} or {"checked": False, "why": ...}.
+
+    The input (final measurements removed) and the output are run from |0...0> and from EQUIV_TRIALS random
+    product states; input qubit i is prepared at its initial device qubit in the output and read at its final one,
+    every other touched qubit starts in |0> and must end in |0>. The largest state infidelity is reported."""
+    import numpy as np
+    from qiskit import QuantumCircuit
+    from qiskit.quantum_info import Statevector
+    bare = logical.copy()
+    bare.remove_final_measurements(inplace=True)
+    if any(i.operation.name in ("measure", "reset") for i in bare.data):
+        return dict(checked=False, why="the input measures or resets mid-circuit")
+    if any(i.operation.name == "reset" for i in out.data):
+        return dict(checked=False, why="the output resets a qubit")
+    n = bare.num_qubits
+    initial, final = placements(out, n)
+    gates = [i for i in out.data if i.operation.name not in ("barrier", "measure", "delay")]
+    active = sorted({out.find_bit(b).index for i in gates for b in i.qubits} | set(initial) | set(final))
+    if len(active) > EQUIV_MAX_QUBITS:
+        return dict(checked=False, why=f"{len(active)} qubits touched (limit {EQUIV_MAX_QUBITS})")
+    idx = {p: k for k, p in enumerate(active)}
+    red = QuantumCircuit(len(active), global_phase=out.global_phase)
+    for i in gates:
+        red.append(i.operation, [idx[out.find_bit(b).index] for b in i.qubits])
+    rng = np.random.default_rng(0)
+    worst = 0.0
+    for trial in range(EQUIV_TRIALS + 1):
+        angles = rng.uniform(0, 2 * np.pi, (n, 3)) if trial else None
+        comp = QuantumCircuit(len(active))
+        ref = QuantumCircuit(len(active))
+        for q in range(n):
+            if angles is not None:
+                comp.u(*angles[q], idx[initial[q]])
+                ref.u(*angles[q], idx[final[q]])
+        comp.compose(red, inplace=True)
+        ref.compose(bare, qubits=[idx[final[q]] for q in range(n)], inplace=True)
+        fid = abs(Statevector(ref).inner(Statevector(comp))) ** 2
+        worst = max(worst, float(1 - fid))
+    return dict(checked=True, infidelity=worst, equivalent=bool(worst <= EQUIV_TOL))

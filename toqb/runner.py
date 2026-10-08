@@ -47,9 +47,15 @@ def budgets(ref_time_s):
     return {t: t * max(BUDGET_FLOOR_S, ref_time_s) for t in TIERS}
 
 
+def not_equivalent(record):
+    """True if the equivalence check was made and failed."""
+    eq = record.get("equivalence") or {}
+    return eq.get("checked") is True and eq.get("equivalent") is False
+
+
 def within(record, ref_time_s):
-    """{tier: True/False} for a measurement record (False if it failed)."""
-    ok = "error" not in record and record.get("valid") is True
+    """{tier: True/False} for a measurement record (False if it failed, is invalid or is not equivalent)."""
+    ok = "error" not in record and record.get("valid") is True and not not_equivalent(record)
     return {t: bool(ok and record["t_s"] <= b) for t, b in budgets(ref_time_s).items()}
 
 
@@ -64,7 +70,7 @@ def one(args):
     from toqb.adapters import make_adapter
     from toqb.cases import get_case
     from toqb.devices import get_device
-    from toqb.metrics import metrics, structural_check
+    from toqb.metrics import equivalence, metrics, structural_check
     rec = dict(adapter=args.adapter, case=args.case, device=args.device)
     adapter = make_adapter(args.adapter)
     rec["adapter_version"] = adapter.version()
@@ -86,6 +92,10 @@ def one(args):
     if problem:
         rec["invalid_because"] = problem
     rec.update(metrics(out, device))
+    try:
+        rec["equivalence"] = equivalence(circuit, out)
+    except Exception as exc:  # noqa: BLE001 - recorded: the check could not be made
+        rec["equivalence"] = dict(checked=False, why=f"{type(exc).__name__}: {exc}"[:200])
     print(json.dumps(rec), flush=True)
 
 
@@ -143,18 +153,20 @@ def summary(args):
     adapters = list(dict.fromkeys(r["adapter"] for r in recs))
     out = ["# TOQB summary (v0 draft: not a result)", "",
            "| adapter | " + " | ".join(f"within {t:g}x" for t in TIERS) + " | two-qubit gates / reference "
-           "(geometric mean, +1) | invalid | failed |", "|" + "---|" * (4 + len(TIERS))]
+           "(geometric mean, +1) | invalid | not equivalent | checked | failed |", "|" + "---|" * (6 + len(TIERS))]
     for a in adapters:
         rs = [r for r in recs if r["adapter"] == a and (r["case"], r["device"]) in ref
               and "t_s" in ref[(r["case"], r["device"])]]
         if not rs:
             continue
         w = [within(r, ref[(r["case"], r["device"])]["t_s"]) for r in rs]
-        ok = [r for r in rs if "error" not in r and r.get("valid") is True]
+        ok = [r for r in rs if "error" not in r and r.get("valid") is True and not not_equivalent(r)]
         ratio = gmean((r["q2"] + 1) / (ref[(r["case"], r["device"])]["q2"] + 1) for r in ok
                       if "q2" in ref[(r["case"], r["device"])])
         out.append(f"| {a} | " + " | ".join(f"{sum(x[t] for x in w) / len(w):.2f}" for t in TIERS)
                    + f" | {ratio:.3f} | {sum(1 for r in rs if r.get('valid') is False)} | "
+                   f"{sum(1 for r in rs if not_equivalent(r))} | "
+                   f"{sum(1 for r in rs if (r.get('equivalence') or {}).get('checked') is True)} | "
                    f"{sum(1 for r in rs if 'error' in r)} |")
     txt = "\n".join(out)
     with open(os.path.join(args.out, "summary.md"), "w", encoding="utf-8", newline="\n") as fh:

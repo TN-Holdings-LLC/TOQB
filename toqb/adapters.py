@@ -43,10 +43,12 @@ class QiskitAdapter:
 
 
 class TketAdapter:
-    """v0 configuration, to be reviewed before a scored run: DecomposeBoxes (unitary blocks and other boxes become
-    gates), then FullPeepholeOptimise (level 2) or
-    SynthesiseTket (level 1), DefaultMappingPass on the device's map, rebase to the device's basis,
-    RemoveRedundancies. The output is rebuilt in Qiskit on the device's qubit indices (`_to_qiskit`)."""
+    """TKET as its own IBM backend compiles: the default compilation pass of pytket-qiskit's IBMQBackend at the given
+    optimisation level (`IBMQBackend.pass_from_info`), built offline from the device's architecture and gate set, so
+    no IBM account is needed. At level 2 that is DecomposeBoxes, FullPeepholeOptimise, a rebase, LightSABRE routing,
+    KAKDecomposition, CliffordSimp, SynthesiseTket, a rebase, a squash and RemoveRedundancies. The output is rebuilt
+    in Qiskit on the device's qubit indices (`_to_qiskit`), with the initial and final placement of each input qubit
+    in `metadata` (for the equivalence check)."""
 
     def __init__(self, level: int):
         self.level = level
@@ -54,22 +56,27 @@ class TketAdapter:
 
     def version(self):
         import pytket
-        return pytket.__version__
+        import pytket.extensions.qiskit as pq
+        return f"pytket {pytket.__version__}, pytket-qiskit {getattr(pq, '__extension_version__', '?')}"
 
     def compile(self, circuit, device):
         from pytket import OpType
         from pytket.architecture import Architecture
-        from pytket.extensions.qiskit import qiskit_to_tk
-        from pytket.passes import (AutoRebase, DecomposeBoxes, DefaultMappingPass, FullPeepholeOptimise,
-                                   RemoveRedundancies, SequencePass, SynthesiseTket)
+        from pytket.backends.backendinfo import BackendInfo
+        from pytket.extensions.qiskit import IBMQBackend, qiskit_to_tk
+        from pytket.predicates import CompilationUnit
         ops = {"cz": OpType.CZ, "cx": OpType.CX, "ecr": OpType.ECR, "rz": OpType.Rz, "sx": OpType.SX,
                "x": OpType.X}
-        gateset = {ops[g] for g in device.basis if g in ops}
+        gateset = {ops[g] for g in device.basis if g in ops} | {OpType.Measure, OpType.Barrier, OpType.Reset}
+        info = BackendInfo("toqb", device.spec, "0", Architecture(list(device.edges)), gateset)
         tk = qiskit_to_tk(circuit)
-        first = FullPeepholeOptimise() if self.level >= 2 else SynthesiseTket()
-        SequencePass([DecomposeBoxes(), first, DefaultMappingPass(Architecture(list(device.edges))), AutoRebase(gateset),
-                      RemoveRedundancies()]).apply(tk)
-        return self._to_qiskit(tk, device)
+        inputs = list(tk.qubits)  # q[0], q[1], ... in the input's order
+        cu = CompilationUnit(tk)
+        IBMQBackend.pass_from_info(info, optimisation_level=self.level).apply(cu)
+        out = self._to_qiskit(cu.circuit, device)
+        out.metadata = dict(toqb_initial=[cu.initial_map[q].index[0] for q in inputs],
+                            toqb_final=[cu.final_map[q].index[0] for q in inputs])
+        return out
 
     @staticmethod
     def _to_qiskit(tk, device):
@@ -92,6 +99,8 @@ class TketAdapter:
                 qc.measure(qs[0], bit[cmd.args[1]])
             elif t == OpType.Barrier:
                 qc.barrier(*qs)
+            elif t == OpType.Reset:
+                qc.reset(qs[0])
             else:
                 raise ValueError(f"TKET returned {t}, outside the device's basis")
         qc.global_phase = float(tk.phase) * math.pi
