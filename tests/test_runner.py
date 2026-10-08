@@ -130,3 +130,32 @@ def test_standard_sample_is_disjoint_from_psf_zero_development():
     assert len(ids) == len(set(ids)) == 126
     assert not set(ids) & B.dev_tests()
     assert set(ids) <= B.published()
+
+
+def test_score_and_verify_agree_on_synthetic_records(tmp_path):
+    """The scoring script and the independent re-scoring give the same numbers; a smoke-sized run fails P0."""
+    import random
+    from toqb import score as SC
+    rng = random.Random(3)
+    adapters = ["qiskit:2:target", "qiskit:1:target", "qiskit:3:target", "tket:2", "psf:default", "psf:recommended"]
+    ids = ([f"test_QASMBench_small[x{i}-linear]" for i in range(4)]
+           + [f"test_hamlib_hamiltonians_transpile[ham_{i}]" for i in range(3)])
+    meta = dict(start_utc="2026-10-08T00:00:00Z", python="3", platform="x", cpus=1, par=1, reference=adapters[0],
+                plan=dict(adapters=adapters[1:], drawn=ids), tiers=[1.0, 3.0, 10.0], floor_s=0.05, lock=True)
+    lines = [dict(meta=meta)]
+    for a in adapters:
+        for t in ids:
+            r = dict(adapter=a, case="bp:" + t, device="bp:" + t, t_s=rng.uniform(0.01, 0.5), valid=True,
+                     q2=rng.randint(5, 50), d2=rng.randint(3, 30), on_failed=0,
+                     equivalence=dict(checked=True, equivalent=True, trailing=0))
+            if a == "tket:2" and t.endswith("x1-linear]"):
+                r = dict(adapter=a, case=r["case"], device=r["device"], error="timeout")
+            lines.append(r)
+    (tmp_path / "records.jsonl").write_text("".join(json.dumps(x) + "\n" for x in lines), encoding="utf-8")
+    S = SC.score(str(tmp_path))
+    assert S["P0"]["verdict"] == "FAIL"
+    (tmp_path / "score.json").write_text(json.dumps(S, default=str), encoding="utf-8")
+    root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    p = subprocess.run([sys.executable, "-m", "toqb.verify", "--out", str(tmp_path)], capture_output=True, text=True,
+                       cwd=root)
+    assert "VERIFY PASS" in p.stdout, p.stdout + p.stderr

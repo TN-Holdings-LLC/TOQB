@@ -3,8 +3,10 @@
 TOQB compares quantum compilers on the quality of what they return within a time budget, from the circuit's
 structure to a task's accuracy on a noisy device.
 
-**Status: v0, a draft.** It has the specification and a budgeted runner. Nothing has been scored yet, and no
-number from this repository should be cited.
+**Status: v0.1.** It has the specification, a budgeted runner and the standard compilation set (the layer-1
+circuits, below). The first scored run is pre-registered in
+[`prereg/2026-10-08-standard-run-1.md`](prereg/2026-10-08-standard-run-1.md). Layers 2 and 3 are not built yet. No
+number from this repository should be cited until a scored run's results are committed.
 
 ## Why another benchmark
 
@@ -30,7 +32,8 @@ compilers.
    - There are three tiers: **1x**, **3x** and **10x** the reference's time. The reference's time is taken as at
      least 0.05 s, so that the tiers stay apart on circuits it compiles in a few milliseconds.
 2. **A timeout is a failure, and it is counted.** The first number reported is the share of circuits a compiler
-   returned within budget. Quality is compared on the circuits that every compiler returned within budget.
+   returned within budget. Quality is compared with the reference's on the circuits a compiler returned within
+   each tier's budget, and across all compilers on the circuits that every one of them returned within 10x.
 3. **Three layers, each measured the same way for every compiler and task:**
 
    | layer | what is measured |
@@ -67,7 +70,7 @@ compilers.
 | size | target time on one 8-core machine | contents |
 |---|---|---|
 | smoke | under 10 minutes | one circuit per stratum, the 3x tier only |
-| standard | under 2 hours | about 140 circuits at all tiers; 20 hardware-fitness circuits; task layer on 2 datasets x 3 depths x 3 training seeds |
+| standard | under 2 hours | 126 circuits at all tiers; 20 hardware-fitness circuits; task layer on 2 datasets x 3 depths x 3 training seeds |
 | full | under a day | standard plus large circuits, more depths and the variational-loop scenario |
 
 ## The standard compilation set
@@ -141,6 +144,9 @@ toqb/
   data/         the published Benchpress test ids; PSF-Zero's development tests (excluded)
   metrics.py    structural check and metrics of an output
   runner.py     the budgeted runner (one process per measurement)
+  score.py      scores a standard run against its pre-registered predictions
+  verify.py     an independent re-scoring of a standard run
+prereg/         pre-registrations of scored runs
 tests/          tests that need no quantum package
 ```
 

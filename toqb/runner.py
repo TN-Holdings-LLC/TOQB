@@ -8,7 +8,7 @@ wall-clock limit. Budgets are multiples (TIERS) of the reference compiler's aver
 device, the reference time being taken as at least BUDGET_FLOOR_S.
 
     python -m toqb.runner one  --adapter qiskit:2:target --case qft:8 --device fake:FakeTorino [--limit-s 60]
-    python -m toqb.runner run  --plan plan.json --out DIR [--par 6]
+    python -m toqb.runner run  --plan plan.json --out DIR [--par 6] [--lock]
     python -m toqb.runner summary --out DIR
     python -m toqb.runner commit --seed-file FILE     the commitment (SHA-256) of a secret seed, for a plan
 
@@ -18,7 +18,9 @@ plan.json: {"adapters": [...]} and any of
     "benchpress_standard": {"seed_sha256": H}
                                  the standard Benchpress sample (toqb.benchpress_source.sample), drawn from the
                                  seed in --seed-file, which must hash to H; each test is its own case and device
-The reference adapter is added if missing.
+The reference adapter is added if missing. Records are written as each measurement finishes, with a progress line on
+stderr. The run records its provenance (git heads, uncommitted changes, package versions); with --lock it stops if
+TOQB, PSF-Zero or Benchpress has an uncommitted change to a tracked file.
 """
 from __future__ import annotations
 
@@ -29,8 +31,9 @@ import os
 import platform
 import subprocess
 import sys
+import threading
 import time
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 REFERENCE = "qiskit:2:target"
 TIERS = (1.0, 3.0, 10.0)
@@ -133,11 +136,45 @@ def measure(adapter, case, device, limit_s):
     return rec
 
 
+def _git(path, *args):
+    try:
+        p = subprocess.run(["git", "-C", path, *args], capture_output=True, text=True, timeout=60)
+        return p.stdout.strip() if p.returncode == 0 else None
+    except (OSError, subprocess.SubprocessError):
+        return None
+
+
+def provenance():
+    """Git head and uncommitted tracked changes of TOQB, PSF-Zero ($PSF_ZERO_REPO) and Benchpress ($TOQB_BENCHPRESS),
+    and the versions of the packages that compile or check."""
+    from importlib import metadata
+    info = {}
+    repos = dict(toqb=os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                 psf_zero=os.environ.get("PSF_ZERO_REPO"), benchpress=os.environ.get("TOQB_BENCHPRESS"))
+    for name, path in repos.items():
+        if path:
+            info[name] = dict(head=_git(path, "rev-parse", "HEAD"),
+                              dirty=_git(path, "status", "--porcelain", "--untracked-files=no"))
+    versions = {}
+    for pkg in ("qiskit", "qiskit-ibm-runtime", "numpy", "scipy", "rustworkx", "pytket", "pytket-qiskit"):
+        try:
+            versions[pkg] = metadata.version(pkg)
+        except metadata.PackageNotFoundError:
+            versions[pkg] = None
+    info["versions"] = versions
+    return info
+
+
 def run(args):
     plan = json.load(open(args.plan, encoding="utf-8"))
     adapters = list(dict.fromkeys([REFERENCE] + plan["adapters"]))
     pairs = [(c, d) for c in plan.get("cases", []) for d in plan.get("devices", [])]
     pairs += [tuple(p) for p in plan.get("pairs", [])]
+    prov = provenance()
+    if args.lock:
+        dirty = [n for n, v in prov.items() if isinstance(v, dict) and "dirty" in v and v["dirty"] != ""]
+        if dirty:
+            raise SystemExit(f"STOP: uncommitted changes (or no git) in {', '.join(dirty)}")
     if "benchpress_standard" in plan:
         from toqb.benchpress_source import clone, sample, seed_commitment
         seed = open(args.seed_file, encoding="utf-8").read().strip()
@@ -149,30 +186,48 @@ def run(args):
     os.makedirs(args.out, exist_ok=True)
     meta = dict(start_utc=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), python=sys.version.split()[0],
                 platform=platform.platform(), cpus=os.cpu_count(), par=args.par, plan=plan, reference=REFERENCE,
-                tiers=TIERS, floor_s=BUDGET_FLOOR_S, repeats=REPEATS, limit_factor=LIMIT_FACTOR)
+                tiers=TIERS, floor_s=BUDGET_FLOOR_S, repeats=REPEATS, long_s=LONG_S, limit_factor=LIMIT_FACTOR,
+                lock=bool(args.lock), provenance=prov)
     path = os.path.join(args.out, "records.jsonl")
+    guard = threading.Lock()
+    total = len(pairs) * len(adapters)
+    count = [0]
+    t_start = time.perf_counter()
     with open(path, "w", encoding="utf-8", newline="\n") as fh:
         fh.write(json.dumps(dict(meta=meta)) + "\n")
-    # the reference first: its time sets every budget, and the limit of the others
-    with ThreadPoolExecutor(args.par) as ex:
-        refs = dict(zip(pairs, ex.map(lambda p: measure(REFERENCE, p[0], p[1], args.ref_limit_s), pairs)))
-    jobs = []
-    for (c, d), r in refs.items():
-        ref_t = r.get("t_s")
-        limit = (LIMIT_FACTOR * max(budgets(ref_t).values()) * (REPEATS + 1)) if ref_t else args.ref_limit_s
-        jobs += [(a, c, d, limit) for a in adapters if a != REFERENCE]
-    with ThreadPoolExecutor(args.par) as ex:
-        others = list(ex.map(lambda j: measure(*j), jobs))
-    with open(path, "a", encoding="utf-8", newline="\n") as fh:
-        for rec in list(refs.values()) + others:
-            fh.write(json.dumps(rec) + "\n")
+        fh.flush()
+
+        def keep(rec):
+            with guard:
+                fh.write(json.dumps(rec) + "\n")
+                fh.flush()
+                count[0] += 1
+                state = "error" if "error" in rec else f"{rec.get('t_s', 0):.3f} s, q2 {rec.get('q2')}"
+                print(f"[{count[0]}/{total} {time.perf_counter() - t_start:7.0f} s] {rec['adapter']} "
+                      f"{rec['case'][:70]}: {state}", file=sys.stderr, flush=True)
+            return rec
+
+        # the reference first: its time sets every budget, and the limit of the others
+        with ThreadPoolExecutor(args.par) as ex:
+            futs = {ex.submit(measure, REFERENCE, c, d, args.ref_limit_s): (c, d) for c, d in pairs}
+            refs = {futs[f]: keep(f.result()) for f in as_completed(futs)}
+        jobs = []
+        for c, d in pairs:
+            ref_t = refs[(c, d)].get("t_s")
+            limit = (LIMIT_FACTOR * max(budgets(ref_t).values()) * (REPEATS + 1)) if ref_t else args.ref_limit_s
+            jobs += [(a, c, d, limit) for a in adapters if a != REFERENCE]
+        with ThreadPoolExecutor(args.par) as ex:
+            for f in as_completed([ex.submit(measure, *j) for j in jobs]):
+                keep(f.result())
+        fh.write(json.dumps(dict(end=dict(end_utc=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                                          wall_s=round(time.perf_counter() - t_start, 1)))) + "\n")
     summary(args)
 
 
 def summary(args):
     path = os.path.join(args.out, "records.jsonl")
     lines = [json.loads(ln) for ln in open(path, encoding="utf-8")]
-    recs = [r for r in lines if "meta" not in r]
+    recs = [r for r in lines if "adapter" in r]
     ref = {(r["case"], r["device"]): r for r in recs if r["adapter"] == REFERENCE}
     adapters = list(dict.fromkeys(r["adapter"] for r in recs))
     out = ["# TOQB summary (v0 draft: not a result)", "",
@@ -218,6 +273,7 @@ def main():
     ap.add_argument("--out")
     ap.add_argument("--par", type=int, default=4)
     ap.add_argument("--seed-file")
+    ap.add_argument("--lock", action="store_true")
     a = ap.parse_args()
     {"one": one, "run": run, "summary": summary, "commit": commit}[a.mode](a)
 
