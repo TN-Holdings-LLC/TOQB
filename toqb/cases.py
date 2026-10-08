@@ -6,6 +6,7 @@ Spec strings:
     qft:N            the quantum Fourier transform on N qubits, expanded to one- and two-qubit gates
     brick:N:L:SEED   L layers of Haar-random two-qubit unitaries in a brick pattern
     qasm:PATH        an OpenQASM 2 file
+    bp:<test id>     a Benchpress transpilation test's input circuit (toqb.benchpress_source)
 """
 from __future__ import annotations
 
@@ -36,6 +37,9 @@ def get_case(spec: str):
             for a in range(layer % 2, n - 1, 2):
                 qc.unitary(random_unitary(4, seed=int(rng.integers(2**31))), [a, a + 1])
         return qc
+    if kind == "bp":
+        from toqb.benchpress_source import build
+        return build(arg)[0]
     if kind == "qasm":
         return QuantumCircuit.from_qasm_file(arg)
     raise ValueError(f"unknown case spec {spec!r}")

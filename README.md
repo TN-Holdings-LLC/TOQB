@@ -70,19 +70,45 @@ compilers.
 | standard | under 2 hours | about 140 circuits at all tiers; 20 hardware-fitness circuits; task layer on 2 datasets x 3 depths x 3 training seeds |
 | full | under a day | standard plus large circuits, more depths and the variational-loop scenario |
 
+## The standard compilation set
+
+- **Population.** These are Benchpress's transpilation tests that its authors have published results for: 1,032 at
+  Benchpress commit `b695f30`. They are built as Benchpress's Qiskit gym builds them, with the same input circuit and
+  the same backend (`toqb/benchpress_source.py`).
+- **Exclusions.** The 152 tests that PSF-Zero's development used are left out (`toqb/data/psf_zero_dev_tests.txt`),
+  because PSF-Zero's author also wrote TOQB.
+- **Sample.** Each stratum (QASMBench small, medium and large on four maps; HamLib on four maps and on FakeTorino;
+  Feynman on FakeTorino) contributes a fixed number of tests, 126 in all. They are chosen by a hash of a secret seed.
+  The seed's commitment, `sha256("TOQB-seed|" + seed)`, is in `plan_standard.json` before the run. The seed itself is
+  published after the run, so anyone can check that the sample was drawn as declared.
+- **Calibration.** Abstract maps carry no calibration, so no compiler receives a Target on them. On FakeTorino every
+  target-aware compiler receives the device's Target.
+- **Smoke run.** `plan_bp_smoke.json` uses five tests from PSF-Zero's development set, never ones from the sample.
+
 ## How a measurement is made (`toqb/runner.py`)
 
 - **One process per (compiler, circuit).** The process uses one thread (OpenMP, BLAS, Rayon and Qiskit's
   parallelism are switched off). Import and device loading are not timed.
 - **Repeats.** One warm-up compile is discarded. Then there are five timed compiles; the fastest and the slowest are
-  dropped and the rest averaged.
+  dropped and the rest averaged. If the warm-up takes longer than 2 s, a single timed compile follows instead, because
+  long compiles vary little from run to run.
 - **Limits.** A compile that exceeds ten times the budget is stopped, and the whole process has a wall-clock limit.
 - **Checked, outside the timed part.**
   - Structure: every gate is in the device's basis and every two-qubit gate is on a coupled pair.
   - Equivalence: the input and the output are simulated from |0...0> and from three random product states, with
-    each input qubit placed where the compiler put it at the start and read where it is at the end. A state
-    infidelity above 1e-6 is "not equivalent". Outputs that touch more than 12 qubits, and inputs that measure or
-    reset mid-circuit, are reported as not checked.
+    each input qubit prepared where the compiler put it at the start.
+    - An input without measurements is compared as a state: each input qubit is read where it is at the end, and
+      a state infidelity above 1e-6 is "not equivalent".
+    - An input whose measurements are all at the end is compared by the probabilities of its measured bits, each
+      bit read from the qubit the output measures into it. A total variation distance above 1e-6 is "not
+      equivalent". Passes that act only on what is measured (removing a diagonal gate or a swap before a
+      measurement) change the state but not these probabilities, so they are not penalised. Gates after the
+      measurements that no later measurement depends on (TKET can leave a swap there) are left out of the
+      comparison, counted as "trailing", and still counted in the output's gates.
+    - The input is compared as the compiler read it. This differs from Qiskit's reading in one case: TKET builds its
+      own first-order product formula for a `PauliEvolutionGate` (below), and is checked against that formula.
+    - Outputs that touch more than 12 qubits, and inputs that measure or reset mid-circuit, are reported as not
+      checked.
 - **Recorded.** The machine, the versions, every time, whether the result was within budget, the output's metrics and
   the checks.
 
@@ -95,7 +121,13 @@ A compiler takes part through an adapter with two methods:
 
 The built-in adapters cover Qiskit (any level, with or without the target), TKET (the default compilation pass of
 pytket-qiskit's IBM backend at the given optimisation level, built offline from the device's map and gate set) and
-PSF-Zero (its default call, and its recommended call when the device has a target). An external one can be
+PSF-Zero (its default call, and its recommended call when the device has a target).
+
+A `PauliEvolutionGate` (the HamLib circuits) is read by each compiler its own way, as Benchpress lets each SDK build
+its own Hamiltonian circuit. Qiskit expands it as a product formula with the terms in the given order. The TKET
+adapter builds TKET's own product formula (`gen_term_sequence_circuit`, which groups the terms into commuting sets),
+with Qiskit's conventions for the gate: U = exp(-i t H), and character k of a Pauli label acts on the gate's qubit
+n-1-k. Both are first-order formulas for the same Hamiltonian. They differ in term order, and so in Trotter error. An external one can be
 named as `package.module:factory`. The adapter receives exactly the device information its division allows.
 
 ## Layout
@@ -104,7 +136,9 @@ named as `package.module:factory`. The adapter receives exactly the device infor
 toqb/
   adapters.py   compiler adapters (Qiskit, TKET, PSF-Zero, external)
   devices.py    devices: IBM fake backends and abstract maps; failed elements
-  cases.py      circuit sources (v0: a small built-in set)
+  cases.py      circuit sources (a small built-in set, and Benchpress tests)
+  benchpress_source.py   Benchpress tests as cases and devices; the standard sample
+  data/         the published Benchpress test ids; PSF-Zero's development tests (excluded)
   metrics.py    structural check and metrics of an output
   runner.py     the budgeted runner (one process per measurement)
 tests/          tests that need no quantum package

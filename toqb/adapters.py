@@ -48,7 +48,14 @@ class TketAdapter:
     no IBM account is needed. At level 2 that is DecomposeBoxes, FullPeepholeOptimise, a rebase, LightSABRE routing,
     KAKDecomposition, CliffordSimp, SynthesiseTket, a rebase, a squash and RemoveRedundancies. The output is rebuilt
     in Qiskit on the device's qubit indices (`_to_qiskit`), with the initial and final placement of each input qubit
-    in `metadata` (for the equivalence check)."""
+    in `metadata` (for the equivalence check).
+
+    The input is converted with qiskit_to_tk, except a PauliEvolutionGate (`_tk_input`): TKET builds its own
+    first-order product formula for it (gen_term_sequence_circuit, which groups the terms into commuting sets and
+    orders them; Benchpress's TKET gym builds its Hamiltonian circuits the same way), here with Qiskit's conventions
+    for the gate (U = exp(-i t H); character k of a Pauli label acts on the gate's qubit n-1-k). The formula differs
+    from Qiskit's, which keeps the terms in order, so the output is checked against TKET's reading
+    (`reference_input`)."""
 
     def __init__(self, level: int):
         self.level = level
@@ -59,34 +66,119 @@ class TketAdapter:
         import pytket.extensions.qiskit as pq
         return f"pytket {pytket.__version__}, pytket-qiskit {getattr(pq, '__extension_version__', '?')}"
 
+    @staticmethod
+    def _units(circuit):
+        """The pytket Qubit and Bit for each Qiskit qubit and clbit, named (register, index) as qiskit_to_tk names
+        them."""
+        from pytket import Bit, Qubit
+
+        def name(b):
+            loc = circuit.find_bit(b)
+            if not loc.registers:
+                raise ValueError("a bit outside every register")
+            reg, k = loc.registers[0]
+            return reg.name, k
+        return [Qubit(*name(b)) for b in circuit.qubits], [Bit(*name(b)) for b in circuit.clbits]
+
+    @staticmethod
+    def _peg_box(peg):
+        """TKET's first-order product formula for a PauliEvolutionGate, as a CircBox on the gate's qubits in order."""
+        import math
+        from pytket import Circuit, Qubit
+        from pytket.circuit import CircBox
+        from pytket.pauli import Pauli, QubitPauliString
+        from pytket.utils import QubitPauliOperator, gen_term_sequence_circuit
+        from qiskit.quantum_info import SparsePauliOp
+        syn = peg.synthesis
+        if type(syn).__name__ != "LieTrotter" or getattr(syn, "reps", 1) != 1:
+            raise ValueError(f"PauliEvolutionGate with {type(syn).__name__}, reps {getattr(syn, 'reps', '?')}")
+        if not isinstance(peg.operator, SparsePauliOp):
+            raise ValueError("PauliEvolutionGate on a list of operators")
+        t, n = float(peg.params[0]), peg.num_qubits
+        letters = {"X": Pauli.X, "Y": Pauli.Y, "Z": Pauli.Z}
+        terms = {}
+        for label, c in peg.operator.to_list():
+            if abs(complex(c).imag) > 1e-12:
+                raise ValueError(f"complex coefficient for {label}")
+            qps = QubitPauliString({Qubit(n - 1 - k): letters[ch] for k, ch in enumerate(label) if ch != "I"})
+            # gen_term_sequence_circuit approximates exp(-i pi/2 P): a coefficient 2 t c / pi gives exp(-i t c P)
+            terms[qps] = terms.get(qps, 0.0) + 2 * t * float(complex(c).real) / math.pi
+        return CircBox(gen_term_sequence_circuit(QubitPauliOperator(terms), Circuit(n)))
+
+    def _tk_input(self, circuit):
+        from pytket.extensions.qiskit import qiskit_to_tk
+        if not any(i.operation.name == "PauliEvolution" for i in circuit.data):
+            return qiskit_to_tk(circuit)
+        qs, _ = self._units(circuit)
+        tk = qiskit_to_tk(circuit.copy_empty_like())
+        run = None
+        for ins in list(circuit.data) + [None]:
+            if ins is not None and ins.operation.name != "PauliEvolution":
+                if run is None:
+                    run = circuit.copy_empty_like()
+                    run.global_phase = 0
+                run.append(ins)
+                continue
+            if run is not None:
+                tk.append(qiskit_to_tk(run))
+                run = None
+            if ins is not None:
+                tk.add_circbox(self._peg_box(ins.operation), [qs[circuit.find_bit(b).index] for b in ins.qubits])
+        return tk
+
+    def reference_input(self, circuit):
+        """The input as TKET reads it, as a Qiskit circuit on the input's qubits and clbits, when that differs from
+        Qiskit's reading (a PauliEvolutionGate); None otherwise."""
+        if not any(i.operation.name == "PauliEvolution" for i in circuit.data):
+            return None
+        from pytket.extensions.qiskit import tk_to_qiskit
+        from pytket.passes import DecomposeBoxes
+        from qiskit import QuantumCircuit
+        tk = self._tk_input(circuit)
+        DecomposeBoxes().apply(tk)
+        try:
+            qc = tk_to_qiskit(tk, replace_implicit_swaps=True)
+        except TypeError:
+            tk.replace_implicit_wire_swaps()
+            qc = tk_to_qiskit(tk)
+        # back onto the input's own qubit and clbit order, matched by (register, index)
+        qpos = {(r.name, k): circuit.find_bit(b).index for r in circuit.qregs for k, b in enumerate(r)}
+        cpos = {(r.name, k): circuit.find_bit(b).index for r in circuit.cregs for k, b in enumerate(r)}
+
+        def where(bit, pos):
+            reg, k = qc.find_bit(bit).registers[0]
+            return pos[(reg.name, k)]
+        out = QuantumCircuit(circuit.num_qubits, circuit.num_clbits, global_phase=qc.global_phase)
+        for ins in qc.data:
+            out.append(ins.operation, [where(b, qpos) for b in ins.qubits], [where(b, cpos) for b in ins.clbits])
+        return out
+
     def compile(self, circuit, device):
         from pytket import OpType
         from pytket.architecture import Architecture
         from pytket.backends.backendinfo import BackendInfo
-        from pytket.extensions.qiskit import IBMQBackend, qiskit_to_tk
+        from pytket.extensions.qiskit import IBMQBackend
         from pytket.predicates import CompilationUnit
         ops = {"cz": OpType.CZ, "cx": OpType.CX, "ecr": OpType.ECR, "rz": OpType.Rz, "sx": OpType.SX,
                "x": OpType.X}
         gateset = {ops[g] for g in device.basis if g in ops} | {OpType.Measure, OpType.Barrier, OpType.Reset}
         info = BackendInfo("toqb", device.spec, "0", Architecture(list(device.edges)), gateset)
-        tk = qiskit_to_tk(circuit)
-        inputs = list(tk.qubits)  # q[0], q[1], ... in the input's order
-        cu = CompilationUnit(tk)
+        inputs, bits = self._units(circuit)  # the pytket units of the input's qubits and clbits, in Qiskit's order
+        cu = CompilationUnit(self._tk_input(circuit))
         IBMQBackend.pass_from_info(info, optimisation_level=self.level).apply(cu)
-        out = self._to_qiskit(cu.circuit, device)
+        out = self._to_qiskit(cu.circuit, device, circuit.num_clbits, {b: i for i, b in enumerate(bits)})
         out.metadata = dict(toqb_initial=[cu.initial_map[q].index[0] for q in inputs],
                             toqb_final=[cu.final_map[q].index[0] for q in inputs])
         return out
 
     @staticmethod
-    def _to_qiskit(tk, device):
+    def _to_qiskit(tk, device, num_clbits, bit):
         """Rebuild the circuit gate by gate on the device's qubit indices (TKET's node index), so that the output's
-        qubit i is the device's qubit i. Angles in TKET are in half-turns."""
+        qubit i is the device's qubit i, and clbit j is the input's clbit j. Angles in TKET are in half-turns."""
         import math
         from pytket import OpType
         from qiskit import QuantumCircuit
-        qc = QuantumCircuit(device.num_qubits, len(tk.bits))
-        bit = {b: i for i, b in enumerate(tk.bits)}
+        qc = QuantumCircuit(device.num_qubits, num_clbits)
         names = {OpType.CZ: "cz", OpType.CX: "cx", OpType.ECR: "ecr", OpType.SX: "sx", OpType.X: "x"}
         for cmd in tk.get_commands():
             t = cmd.op.type

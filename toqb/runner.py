@@ -1,7 +1,8 @@
 """The budgeted runner.
 
 One process per (adapter, case, device). In it: build the circuit and the device (not timed), one warm-up compile
-(discarded), then REPEATS timed compiles; the fastest and the slowest are dropped and the rest averaged. A compile
+(discarded), then REPEATS timed compiles (one, if the warm-up took longer than LONG_S); the fastest and the slowest
+are dropped and the rest averaged. A compile
 that takes longer than LIMIT_FACTOR times the largest budget stops the repeats. The parent kills the process at a
 wall-clock limit. Budgets are multiples (TIERS) of the reference compiler's averaged time on the same case and
 device, the reference time being taken as at least BUDGET_FLOOR_S.
@@ -9,8 +10,15 @@ device, the reference time being taken as at least BUDGET_FLOOR_S.
     python -m toqb.runner one  --adapter qiskit:2:target --case qft:8 --device fake:FakeTorino [--limit-s 60]
     python -m toqb.runner run  --plan plan.json --out DIR [--par 6]
     python -m toqb.runner summary --out DIR
+    python -m toqb.runner commit --seed-file FILE     the commitment (SHA-256) of a secret seed, for a plan
 
-plan.json: {"cases": [...], "devices": [...], "adapters": [...]}; the reference adapter is added if missing.
+plan.json: {"adapters": [...]} and any of
+    "cases" + "devices"          every case on every device
+    "pairs": [[case, device]]    given pairs
+    "benchpress_standard": {"seed_sha256": H}
+                                 the standard Benchpress sample (toqb.benchpress_source.sample), drawn from the
+                                 seed in --seed-file, which must hash to H; each test is its own case and device
+The reference adapter is added if missing.
 """
 from __future__ import annotations
 
@@ -28,6 +36,7 @@ REFERENCE = "qiskit:2:target"
 TIERS = (1.0, 3.0, 10.0)
 BUDGET_FLOOR_S = 0.05
 REPEATS = 5
+LONG_S = 2.0  # a warm-up compile longer than this is followed by one timed compile, not REPEATS
 LIMIT_FACTOR = 10.0
 ONE_THREAD = dict(OMP_NUM_THREADS="1", OPENBLAS_NUM_THREADS="1", MKL_NUM_THREADS="1", RAYON_NUM_THREADS="1",
                   QISKIT_PARALLEL="FALSE", PYTHONUTF8="1", PYTHONIOENCODING="utf-8")
@@ -76,15 +85,19 @@ def one(args):
     rec["adapter_version"] = adapter.version()
     circuit, device = get_case(args.case), get_device(args.device)
     stop = args.limit_s / (REPEATS + 1)
-    times, out = [], None
-    for k in range(REPEATS + 1):
+    times, out, runs = [], None, REPEATS + 1
+    k = 0
+    while k < runs:
         t0 = time.perf_counter()
         out = adapter.compile(circuit, device)
         dt = time.perf_counter() - t0
+        if k == 0 and dt > LONG_S:
+            runs = 2  # a long compile varies little between runs; one timed run after the warm-up
         if k > 0:
             times.append(dt)
         if dt > stop:
             break
+        k += 1
     rec["times_s"] = [round(t, 6) for t in times] or [round(dt, 6)]
     rec["t_s"] = trimmed_mean(rec["times_s"])
     problem = structural_check(out, device)
@@ -93,7 +106,9 @@ def one(args):
         rec["invalid_because"] = problem
     rec.update(metrics(out, device))
     try:
-        rec["equivalence"] = equivalence(circuit, out)
+        # the compiler's own reading of the input, when it differs from Qiskit's (TKET and a PauliEvolutionGate)
+        reading = adapter.reference_input(circuit) if hasattr(adapter, "reference_input") else None
+        rec["equivalence"] = equivalence(circuit, out, reference=reading)
     except Exception as exc:  # noqa: BLE001 - recorded: the check could not be made
         rec["equivalence"] = dict(checked=False, why=f"{type(exc).__name__}: {exc}"[:200])
     print(json.dumps(rec), flush=True)
@@ -121,7 +136,16 @@ def measure(adapter, case, device, limit_s):
 def run(args):
     plan = json.load(open(args.plan, encoding="utf-8"))
     adapters = list(dict.fromkeys([REFERENCE] + plan["adapters"]))
-    pairs = [(c, d) for c in plan["cases"] for d in plan["devices"]]
+    pairs = [(c, d) for c in plan.get("cases", []) for d in plan.get("devices", [])]
+    pairs += [tuple(p) for p in plan.get("pairs", [])]
+    if "benchpress_standard" in plan:
+        from toqb.benchpress_source import clone, sample, seed_commitment
+        seed = open(args.seed_file, encoding="utf-8").read().strip()
+        if seed_commitment(seed) != plan["benchpress_standard"]["seed_sha256"]:
+            raise SystemExit("STOP: the seed does not match the plan's committed hash")
+        drawn = sample(clone(), seed)
+        pairs += [(f"bp:{tid}", f"bp:{tid}") for _, tid in drawn]
+        plan = dict(plan, drawn=[tid for _, tid in drawn])
     os.makedirs(args.out, exist_ok=True)
     meta = dict(start_utc=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), python=sys.version.split()[0],
                 platform=platform.platform(), cpus=os.cpu_count(), par=args.par, plan=plan, reference=REFERENCE,
@@ -168,15 +192,23 @@ def summary(args):
                    f"{sum(1 for r in rs if not_equivalent(r))} | "
                    f"{sum(1 for r in rs if (r.get('equivalence') or {}).get('checked') is True)} | "
                    f"{sum(1 for r in rs if 'error' in r)} |")
+    no_ref = [k for k, r in ref.items() if "t_s" not in r]
+    out += ["", f"pairs: {len(ref)}; the reference failed on {len(no_ref)} (left out of every row)"
+            + (": " + ", ".join(f"{c} on {d}" for c, d in no_ref[:10]) if no_ref else "")]
     txt = "\n".join(out)
     with open(os.path.join(args.out, "summary.md"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(txt + "\n")
     print(txt)
 
 
+def commit(args):
+    from toqb.benchpress_source import seed_commitment
+    print(seed_commitment(open(args.seed_file, encoding="utf-8").read()))
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("mode", choices=("one", "run", "summary"))
+    ap.add_argument("mode", choices=("one", "run", "summary", "commit"))
     ap.add_argument("--adapter")
     ap.add_argument("--case")
     ap.add_argument("--device")
@@ -185,8 +217,9 @@ def main():
     ap.add_argument("--plan")
     ap.add_argument("--out")
     ap.add_argument("--par", type=int, default=4)
+    ap.add_argument("--seed-file")
     a = ap.parse_args()
-    {"one": one, "run": run, "summary": summary}[a.mode](a)
+    {"one": one, "run": run, "summary": summary, "commit": commit}[a.mode](a)
 
 
 if __name__ == "__main__":

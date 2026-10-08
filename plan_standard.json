@@ -1,0 +1,13 @@
+{
+ "_comment": "The standard compilation-layer set: the stratified Benchpress sample of toqb.benchpress_source, drawn from a secret seed whose commitment is below. The seed is published after the run.",
+ "benchpress_standard": {
+  "seed_sha256": "01edf8fa0dcb16f96354c7d28bf7374e3dd861ff6639984c9e50f02091459e29"
+ },
+ "adapters": [
+  "qiskit:1:target",
+  "qiskit:3:target",
+  "tket:2",
+  "psf:default",
+  "psf:recommended"
+ ]
+}

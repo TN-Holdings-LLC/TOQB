@@ -63,3 +63,70 @@ def test_equivalence_catches_a_wrong_output():
     wrong = out.copy()
     wrong.x(out.layout.final_index_layout(filter_ancillas=True)[0])
     assert equivalence(qc, wrong)["equivalent"] is False
+
+
+@pytest.mark.skipif(importlib.util.find_spec("qiskit") is None, reason="needs Qiskit")
+def test_measured_circuit_is_compared_by_distribution():
+    """Level 3 removes a swap and a diagonal gate before the measurements: the state changes, the measured
+    probabilities do not. A flipped measurement is still caught."""
+    from qiskit import QuantumCircuit
+    from qiskit.transpiler import CouplingMap
+    from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+    from toqb.devices import get_device
+    from toqb.metrics import equivalence
+    dev = get_device("linear:4")
+    qc = QuantumCircuit(3, 3)
+    qc.h(0)
+    qc.cx(0, 1)
+    qc.ry(0.4, 2)
+    qc.swap(1, 2)
+    qc.rz(0.3, 0)
+    qc.measure(range(3), range(3))
+    out = generate_preset_pass_manager(3, coupling_map=CouplingMap(dev.edges), basis_gates=dev.basis,
+                                       seed_transpiler=0).run(qc)
+    eq = equivalence(qc, out)
+    assert eq["method"] == "distribution" and eq["equivalent"] is True
+    wrong = out.copy_empty_like()
+    flipped = False
+    for ins in out.data:
+        if ins.operation.name == "measure" and not flipped:
+            wrong.x(ins.qubits[0])
+            flipped = True
+        wrong.append(ins)
+    assert equivalence(qc, wrong)["equivalent"] is False
+    # a swap after the measurements (as TKET can leave one) changes no measured bit: left out, and counted
+    ms = [ins.qubits[0] for ins in out.data if ins.operation.name == "measure"]
+    tail = out.copy()
+    tail.cz(ms[0], ms[1])
+    tail.sx(ms[1])
+    eq = equivalence(qc, tail)
+    assert eq["equivalent"] is True and eq["trailing"] == 2
+    # but a measurement after such a gate is not a final measurement
+    again = tail.copy()
+    again.measure(ms[1], 0)
+    assert equivalence(qc, again)["checked"] is False
+
+
+@pytest.mark.skipif(importlib.util.find_spec("pytket") is None, reason="needs pytket and pytket-qiskit")
+def test_tket_reads_pauli_evolution_with_qiskits_conventions():
+    """With commuting terms the order does not matter, so TKET's reading must equal Qiskit's gate exactly: the same
+    time (U = exp(-i t H)) and the same qubit for each Pauli letter."""
+    from qiskit import QuantumCircuit
+    from qiskit.circuit.library import PauliEvolutionGate
+    from qiskit.quantum_info import Operator, SparsePauliOp
+    from toqb.adapters import TketAdapter
+    for labels, coeffs in ((["IIZ", "IZZ", "ZII"], [0.3, 0.7, -0.2]), (["IYX"], [0.4]), (["XXI", "YYI"], [0.5, 0.25])):
+        qc = QuantumCircuit(3)
+        qc.append(PauliEvolutionGate(SparsePauliOp(labels, coeffs), time=0.9), range(3))
+        reading = TketAdapter(2).reference_input(qc)
+        assert Operator(reading).equiv(Operator(qc)), labels
+
+
+@pytest.mark.skipif(not os.environ.get("TOQB_BENCHPRESS"), reason="needs a Benchpress clone in $TOQB_BENCHPRESS")
+def test_standard_sample_is_disjoint_from_psf_zero_development():
+    from toqb import benchpress_source as B
+    drawn = B.sample(B.clone(), "a test seed, not the real one")
+    ids = [t for _, t in drawn]
+    assert len(ids) == len(set(ids)) == 126
+    assert not set(ids) & B.dev_tests()
+    assert set(ids) <= B.published()

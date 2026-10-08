@@ -6,7 +6,10 @@ Spec strings:
     grid:RxC               an R x C square grid
     heavyhex:D             Qiskit's heavy-hex map of distance D
     full:N                 all-to-all on N qubits
-Abstract maps use the basis cz, rz, sx, x (as Benchpress's FlexibleBackend does).
+    bp:<test id>           the backend Benchpress builds for that test (toqb.benchpress_source): its FlexibleBackend's
+                           map and basis (no Target: abstract maps carry no calibration), or the fake device with its
+                           Target
+Abstract maps use the basis cz, rz, sx, x (as Benchpress's FlexibleBackend does, which also allows id).
 """
 from __future__ import annotations
 
@@ -45,8 +48,20 @@ def _failed(target):
     return edges, qubits
 
 
+def from_target(spec, target, with_target):
+    cm = target.build_coupling_map()
+    basis = [g for g in target.operation_names if g in ("cx", "cz", "ecr", "rz", "sx", "x", "id")]
+    fe, fq = _failed(target) if with_target else (set(), set())
+    edges = sorted({tuple(e) for e in cm.get_edges()})
+    return Device(spec, target.num_qubits, edges, basis, target if with_target else None, fe, fq)
+
+
 def get_device(spec: str) -> Device:
     kind, _, arg = spec.partition(":")
+    if kind == "bp":
+        from toqb.benchpress_source import build
+        _, backend, _ = build(arg)
+        return from_target(spec, backend.target, type(backend).__name__ != "FlexibleBackend")
     if kind == "fake":
         from qiskit_ibm_runtime import fake_provider
         target = getattr(fake_provider, arg)().target

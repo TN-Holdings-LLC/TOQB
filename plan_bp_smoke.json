@@ -1,0 +1,32 @@
+{
+ "_comment": "Smoke run on Benchpress tests that PSF-Zero's development used (never the standard sample).",
+ "pairs": [
+  [
+   "bp:test_QASMBench_small[basis_test_n4-all-to-all]",
+   "bp:test_QASMBench_small[basis_test_n4-all-to-all]"
+  ],
+  [
+   "bp:test_QASMBench_medium[ghz_state_n23-square]",
+   "bp:test_QASMBench_medium[ghz_state_n23-square]"
+  ],
+  [
+   "bp:test_hamiltonians[ham_reg-5_n-10_rinst-07-linear]",
+   "bp:test_hamiltonians[ham_reg-5_n-10_rinst-07-linear]"
+  ],
+  [
+   "bp:test_feynman_transpile[mod5_4.qasm]",
+   "bp:test_feynman_transpile[mod5_4.qasm]"
+  ],
+  [
+   "bp:test_hamlib_hamiltonians_transpile[ham_ham_JW-6]",
+   "bp:test_hamlib_hamiltonians_transpile[ham_ham_JW-6]"
+  ]
+ ],
+ "adapters": [
+  "qiskit:1:target",
+  "qiskit:3:target",
+  "tket:2",
+  "psf:default",
+  "psf:recommended"
+ ]
+}
