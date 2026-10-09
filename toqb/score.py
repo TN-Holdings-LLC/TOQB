@@ -19,12 +19,17 @@ import math
 import os
 import random
 
-from toqb.runner import REFERENCE, TIERS, gmean, not_equivalent, within
+from toqb.runner import NOT_RUN, REFERENCE, TIERS, gmean, not_equivalent, within
 
 EXPECTED = dict(n_pairs=126, adapters=["qiskit:2:target", "qiskit:1:target", "qiskit:3:target", "tket:2",
                                        "psf:default", "psf:recommended"],
                 versions={"qiskit": "2.5.2", "pytket": "2.18.5", "pytket-qiskit": "0.78.0"},
-                psf_release="2026-10-07.1", psf_zero_head="79b70ad", benchpress_head="b695f30")
+                psf_release="2026-10-07.1", psf_zero_head="79b70ad", benchpress_head="b695f30",
+                # the circuit breakers of amendment 1 (prereg/2026-10-09-standard-run-1-amendment.md)
+                rules=dict(mem_cap_gb=3.0, b10_cap_s=600.0, warmup_grace_s=30.0, ref_limit_s=600.0, check_limit_s=60.0,
+                           run_budget_h=10.0))
+# errors that come from TOQB's TKET adapter (its conversion of the input or of the output), not from TKET
+ADAPTER_ERRORS = ("unsupported by qiskit_to_tk", "TKET returned", "Invoked with types")
 BOOT = 2000
 
 
@@ -119,6 +124,8 @@ def score(out):
         and str((prov.get("psf_zero") or {}).get("head", "")).startswith(EXPECTED["psf_zero_head"]),
         "Benchpress head": str((prov.get("benchpress") or {}).get("head", "")).startswith(EXPECTED["benchpress_head"]),
         "package versions": all((prov.get("versions") or {}).get(k) == v for k, v in EXPECTED["versions"].items()),
+        "the circuit breakers of amendment 1": all(meta.get(k) == v for k, v in EXPECTED["rules"].items()),
+        "the run is complete (not stopped by a STOP file or the run budget)": bool(end) and end.get("complete") is True,
     }
     S["P0"] = dict(checks=checks, verdict="PASS" if all(checks.values()) else "FAIL",
                    toqb_head=(prov.get("toqb") or {}).get("head"))
@@ -145,7 +152,19 @@ def score(out):
             invalid=sum(1 for r in rs if r.get("valid") is False),
             not_equivalent=sum(1 for r in rs if not_equivalent(r)),
             checked=sum(1 for r in rs if (r.get("equivalence") or {}).get("checked") is True),
-            failed=sum(1 for r in rs if "error" in r),
+            failed=sum(1 for r in rs if "error" in r and r["error"] != NOT_RUN),
+            failed_time=sum(1 for r in rs if str(r.get("error", "")).startswith("time")),
+            failed_memory=sum(1 for r in rs if str(r.get("error", "")).startswith("memory limit")),
+            failed_adapter=sum(1 for r in rs if any(e in str(r.get("error", "")) for e in ADAPTER_ERRORS)),
+            failed_harness=sum(1 for r in rs if str(r.get("error", "")).startswith("interrupted")),
+            not_run=sum(1 for r in rs if r.get("error") == NOT_RUN),
+            run_again=sum(1 for r in rs if r.get("run_again_after_interruption")),
+            # amendment 1: outputs the cap at 10x (and 600 s) stopped; and, of those, on tests whose reference took
+            # over 60 s, where the cap is below 10x the reference
+            time_failures_where_ref_finished=sum(1 for r in rs_ref_ok if str(r.get("error", "")).startswith("time")),
+            time_failures_ref_over_60s=sum(1 for r in rs_ref_ok if str(r.get("error", "")).startswith("time")
+                                           and ref[(r["case"], r["device"])]["t_s"] > 60.0),
+            peak_rss_mb_max=max([r["peak_rss_mb"] for r in rs if "peak_rss_mb" in r], default=None),
             failed_where_reference_finished=sum(1 for r in rs_ref_ok if "error" in r),
             reference_finished=len(rs_ref_ok),
             torino_tests=len(torino),
@@ -167,23 +186,34 @@ def score(out):
 
     psf, rec, tk = rows["psf:default"], rows["psf:recommended"], rows["tket:2"]
     bad = {a: (rows[a]["invalid"], rows[a]["not_equivalent"]) for a in adapters}
-    fail_share = (psf["failed_where_reference_finished"] / psf["reference_finished"]
-                  if psf["reference_finished"] else float("nan"))
+    n_ref = psf["reference_finished"]
+    fail_share = psf["failed_where_reference_finished"] / n_ref if n_ref else float("nan")
+    # amendment 1: bounds on T3 and T6 under the pre-registration's own definitions, which measured further
+    w10 = psf["within"]["10.0"]
+    t3_high = w10 + psf["time_failures_ref_over_60s"] / n_ref if n_ref else float("nan")
+    t6_low = (psf["failed_where_reference_finished"] - psf["time_failures_where_ref_finished"]) / n_ref \
+        if n_ref else float("nan")
+
+    def bounded(lo, hi, confirm, refute):
+        a, b = verdict(lo, confirm, refute), verdict(hi, confirm, refute)
+        return a if a == b else "NOT DECIDED (the cap of amendment 1)"
     S["predictions"] = {
         "T1": dict(text="every output of every compiler is valid, and every checked one is equivalent",
                    value=bad, verdict="CONFIRMED" if all(v == (0, 0) for v in bad.values()) else "REFUTED"),
         "T2": dict(text="psf:default Q_all <= 1.07 (REFUTED > 1.10)", value=psf["q_all"],
                    verdict=verdict(psf["q_all"], lambda v: v <= 1.07, lambda v: v > 1.10)),
-        "T3": dict(text="psf:default within 10x >= 0.90 (REFUTED < 0.80)", value=psf["within"]["10.0"],
-                   verdict=verdict(psf["within"]["10.0"], lambda v: v >= 0.90, lambda v: v < 0.80)),
+        "T3": dict(text="psf:default within 10x >= 0.90 (REFUTED < 0.80); 10x at most 600 s (amendment 1)", value=w10,
+                   bounds=(w10, t3_high),
+                   verdict=bounded(w10, t3_high, lambda v: v >= 0.90, lambda v: v < 0.80)),
         "T4": dict(text="psf:recommended places no two-qubit gate on FakeTorino's failed elements",
                    value=(rec["torino_tests_on_failed"], rec["torino_tests"]),
                    verdict="CONFIRMED" if rec["torino_tests_on_failed"] == 0 and rec["torino_tests"] > 0
                    else "REFUTED" if rec["torino_tests_on_failed"] > 0 else "NOT DECIDED"),
         "T5": dict(text="tket:2 Q_all >= 1.05 (REFUTED < 1.00)", value=tk["q_all"],
                    verdict=verdict(tk["q_all"], lambda v: v >= 1.05, lambda v: v < 1.00)),
-        "T6": dict(text="psf:default fails on <= 2% of the tests the reference finishes (REFUTED > 5%)",
-                   value=fail_share, verdict=verdict(fail_share, lambda v: v <= 0.02, lambda v: v > 0.05)),
+        "T6": dict(text="psf:default fails on <= 2% of the tests the reference finishes (REFUTED > 5%); stopped at "
+                   "its largest budget (amendment 1)", value=fail_share, bounds=(t6_low, fail_share),
+                   verdict=bounded(t6_low, fail_share, lambda v: v <= 0.02, lambda v: v > 0.05)),
     }
     return S
 
@@ -208,18 +238,24 @@ def markdown(S):
     for k, p in S["predictions"].items():
         v = p["value"]
         v = f(v) if isinstance(v, float) else json.dumps(v)
+        if "bounds" in p:
+            v += f" (under the pre-registration's own stopping: {f(p['bounds'][0])}-{f(p['bounds'][1])})"
         L.append(f"| {k} | {p['text']} | {v} | **{p['verdict']}** |")
     L += ["", "Reported without prediction:", "",
           "| adapter | within 1x | within 3x | within 10x | Q_all (95%) | n | Q_1x (n) | Q_3x (n) | Q_10x (n) | "
-          "depth Q_all | time / ref (median) | invalid | not equiv. | checked | failed | FakeTorino tests with "
-          "gates on failed elements | trailing gates |", "|" + "---|" * 17]
+          "depth Q_all | time / ref (median) | invalid | not equiv. | checked | "
+          "failed (time, memory, adapter, harness) | "
+          "not run (no reference) | run again after an interruption | "
+          "FakeTorino tests with gates on failed elements | trailing gates | peak memory (MB) |", "|" + "---|" * 20]
     for a, r in S["adapters"].items():
         lo, hi = r["q_all_ci"]
         qt = " | ".join(f"{f(r['q_tier'][str(t)][0])} ({r['q_tier'][str(t)][1]})" for t in TIERS)
         L.append(f"| {a} | " + " | ".join(f(r["within"][str(t)]) for t in TIERS)
                  + f" | {f(r['q_all'])} ({f(lo)}-{f(hi)}) | {r['q_all_n']} | {qt} | {f(r['d2_all'])} | "
                  f"{f(r['time_ratio_median'])} | {r['invalid']} | {r['not_equivalent']} | {r['checked']} | "
-                 f"{r['failed']} | {r['torino_tests_on_failed']} of {r['torino_tests']} | {r['trailing']} |")
+                 f"{r['failed']} ({r['failed_time']}, {r['failed_memory']}, {r['failed_adapter']}, "
+                 f"{r['failed_harness']}) | {r['not_run']} | {r['run_again']} | "
+                 f"{r['torino_tests_on_failed']} of {r['torino_tests']} | {r['trailing']} | {r['peak_rss_mb_max']} |")
     L += ["", "Q_all by family:", "", "| adapter | " + " | ".join(next(iter(S["adapters"].values()))["families"])
           + " |", "|---|---|---|---|---|"]
     for a, r in S["adapters"].items():

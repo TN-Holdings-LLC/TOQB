@@ -30,7 +30,8 @@ compilers.
      So results do not depend on the machine.
    - The reference is Qiskit `optimization_level=2`, as Benchpress calls it.
    - There are three tiers: **1x**, **3x** and **10x** the reference's time. The reference's time is taken as at
-     least 0.05 s, so that the tiers stay apart on circuits it compiles in a few milliseconds.
+     least 0.05 s, so that the tiers stay apart on circuits it compiles in a few milliseconds. No budget exceeds
+     600 s: a compiler that needs more than ten minutes for one circuit has failed it, whatever the reference took.
 2. **A timeout is a failure, and it is counted.** The first number reported is the share of circuits a compiler
    returned within budget. Quality is compared with the reference's on the circuits a compiler returned within
    each tier's budget, and across all compilers on the circuits that every one of them returned within 10x.
@@ -95,7 +96,22 @@ compilers.
 - **Repeats.** One warm-up compile is discarded. Then there are five timed compiles; the fastest and the slowest are
   dropped and the rest averaged. If the warm-up takes longer than 2 s, a single timed compile follows instead, because
   long compiles vary little from run to run.
-- **Limits.** A compile that exceeds ten times the budget is stopped, and the whole process has a wall-clock limit.
+- **Circuit breakers.** Nothing is measured past what the score needs.
+  - A compile is stopped at the largest budget (the warm-up, which is cold, 30 s later): the measurement has failed.
+  - The reference's compiles stop at 600 s; a circuit without a reference time is left out of every score.
+  - The equivalence check stops at 60 s; the output is then recorded as unchecked, not as a failure.
+  - A measurement whose resident memory exceeds a fixed cap fails ("memory limit").
+  - If the machine runs short of memory, the measurement using the most is stopped and run again alone at the end,
+    so that the machine's limits are not counted against a compiler.
+  - A run has a time budget. A bound on its time is computed once the reference's times are known, and the run stops
+    there if the bound exceeds the budget. A file named `STOP` in the output directory also stops it. A stopped run
+    is incomplete and is not scored.
+- **Diagnostics, for finding what to fix (never scored, never timed).** Each record carries the input's features
+  (qubits, instructions, two-qubit and wider instructions). A measurement that is stopped carries the stack its
+  compiler was in, dumped just before the stop (Python frames, without the machine's paths).
+  `python -m toqb.weakness DIR` groups failures by where they were stopped and by the input's features, lists the
+  slow and the worse outputs, and gives for each group a command that reproduces its first case under a profiler
+  (`runner one ... --profile FILE`, which writes the profile also when the compile is stopped).
 - **Checked, outside the timed part.**
   - Structure: every gate is in the device's basis and every two-qubit gate is on a coupled pair.
   - Equivalence: the input and the output are simulated from |0...0> and from three random product states, with

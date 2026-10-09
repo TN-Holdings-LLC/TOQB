@@ -50,12 +50,16 @@ class TketAdapter:
     in Qiskit on the device's qubit indices (`_to_qiskit`), with the initial and final placement of each input qubit
     in `metadata` (for the equivalence check).
 
-    The input is converted with qiskit_to_tk, except a PauliEvolutionGate (`_tk_input`): TKET builds its own
-    first-order product formula for it (gen_term_sequence_circuit, which groups the terms into commuting sets and
-    orders them; Benchpress's TKET gym builds its Hamiltonian circuits the same way), here with Qiskit's conventions
-    for the gate (U = exp(-i t H); character k of a Pauli label acts on the gate's qubit n-1-k). The formula differs
-    from Qiskit's, which keeps the terms in order, so the output is checked against TKET's reading
-    (`reference_input`)."""
+    The input is converted with qiskit_to_tk. Two things come first (`_tk_input`):
+      - a gate defined in the input itself (QASMBench's ctu or add4, say) is expanded through its definition
+        (`_expand_custom`), as pytket's own QASM reader does in Benchpress's TKET gym;
+      - a PauliEvolutionGate becomes TKET's own first-order product formula (gen_term_sequence_circuit, which groups
+        the terms into commuting sets and orders them; Benchpress's TKET gym builds its Hamiltonian circuits the same
+        way), with Qiskit's conventions for the gate (U = exp(-i t H); character k of a Pauli label acts on the
+        gate's qubit n-1-k). The formula differs from Qiskit's, which keeps the terms in order, so the output is
+        checked against TKET's reading (`reference_input`).
+    Classical control (conditions on measured bits) is not supported: such an input or output is recorded as a
+    failure of this adapter, not of TKET."""
 
     def __init__(self, level: int):
         self.level = level
@@ -105,8 +109,26 @@ class TketAdapter:
             terms[qps] = terms.get(qps, 0.0) + 2 * t * float(complex(c).real) / math.pi
         return CircBox(gen_term_sequence_circuit(QubitPauliOperator(terms), Circuit(n)))
 
+    # instructions qiskit_to_tk takes as they are; anything else (a gate defined in the input's QASM file, such as
+    # QASMBench's ctu or add4) is expanded through its definition first, as pytket's own QASM reader does in
+    # Benchpress's TKET gym
+    PASS_THROUGH = {"measure", "barrier", "reset", "delay", "PauliEvolution", "unitary", "if_else", "while_loop",
+                    "for_loop", "switch_case", "store", "initialize", "state_preparation"}
+
+    @classmethod
+    def _expand_custom(cls, circuit):
+        from qiskit.circuit.library.standard_gates import get_standard_gate_name_mapping
+        known = set(get_standard_gate_name_mapping()) | cls.PASS_THROUGH
+        for _ in range(20):
+            names = sorted({i.operation.name for i in circuit.data} - known)
+            if not names:
+                break
+            circuit = circuit.decompose(gates_to_decompose=names)
+        return circuit
+
     def _tk_input(self, circuit):
         from pytket.extensions.qiskit import qiskit_to_tk
+        circuit = self._expand_custom(circuit)
         if not any(i.operation.name == "PauliEvolution" for i in circuit.data):
             return qiskit_to_tk(circuit)
         qs, _ = self._units(circuit)

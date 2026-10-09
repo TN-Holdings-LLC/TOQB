@@ -20,6 +20,7 @@ def main():
     recs = [x for x in lines if "adapter" in x]
     S = json.load(open(os.path.join(out, "score.json"), encoding="utf-8"))
     ref_name, floor, tiers = meta["reference"], meta["floor_s"], meta["tiers"]
+    cap = meta.get("b10_cap_s") or float("inf")  # amendment 1: no budget above this
     ref = {}
     for r in recs:
         if r["adapter"] == ref_name:
@@ -38,7 +39,7 @@ def main():
         base = [r for r in rs if "t_s" in ref.get(r["case"], {})]
         share = {}
         for t in tiers:
-            hit = [good(r) and r["t_s"] <= t * max(floor, ref[r["case"]]["t_s"]) for r in base]
+            hit = [good(r) and r["t_s"] <= min(t * max(floor, ref[r["case"]]["t_s"]), cap) for r in base]
             share[t] = sum(hit) / len(hit) if hit else float("nan")
         logs = [math.log((r["q2"] + 1) / (ref[r["case"]]["q2"] + 1)) for r in rs
                 if r["case"] in ref and good(r) and good(ref[r["case"]])]

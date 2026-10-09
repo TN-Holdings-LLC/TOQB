@@ -43,7 +43,7 @@ def test_gmean():
 def test_one_measurement_with_qiskit():
     root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     p = subprocess.run([sys.executable, "-m", "toqb.runner", "one", "--adapter", "qiskit:1", "--case", "ghz:4",
-                        "--device", "linear:5", "--limit-s", "60"], capture_output=True, text=True, cwd=root)
+                        "--device", "linear:5", "--b10-s", "60"], capture_output=True, text=True, cwd=root)
     rec = json.loads([ln for ln in p.stdout.splitlines() if ln.startswith("{")][-1])
     assert rec["valid"] is True and rec["q2"] >= 3 and len(rec["times_s"]) == R.REPEATS
     assert rec["equivalence"]["checked"] is True and rec["equivalence"]["equivalent"] is True
@@ -159,3 +159,35 @@ def test_score_and_verify_agree_on_synthetic_records(tmp_path):
     p = subprocess.run([sys.executable, "-m", "toqb.verify", "--out", str(tmp_path)], capture_output=True, text=True,
                        cwd=root)
     assert "VERIFY PASS" in p.stdout, p.stdout + p.stderr
+
+
+@pytest.mark.skipif(not os.path.exists("/proc/self/status"), reason="needs Linux /proc")
+def test_memory_cap_stops_a_measurement(tmp_path, monkeypatch):
+    """A measurement whose resident memory exceeds the cap is stopped and recorded as an error; its peak is kept."""
+    import types
+    fake = tmp_path / "alloc.sh"
+    fake.write_text("#!/bin/sh\nexec " + sys.executable + " -c \"import time; x = bytearray(300 * 2**20); "
+                    "x[::4096] = b'1' * len(x[::4096]); time.sleep(5); print('{}')\"\n", encoding="utf-8")
+    fake.chmod(0o755)
+    monkeypatch.setattr(R, "sys", types.SimpleNamespace(executable=str(fake)))
+    rec = R.measure("a", "bp:x", "d", 60, mem_cap_gb=0.1)
+    assert rec["error"] == "memory limit 0.1 GB" and rec["peak_rss_mb"] >= 100 and rec["wall_s"] < 5
+
+
+@pytest.mark.skipif(importlib.util.find_spec("pytket") is None, reason="needs pytket and pytket-qiskit")
+def test_tket_takes_a_gate_defined_in_the_input():
+    """A gate defined in the input (as QASMBench's ctu or add4) is expanded before conversion, and the output is
+    equivalent."""
+    from qiskit import QuantumCircuit
+    from toqb.adapters import TketAdapter
+    from toqb.devices import get_device
+    from toqb.metrics import equivalence
+    sub = QuantumCircuit(2, name="mygate")
+    sub.h(0)
+    sub.cx(0, 1)
+    sub.rz(0.3, 1)
+    qc = QuantumCircuit(3)
+    qc.append(sub.to_gate(), [0, 2])
+    qc.append(sub.to_gate(), [1, 2])
+    out = TketAdapter(2).compile(qc, get_device("linear:4"))
+    assert equivalence(qc, out)["equivalent"] is True
