@@ -1,0 +1,596 @@
+{
+ "meta": {
+  "start_utc": "2026-10-10T05:12:37Z",
+  "end": {
+   "end_utc": "2026-10-10T06:03:18Z",
+   "wall_s": 3040.8,
+   "complete": true,
+   "stopped": null,
+   "not_started": 0,
+   "bound_after_references_s": 21571.3
+  },
+  "cpus": 12,
+  "par": 4,
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.12.13",
+  "provenance": {
+   "toqb": {
+    "head": "42a49e2fe41a4076f3ce3a7a61fbb335afdce000",
+    "dirty": ""
+   },
+   "psf_zero": {
+    "head": "0b7f790dd0a43d1b0b4fc9bd4f7c519691c432e8",
+    "dirty": ""
+   },
+   "benchpress": {
+    "head": "b695f30e83a32bac05b9b4d8e98d37ba9aae5236",
+    "dirty": ""
+   },
+   "versions": {
+    "qiskit": "2.5.2",
+    "qiskit-ibm-runtime": "0.49.0",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "rustworkx": "0.18.1",
+    "pytket": "2.18.5",
+    "pytket-qiskit": "0.78.0",
+    "psf-zero-core57": "0.1.0"
+   }
+  }
+ },
+ "P0": {
+  "checks": {
+   "126 tests drawn from the committed seed": true,
+   "the six adapters": true,
+   "one record per adapter and test": true,
+   "run with --lock; no uncommitted change in TOQB, PSF-Zero or Benchpress": true,
+   "PSF-Zero release and head": true,
+   "Benchpress head": true,
+   "package versions": true,
+   "the circuit breakers of amendment 1": true,
+   "the run is complete (not stopped by a STOP file or the run budget)": true,
+   "psf-zero-core57 installed, at the version of the release": true
+  },
+  "verdict": "PASS",
+  "toqb_head": "42a49e2fe41a4076f3ce3a7a61fbb335afdce000"
+ },
+ "adapters": {
+  "qiskit:2:target": {
+   "pairs": 126,
+   "within": {
+    "1.0": 1.0,
+    "3.0": 1.0,
+    "10.0": 1.0
+   },
+   "q_all": 1.0,
+   "q_all_n": 126,
+   "q_all_ci": [
+    1.0,
+    1.0
+   ],
+   "q_tier": {
+    "1.0": [
+     1.0,
+     126
+    ],
+    "3.0": [
+     1.0,
+     126
+    ],
+    "10.0": [
+     1.0,
+     126
+    ]
+   },
+   "d2_all": 1.0,
+   "invalid": 0,
+   "not_equivalent": 0,
+   "checked": 47,
+   "failed": 0,
+   "failed_time": 0,
+   "failed_memory": 0,
+   "failed_adapter": 0,
+   "failed_harness": 0,
+   "not_run": 0,
+   "run_again": 0,
+   "time_failures_where_ref_finished": 0,
+   "time_failures_ref_over_60s": 0,
+   "peak_rss_mb_max": 1611,
+   "failed_where_reference_finished": 0,
+   "reference_finished": 126,
+   "torino_tests": 18,
+   "torino_tests_on_failed": 5,
+   "trailing": 0,
+   "families": {
+    "QASMBench": [
+     1.0,
+     80
+    ],
+    "HamLib": [
+     1.0,
+     28
+    ],
+    "HamLib, FakeTorino": [
+     1.0,
+     10
+    ],
+    "Feynman, FakeTorino": [
+     1.0,
+     8
+    ]
+   },
+   "time_ratio_median": 1.0
+  },
+  "qiskit:1:target": {
+   "pairs": 126,
+   "within": {
+    "1.0": 1.0,
+    "3.0": 1.0,
+    "10.0": 1.0
+   },
+   "q_all": 1.2653013152262889,
+   "q_all_n": 126,
+   "q_all_ci": [
+    1.1903973794320413,
+    1.354951284671688
+   ],
+   "q_tier": {
+    "1.0": [
+     1.2653013152262889,
+     126
+    ],
+    "3.0": [
+     1.2653013152262889,
+     126
+    ],
+    "10.0": [
+     1.2653013152262889,
+     126
+    ]
+   },
+   "d2_all": 1.2646980078487209,
+   "invalid": 0,
+   "not_equivalent": 0,
+   "checked": 47,
+   "failed": 0,
+   "failed_time": 0,
+   "failed_memory": 0,
+   "failed_adapter": 0,
+   "failed_harness": 0,
+   "not_run": 0,
+   "run_again": 0,
+   "time_failures_where_ref_finished": 0,
+   "time_failures_ref_over_60s": 0,
+   "peak_rss_mb_max": 1364,
+   "failed_where_reference_finished": 0,
+   "reference_finished": 126,
+   "torino_tests": 18,
+   "torino_tests_on_failed": 5,
+   "trailing": 0,
+   "families": {
+    "QASMBench": [
+     1.2364478992196153,
+     80
+    ],
+    "HamLib": [
+     1.3317454379640399,
+     28
+    ],
+    "HamLib, FakeTorino": [
+     1.3734829940540605,
+     10
+    ],
+    "Feynman, FakeTorino": [
+     1.202384256870796,
+     8
+    ]
+   },
+   "time_ratio_median": 0.5558591694741715
+  },
+  "qiskit:3:target": {
+   "pairs": 126,
+   "within": {
+    "1.0": 0.5555555555555556,
+    "3.0": 0.9603174603174603,
+    "10.0": 0.9841269841269841
+   },
+   "q_all": 0.9730316247434255,
+   "q_all_n": 124,
+   "q_all_ci": [
+    0.9597634472211515,
+    0.9861589487173005
+   ],
+   "q_tier": {
+    "1.0": [
+     0.9928815432265574,
+     70
+    ],
+    "3.0": [
+     0.9762759357424533,
+     121
+    ],
+    "10.0": [
+     0.9730316247434255,
+     124
+    ]
+   },
+   "d2_all": 0.9728601501210666,
+   "invalid": 0,
+   "not_equivalent": 0,
+   "checked": 47,
+   "failed": 2,
+   "failed_time": 2,
+   "failed_memory": 0,
+   "failed_adapter": 0,
+   "failed_harness": 0,
+   "not_run": 0,
+   "run_again": 0,
+   "time_failures_where_ref_finished": 2,
+   "time_failures_ref_over_60s": 0,
+   "peak_rss_mb_max": 2243,
+   "failed_where_reference_finished": 2,
+   "reference_finished": 126,
+   "torino_tests": 18,
+   "torino_tests_on_failed": 4,
+   "trailing": 0,
+   "families": {
+    "QASMBench": [
+     0.9906114481790286,
+     78
+    ],
+    "HamLib": [
+     0.9203292314840669,
+     28
+    ],
+    "HamLib, FakeTorino": [
+     0.9730319641750693,
+     10
+    ],
+    "Feynman, FakeTorino": [
+     0.9930019010342803,
+     8
+    ]
+   },
+   "time_ratio_median": 1.159611113060245
+  },
+  "tket:2": {
+   "pairs": 126,
+   "within": {
+    "1.0": 0.07142857142857142,
+    "3.0": 0.14285714285714285,
+    "10.0": 0.25396825396825395
+   },
+   "q_all": 1.1446347632648992,
+   "q_all_n": 74,
+   "q_all_ci": [
+    1.072921246028261,
+    1.24350086043875
+   ],
+   "q_tier": {
+    "1.0": [
+     1.192541521021408,
+     9
+    ],
+    "3.0": [
+     1.1295148267848065,
+     18
+    ],
+    "10.0": [
+     1.1465402274029879,
+     32
+    ]
+   },
+   "d2_all": 1.0586128837518418,
+   "invalid": 0,
+   "not_equivalent": 0,
+   "checked": 36,
+   "failed": 52,
+   "failed_time": 48,
+   "failed_memory": 0,
+   "failed_adapter": 4,
+   "failed_harness": 0,
+   "not_run": 0,
+   "run_again": 0,
+   "time_failures_where_ref_finished": 48,
+   "time_failures_ref_over_60s": 1,
+   "peak_rss_mb_max": 2079,
+   "failed_where_reference_finished": 52,
+   "reference_finished": 126,
+   "torino_tests": 6,
+   "torino_tests_on_failed": 2,
+   "trailing": 210,
+   "families": {
+    "QASMBench": [
+     1.175258186754194,
+     56
+    ],
+    "HamLib": [
+     1.038937241485193,
+     12
+    ],
+    "HamLib, FakeTorino": [
+     1.0305482277186229,
+     4
+    ],
+    "Feynman, FakeTorino": [
+     1.2057907772150551,
+     2
+    ]
+   },
+   "time_ratio_median": 44.42931241381909
+  },
+  "psf:default": {
+   "pairs": 126,
+   "within": {
+    "1.0": 0.7142857142857143,
+    "3.0": 0.9523809523809523,
+    "10.0": 1.0
+   },
+   "q_all": 1.0115954901217334,
+   "q_all_n": 126,
+   "q_all_ci": [
+    1.0035485557475017,
+    1.0200649317189794
+   ],
+   "q_tier": {
+    "1.0": [
+     1.0093563028326198,
+     90
+    ],
+    "3.0": [
+     1.0123757810294207,
+     120
+    ],
+    "10.0": [
+     1.0115954901217334,
+     126
+    ]
+   },
+   "d2_all": 1.012680820733781,
+   "invalid": 0,
+   "not_equivalent": 0,
+   "checked": 48,
+   "failed": 0,
+   "failed_time": 0,
+   "failed_memory": 0,
+   "failed_adapter": 0,
+   "failed_harness": 0,
+   "not_run": 0,
+   "run_again": 0,
+   "time_failures_where_ref_finished": 0,
+   "time_failures_ref_over_60s": 0,
+   "peak_rss_mb_max": 1898,
+   "failed_where_reference_finished": 0,
+   "reference_finished": 126,
+   "torino_tests": 18,
+   "torino_tests_on_failed": 10,
+   "trailing": 0,
+   "families": {
+    "QASMBench": [
+     1.0070360508035558,
+     80
+    ],
+    "HamLib": [
+     1.0126653701477626,
+     28
+    ],
+    "HamLib, FakeTorino": [
+     1.0291816246674648,
+     10
+    ],
+    "Feynman, FakeTorino": [
+     1.0319588142155678,
+     8
+    ]
+   },
+   "time_ratio_median": 1.159542644919131
+  },
+  "psf:recommended": {
+   "pairs": 126,
+   "within": {
+    "1.0": 0.6666666666666666,
+    "3.0": 0.9047619047619048,
+    "10.0": 0.9841269841269841
+   },
+   "q_all": 1.0115040411988871,
+   "q_all_n": 125,
+   "q_all_ci": [
+    1.0036366297323476,
+    1.0202248817285453
+   ],
+   "q_tier": {
+    "1.0": [
+     1.011398770461294,
+     84
+    ],
+    "3.0": [
+     1.011662079091125,
+     114
+    ],
+    "10.0": [
+     1.0118133355004972,
+     124
+    ]
+   },
+   "d2_all": 1.013645835865259,
+   "invalid": 0,
+   "not_equivalent": 0,
+   "checked": 47,
+   "failed": 1,
+   "failed_time": 0,
+   "failed_memory": 0,
+   "failed_adapter": 0,
+   "failed_harness": 0,
+   "not_run": 0,
+   "run_again": 0,
+   "time_failures_where_ref_finished": 0,
+   "time_failures_ref_over_60s": 0,
+   "peak_rss_mb_max": 1897,
+   "failed_where_reference_finished": 1,
+   "reference_finished": 126,
+   "torino_tests": 17,
+   "torino_tests_on_failed": 0,
+   "trailing": 0,
+   "families": {
+    "QASMBench": [
+     1.0070360508035558,
+     80
+    ],
+    "HamLib": [
+     1.0126653701477626,
+     28
+    ],
+    "HamLib, FakeTorino": [
+     1.03610391380996,
+     10
+    ],
+    "Feynman, FakeTorino": [
+     1.023384330483509,
+     7
+    ]
+   },
+   "time_ratio_median": 1.166522651524503
+  }
+ },
+ "common_10x": {
+  "n": 32,
+  "q": {
+   "qiskit:2:target": 1.0,
+   "qiskit:1:target": 1.3630967707376669,
+   "qiskit:3:target": 1.0018404571918689,
+   "tket:2": 1.1465402274029879,
+   "psf:default": 0.9982771708276044,
+   "psf:recommended": 0.9982771708276044
+  }
+ },
+ "predictions": {
+  "S1": {
+   "text": "every output of every compiler is valid (v13's structural check), and every checked one is equivalent",
+   "value": {
+    "qiskit:2:target": [
+     0,
+     0
+    ],
+    "qiskit:1:target": [
+     0,
+     0
+    ],
+    "qiskit:3:target": [
+     0,
+     0
+    ],
+    "tket:2": [
+     0,
+     0
+    ],
+    "psf:default": [
+     0,
+     0
+    ],
+    "psf:recommended": [
+     0,
+     0
+    ]
+   },
+   "verdict": "CONFIRMED"
+  },
+  "S2": {
+   "text": "psf:default's two-qubit count equals run 1c's on every test where both outputs are usable",
+   "value": {
+    "tests": 122,
+    "differ": []
+   },
+   "verdict": "CONFIRMED"
+  },
+  "S3": {
+   "text": "psf:recommended on FakeTorino: geometric mean of its time / the reference's <= 2.2 (REFUTED >= 2.53, run 1c's value)",
+   "value": 2.128045540382276,
+   "n": 17,
+   "verdict": "CONFIRMED"
+  },
+  "S4": {
+   "text": "psf:recommended places no two-qubit gate on FakeTorino's failed elements",
+   "value": [
+    0,
+    17
+   ],
+   "verdict": "CONFIRMED"
+  },
+  "S5": {
+   "text": "psf:default fails on <= 2% of the tests the reference finishes (REFUTED > 5%)",
+   "value": 0.0,
+   "bounds": [
+    0.0,
+    0.0
+   ],
+   "verdict": "CONFIRMED"
+  }
+ },
+ "run1c": {
+  "qiskit:2:target": {
+   "within": {
+    "1.0": 0.9682539682539683,
+    "3.0": 0.9682539682539683,
+    "10.0": 0.9682539682539683
+   },
+   "q_all": 1.0,
+   "time_ratio_median": 1.0,
+   "failed": 0
+  },
+  "qiskit:1:target": {
+   "within": {
+    "1.0": 0.9682539682539683,
+    "3.0": 0.9682539682539683,
+    "10.0": 0.9682539682539683
+   },
+   "q_all": 1.2387663301320806,
+   "time_ratio_median": 0.5400469486058022,
+   "failed": 0
+  },
+  "qiskit:3:target": {
+   "within": {
+    "1.0": 0.5317460317460317,
+    "3.0": 0.9285714285714286,
+    "10.0": 0.9523809523809523
+   },
+   "q_all": 0.9722591577039398,
+   "time_ratio_median": 1.2163228789213183,
+   "failed": 2
+  },
+  "tket:2": {
+   "within": {
+    "1.0": 0.07142857142857142,
+    "3.0": 0.14285714285714285,
+    "10.0": 0.25396825396825395
+   },
+   "q_all": 1.1446347632648992,
+   "time_ratio_median": 47.30701737746395,
+   "failed": 52
+  },
+  "psf:default": {
+   "within": {
+    "1.0": 0.6904761904761905,
+    "3.0": 0.9206349206349206,
+    "10.0": 0.9682539682539683
+   },
+   "q_all": 1.0119779381187,
+   "time_ratio_median": 1.2037841360133068,
+   "failed": 0
+  },
+  "psf:recommended": {
+   "within": {
+    "1.0": 0.6428571428571429,
+    "3.0": 0.873015873015873,
+    "10.0": 0.9523809523809523
+   },
+   "q_all": 1.0118865915500543,
+   "time_ratio_median": 1.2113903016264667,
+   "failed": 1
+  }
+ },
+ "exit_codes": [
+  "-9",
+  "1",
+  "3"
+ ]
+}

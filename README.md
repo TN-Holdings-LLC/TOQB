@@ -4,9 +4,14 @@ TOQB compares quantum compilers on the quality of what they return within a time
 structure to a task's accuracy on a noisy device.
 
 **Status: v0.1.** It has the specification, a budgeted runner and the standard compilation set (the layer-1
-circuits, below). The first scored run is pre-registered in
-[`prereg/2026-10-08-standard-run-1.md`](prereg/2026-10-08-standard-run-1.md). Layers 2 and 3 are not built yet. No
-number from this repository should be cited until a scored run's results are committed.
+circuits, below). Layers 2 and 3 are not built yet.
+
+**Scored runs.** Each was pre-registered and its lock pushed before it ran.
+
+- Standard run 1, [`results/standard-run-1/`](results/standard-run-1/).
+- Standard run 2, [`results/standard-run-2/`](results/standard-run-2/).
+
+Numbers from this repository should be cited from these results, with their run.
 
 ## Why another benchmark
 
