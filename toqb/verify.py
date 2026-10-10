@@ -68,8 +68,9 @@ def main():
             if not (same(float(v), float(w)) if not isinstance(w, str) else False):
                 problems.append(f"{a} {k}: {v} vs {w}")
     p = S["predictions"]
-    if not same(mine["psf:default"]["failed_share"], p["T6"]["value"]):
-        problems.append(f"T6: {mine['psf:default']['failed_share']} vs {p['T6']['value']}")
+    k6 = "T6" if "T6" in p else "S5"  # standard run 1's T6 is standard run 2's S5 (toqb/score_run2.py)
+    if not same(mine["psf:default"]["failed_share"], p[k6]["value"]):
+        problems.append(f"{k6}: {mine['psf:default']['failed_share']} vs {p[k6]['value']}")
     print(f"verify: {len(recs)} records; {len(problems)} differences")
     for x in problems:
         print("  " + x)

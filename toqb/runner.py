@@ -139,6 +139,21 @@ class _Once:
         return self._lock.acquire(blocking=False)
 
 
+def _dump_main_stack(main_id):
+    """The main thread's stack, in faulthandler's text format (which stack_from reads), written to stderr by a Python
+    thread, that is with the interpreter's lock held. v13: amendment 1's faulthandler.dump_traceback_later read the
+    stacks from a C thread without that lock, which can crash the process; two measurements of standard run 1c
+    probably ended that way. If the main thread holds the lock in native code, the dump waits for it (or never
+    happens): it is a diagnostic only."""
+    frame = sys._current_frames().get(main_id)
+    lines = [f"Thread 0x{main_id:016x} (most recent call first):"]
+    while frame is not None:
+        lines.append(f'  File "{frame.f_code.co_filename}", line {frame.f_lineno} in {frame.f_code.co_name}')
+        frame = frame.f_back
+    sys.stderr.write("\n".join(lines) + "\n")
+    sys.stderr.flush()
+
+
 def _watchdog(limit_s, on_expire):
     t = threading.Timer(limit_s, on_expire)
     t.daemon = True
@@ -185,7 +200,7 @@ def one(args):
     while k < runs:
         lim = warm_lim if k == 0 else timed_lim
         w = _watchdog(lim, over(k, lim))
-        faulthandler.dump_traceback_later(max(lim - 0.5, 0.9 * lim), file=sys.stderr)
+        dump = _watchdog(max(lim - 0.5, 0.9 * lim), lambda: _dump_main_stack(threading.main_thread().ident))
         if profiler is not None and k == 0:
             profiler.enable()
         t0 = time.perf_counter()
@@ -194,7 +209,7 @@ def one(args):
         if profiler is not None and k == 0:
             profiler.disable()
             profiler.dump_stats(args.profile)
-        faulthandler.cancel_dump_traceback_later()
+        dump.cancel()
         w.cancel()
         if dt > lim:
             over(k, lim)()
@@ -310,8 +325,9 @@ def measure(adapter, case, device, b10_s, mem_cap_gb=None):
         rec = dict(adapter=adapter, case=case, device=device, error=why)
     elif finals:
         rec = finals[-1]
-    else:
-        rec = dict(adapter=adapter, case=case, device=device, error=_redact(stderr[-600:]))
+    else:  # v13: the exit code says how a process without a record ended (a negative code: by that signal)
+        rec = dict(adapter=adapter, case=case, device=device,
+                   error=f"no record (exit code {p.returncode}): " + _redact(stderr[-600:]))
     if features is not None:
         rec.setdefault("features", features)
     if "error" in rec:
@@ -320,6 +336,7 @@ def measure(adapter, case, device, b10_s, mem_cap_gb=None):
             rec["stack_at_stop"] = stack
     rec["b10_s"] = round(float(b10_s), 6)
     rec["wall_s"] = round(time.perf_counter() - w0, 3)
+    rec["exit_code"] = p.returncode  # v13
     if peak:
         rec["peak_rss_mb"] = round(peak / 1024)
     if len(trace) > 2:
@@ -441,7 +458,8 @@ def provenance():
             info[name] = dict(head=_git(path, "rev-parse", "HEAD"),
                               dirty=_git(path, "status", "--porcelain", "--untracked-files=no"))
     versions = {}
-    for pkg in ("qiskit", "qiskit-ibm-runtime", "numpy", "scipy", "rustworkx", "pytket", "pytket-qiskit"):
+    for pkg in ("qiskit", "qiskit-ibm-runtime", "numpy", "scipy", "rustworkx", "pytket", "pytket-qiskit",
+                "psf-zero-core57"):  # v13: PSF-Zero's optional Rust module of item 57b
         try:
             versions[pkg] = metadata.version(pkg)
         except metadata.PackageNotFoundError:

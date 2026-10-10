@@ -5,18 +5,32 @@ ALWAYS_ALLOWED = {"barrier", "measure", "delay", "reset"}
 SYMMETRIC = {"cz", "rzz", "swap"}  # two-qubit gates whose direction does not matter
 
 
+CONTROL_FLOW = {"if_else", "while_loop", "for_loop", "switch_case", "box"}
+
+
 def structural_check(out, device):
     """None if every instruction is in the device's basis and every two-qubit gate sits on an accepted pair;
-    otherwise a short description of the first violation."""
+    otherwise a short description of the first violation. v13: control flow (`if_else` and the like) is accepted,
+    and its bodies are checked in the same way, on the qubits the instruction acts on."""
     allowed = set(device.basis) | ALWAYS_ALLOWED
     edges = set(device.edges)
-    for ins in out.data:
+    return _check(out, list(range(out.num_qubits)), device, allowed, edges)
+
+
+def _check(circ, where, device, allowed, edges):
+    for ins in circ.data:
         name = ins.operation.name
-        if name not in allowed:
-            return f"operation {name} not in the basis"
-        q = tuple(out.find_bit(b).index for b in ins.qubits)
+        q = tuple(where[circ.find_bit(b).index] for b in ins.qubits)
         if any(i >= device.num_qubits for i in q):
             return f"qubit {max(q)} outside the device"
+        if name in CONTROL_FLOW:
+            for block in ins.operation.blocks:  # a body's qubits are the instruction's, in order
+                problem = _check(block, list(q), device, allowed, edges)
+                if problem:
+                    return f"in {name}: {problem}"
+            continue
+        if name not in allowed:
+            return f"operation {name} not in the basis"
         if len(q) == 2 and name not in ALWAYS_ALLOWED and q not in edges and not (name in SYMMETRIC and q[::-1] in edges):
             return f"{name} on {q}, not a coupled pair"
         if len(q) > 2 and name not in ALWAYS_ALLOWED:
@@ -24,13 +38,25 @@ def structural_check(out, device):
     return None
 
 
+def _two_qubit_gates(circ, where):
+    """(qubits) of every two-qubit gate, in control flow's bodies too (each body counted once, as written). v13."""
+    out = []
+    for ins in circ.data:
+        q = tuple(where[circ.find_bit(b).index] for b in ins.qubits)
+        if ins.operation.name in CONTROL_FLOW:
+            for block in ins.operation.blocks:
+                out += _two_qubit_gates(block, list(q))
+        elif len(q) == 2 and ins.operation.name not in ALWAYS_ALLOWED:
+            out.append(q)
+    return out
+
+
 def metrics(out, device):
     """Two-qubit count and depth, gates on failed elements, and the duration when the device has a Target."""
     g2 = device.two_qubit_gate
-    two = [ins for ins in out.data if len(ins.qubits) == 2 and ins.operation.name not in ALWAYS_ALLOWED]
+    two = _two_qubit_gates(out, list(range(out.num_qubits)))
     on_failed = 0
-    for ins in two:
-        q = tuple(out.find_bit(b).index for b in ins.qubits)
+    for q in two:
         if q in device.failed_edges or q[::-1] in device.failed_edges or set(q) & device.failed_qubits:
             on_failed += 1
     m = dict(q2=len(two), d2=out.depth(filter_function=lambda x: len(x.qubits) == 2
