@@ -1,5 +1,10 @@
 # TOQB standard run 2: results
 
+> **Contamination notice (added 2026-10-10, after the run).** Some FakeTorino outputs scored here place gates on
+> couplers the device reports as failed, so they are unusable on the device. That includes 5 of the reference's
+> 18 outputs, and 10 of psf:default's. The scores below stay as defined, but every figure that counts those outputs
+> is contaminated. See [../CONTAMINATION.md](../CONTAMINATION.md), the list [`contaminated.json`](contaminated.json) and the re-scored view [`rescored-v14/essential.md`](rescored-v14/essential.md).
+
 **Status: the result of TOQB's second scored run**, as pre-registered in
 [`prereg/2026-10-10-standard-run-2.md`](../../prereg/2026-10-10-standard-run-2.md) (commit `42a49e2`, pushed at
 07:12:19 CEST, before the run). Scored by [`toqb/score_run2.py`](../../toqb/score_run2.py), re-scored independently

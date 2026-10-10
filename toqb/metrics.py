@@ -51,6 +51,29 @@ def _two_qubit_gates(circ, where):
     return out
 
 
+def _operations(circ, where):
+    """(name, qubits) of every operation but barriers and delays, in control flow's bodies too. v14."""
+    out = []
+    for ins in circ.data:
+        q = tuple(where[circ.find_bit(b).index] for b in ins.qubits)
+        if ins.operation.name in CONTROL_FLOW:
+            for block in ins.operation.blocks:
+                out += _operations(block, list(q))
+        elif ins.operation.name not in ("barrier", "delay"):
+            out.append((ins.operation.name, q))
+    return out
+
+
+def failed_operations(out, device):
+    """v14: the operations (gates and measurements) on a failed qubit, and the two-qubit gates on a failed coupler.
+    One of them makes the output unusable on the device: its result is noise, and nothing in the output says so."""
+    n = 0
+    for name, q in _operations(out, list(range(out.num_qubits))):
+        if set(q) & device.failed_qubits or (len(q) == 2 and (q in device.failed_edges or q[::-1] in device.failed_edges)):
+            n += 1
+    return n
+
+
 def metrics(out, device):
     """Two-qubit count and depth, gates on failed elements, and the duration when the device has a Target."""
     g2 = device.two_qubit_gate
@@ -61,7 +84,7 @@ def metrics(out, device):
             on_failed += 1
     m = dict(q2=len(two), d2=out.depth(filter_function=lambda x: len(x.qubits) == 2
                                        and x.operation.name not in ALWAYS_ALLOWED),
-             on_failed=on_failed, two_qubit_gate=g2, qubits_used=len({out.find_bit(b).index for i in out.data
+             on_failed=on_failed, on_failed_ops=failed_operations(out, device), two_qubit_gate=g2, qubits_used=len({out.find_bit(b).index for i in out.data
                                                                      for b in i.qubits}))
     if device.target is not None:
         try:

@@ -5,7 +5,8 @@ Spec strings:
     qiskit:L             Qiskit preset pass manager, level L, with coupling map and basis only
     qiskit:L:target      the same with the device's Target (fake devices; falls back to map and basis otherwise)
     tket:L               pytket (needs pytket and pytket-qiskit), see TketAdapter
-    psf:default          PSF-Zero's default call (path from $PSF_ZERO_REPO)
+    psf:default          PSF-Zero's default call (path from $PSF_ZERO_REPO); v14: with the device's Target when it has
+                         one (from release 2026-10-02 on, a Target makes the call avoid failed elements)
     psf:recommended      PSF-Zero's recommended call with the device's Target (the default call on a device without one,
                          as qiskit:L:target falls back to map and basis)
     ext:pkg.module:fn    an external adapter: fn(arg) -> adapter, with arg the rest of the spec after a second ':'
@@ -184,7 +185,8 @@ class TketAdapter:
         ops = {"cz": OpType.CZ, "cx": OpType.CX, "ecr": OpType.ECR, "rz": OpType.Rz, "sx": OpType.SX,
                "x": OpType.X}
         gateset = {ops[g] for g in device.basis if g in ops} | {OpType.Measure, OpType.Barrier, OpType.Reset}
-        info = BackendInfo("toqb", device.spec, "0", Architecture(list(device.edges)), gateset)
+        errs = self._errors(device)  # v14: the device's errors, as IBMQBackend gives them to its placement
+        info = BackendInfo("toqb", device.spec, "0", Architecture(list(device.edges)), gateset, **errs)
         inputs, bits = self._units(circuit)  # the pytket units of the input's qubits and clbits, in Qiskit's order
         cu = CompilationUnit(self._tk_input(circuit))
         IBMQBackend.pass_from_info(info, optimisation_level=self.level).apply(cu)
@@ -192,6 +194,22 @@ class TketAdapter:
         out.metadata = dict(toqb_initial=[cu.initial_map[q].index[0] for q in inputs],
                             toqb_final=[cu.final_map[q].index[0] for q in inputs])
         return out
+
+    @staticmethod
+    def _errors(device):
+        """v14: averaged node (sx), edge (two-qubit gate) and readout errors from the device's Target, for TKET's
+        noise-aware placement; none for a device without a Target."""
+        if device.target is None:
+            return {}
+        from pytket.circuit import Node
+        t, g2 = device.target, device.two_qubit_gate
+        node = {Node(q[0]): p.error for q, p in t["sx"].items() if q is not None and p is not None
+                and p.error is not None} if "sx" in t.operation_names else {}
+        edge = {(Node(q[0]), Node(q[1])): p.error for q, p in t[g2].items() if q is not None and p is not None
+                and p.error is not None} if g2 in t.operation_names else {}
+        ro = {Node(q[0]): p.error for q, p in t["measure"].items() if q is not None and p is not None
+              and p.error is not None} if "measure" in t.operation_names else {}
+        return dict(averaged_node_gate_errors=node, averaged_edge_gate_errors=edge, averaged_readout_errors=ro)
 
     @staticmethod
     def _to_qiskit(tk, device, num_clbits, bit):
@@ -247,8 +265,10 @@ class PSFZeroAdapter:
         from qiskit.transpiler import CouplingMap
         kw = dict(coupling_map=CouplingMap(device.edges), basis_gates=device.basis, entangling_basis="cx",
                   layout_search=True, seed_transpiler=0)
-        if self.call == "recommended" and device.target is not None:
-            kw.update(target=device.target, **self.RECOMMENDED)  # without a Target: the default call, as Qiskit's
+        if device.target is not None:  # v14: both calls get the device's Target, as a user with the device would
+            kw.update(target=device.target)
+            if self.call == "recommended":
+                kw.update(self.RECOMMENDED)
         with contextlib.redirect_stdout(io.StringIO()):
             return self.mod.compile_for_hardware(circuit, **kw)
 

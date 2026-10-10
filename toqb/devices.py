@@ -45,6 +45,10 @@ def _failed(target):
         for qargs, props in target["sx"].items():
             if qargs is not None and props is not None and props.error is not None and props.error >= FAILED_ERROR:
                 qubits.add(qargs[0])
+    if "measure" in target.operation_names:  # v14: a qubit whose measurement fails is a failed qubit too
+        for qargs, props in target["measure"].items():
+            if qargs is not None and props is not None and props.error is not None and props.error >= FAILED_ERROR:
+                qubits.add(qargs[0])
     return edges, qubits
 
 

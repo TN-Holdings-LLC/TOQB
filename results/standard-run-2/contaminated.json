@@ -1,0 +1,161 @@
+{
+ "note": "Outputs of this run with two-qubit gates on elements FakeTorino reports as failed (error >= 0.5). Unusable on the device: their results would be noise. Listed after the run (2026-10-10, TOQB v14); see results/CONTAMINATION.md. A lower bound: the records count two-qubit gates only.",
+ "outputs": [
+  {
+   "adapter": "psf:default",
+   "case": "bp:test_feynman_transpile[adder_8.qasm]",
+   "two_qubit_gates_on_failed_elements": 81,
+   "q2": 784
+  },
+  {
+   "adapter": "psf:default",
+   "case": "bp:test_feynman_transpile[gf2^9_mult.qasm]",
+   "two_qubit_gates_on_failed_elements": 23,
+   "q2": 1564
+  },
+  {
+   "adapter": "psf:default",
+   "case": "bp:test_feynman_transpile[mod_adder_1024.qasm]",
+   "two_qubit_gates_on_failed_elements": 564,
+   "q2": 4371
+  },
+  {
+   "adapter": "psf:default",
+   "case": "bp:test_feynman_transpile[qcla_mod_7.qasm]",
+   "two_qubit_gates_on_failed_elements": 98,
+   "q2": 800
+  },
+  {
+   "adapter": "psf:default",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_dsjc1000.1,n-36,rinst-4]",
+   "two_qubit_gates_on_failed_elements": 309,
+   "q2": 3847
+  },
+  {
+   "adapter": "psf:default",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_graph-2D-grid-nonpbc-qubitnodes_Lx-5_Ly-15_h-3]",
+   "two_qubit_gates_on_failed_elements": 64,
+   "q2": 1114
+  },
+  {
+   "adapter": "psf:default",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_ham_JW-8]",
+   "two_qubit_gates_on_failed_elements": 401,
+   "q2": 1494
+  },
+  {
+   "adapter": "psf:default",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_mu_y_prime_enc_unary_dvalues_16-16-16-16-16-16]",
+   "two_qubit_gates_on_failed_elements": 4,
+   "q2": 60
+  },
+  {
+   "adapter": "psf:default",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_queen13_13,n-28,rinst-0]",
+   "two_qubit_gates_on_failed_elements": 132,
+   "q2": 2394
+  },
+  {
+   "adapter": "psf:default",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_reg-4_n-90_rinst-07]",
+   "two_qubit_gates_on_failed_elements": 333,
+   "q2": 3985
+  },
+  {
+   "adapter": "qiskit:1:target",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_dsjc1000.1,n-36,rinst-4]",
+   "two_qubit_gates_on_failed_elements": 190,
+   "q2": 4663
+  },
+  {
+   "adapter": "qiskit:1:target",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_graph-2D-grid-nonpbc-qubitnodes_Lx-5_Ly-15_h-3]",
+   "two_qubit_gates_on_failed_elements": 62,
+   "q2": 1190
+  },
+  {
+   "adapter": "qiskit:1:target",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_mu_y_prime_enc_unary_dvalues_16-16-16-16-16-16]",
+   "two_qubit_gates_on_failed_elements": 8,
+   "q2": 120
+  },
+  {
+   "adapter": "qiskit:1:target",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_queen13_13,n-28,rinst-0]",
+   "two_qubit_gates_on_failed_elements": 140,
+   "q2": 2508
+  },
+  {
+   "adapter": "qiskit:1:target",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_reg-4_n-90_rinst-07]",
+   "two_qubit_gates_on_failed_elements": 234,
+   "q2": 4185
+  },
+  {
+   "adapter": "qiskit:2:target",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_dsjc1000.1,n-36,rinst-4]",
+   "two_qubit_gates_on_failed_elements": 145,
+   "q2": 3786
+  },
+  {
+   "adapter": "qiskit:2:target",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_graph-2D-grid-nonpbc-qubitnodes_Lx-5_Ly-15_h-3]",
+   "two_qubit_gates_on_failed_elements": 45,
+   "q2": 1138
+  },
+  {
+   "adapter": "qiskit:2:target",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_mu_y_prime_enc_unary_dvalues_16-16-16-16-16-16]",
+   "two_qubit_gates_on_failed_elements": 4,
+   "q2": 60
+  },
+  {
+   "adapter": "qiskit:2:target",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_queen13_13,n-28,rinst-0]",
+   "two_qubit_gates_on_failed_elements": 181,
+   "q2": 2346
+  },
+  {
+   "adapter": "qiskit:2:target",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_reg-4_n-90_rinst-07]",
+   "two_qubit_gates_on_failed_elements": 197,
+   "q2": 3773
+  },
+  {
+   "adapter": "qiskit:3:target",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_dsjc1000.1,n-36,rinst-4]",
+   "two_qubit_gates_on_failed_elements": 169,
+   "q2": 3853
+  },
+  {
+   "adapter": "qiskit:3:target",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_graph-2D-grid-nonpbc-qubitnodes_Lx-5_Ly-15_h-3]",
+   "two_qubit_gates_on_failed_elements": 68,
+   "q2": 1003
+  },
+  {
+   "adapter": "qiskit:3:target",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_queen13_13,n-28,rinst-0]",
+   "two_qubit_gates_on_failed_elements": 89,
+   "q2": 2103
+  },
+  {
+   "adapter": "qiskit:3:target",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_reg-4_n-90_rinst-07]",
+   "two_qubit_gates_on_failed_elements": 153,
+   "q2": 3693
+  },
+  {
+   "adapter": "tket:2",
+   "case": "bp:test_feynman_transpile[gf2^5_mult.qasm]",
+   "two_qubit_gates_on_failed_elements": 11,
+   "q2": 503
+  },
+  {
+   "adapter": "tket:2",
+   "case": "bp:test_hamlib_hamiltonians_transpile[ham_mu_y_prime_enc_unary_dvalues_8-8-8-8-8-8-8]",
+   "two_qubit_gates_on_failed_elements": 2,
+   "q2": 14
+  }
+ ]
+}

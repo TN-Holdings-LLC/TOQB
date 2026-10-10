@@ -13,6 +13,12 @@ circuits, below). Layers 2 and 3 are not built yet.
 
 Numbers from this repository should be cited from these results, with their run.
 
+**Contamination notice (2026-10-10).** In runs 1 and 2, some outputs on FakeTorino placed gates on couplers the
+device reports as failed. They are unusable on the device, and they were scored. That includes 5 of the
+reference's 18 outputs and 10 of PSF-Zero's default call. Figures that count them are contaminated; see
+[`results/CONTAMINATION.md`](results/CONTAMINATION.md). From v14 on, such an output is scored as a failure, and
+results are given twice: as scored, and as a user who runs them on the device sees them.
+
 ## Why another benchmark
 
 Existing compiler benchmarks measure structure, such as two-qubit gate count, depth and compile time. Benchpress is
@@ -167,6 +173,7 @@ toqb/
   runner.py     the budgeted runner (one process per measurement)
   score.py      scores a standard run against its pre-registered predictions
   verify.py     an independent re-scoring of a standard run
+  essential.py  v14: a run's results as scored and as a user of the device sees them (failed elements, first compile)
 prereg/         pre-registrations of scored runs
 tests/          tests that need no quantum package
 ```

@@ -188,7 +188,9 @@ def one(args):
             if profiler is not None:
                 profiler.disable()
                 profiler.dump_stats(args.profile)
-            print(json.dumps(r), flush=True)
+            # v14: to the process's own standard output (file descriptor 1), not sys.stdout, which an adapter may have
+            # redirected while it compiles (PSF-Zero's does): run 2 lost a stop's record that way
+            os.write(1, (json.dumps(r) + "\n").encode())
             os._exit(code)
 
     def over(k, lim):
@@ -213,6 +215,8 @@ def one(args):
         w.cancel()
         if dt > lim:
             over(k, lim)()
+        if k == 0:
+            rec["t_first_s"] = round(dt, 6)  # v14: the first compile in the process, which a user always pays
         if k == 0 and dt > LONG_S:
             runs = 2  # a long compile varies little between runs; one timed run after the warm-up
         if k > 0:
