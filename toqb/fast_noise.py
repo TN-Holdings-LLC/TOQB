@@ -63,6 +63,31 @@ def _channel_kraus(op, k):
     return _kraus_be(Kraus(op).data, k)
 
 
+class _Lazy:
+    """A batch of density matrices whose axes are left where the last operation put them: each operation moves only
+    the axes it acts on to the end (one copy), and the logical order is restored once, at the end."""
+
+    def __init__(self, rho, n):
+        self.rho, self.n = rho, n
+        self.order = list(range(rho.ndim))  # physical position -> logical axis (0 is the batch, always first)
+
+    def apply(self, qs, S):
+        n, k = self.n, len(qs)
+        need = [1 + q for q in qs] + [1 + n + q for q in qs]
+        pos = {ax: i for i, ax in enumerate(self.order)}
+        rest = [ax for ax in self.order if ax not in need]
+        new = rest + need
+        t = self.rho.transpose([pos[ax] for ax in new])
+        sh = t.shape
+        flat = t.reshape(sh[0], -1, 4 ** k)
+        self.rho = np.matmul(flat, np.swapaxes(S, 1, 2)).reshape(sh)
+        self.order = new
+
+    def logical(self):
+        pos = {ax: i for i, ax in enumerate(self.order)}
+        return self.rho.transpose([pos[ax] for ax in range(self.rho.ndim)])
+
+
 class FastNoisyDevice:
     """Drop-in for `NoisyDevice` where only <Z> of clbit 0 is needed (see the module's description)."""
 
@@ -324,12 +349,12 @@ class FastNoisyDevice:
         qi = {q: k for k, q in enumerate(c.qubits)}
         ci = {b: k for k, b in enumerate(c.clbits)}
         key, wires = [], {}
-        for i in c.data:
-            op = i.operation
+        for i in c.data:  # the instruction's own name / params: no Python operation object is built
+            name = i.name
             qs = tuple(qi[q] for q in i.qubits)
-            key.append((op.name, qs, tuple(ci[b] for b in i.clbits)))
-            if op.name == "rz":
-                wires.setdefault(qs[0], []).append(float(op.params[0]))
+            key.append((name, qs, tuple(ci[b] for b in i.clbits)))
+            if name == "rz":
+                wires.setdefault(qs[0], []).append(float(i.params[0]))
         return tuple(key), wires
 
     def p1_fast(self, circuits):
@@ -338,7 +363,7 @@ class FastNoisyDevice:
         groups = {}
         scans = []
         for j, c in enumerate(circuits):
-            key, wires = self._scan(c)
+            key, wires = getattr(c, "_toqb_scan", None) or self._scan(c)  # the Executor's scan, when it made one
             scans.append(wires)
             plan = getattr(self, "_plans", {}).get(key)
             if plan is None:
@@ -355,6 +380,7 @@ class FastNoisyDevice:
             B = len(idx)
             rho = np.zeros((B,) + (2,) * (2 * n), dtype=complex)
             rho[(slice(None),) + (0,) * (2 * n)] = 1.0
+            lazy = _Lazy(rho, n)
             I4 = np.eye(4)
             for a, b, S, ca, cb in plan["steps"]:
                 Ma, Mb = self._chain(ca, th), self._chain(cb, th)
@@ -366,12 +392,12 @@ class FastNoisyDevice:
                     lift = np.einsum("xACac,xBDbd->xABCDabcd", Ma.reshape(B, 2, 2, 2, 2),
                                      Mb.reshape(B, 2, 2, 2, 2)).reshape(B, 16, 16)
                     T = np.matmul(S, lift)
-                rho = self._apply(rho, n, (a, b), T)
+                lazy.apply((a, b), T)
             q, cq, e = plan["meas"]
             Mq = self._chain(cq, th)
             if Mq is not None:
-                rho = self._apply(rho, n, (q,), Mq)
-            p = self._p1(rho, n, q)
+                lazy.apply((q,), Mq)
+            p = self._p1(lazy.logical(), n, q)
             out[idx] = p * (1 - e) + (1 - p) * e
         return out
 

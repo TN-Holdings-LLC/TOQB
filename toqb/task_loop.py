@@ -226,7 +226,7 @@ def spsa_schedule(task, opt):
     steps = []
     for _ in range(opt["iterations"]):
         idx = rng.choice(task["n_train"], opt["batch"], replace=False)
-        steps.append((idx.tolist(), rng.choice([-1.0, 1.0], d).tolist()))
+        steps.append((idx, rng.choice([-1, 1], d).astype(np.int8)))  # the same draws; compact for long runs
     return theta0, steps
 
 
@@ -482,7 +482,12 @@ class Executor:
             if self.engine == "fast":
                 # these checks read only the circuit's structure (gates and qubits, not angles): with the fast engine
                 # they are computed for the first three circuits of a structure, required equal, then reused
-                key = self.noisy._scan(out)[0]
+                scan = self.noisy._scan(out)
+                try:
+                    out._toqb_scan = scan  # reused by the engine instead of scanning the circuit again
+                except AttributeError:
+                    pass
+                key = scan[0]
                 cached = self._struct.get(key)
             if cached is not None and cached[3] >= 3:
                 sf, fo, m = cached[0], cached[1], cached[2]
@@ -545,7 +550,7 @@ class PennyLaneFrontEnd:
 
 # ------------------------------------------------------------------------------------------------ one arm
 
-def run_arm(plan, spec):
+def run_arm(plan, spec, partial_path=None):
     import numpy as np
     from toqb.devices import get_device
     task, opt, ev = plan["task"], plan["optimizer"], plan["evaluation"]
@@ -581,6 +586,8 @@ def run_arm(plan, spec):
     spent = dict(batch_qpu_s=0.0, session_s=t_setup, classical_s=t_setup)  # the setup happens inside the session
     curve, evals = [], []
     check_at = {0, opt["iterations"] // 2, opt["iterations"] - 1}
+    eval_at = set(ev.get("at", []))  # extra evaluation points (long runs)
+    curve_every = int(ev.get("curve_every", 1))
 
     def evaluate(k, theta):
         sim0, chk0, comp0 = ex.sim_s, ex.check_s, ex.compile_s
@@ -594,6 +601,10 @@ def run_arm(plan, spec):
                           batch_usd=spent["batch_qpu_s"] * cost["usd_per_s"],
                           session_usd=spent["session_s"] * cost["usd_per_s"],
                           compile_s=comp0, wall_s=time.perf_counter() - t0))
+        if partial_path:  # long runs: the evaluations so far, rewritten at every evaluation
+            with open(partial_path + ".tmp", "w", encoding="utf-8") as f:
+                json.dump(dict(arm=spec, evals=evals, spent=dict(spent), at=_cest_now()), f)
+            os.replace(partial_path + ".tmp", partial_path)
         return ex.sim_s - sim0, ex.check_s - chk0
 
     try:
@@ -615,8 +626,9 @@ def run_arm(plan, spec):
             spent["batch_qpu_s"] += job_qpu
             spent["classical_s"] += classical
             spent["session_s"] += job_qpu + classical
-            curve.append(dict(iteration=k + 1, loss=(lp + lm) / 2, job_qpu_s=job_qpu, classical_s=classical))
-            if (k + 1) % ev["every"] == 0 or k + 1 == len(steps):
+            if (k + 1) % curve_every == 0:
+                curve.append(dict(iteration=k + 1, loss=(lp + lm) / 2, job_qpu_s=job_qpu, classical_s=classical))
+            if (k + 1) % ev["every"] == 0 or k + 1 == len(steps) or (k + 1) in eval_at:
                 evaluate(k + 1, theta)
     except Exception as exc:  # noqa: BLE001 - recorded: the arm failed during the loop
         rec["error"] = f"loop: {type(exc).__name__}: {exc}"
@@ -645,8 +657,8 @@ def run_arm(plan, spec):
 def main(argv):
     if len(argv) >= 4 and argv[0] == "arm":
         plan = json.load(open(argv[1], encoding="utf-8"))
-        rec = run_arm(plan, argv[3])
         safe = argv[3].replace(":", "_")
+        rec = run_arm(plan, argv[3], partial_path=os.path.join(argv[2], f"arm-{safe}.partial.json"))
         with open(os.path.join(argv[2], f"arm-{safe}.json"), "w", encoding="utf-8") as f:
             json.dump(rec, f, indent=1)
         print(json.dumps({k: rec.get(k) for k in ("arm", "valid", "compile_s", "sim_s", "error")}), flush=True)
