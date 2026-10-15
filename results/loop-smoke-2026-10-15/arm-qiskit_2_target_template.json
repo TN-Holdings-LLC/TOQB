@@ -1,0 +1,230 @@
+{
+ "arm": "qiskit:2:target:template",
+ "plan": "TOQB loop smoke (v15)",
+ "device": "fake:FakeFez",
+ "started": "2026-10-15 06:08:06 CEST",
+ "version": "2.5.2",
+ "setup_s": 0.04082263800000874,
+ "compile_s": 0.1758462250007824,
+ "sim_s": 121.89277752300018,
+ "wall_s": 123.982106165,
+ "circuits": 576,
+ "per_circuit_compile_ms": 0.23441594965412094,
+ "structural_fail": 0,
+ "on_failed_ops": 0,
+ "q2_mean": 17.0,
+ "duration_us_mean": 3.4759999999999995,
+ "equivalence": [
+  {
+   "checked": true,
+   "equivalent": true,
+   "distance": 1.0154637547499235e-15,
+   "why": null
+  },
+  {
+   "checked": true,
+   "equivalent": true,
+   "distance": 5.744103109828202e-16,
+   "why": null
+  },
+  {
+   "checked": true,
+   "equivalent": true,
+   "distance": 9.038451410925408e-16,
+   "why": null
+  }
+ ],
+ "curve": [
+  {
+   "iteration": 1,
+   "loss": 0.57140625
+  },
+  {
+   "iteration": 2,
+   "loss": 0.5775
+  },
+  {
+   "iteration": 3,
+   "loss": 0.45843749999999994
+  },
+  {
+   "iteration": 4,
+   "loss": 0.34734375
+  },
+  {
+   "iteration": 5,
+   "loss": 0.2909375
+  },
+  {
+   "iteration": 6,
+   "loss": 0.28125
+  },
+  {
+   "iteration": 7,
+   "loss": 0.234375
+  },
+  {
+   "iteration": 8,
+   "loss": 0.31359375
+  },
+  {
+   "iteration": 9,
+   "loss": 0.2196875
+  },
+  {
+   "iteration": 10,
+   "loss": 0.21875
+  },
+  {
+   "iteration": 11,
+   "loss": 0.275625
+  },
+  {
+   "iteration": 12,
+   "loss": 0.1975
+  },
+  {
+   "iteration": 13,
+   "loss": 0.31234375
+  },
+  {
+   "iteration": 14,
+   "loss": 0.26609375
+  },
+  {
+   "iteration": 15,
+   "loss": 0.29703125
+  },
+  {
+   "iteration": 16,
+   "loss": 0.4353125
+  },
+  {
+   "iteration": 17,
+   "loss": 0.34375
+  },
+  {
+   "iteration": 18,
+   "loss": 0.34984375
+  },
+  {
+   "iteration": 19,
+   "loss": 0.28890625000000003
+  },
+  {
+   "iteration": 20,
+   "loss": 0.23281250000000003
+  },
+  {
+   "iteration": 21,
+   "loss": 0.38859374999999996
+  },
+  {
+   "iteration": 22,
+   "loss": 0.36828125
+  },
+  {
+   "iteration": 23,
+   "loss": 0.3146875
+  },
+  {
+   "iteration": 24,
+   "loss": 0.29031250000000003
+  },
+  {
+   "iteration": 25,
+   "loss": 0.35921875000000003
+  },
+  {
+   "iteration": 26,
+   "loss": 0.4203125
+  },
+  {
+   "iteration": 27,
+   "loss": 0.16875
+  },
+  {
+   "iteration": 28,
+   "loss": 0.41218750000000004
+  },
+  {
+   "iteration": 29,
+   "loss": 0.24593750000000003
+  },
+  {
+   "iteration": 30,
+   "loss": 0.36828125
+  }
+ ],
+ "evals": [
+  {
+   "iteration": 0,
+   "accuracy": 0.2916666666666667,
+   "margin": -0.3389583333333334,
+   "noiseless_accuracy": 0.3333333333333333,
+   "noiseless_margin": -0.3330905127854083,
+   "compile_s": 0.04430761400010397,
+   "sim_s": 4.955922966000003,
+   "wall_s": 5.074434727999915
+  },
+  {
+   "iteration": 10,
+   "accuracy": 0.625,
+   "margin": 0.22,
+   "noiseless_accuracy": 0.625,
+   "noiseless_margin": 0.23195333571094887,
+   "compile_s": 0.084270754999352,
+   "sim_s": 43.238734466000096,
+   "wall_s": 44.10445873899994
+  },
+  {
+   "iteration": 20,
+   "accuracy": 0.625,
+   "margin": 0.2472916666666667,
+   "noiseless_accuracy": 0.625,
+   "noiseless_margin": 0.24073227333972377,
+   "compile_s": 0.13435329999992973,
+   "sim_s": 82.7489750550003,
+   "wall_s": 84.25920017199996
+  },
+  {
+   "iteration": 30,
+   "accuracy": 0.75,
+   "margin": 0.36562500000000003,
+   "noiseless_accuracy": 0.75,
+   "noiseless_margin": 0.37009676721821655,
+   "compile_s": 0.1758462250007824,
+   "sim_s": 121.89277752300018,
+   "wall_s": 123.982063616
+  }
+ ],
+ "final_theta": [
+  -0.8607960493199033,
+  -1.0566174374299242,
+  -0.9126425736047304,
+  -0.7423682477574668,
+  -1.1565382908991986,
+  -0.007896839598019272,
+  0.8223772016051748,
+  -1.6653990735107276,
+  2.375713109414014,
+  0.4371286331052683,
+  0.23951939062946545,
+  -0.6277591571401672,
+  -0.7827410663519819,
+  -0.5941324364673385,
+  0.8762552553862187,
+  1.3922461721065926,
+  0.09118174812874626,
+  -0.7661784719943417,
+  0.8529100925245482,
+  -0.4811270807018328
+ ],
+ "valid": true,
+ "to_target": {
+  "iteration": 30,
+  "compile_s": 0.1758462250007824,
+  "sim_s": 121.89277752300018,
+  "wall_s": 123.982063616
+ }
+}

@@ -1,0 +1,225 @@
+{
+ "arm": "psfai:template",
+ "plan": "TOQB loop smoke (v15)",
+ "device": "fake:FakeFez",
+ "started": "2026-10-15 06:12:10 CEST",
+ "version": "psf_compile 2026-10-14.1, psf_ai_compile 2026-10-15.a21",
+ "setup_s": 0.014317985000047884,
+ "compile_s": 0.21263946400119949,
+ "sim_s": 103.5614268680007,
+ "wall_s": 106.14418447100002,
+ "circuits": 576,
+ "per_circuit_compile_ms": 0.3443081232658882,
+ "structural_fail": 0,
+ "on_failed_ops": 0,
+ "q2_mean": 14.0,
+ "duration_us_mean": 2.7359999999999993,
+ "equivalence": [
+  {
+   "checked": true,
+   "equivalent": true,
+   "distance": 1.040836626684926e-15,
+   "why": null
+  },
+  {
+   "checked": true,
+   "equivalent": true,
+   "distance": 8.166210763160819e-16,
+   "why": null
+  },
+  {
+   "checked": true,
+   "equivalent": true,
+   "distance": 6.85649453879833e-16,
+   "why": null
+  }
+ ],
+ "curve": [
+  {
+   "iteration": 1,
+   "loss": 0.5657812499999999
+  },
+  {
+   "iteration": 2,
+   "loss": 0.57890625
+  },
+  {
+   "iteration": 3,
+   "loss": 0.45140625
+  },
+  {
+   "iteration": 4,
+   "loss": 0.38796875
+  },
+  {
+   "iteration": 5,
+   "loss": 0.3125
+  },
+  {
+   "iteration": 6,
+   "loss": 0.30062500000000003
+  },
+  {
+   "iteration": 7,
+   "loss": 0.25546875
+  },
+  {
+   "iteration": 8,
+   "loss": 0.34234375
+  },
+  {
+   "iteration": 9,
+   "loss": 0.24375
+  },
+  {
+   "iteration": 10,
+   "loss": 0.24109375
+  },
+  {
+   "iteration": 11,
+   "loss": 0.28421875
+  },
+  {
+   "iteration": 12,
+   "loss": 0.21796875
+  },
+  {
+   "iteration": 13,
+   "loss": 0.31312500000000004
+  },
+  {
+   "iteration": 14,
+   "loss": 0.29609375
+  },
+  {
+   "iteration": 15,
+   "loss": 0.33296875000000004
+  },
+  {
+   "iteration": 16,
+   "loss": 0.43109375
+  },
+  {
+   "iteration": 17,
+   "loss": 0.38812500000000005
+  },
+  {
+   "iteration": 18,
+   "loss": 0.3490625
+  },
+  {
+   "iteration": 19,
+   "loss": 0.300625
+  },
+  {
+   "iteration": 20,
+   "loss": 0.24078125000000003
+  },
+  {
+   "iteration": 21,
+   "loss": 0.38406250000000003
+  },
+  {
+   "iteration": 22,
+   "loss": 0.356875
+  },
+  {
+   "iteration": 23,
+   "loss": 0.3178125
+  },
+  {
+   "iteration": 24,
+   "loss": 0.30640625
+  },
+  {
+   "iteration": 25,
+   "loss": 0.38093750000000004
+  },
+  {
+   "iteration": 26,
+   "loss": 0.4196875
+  },
+  {
+   "iteration": 27,
+   "loss": 0.198125
+  },
+  {
+   "iteration": 28,
+   "loss": 0.4053125
+  },
+  {
+   "iteration": 29,
+   "loss": 0.2546875
+  },
+  {
+   "iteration": 30,
+   "loss": 0.3865624999999999
+  }
+ ],
+ "evals": [
+  {
+   "iteration": 0,
+   "accuracy": 0.3333333333333333,
+   "margin": -0.33520833333333333,
+   "noiseless_accuracy": 0.3333333333333333,
+   "noiseless_margin": -0.3330905127854083,
+   "compile_s": 0.019328633000100126,
+   "sim_s": 4.071686700999976,
+   "wall_s": 4.160997032000068
+  },
+  {
+   "iteration": 10,
+   "accuracy": 0.5833333333333334,
+   "margin": 0.19041666666666668,
+   "noiseless_accuracy": 0.5833333333333334,
+   "noiseless_margin": 0.2220603021145088,
+   "compile_s": 0.07930086899989419,
+   "sim_s": 36.18503557099996,
+   "wall_s": 37.09483778399999
+  },
+  {
+   "iteration": 20,
+   "accuracy": 0.625,
+   "margin": 0.2141666666666667,
+   "noiseless_accuracy": 0.6666666666666666,
+   "noiseless_margin": 0.2432736888497359,
+   "compile_s": 0.14887313499991706,
+   "sim_s": 69.77468441500002,
+   "wall_s": 71.56573042600007
+  },
+  {
+   "iteration": 30,
+   "accuracy": 0.7083333333333334,
+   "margin": 0.3260416666666666,
+   "noiseless_accuracy": 0.7083333333333334,
+   "noiseless_margin": 0.3554180980567567,
+   "compile_s": 0.21263946400119949,
+   "sim_s": 103.5614268680007,
+   "wall_s": 106.14412705500013
+  }
+ ],
+ "final_theta": [
+  -0.905776017170688,
+  -0.7931355277097258,
+  -0.7084490303712534,
+  -0.8460278875336721,
+  -0.9245708355243297,
+  -0.14275295871680527,
+  0.6168446934281023,
+  -1.7965908069823935,
+  2.481963820142691,
+  0.49611410708127546,
+  0.17687682168020286,
+  -0.8514552047363972,
+  -0.7147286758392092,
+  -0.2877032032055534,
+  0.7727828548755352,
+  1.4177260014166893,
+  0.04838033362565024,
+  -0.8141637274552452,
+  0.89483421611985,
+  -0.6465784311814563
+ ],
+ "valid": true,
+ "to_target": null
+}

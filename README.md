@@ -4,7 +4,8 @@ TOQB compares quantum compilers on the quality of what they return within a time
 structure to a task's accuracy on a noisy device.
 
 **Status: v0.1.** It has the specification, a budgeted runner and the standard compilation set (the layer-1
-circuits, below). Layers 2 and 3 are not built yet.
+circuits, below). Layer 2 is not built yet. Of layer 3, the variational-loop scenario exists at smoke size (v15,
+below); it has not had a scored run.
 
 **Scored runs.** Each was pre-registered and its lock pushed before it ran.
 
@@ -160,6 +161,50 @@ with Qiskit's conventions for the gate: U = exp(-i t H), and character k of a Pa
 n-1-k. Both are first-order formulas for the same Hamiltonian. They differ in term order, and so in Trotter error. An external one can be
 named as `package.module:factory`. The adapter receives exactly the device information its division allows.
 
+## The variational-loop scenario (v15, smoke size)
+
+A quantum classifier is trained by a loop, and every circuit of every iteration goes through the compiler. So a
+compiler's cost and its circuits' noise are paid again on every iteration. `toqb/task_loop.py` measures both on the
+same training run.
+
+- **Task.**
+  - Data re-uploading on a CZ ring, read from qubit 0 (the classifier PSF-Zero's hardware runs used).
+  - The data are a teacher-student task: a teacher of the same model, with angles drawn from a seed, labels uniform
+    points. It is learnable by construction, and needs numpy only.
+  - Training is SPSA on a batch. The initial angles, the batches and the perturbations are drawn before anything runs,
+    so every compiler follows the same draws.
+- **Device model ("TOQB noise").** Each output is scheduled with the device's durations, so idle time becomes delays.
+  It is then run on Aer's density-matrix simulator with three errors from the device's Target:
+  - each gate's reported error, as depolarizing noise;
+  - thermal relaxation over gates and delays;
+  - the reported readout error.
+
+  Shots use seeds fixed per circuit, the same for every compiler.
+- **Arms.**
+  - **Template arms:** Qiskit with every angle a Parameter, transpiled once and bound by `assign_parameters` (Qiskit's
+    own loop practice). PSF-Zero's AI front end, with `ring_template` built once and `bind_values` for each circuit.
+  - **Recompile arms:** the concrete circuit compiled every time.
+
+  The reference is `qiskit:2:target:template`.
+- **Measured.**
+  - **Cost:** compile time per loop (template build plus binds, or every compile), in tiers of 1x, 3x and 10x the
+    reference's, with a floor of 1 s. The simulation's time is reported separately.
+  - **Checks:** every output is structurally checked and checked for failed elements. TOQB's equivalence check runs
+    on the first circuit of the first, middle and last iteration.
+  - **Result:** noisy test accuracy and margin at each evaluation; the noiseless accuracy of the final angles; the
+    iteration and the time at which the target accuracy is first reached.
+- **Limits.**
+  - Smoke size: one task, one device, 30 iterations.
+  - The noise model is built from the same Target that a calibration-aware compiler reads. That favours such
+    compilers (principle 6). No calibration split yet.
+  - Simulation only.
+  - PSF-Zero's arms are written by PSF-Zero's authors (principle 5).
+  - The first smoke is in [`results/loop-smoke-2026-10-15/`](results/loop-smoke-2026-10-15/).
+
+```
+PSF_ZERO_REPO=<a PSF-Zero checkout> python -m toqb.task_loop run plan_loop_smoke.json <new output directory>
+```
+
 ## Layout
 
 ```
@@ -174,6 +219,8 @@ toqb/
   score.py      scores a standard run against its pre-registered predictions
   verify.py     an independent re-scoring of a standard run
   essential.py  v14: a run's results as scored and as a user of the device sees them (failed elements, first compile)
+  task_loop.py  v15: layer 3's variational-loop scenario (task, SPSA, TOQB noise, template and recompile arms)
+  score_loop.py v15: the report of a loop run
 prereg/         pre-registrations of scored runs
 tests/          tests that need no quantum package
 ```
