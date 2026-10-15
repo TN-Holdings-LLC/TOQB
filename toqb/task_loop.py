@@ -29,11 +29,14 @@ Arms ("compiler:mode"):
   qiskit:L:target:template   Qiskit's loop practice: the circuit with every angle a Parameter, transpiled once at
                              level L with the device's Target (per circuit structure); each circuit is bound.
   qiskit:L:target:recompile  the concrete circuit transpiled every time.
-  psfai:template             PSF-Zero's AI front end: `ring_template` built once per structure, `bind` each time
-                             (a structure it does not read is compiled by `compile_for_model_circuit`, and counted).
+  psfai:template             PSF-Zero's AI front end: its template built once per structure (`model_template`
+                             from a22 on, else `ring_template`), `bind` each time (a structure without a template is
+                             compiled by `compile_for_model_circuit`, and counted).
   psfai:recompile            `compile_for_model_circuit` every time.
 The PSF-Zero files come from $PSF_ZERO_REPO: psf_compile.py ($PSF_COMPILE_FILE, default the release at its root) and
-the front end ($PSF_AI_FILE, default patches/psf_ai_compile_a21_2026-10-15/psf_ai_compile.py).
+the front end ($PSF_AI_FILE, default patches/psf_ai_compile_a22_2026-10-15/psf_ai_compile.py). a22's embedded rings
+and compile templates need psf_compile c61 (patches/psf_compile_c61_2026-10-15/psf_compile.py as $PSF_COMPILE_FILE);
+with the release it behaves as a21.
 
 Price (the plan's `qpu_cost`; defaults: IBM's measured rate in PSF-Zero's TIME1 and FRAC1 runs, 0.27 ms per shot and
 0.036 s per circuit, and the Pay-As-You-Go price, $96 per minute):
@@ -378,7 +381,7 @@ class PSFAILoop:
         if not repo:
             raise RuntimeError("set PSF_ZERO_REPO to a PSF-Zero checkout")
         pc_file = os.environ.get("PSF_COMPILE_FILE", os.path.join(repo, "psf_compile.py"))
-        ai_file = os.environ.get("PSF_AI_FILE", os.path.join(repo, "patches", "psf_ai_compile_a21_2026-10-15",
+        ai_file = os.environ.get("PSF_AI_FILE", os.path.join(repo, "patches", "psf_ai_compile_a22_2026-10-15",
                                                              "psf_ai_compile.py"))
         sys.path[:0] = [os.path.join(repo, "benchmarks"), repo]
         here = os.getcwd()
@@ -415,8 +418,9 @@ class PSFAILoop:
             return self._recompile(qc)
         sig = self.ai._structure_sig(qc)
         if sig not in self._cache:
+            make = getattr(self.ai, "model_template", None) or self.ai.ring_template  # a22 on: item 43
             with contextlib.redirect_stdout(io.StringIO()):
-                tpl = self.ai.ring_template(qc, self.target)
+                tpl = make(qc, self.target)
             self._cache[sig] = tpl
             self.stats["template_builds" if tpl is not None else "template_unavailable"] += 1
         tpl = self._cache[sig]
