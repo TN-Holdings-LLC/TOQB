@@ -6,7 +6,7 @@ and cannot tell apart at this size.
 
 **Run.**
 
-- **Plan:** [`plan.json`](plan.json) (= `plan_loop_smoke.json`).
+- **Plan:** [`plan.json`](plan.json) (`plan_loop_smoke.json` as it was then; it has since gained a front end and prices).
 - **Time:** 06:08-06:19 CEST, one arm after another, on a 2-core cloud workspace.
 - **Arm records:** `arm-*.json`. **Report:** [`report.md`](report.md).
 - **Task:** a 4-qubit, 2-layer ring classifier, a teacher-student task, 30 SPSA iterations with batch 8 and 400 shots,

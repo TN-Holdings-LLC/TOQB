@@ -10,6 +10,8 @@ dependencies = ["numpy", "qiskit>=2.0"]
 [project.optional-dependencies]
 fake = ["qiskit-ibm-runtime"]
 tket = ["pytket", "pytket-qiskit"]
+loop = ["qiskit-aer", "qiskit-ibm-runtime"]
+pennylane = ["pennylane", "qiskit-aer", "qiskit-ibm-runtime"]
 test = ["pytest"]
 
 [build-system]

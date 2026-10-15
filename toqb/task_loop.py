@@ -1,15 +1,14 @@
-"""TOQB layer 3, the variational-loop scenario (v15, smoke size): a classifier trained by SPSA on a noisy device model,
-with every circuit of every iteration compiled by the compiler under test.
+"""TOQB layer 3, the variational-loop scenario (v15): for the same money, which compiler returns the best model?
 
-What compounds. Each iteration evaluates 2 x B circuits (the SPSA pair over a batch of B training points). A compiler
-pays its compile time on every one of them, and its output's noise enters every gradient. Better circuits give
-cleaner gradients, so the same number of iterations reaches a better model; faster compiles make the loop cheaper.
-Both are measured, separately and together.
+A classifier is trained by SPSA on a noisy device model, and every circuit of every iteration is compiled by the
+compiler under test. Each iteration is one job of 2 x B circuits (the SPSA pair over a batch of B training points).
+A compiler's output noise enters every gradient, so better circuits can give a better model for the same number of
+jobs; and in session mode its compile time is paid in QPU time too. Both are priced in QPU seconds and dollars.
 
 The task (identical for every arm; nothing depends on the compiler but the circuits):
   - model: data re-uploading on a ring (DEPTH1's / RING1's classifier). Per layer: RY(enc x_q) on every qubit, then
     RY(a_q) RZ(b_q) on every qubit, then a CZ ring (0,1) ... (n-1,0); after the last layer RY(c_q); measure all. The
-    prediction is sign(<Z_0>), read from clbit 0.
+    prediction is sign(<Z_0>).
   - data: a teacher-student task. A teacher of the same model with angles drawn from `teacher_seed` labels uniform
     points x in [-1, 1]^n by the sign of its <Z_0>; points with |<Z_0>| < `teacher_gap` are dropped. So the task is
     learnable by the model, and what an arm reaches depends on the optimisation and the noise, not on luck in the
@@ -22,27 +21,37 @@ The task (identical for every arm; nothing depends on the compiler but the circu
     (T1, T2) over the gate's duration; thermal relaxation over every delay; the reported readout error. Shots are
     sampled with a seed fixed per (iteration, circuit), the same for every arm.
 
+Front ends (`frontend` in the plan): "qiskit" builds each circuit as a Qiskit circuit; "pennylane" builds it as a
+PennyLane tape returning qml.expval(qml.PauliZ(0)) and runs it through `toqb.pennylane_device.CompiledDevice`, the
+PennyLane device a QML developer would use. Both hand the compilers the same Qiskit circuit.
+
 Arms ("compiler:mode"):
   qiskit:L:target:template   Qiskit's loop practice: the circuit with every angle a Parameter, transpiled once at
-                             level L with the device's Target; each circuit is `assign_parameters`.
+                             level L with the device's Target (per circuit structure); each circuit is bound.
   qiskit:L:target:recompile  the concrete circuit transpiled every time.
-  psfai:template             PSF-Zero's AI front end (a21): `ring_template` built once, `bind_values` each time.
+  psfai:template             PSF-Zero's AI front end: `ring_template` built once per structure, `bind` each time
+                             (a structure it does not read is compiled by `compile_for_model_circuit`, and counted).
   psfai:recompile            `compile_for_model_circuit` every time.
 The PSF-Zero files come from $PSF_ZERO_REPO: psf_compile.py ($PSF_COMPILE_FILE, default the release at its root) and
 the front end ($PSF_AI_FILE, default patches/psf_ai_compile_a21_2026-10-15/psf_ai_compile.py).
 
+Price (the plan's `qpu_cost`; defaults: IBM's measured rate in PSF-Zero's TIME1 and FRAC1 runs, 0.27 ms per shot and
+0.036 s per circuit, and the Pay-As-You-Go price, $96 per minute):
+  - batch mode (only time on the QPU is billed): per circuit, per_circuit_s + shots x (per_shot_s + the circuit's
+    duration);
+  - session mode (wall-clock time while the QPU is committed to the session is billed): the same, plus the classical
+    time of each iteration between jobs -- compiling, binding, the front end, the optimiser -- which the arm pays and
+    the QPU waits for. TOQB's own checks and the simulation (which stands in for the QPU) are not counted.
+Only training jobs are priced; the evaluations on the test set are reported at the price spent so far.
+
 Measured per arm (one process each, one thread):
-  - compile time: the template's build plus every bind, or every compile (perf_counter around the compiler's calls
-    only); the simulation's time separately;
+  - the result for the money: noisy test accuracy and margin at each evaluation with the dollars spent (both modes);
+    the dollars to `target_accuracy`; the accuracy at the plan's `budget_usd`;
   - every output: the structural check, operations on failed elements, two-qubit count, duration; TOQB's equivalence
     check on the first circuit of the first, middle and last iteration (a failure there, or any structural failure or
     operation on a failed element, makes the arm invalid);
-  - the training: loss per iteration (the SPSA pair's mean), test accuracy and margin on the noisy model at the
-    evaluation points, and the noiseless test accuracy of the final angles;
-  - time to target: the first evaluation at which the noisy test accuracy reaches `target_accuracy`, with the
-    iterations and the compile and loop time spent until then.
-The budget: an arm's compile time per loop against the reference arm's (`reference`), with the floor `budget_floor_s`;
-tiers 1x, 3x, 10x.
+  - the cost of compiling (secondary): template builds plus binds, or every compile, against the reference arm's, in
+    tiers 1x, 3x, 10x with the floor `budget_floor_s`.
 
     python -m toqb.task_loop run PLAN.json OUTDIR      every arm of the plan, one process each, then the report
     python -m toqb.task_loop arm PLAN.json OUTDIR SPEC one arm (what `run` starts)
@@ -63,6 +72,10 @@ import time
 SINGLE_THREAD = {k: "1" for k in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "RAYON_NUM_THREADS",
                                   "QISKIT_NUM_PROCS", "NUMEXPR_NUM_THREADS")}
 SINGLE_THREAD["QISKIT_PARALLEL"] = "FALSE"
+
+DEFAULT_COST = dict(per_shot_s=0.00027, per_circuit_s=0.036, usd_per_s=96 / 60,
+                    source="rate: PSF-Zero TIME1 / FRAC1 on ibm_fez (2026-10-14); price: IBM Pay-As-You-Go, "
+                           "'starts at $96 USD / minute', billed per second (ibm.com/quantum/pricing, 2026-10-15)")
 
 
 # ------------------------------------------------------------------------------------------------ task (numpy only)
@@ -107,6 +120,23 @@ def model_circuit(angles, n, L):
         qc.ry(next(it), q)
     qc.measure_all()
     return qc
+
+
+def model_ops(angles, n, L):
+    """The model as PennyLane operations, in the same order as `model_circuit`."""
+    import pennylane as qml
+    ops, it = [], iter(angles)
+    for _ in range(L):
+        for q in range(n):
+            ops.append(qml.RY(next(it), wires=q))
+        for q in range(n):
+            ops.append(qml.RY(next(it), wires=q))
+            ops.append(qml.RZ(next(it), wires=q))
+        for q in range(n):
+            ops.append(qml.CZ(wires=[q, (q + 1) % n]))
+    for q in range(n):
+        ops.append(qml.RY(next(it), wires=q))
+    return ops
 
 
 def exact_z0(angles, n, L):
@@ -190,6 +220,18 @@ def gains(k, opt):
     return opt["a"] / (k + 1 + opt["A"]) ** 0.602, opt["c"] / (k + 1) ** 0.101
 
 
+def qpu_seconds(durations_s, shots, cost):
+    """Batch-mode QPU seconds of one job: per circuit, per_circuit_s + shots x (per_shot_s + its duration)."""
+    return sum(cost["per_circuit_s"] + shots * (cost["per_shot_s"] + d) for d in durations_s)
+
+
+def z_of_counts(counts, clbit=0):
+    """<Z> of one clbit from Qiskit counts (keys: clbit 0 rightmost)."""
+    shots = sum(counts.values())
+    zero = sum(v for k, v in counts.items() if k.replace(" ", "")[-1 - clbit] == "0")
+    return (2 * zero - shots) / shots
+
+
 # ------------------------------------------------------------------------------------------------ the device model
 
 class NoisyDevice:
@@ -248,48 +290,78 @@ class NoisyDevice:
         self._models[act] = (nm, rp)
         return nm, rp
 
-    def z0(self, circuits, shots, seeds):
-        """<Z_0> (clbit 0) of each circuit, from `shots` samples with the given seeds."""
+    def counts(self, circuits, shots, seeds):
+        """Qiskit counts of each circuit, from `shots` samples with the given seeds."""
         out = []
         for c, s in zip(circuits, seeds):
             sc, act = self._compact(self.sched.run(c))
             nm, rp = self._model(act)
-            counts = self.sim.run(rp(sc), noise_model=nm, shots=shots, seed_simulator=int(s)).result().get_counts()
-            zero = sum(v for k, v in counts.items() if k.replace(" ", "")[-1] == "0")
-            out.append((2 * zero - shots) / shots)
+            out.append(self.sim.run(rp(sc), noise_model=nm, shots=shots, seed_simulator=int(s)).result().get_counts())
         return out
 
 
 # ------------------------------------------------------------------------------------------------ arms
 
+def _qiskit_sig(qc):
+    """A circuit's structure: names, qubits, clbits and the number of parameters of every instruction."""
+    return tuple((i.operation.name, tuple(qc.find_bit(q).index for q in i.qubits),
+                  tuple(qc.find_bit(c).index for c in i.clbits), len(i.operation.params)) for i in qc.data)
+
+
 class QiskitLoop:
     def __init__(self, level, mode):
         self.level, self.mode = level, mode
         self.name = f"qiskit:{level}:target:{mode}"
+        self.stats = dict(template_builds=0, template_unavailable=0)
 
     def version(self):
         import qiskit
         return qiskit.__version__
 
-    def setup(self, task, target):
-        from qiskit.circuit import ParameterVector
+    def setup(self, target):
         from qiskit.transpiler import generate_preset_pass_manager
         self.pm = generate_preset_pass_manager(self.level, target=target, seed_transpiler=0)
-        self.n, self.L = task["n"], task["layers"]
-        if self.mode == "template":
-            pv = ParameterVector("v", len(gate_kinds(self.n, self.L)))
-            self.tq = self.pm.run(model_circuit(list(pv), self.n, self.L))
+        self._cache = {}
 
-    def compile(self, angles):
-        if self.mode == "template":
-            return self.tq.assign_parameters(angles)
-        return self.pm.run(model_circuit(angles, self.n, self.L))
+    def _template(self, qc):
+        """Every numeric parameter of `qc` replaced by v[k] (in instruction order), transpiled once."""
+        from qiskit.circuit import ParameterVector
+        values = [float(p) for i in qc.data for p in i.operation.params]
+        pv = ParameterVector("v", len(values))
+        par = qc.copy_empty_like()
+        k = 0
+        for ins in qc.data:
+            op = ins.operation
+            if op.params:
+                op = op.to_mutable()
+                op.params = [pv[k + j] for j in range(len(op.params))]
+                k += len(op.params)
+            par.append(op, ins.qubits, ins.clbits)
+        tq = self.pm.run(par)
+        order = [pv[j] for j in range(len(values))]
+        positional = list(tq.parameters) == order
+        self.stats["template_builds"] += 1
+        return tq, order, positional
+
+    def compile_circuit(self, qc):
+        if self.mode != "template":
+            return self.pm.run(qc)
+        sig = _qiskit_sig(qc)
+        if sig not in self._cache:
+            self._cache[sig] = self._template(qc)
+        tq, order, positional = self._cache[sig]
+        values = [float(p) for i in qc.data for p in i.operation.params]
+        if positional:
+            return tq.assign_parameters(values)
+        present = set(tq.parameters)
+        return tq.assign_parameters({p: v for p, v in zip(order, values) if p in present})
 
 
 class PSFAILoop:
     def __init__(self, mode):
         self.mode = mode
         self.name = f"psfai:{mode}"
+        self.stats = dict(template_builds=0, template_unavailable=0)
         repo = os.environ.get("PSF_ZERO_REPO")
         if not repo:
             raise RuntimeError("set PSF_ZERO_REPO to a PSF-Zero checkout")
@@ -316,27 +388,31 @@ class PSFAILoop:
     def version(self):
         return f"psf_compile {self.pc.VERSION}, psf_ai_compile {self.ai.AI_COMPILE_VERSION}"
 
-    def setup(self, task, target):
-        self.n, self.L, self.target = task["n"], task["layers"], target
+    def setup(self, target):
+        self.target = target
         self.basis = [g for g in ("cz", "rz", "sx", "x") if g in target.operation_names]
         self.cmap = target.build_coupling_map()
-        if self.mode == "template":
-            example = model_circuit([0.1 * (k + 1) for k in range(len(gate_kinds(self.n, self.L)))], self.n, self.L)
-            with contextlib.redirect_stdout(io.StringIO()):
-                self.tpl = self.ai.ring_template(example, target)
-            if self.tpl is None:
-                raise RuntimeError("ring_template returned None for the model")
-            if len(self.tpl.var_kinds) != len(gate_kinds(self.n, self.L)):
-                raise RuntimeError("the template's angles are not the model's")
+        self._cache = {}
 
-    def compile(self, angles):
-        if self.mode == "template":
-            out = self.tpl.bind_values(angles)
-            out.metadata = dict(toqb_initial=list(self.tpl.layout), toqb_final=list(self.tpl.layout))
-            return out
+    def _recompile(self, qc):
         with contextlib.redirect_stdout(io.StringIO()):
-            return self.ai.compile_for_model_circuit(model_circuit(angles, self.n, self.L), self.cmap, self.basis,
-                                                     target=self.target)
+            return self.ai.compile_for_model_circuit(qc, self.cmap, self.basis, target=self.target)
+
+    def compile_circuit(self, qc):
+        if self.mode != "template":
+            return self._recompile(qc)
+        sig = self.ai._structure_sig(qc)
+        if sig not in self._cache:
+            with contextlib.redirect_stdout(io.StringIO()):
+                tpl = self.ai.ring_template(qc, self.target)
+            self._cache[sig] = tpl
+            self.stats["template_builds" if tpl is not None else "template_unavailable"] += 1
+        tpl = self._cache[sig]
+        if tpl is None:  # a structure the ring template does not read: compiled as the front end compiles it
+            return self._recompile(qc)
+        out = tpl.bind(qc)
+        out.metadata = dict(toqb_initial=list(tpl.layout), toqb_final=list(tpl.layout))
+        return out
 
 
 def make_loop_arm(spec):
@@ -348,112 +424,173 @@ def make_loop_arm(spec):
     raise ValueError(f"unknown loop arm {spec!r}")
 
 
+# ------------------------------------------------------------------------------------------------ compile and run
+
+class Executor:
+    """Compiles Qiskit circuits with one arm and runs them on TOQB noise, keeping every time and check. Shared by the
+    Qiskit front end and the PennyLane device, so both measure the same thing."""
+
+    def __init__(self, arm, device):
+        self.arm, self.device = arm, device
+        self.noisy = NoisyDevice(device.target)
+        self.compile_s = self.sim_s = self.check_s = 0.0
+        self.circuits = 0
+        self.q2, self.durations, self.equivalence = [], [], []
+        self.structural_fail = self.on_failed_ops = 0
+        self.last_durations = []
+
+    def run(self, qcs, shots, seeds, check_first=False):
+        from toqb.metrics import equivalence, failed_operations, metrics, structural_check
+        outs, self.last_durations = [], []
+        for j, qc in enumerate(qcs):
+            s = time.perf_counter()
+            out = self.arm.compile_circuit(qc)
+            self.compile_s += time.perf_counter() - s
+            self.circuits += 1
+            s = time.perf_counter()
+            if structural_check(out, self.device):
+                self.structural_fail += 1
+            self.on_failed_ops += failed_operations(out, self.device)
+            m = metrics(out, self.device)
+            self.q2.append(m["q2"])
+            d = m.get("duration_s")
+            d = d if isinstance(d, float) else 0.0
+            self.durations.append(d)
+            self.last_durations.append(d)
+            if check_first and j == 0:
+                e = equivalence(qc, out)
+                self.equivalence.append(dict(checked=e.get("checked"), equivalent=e.get("equivalent"),
+                                             distance=e.get("distance"), why=e.get("why")))
+            self.check_s += time.perf_counter() - s
+            outs.append(out)
+        s = time.perf_counter()
+        counts = self.noisy.counts(outs, shots, seeds)
+        self.sim_s += time.perf_counter() - s
+        return counts
+
+
+class QiskitFrontEnd:
+    """Circuits built in Qiskit; <Z_0> read from clbit 0."""
+
+    def __init__(self, executor, n, L):
+        self.ex, self.n, self.L = executor, n, L
+
+    def z0(self, angle_sets, shots, seeds, check_first=False):
+        qcs = [model_circuit(a, self.n, self.L) for a in angle_sets]
+        return [z_of_counts(c) for c in self.ex.run(qcs, shots, seeds, check_first)]
+
+
+class PennyLaneFrontEnd:
+    """Circuits built as PennyLane tapes returning qml.expval(qml.PauliZ(0)), run through CompiledDevice."""
+
+    def __init__(self, executor, n, L):
+        from toqb.pennylane_device import CompiledDevice
+        self.n, self.L = n, L
+        self.dev = CompiledDevice(wires=n, executor=executor)
+
+    def z0(self, angle_sets, shots, seeds, check_first=False):
+        import pennylane as qml
+        tapes = [qml.tape.QuantumScript(model_ops(a, self.n, self.L), [qml.expval(qml.PauliZ(0))], shots=shots)
+                 for a in angle_sets]
+        self.dev.next_seeds = list(seeds)
+        self.dev.check_first = check_first
+        return [float(r) for r in qml.execute(tapes, self.dev, diff_method=None)]
+
+
 # ------------------------------------------------------------------------------------------------ one arm
 
 def run_arm(plan, spec):
     import numpy as np
     from toqb.devices import get_device
-    from toqb.metrics import equivalence, failed_operations, metrics, structural_check
     task, opt, ev = plan["task"], plan["optimizer"], plan["evaluation"]
+    cost = dict(DEFAULT_COST, **plan.get("qpu_cost", {}))
+    frontend = plan.get("frontend", "qiskit")
     n, L, enc = task["n"], task["layers"], task["enc"]
     device = get_device(plan["device"])
-    rec = dict(arm=spec, plan=plan["name"], device=plan["device"], started=_cest_now())
+    rec = dict(arm=spec, plan=plan["name"], device=plan["device"], frontend=frontend, qpu_cost=cost,
+               started=_cest_now())
     try:
         arm = make_loop_arm(spec)
         rec["version"] = arm.version()
+        if frontend == "pennylane":
+            import pennylane as qml
+            rec["version"] += f"; PennyLane {qml.__version__}"
     except Exception as exc:  # noqa: BLE001 - recorded: the arm could not be loaded
         rec["error"] = f"load: {type(exc).__name__}: {exc}"
         return rec
     Xtr, ytr, Xte, yte = teacher_data(task)
     theta, steps = spsa_schedule(task, opt)
-    dev = NoisyDevice(device.target)
-    shots = ev["shots"]
-    seed_base = ev["shot_seed"]
-    t_compile = 0.0
-    t_sim = 0.0
-    n_circ = 0
-    stats = dict(structural_fail=0, on_failed_ops=0, q2=[], duration_s=[], equivalence=[])
-    curve, evals = [], []
+    shots, seed_base = ev["shots"], ev["shot_seed"]
     t0 = time.perf_counter()
+    s = time.perf_counter()
     try:
-        s = time.perf_counter()
-        arm.setup(task, device.target)
-        t_setup = time.perf_counter() - s
+        arm.setup(device.target)
+        ex = Executor(arm, device)
+        fe = (PennyLaneFrontEnd if frontend == "pennylane" else QiskitFrontEnd)(ex, n, L)
     except Exception as exc:  # noqa: BLE001
         rec["error"] = f"setup: {type(exc).__name__}: {exc}"
         return rec
-    t_compile += t_setup
+    t_setup = time.perf_counter() - s
+    ex.compile_s += t_setup
+    spent = dict(batch_qpu_s=0.0, session_s=t_setup, classical_s=t_setup)  # the setup happens inside the session
+    curve, evals = [], []
     check_at = {0, opt["iterations"] // 2, opt["iterations"] - 1}
 
-    def compile_many(angle_sets, check_first=False):
-        nonlocal t_compile, n_circ
-        outs = []
-        for j, ang in enumerate(angle_sets):
-            s = time.perf_counter()
-            out = arm.compile(ang)
-            t_compile += time.perf_counter() - s
-            n_circ += 1
-            if structural_check(out, device):
-                stats["structural_fail"] += 1
-            stats["on_failed_ops"] += failed_operations(out, device)
-            m = metrics(out, device)
-            stats["q2"].append(m["q2"])
-            if isinstance(m.get("duration_s"), float):
-                stats["duration_s"].append(m["duration_s"])
-            if check_first and j == 0:
-                e = equivalence(model_circuit(ang, n, L), out)
-                stats["equivalence"].append(dict(checked=e.get("checked"), equivalent=e.get("equivalent"),
-                                                 distance=e.get("distance"), why=e.get("why")))
-            outs.append(out)
-        return outs
-
     def evaluate(k, theta):
-        nonlocal t_sim
+        sim0, chk0, comp0 = ex.sim_s, ex.check_s, ex.compile_s
         sets = [angle_list(theta, x, n, L, enc) for x in Xte]
-        outs = compile_many(sets)
-        s = time.perf_counter()
-        zs = dev.z0(outs, shots, [seed_base + 1_000_000 + 1000 * k + j for j in range(len(outs))])
-        t_sim += time.perf_counter() - s
-        zs = np.array(zs)
+        zs = np.array(fe.z0(sets, shots, [seed_base + 1_000_000 + 1000 * k + j for j in range(len(sets))]))
         exact = np.array([exact_z0(a, n, L) for a in sets])
         evals.append(dict(iteration=k, accuracy=float(np.mean(np.where(zs == 0, 0.5, np.sign(zs) == yte))),
                           margin=float(np.mean(yte * zs)), noiseless_accuracy=float(np.mean(np.sign(exact) == yte)),
-                          noiseless_margin=float(np.mean(yte * exact)), compile_s=t_compile, sim_s=t_sim,
-                          wall_s=time.perf_counter() - t0))
+                          noiseless_margin=float(np.mean(yte * exact)),
+                          batch_qpu_s=spent["batch_qpu_s"], session_s=spent["session_s"],
+                          batch_usd=spent["batch_qpu_s"] * cost["usd_per_s"],
+                          session_usd=spent["session_s"] * cost["usd_per_s"],
+                          compile_s=comp0, wall_s=time.perf_counter() - t0))
+        return ex.sim_s - sim0, ex.check_s - chk0
 
     try:
         evaluate(0, theta)
         for k, (idx, delta) in enumerate(steps):
+            it0, sim0, chk0 = time.perf_counter(), ex.sim_s, ex.check_s
             ak, ck = gains(k, opt)
             delta = np.array(delta)
             plus, minus = theta + ck * delta, theta - ck * delta
             sets = [angle_list(plus, Xtr[i], n, L, enc) for i in idx] + [angle_list(minus, Xtr[i], n, L, enc)
                                                                         for i in idx]
-            outs = compile_many(sets, check_first=k in check_at)
-            s = time.perf_counter()
-            zs = dev.z0(outs, shots, [seed_base + 1000 * k + j for j in range(len(outs))])
-            t_sim += time.perf_counter() - s
+            zs = fe.z0(sets, shots, [seed_base + 1000 * k + j for j in range(len(sets))], check_first=k in check_at)
             B = len(idx)
             lp = float(np.mean([(1 - ytr[i] * z) / 2 for i, z in zip(idx, zs[:B])]))
             lm = float(np.mean([(1 - ytr[i] * z) / 2 for i, z in zip(idx, zs[B:])]))
             theta = theta - ak * (lp - lm) / (2 * ck) * delta
-            curve.append(dict(iteration=k + 1, loss=(lp + lm) / 2))
+            job_qpu = qpu_seconds(ex.last_durations, shots, cost)
+            classical = (time.perf_counter() - it0) - (ex.sim_s - sim0) - (ex.check_s - chk0)
+            spent["batch_qpu_s"] += job_qpu
+            spent["classical_s"] += classical
+            spent["session_s"] += job_qpu + classical
+            curve.append(dict(iteration=k + 1, loss=(lp + lm) / 2, job_qpu_s=job_qpu, classical_s=classical))
             if (k + 1) % ev["every"] == 0 or k + 1 == len(steps):
                 evaluate(k + 1, theta)
     except Exception as exc:  # noqa: BLE001 - recorded: the arm failed during the loop
         rec["error"] = f"loop: {type(exc).__name__}: {exc}"
-    rec.update(setup_s=t_setup, compile_s=t_compile, sim_s=t_sim, wall_s=time.perf_counter() - t0, circuits=n_circ,
-               per_circuit_compile_ms=1000 * (t_compile - t_setup) / max(n_circ, 1),
-               structural_fail=stats["structural_fail"], on_failed_ops=stats["on_failed_ops"],
-               q2_mean=float(np.mean(stats["q2"])) if stats["q2"] else None,
-               duration_us_mean=1e6 * float(np.mean(stats["duration_s"])) if stats["duration_s"] else None,
-               equivalence=stats["equivalence"], curve=curve, evals=evals, final_theta=[float(t) for t in theta])
-    bad_eq = [e for e in stats["equivalence"] if e["checked"] and not e["equivalent"]]
-    rec["valid"] = ("error" not in rec and not stats["structural_fail"] and not stats["on_failed_ops"]
-                    and not bad_eq)
-    hit = next((e for e in evals if e["accuracy"] >= ev["target_accuracy"]), None)
-    rec["to_target"] = None if hit is None else dict(iteration=hit["iteration"], compile_s=hit["compile_s"],
-                                                     sim_s=hit["sim_s"], wall_s=hit["wall_s"])
+    rec.update(setup_s=t_setup, compile_s=ex.compile_s, sim_s=ex.sim_s, check_s=ex.check_s,
+               wall_s=time.perf_counter() - t0, circuits=ex.circuits,
+               per_circuit_compile_ms=1000 * (ex.compile_s - t_setup) / max(ex.circuits, 1),
+               structural_fail=ex.structural_fail, on_failed_ops=ex.on_failed_ops, arm_stats=arm.stats,
+               q2_mean=float(np.mean(ex.q2)) if ex.q2 else None,
+               duration_us_mean=1e6 * float(np.mean(ex.durations)) if ex.durations else None,
+               spent=dict(spent, batch_usd=spent["batch_qpu_s"] * cost["usd_per_s"],
+                          session_usd=spent["session_s"] * cost["usd_per_s"]),
+               equivalence=ex.equivalence, curve=curve, evals=evals, final_theta=[float(t) for t in theta])
+    bad_eq = [e for e in ex.equivalence if e["checked"] and not e["equivalent"]]
+    rec["valid"] = ("error" not in rec and not ex.structural_fail and not ex.on_failed_ops and not bad_eq)
+    rec["to_target"] = {}
+    for mode in ("batch", "session"):
+        hit = next((e for e in evals if e["accuracy"] >= ev["target_accuracy"]), None)
+        rec["to_target"][mode] = None if hit is None else dict(iteration=hit["iteration"], usd=hit[f"{mode}_usd"],
+                                                               qpu_s=hit["batch_qpu_s" if mode == "batch" else
+                                                                         "session_s"])
     return rec
 
 

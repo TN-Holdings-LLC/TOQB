@@ -161,18 +161,19 @@ with Qiskit's conventions for the gate: U = exp(-i t H), and character k of a Pa
 n-1-k. Both are first-order formulas for the same Hamiltonian. They differ in term order, and so in Trotter error. An external one can be
 named as `package.module:factory`. The adapter receives exactly the device information its division allows.
 
-## The variational-loop scenario (v15, smoke size)
+## The variational-loop scenario (v15, smoke size): for the same money, which compiler returns the best model?
 
-A quantum classifier is trained by a loop, and every circuit of every iteration goes through the compiler. So a
-compiler's cost and its circuits' noise are paid again on every iteration. `toqb/task_loop.py` measures both on the
-same training run.
+A quantum classifier is trained by a loop, and every circuit of every iteration goes through the compiler. The
+compiler's output noise enters every gradient, and its compile time is spent again on every iteration. TOQB prices
+both as an IBM user pays them, in QPU seconds and dollars, and asks which compiler gives the best model for the same
+money. `toqb/task_loop.py` runs it. A QML developer can run the same thing from PennyLane.
 
 - **Task.**
   - Data re-uploading on a CZ ring, read from qubit 0 (the classifier PSF-Zero's hardware runs used).
   - The data are a teacher-student task: a teacher of the same model, with angles drawn from a seed, labels uniform
     points. It is learnable by construction, and needs numpy only.
-  - Training is SPSA on a batch. The initial angles, the batches and the perturbations are drawn before anything runs,
-    so every compiler follows the same draws.
+  - Training is SPSA on a batch; each iteration is one job of 2 x batch circuits. The initial angles, the batches and
+    the perturbations are drawn before anything runs, so every compiler follows the same draws.
 - **Device model ("TOQB noise").** Each output is scheduled with the device's durations, so idle time becomes delays.
   It is then run on Aer's density-matrix simulator with three errors from the device's Target:
   - each gate's reported error, as depolarizing noise;
@@ -180,29 +181,45 @@ same training run.
   - the reported readout error.
 
   Shots use seeds fixed per circuit, the same for every compiler.
-- **Arms.**
-  - **Template arms:** Qiskit with every angle a Parameter, transpiled once and bound by `assign_parameters` (Qiskit's
-    own loop practice). PSF-Zero's AI front end, with `ring_template` built once and `bind_values` for each circuit.
-  - **Recompile arms:** the concrete circuit compiled every time.
+- **Price** (`qpu_cost` in the plan). The defaults are IBM's measured rate in PSF-Zero's TIME1 and FRAC1 runs (0.27
+  ms per shot and 0.036 s per circuit, plus the circuit's own duration per shot), and the Pay-As-You-Go price ($96 per
+  minute, billed per second).
+  - **Batch mode** bills only time on the QPU.
+  - **Session mode** bills the wall-clock time the QPU is committed to the session. That includes the classical time
+    between jobs, so compiling, binding, the front end and the optimiser are paid at the QPU's price.
 
-  The reference is `qiskit:2:target:template`.
-- **Measured.**
-  - **Cost:** compile time per loop (template build plus binds, or every compile), in tiers of 1x, 3x and 10x the
-    reference's, with a floor of 1 s. The simulation's time is reported separately.
-  - **Checks:** every output is structurally checked and checked for failed elements. TOQB's equivalence check runs
-    on the first circuit of the first, middle and last iteration.
-  - **Result:** noisy test accuracy and margin at each evaluation; the noiseless accuracy of the final angles; the
-    iteration and the time at which the target accuracy is first reached.
+  TOQB's own checks, and the simulation that stands in for the QPU, are not priced.
+- **The result for the money** (first in the report):
+  - **The budget:** what the reference arm (`qiskit:2:target:template`, Qiskit's loop practice) spends on the whole
+    training, plus 5%, in each mode.
+  - **At that budget:** each arm's test accuracy and margin.
+  - **Also:** the dollars each arm needs to reach the target accuracy, and the noiseless accuracy of its final angles.
+- **Arms.**
+  - **Template arms:** Qiskit with every angle a Parameter, transpiled once per circuit structure and bound for each
+    circuit. PSF-Zero's AI front end, with `ring_template` built once and bound.
+  - **Recompile arms:** the concrete circuit compiled every time.
+- **Checks.** Every output is structurally checked and checked for failed elements. TOQB's equivalence check runs on
+  the first circuit of the first, middle and last iteration.
+- **Secondary:** the compile time per loop, in tiers of 1x, 3x and 10x the reference's, with a floor of 1 s.
+- **From PennyLane.** `toqb.pennylane_device.CompiledDevice` is a PennyLane device.
+  - **What it does:** a QNode's circuits are compiled by the chosen arm and run on TOQB noise.
+  - **What it returns:** PennyLane's expectation values, probabilities or counts, from samples of every wire.
+  - **Cost:** `qml.Tracker` reports the compile time, QPU seconds and dollars of every execution.
+  - **In the loop:** with `"frontend": "pennylane"`, the loop itself builds PennyLane tapes and runs them through this
+    device. The compilers receive the same Qiskit circuit as from the Qiskit front end; a test checks this.
+  - **Example:** `examples/pennylane_spsa.py` trains the task with PennyLane's own SPSAOptimizer.
 - **Limits.**
   - Smoke size: one task, one device, 30 iterations.
   - The noise model is built from the same Target that a calibration-aware compiler reads. That favours such
     compilers (principle 6). No calibration split yet.
-  - Simulation only.
+  - Simulation only. The price is an estimate from measured rates, not a bill.
   - PSF-Zero's arms are written by PSF-Zero's authors (principle 5).
-  - The first smoke is in [`results/loop-smoke-2026-10-15/`](results/loop-smoke-2026-10-15/).
+- **Results:** smoke runs in [`results/loop-smoke-2026-10-15/`](results/loop-smoke-2026-10-15/) (the first, before
+  prices and PennyLane) and [`results/loop-smoke-2026-10-15b/`](results/loop-smoke-2026-10-15b/).
 
 ```
 PSF_ZERO_REPO=<a PSF-Zero checkout> python -m toqb.task_loop run plan_loop_smoke.json <new output directory>
+PSF_ZERO_REPO=<a PSF-Zero checkout> PYTHONPATH=. python examples/pennylane_spsa.py psfai:template 10
 ```
 
 ## Layout
@@ -219,8 +236,10 @@ toqb/
   score.py      scores a standard run against its pre-registered predictions
   verify.py     an independent re-scoring of a standard run
   essential.py  v14: a run's results as scored and as a user of the device sees them (failed elements, first compile)
-  task_loop.py  v15: layer 3's variational-loop scenario (task, SPSA, TOQB noise, template and recompile arms)
-  score_loop.py v15: the report of a loop run
+  task_loop.py  v15: layer 3's variational-loop scenario (task, SPSA, TOQB noise, prices, template and recompile arms)
+  score_loop.py v15: the report of a loop run (the result for the money first)
+  pennylane_device.py  v15: CompiledDevice, a PennyLane device that compiles with a TOQB arm and prices each execution
+examples/       pennylane_spsa.py: the loop task trained from PennyLane
 prereg/         pre-registrations of scored runs
 tests/          tests that need no quantum package
 ```

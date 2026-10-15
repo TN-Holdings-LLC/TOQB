@@ -1,0 +1,327 @@
+{
+ "arm": "qiskit:2:target:template",
+ "plan": "TOQB loop smoke (v15)",
+ "device": "fake:FakeFez",
+ "frontend": "pennylane",
+ "qpu_cost": {
+  "per_shot_s": 0.00027,
+  "per_circuit_s": 0.036,
+  "usd_per_s": 1.6,
+  "source": "rate: PSF-Zero TIME1 / FRAC1 on ibm_fez (2026-10-14); price: IBM Pay-As-You-Go, 'starts at $96 USD / minute', billed per second (ibm.com/quantum/pricing, 2026-10-15)"
+ },
+ "started": "2026-10-15 07:03:29 CEST",
+ "version": "2.5.2; PennyLane 0.45.1",
+ "setup_s": 0.03271044100006293,
+ "compile_s": 0.29968956999891816,
+ "sim_s": 100.33001940400095,
+ "check_s": 1.437491623003325,
+ "wall_s": 103.46375608199992,
+ "circuits": 576,
+ "per_circuit_compile_ms": 0.4635054322896792,
+ "structural_fail": 0,
+ "on_failed_ops": 0,
+ "arm_stats": {
+  "template_builds": 1,
+  "template_unavailable": 0
+ },
+ "q2_mean": 17.0,
+ "duration_us_mean": 3.4759999999999995,
+ "spent": {
+  "batch_qpu_s": 69.78739200000003,
+  "session_s": 71.22766337799483,
+  "classical_s": 1.4402713779948044,
+  "batch_usd": 111.65982720000005,
+  "session_usd": 113.96426140479173
+ },
+ "equivalence": [
+  {
+   "checked": true,
+   "equivalent": true,
+   "distance": 1.0154637547499235e-15,
+   "why": null
+  },
+  {
+   "checked": true,
+   "equivalent": true,
+   "distance": 8.241020713062319e-16,
+   "why": null
+  },
+  {
+   "checked": true,
+   "equivalent": true,
+   "distance": 8.387388006347862e-16,
+   "why": null
+  }
+ ],
+ "curve": [
+  {
+   "iteration": 1,
+   "loss": 0.5714062500000001,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.1804012379998312
+  },
+  {
+   "iteration": 2,
+   "loss": 0.5775,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.025780351999856066
+  },
+  {
+   "iteration": 3,
+   "loss": 0.45843749999999994,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.059269580000318456
+  },
+  {
+   "iteration": 4,
+   "loss": 0.34734375,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.03185843600044791
+  },
+  {
+   "iteration": 5,
+   "loss": 0.2909375,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.02978072299924861
+  },
+  {
+   "iteration": 6,
+   "loss": 0.28125,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.029722434000404974
+  },
+  {
+   "iteration": 7,
+   "loss": 0.234375,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.03583521200039286
+  },
+  {
+   "iteration": 8,
+   "loss": 0.31359375,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.034206038999400334
+  },
+  {
+   "iteration": 9,
+   "loss": 0.21968749999999998,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.03204851999953462
+  },
+  {
+   "iteration": 10,
+   "loss": 0.21875,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.03771839900014129
+  },
+  {
+   "iteration": 11,
+   "loss": 0.275625,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.18226065199951336
+  },
+  {
+   "iteration": 12,
+   "loss": 0.1975,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.02589849899982255
+  },
+  {
+   "iteration": 13,
+   "loss": 0.31234375,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.02354695999974865
+  },
+  {
+   "iteration": 14,
+   "loss": 0.26609375,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.03024835399969561
+  },
+  {
+   "iteration": 15,
+   "loss": 0.29703124999999997,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.02656153599946265
+  },
+  {
+   "iteration": 16,
+   "loss": 0.4353125,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.03428898599963759
+  },
+  {
+   "iteration": 17,
+   "loss": 0.34375,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.03621134999980313
+  },
+  {
+   "iteration": 18,
+   "loss": 0.34984375,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.03801624900006573
+  },
+  {
+   "iteration": 19,
+   "loss": 0.28890625,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.036696116999564765
+  },
+  {
+   "iteration": 20,
+   "loss": 0.23281249999999998,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.03326652699956867
+  },
+  {
+   "iteration": 21,
+   "loss": 0.38859374999999996,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.17301805799979775
+  },
+  {
+   "iteration": 22,
+   "loss": 0.36828125,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.03127559400058999
+  },
+  {
+   "iteration": 23,
+   "loss": 0.3146875,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.029203868999957194
+  },
+  {
+   "iteration": 24,
+   "loss": 0.2903125,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.026073134999933245
+  },
+  {
+   "iteration": 25,
+   "loss": 0.35921875000000003,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.03075113499926374
+  },
+  {
+   "iteration": 26,
+   "loss": 0.4203125,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.03235242100004143
+  },
+  {
+   "iteration": 27,
+   "loss": 0.16875,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.027403083999615774
+  },
+  {
+   "iteration": 28,
+   "loss": 0.41218750000000004,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.026901255999973728
+  },
+  {
+   "iteration": 29,
+   "loss": 0.24593749999999998,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.03571866099946419
+  },
+  {
+   "iteration": 30,
+   "loss": 0.36828125,
+   "job_qpu_s": 2.3262464,
+   "classical_s": 0.03124756099964543
+  }
+ ],
+ "evals": [
+  {
+   "iteration": 0,
+   "accuracy": 0.2916666666666667,
+   "margin": -0.3389583333333333,
+   "noiseless_accuracy": 0.3333333333333333,
+   "noiseless_margin": -0.3330905127854083,
+   "batch_qpu_s": 0.0,
+   "session_s": 0.03271044100006293,
+   "batch_usd": 0.0,
+   "session_usd": 0.05233670560010069,
+   "compile_s": 0.03271044100006293,
+   "wall_s": 4.456631693999952
+  },
+  {
+   "iteration": 10,
+   "accuracy": 0.625,
+   "margin": 0.22,
+   "noiseless_accuracy": 0.625,
+   "noiseless_margin": 0.23195333571094878,
+   "batch_qpu_s": 23.262463999999998,
+   "session_s": 23.791795373999637,
+   "batch_usd": 37.2199424,
+   "session_usd": 38.06687259839942,
+   "compile_s": 0.13117182899873114,
+   "wall_s": 37.845093661999954
+  },
+  {
+   "iteration": 20,
+   "accuracy": 0.625,
+   "margin": 0.2472916666666667,
+   "noiseless_accuracy": 0.625,
+   "noiseless_margin": 0.24073227333972394,
+   "batch_qpu_s": 46.52492800000001,
+   "session_s": 47.52125460399653,
+   "batch_usd": 74.43988480000002,
+   "session_usd": 76.03400736639445,
+   "compile_s": 0.20939667399943573,
+   "wall_s": 70.80392677500004
+  },
+  {
+   "iteration": 30,
+   "accuracy": 0.75,
+   "margin": 0.3656249999999999,
+   "noiseless_accuracy": 0.75,
+   "noiseless_margin": 0.37009676721821677,
+   "batch_qpu_s": 69.78739200000003,
+   "session_s": 71.22766337799483,
+   "batch_usd": 111.65982720000005,
+   "session_usd": 113.96426140479173,
+   "compile_s": 0.28952440799844226,
+   "wall_s": 103.46372476400006
+  }
+ ],
+ "final_theta": [
+  -0.8607960493199035,
+  -1.0566174374299246,
+  -0.9126425736047309,
+  -0.7423682477574677,
+  -1.1565382908991981,
+  -0.007896839598019404,
+  0.8223772016051746,
+  -1.6653990735107276,
+  2.375713109414015,
+  0.4371286331052685,
+  0.23951939062946592,
+  -0.6277591571401681,
+  -0.782741066351983,
+  -0.5941324364673387,
+  0.876255255386219,
+  1.392246172106593,
+  0.09118174812874733,
+  -0.7661784719943424,
+  0.852910092524548,
+  -0.4811270807018328
+ ],
+ "valid": true,
+ "to_target": {
+  "batch": {
+   "iteration": 30,
+   "usd": 111.65982720000005,
+   "qpu_s": 69.78739200000003
+  },
+  "session": {
+   "iteration": 30,
+   "usd": 113.96426140479173,
+   "qpu_s": 71.22766337799483
+  }
+ }
+}
