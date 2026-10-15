@@ -25,6 +25,12 @@ Front ends (`frontend` in the plan): "qiskit" builds each circuit as a Qiskit ci
 PennyLane tape returning qml.expval(qml.PauliZ(0)) and runs it through `toqb.pennylane_device.CompiledDevice`, the
 PennyLane device a QML developer would use. Both hand the compilers the same Qiskit circuit.
 
+Engines (`engine` in the plan, default "aer"): "aer" asks Aer for the counts of each circuit, as every scored run so
+far. "fast" (`toqb.fast_noise`) evolves the same noisy circuit exactly with numpy, once scheduled per circuit
+structure and batched, and draws the shots of clbit 0 from the exact probability: the same distribution, not the
+same random stream. It measures only clbit 0 (the loop's <Z0>). `python -m toqb.check_fast_noise` checks it against
+an exact reference and against Aer.
+
 Arms ("compiler:mode"):
   qiskit:L:target:template   Qiskit's loop practice: the circuit with every angle a Parameter, transpiled once at
                              level L with the device's Target (per circuit structure); each circuit is bound.
@@ -446,9 +452,17 @@ class Executor:
     """Compiles Qiskit circuits with one arm and runs them on TOQB noise, keeping every time and check. Shared by the
     Qiskit front end and the PennyLane device, so both measure the same thing."""
 
-    def __init__(self, arm, device):
+    def __init__(self, arm, device, engine="aer"):
         self.arm, self.device = arm, device
-        self.noisy = NoisyDevice(device.target)
+        if engine == "fast":  # toqb.fast_noise: the same noise model, exact <Z> of clbit 0, shots drawn from it
+            from toqb.fast_noise import FastNoisyDevice
+            self.noisy = FastNoisyDevice(device.target)
+        elif engine == "aer":
+            self.noisy = NoisyDevice(device.target)
+        else:
+            raise ValueError(f"unknown engine {engine!r}")
+        self.engine = engine
+        self._struct = {}
         self.compile_s = self.sim_s = self.check_s = 0.0
         self.circuits = 0
         self.q2, self.durations, self.equivalence = [], [], []
@@ -464,10 +478,26 @@ class Executor:
             self.compile_s += time.perf_counter() - s
             self.circuits += 1
             s = time.perf_counter()
-            if structural_check(out, self.device):
+            key = cached = None
+            if self.engine == "fast":
+                # these checks read only the circuit's structure (gates and qubits, not angles): with the fast engine
+                # they are computed for the first three circuits of a structure, required equal, then reused
+                key = self.noisy._scan(out)[0]
+                cached = self._struct.get(key)
+            if cached is not None and cached[3] >= 3:
+                sf, fo, m = cached[0], cached[1], cached[2]
+                cached[3] += 1
+            else:
+                sf, fo, m = bool(structural_check(out, self.device)), failed_operations(out, self.device), \
+                    metrics(out, self.device)
+                if key is not None:
+                    if cached is not None and (cached[0], cached[1], cached[2]["q2"], cached[2].get("duration_s")) \
+                            != (sf, fo, m["q2"], m.get("duration_s")):
+                        raise RuntimeError("structure-only checks differ between circuits of one structure")
+                    self._struct[key] = [sf, fo, m, (cached[3] if cached else 0) + 1]
+            if sf:
                 self.structural_fail += 1
-            self.on_failed_ops += failed_operations(out, self.device)
-            m = metrics(out, self.device)
+            self.on_failed_ops += fo
             self.q2.append(m["q2"])
             d = m.get("duration_s")
             d = d if isinstance(d, float) else 0.0
@@ -524,7 +554,7 @@ def run_arm(plan, spec):
     n, L, enc = task["n"], task["layers"], task["enc"]
     device = get_device(plan["device"])
     rec = dict(arm=spec, plan=plan["name"], device=plan["device"], frontend=frontend, qpu_cost=cost,
-               started=_cest_now())
+               engine=plan.get("engine", "aer"), started=_cest_now())
     try:
         arm = make_loop_arm(spec)
         rec["version"] = arm.version()
@@ -541,7 +571,7 @@ def run_arm(plan, spec):
     s = time.perf_counter()
     try:
         arm.setup(device.target)
-        ex = Executor(arm, device)
+        ex = Executor(arm, device, engine=plan.get("engine", "aer"))
         fe = (PennyLaneFrontEnd if frontend == "pennylane" else QiskitFrontEnd)(ex, n, L)
     except Exception as exc:  # noqa: BLE001
         rec["error"] = f"setup: {type(exc).__name__}: {exc}"

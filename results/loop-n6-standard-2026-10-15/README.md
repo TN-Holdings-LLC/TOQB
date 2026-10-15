@@ -69,6 +69,18 @@ The sign-flip p-values were checked with scipy: a one-sided t-test gives 0.054 a
 circuits were compared after a22's template, bit for bit, with the same two-qubit count (120) and duration
 (8.712 us). So the result holds for them too.
 
+## Later note (2026-10-15, after scoring)
+
+The same 20 plans were run again with TOQB's fast engine
+([`../fast-engine-check-2026-10-15/`](../fast-engine-check-2026-10-15/)). Its noise model is the same; its shot stream
+is not.
+
+- The noiseless difference was again +0.040.
+- The noisy difference was +0.039, with PSF-Zero better in 15 of 20 seeds.
+- So the split of the noisy difference into "half training, half evaluation" above is not robust: it moves with the
+  shots alone.
+- The verdicts are not changed. They are those of this run, as pre-registered.
+
 ## Files
 
 - `seed101/` to `seed120/`: the plan, both arms' records, the classical reference and the per-seed report.

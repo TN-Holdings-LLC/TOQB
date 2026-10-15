@@ -230,6 +230,15 @@ money. `toqb/task_loop.py` runs it. A QML developer can run the same thing from 
   - **In the loop:** with `"frontend": "pennylane"`, the loop itself builds PennyLane tapes and runs them through this
     device. The compilers receive the same Qiskit circuit as from the Qiskit front end; a test checks this.
   - **Example:** `examples/pennylane_spsa.py` trains the task with PennyLane's own SPSAOptimizer.
+- **A fast engine** (`"engine": "fast"`, `toqb.fast_noise`, prototype 2026-10-15). It runs the same noise model
+  about 13 x faster per run, for many seeds.
+  - **How:** the noisy circuit is scheduled once per structure, evolved exactly as a density matrix with numpy
+    (batched, one-qubit runs fused), and the shots of clbit 0 are drawn from the exact probability.
+  - **Checked:** against an exact `qiskit.quantum_info` evolution to 1e-14, and against Aer to 1e-7 in the
+    probability (Aer itself is off the exact value by about 1e-9 per element). PSF-Zero's and Qiskit's arms, 4 and
+    6 qubits ([`results/fast-engine-check-2026-10-15/`](results/fast-engine-check-2026-10-15/)).
+  - **Not yet used in a scored run.** Its random stream differs from Aer's, so a run is not bit-identical to an
+    Aer run with the same seeds.
 - **Limits.**
   - Smoke size: one task, one device, 30 iterations.
   - The noise model is built from the same Target that a calibration-aware compiler reads. That favours such

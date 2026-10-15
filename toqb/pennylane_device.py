@@ -109,6 +109,10 @@ class CompiledDevice(Device):
         self.next_seeds = None
         self._count += len(qcs)
         ex = self.executor
+        if getattr(ex, "engine", "aer") == "fast":  # the fast engine samples clbit 0 only
+            for tape in circuits:
+                if list(tape.measurements[0].wires or wire_order) != wire_order[:1]:
+                    raise qml.DeviceError("the fast engine measures only the first wire")
         c0 = ex.compile_s
         counts = ex.run(qcs, shots, seeds, check_first=self.check_first)
         results = tuple(_counts_for(c, wire_order, tape.measurements[0].wires or wire_order)

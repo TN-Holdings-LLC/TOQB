@@ -1,0 +1,97 @@
+{
+ "qiskit": "2.5.2",
+ "aer": "0.17.2",
+ "rows": [
+  {
+   "n": 6,
+   "L": 8,
+   "arm": "psfai:template",
+   "circuits": 20,
+   "active_qubits": [
+    6
+   ],
+   "max_rho_vs_exact": 1.2351719398119716e-15,
+   "max_rho_vs_aer": 3.6196092512152944e-09,
+   "max_p1_vs_aer": 6.092663018542055e-08,
+   "max_p1_fast_vs_program": 2.4424906541753444e-15,
+   "ok": true,
+   "seconds": 190.42287935600007
+  },
+  {
+   "n": 6,
+   "L": 8,
+   "arm": "qiskit:2:target:template",
+   "circuits": 20,
+   "active_qubits": [
+    6
+   ],
+   "max_rho_vs_exact": 8.729129080351258e-15,
+   "max_rho_vs_aer": 4.666487044002743e-09,
+   "max_p1_vs_aer": 8.122870565063778e-08,
+   "max_p1_fast_vs_program": 4.440892098500626e-15,
+   "ok": true,
+   "seconds": 276.26156832800007
+  },
+  {
+   "n": 6,
+   "L": 8,
+   "arm": "qiskit:2:target:recompile",
+   "circuits": 5,
+   "active_qubits": [
+    6
+   ],
+   "max_rho_vs_exact": 6.6961280113748376e-15,
+   "max_rho_vs_aer": 3.359208036735062e-09,
+   "max_p1_vs_aer": 6.514576494920377e-08,
+   "max_p1_fast_vs_program": 3.0531133177191805e-15,
+   "ok": true,
+   "seconds": 62.71653185200012
+  },
+  {
+   "n": 4,
+   "L": 2,
+   "arm": "psfai:template",
+   "circuits": 20,
+   "active_qubits": [
+    4
+   ],
+   "max_rho_vs_exact": 3.2245402696217732e-15,
+   "max_rho_vs_aer": 3.312260965504521e-09,
+   "max_p1_vs_aer": 1.4436307704812634e-08,
+   "max_p1_fast_vs_program": 6.661338147750939e-16,
+   "ok": true,
+   "seconds": 25.75508029799994
+  },
+  {
+   "n": 4,
+   "L": 2,
+   "arm": "qiskit:2:target:template",
+   "circuits": 20,
+   "active_qubits": [
+    4
+   ],
+   "max_rho_vs_exact": 1.500641478303655e-15,
+   "max_rho_vs_aer": 4.222826588407003e-09,
+   "max_p1_vs_aer": 1.688988382486656e-08,
+   "max_p1_fast_vs_program": 1.3322676295501878e-15,
+   "ok": true,
+   "seconds": 35.10375012099985
+  },
+  {
+   "n": 4,
+   "L": 2,
+   "arm": "qiskit:2:target:recompile",
+   "circuits": 5,
+   "active_qubits": [
+    4
+   ],
+   "max_rho_vs_exact": 1.2770137377769503e-15,
+   "max_rho_vs_aer": 3.059636322078063e-09,
+   "max_p1_vs_aer": 1.3635564677372258e-08,
+   "max_p1_fast_vs_program": 5.551115123125783e-16,
+   "ok": true,
+   "seconds": 9.980768222999814
+  }
+ ],
+ "all_ok": true
+}
