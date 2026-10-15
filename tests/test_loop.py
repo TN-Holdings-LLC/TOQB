@@ -32,8 +32,9 @@ def test_teacher_data_is_drawn_by_rule():
 def test_spsa_draws_do_not_depend_on_results():
     t1, s1 = spsa_schedule(TASK, OPT)
     t2, s2 = spsa_schedule(TASK, OPT)
-    assert (t1 == t2).all() and s1 == s2 and len(s1) == 5
-    assert all(len(set(idx)) == 4 and set(map(abs, d)) == {1.0} for idx, d in s1)
+    assert (t1 == t2).all() and len(s1) == len(s2) == 5
+    assert all((i1 == i2).all() and (d1 == d2).all() for (i1, d1), (i2, d2) in zip(s1, s2))
+    assert all(len(set(idx.tolist())) == 4 and set(abs(d).tolist()) == {1} for idx, d in s1)
 
 
 def test_budget_tiers():
