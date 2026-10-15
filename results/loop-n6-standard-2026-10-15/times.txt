@@ -1,0 +1,4 @@
+toqb 393995e Pre-registration: TOQB loop standard run, 6 qubits, 8 layers, seeds 101-120 (fixed 2026-10-15 13:24:01 CEST)
+psf-zero 4f6070c6 Home scripts of 2026-10-15: the day folder comes from $DAY instead of a path with the PC's user name
+start 2026-10-15 13:27:53 CEST
+end 2026-10-15 14:00:28 CEST

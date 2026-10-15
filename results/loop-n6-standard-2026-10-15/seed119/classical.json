@@ -1,0 +1,27 @@
+{
+ "kind": "classical reference",
+ "started": "2026-10-15 14:00:27 CEST",
+ "numpy": "2.5.3",
+ "models": [
+  {
+   "model": "logistic",
+   "accuracy": 0.7708333333333334,
+   "seconds": 0.0423739679999926
+  },
+  {
+   "model": "logistic_quad",
+   "accuracy": 0.75,
+   "seconds": 0.05301771000085864
+  },
+  {
+   "model": "mlp32",
+   "accuracy": 0.7708333333333334,
+   "seconds": 0.30140374899929157
+  },
+  {
+   "model": "knn5",
+   "accuracy": 0.7291666666666666,
+   "seconds": 0.0005740120004702476
+  }
+ ]
+}

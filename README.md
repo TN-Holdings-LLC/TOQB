@@ -4,13 +4,14 @@ TOQB compares quantum compilers on the quality of what they return within a time
 structure to a task's accuracy on a noisy device.
 
 **Status: v0.1.** It has the specification, a budgeted runner and the standard compilation set (the layer-1
-circuits, below). Layer 2 is not built yet. Of layer 3, the variational-loop scenario exists at smoke size (v15,
-below); it has not had a scored run.
+circuits, below). Layer 2 is not built yet. Of layer 3, the variational-loop scenario (v15, below) has had one
+scored run, at 6 qubits.
 
 **Scored runs.** Each was pre-registered and its lock pushed before it ran.
 
 - Standard run 1, [`results/standard-run-1/`](results/standard-run-1/).
 - Standard run 2, [`results/standard-run-2/`](results/standard-run-2/).
+- Loop standard run, 6 qubits, 8 layers, [`results/loop-n6-standard-2026-10-15/`](results/loop-n6-standard-2026-10-15/).
 
 Numbers from this repository should be cited from these results, with their run.
 
@@ -239,6 +240,13 @@ money. `toqb/task_loop.py` runs it. A QML developer can run the same thing from 
   - [`results/loop-smoke-2026-10-15/`](results/loop-smoke-2026-10-15/), the first, before prices and PennyLane;
   - [`results/loop-smoke-2026-10-15b/`](results/loop-smoke-2026-10-15b/), with prices, through PennyLane;
   - [`results/loop-smoke-2026-10-15c/`](results/loop-smoke-2026-10-15c/), with the classical reference and energy.
+- **Pilot and scored run** (6 qubits, 8 layers, Qiskit level 2's template against PSF-Zero's):
+  - [`results/loop-pilot-n6-2026-10-15/`](results/loop-pilot-n6-2026-10-15/), two seeds, unscored;
+  - [`results/loop-n6-standard-2026-10-15/`](results/loop-n6-standard-2026-10-15/), 20 seeds, pre-registered.
+    - For the same money, PSF-Zero's model was more accurate on the noisy device: 0.549 against 0.471, better in 16
+      of 20 seeds (confirmed).
+    - That the training itself went further was not decided: +0.040 noiseless, p = 0.059.
+    - Both models are weak (no seed reached 0.7; classical models 0.73-0.77).
 
 ```
 PSF_ZERO_REPO=<a PSF-Zero checkout> python -m toqb.task_loop run plan_loop_smoke.json <new output directory>
