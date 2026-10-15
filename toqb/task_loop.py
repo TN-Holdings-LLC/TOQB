@@ -31,6 +31,10 @@ structure and batched, and draws the shots of clbit 0 from the exact probability
 same random stream. It measures only clbit 0 (the loop's <Z0>). `python -m toqb.check_fast_noise` checks it against
 an exact reference and against Aer.
 
+A hard QPU budget (`evaluation.stop_budget_usd`, batch mode): training stops before the job that would pass it, and
+the model it bought is evaluated there (`rec["stop"]`). Without it, the budget of the report is the reference arm's
+own spend plus a tolerance, which never binds.
+
 Arms ("compiler:mode"):
   qiskit:L:target:template   Qiskit's loop practice: the circuit with every angle a Parameter, transpiled once at
                              level L with the device's Target (per circuit structure); each circuit is bound.
@@ -609,7 +613,12 @@ def run_arm(plan, spec, partial_path=None):
 
     try:
         evaluate(0, theta)
+        stop_usd = ev.get("stop_budget_usd")  # a hard QPU budget (batch mode): stop before the job that would pass it
+        last_job, done = None, 0
         for k, (idx, delta) in enumerate(steps):
+            if stop_usd is not None and last_job is not None and \
+                    (spent["batch_qpu_s"] + last_job) * cost["usd_per_s"] > stop_usd + 1e-9:
+                break
             it0, sim0, chk0 = time.perf_counter(), ex.sim_s, ex.check_s
             ak, ck = gains(k, opt)
             delta = np.array(delta)
@@ -624,13 +633,18 @@ def run_arm(plan, spec, partial_path=None):
             job_qpu = qpu_seconds(ex.last_durations, shots, cost)
             classical = (time.perf_counter() - it0) - (ex.sim_s - sim0) - (ex.check_s - chk0)
             spent["batch_qpu_s"] += job_qpu
+            last_job, done = job_qpu, k + 1
             spent["classical_s"] += classical
             spent["session_s"] += job_qpu + classical
             if (k + 1) % curve_every == 0:
                 curve.append(dict(iteration=k + 1, loss=(lp + lm) / 2, job_qpu_s=job_qpu, classical_s=classical))
             if (k + 1) % ev["every"] == 0 or k + 1 == len(steps) or (k + 1) in eval_at:
                 evaluate(k + 1, theta)
+        if stop_usd is not None and (not evals or evals[-1]["iteration"] != done):
+            evaluate(done, theta)  # the model the budget bought
+        rec_stop = dict(stop_budget_usd=stop_usd, iterations_done=done) if stop_usd is not None else None
     except Exception as exc:  # noqa: BLE001 - recorded: the arm failed during the loop
+        rec_stop = None
         rec["error"] = f"loop: {type(exc).__name__}: {exc}"
     rec.update(setup_s=t_setup, compile_s=ex.compile_s, sim_s=ex.sim_s, check_s=ex.check_s,
                wall_s=time.perf_counter() - t0, circuits=ex.circuits,
@@ -641,6 +655,8 @@ def run_arm(plan, spec, partial_path=None):
                spent=dict(spent, batch_usd=spent["batch_qpu_s"] * cost["usd_per_s"],
                           session_usd=spent["session_s"] * cost["usd_per_s"]),
                equivalence=ex.equivalence, curve=curve, evals=evals, final_theta=[float(t) for t in theta])
+    if rec_stop:
+        rec["stop"] = rec_stop
     bad_eq = [e for e in ex.equivalence if e["checked"] and not e["equivalent"]]
     rec["valid"] = ("error" not in rec and not ex.structural_fail and not ex.on_failed_ops and not bad_eq)
     rec["to_target"] = {}

@@ -165,3 +165,19 @@ def test_energy_is_a_range_from_seconds():
     e = dict(qpu_system_kw=[10.0, 25.0], cpu_w=[10.0, 50.0])
     lo, hi = _kwh(36.0, 3.6, e)
     assert abs(lo - (36 * 10_000 + 3.6 * 10) / 3.6e6) < 1e-15 and abs(hi - (36 * 25_000 + 3.6 * 50) / 3.6e6) < 1e-15
+
+
+def test_hard_budget_stops_before_passing_it():
+    pytest.importorskip("qiskit_aer")
+    from toqb.task_loop import run_arm
+    plan = dict(name="budget test", device="fake:FakeFez", frontend="qiskit", engine="fast", task=TASK,
+                optimizer=dict(OPT, iterations=20),
+                evaluation=dict(shots=100, shot_seed=1, every=1000, target_accuracy=0.7, stop_budget_usd=5.0))
+    rec = run_arm(plan, "qiskit:2:target:template")
+    assert rec["valid"], rec.get("error")
+    done = rec["stop"]["iterations_done"]
+    assert 0 < done < 20
+    assert rec["spent"]["batch_usd"] <= 5.0 + 1e-9
+    per = rec["spent"]["batch_usd"] / done
+    assert rec["spent"]["batch_usd"] + per > 5.0  # one more job would have passed the budget
+    assert rec["evals"][-1]["iteration"] == done
