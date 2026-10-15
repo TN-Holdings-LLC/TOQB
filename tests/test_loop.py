@@ -149,3 +149,18 @@ def test_pennylane_device_runs_a_qnode():
         z = float(f(ang))
     assert abs(z - exact_z0(ang, 4, 2)) < 0.06  # TOQB noise and 4000 shots
     assert tr.totals["executions"] == 1 and tr.totals["usd"] > 0 and dev.executor.structural_fail == 0
+
+
+def test_classical_reference_is_deterministic():
+    from toqb.classical import run_classical
+    plan = dict(task=TASK)
+    a, b = run_classical(plan), run_classical(plan)
+    assert [m["model"] for m in a["models"]] == ["logistic", "logistic_quad", "mlp32", "knn5"]
+    assert [m["accuracy"] for m in a["models"]] == [m["accuracy"] for m in b["models"]]
+
+
+def test_energy_is_a_range_from_seconds():
+    from toqb.score_loop import _kwh
+    e = dict(qpu_system_kw=[10.0, 25.0], cpu_w=[10.0, 50.0])
+    lo, hi = _kwh(36.0, 3.6, e)
+    assert abs(lo - (36 * 10_000 + 3.6 * 10) / 3.6e6) < 1e-15 and abs(hi - (36 * 25_000 + 3.6 * 50) / 3.6e6) < 1e-15

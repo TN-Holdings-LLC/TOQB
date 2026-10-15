@@ -6,8 +6,10 @@ From the arm records in OUTDIR:
      cents of classical time do not move an arm to an earlier evaluation). Each arm is read at its last evaluation
      within that budget: noisy test accuracy and margin. Also the dollars to `target_accuracy` and the noiseless accuracy of
      the final angles. Batch mode bills QPU time only; session mode also bills the classical time between jobs.
-  2. the trajectory: accuracy and margin at each evaluation, with the dollars spent so far in each mode.
-  3. secondary: the cost of compiling (template builds and binds, or every compile) against the reference arm's, in
+  2. a reference, not a contest: the classical models (`toqb.classical`) trained on the same points, and the energy
+     of every row in kWh -- a range from the plan's assumed powers (`energy`), not a measurement;
+  3. the trajectory: accuracy and margin at each evaluation, with the dollars spent so far in each mode.
+  4. secondary: the cost of compiling (template builds and binds, or every compile) against the reference arm's, in
      tiers 1x / 3x / 10x with the floor `budget_floor_s`.
 An arm is invalid when it failed, returned an output that is not executable on the device or uses a failed element,
 or failed an equivalence check; an invalid arm is listed but its result is not compared.
@@ -52,6 +54,62 @@ def budgets(recs, plan):
             f"what the reference arm {ref['arm']} spent on the whole training, plus {tol:.0%}")
 
 
+def _kwh(seconds_qpu, seconds_cpu, energy):
+    """(low, high) kWh: the QPU-held seconds at the system's power, plus the classical seconds at the CPU's power."""
+    (k0, k1), (w0, w1) = energy["qpu_system_kw"], energy["cpu_w"]
+    return ((seconds_qpu * k0 * 1000 + seconds_cpu * w0) / 3.6e6, (seconds_qpu * k1 * 1000 + seconds_cpu * w1) / 3.6e6)
+
+
+def _fmt_kwh(r):
+    lo, hi = r
+    f = (lambda v: f"{v:.2g}") if hi < 0.01 else (lambda v: f"{v:.2f}")
+    return f"{f(lo)}-{f(hi)}"
+
+
+def classical_section(outdir, recs, plan, bud):
+    """Section 2: the classical reference and the energy of every row."""
+    from toqb.task_loop import DEFAULT_ENERGY
+    energy = dict(DEFAULT_ENERGY, **plan.get("energy", {}))
+    path = os.path.join(outdir, "classical.json")
+    cl = json.load(open(path, encoding="utf-8")) if os.path.exists(path) else None
+    lines = ["## 2. Reference: classical models, and energy", "",
+             "Not a contest: TOQB compares compilers. The classical models (`toqb.classical`, numpy only, one fixed "
+             "configuration each) are trained on the same training points and scored on the same test points, as the "
+             "bar a quantum model is read against. Energy is a range from assumed powers, not a measurement: a "
+             f"quantum run is charged {energy['qpu_system_kw'][0]:g}-{energy['qpu_system_kw'][1]:g} kW for the "
+             f"seconds it holds the QPU ({energy['attribution']}), and every classical second "
+             f"{energy['cpu_w'][0]:g}-{energy['cpu_w'][1]:g} W ({energy['source']}).", "",
+             "| row | test accuracy | time | energy, kWh | money |", "|---|---|---|---|---|"]
+    q_low, c_high = [], []
+    if cl:
+        for m in cl["models"]:
+            lines.append(f"| classical: {m['model']} | {m['accuracy']:.3f} | {m['seconds']:.2f} s CPU | "
+                         f"{_fmt_kwh(_kwh(0.0, m['seconds'], energy))} | - |")
+            c_high.append(_kwh(0.0, m["seconds"], energy)[1])
+    for r in recs:
+        if not r.get("evals") or not r.get("valid"):
+            continue
+        sp = r.get("spent", {})
+        for m in ("batch", "session"):
+            e = at_budget(r, m, bud[m]) if bud else None
+            if e is None:
+                continue
+            qpu_s = e["batch_qpu_s"] if m == "batch" else e["session_s"]
+            cpu_s = r.get("setup_s", 0.0) + sum(c["classical_s"] for c in r.get("curve", [])
+                                                if c["iteration"] <= e["iteration"])
+            q_low.append(_kwh(qpu_s, cpu_s, energy)[0])
+            lines.append(f"| quantum, {m}: {r['arm']} | {e['accuracy']:.3f} (iteration {e['iteration']}) | "
+                         f"{qpu_s:.1f} s holding the QPU | {_fmt_kwh(_kwh(qpu_s, cpu_s, energy))} | ${e[f'{m}_usd']:.2f} |")
+    if not cl:
+        lines += ["", "(No classical.json in this run.)"]
+    elif q_low and c_high and max(c_high) > 0:
+        best = max(cl["models"], key=lambda m: m["accuracy"])
+        lines += ["", f"The least energy any quantum row is estimated at is {min(q_low) / max(c_high):,.0f} times the "
+                      f"most any classical model is; the best classical accuracy is {best['accuracy']:.3f} "
+                      f"({best['model']})."]
+    return lines
+
+
 def report(outdir, plan=None):
     recs = load(outdir)
     if plan is None:
@@ -88,7 +146,8 @@ def report(outdir, plan=None):
         lines.append(f"| {r['arm']} | {'yes' if r.get('valid') else 'NO'} | {cells[0]} | {cells[1]} | {tts} | "
                      f"${sp.get('batch_usd', 0):.2f} / ${sp.get('session_usd', 0):.2f} | "
                      f"{r['evals'][-1]['noiseless_accuracy']:.3f} |")
-    lines += ["", "## 2. The trajectory", "",
+    lines += [""] + classical_section(outdir, recs, plan, bud)
+    lines += ["", "## 3. The trajectory", "",
               "iteration: accuracy / margin (dollars spent so far, batch / session)", "",
               "| arm | evaluations |", "|---|---|"]
     for r in recs:
@@ -97,7 +156,7 @@ def report(outdir, plan=None):
         lines.append(f"| {r['arm']} | {cells} |")
     ref = next((r for r in recs if r["arm"] == plan.get("reference") and "compile_s" in r), None)
     floor = plan.get("budget_floor_s", 1.0)
-    lines += ["", "## 3. Secondary: the cost of compiling", "",
+    lines += ["", "## 4. Secondary: the cost of compiling", "",
               f"Reference {plan.get('reference')}" + (f": {ref['compile_s']:.2f} s per loop." if ref else ": no record."),
               "", "| arm | version | circuits | compile s | per circuit ms | tier | classical s per loop | "
               "templates built / not available | 2q gates | duration us |", "|---|---|---|---|---|---|---|---|---|---|"]

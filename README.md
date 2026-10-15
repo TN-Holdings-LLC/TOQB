@@ -200,6 +200,27 @@ money. `toqb/task_loop.py` runs it. A QML developer can run the same thing from 
   - **Recompile arms:** the concrete circuit compiled every time.
 - **Checks.** Every output is structurally checked and checked for failed elements. TOQB's equivalence check runs on
   the first circuit of the first, middle and last iteration.
+- **Reference, not a contest: classical models and energy** (`toqb/classical.py`).
+  - **Models:** logistic regression, with and without squares and products, a 32-unit MLP and 5 nearest neighbours.
+    They use numpy only, one fixed configuration each, and are trained and scored on the same points.
+  - **Energy of every row,** as a range in kWh:
+    - a quantum run is charged the system's wall-plug power (10-25 kW, as cited in arXiv 2605.09580) for the seconds
+      it holds the QPU;
+    - every classical second is charged 10-50 W.
+
+    These are assumptions, set in the plan's `energy`, not measurements.
+  - **Why it is there:** TOQB compares compilers. It does not claim that quantum models beat classical ones. The
+    reference shows where the bar is.
+
+  From [smoke c](results/loop-smoke-2026-10-15c/) (4 qubits, 2 layers, 64 training and 24 test points):
+
+  | row | test accuracy | time | energy (estimate) | money |
+  |---|---|---|---|---|
+  | classical: logistic regression | 0.917 | 0.05 s CPU | under 1e-6 kWh | - |
+  | classical: MLP, 32 units | 0.958 | 0.24 s CPU | under 4e-6 kWh | - |
+  | classical: logistic with squares and products | 1.000 | 0.06 s CPU | under 1e-6 kWh | - |
+  | quantum, best compiler arm (batch mode) | 0.750 | 70 s on the QPU | 0.19-0.48 kWh | $112 |
+
 - **Secondary:** the compile time per loop, in tiers of 1x, 3x and 10x the reference's, with a floor of 1 s.
 - **From PennyLane.** `toqb.pennylane_device.CompiledDevice` is a PennyLane device.
   - **What it does:** a QNode's circuits are compiled by the chosen arm and run on TOQB noise.
@@ -214,8 +235,10 @@ money. `toqb/task_loop.py` runs it. A QML developer can run the same thing from 
     compilers (principle 6). No calibration split yet.
   - Simulation only. The price is an estimate from measured rates, not a bill.
   - PSF-Zero's arms are written by PSF-Zero's authors (principle 5).
-- **Results:** smoke runs in [`results/loop-smoke-2026-10-15/`](results/loop-smoke-2026-10-15/) (the first, before
-  prices and PennyLane) and [`results/loop-smoke-2026-10-15b/`](results/loop-smoke-2026-10-15b/).
+- **Results:** smoke runs in three folders:
+  - [`results/loop-smoke-2026-10-15/`](results/loop-smoke-2026-10-15/), the first, before prices and PennyLane;
+  - [`results/loop-smoke-2026-10-15b/`](results/loop-smoke-2026-10-15b/), with prices, through PennyLane;
+  - [`results/loop-smoke-2026-10-15c/`](results/loop-smoke-2026-10-15c/), with the classical reference and energy.
 
 ```
 PSF_ZERO_REPO=<a PSF-Zero checkout> python -m toqb.task_loop run plan_loop_smoke.json <new output directory>
@@ -239,6 +262,7 @@ toqb/
   task_loop.py  v15: layer 3's variational-loop scenario (task, SPSA, TOQB noise, prices, template and recompile arms)
   score_loop.py v15: the report of a loop run (the result for the money first)
   pennylane_device.py  v15: CompiledDevice, a PennyLane device that compiles with a TOQB arm and prices each execution
+  classical.py  v15: classical reference models for the loop task (numpy only)
 examples/       pennylane_spsa.py: the loop task trained from PennyLane
 prereg/         pre-registrations of scored runs
 tests/          tests that need no quantum package

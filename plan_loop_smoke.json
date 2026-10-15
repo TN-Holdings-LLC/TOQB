@@ -9,6 +9,7 @@
                "loop_seed": 11},
  "evaluation": {"shots": 400, "shot_seed": 20261015, "every": 10, "target_accuracy": 0.75},
  "qpu_cost": {"per_shot_s": 0.00027, "per_circuit_s": 0.036, "usd_per_s": 1.6},
+ "energy": {"qpu_system_kw": [10.0, 25.0], "cpu_w": [10.0, 50.0]},
  "budget_usd": null,
  "budget_tolerance": 0.05,
  "reference": "qiskit:2:target:template",

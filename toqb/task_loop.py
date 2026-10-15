@@ -44,6 +44,13 @@ Price (the plan's `qpu_cost`; defaults: IBM's measured rate in PSF-Zero's TIME1 
     the QPU waits for. TOQB's own checks and the simulation (which stands in for the QPU) are not counted.
 Only training jobs are priced; the evaluations on the test set are reported at the price spent so far.
 
+Energy (the plan's `energy`, a reference, not a measurement): a quantum arm is charged the system's whole wall-plug
+power for the seconds its run holds the QPU (batch: QPU time; session: the session's time), at `qpu_system_kw` (a range,
+default 10-25 kW, superconducting systems' power as cited in arXiv 2605.09580), plus its classical seconds at `cpu_w`
+(default 10-50 W, one CPU core, assumed). The classical reference models (`toqb.classical`: logistic regression, an
+MLP, nearest neighbours, numpy only) are trained on the same points and charged their seconds at `cpu_w`. They are the
+bar a quantum model is read against, not participants.
+
 Measured per arm (one process each, one thread):
   - the result for the money: noisy test accuracy and margin at each evaluation with the dollars spent (both modes);
     the dollars to `target_accuracy`; the accuracy at the plan's `budget_usd`;
@@ -55,6 +62,7 @@ Measured per arm (one process each, one thread):
 
     python -m toqb.task_loop run PLAN.json OUTDIR      every arm of the plan, one process each, then the report
     python -m toqb.task_loop arm PLAN.json OUTDIR SPEC one arm (what `run` starts)
+    python -m toqb.task_loop classical PLAN.json OUTDIR the classical reference models (what `run` starts last)
     python -m toqb.score_loop OUTDIR                   the report again from the records
 """
 from __future__ import annotations
@@ -73,6 +81,10 @@ SINGLE_THREAD = {k: "1" for k in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MK
                                   "QISKIT_NUM_PROCS", "NUMEXPR_NUM_THREADS")}
 SINGLE_THREAD["QISKIT_PARALLEL"] = "FALSE"
 
+DEFAULT_ENERGY = dict(qpu_system_kw=[10.0, 25.0], cpu_w=[10.0, 50.0],
+                      attribution="time share: the system's whole power for the seconds a run holds the QPU",
+                      source="10-25 kW: wall-plug power of superconducting systems (dilution refrigerators 10-25 kW "
+                             "continuous) as cited in arXiv 2605.09580; 10-50 W: one CPU core, assumed")
 DEFAULT_COST = dict(per_shot_s=0.00027, per_circuit_s=0.036, usd_per_s=96 / 60,
                     source="rate: PSF-Zero TIME1 / FRAC1 on ibm_fez (2026-10-14); price: IBM Pay-As-You-Go, "
                            "'starts at $96 USD / minute', billed per second (ibm.com/quantum/pricing, 2026-10-15)")
@@ -605,6 +617,14 @@ def main(argv):
             json.dump(rec, f, indent=1)
         print(json.dumps({k: rec.get(k) for k in ("arm", "valid", "compile_s", "sim_s", "error")}), flush=True)
         return 0
+    if len(argv) >= 3 and argv[0] == "classical":
+        from toqb.classical import run_classical
+        plan = json.load(open(argv[1], encoding="utf-8"))
+        rec = run_classical(plan)
+        with open(os.path.join(argv[2], "classical.json"), "w", encoding="utf-8") as f:
+            json.dump(rec, f, indent=1)
+        print(json.dumps(rec["models"]), flush=True)
+        return 0
     if len(argv) >= 3 and argv[0] == "run":
         plan_file, outdir = argv[1], argv[2]
         if os.path.exists(outdir) and os.listdir(outdir):
@@ -618,6 +638,7 @@ def main(argv):
         for spec in plan["arms"]:
             subprocess.run([sys.executable, "-m", "toqb.task_loop", "arm", plan_file, outdir, spec], env=env,
                            check=False)
+        subprocess.run([sys.executable, "-m", "toqb.task_loop", "classical", plan_file, outdir], env=env, check=False)
         from toqb.score_loop import report
         text = report(outdir, plan)
         with open(os.path.join(outdir, "report.md"), "w", encoding="utf-8") as f:
