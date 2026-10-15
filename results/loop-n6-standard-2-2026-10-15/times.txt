@@ -1,0 +1,4 @@
+toqb eedcb50 Pre-registration: TOQB loop standard run 2, 6 qubits, 8 layers, 200 seeds (1001-1200), calibrated SPSA, fast engine (fixed 2026-10-15 16:02:41 CEST)
+psf-zero 4000c7f1 Addendum 500: TOQB loop standard run (6 qubits, 8 layers, 20 seeds, pre-registered) -- for the same money PSF-Zero's model is more accurate on the noisy device (0.549 against 0.471, 16 of 20; confirmed); the training going further is not decided (+0.040, p = 0.059); both models weak
+start 2026-10-15 16:03:46 CEST
+end 2026-10-15 17:45:15 CEST
