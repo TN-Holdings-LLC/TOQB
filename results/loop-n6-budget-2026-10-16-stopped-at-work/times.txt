@@ -1,0 +1,3 @@
+machine: win32, 14 CPUs, 12 processes
+prereg 0e35edcf983da4887712716152e384e07170894c46da107528f36ac90b5130ea
+start 2026-10-16 02:18:03 CEST (fixed +02:00)
