@@ -1,8 +1,16 @@
 # Pre-registration: TOQB loop budget run, 6 qubits, 8 layers, 2 minutes of QPU, 1,000 seeds (2026-10-16)
 
 **Status: pre-registration.** It is fixed by the commit that adds it (2026-10-16 CEST), with the plans, the code hash
-list and the scoring script. That commit is pushed before the run starts. The run is made once. Times are given in
-CEST. The design was confirmed by the owner before it was built.
+list and the scoring script. The run is made once. Times are given in CEST. The design was confirmed by the owner
+before it was built.
+
+**Where it runs, and how it is fixed.**
+
+- The owner runs it at the workplace. The workplace machine has no GitHub access, so the commit cannot be pushed before
+  the run.
+- Instead, this document's SHA-256 is given to the owner in the conversation with the authors before the run starts,
+  and printed by the run into `times.txt`. The run also checks it.
+- The commit is pushed afterwards, from home, with the results.
 
 ## 1. The question
 
@@ -38,15 +46,19 @@ This is TOQB's loop question, under the owner's real budget. No earlier loop run
 - **Why not 5001-6000:** an end-to-end test of `run.sh`, made while this document was being written, ran seeds
   5001-5004 of the first plan set and printed their results. Those seeds are therefore not used. The whole set was
   moved to 6001-7000 before anything was fixed.
-- **Code:** `CODE_SHA256SUMS` (SHA-256 `65d45ba8...5d8e`), including the scoring script
+- **Code:** `CODE_SHA256SUMS` (SHA-256 `dd3c443e...1470`), including the scoring script
   [`toqb/score_loop_preg4.py`](../toqb/score_loop_preg4.py) (tests: `tests/test_score_preg4.py`).
 
 **The machine and the command:**
 
-- the owner's home PC (WSL), ten processes at a time;
-- [`run.sh`](loop-n6-budget-2026-10-16/run.sh), which checks every hash and the versions and refuses an existing output
-  folder.
-- **Expected time:** about 1 hour (22 s per seed for both arms in the authors' cloud).
+- the owner's workplace PC (Windows), one process per CPU;
+- [`run_budget.py`](loop-n6-budget-2026-10-16/run_budget.py), which checks every hash (including this document's) and
+  the versions, and refuses an existing output folder. [`run.sh`](loop-n6-budget-2026-10-16/run.sh) is the same for
+  WSL.
+- **Expected time:** about 13 s per seed per pair of CPUs, measured in the authors' cloud on 2 CPUs. On 2 CPUs that
+  is about 4 hours, on 8 about 1 hour.
+- **PSF-Zero's files:** only the four files the PSF-Zero arm reads, taken from PSF-Zero commit `2eb4da1`: c61, a22,
+  a15 and a14. The first two are checked by SHA-256.
 
 **Interruption rule:** a run that stops early is started again into a new folder. The first complete run is scored.
 

@@ -237,8 +237,12 @@ def spsa_schedule(task, opt):
 def _cest_now():
     """The time in Central European time, as TOQB's records give it."""
     import datetime
-    from zoneinfo import ZoneInfo
-    return datetime.datetime.now(ZoneInfo("Europe/Zurich")).strftime("%Y-%m-%d %H:%M:%S %Z")
+    try:
+        from zoneinfo import ZoneInfo
+        return datetime.datetime.now(ZoneInfo("Europe/Zurich")).strftime("%Y-%m-%d %H:%M:%S %Z")
+    except Exception:  # noqa: BLE001 - Windows without the tzdata package: central European summer time, fixed
+        tz = datetime.timezone(datetime.timedelta(hours=2), "CEST")
+        return datetime.datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S %Z") + " (fixed +02:00)"
 
 
 def gains(k, opt):

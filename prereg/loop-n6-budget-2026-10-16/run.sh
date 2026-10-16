@@ -12,10 +12,10 @@ PAR=${PAR:-10}
 OUT=${OUT:-results/loop-n6-budget-2026-10-16}
 P=prereg/loop-n6-budget-2026-10-16
 cd "$TOQB" || { echo "STOP: no $TOQB"; exit 1; }
-echo "4b6169dcc214d201ccd824b53563a35e7edf146c48c201909bc71b5905c52ff6  prereg/2026-10-16-loop-n6-budget.md" | sha256sum -c --quiet || { echo "STOP: pre-registration changed"; exit 1; }
+echo "0e35edcf983da4887712716152e384e07170894c46da107528f36ac90b5130ea  prereg/2026-10-16-loop-n6-budget.md" | sha256sum -c --quiet || { echo "STOP: pre-registration changed"; exit 1; }
 echo "71a7f6996324891feaba549a7d7c1700da4a47a4c43a0ba006469ee473d487a7  $P/SHA256SUMS" | sha256sum -c --quiet \
   || { echo "STOP: plan list changed"; exit 1; }
-echo "65d45ba832849dafb2bda4cb9e65f50b91e6666dc745ba0bbedf6eec0efe5d8e  $P/CODE_SHA256SUMS" | sha256sum -c --quiet \
+echo "dd3c443efade3aa37c1edd3b5e9f7d29975e0de8f890b753785fa2fc2b851470  $P/CODE_SHA256SUMS" | sha256sum -c --quiet \
   || { echo "STOP: code list changed"; exit 1; }
 ( cd "$P" && sha256sum -c --quiet SHA256SUMS ) || { echo "STOP: a plan changed"; exit 1; }
 sha256sum -c --quiet "$P/CODE_SHA256SUMS" || { echo "STOP: TOQB code differs from the pre-registered"; exit 1; }
