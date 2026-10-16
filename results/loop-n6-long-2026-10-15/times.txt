@@ -1,0 +1,3 @@
+toqb 8bb72c0 Test of the SPSA draws: compare the compact arrays element by element (the draws are unchanged)
+psf-zero 889784d4 Addendum 501: TOQB fast engine (same noise model, about 15 x faster, checked against exact evolution and Aer) and loop standard run 2 (200 seeds, pre-registered) -- with calibrated SPSA, no accuracy difference (0.702 against 0.701; primary refuted), no growth with training (refuted); signal 1.32 x larger (confirmed); hardware candidate 2 dropped
+start 2026-10-15 18:16:48 CEST

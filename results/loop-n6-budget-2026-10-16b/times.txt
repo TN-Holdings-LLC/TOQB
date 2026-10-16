@@ -1,0 +1,4 @@
+toqb 79faa58 Loop budget run: the first start at the workplace, stopped after 240 of 2,000 arm runs (slow PC, editor update); kept unscored, as the pre-registration's interruption rule says
+psf-zero 69b946b7 Addendum 508: decision -- option A (frame fixed in the template) kept; c64 and c65 stay as built
+start 2026-10-16 12:55:31 CEST
+end 2026-10-16 13:57:12 CEST

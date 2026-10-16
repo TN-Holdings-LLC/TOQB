@@ -4,8 +4,11 @@ Pre-registration: [`prereg/2026-10-15-loop-n6-long.md`](../../prereg/2026-10-15-
 pushed before the run).
 
 - **Started:** 2026-10-15 18:16:48 CEST on the owner's home machine.
-- **Stopped:** by the owner on 2026-10-16, after the trajectory below. It is not scored. The raw partial records are on
-  the home machine and will be added to this folder.
+- **Stopped:** by the owner on 2026-10-16, after the trajectory below. It is not scored. The raw partial records were added on 2026-10-16:
+  `times.txt`, and per seed `plan.json` (byte for byte the pre-registered plan) and both arms' `*.partial.json`;
+  `raw_records.zip` holds the same folder with the logs (home paths shortened to `~/`), which `.gitignore` keeps out
+  of the tree. The last evaluation written was at 70,000 or 80,000 iterations (PSF-Zero's arm at
+  70,000 in seeds 3001, 3003 and 3005, every other arm at 80,000).
 
 ## Why it was stopped: the design had no time limit
 

@@ -13,6 +13,7 @@ scored runs, at 6 qubits.
 - Standard run 2, [`results/standard-run-2/`](results/standard-run-2/).
 - Loop standard run, 6 qubits, 8 layers, [`results/loop-n6-standard-2026-10-15/`](results/loop-n6-standard-2026-10-15/).
 - Loop standard run 2, 6 qubits, 8 layers, 200 seeds, [`results/loop-n6-standard-2-2026-10-15/`](results/loop-n6-standard-2-2026-10-15/).
+- Loop budget run, 6 qubits, 8 layers, 2 minutes of QPU, 1,000 seeds, [`results/loop-n6-budget-2026-10-16b/`](results/loop-n6-budget-2026-10-16b/).
 
 Numbers from this repository should be cited from these results, with their run.
 
@@ -264,6 +265,12 @@ money. `toqb/task_loop.py` runs it. A QML developer can run the same thing from 
     - **The difference does not grow with training** (refuted).
     - **PSF-Zero's signal is 1.32 x larger** (margin 0.206 against 0.156, confirmed), for 2.5% less money.
     - So for a classifier trained this way the compiler does not matter. Where the value of <Z> is used, it may.
+  - [`results/loop-n6-budget-2026-10-16b/`](results/loop-n6-budget-2026-10-16b/), 1,000 seeds, pre-registered, a
+    hard budget of 2 minutes of QPU ($192), run 1's SPSA.
+    - **PSF-Zero's model is better at the budget:** noisy 0.533 against 0.494 (+0.039), noiseless +0.026, better in
+      624 of 1,000 seeds; every prediction confirmed. It trains 50 iterations against 49 and its circuit is half as
+      long (8.7 us against 18.1 us).
+    - **Both models are weak at this budget:** 54 and 23 of 1,000 reached 0.7; classical models 0.73-0.77.
 
 ```
 PSF_ZERO_REPO=<a PSF-Zero checkout> python -m toqb.task_loop run plan_loop_smoke.json <new output directory>

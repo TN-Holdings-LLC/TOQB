@@ -10,6 +10,8 @@ Pre-registration: [`prereg/2026-10-16-loop-n6-budget.md`](../../prereg/2026-10-1
   4-8 processes, against the 30-45 minutes estimated), and an editor update ended the process.
 - **Not scored.** By the pre-registration's interruption rule, the run is started again into a new folder and the first
   complete run is scored. Nothing here is read by the scorer.
-- **Kept here:** `times.txt`, the logs, and every record written (`arm-*.json`, `arm-*.partial.json`). The 1,000
-  `plan.json` copies are left out: each was checked identical, byte for byte, to the pre-registered
-  `prereg/loop-n6-budget-2026-10-16/plan_s<seed>.json`.
+- **Kept here:** `times.txt` and every record written (`arm-*.json`, `arm-*.partial.json`). The 1,000 `plan.json`
+  copies are left out of the tree: each was checked identical, byte for byte, to the pre-registered
+  `prereg/loop-n6-budget-2026-10-16/plan_s<seed>.json`. The logs, which `.gitignore` keeps out of the tree, are in
+  `raw_records.zip`, the folder as zipped at the workplace (added 2026-10-16; the first version of this note said the
+  logs were kept here, which they were not).
