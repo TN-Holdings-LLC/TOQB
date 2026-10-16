@@ -1,0 +1,4 @@
+toqb e42b6b3 Pre-registration: TOQB loop reach run, 6 qubits, 8 layers, 1,000 iterations, 200 seeds (8001-8200) -- does PSF-Zero's model reach a noisy test accuracy of 0.65 (primary) and 0.70 in fewer iterations and for less money (fixed 2026-10-16 16:57 CEST)
+psf-zero c64b5365 Addendum 511: prototype c66 (item 103) -- option A's fixed template shape without its pulses: the frame by segments, solved over GF(2); first, exploratory measurement 0.81-1.00 x c62's duration (option A 1.00-1.35), no shape change, exact wherever checked
+start 2026-10-16 18:15:54 CEST
+end 2026-10-16 21:07:53 CEST
