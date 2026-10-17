@@ -14,7 +14,7 @@ echo "9fa868b7f1d4e2738d82720e06090fb384177bafe5c2a33d2356abde058c4857  prereg/2
 echo "ee1cf452a67124f7bbbccb8baacc056899fb61c24b5de54dc40e27717c38ca1e  $P/SHA256SUMS" | sha256sum -c --quiet || { echo "STOP: plan list changed"; exit 1; }
 echo "510baa0d78565503cb68b4cd6a46ffac225476febb3bc96dfb83d91c5a68ebac  $P/CODE_SHA256SUMS" | sha256sum -c --quiet || { echo "STOP: code list changed"; exit 1; }
 ( cd "$P" && sha256sum -c --quiet SHA256SUMS ) || { echo "STOP: a plan changed"; exit 1; }
-sha256sum -c --quiet "$P/510baa0d78565503cb68b4cd6a46ffac225476febb3bc96dfb83d91c5a68ebacSUMS" || { echo "STOP: TOQB code differs from the pre-registered"; exit 1; }
+sha256sum -c --quiet "$P/CODE_SHA256SUMS" || { echo "STOP: TOQB code differs from the pre-registered"; exit 1; }
 ( cd "$PSF" && printf '%s\n' \
   "254cfabc5924118a5c54e159fa2284202d21b87894202f447333de07f06b3728  patches/psf_compile_c61_2026-10-15/psf_compile.py" \
   "625f9431344cd0fad6715ea44dc347044b0c64507c008f69202145d03b14a8ce  patches/psf_ai_compile_a22_2026-10-15/psf_ai_compile.py" \
