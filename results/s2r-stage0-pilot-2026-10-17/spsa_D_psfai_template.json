@@ -1,0 +1,83 @@
+{
+ "kind": "spsa",
+ "arm": "psfai:template",
+ "seed": 901,
+ "plan": "S2R stage 0 (seed 901)",
+ "started": "2026-10-17 03:36:42 CEST",
+ "spsa": {
+  "name": "SPSA",
+  "iterations": 1000,
+  "batch": 8,
+  "a": 3.0,
+  "c": 0.2,
+  "A": 2,
+  "init": 0.5,
+  "loop_seed": 901
+ },
+ "qpu_cost": {
+  "per_shot_s": 0.00027,
+  "per_circuit_s": 0.036,
+  "usd_per_s": 1.6,
+  "source": "rate: PSF-Zero TIME1 / FRAC1 on ibm_fez (2026-10-14); price: IBM Pay-As-You-Go, 'starts at $96 USD / minute', billed per second (ibm.com/quantum/pricing, 2026-10-15)"
+ },
+ "version": "psf_compile 2026-10-15.c61, psf_ai_compile 2026-10-15.a22",
+ "standin": {
+  "t12": 0.3,
+  "over": 0.01,
+  "zz_hz": 10000.0,
+  "seed": 20261017
+ },
+ "evals": [
+  {
+   "iteration": 0,
+   "accuracy": 0.3125,
+   "margin": -0.21385416666666668,
+   "usd": 0.0,
+   "wall_s": 18.60806481599957
+  },
+  {
+   "iteration": 10,
+   "accuracy": 0.5,
+   "margin": -0.0128125,
+   "usd": 37.7561088,
+   "wall_s": 100.17553396499989
+  },
+  {
+   "iteration": 20,
+   "accuracy": 0.4375,
+   "margin": -0.017708333333333333,
+   "usd": 75.5122176,
+   "wall_s": 180.61560372199983
+  },
+  {
+   "iteration": 30,
+   "accuracy": 0.4791666666666667,
+   "margin": 0.004270833333333332,
+   "usd": 113.2683264,
+   "wall_s": 261.73211521599933
+  },
+  {
+   "iteration": 40,
+   "accuracy": 0.4166666666666667,
+   "margin": -0.014374999999999999,
+   "usd": 151.0244352,
+   "wall_s": 344.19032253299974
+  },
+  {
+   "iteration": 50,
+   "accuracy": 0.4791666666666667,
+   "margin": -0.013854166666666667,
+   "usd": 188.780544,
+   "wall_s": 426.44058526699973
+  }
+ ],
+ "iterations": 50,
+ "spent_qpu_s": 117.98783999999999,
+ "spent_usd": 188.780544,
+ "wall_s": 426.4405943969996,
+ "compiled": 1088,
+ "structural_fail": 0,
+ "on_failed_ops": 0,
+ "ended": "2026-10-17 03:43:50 CEST",
+ "valid": true
+}
