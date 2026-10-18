@@ -1,6 +1,7 @@
 #!/bin/bash
 # GPU pod: S2R2-B pilot (tuning only, not scored; seeds 101 and 102 are outside every pre-registered seed range).
-# Installs the environment if needed, checks the trajectory engine on the GPU, times it, probes CUDA-Q, then runs
+# Installs the environment if needed, checks the trajectory engine on the GPU, times it, probes CUDA-Q, measures how
+# well the simulator knows the stand-in's gradient (toqb.gradcos: both compilers, L = 8 and 16), then runs
 #   S2R2-B (toqb.s2r2 s2rg): lr in {0.05, 0.1, 0.2};  SPSA2: a in {0.2, 0.5, 1.0} (c = 0.2, A = 10);
 #   both compilers, L = 8 and 16, n = 10, budget $100 of stand-in time each (about 500 loops of 2 circuits x 100 shots).
 # Results go to OUT (outside the repo; must not exist) and a zip into DAY. Run from the folder that holds the TOQB clone:
@@ -36,6 +37,9 @@ grep -q '^PASS' "$OUT/check_traj2.txt" || { echo "STOP: check_traj2 did not pass
 echo "== bench_traj2"; python -m toqb.bench_traj2 10 8 16 2>&1 | tee "$OUT/bench_traj2.txt"
 echo "== CUDA-Q probe (first contact; failures are reported, not fatal)"
 ( pip install -q cudaq && python -m toqb.cudaq_probe 8 16 ) > "$OUT/cudaq_probe.txt" 2>&1; tail -n 20 "$OUT/cudaq_probe.txt"
+echo "== gradient agreement, simulator vs stand-in (24 directions, 8 points, T = 256; two student means each)"
+for L in 8 16; do for a in psfai:template qiskit:2:target:template; do for sd in 5 6; do
+  python -m toqb.gradcos "$a" $L 24 8 256 $sd 2>&1 | tail -n 1; done; done; done | tee "$OUT/gradcos.txt"
 python - "$OUT/plans" <<'PY'
 import json, sys
 out = sys.argv[1]
