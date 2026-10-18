@@ -2,10 +2,14 @@
 
     TOQB_XP=cupy python -m toqb.bench_traj2 [n] [L ...]     (from the TOQB root; default n = 10, L = 8 16 24)
 
+An arm whose compiled circuit is wider than TOQB_BENCH_MAXQ active qubits (default 16) is reported and skipped
+(Qiskit's L = 24 circuit is about 21 qubits wide: hours per batch).
+
 Per compiler and depth: active qubits, duration, two-qubit gates; the time of one simulator batch as an S2R loop
 sends it (68 circuits of one structure x 32 trajectories) and of the stand-in's two circuits x 100 shots; and the
 compile time of the 68 circuits.
 """
+import os
 import sys
 import time
 
@@ -43,6 +47,10 @@ def main(argv):
             dur, q2 = arm.duration(cs[0], sim._scan(cs[0])[0])
             r, _a, _nm, _rp = sim.noisy_circuit(cs[0])
             pl = T2.plan(cs[0], r, dev.target)
+            if pl.n > int(os.environ.get("TOQB_BENCH_MAXQ", "16")):
+                print(f"n={n} L={L} {spec:26s} act {pl.n} dur {dur * 1e6:.1f} us q2 {q2} steps {len(pl.steps)}: "
+                      f"skipped (wider than TOQB_BENCH_MAXQ), compile 68 {tc:.2f} s", flush=True)
+                continue
             A = np.stack([pl.angles(c) for c in cs])
             eng.z_mean(pl, A[:2], 4, seed=1)  # warm-up
             _sync(eng.xp)

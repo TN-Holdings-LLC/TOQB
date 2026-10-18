@@ -66,6 +66,14 @@ def main(argv):
             zs = eng.z_mean(spl, SA, T, seed=21 + j)
             d2 = np.abs((1 - zs) / 2 - p1x).max() / (0.5 / np.sqrt(T))
             zz = eng.z_shots(spl, SA, T, seed=31 + j)
+            if j == 0 and eng._kernels():
+                # the fused GPU kernels against the plain array path, same draws: equal up to rounding
+                plain = T2.Engine(eng.xp)
+                plain._k = False
+                kd = max(np.abs(eng._p1_batches(pl, A, 64, 5) - plain._p1_batches(pl, A, 64, 5)).max(),
+                         np.abs(eng._p1_batches(spl, SA, 64, 6) - plain._p1_batches(spl, SA, 64, 6)).max())
+                print(f"{spec:26s} kernels vs plain path: max |d p1| {kd:.1e}", flush=True)
+                worst = max(worst, 0.0 if kd < 1e-4 else 99.0)
             d3 = (np.abs((1 - zz) / 2 - p1x) / np.sqrt(p1x * (1 - p1x) / T)).max()
             worst = max(worst, d1, d2, d3)
             print(f"{spec:26s} #{j} n {pl.n}: sim z {z_exact.round(4)} traj {zt.round(4)} ({d1:.1f} se, {t_sim:.2f} s); "

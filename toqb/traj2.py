@@ -172,113 +172,186 @@ class Engine:
         self.dtype = getattr(self.xp, dtype or os.environ.get("TOQB_TRAJ_DTYPE", "complex64"))
         self.rdtype = self.xp.float32 if self.dtype == self.xp.complex64 else self.xp.float64
 
-    # -- passes
+    # -- passes (in place on views (B, 2^q, 2, rest); on cupy each is one fused kernel)
     def _view1(self, psi, n, q):
         B = psi.shape[0]
         return psi.reshape(B, 2 ** q, 2, 2 ** (n - q - 1))
 
-    def _apply1(self, psi, n, q, M):
-        """M: (B, 2, 2) per trajectory."""
-        xp = self.xp
+    def _kernels(self):
+        if getattr(self, "_k", None) is None:
+            xp = self.xp
+            if xp is np or os.environ.get("TOQB_TRAJ_KERNELS", "1") == "0":
+                self._k = False
+            else:
+                self._k = dict(
+                    mat=xp.ElementwiseKernel(
+                        "T a0, T a1, T m00, T m01, T m10, T m11", "T b0, T b1",
+                        "T x = a0, y = a1; b0 = m00 * x + m01 * y; b1 = m10 * x + m11 * y;", "toqb_mat1"),
+                    pauli=xp.ElementwiseKernel(
+                        "T a0, T a1, int8 k", "T b0, T b1",
+                        "T x = a0, y = a1; if (k == 1) { b0 = y; b1 = x; } "
+                        "else if (k == 2) { b0 = T(y.imag(), -y.real()); b1 = T(-x.imag(), x.real()); } "
+                        "else if (k == 3) { b0 = x; b1 = -y; } else { b0 = x; b1 = y; }", "toqb_pauli"),
+                    ad=xp.ElementwiseKernel(
+                        "T a0, T a1, R p1, R u, R g", "T b0, T b1",
+                        "T x = a0, y = a1; "
+                        "if (u < g * p1) { b0 = y * (R(1) / sqrt(max(p1, R(1e-30)))); b1 = T(0, 0); } "
+                        "else { R inj = R(1) / sqrt(max(R(1) - g * p1, R(1e-30))); "
+                        "b0 = x * inj; b1 = y * (sqrt(R(1) - g) * inj); }", "toqb_ad"),
+                    norm=xp.ReductionKernel(
+                        f"{np.dtype(self.dtype).name} a", f"{np.dtype(self.rdtype).name} y",
+                        "a.real() * a.real() + a.imag() * a.imag()", "a + b", "y = a", "0", "toqb_norm2"))
+        return self._k
+
+    def _mat1(self, psi, n, q, M):
+        """M: (B, 2, 2) per trajectory, in place."""
         v = self._view1(psi, n, q)
         a0, a1 = v[:, :, 0, :], v[:, :, 1, :]
         m = M.reshape(-1, 2, 2, 1, 1)
-        n0 = m[:, 0, 0] * a0 + m[:, 0, 1] * a1
-        n1 = m[:, 1, 0] * a0 + m[:, 1, 1] * a1
-        return xp.stack([n0, n1], axis=2).reshape(psi.shape)
+        k = self._kernels()
+        if k:
+            k["mat"](a0, a1, m[:, 0, 0], m[:, 0, 1], m[:, 1, 0], m[:, 1, 1], a0, a1)
+        else:
+            n0 = m[:, 0, 0] * a0 + m[:, 0, 1] * a1
+            n1 = m[:, 1, 0] * a0 + m[:, 1, 1] * a1
+            a0[...] = n0
+            a1[...] = n1
+
+    def _pauli(self, psi, n, q, kk):
+        """A Pauli per trajectory (kk: int8 (B,), 0 I, 1 X, 2 Y, 3 Z), in place."""
+        v = self._view1(psi, n, q)
+        a0, a1 = v[:, :, 0, :], v[:, :, 1, :]
+        k = self._kernels()
+        kb = kk.reshape(-1, 1, 1)
+        if k:
+            k["pauli"](a0, a1, kb, a0, a1)
+        elif bool((kk != 0).any()):
+            self._mat1(psi, n, q, self.xp.asarray(_PAULI, dtype=self.dtype)[kk.astype(int)])
 
     def _p1(self, psi, n, q):
         v = self._view1(psi, n, q)
         a1 = v[:, :, 1, :]
+        k = self._kernels()
+        if k:
+            return k["norm"](a1, axis=(1, 2))
         return (a1.real ** 2 + a1.imag ** 2).sum(axis=(1, 2))
 
     def _amp_damp(self, psi, n, q, g, u):
-        """Amplitude damping gamma on qubit q, the jump drawn with uniforms u (B,)."""
+        """Amplitude damping gamma on qubit q, the jump drawn with uniforms u (B,), in place."""
         xp = self.xp
         if g <= 0:
-            return psi
+            return
         p1 = self._p1(psi, n, q)
+        v = self._view1(psi, n, q)
+        a0, a1 = v[:, :, 0, :], v[:, :, 1, :]
+        sh = (-1, 1, 1)
+        k = self._kernels()
+        if k:
+            k["ad"](a0, a1, p1.reshape(sh), u.reshape(sh), self.rdtype(g), a0, a1)
+            return
         jump = u < g * p1
-        s = math.sqrt(1 - g)
-        nj = xp.sqrt(xp.maximum(1 - g * p1, 1e-30))
-        jn = xp.sqrt(xp.maximum(p1, 1e-30))
-        B = psi.shape[0]
-        M = xp.zeros((B, 2, 2), dtype=self.dtype)
-        M[:, 0, 0] = xp.where(jump, 0, 1 / nj)
-        M[:, 1, 1] = xp.where(jump, 0, s / nj)
-        M[:, 0, 1] = xp.where(jump, 1 / jn, 0)
-        return self._apply1(psi, n, q, M)
+        inj = 1 / xp.sqrt(xp.maximum(1 - g * p1, 1e-30))
+        M = xp.zeros((psi.shape[0], 2, 2), dtype=self.dtype)
+        M[:, 0, 0] = xp.where(jump, 0, inj)
+        M[:, 1, 1] = xp.where(jump, 0, math.sqrt(1 - g) * inj)
+        M[:, 0, 1] = xp.where(jump, 1 / xp.sqrt(xp.maximum(p1, 1e-30)), 0)
+        self._mat1(psi, n, q, M)
 
-    def _diag2(self, psi, n, a, b, d):
-        """A fixed diagonal (d00, d01, d10, d11) on qubits a < b or b < a (big-endian: qubit 0 first)."""
-        xp = self.xp
+    def _diag2(self, psi, n, a, b, f):
+        """A diagonal on qubits a, b given as a device array f (1, 1, 2, 1, 2, 1) in (lower, higher) order, in place."""
         B = psi.shape[0]
         lo, hi = min(a, b), max(a, b)
         v = psi.reshape(B, 2 ** lo, 2, 2 ** (hi - lo - 1), 2, 2 ** (n - hi - 1))
+        v *= f
+
+    def _dev(self, d, a, b):
         dd = np.asarray(d, dtype=complex).reshape(2, 2)
         if a > b:
             dd = dd.T
-        f = xp.asarray(dd, dtype=self.dtype).reshape(1, 1, 2, 1, 2, 1)
-        return (v * f).reshape(psi.shape)
+        return self.xp.asarray(dd, dtype=self.dtype).reshape(1, 1, 2, 1, 2, 1)
 
     # -- a batch
     def run(self, pl, A, T, seed):
-        """Final states of T trajectories of each circuit (rows of A, slot angles) of Plan `pl`: (len(A) * T, 2^n)."""
+        """Final states of T trajectories of each circuit (rows of A, slot angles) of Plan `pl`: (len(A) * T, 2^n).
+        Every random number and every per-trajectory matrix is drawn and built on the host first, in one pass over
+        the steps, and sent to the device at once; the device then runs one or two kernels per step."""
         xp = self.xp
         n = pl.n
         P = A.shape[0]
         B = P * T
         rng = np.random.default_rng(seed)
-        psi = xp.zeros((B, 2 ** n), dtype=self.dtype)
-        psi[:, 0] = 1.0
         circ = np.repeat(np.arange(P), T)
+        zmul = np.array(_ZMUL, dtype=np.int8)
+        mats, paulis, unif, ops = [], [], [], []
         for st in pl.steps:
             kind = st[0]
             if kind == "g1":
                 _, q, slot, G, dep, g, pz = st
-                # per circuit G RZ(angle); per trajectory a Pauli from the depolarizing and the phase damping
                 a = A[:, slot]
                 rz = np.zeros((P, 2, 2), dtype=complex)
                 rz[:, 0, 0] = np.exp(-0.5j * a)
                 rz[:, 1, 1] = np.exp(0.5j * a)
-                GR = G[None, :, :] @ rz  # (P, 2, 2)
-                pk = rng.choice(4, size=B, p=[1 - 3 * dep / 4, dep / 4, dep / 4, dep / 4]) if dep > 0 \
-                    else np.zeros(B, dtype=int)
+                GR = G[None, :, :] @ rz
+                pk = (rng.choice(4, size=B, p=[1 - 3 * dep / 4, dep / 4, dep / 4, dep / 4]) if dep > 0
+                      else np.zeros(B, dtype=int)).astype(np.int8)
                 if pz > 0:
-                    zf = rng.random(B) < pz
-                    pk = np.where(zf, np.array(_ZMUL)[pk], pk)
-                M = _PAULI[pk] @ GR[circ]
-                psi = self._apply1(psi, n, q, xp.asarray(M, dtype=self.dtype))
-                psi = self._amp_damp(psi, n, q, g, xp.asarray(rng.random(B), dtype=self.rdtype))
+                    pk = np.where(rng.random(B) < pz, zmul[pk], pk)
+                ops.append(("m", q, len(mats)))
+                mats.append(_PAULI[pk] @ GR[circ])
+                if g > 0:
+                    ops.append(("ad", q, g, len(unif)))
+                    unif.append(rng.random(B))
             elif kind == "cz":
                 _, a, b, dep, ga, pza, gb, pzb = st
-                psi = self._diag2(psi, n, a, b, (1, 1, 1, -1))
-                if dep > 0:
-                    k = rng.choice(16, size=B, p=[1 - 15 * dep / 16] + [dep / 16] * 15)
-                else:
-                    k = np.zeros(B, dtype=int)
-                pa, pb = k // 4, k % 4
+                ops.append(("d", a, b, "cz"))
+                k = (rng.choice(16, size=B, p=[1 - 15 * dep / 16] + [dep / 16] * 15) if dep > 0
+                     else np.zeros(B, dtype=int))
+                pa, pb = (k // 4).astype(np.int8), (k % 4).astype(np.int8)
                 if pza > 0:
-                    pa = np.where(rng.random(B) < pza, np.array(_ZMUL)[pa], pa)
+                    pa = np.where(rng.random(B) < pza, zmul[pa], pa)
                 if pzb > 0:
-                    pb = np.where(rng.random(B) < pzb, np.array(_ZMUL)[pb], pb)
-                if (pa != 0).any():
-                    psi = self._apply1(psi, n, a, xp.asarray(_PAULI[pa], dtype=self.dtype))
-                if (pb != 0).any():
-                    psi = self._apply1(psi, n, b, xp.asarray(_PAULI[pb], dtype=self.dtype))
-                psi = self._amp_damp(psi, n, a, ga, xp.asarray(rng.random(B), dtype=self.rdtype))
-                psi = self._amp_damp(psi, n, b, gb, xp.asarray(rng.random(B), dtype=self.rdtype))
+                    pb = np.where(rng.random(B) < pzb, zmul[pb], pb)
+                ops.append(("p", a, len(paulis)))
+                paulis.append(pa)
+                ops.append(("p", b, len(paulis)))
+                paulis.append(pb)
+                for qq, gg in ((a, ga), (b, gb)):
+                    if gg > 0:
+                        ops.append(("ad", qq, gg, len(unif)))
+                        unif.append(rng.random(B))
             elif kind == "zz":
                 _, a, b, th = st
                 e0, e1 = np.exp(-0.5j * th), np.exp(0.5j * th)
-                psi = self._diag2(psi, n, a, b, (e0, e1, e1, e0))
+                ops.append(("d", a, b, (e0, e1, e1, e0)))
             elif kind == "relax":
                 _, q, g, pz = st
                 if pz > 0:
-                    zf = rng.random(B) < pz
-                    if zf.any():
-                        psi = self._apply1(psi, n, q, xp.asarray(_PAULI[np.where(zf, 3, 0)], dtype=self.dtype))
-                psi = self._amp_damp(psi, n, q, g, xp.asarray(rng.random(B), dtype=self.rdtype))
+                    ops.append(("p", q, len(paulis)))
+                    paulis.append(np.where(rng.random(B) < pz, 3, 0).astype(np.int8))
+                if g > 0:
+                    ops.append(("ad", q, g, len(unif)))
+                    unif.append(rng.random(B))
+        Md = xp.asarray(np.stack(mats) if mats else np.zeros((0, B, 2, 2)), dtype=self.dtype)
+        Pd = xp.asarray(np.stack(paulis) if paulis else np.zeros((0, B)), dtype=xp.int8)
+        Ud = xp.asarray(np.stack(unif) if unif else np.zeros((0, B)), dtype=self.rdtype)
+        diag = {}
+        psi = xp.zeros((B, 2 ** n), dtype=self.dtype)
+        psi[:, 0] = 1.0
+        for op in ops:
+            kind = op[0]
+            if kind == "m":
+                self._mat1(psi, n, op[1], Md[op[2]])
+            elif kind == "p":
+                self._pauli(psi, n, op[1], Pd[op[2]])
+            elif kind == "ad":
+                self._amp_damp(psi, n, op[1], op[2], Ud[op[3]])
+            else:
+                _, a, b, d = op
+                key = (a, b, d if isinstance(d, str) else tuple(np.round(d, 12)))
+                f = diag.get(key)
+                if f is None:
+                    f = diag[key] = self._dev((1, 1, 1, -1) if d == "cz" else d, a, b)
+                self._diag2(psi, n, a, b, f)
         return psi, rng
 
     def _chunks(self, P, T, n):
