@@ -108,8 +108,9 @@ class Runner:
             self.n_struct += 1
         return key, hit
 
-    def z(self, model, circuits, T, seed, shots=False):
-        """<Z> on clbit 0 of each circuit: the trajectory mean (T trajectories), or from T shots if `shots`."""
+    def z(self, model, circuits, T, seed, shots=False, crn=False):
+        """<Z> on clbit 0 of each circuit: the trajectory mean (T trajectories; with `crn` every circuit of a structure
+        sees the same draws), or from T shots if `shots`."""
         groups = {}
         for i, c in enumerate(circuits):
             key, sk = self._skel(model, c)
@@ -117,8 +118,10 @@ class Runner:
         out = np.empty(len(circuits))
         for g, (key, (sk, idx)) in enumerate(sorted(groups.items(), key=lambda kv: kv[1][1][0])):
             A = np.stack([sk.angles(circuits[i]) for i in idx])
-            f = self.eng.z_shots if shots else self.eng.z_mean
-            out[idx] = f(sk, A, T, seed + 7919 * g)
+            if shots:
+                out[idx] = self.eng.z_shots(sk, A, T, seed + 7919 * g)
+            else:
+                out[idx] = self.eng.z_mean(sk, A, T, seed + 7919 * g, crn=crn)
         return out
 
     def job_seconds(self, circuits, shots):
@@ -220,9 +223,79 @@ def run_s2r2(plan, spec):
     return rec
 
 
+def run_s2rg(plan, spec):
+    """S2R2-B (the owner's decision B of 2026-10-19): the simulator learns, the stand-in is only measured.
+
+    One loop: the simulator's antithetic gradient of the training loss, `pairs` random +-1 directions D_i at
+    m +- h D_i on a batch of b training points (T trajectories, common random numbers across the batch), averaged;
+    m <- m - lr * g. The stand-in then runs the new m on two training points with `shots` shots (2 circuits, billed),
+    and the simulator predicts the same two (recorded: the device's answers do not change the learning; that is the
+    finding of 2026-10-18, the simulator already knows the stand-in's gradient direction to cos ~ 0.99, PSF, L = 8).
+    Evaluation as in `run_s2r2`; the run stops before the loop that would pass the budget."""
+    task, p, ev = plan["task"], plan["s2rg"], plan["evaluation"]
+    budget, shots = plan["s2rg"]["budget_usd"], plan["s2rg"]["shots"]
+    R = Runner(plan, spec)
+    rec = dict(kind="s2rg", arm=spec, seed=p["seed"], plan=plan["name"], started=S._cest(), s2rg=p,
+               qpu_cost=R.cost, version=R.arm.version(), standin=R.standin.params, engine=R.eng.xp.__name__,
+               dtype=str(R.eng.dtype))
+    Xtr, ytr, Xte, yte = teacher_data2(task)
+    n, L = task["n"], task["layers"]
+    d = TL.n_params(n, L)
+    rng = np.random.default_rng(p["seed"])
+    m = rng.uniform(-p["init"], p["init"], d)
+    K, b, Ts, h, lr = p["pairs"], p["sim_batch"], p["sim_traj"], p["h"], p["lr"]
+    spent, evals, k = 0.0, [], 0
+    log = dict(gnorm=[], sim_loss=[], dev_loss=[], sim_pred=[], usd=[])
+    t0 = time.perf_counter()
+    try:
+        _evaluate(R, m, Xte, yte, ev["test_traj"], ev["seed"], spent, 0, t0, evals)
+        while k < p["max_loops"]:
+            idx = rng.choice(len(Xtr), b, replace=False)
+            D = rng.choice([-1.0, 1.0], (K, d))
+            cands = np.vstack([m[None, :] + h * D, m[None, :] - h * D])
+            s = time.perf_counter()
+            cs = [R.compile(th, Xtr[i]) for th in cands for i in idx]
+            zs = R.z("sim", cs, Ts, p["seed"] * 1000003 + 3 * k, crn=True).reshape(2 * K, b)
+            R.t["sim"] += time.perf_counter() - s
+            ls = ((1 - zs * ytr[idx][None, :]) / 2).mean(axis=1)
+            g = (((ls[:K] - ls[K:]) / (2 * h))[:, None] * D).mean(axis=0)
+            jj = rng.choice(len(Xtr), 2, replace=False)
+            m_new = m - lr * g
+            dev_cs = [R.compile(m_new, Xtr[j]) for j in jj]
+            job = R.job_seconds(dev_cs, shots)
+            if (spent + job) * R.cost["usd_per_s"] > budget + 1e-9:
+                break
+            m = m_new
+            s = time.perf_counter()
+            zd = R.z("dev", dev_cs, shots, p["seed"] * 1000003 + 3 * k + 1, shots=True)
+            R.t["dev"] += time.perf_counter() - s
+            zp = R.z("sim", dev_cs, Ts, p["seed"] * 1000003 + 3 * k + 2)
+            spent += job
+            k += 1
+            for key, v in (("gnorm", float(np.linalg.norm(g))), ("sim_loss", float(ls.mean())),
+                           ("dev_loss", float(((1 - zd * ytr[jj]) / 2).mean())),
+                           ("sim_pred", float(((1 - zp * ytr[jj]) / 2).mean())), ("usd", spent * R.cost["usd_per_s"])):
+                log[key].append(v)
+            if k % ev["every"] == 0:
+                _evaluate(R, m, Xte, yte, ev["test_traj"], ev["seed"] + k, spent, k, t0, evals)
+        if evals[-1]["step"] != k:
+            _evaluate(R, m, Xte, yte, ev["test_traj"], ev["seed"] + k, spent, k, t0, evals)
+    except Exception as exc:  # noqa: BLE001 - recorded
+        rec["error"] = f"loop: {type(exc).__name__}: {exc}"
+    rec.update(loops=k, evals=evals, log=log, spent_usd=spent * R.cost["usd_per_s"],
+               auc_ce=_auc(evals, budget) if evals else None, wall_s=time.perf_counter() - t0, times=R.t,
+               structures=R.n_struct, compiled=R.arm.compiled, structural_fail=R.arm.structural_fail,
+               on_failed_ops=R.arm.on_failed_ops,
+               durations_us=sorted({round(v[0] * 1e6, 4) for v in R.arm._dur.values()}),
+               q2=sorted({v[1] for v in R.arm._dur.values()}), final_mean=[float(x) for x in m], ended=S._cest())
+    rec["valid"] = "error" not in rec and not R.arm.structural_fail and not R.arm.on_failed_ops
+    return rec
+
+
 def run_spsa2(plan, spec):
     task, o, ev = plan["task"], plan["spsa2"], plan["evaluation"]
-    budget, shots = plan["s2r2"]["budget_usd"], plan["s2r2"]["shots"]
+    base = plan["s2rg"] if "s2rg" in plan else plan["s2r2"]
+    budget, shots = base["budget_usd"], base["shots"]
     R = Runner(plan, spec)
     rec = dict(kind="spsa2", arm=spec, seed=o["seed"], plan=plan["name"], started=S._cest(), spsa2=o,
                qpu_cost=R.cost, version=R.arm.version(), standin=R.standin.params, engine=R.eng.xp.__name__,
@@ -266,9 +339,9 @@ def run_spsa2(plan, spec):
 
 
 def main(argv):
-    """python -m toqb.s2r2 <s2r2|spsa2> PLAN.json OUT.json SPEC"""
+    """python -m toqb.s2r2 <s2r2|s2rg|spsa2> PLAN.json OUT.json SPEC"""
     import sys
-    if len(argv) != 4 or argv[0] not in ("s2r2", "spsa2"):
+    if len(argv) != 4 or argv[0] not in ("s2r2", "s2rg", "spsa2"):
         print(main.__doc__)
         return 1
     kind, plan_file, out, spec = argv
@@ -276,7 +349,7 @@ def main(argv):
         print(f"{out} exists: a run never overwrites another", file=sys.stderr)
         return 2
     plan = json.load(open(plan_file, encoding="utf-8"))
-    rec = (run_s2r2 if kind == "s2r2" else run_spsa2)(plan, spec)
+    rec = dict(s2r2=run_s2r2, s2rg=run_s2rg, spsa2=run_spsa2)[kind](plan, spec)
     with open(out + ".tmp", "w", encoding="utf-8") as f:
         json.dump(rec, f)
     os.replace(out + ".tmp", out)
