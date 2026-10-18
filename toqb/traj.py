@@ -15,7 +15,8 @@ with exactly Aer's distribution (an unbiased sampler of the same channel), not A
   operation on that qubit; a gate's error absorbs the gate (each Kraus operator K becomes K U). A Kraus set is reduced
   to its minimal rank (at most 4 on one qubit, 16 on two). A circuit becomes one Kraus draw per noisy gate.
 - **Batched, on numpy or cupy.** All trajectories of a circuit, or of several circuits with the same structure, are
-  evolved together as one array (`xp`: numpy, or cupy on a GPU when TOQB_XP=cupy). Random numbers come from numpy's
+  evolved together as one array (`xp`: numpy, or cupy on a GPU when TOQB_XP=cupy). TOQB_TRAJ_DTYPE: complex128 by
+  default; complex64 halves memory and time on a GPU (check_traj passes with either). Random numbers come from numpy's
   generator with the given seed, so a run is reproducible on either backend up to floating-point rounding.
 
 Two outputs per circuit:
@@ -65,15 +66,41 @@ class Program:
         return (self.n, tuple((s[0], s[1], len(s[2]) if s[0] == "k" else 0) for s in self.steps), tuple(self.meas))
 
 
+_KRAUS = {}  # (id of the noise model, key) -> heaviest-first Kraus operators; a model is kept per active set by its owner
+_SX = np.array([[1 + 1j, 1 - 1j], [1 - 1j, 1 + 1j]]) / 2
+_X = np.array([[0, 1], [1, 0]], dtype=complex)
+_CZ = np.diag([1, 1, 1, -1]).astype(complex)
+
+
+def _gate(op, k):
+    """A gate's big-endian matrix, in closed form for the device's gates."""
+    name = op.name
+    if name == "rz":
+        t = float(op.params[0])
+        return np.diag([np.exp(-0.5j * t), np.exp(0.5j * t)])
+    if name == "sx":
+        return _SX
+    if name == "x":
+        return _X
+    if name == "cz":
+        return _CZ
+    if name == "rzz":
+        t = float(op.params[0])
+        return np.diag(np.exp(-0.5j * t * np.array([1, -1, -1, 1])))
+    from qiskit.quantum_info import Operator
+    return _be(Operator(op).data, k)
+
+
 def program_from_aer(r, nm):
     """The Program of the circuit `r` as Aer runs it under the NoiseModel `nm`."""
-    from qiskit.quantum_info import Operator
     n = r.num_qubits
     pend = {}  # qubit -> pending big-endian 2x2 unitary
     steps = []
     meas = []
     local = nm._local_quantum_errors
     ro = nm._local_readout_errors
+    last_delay = {}
+    tag = id(nm)
 
     def take(qs):
         """The pending unitaries of qs as one operator on qs (identity where none), and clear them."""
@@ -82,11 +109,20 @@ def program_from_aer(r, nm):
             U = np.kron(U, pend.pop(q, np.eye(2, dtype=complex)))
         return U
 
+    def kraus(key, make):
+        hit = _KRAUS.get((tag, key))
+        if hit is None:
+            hit = _KRAUS[(tag, key)] = make()
+        return hit
+
     for ins in r.data:
         op = ins.operation
         name = op.name
         qs = tuple(r.find_bit(q).index for q in ins.qubits)
-        if name in ("barrier", "delay"):
+        if name == "barrier":
+            continue
+        if name == "delay":
+            last_delay[qs[0]] = (float(op.params[0]), op.unit)
             continue
         if name == "measure":
             q, c = qs[0], r.find_bit(ins.clbits[0]).index
@@ -97,29 +133,25 @@ def program_from_aer(r, nm):
             meas.append((q, c, float(p[0][1]), float(p[1][0])))
             continue
         k = len(qs)
-        err = local.get(name, {}).get(qs)
-        try:
-            U = _be(Operator(op).data, k)
-            is_unitary = True
-        except Exception:  # noqa: BLE001 - a channel instruction (relaxation on a delay)
-            is_unitary = False
-        if is_unitary and err is None:
-            if k == 1:
-                q = qs[0]
-                pend[q] = U @ pend.get(q, np.eye(2, dtype=complex))
-            else:
-                steps.append(("u", qs, U @ take(qs)))
-            continue
-        P = take(qs)
-        if is_unitary:
-            G = U @ P
-            Ks = [K @ G for K in _kraus_min(err, k)]
+        if name == "quantum_channel":
+            d = last_delay.pop(qs[0], None) if k == 1 else None
+            key = ("relax", qs, d) if d is not None else None
+            Ks0 = kraus(key, lambda: _kraus_min(op._quantum_error, k)) if key else _kraus_min(op._quantum_error, k)
+            P = take(qs)
+            Ks = [K @ P for K in Ks0]
         else:
-            Ks = [K @ P for K in _kraus_min(op, k)]
-        if len(Ks) == 1:
-            steps.append(("u", qs, Ks[0]))
-        else:
-            steps.append(("k", qs, Ks))
+            err = local.get(name, {}).get(qs)
+            U = _gate(op, k)
+            if err is None:
+                if k == 1:
+                    q = qs[0]
+                    pend[q] = U @ pend.get(q, np.eye(2, dtype=complex))
+                else:
+                    steps.append(("u", qs, U @ take(qs)))
+                continue
+            G = U @ take(qs)
+            Ks = [K @ G for K in kraus(("err", name, qs), lambda: _kraus_min(err, k))]
+        steps.append(("u", qs, Ks[0]) if len(Ks) == 1 else ("k", qs, Ks))
     for q in sorted(pend):
         steps.append(("u", (q,), pend[q]))
     return Program(n, steps, meas, r.num_clbits)
@@ -128,8 +160,9 @@ def program_from_aer(r, nm):
 class Engine:
     """Evolves Programs as batches of trajectories on `xp` (numpy or cupy)."""
 
-    def __init__(self, xp=None):
+    def __init__(self, xp=None, dtype=None):
         self.xp = xp or get_xp()
+        self.dtype = getattr(self.xp, dtype or os.environ.get("TOQB_TRAJ_DTYPE", "complex128"))
 
     def _apply(self, psi, n, qs, U):
         """psi: (B, 2, ..., 2); U: (2^k, 2^k) or (B, 2^k, 2^k) on qubits qs."""
@@ -152,21 +185,22 @@ class Engine:
         n = p0.n
         P = len(programs)
         B = P * T
-        psi = xp.zeros((B,) + (2,) * n, dtype=xp.complex128)
+        psi = xp.zeros((B,) + (2,) * n, dtype=self.dtype)
         psi[(slice(None),) + (0,) * n] = 1.0
         for j, st in enumerate(p0.steps):
             kind, qs = st[0], st[1]
             if kind == "u":
                 if P == 1:
-                    U = xp.asarray(st[2])
+                    U = xp.asarray(st[2], dtype=self.dtype)
                 else:
-                    U = xp.asarray(np.repeat(np.stack([p.steps[j][2] for p in programs]), T, axis=0))
+                    U = xp.asarray(np.repeat(np.stack([p.steps[j][2] for p in programs]), T, axis=0), dtype=self.dtype)
                 psi = self._apply(psi, n, qs, U)
                 continue
             r = len(st[2])
             u = xp.asarray(rng.random(B))
-            Ks = [xp.asarray(st[2][i]) if P == 1 else
-                  xp.asarray(np.repeat(np.stack([p.steps[j][2][i] for p in programs]), T, axis=0)) for i in range(r)]
+            Ks = [xp.asarray(st[2][i], dtype=self.dtype) if P == 1 else
+                  xp.asarray(np.repeat(np.stack([p.steps[j][2][i] for p in programs]), T, axis=0), dtype=self.dtype)
+                  for i in range(r)]
             # the Kraus operators are in decreasing weight: most trajectories take the first; the others are carried
             # to the next operator only as a subset (rem)
             acc = xp.zeros(B)
