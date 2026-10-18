@@ -50,9 +50,24 @@ def main(argv):
             t0 = time.perf_counter()
             cnt = eng.counts(sp[:1], 200, seed=4) + eng.counts(sp[1:2], 200, seed=5)
             td = time.perf_counter() - t0
+            # the skeleton path S2R's second design uses: one structure, angles per circuit
+            r0, _a, nm0, _rp = sim.noisy_circuit(cs[0])
+            sk = TJ.skeleton(cs[0], r0, nm0)
+            A = np.stack([sk.angles(c) for c in cs])
+            t0 = time.perf_counter()
+            eng.z_skeleton(sk, A, 256, seed=6)
+            if hasattr(eng.xp, "cuda"):
+                eng.xp.cuda.Stream.null.synchronize()
+            tk = time.perf_counter() - t0
+            rs0, nms0 = st.prepared(cs[0])
+            ssk = TJ.skeleton(cs[0], rs0, nms0)
+            t0 = time.perf_counter()
+            eng.z_shots_skeleton(ssk, np.stack([ssk.angles(c) for c in cs[:2]]), 200, seed=7)
+            tks = time.perf_counter() - t0
             print(f"n={n} L={L} {spec:26s} act {progs[0].n} dur {dur * 1e6:.1f} us q2 {q2} steps "
                   f"{len(progs[0].steps)} same-structure {same}: compile {tc:.1f} s, programs {tp:.1f} s, "
-                  f"sim 50x256 {ts:.2f} s, stand-in 2x200 {td:.2f} s", flush=True)
+                  f"sim 50x256 {ts:.2f} s, stand-in 2x200 {td:.2f} s; skeleton: sim 50x256 {tk:.2f} s, stand-in 2x200 "
+                  f"{tks:.2f} s", flush=True)
     return 0
 
 

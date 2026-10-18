@@ -157,6 +157,121 @@ def program_from_aer(r, nm):
     return Program(n, steps, meas, r.num_clbits)
 
 
+class Skeleton:
+    """A circuit structure with its rz angles as slots (`skeleton`): steps ("u", qs, U), ("k", qs, [K...]) shared by
+    every circuit of the structure, and ("ph", (q,), slot): rz(angle[slot]) on q, the angle per circuit. Measurements
+    as Program's."""
+
+    def __init__(self, n, steps, meas, num_clbits, slot_keys, offset, act):
+        self.n, self.steps, self.meas, self.num_clbits = n, steps, meas, num_clbits
+        self.slot_keys, self.offset, self.act = slot_keys, np.asarray(offset), act
+        self.index = {k: i for i, k in enumerate(slot_keys)}
+
+    def angles(self, c):
+        """The slot angles of a compiled circuit `c` of this structure (sum of its rz on a wire since the wire's
+        previous sx or x, before each sx or x), plus the structure's fixed offsets (crosstalk)."""
+        pos = {q: k for k, q in enumerate(self.act)}
+        bit = {b: i for i, b in enumerate(c.qubits)}
+        acc = {}
+        cnt = {}
+        out = np.empty(len(self.slot_keys))
+        for ins in c.data:
+            name = ins.operation.name
+            if name == "rz":
+                w = pos[bit[ins.qubits[0]]]
+                acc[w] = acc.get(w, 0.0) + float(ins.operation.params[0])
+            elif name in ("sx", "x"):
+                w = pos[bit[ins.qubits[0]]]
+                k = cnt.get(w, 0)
+                cnt[w] = k + 1
+                out[self.index[(w, k)]] = acc.pop(w, 0.0)
+        return out + self.offset
+
+
+def active_qubits(c):
+    return tuple(sorted({c.find_bit(q).index for i in c.data if i.operation.name not in ("delay", "barrier")
+                         for q in i.qubits}))
+
+
+def skeleton(c, r, nm):
+    """The Skeleton of compiled circuit `c`'s structure, from `r`, the circuit Aer runs for it under `nm` (scheduled,
+    compacted to `c`'s active qubits, relaxation and any crosstalk added). Exact because every operation an rz is moved
+    across commutes with it: cz and rzz are diagonal, depolarizing errors commute with every unitary, thermal
+    relaxation with every rotation about Z; so the rz of a wire are gathered just before its next sx or x (the only
+    non-diagonal gates of these circuits; an rz after the wire's last one, before a Z measurement, is dropped)."""
+    act = active_qubits(c)
+    tag = id(nm)
+    local = nm._local_quantum_errors
+    ro = nm._local_readout_errors
+    steps, meas, keys, offset = [], [], [], []
+    acc, cnt, last_delay = {}, {}, {}
+    pos_c = {q: k for k, q in enumerate(act)}
+    # the representative's own slot sums, to find the offsets the Aer circuit adds (crosstalk rz)
+    base = {}
+    bit = {b: i for i, b in enumerate(c.qubits)}
+    a_c, n_c = {}, {}
+    for ins in c.data:
+        name = ins.operation.name
+        if name == "rz":
+            w = pos_c[bit[ins.qubits[0]]]
+            a_c[w] = a_c.get(w, 0.0) + float(ins.operation.params[0])
+        elif name in ("sx", "x"):
+            w = pos_c[bit[ins.qubits[0]]]
+            k = n_c.get(w, 0)
+            n_c[w] = k + 1
+            base[(w, k)] = a_c.pop(w, 0.0)
+    for ins in r.data:
+        op = ins.operation
+        name = op.name
+        qs = tuple(r.find_bit(q).index for q in ins.qubits)
+        k = len(qs)
+        if name == "barrier":
+            continue
+        if name == "delay":
+            last_delay[qs[0]] = (float(op.params[0]), op.unit)
+            continue
+        if name == "rz":
+            acc[qs[0]] = acc.get(qs[0], 0.0) + float(op.params[0])
+            continue
+        if name == "measure":
+            q, cb = qs[0], r.find_bit(ins.clbits[0]).index
+            e = ro.get((q,))
+            p = np.asarray(e.probabilities) if e is not None else np.eye(2)
+            meas.append((q, cb, float(p[0][1]), float(p[1][0])))
+            continue
+        if name == "quantum_channel":
+            d = last_delay.pop(qs[0], None) if k == 1 else None
+            key = ("relax", qs, d)
+            hit = _KRAUS.get((tag, key)) if d is not None else None
+            if hit is None:
+                hit = _kraus_min(op._quantum_error, k)
+                if d is not None:
+                    _KRAUS[(tag, key)] = hit
+            steps.append(("k", qs, hit) if len(hit) > 1 else ("u", qs, hit[0]))
+            continue
+        U = _gate(op, k)
+        if name in ("sx", "x"):
+            w = qs[0]
+            kk = cnt.get(w, 0)
+            cnt[w] = kk + 1
+            keys.append((w, kk))
+            offset.append(acc.pop(w, 0.0) - base[(w, kk)])
+            steps.append(("ph", (w,), len(keys) - 1))
+        elif not np.allclose(U, np.diag(np.diag(U))):
+            raise ValueError(f"skeleton: non-diagonal gate {name} other than sx and x")
+        err = local.get(name, {}).get(qs)
+        if err is None:
+            steps.append(("u", qs, U))
+            continue
+        Ks0 = _KRAUS.get((tag, ("err", name, qs)))
+        if Ks0 is None:
+            Ks0 = _KRAUS[(tag, ("err", name, qs))] = _kraus_min(err, k)
+        Ks = [K @ U for K in Ks0]
+        steps.append(("k", qs, Ks) if len(Ks) > 1 else ("u", qs, Ks[0]))
+    return Skeleton(r.num_qubits, steps, meas, r.num_clbits, keys, offset, act)
+
+
+
 class Engine:
     """Evolves Programs as batches of trajectories on `xp` (numpy or cupy)."""
 
@@ -221,6 +336,90 @@ class Engine:
                 rem = rem[keep]
                 sub = sub[keep]
         return psi
+
+    def evolve_skeleton(self, sk, A, T, rng):
+        """Final states of T trajectories of each circuit of skeleton `sk` (A: angles, circuits x slots)."""
+        xp = self.xp
+        n = sk.n
+        P = A.shape[0]
+        B = P * T
+        psi = xp.zeros((B,) + (2,) * n, dtype=self.dtype)
+        psi[(slice(None),) + (0,) * n] = 1.0
+        rdt = xp.float32 if self.dtype == xp.complex64 else xp.float64
+        Ad = xp.asarray(np.repeat(A, T, axis=0), dtype=rdt)
+        cache = {}
+        for st in sk.steps:
+            kind, qs = st[0], st[1]
+            if kind == "ph":
+                q = qs[0]
+                a = Ad[:, st[2]]
+                f = xp.stack([xp.exp(-0.5j * a), xp.exp(0.5j * a)], axis=1).astype(self.dtype)
+                shape = [B] + [1] * n
+                shape[1 + q] = 2
+                psi = psi * f.reshape(shape)
+                continue
+            if kind == "u":
+                key = id(st[2])
+                U = cache.get(key)
+                if U is None:
+                    U = cache[key] = xp.asarray(st[2], dtype=self.dtype)
+                psi = self._apply(psi, n, qs, U)
+                continue
+            r = len(st[2])
+            u = xp.asarray(rng.random(B))
+            Ks = []
+            for K in st[2]:
+                key = id(K)
+                if key not in cache:
+                    cache[key] = xp.asarray(K, dtype=self.dtype)
+                Ks.append(cache[key])
+            acc = xp.zeros(B)
+            rem = xp.arange(B)
+            sub = psi
+            for i in range(r):
+                phi = self._apply(sub, n, qs, Ks[i])
+                w = (xp.abs(phi.reshape(phi.shape[0], -1)) ** 2).sum(axis=1)
+                acc[rem] += w
+                pick = (acc[rem] >= u[rem]) if i < r - 1 else xp.ones(rem.shape[0], dtype=bool)
+                if bool(pick.any()):
+                    norm = xp.sqrt(xp.maximum(w[pick], 1e-300)).reshape((-1,) + (1,) * n)
+                    psi[rem[pick]] = phi[pick] / norm
+                keep = ~pick
+                if not bool(keep.any()):
+                    break
+                rem = rem[keep]
+                sub = sub[keep]
+        return psi
+
+    def _z_of(self, psi, n, meas, P, T):
+        xp = self.xp
+        q, _, p01, p10 = next(m for m in meas if m[1] == 0)
+        prob = xp.abs(psi) ** 2
+        p1 = xp.moveaxis(prob, 1 + q, -1).reshape(P * T, -1, 2).sum(axis=1)[:, 1]
+        z = (1 - 2 * p1).reshape(P, T).mean(axis=1)
+        z = (1 - p01 - p10) * z + (p10 - p01)
+        return np.asarray(z.get() if hasattr(z, "get") else z, dtype=float)
+
+    def z_skeleton(self, sk, A, T, seed):
+        """Per circuit (row of A), the mean over T trajectories of <Z> on clbit 0's qubit, readout included."""
+        rng = np.random.default_rng(seed)
+        psi = self.evolve_skeleton(sk, A, T, rng)
+        return self._z_of(psi, sk.n, sk.meas, A.shape[0], T)
+
+    def z_shots_skeleton(self, sk, A, shots, seed):
+        """Per circuit, <Z> on clbit 0 from `shots` shots (one trajectory each, outcome and readout drawn)."""
+        xp = self.xp
+        rng = np.random.default_rng(seed)
+        psi = self.evolve_skeleton(sk, A, shots, rng)
+        P = A.shape[0]
+        q, _, p01, p10 = next(m for m in sk.meas if m[1] == 0)
+        prob = xp.abs(psi) ** 2
+        p1 = xp.moveaxis(prob, 1 + q, -1).reshape(P * shots, -1, 2).sum(axis=1)[:, 1]
+        p1 = np.asarray(p1.get() if hasattr(p1, "get") else p1, dtype=float)
+        v = rng.random(P * shots) < p1
+        flip = rng.random(P * shots)
+        v = np.where(v, flip >= p10, flip < p01)
+        return (1 - 2 * v.reshape(P, shots).mean(axis=1))
 
     def z_traj(self, programs, T, seed):
         """Per program, the mean over T trajectories of <Z> on clbit 0's qubit, readout included (numpy array)."""

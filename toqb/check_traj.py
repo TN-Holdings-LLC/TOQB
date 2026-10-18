@@ -64,7 +64,19 @@ def main(argv):
             cnt = eng.counts([sp], T, seed=31 + j)[0]
             p1_shots = sum(v for k, v in cnt.items() if k[-1] == "1") / T
             d3 = abs(p1_shots - p1_exact) / max(np.sqrt(p1_exact * (1 - p1_exact) / T), 1e-9)
-            worst = max(worst, d1, d2, d3)
+            # the skeleton (rz angles as slots, the form S2R batches): another circuit of the same structure too
+            c2 = arm.compile(TL.model_circuit(TL.angle_list(th + 0.3, x, n, L, 1.0), n, L))
+            c2._toqb_scan = sim._scan(c2)
+            z2_exact = 1 - 2 * sim.p1_fast([c2])[0]
+            sk = TJ.skeleton(c, r, nm)
+            zk = eng.z_skeleton(sk, np.stack([sk.angles(c), sk.angles(c2)]), T, seed=41 + j)
+            d4 = max(abs(zk[0] - z_exact), abs(zk[1] - z2_exact)) / se
+            ssk = TJ.skeleton(c, rs, nms)
+            zz = eng.z_shots_skeleton(ssk, ssk.angles(c)[None, :], T, seed=51 + j)[0]
+            d5 = abs((1 - zz) / 2 - p1_exact) / max(np.sqrt(p1_exact * (1 - p1_exact) / T), 1e-9)
+            print(f"    skeleton: sim z {zk[0]:+.4f} / {zk[1]:+.4f} against {z_exact:+.4f} / {z2_exact:+.4f} ({d4:.1f} se); "
+                  f"stand-in shots p1 {(1 - zz) / 2:.4f} ({d5:.1f} se)", flush=True)
+            worst = max(worst, d1, d2, d3, d4, d5)
             print(f"{spec:26s} #{j} n_act {r.num_qubits}: sim z {z_exact:+.4f} traj {zt:+.4f} ({d1:.1f} se, "
                   f"{t_sim:.2f} s); stand-in p1 {p1_exact:.4f} traj {(1 - zs) / 2:.4f} ({d2:.1f} se) shots "
                   f"{p1_shots:.4f} ({d3:.1f} se)", flush=True)
