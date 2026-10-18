@@ -271,7 +271,7 @@ class Engine:
         return self.xp.asarray(dd, dtype=self.dtype).reshape(1, 1, 2, 1, 2, 1)
 
     # -- a batch
-    def run(self, pl, A, T, seed):
+    def run(self, pl, A, T, seed, crn=False):
         """Final states of T trajectories of each circuit (rows of A, slot angles) of Plan `pl`: (len(A) * T, 2^n).
         Every random number and every per-trajectory matrix is drawn and built on the host first, in one pass over
         the steps, and sent to the device at once; the device then runs one or two kernels per step."""
@@ -282,6 +282,18 @@ class Engine:
         rng = np.random.default_rng(seed)
         circ = np.repeat(np.arange(P), T)
         zmul = np.array(_ZMUL, dtype=np.int8)
+        if crn:  # common random numbers: trajectory t of every circuit sees the same draws
+            def ch(k, p):
+                return np.tile(rng.choice(k, size=T, p=p), P)
+
+            def rr():
+                return np.tile(rng.random(T), P)
+        else:
+            def ch(k, p):
+                return rng.choice(k, size=B, p=p)
+
+            def rr():
+                return rng.random(B)
         mats, paulis, unif, ops = [], [], [], []
         for st in pl.steps:
             kind = st[0]
@@ -292,25 +304,25 @@ class Engine:
                 rz[:, 0, 0] = np.exp(-0.5j * a)
                 rz[:, 1, 1] = np.exp(0.5j * a)
                 GR = G[None, :, :] @ rz
-                pk = (rng.choice(4, size=B, p=[1 - 3 * dep / 4, dep / 4, dep / 4, dep / 4]) if dep > 0
+                pk = (ch(4, p=[1 - 3 * dep / 4, dep / 4, dep / 4, dep / 4]) if dep > 0
                       else np.zeros(B, dtype=int)).astype(np.int8)
                 if pz > 0:
-                    pk = np.where(rng.random(B) < pz, zmul[pk], pk)
+                    pk = np.where(rr() < pz, zmul[pk], pk)
                 ops.append(("m", q, len(mats)))
                 mats.append(_PAULI[pk] @ GR[circ])
                 if g > 0:
                     ops.append(("ad", q, g, len(unif)))
-                    unif.append(rng.random(B))
+                    unif.append(rr())
             elif kind == "cz":
                 _, a, b, dep, ga, pza, gb, pzb = st
                 ops.append(("d", a, b, "cz"))
-                k = (rng.choice(16, size=B, p=[1 - 15 * dep / 16] + [dep / 16] * 15) if dep > 0
+                k = (ch(16, p=[1 - 15 * dep / 16] + [dep / 16] * 15) if dep > 0
                      else np.zeros(B, dtype=int))
                 pa, pb = (k // 4).astype(np.int8), (k % 4).astype(np.int8)
                 if pza > 0:
-                    pa = np.where(rng.random(B) < pza, zmul[pa], pa)
+                    pa = np.where(rr() < pza, zmul[pa], pa)
                 if pzb > 0:
-                    pb = np.where(rng.random(B) < pzb, zmul[pb], pb)
+                    pb = np.where(rr() < pzb, zmul[pb], pb)
                 ops.append(("p", a, len(paulis)))
                 paulis.append(pa)
                 ops.append(("p", b, len(paulis)))
@@ -318,7 +330,7 @@ class Engine:
                 for qq, gg in ((a, ga), (b, gb)):
                     if gg > 0:
                         ops.append(("ad", qq, gg, len(unif)))
-                        unif.append(rng.random(B))
+                        unif.append(rr())
             elif kind == "zz":
                 _, a, b, th = st
                 e0, e1 = np.exp(-0.5j * th), np.exp(0.5j * th)
@@ -327,10 +339,10 @@ class Engine:
                 _, q, g, pz = st
                 if pz > 0:
                     ops.append(("p", q, len(paulis)))
-                    paulis.append(np.where(rng.random(B) < pz, 3, 0).astype(np.int8))
+                    paulis.append(np.where(rr() < pz, 3, 0).astype(np.int8))
                 if g > 0:
                     ops.append(("ad", q, g, len(unif)))
-                    unif.append(rng.random(B))
+                    unif.append(rr())
         Md = xp.asarray(np.stack(mats) if mats else np.zeros((0, B, 2, 2)), dtype=self.dtype)
         Pd = xp.asarray(np.stack(paulis) if paulis else np.zeros((0, B)), dtype=xp.int8)
         Ud = xp.asarray(np.stack(unif) if unif else np.zeros((0, B)), dtype=self.rdtype)
@@ -364,7 +376,7 @@ class Engine:
             return max(min(P, amps // T), 1), T
         return 1, amps
 
-    def _p1_batches(self, pl, A, T, seed):
+    def _p1_batches(self, pl, A, T, seed, crn=False):
         """P(clbit 0's qubit = 1) of every trajectory, (len(A), T) numpy, run in chunks (each its own seed)."""
         q = next(m for m in pl.meas if m[1] == 0)[0]
         P = A.shape[0]
@@ -374,7 +386,7 @@ class Engine:
         for i in range(0, P, cp):
             for j in range(0, T, ct):
                 t = min(ct, T - j)
-                psi, _ = self.run(pl, A[i:i + cp], t, seed * 1009 + k)
+                psi, _ = self.run(pl, A[i:i + cp], t, seed * 1009 + (j if crn else k), crn=crn)
                 k += 1
                 p1 = self._p1(psi, pl.n, q)
                 p1 = np.asarray(p1.get() if hasattr(p1, "get") else p1, dtype=float)
@@ -382,10 +394,10 @@ class Engine:
                 del psi
         return out
 
-    def z_mean(self, pl, A, T, seed):
+    def z_mean(self, pl, A, T, seed, crn=False):
         """Per circuit, the mean over T trajectories of <Z> on clbit 0's qubit, readout included."""
         _, _, p01, p10 = next(m for m in pl.meas if m[1] == 0)
-        z = (1 - 2 * self._p1_batches(pl, A, T, seed)).mean(axis=1)
+        z = (1 - 2 * self._p1_batches(pl, A, T, seed, crn)).mean(axis=1)
         return (1 - p01 - p10) * z + (p10 - p01)
 
     def z_shots(self, pl, A, shots, seed):
