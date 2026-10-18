@@ -4,7 +4,7 @@ Stage 0 (`toqb.s2r`, Addendum 523 of PSF-Zero) sent 128 circuits per loop to the
 loops and the compilers could not differ in how much they learned for the money. Here a loop sends **two** circuits:
 
 **One loop** (`run_s2r2`): the simulator (the user's model of the device: TOQB's noise model on FakeFez, run as
-trajectories by `toqb.traj`) evaluates N candidates theta_i = m + sigma eps_i on a batch of b training points
+trajectories by `toqb.traj2`) evaluates N candidates theta_i = m + sigma eps_i on a batch of b training points
 (T trajectories per circuit, not billed) and picks the best; the stand-in runs the current mean m and that candidate
 on one training point with `shots` shots (2 circuits, billed at IBM's price); the candidate replaces m if its stand-in
 loss is lower; sigma follows the one-fifth rule (x exp(1/3) on success, x exp(-1/12) otherwise, kept in
@@ -36,7 +36,7 @@ import numpy as np
 
 from toqb import s2r as S
 from toqb import task_loop as TL
-from toqb import traj as TJ
+from toqb import traj2 as T2
 
 
 def teacher_data2(task):
@@ -81,7 +81,7 @@ class Runner:
         self.arm = S.Arm(spec, self.device)
         self.sim = FastNoisyDevice(self.device.target)
         self.standin = S.StandIn(**plan["standin"])
-        self.eng = TJ.Engine()
+        self.eng = T2.Engine()
         self.sk = {"sim": {}, "dev": {}}
         self.n_struct = 0
         self.t = dict(compile=0.0, sim=0.0, dev=0.0, eval=0.0)
@@ -98,10 +98,12 @@ class Runner:
         hit = self.sk[model].get(key)
         if hit is None:
             if model == "sim":
-                r, _act, nm, _rp = self.sim.noisy_circuit(c)
+                r, _act, _nm, _rp = self.sim.noisy_circuit(c)
+                hit = T2.plan(c, r, self.device.target)
             else:
-                r, nm = self.standin.prepared(c)
-            hit = self.sk[model][key] = TJ.skeleton(c, r, nm)
+                r, _nm = self.standin.prepared(c)
+                hit = T2.plan(c, r, self.standin.target, over=self.standin.params["over"])
+            self.sk[model][key] = hit
             self.arm.duration(c, self.sim._scan(c)[0])
             self.n_struct += 1
         return key, hit
@@ -115,7 +117,7 @@ class Runner:
         out = np.empty(len(circuits))
         for g, (key, (sk, idx)) in enumerate(sorted(groups.items(), key=lambda kv: kv[1][1][0])):
             A = np.stack([sk.angles(circuits[i]) for i in idx])
-            f = self.eng.z_shots_skeleton if shots else self.eng.z_skeleton
+            f = self.eng.z_shots if shots else self.eng.z_mean
             out[idx] = f(sk, A, T, seed + 7919 * g)
         return out
 
