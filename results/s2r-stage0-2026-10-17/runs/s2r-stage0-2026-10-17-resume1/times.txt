@@ -1,0 +1,6 @@
+toqb 133be56 S2R stage 0: fix run.sh (the code-list check named a wrong file after the hashes were filled in); the pre-registration, plans and code are unchanged
+psf-zero 9cf31744 Addendum 515: prototype c67 (item 104) -- ECR devices (IBM Eagle) by a CZ view; exploratory: exact and native on 76 of 76 calls on four Eagle fakes, 0.31 x Qiskit level 3's duration (geometric mean), at most 1.07 x; CZ devices unchanged bit for bit; TOQB S2R stage 0 pre-registered
+qiskit 2.5.2 aer 0.17.2
+resume of <pod>/kept/s2r-stage0-2026-10-17: 50 of 80 runs have no record there; PAR=32, nice 19, MINMB=4000
+start 2026-10-18 01:22:09 CEST
+end 2026-10-18 03:43:10 CEST
