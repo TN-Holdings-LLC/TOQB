@@ -1,0 +1,98 @@
+s2rg L8_s101_lr0.2_a1.0 psfai:template done 03:19:18 {"kind": "s2rg", "arm": "psfai:template", "seed": 101, "valid": true, "spent_usd": 99.86119679999985, "auc_ce": 0.5790553867983084, "loops": 488, "iterations": null, "wall_s": 559.5227838710416, "erro
+s2rg L8_s101_lr0.1_a0.5 psfai:template done 03:19:22 {"kind": "s2rg", "arm": "psfai:template", "seed": 101, "valid": true, "spent_usd": 99.86119679999985, "auc_ce": 0.6038792566285445, "loops": 488, "iterations": null, "wall_s": 563.6940607689321, "erro
+s2rg L8_s101_lr0.05_a0.2 psfai:template done 03:19:40 {"kind": "s2rg", "arm": "psfai:template", "seed": 101, "valid": true, "spent_usd": 99.86119679999985, "auc_ce": 0.6318024649312992, "loops": 488, "iterations": null, "wall_s": 580.9654332490172, "erro
+s2rg L8_s102_lr0.05_a0.2 psfai:template done 03:29:03 {"kind": "s2rg", "arm": "psfai:template", "seed": 102, "valid": true, "spent_usd": 99.86119679999985, "auc_ce": 0.5942897413006638, "loops": 488, "iterations": null, "wall_s": 578.7857250289526, "erro
+s2rg L8_s102_lr0.1_a0.5 psfai:template done 03:30:09 {"kind": "s2rg", "arm": "psfai:template", "seed": 102, "valid": true, "spent_usd": 99.86119679999985, "auc_ce": 0.5733402870282491, "loops": 488, "iterations": null, "wall_s": 623.4305579669308, "erro
+s2rg L8_s101_lr0.05_a0.2 qiskit:2:target:template done 03:38:26 {"kind": "s2rg", "arm": "qiskit:2:target:template", "seed": 101, "valid": true, "spent_usd": 99.86769407999954, "auc_ce": 0.6455056070318628, "loops": 476, "iterations": null, "wall_s": 1707.457319056
+s2rg L8_s101_lr0.2_a1.0 qiskit:2:target:template done 03:38:29 {"kind": "s2rg", "arm": "qiskit:2:target:template", "seed": 101, "valid": true, "spent_usd": 99.86769407999954, "auc_ce": 0.6127522880271917, "loops": 476, "iterations": null, "wall_s": 1710.217935535
+s2rg L8_s101_lr0.1_a0.5 qiskit:2:target:template done 03:38:56 {"kind": "s2rg", "arm": "qiskit:2:target:template", "seed": 101, "valid": true, "spent_usd": 99.86769407999954, "auc_ce": 0.6281376639526496, "loops": 476, "iterations": null, "wall_s": 1737.060181958
+s2rg L8_s102_lr0.2_a1.0 psfai:template done 03:40:35 {"kind": "s2rg", "arm": "psfai:template", "seed": 102, "valid": true, "spent_usd": 99.86119679999985, "auc_ce": 0.5618534858190857, "loops": 488, "iterations": null, "wall_s": 619.9952655709349, "erro
+spsa2 L8_s101_lr0.05_a0.2 psfai:template done 03:40:37 {"kind": "spsa2", "arm": "psfai:template", "seed": 101, "valid": true, "spent_usd": 99.86119679999985, "auc_ce": 0.6619633684875572, "loops": null, "iterations": 488, "wall_s": 122.84242721600458, "er
+spsa2 L8_s101_lr0.1_a0.5 psfai:template done 03:42:46 {"kind": "spsa2", "arm": "psfai:template", "seed": 101, "valid": true, "spent_usd": 99.86119679999985, "auc_ce": 0.6339200549999351, "loops": null, "iterations": 488, "wall_s": 125.58357945107855, "er
+spsa2 L8_s101_lr0.2_a1.0 psfai:template done 03:44:58 {"kind": "spsa2", "arm": "psfai:template", "seed": 101, "valid": true, "spent_usd": 99.86119679999985, "auc_ce": 0.6431752282800453, "loops": null, "iterations": 488, "wall_s": 125.97379373316653, "er
+spsa2 L8_s101_lr0.05_a0.2 qiskit:2:target:template done 03:46:41 {"kind": "spsa2", "arm": "qiskit:2:target:template", "seed": 101, "valid": true, "spent_usd": 99.86769407999954, "auc_ce": 0.6607384570969931, "loops": null, "iterations": 476, "wall_s": 459.543177019
+spsa2 L8_s101_lr0.1_a0.5 qiskit:2:target:template done 03:48:32 {"kind": "spsa2", "arm": "qiskit:2:target:template", "seed": 101, "valid": true, "spent_usd": 99.86769407999954, "auc_ce": 0.6378268756172253, "loops": null, "iterations": 476, "wall_s": 468.725834136
+spsa2 L8_s102_lr0.05_a0.2 psfai:template done 03:48:59 {"kind": "spsa2", "arm": "psfai:template", "seed": 102, "valid": true, "spent_usd": 99.86119679999985, "auc_ce": 0.626610840300265, "loops": null, "iterations": 488, "wall_s": 132.0254134950228, "erro
+spsa2 L8_s102_lr0.1_a0.5 psfai:template done 03:51:19 {"kind": "spsa2", "arm": "psfai:template", "seed": 102, "valid": true, "spent_usd": 99.86119679999985, "auc_ce": 0.6251551051402867, "loops": null, "iterations": 488, "wall_s": 134.07389605790377, "er
+s2rg L8_s102_lr0.05_a0.2 qiskit:2:target:template done 03:52:39 {"kind": "s2rg", "arm": "qiskit:2:target:template", "seed": 102, "valid": true, "spent_usd": 99.86769407999954, "auc_ce": 0.6174222274946628, "loops": 476, "iterations": null, "wall_s": 1990.622925264
+spsa2 L8_s101_lr0.2_a1.0 qiskit:2:target:template done 03:53:09 {"kind": "spsa2", "arm": "qiskit:2:target:template", "seed": 101, "valid": true, "spent_usd": 99.86769407999954, "auc_ce": 0.6377676786880547, "loops": null, "iterations": 476, "wall_s": 485.434694919
+spsa2 L8_s102_lr0.2_a1.0 psfai:template done 03:54:59 {"kind": "spsa2", "arm": "psfai:template", "seed": 102, "valid": true, "spent_usd": 99.86119679999985, "auc_ce": 0.6384470062739565, "loops": null, "iterations": 488, "wall_s": 134.567722172942, "erro
+spsa2 L8_s102_lr0.05_a0.2 qiskit:2:target:template done 03:56:15 {"kind": "spsa2", "arm": "qiskit:2:target:template", "seed": 102, "valid": true, "spent_usd": 99.86769407999954, "auc_ce": 0.6356401026768137, "loops": null, "iterations": 476, "wall_s": 457.229769987
+spsa2 L8_s102_lr0.1_a0.5 qiskit:2:target:template done 03:58:57 {"kind": "spsa2", "arm": "qiskit:2:target:template", "seed": 102, "valid": true, "spent_usd": 99.86769407999954, "auc_ce": 0.6358087141483637, "loops": null, "iterations": 476, "wall_s": 452.690537330
+spsa2 L8_s102_lr0.2_a1.0 qiskit:2:target:template done 04:00:46 {"kind": "spsa2", "arm": "qiskit:2:target:template", "seed": 102, "valid": true, "spent_usd": 99.86769407999954, "auc_ce": 0.6350888760462321, "loops": null, "iterations": 476, "wall_s": 450.258524108
+s2rg L8_s102_lr0.1_a0.5 qiskit:2:target:template done 04:03:12 {"kind": "s2rg", "arm": "qiskit:2:target:template", "seed": 102, "valid": true, "spent_usd": 99.86769407999954, "auc_ce": 0.6048657890812286, "loops": 476, "iterations": null, "wall_s": 2043.544353560
+s2rg L8_s102_lr0.2_a1.0 qiskit:2:target:template done 04:09:49 {"kind": "s2rg", "arm": "qiskit:2:target:template", "seed": 102, "valid": true, "spent_usd": 99.86769407999954, "auc_ce": 0.5980014718745328, "loops": 476, "iterations": null, "wall_s": 1876.900538382
+s2rg L16_s101_lr0.05_a0.2 psfai:template done 04:13:36 {"kind": "s2rg", "arm": "psfai:template", "seed": 101, "valid": true, "spent_usd": 99.84757248000074, "auc_ce": 0.6685057648458017, "loops": 482, "iterations": null, "wall_s": 1103.6370395990089, "err
+s2rg L16_s101_lr0.1_a0.5 psfai:template done 04:17:21 {"kind": "s2rg", "arm": "psfai:template", "seed": 101, "valid": true, "spent_usd": 99.84757248000074, "auc_ce": 0.6582443634669505, "loops": 482, "iterations": null, "wall_s": 1090.6141085939016, "err
+s2rg L16_s101_lr0.2_a1.0 psfai:template done 04:23:00 {"kind": "s2rg", "arm": "psfai:template", "seed": 101, "valid": true, "spent_usd": 99.84757248000074, "auc_ce": 0.6376948820129119, "loops": 482, "iterations": null, "wall_s": 1174.4261493391823, "err
+s2rg L16_s102_lr0.05_a0.2 psfai:template done 04:33:51 {"kind": "s2rg", "arm": "psfai:template", "seed": 102, "valid": true, "spent_usd": 99.84757248000074, "auc_ce": 0.6575604010419432, "loops": 482, "iterations": null, "wall_s": 1201.3174567660317, "err
+s2rg L16_s102_lr0.1_a0.5 psfai:template done 04:42:29 {"kind": "s2rg", "arm": "psfai:template", "seed": 102, "valid": true, "spent_usd": 99.84757248000074, "auc_ce": 0.6464992780264133, "loops": 482, "iterations": null, "wall_s": 1155.542942303, "error":
+s2rg L16_s101_lr0.05_a0.2 qiskit:2:target:template done 04:54:10 {"kind": "s2rg", "arm": "qiskit:2:target:template", "seed": 101, "valid": true, "spent_usd": 99.89661312000067, "auc_ce": 0.6723521233136316, "loops": 459, "iterations": null, "wall_s": 3461.760817719
+s2rg L16_s101_lr0.1_a0.5 qiskit:2:target:template done 04:59:25 {"kind": "s2rg", "arm": "qiskit:2:target:template", "seed": 101, "valid": true, "spent_usd": 99.89661312000067, "auc_ce": 0.6649169703402523, "loops": 459, "iterations": null, "wall_s": 3506.435007954
+s2rg L16_s102_lr0.2_a1.0 psfai:template done 05:01:44 {"kind": "s2rg", "arm": "psfai:template", "seed": 102, "valid": true, "spent_usd": 99.84757248000074, "auc_ce": 0.626663795800059, "loops": 482, "iterations": null, "wall_s": 1142.083509871969, "error
+spsa2 L16_s101_lr0.05_a0.2 psfai:template done 05:03:38 {"kind": "spsa2", "arm": "psfai:template", "seed": 101, "valid": true, "spent_usd": 99.84757248000074, "auc_ce": 0.6747817474432227, "loops": null, "iterations": 482, "wall_s": 239.5354484389536, "err
+spsa2 L16_s101_lr0.1_a0.5 psfai:template done 05:07:53 {"kind": "spsa2", "arm": "psfai:template", "seed": 101, "valid": true, "spent_usd": 99.84757248000074, "auc_ce": 0.6734743607218635, "loops": null, "iterations": 482, "wall_s": 242.40321829193272, "er
+s2rg L16_s101_lr0.2_a1.0 qiskit:2:target:template done 05:12:04 {"kind": "s2rg", "arm": "qiskit:2:target:template", "seed": 101, "valid": true, "spent_usd": 99.89661312000067, "auc_ce": 0.6473863169344949, "loops": 459, "iterations": null, "wall_s": 3722.331461528
+spsa2 L16_s101_lr0.2_a1.0 psfai:template done 05:16:22 {"kind": "spsa2", "arm": "psfai:template", "seed": 101, "valid": true, "spent_usd": 99.84757248000074, "auc_ce": 0.6804554120727836, "loops": null, "iterations": 482, "wall_s": 244.03621548297815, "er
+spsa2 L16_s101_lr0.05_a0.2 qiskit:2:target:template done 05:18:05 {"kind": "spsa2", "arm": "qiskit:2:target:template", "seed": 101, "valid": true, "spent_usd": 99.89661312000067, "auc_ce": 0.676297977428798, "loops": null, "iterations": 459, "wall_s": 968.6607114998
+spsa2 L16_s102_lr0.05_a0.2 psfai:template done 05:22:24 {"kind": "spsa2", "arm": "psfai:template", "seed": 102, "valid": true, "spent_usd": 99.84757248000074, "auc_ce": 0.6702939535991587, "loops": null, "iterations": 482, "wall_s": 245.64610780286603, "er
+s2rg L16_s102_lr0.05_a0.2 qiskit:2:target:template done 05:23:58 {"kind": "s2rg", "arm": "qiskit:2:target:template", "seed": 102, "valid": true, "spent_usd": 99.89661312000067, "auc_ce": 0.6607845667759088, "loops": 459, "iterations": null, "wall_s": 3984.204668131
+spsa2 L16_s101_lr0.1_a0.5 qiskit:2:target:template done 05:24:09 {"kind": "spsa2", "arm": "qiskit:2:target:template", "seed": 101, "valid": true, "spent_usd": 99.89661312000067, "auc_ce": 0.6757381134261897, "loops": null, "iterations": 459, "wall_s": 962.348171256
+spsa2 L16_s102_lr0.1_a0.5 psfai:template done 05:28:10 {"kind": "spsa2", "arm": "psfai:template", "seed": 102, "valid": true, "spent_usd": 99.84757248000074, "auc_ce": 0.6782752932589818, "loops": null, "iterations": 482, "wall_s": 238.74558318406343, "er
+spsa2 L16_s101_lr0.2_a1.0 qiskit:2:target:template done 05:32:17 {"kind": "spsa2", "arm": "qiskit:2:target:template", "seed": 101, "valid": true, "spent_usd": 99.89661312000067, "auc_ce": 0.6831698594909484, "loops": null, "iterations": 459, "wall_s": 942.124677472
+spsa2 L16_s102_lr0.2_a1.0 psfai:template done 05:32:22 {"kind": "spsa2", "arm": "psfai:template", "seed": 102, "valid": true, "spent_usd": 99.84757248000074, "auc_ce": 0.6864249356063838, "loops": null, "iterations": 482, "wall_s": 239.1756698731333, "err
+spsa2 L16_s102_lr0.05_a0.2 qiskit:2:target:template done 05:37:46 {"kind": "spsa2", "arm": "qiskit:2:target:template", "seed": 102, "valid": true, "spent_usd": 99.89661312000067, "auc_ce": 0.6681883701105984, "loops": null, "iterations": 459, "wall_s": 908.262222021
+spsa2 L16_s102_lr0.1_a0.5 qiskit:2:target:template done 05:38:53 {"kind": "spsa2", "arm": "qiskit:2:target:template", "seed": 102, "valid": true, "spent_usd": 99.89661312000067, "auc_ce": 0.6730115614191935, "loops": null, "iterations": 459, "wall_s": 870.962054020
+s2rg L16_s102_lr0.1_a0.5 qiskit:2:target:template done 05:41:03 {"kind": "s2rg", "arm": "qiskit:2:target:template", "seed": 102, "valid": true, "spent_usd": 99.89661312000067, "auc_ce": 0.653302808397952, "loops": 459, "iterations": null, "wall_s": 4018.8337785738
+spsa2 L16_s102_lr0.2_a1.0 qiskit:2:target:template done 05:42:43 {"kind": "spsa2", "arm": "qiskit:2:target:template", "seed": 102, "valid": true, "spent_usd": 99.89661312000067, "auc_ce": 0.6811925895998595, "loops": null, "iterations": 459, "wall_s": 612.522591602
+s2rg L16_s102_lr0.2_a1.0 qiskit:2:target:template done 05:49:08 {"kind": "s2rg", "arm": "qiskit:2:target:template", "seed": 102, "valid": true, "spent_usd": 99.89661312000067, "auc_ce": 0.6397282361160459, "loops": 459, "iterations": null, "wall_s": 3284.652778854
+end 2026-10-19 05:49:08 CEST
+s2rg-L16_s101_lr0.05_a0.2-psfai_template                     valid True auc 0.6685 ce 0.6757 -> 0.6595 loops 482 wall 18.4 min
+s2rg-L16_s101_lr0.05_a0.2-qiskit_2_target_template           valid True auc 0.6724 ce 0.6776 -> 0.6636 loops 459 wall 57.7 min
+s2rg-L16_s101_lr0.1_a0.5-psfai_template                      valid True auc 0.6582 ce 0.6757 -> 0.6352 loops 482 wall 18.2 min
+s2rg-L16_s101_lr0.1_a0.5-qiskit_2_target_template            valid True auc 0.6649 ce 0.6776 -> 0.6449 loops 459 wall 58.4 min
+s2rg-L16_s101_lr0.2_a1.0-psfai_template                      valid True auc 0.6377 ce 0.6757 -> 0.6054 loops 482 wall 19.6 min
+s2rg-L16_s101_lr0.2_a1.0-qiskit_2_target_template            valid True auc 0.6474 ce 0.6776 -> 0.6156 loops 459 wall 62.0 min
+s2rg-L16_s102_lr0.05_a0.2-psfai_template                     valid True auc 0.6576 ce 0.6636 -> 0.6512 loops 482 wall 20.0 min
+s2rg-L16_s102_lr0.05_a0.2-qiskit_2_target_template           valid True auc 0.6608 ce 0.6666 -> 0.6537 loops 459 wall 66.4 min
+s2rg-L16_s102_lr0.1_a0.5-psfai_template                      valid True auc 0.6465 ce 0.6636 -> 0.6278 loops 482 wall 19.3 min
+s2rg-L16_s102_lr0.1_a0.5-qiskit_2_target_template            valid True auc 0.6533 ce 0.6666 -> 0.6370 loops 459 wall 67.0 min
+s2rg-L16_s102_lr0.2_a1.0-psfai_template                      valid True auc 0.6267 ce 0.6636 -> 0.6009 loops 482 wall 19.0 min
+s2rg-L16_s102_lr0.2_a1.0-qiskit_2_target_template            valid True auc 0.6397 ce 0.6666 -> 0.6158 loops 459 wall 54.7 min
+s2rg-L8_s101_lr0.05_a0.2-psfai_template                      valid True auc 0.6318 ce 0.6730 -> 0.5918 loops 488 wall 9.7 min
+s2rg-L8_s101_lr0.05_a0.2-qiskit_2_target_template            valid True auc 0.6455 ce 0.6747 -> 0.6196 loops 476 wall 28.5 min
+s2rg-L8_s101_lr0.1_a0.5-psfai_template                       valid True auc 0.6039 ce 0.6730 -> 0.5593 loops 488 wall 9.4 min
+s2rg-L8_s101_lr0.1_a0.5-qiskit_2_target_template             valid True auc 0.6281 ce 0.6747 -> 0.5996 loops 476 wall 29.0 min
+s2rg-L8_s101_lr0.2_a1.0-psfai_template                       valid True auc 0.5791 ce 0.6730 -> 0.5244 loops 488 wall 9.3 min
+s2rg-L8_s101_lr0.2_a1.0-qiskit_2_target_template             valid True auc 0.6128 ce 0.6747 -> 0.5794 loops 476 wall 28.5 min
+s2rg-L8_s102_lr0.05_a0.2-psfai_template                      valid True auc 0.5943 ce 0.6311 -> 0.5793 loops 488 wall 9.6 min
+s2rg-L8_s102_lr0.05_a0.2-qiskit_2_target_template            valid True auc 0.6174 ce 0.6385 -> 0.6092 loops 476 wall 33.2 min
+s2rg-L8_s102_lr0.1_a0.5-psfai_template                       valid True auc 0.5733 ce 0.6311 -> 0.5552 loops 488 wall 10.4 min
+s2rg-L8_s102_lr0.1_a0.5-qiskit_2_target_template             valid True auc 0.6049 ce 0.6385 -> 0.5986 loops 476 wall 34.1 min
+s2rg-L8_s102_lr0.2_a1.0-psfai_template                       valid True auc 0.5619 ce 0.6311 -> 0.5468 loops 488 wall 10.3 min
+s2rg-L8_s102_lr0.2_a1.0-qiskit_2_target_template             valid True auc 0.5980 ce 0.6385 -> 0.5959 loops 476 wall 31.3 min
+spsa2-L16_s101_lr0.05_a0.2-psfai_template                    valid True auc 0.6748 ce 0.6757 -> 0.6731 loops 482 wall 4.0 min
+spsa2-L16_s101_lr0.05_a0.2-qiskit_2_target_template          valid True auc 0.6763 ce 0.6776 -> 0.6715 loops 459 wall 16.1 min
+spsa2-L16_s101_lr0.1_a0.5-psfai_template                     valid True auc 0.6735 ce 0.6757 -> 0.6687 loops 482 wall 4.0 min
+spsa2-L16_s101_lr0.1_a0.5-qiskit_2_target_template           valid True auc 0.6757 ce 0.6776 -> 0.6693 loops 459 wall 16.0 min
+spsa2-L16_s101_lr0.2_a1.0-psfai_template                     valid True auc 0.6805 ce 0.6757 -> 0.6803 loops 482 wall 4.1 min
+spsa2-L16_s101_lr0.2_a1.0-qiskit_2_target_template           valid True auc 0.6832 ce 0.6776 -> 0.6807 loops 459 wall 15.7 min
+spsa2-L16_s102_lr0.05_a0.2-psfai_template                    valid True auc 0.6703 ce 0.6636 -> 0.6724 loops 482 wall 4.1 min
+spsa2-L16_s102_lr0.05_a0.2-qiskit_2_target_template          valid True auc 0.6682 ce 0.6666 -> 0.6669 loops 459 wall 15.1 min
+spsa2-L16_s102_lr0.1_a0.5-psfai_template                     valid True auc 0.6783 ce 0.6636 -> 0.6805 loops 482 wall 4.0 min
+spsa2-L16_s102_lr0.1_a0.5-qiskit_2_target_template           valid True auc 0.6730 ce 0.6666 -> 0.6716 loops 459 wall 14.5 min
+spsa2-L16_s102_lr0.2_a1.0-psfai_template                     valid True auc 0.6864 ce 0.6636 -> 0.6900 loops 482 wall 4.0 min
+spsa2-L16_s102_lr0.2_a1.0-qiskit_2_target_template           valid True auc 0.6812 ce 0.6666 -> 0.6832 loops 459 wall 10.2 min
+spsa2-L8_s101_lr0.05_a0.2-psfai_template                     valid True auc 0.6620 ce 0.6730 -> 0.6498 loops 488 wall 2.0 min
+spsa2-L8_s101_lr0.05_a0.2-qiskit_2_target_template           valid True auc 0.6607 ce 0.6747 -> 0.6563 loops 476 wall 7.7 min
+spsa2-L8_s101_lr0.1_a0.5-psfai_template                      valid True auc 0.6339 ce 0.6730 -> 0.6046 loops 488 wall 2.1 min
+spsa2-L8_s101_lr0.1_a0.5-qiskit_2_target_template            valid True auc 0.6378 ce 0.6747 -> 0.6242 loops 476 wall 7.8 min
+spsa2-L8_s101_lr0.2_a1.0-psfai_template                      valid True auc 0.6432 ce 0.6730 -> 0.6142 loops 488 wall 2.1 min
+spsa2-L8_s101_lr0.2_a1.0-qiskit_2_target_template            valid True auc 0.6378 ce 0.6747 -> 0.6395 loops 476 wall 8.1 min
+spsa2-L8_s102_lr0.05_a0.2-psfai_template                     valid True auc 0.6266 ce 0.6311 -> 0.6242 loops 488 wall 2.2 min
+spsa2-L8_s102_lr0.05_a0.2-qiskit_2_target_template           valid True auc 0.6356 ce 0.6385 -> 0.6349 loops 476 wall 7.6 min
+spsa2-L8_s102_lr0.1_a0.5-psfai_template                      valid True auc 0.6252 ce 0.6311 -> 0.6185 loops 488 wall 2.2 min
+spsa2-L8_s102_lr0.1_a0.5-qiskit_2_target_template            valid True auc 0.6358 ce 0.6385 -> 0.6295 loops 476 wall 7.5 min
+spsa2-L8_s102_lr0.2_a1.0-psfai_template                      valid True auc 0.6384 ce 0.6311 -> 0.6189 loops 488 wall 2.2 min
+spsa2-L8_s102_lr0.2_a1.0-qiskit_2_target_template            valid True auc 0.6351 ce 0.6385 -> 0.6232 loops 476 wall 7.5 min
+== DONE: <pod>/s2rg_pilot.zip

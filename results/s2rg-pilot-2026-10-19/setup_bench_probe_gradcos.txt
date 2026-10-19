@@ -1,0 +1,32 @@
+CORE_VERSION 2026-09-29.1
+NVIDIA H100 80GB HBM3, 81559 MiB
+cpus 64
+toqb c9ee8f8 toqb/gradcos.py: how well the simulator knows the stand-in's gradient (cosine of the two along random directions, split-half corrected); the pod pilot now measures it for both compilers at L = 8 and 16 before the S2R2-B pre-registration (2026-10-18: cos ~ 0.99, PSF, L = 8, CPU)
+psf-zero 1d3fa8b5 Addendum 525: release psf_compile 2026-10-18.1 = prototype c68 (item 105) -- chains and rings by psfz r4, PSF-Zero's compiler in Rust; every other call, and every call without the psfz program, 2026-10-17.1's output bit for bit; 2026-10-17.1 kept in patches/
+start 2026-10-19 02:30:09 CEST
+== check_traj2 on the GPU
+PASS largest 1.36 se
+== bench_traj2
+backend cupy <class 'numpy.complex64'>
+n=10 L=8 psfai:template             act 10 dur 9.5 us q2 224 steps 812: sim 68x32 0.32 s, stand-in 2x100 0.13 s, compile 68 0.26 s
+n=10 L=8 qiskit:2:target:template   act 14 dur 25.6 us q2 247 steps 908: sim 68x32 0.81 s, stand-in 2x100 0.14 s, compile 68 0.17 s
+n=10 L=16 psfai:template             act 10 dur 17.4 us q2 448 steps 1596: sim 68x32 0.58 s, stand-in 2x100 0.25 s, compile 68 0.62 s
+n=10 L=16 qiskit:2:target:template   act 14 dur 50.1 us q2 506 steps 1843: sim 68x32 1.61 s, stand-in 2x100 0.28 s, compile 68 0.31 s
+== CUDA-Q probe (first contact; failures are reported, not fatal)
+cudaq CUDA-Q Version 0.16.0 (https://github.com/NVIDIA/cuda-quantum 62fce8b862302158e0119c65e3ce57538f3af048)
+targets ['value-semantics-test', 'tii', 'tensornet-mps', 'nvidia-fp64', 'nvidia', 'scaleway', 'fermioniq', 'density-matrix-cpu', 'dynamics', 'quantinuum', 'compiler-bench-nisq', 'anyon', 'tensornet', 'nvidia-mqpu-mps', 'orca-photonics', 'compiler-bench-ftqc-clifford-t', 'nvidia-mgpu', 'compiler-bench-ftqc-logical', 'ionq', 'oqc', 'braket', 'nvidia-mqpu-fp64', 'infleqtion', 'nvidia-mqpu', 'qpp-cpu', 'opt-test', 'orca', 'pasqal', 'qbraid', 'quantum_machines', 'quera', 'iqm', 'stim']
+target nvidia set
+L=8 psfai:template             active 10 gates 1650: cudaq T=256 0.34 s (p1 0.340); cudaq T=4096 0.07 s (p1 0.401); traj2 T=256 1.03 s (p1 0.409); traj2 T=4096 0.50 s (p1 0.410);
+L=8 qiskit:2:target:template   active 14 gates 1183: cudaq T=256 0.27 s (p1 0.352); cudaq T=4096 0.57 s (p1 0.377); traj2 T=256 0.21 s (p1 0.415); traj2 T=4096 1.51 s (p1 0.414);
+L=16 psfai:template             active 10 gates 3250: cudaq T=256 0.61 s (p1 0.570); cudaq T=4096 0.13 s (p1 0.507); traj2 T=256 0.23 s (p1 0.497); traj2 T=4096 0.92 s (p1 0.497);
+L=16 qiskit:2:target:template   active 14 gates 2393: cudaq T=256 0.56 s (p1 0.566); cudaq T=4096 1.15 s (p1 0.519); traj2 T=256 0.27 s (p1 0.480); traj2 T=4096 3.07 s (p1 0.485);
+== gradient agreement, simulator vs stand-in (24 directions, 8 points, T = 256; two student means each)
+{"spec": "psfai:template", "L": 8, "seed": 5, "K": 24, "b": 8, "T": 256, "raw_corr": 0.984808694999687, "reliab": {"sim": 0.9908985416707393, "dev": 0.9767086127602975}, "cos_est": 1.0010476974961637, "sd_sim": 0.013883329489041965, "sd_dev": 0.010973310262930896}
+{"spec": "psfai:template", "L": 8, "seed": 6, "K": 24, "b": 8, "T": 256, "raw_corr": 0.9957075175531321, "reliab": {"sim": 0.9992505109535761, "dev": 0.9943645392944789}, "cos_est": 0.9988994693696317, "sd_sim": 0.030611148966237265, "sd_dev": 0.023572238174688776}
+{"spec": "qiskit:2:target:template", "L": 8, "seed": 5, "K": 24, "b": 8, "T": 256, "raw_corr": 0.7668160176198295, "reliab": {"sim": 0.980954666549453, "dev": 0.9439644565520298}, "cos_est": 0.7968725856710855, "sd_sim": 0.013356360898312958, "sd_dev": 0.00664213499500682}
+{"spec": "qiskit:2:target:template", "L": 8, "seed": 6, "K": 24, "b": 8, "T": 256, "raw_corr": 0.8364183782743831, "reliab": {"sim": 0.9962261801197944, "dev": 0.9790973723807898}, "cos_est": 0.8468990565313758, "sd_sim": 0.026682756137382985, "sd_dev": 0.00898958068463812}
+{"spec": "psfai:template", "L": 16, "seed": 5, "K": 24, "b": 8, "T": 256, "raw_corr": 0.8752468840433407, "reliab": {"sim": 0.9616194103527893, "dev": 0.8487942905662028}, "cos_est": 0.9687857408893733, "sd_sim": 0.005498449856984568, "sd_dev": 0.0040827021900210194}
+{"spec": "psfai:template", "L": 16, "seed": 6, "K": 24, "b": 8, "T": 256, "raw_corr": 0.9563284479751788, "reliab": {"sim": 0.9582896020092353, "dev": 0.972182668997863}, "cos_est": 0.9907971523332291, "sd_sim": 0.009682737172982453, "sd_dev": 0.007720029699194833}
+{"spec": "qiskit:2:target:template", "L": 16, "seed": 5, "K": 24, "b": 8, "T": 256, "raw_corr": 0.7817188915012219, "reliab": {"sim": 0.8983067541938624, "dev": 0.897483563383605}, "cos_est": 0.8706127502540479, "sd_sim": 0.00457443359390519, "sd_dev": 0.003691254695351653}
+{"spec": "qiskit:2:target:template", "L": 16, "seed": 6, "K": 24, "b": 8, "T": 256, "raw_corr": 0.9030274255376439, "reliab": {"sim": 0.9375621010544356, "dev": 0.9154523861476753}, "cos_est": 0.9747270938156952, "sd_sim": 0.007006345755667701, "sd_dev": 0.005749189322287948}
+48 runs, PAR=6
