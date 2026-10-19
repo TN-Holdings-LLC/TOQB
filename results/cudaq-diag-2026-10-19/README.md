@@ -29,3 +29,13 @@ without gate fusion; unitary mixtures (Pauli channels) work everywhere. 0.15.1 a
 `toqb.cudaq_engine` therefore runs on CUDA-Q 0.15.1 (installed on the pod 2026-10-19); the agreement check against
 traj2 (`toqb.check_cudaq`) was started on 0.15.1 while 12 learning runs shared the GPU, stopped by hand, and is to be
 run on an idle GPU. A report for NVIDIA is drafted in `bug_report_cudaq_0.16.0.md`.
+
+**Upstream status (checked 2026-10-19, 12:25 CEST): already known, fix pending; no issue posted.** Searching the
+cuda-quantum issues for "dense matrix task" gives no result, but pull request
+[NVIDIA/cuda-quantum#5584](https://github.com/NVIDIA/cuda-quantum/pull/5584), "Fix general Kraus noise channels on
+fp32 backends" (open, approved by two reviewers, CI passed, not merged), reports the same error with
+`AmplitudeDampingChannel` on the `nvidia` target. Its root cause: `kraus_op::data` was stored in the precision of
+whichever library built it, so an fp32 simulator reads a double buffer with the wrong size and builds an invalid
+matrix task. The `nvidia` target runs in fp32 by default, which fits every failure here. Consequences: 0.15.1 stays
+pinned until a release contains the fix; `option="fp64"` on 0.16.0 would likely avoid the bug (not tried); the draft
+issue `bug_report_cudaq_0.16.0.md` is not posted, as it would duplicate #5584.

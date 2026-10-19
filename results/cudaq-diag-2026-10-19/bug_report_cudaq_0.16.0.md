@@ -1,4 +1,4 @@
-# Draft issue for NVIDIA/cuda-quantum (to be posted by the owner)
+# Draft issue for NVIDIA/cuda-quantum (NOT posted: duplicate of pull request #5584, see README)
 
 **Title:** 0.16.0 regression: general Kraus channels (amplitude damping, phase damping, custom KrausChannel) fail
 with "Invalid dense matrix task size." on the nvidia target; 0.15.1 works
