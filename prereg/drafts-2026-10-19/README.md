@@ -9,6 +9,8 @@ into the next revision, not into these files.
 | `X22_preregistration_skeleton.md` | engine x compiler (2 x 2) test, CUDA-Q + PSF-Zero: claim form (Pareto within the tested range, not "the only solution"), noise-model gate N1-N4, engine fairness, the Qiskit setting, log-scale interaction |
 | `S2RB_preregistration_skeleton.md` | S2R2-B (owner's decision B): GPU simulator learning with stand-in records vs SPSA2 |
 | `S2RB_runtime_cost_estimate.md` | GPU hours of the S2R2-B main run, by formula from RTX 4070 timings |
+| `*_r2.md` | second revisions (H100 pilot values filled in; the first versions are kept unchanged) |
+| `TF_twin_fidelity_proposal.md` | proposal: does PSF-Zero compilation make the GPU twin know the device's gradient better (higher cos)? simulation only, before decision A |
 | `qpu_cost_check_gradcos.md`, `mc_gradcos.py` | check of the hardware cost of decision A (gradient agreement on a real device) and a Monte Carlo of the estimator |
 
 **Corrections and new facts since (2026-10-19, pod pilot on an H100, partial):**
@@ -24,3 +26,17 @@ into the next revision, not into these files.
   0.81-0.96, so: PSF about 1, Qiskit about 0.85-0.9.
 - CUDA-Q 0.16.0 runs on the pod (target nvidia). Its first contact used a simplified noise model, so its times are not
   yet comparable; `toqb.check_cudaq` (the N1-N4 gate) is the next step.
+
+**Notes on the r2 files (home review, 2026-10-19):**
+
+- Runtime r2: the stand-in's plans have about twice the steps of the simulator's (ZZ crosstalk; PSF L 8: 1558
+  against 812), so an evaluation on the stand-in runs slower than the simulator's batched rate r_lo; the
+  evaluation share is a lower bound until one evaluation is timed on the pod.
+- S2R2-B r2, §3 note on H2: written when both compilers' cos were assumed near 0.99; with Qiskit at about
+  0.85-0.9 it needs rewording in r3.
+- X22 r2, §2 gate: how CUDA-Q expresses N1-N4 is now implemented (`toqb/cudaq_engine.py`): N1 and N2 as inline
+  AmplitudeDampingChannel and PhaseFlipChannel (per gate and per idle interval, from the same Plan), N3 as an exact
+  RZZ (cx, rz, cx), N4 inside the u3 of each sx / x; whether the numbers agree is `toqb.check_cudaq`, not yet run.
+- TF: besides ZZ, idle relaxation and over-rotation, the compilers also place the circuit on different physical
+  qubits, whose stand-in calibration (Marrakesh, T1 / T2 scaled by up to +-30 %) differs from FakeFez's by
+  different amounts; the follow-up that switches effects off one at a time should include "same calibration".
