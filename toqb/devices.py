@@ -66,6 +66,12 @@ def get_device(spec: str) -> Device:
         from toqb.benchpress_source import build
         _, backend, _ = build(arg)
         return from_target(spec, backend.target, type(backend).__name__ != "FlexibleBackend")
+    if kind == "snapshot" and arg == "marrakesh":
+        # The stand-in's own calibration as published (toqb.s2r.SNAPSHOT, ibm_marrakesh, 2026-10-13) without the
+        # stand-in's deliberate deviations (T1 / T2 scaling, over-rotation, ZZ): the twin a user would build from the
+        # device's published calibration (design C's rehearsal).
+        from toqb.s2r import standin_target
+        return from_target(spec, standin_target(0.0, 0, 4e-9), True)
     if kind == "fake":
         from qiskit_ibm_runtime import fake_provider
         target = getattr(fake_provider, arg)().target

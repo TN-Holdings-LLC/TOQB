@@ -53,3 +53,7 @@ into the next revision, not into these files.
   rehearsal's twin differs from its "device" by the calibration source as well, more than the device day will (the
   twin is then built from that device's own calibration). Whether the rehearsal's twin should instead be built from
   the stand-in's unperturbed Marrakesh calibration (and the circuits compiled against it) is open: an owner decision.
+- Decided 2026-10-19 (owner): the rehearsal's twin is built from the stand-in's published calibration (device
+  `snapshot:marrakesh`: the Marrakesh snapshot without the stand-in's T1 / T2 scaling, over-rotation and ZZ), and the
+  circuits are compiled against it. CPU smoke (n = 6, L = 4, 20 loops): the twin's P(1) against the stand-in's,
+  rms 0.014 for PSF (0.026 with the FakeFez twin) and 0.024 for Qiskit.

@@ -1,6 +1,8 @@
 #!/bin/bash
 # GPU pod: design C rehearsal (simulation only; not scored). For each seed, compiler and depth: learn on the GPU twin
 # for LOOPS loops, predict one device job (P test points x SHOTS shots, 99 % interval), then verify on the stand-in.
+# The twin and the compilers use the stand-in's published calibration (device snapshot:marrakesh, owner decision of
+# 2026-10-19): the stand-in differs from it only by its deliberate deviations (T1 / T2 scaled, over-rotation, ZZ).
 # Needs the environment that gpu/s2rg_pilot.sh built (venv, psf next to TOQB). Run from the folder that holds TOQB:
 #   DAY=... OUT=... LR=... setsid nohup bash TOQB/gpu/s2rc_rehearsal.sh > rehearsal.txt 2>&1 &
 # LR is the learning rate chosen from the S2R2-B pilot. Seeds default to 201-203 (outside every earlier range).
@@ -33,7 +35,7 @@ out, lr, loops, P, shots, seeds = sys.argv[1], float(sys.argv[2]), int(sys.argv[
 for L in (8, 16):
     for s in seeds:
         s = int(s)
-        plan = {"name": f"S2RC rehearsal L{L} s{s}", "device": "fake:FakeFez",
+        plan = {"name": f"S2RC rehearsal L{L} s{s}", "device": "snapshot:marrakesh",
                 "task": {"n": 10, "layers": L, "enc": 1.5707963267948966, "teacher_seed": 4, "teacher_angle": 0.3,
                          "teacher_gap": 0.2, "n_train": 64, "n_test": P},
                 "train": {"seed": s, "init": 1.0, "pairs": 8, "sim_batch": 4, "sim_traj": 32, "h": 0.1, "lr": lr,
