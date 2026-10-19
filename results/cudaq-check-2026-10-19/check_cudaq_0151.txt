@@ -1,0 +1,11 @@
+cudaq CUDA-Q Version 0.15.1 (https://github.com/NVIDIA/cuda-quantum aca5853a76d499ecc3d5f97c2e06163ae99d9c75) target nvidia | traj2 cupy <class 'numpy.complex64'>
+u3 self-test: largest deviation 3.11e-07
+n=10 L=8 psfai:template             sim      act 10 steps 812 noise ops 2693: traj2 z [0.0084 0.1822] cudaq z [-0.0034  0.2007] (1.2 se; first call 4.4 s) | 68x32: traj2 0.41 s, cudaq 42.57 s; 1x4096: traj2 0.77 s, cudaq 0.75 s
+n=10 L=8 psfai:template             stand-in act 10 steps 1558 noise ops 2705: traj2 z [0.0652 0.1114] cudaq z [0.0736 0.1016] (0.6 se; first call 7.3 s)
+n=10 L=8 qiskit:2:target:template   sim      act 14 steps 908 noise ops 3073: traj2 z [0.2195 0.2191] cudaq z [0.2274 0.2293] (0.7 se; first call 10.3 s) | 68x32: traj2 0.80 s, cudaq 51.84 s; 1x4096: traj2 1.58 s, cudaq 1.83 s
+n=10 L=8 qiskit:2:target:template   stand-in act 14 steps 1838 noise ops 3073: traj2 z [0.1915 0.141 ] cudaq z [0.1895 0.1428] (0.1 se; first call 15.8 s)
+n=10 L=16 psfai:template             sim      act 10 steps 1596 noise ops 5313: traj2 z [-0.0037  0.0906] cudaq z [-0.0192  0.0753] (1.0 se; first call 10.2 s) | 68x32: traj2 0.59 s, cudaq 86.47 s; 1x4096: traj2 1.00 s, cudaq 1.40 s
+n=10 L=16 psfai:template             stand-in act 10 steps 3104 noise ops 5337: traj2 z [-0.0032  0.1086] cudaq z [-0.0291  0.1121] (1.7 se; first call 18.6 s)
+n=10 L=16 qiskit:2:target:template   sim      act 14 steps 1843 noise ops 6262: traj2 z [0.0373 0.0608] cudaq z [0.0174 0.0539] (1.3 se; first call 23.2 s) | 68x32: traj2 1.70 s, cudaq 102.18 s; 1x4096: traj2 3.16 s, cudaq 3.72 s
+n=10 L=16 qiskit:2:target:template   stand-in act 14 steps 3736 noise ops 6262: traj2 z [0.0283 0.0456] cudaq z [0.0158 0.0453] (0.8 se; first call 40.1 s)
+PASS largest 1.66 se
