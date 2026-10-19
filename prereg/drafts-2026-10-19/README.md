@@ -57,3 +57,6 @@ into the next revision, not into these files.
   `snapshot:marrakesh`: the Marrakesh snapshot without the stand-in's T1 / T2 scaling, over-rotation and ZZ), and the
   circuits are compiled against it. CPU smoke (n = 6, L = 4, 20 loops): the twin's P(1) against the stand-in's,
   rms 0.014 for PSF (0.026 with the FakeFez twin) and 0.024 for Qiskit.
+- S2R2-B r3 (B closed at its pilot) and C r2 (workplace, 06:16 CEST). Home check of C r2 §3: the CE formula matches
+  `toqb.s2r2._ce` as `toqb.s2rc` uses it (p = (1 + z) / 2 = 1 - P(1), clipped to [1e-4, 1 - 1e-4]; -log p for y = +1,
+  -log(1 - p) for y = -1), so its `[ ]` "to confirm against toqb/s2rc.py" is confirmed.
