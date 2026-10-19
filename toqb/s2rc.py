@@ -34,6 +34,8 @@ from toqb import task_loop as TL
 
 
 def _scores(z, y):
+    """(CE, accuracy) of <Z> values z against labels y in {+1, -1} (+1 <-> <Z> > 0 <-> P(1) < 0.5); a tie (<Z> = 0)
+    counts 0.5 in this accuracy (H1's count, in the rehearsal record, counts it as wrong)."""
     acc = float(np.mean(np.where(z == 0, 0.5, (np.sign(z) == y).astype(float))))
     return S2._ce(z, y), acc
 
@@ -111,8 +113,13 @@ def run_s2rc(plan, spec):
         R.t["eval"] += time.perf_counter() - s
         ce, acc = _scores(z_dev, yte)
         P = rec["prediction"]
+        # H1's count: a point is correct when the measured <Z> has the label's sign (label +1 <-> <Z> > 0 <->
+        # P(1) < 0.5); <Z> = 0 exactly (P(1) = 0.5) counts as wrong. One-sided exact binomial test against 0.5.
+        from scipy.stats import binomtest
+        n_correct = int(np.sum(np.sign(z_dev) == yte))
         rec["rehearsal"] = dict(
-            ce=ce, acc=acc, ce_inside=P["ce_interval"][0] <= ce <= P["ce_interval"][1],
+            ce=ce, acc=acc, n_correct_strict=n_correct, n_points=int(len(yte)),
+            h1_p=float(binomtest(n_correct, len(yte), 0.5, alternative="greater").pvalue), ce_inside=P["ce_interval"][0] <= ce <= P["ce_interval"][1],
             acc_inside=P["acc_interval"][0] <= acc <= P["acc_interval"][1], ce_gap=ce - P["ce_mean"],
             acc_gap=acc - P["acc_mean"], standin_ce_exact=S2._ce(z_dev_exact, yte),
             twin_vs_standin_p1_rmse=float(np.sqrt(np.mean(((1 - z_dev_exact) / 2 - p1) ** 2))),
@@ -147,7 +154,7 @@ def main(argv):
         P, Rh = rec["prediction"], rec["rehearsal"]
         short.update(pred_ce=round(P["ce_mean"], 4), pred_ce_int=[round(x, 4) for x in P["ce_interval"]],
                      standin_ce=round(Rh["ce"], 4), inside=Rh["ce_inside"], pred_acc=round(P["acc_mean"], 3),
-                     standin_acc=round(Rh["acc"], 3), p1_rmse=round(Rh["twin_vs_standin_p1_rmse"], 4))
+                     standin_acc=round(Rh["acc"], 3), h1_p=Rh["h1_p"], p1_rmse=round(Rh["twin_vs_standin_p1_rmse"], 4))
     print(json.dumps(short), flush=True)
     return 0
 
