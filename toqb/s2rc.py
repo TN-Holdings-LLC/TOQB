@@ -5,7 +5,9 @@
 1. **Train** on the twin only (the simulator's model of the device, `toqb.traj2`; no device is used): every loop the
    antithetic gradient of the training loss from `pairs` random +-1 directions at m +- h D on `sim_batch` training
    points (T = `sim_traj` trajectories, common random numbers), m <- m - lr g, for `loops` loops. Every `curve_every`
-   loops the twin's CE on the first `curve_points` test points is recorded (the learning curve; not billed).
+   loops the twin's CE on the first `curve_points` test points is recorded (the learning curve; not billed). Every
+   `progress_every` loops (default 50) a progress line (loops done, seconds so far, an estimate of the seconds left) is
+   printed, so a run's end can be estimated from its log.
 2. **Predict** what one device job will show: the twin's P(1) (readout included) of every test point from
    `predict.traj` trajectories; then `predict.reps` simulated device jobs, each drawing `shots` shots per test point
    from those P(1) and scoring them exactly as the device's answers will be scored (CE of p = (1 + z) / 2 clipped to
@@ -96,6 +98,11 @@ def run_s2rc(plan, spec):
             gnorm.append(float(np.linalg.norm(g)))
             if k % p["curve_every"] == 0 or k == p["loops"]:
                 twin_ce(k)
+            if k % p.get("progress_every", 50) == 0 or k == p["loops"]:
+                el = time.perf_counter() - t0
+                print(f"progress {k}/{p['loops']} loops, {el:.0f} s, about {el / k * (p['loops'] - k):.0f} s left"
+                      + (f", twin CE {curve[-1]['twin_ce']:.4f} at loop {curve[-1]['loop']}" if curve else ""),
+                      flush=True)
         rec.update(loops=p["loops"], curve=curve, gnorm=gnorm, final_mean=[float(x) for x in m],
                    train_wall_s=time.perf_counter() - t0)
         # predict
