@@ -90,3 +90,6 @@ P_8 150, P_16 500, N 250, M 1, about 138 s), the time model checked against thre
 split so that the IBM key stays at home (`toqb/s2rc_device.py`: fetch at home, train / predict / assemble on the
 pod, submit / result / score at home). Hypotheses, tests and α are unchanged. The device path's procedure check is
 `gpu/s2rc_device_dryrun.sh` (FakeFez Target, 20 loops, local noiseless simulator).
+
+**C r5 (home, 2026-10-19, 15:45 CEST).** Owner decision: option A (P_8 150, P_16 500, N 250, M 1). The device path's
+procedure check passed at that size (`results/s2rc-device-dryrun-2026-10-19/`).
