@@ -72,7 +72,69 @@ def main():
         k.mz(q[0])
         return k, cudaq.NoiseModel()
 
+    import numpy as np
+
+    def ad_kraus(g):
+        return cudaq.KrausChannel([np.array([[1, 0], [0, math.sqrt(1 - g)]], dtype=np.complex128),
+                                   np.array([[0, math.sqrt(g)], [0, 0]], dtype=np.complex128)])
+
+    def inline_instance(g):
+        def build():
+            k, q = base()
+            k.apply_noise(ad_kraus(g), q[0])
+            k.mz(q[0])
+            return k, cudaq.NoiseModel()
+        return build
+
+    def inline_list(ch, p):
+        def build():
+            k, q = base()
+            k.apply_noise(ch, [p], q[0])
+            k.mz(q[0])
+            return k, cudaq.NoiseModel()
+        return build
+
+    def cz_attached_2q(g):
+        def build():
+            k, q = base()
+            k.mz(q[0])
+            a = ad_kraus(g).get_ops()
+            ops = [np.kron(np.array(x), np.array(y)) for x in a for y in a]
+            nm = cudaq.NoiseModel()
+            nm.add_channel("z", [0, 1], cudaq.KrausChannel([np.asarray(o, dtype=np.complex128) for o in ops]))
+            return k, nm
+        return build
+
+    def u3_attached_per_qubit(g0, g1):
+        def build():
+            k, q = base()
+            k.u3(1.0, 0.3, -0.2, q[0])
+            k.u3(0.5, 0.1, 0.2, q[1])
+            k.mz(q[0])
+            nm = cudaq.NoiseModel()
+            nm.add_channel("u3", [0], cudaq.AmplitudeDampingChannel(g0))
+            nm.add_channel("u3", [1], cudaq.AmplitudeDampingChannel(g1))
+            return k, nm
+        return build
+
+    def r1_carrier(g):
+        def build():
+            k, q = base()
+            k.r1(0.0, q[0])
+            k.r1(0.0, q[0])
+            k.mz(q[0])
+            nm = cudaq.NoiseModel()
+            nm.add_channel("r1", [0], cudaq.AmplitudeDampingChannel(g))
+            return k, nm
+        return build
+
     cases = [
+        ("inline AmplitudeDamping as a KrausChannel instance", inline_instance(0.01)),
+        ("inline AmplitudeDampingChannel, parameters as a list", inline_list(cudaq.AmplitudeDampingChannel, 0.01)),
+        ("inline PhaseDamping", inline(cudaq.PhaseDamping, 0.01)),
+        ("gate-attached 2-qubit Kraus (AD x AD) on cz", cz_attached_2q(0.01)),
+        ("gate-attached AD on u3, per qubit", u3_attached_per_qubit(0.01, 0.02)),
+        ("gate-attached AD on an r1(0) carrier, twice", r1_carrier(0.01)),
         ("inline DepolarizationChannel", inline(cudaq.DepolarizationChannel, 0.01)),
         ("inline PhaseFlipChannel", inline(cudaq.PhaseFlipChannel, 0.01)),
         ("inline AmplitudeDampingChannel", inline(cudaq.AmplitudeDampingChannel, 0.01)),
