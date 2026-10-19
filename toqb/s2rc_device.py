@@ -5,6 +5,8 @@ beforehand in the home terminal with QiskitRuntimeService.save_account(...); thi
 key. The pod gets the Target as a file and returns the compiled circuits as a file. Nothing here runs git or pip.
 
     [home, VPN OFF]  python -m toqb.s2rc_device fetch    --backend ibm_fez --out DAY/fetch
+    [pod]            python -m toqb.s2rc_device precheck --fetch <pod>/fetch            (before training: both compilers'
+                         circuits on the fetched Target, ISA and failed elements; minutes instead of hours to a STOP)
     [pod]            python -m toqb.s2rc_device plans    --target <pod>/fetch/target.pkl --out PLANS --seeds 301 \\
                          --p8 150 --p16 500 --shots 250 --lr 0.4 --loops 2000
     [pod]            python -m toqb.s2rc PLANS/L8_s301.json RUNS/L8_s301-psfai_template.json psfai:template \\
@@ -177,6 +179,43 @@ def cmd_plans(a):
             _dump_json(f, plan)
             written.append(f)
     print("\n".join(written))
+
+
+# ------------------------------------------------------------------------------------------------ precheck (pod)
+
+def cmd_precheck(a):
+    """Compile the model circuit once per compiler and depth on the fetched Target (random angles; the structure does
+    not depend on them) and apply assemble's checks, so a failed element or a non-native gate stops the day before
+    training starts rather than after it."""
+    from toqb import s2r as S
+    from toqb import task_loop as TL
+    from toqb.devices import _failed, from_target
+    fetch = _load_json(os.path.join(a.fetch, "fetch.json"))
+    tfile = os.path.join(a.fetch, "target.pkl")
+    if sha256_file(tfile) != fetch["target_sha256"]:
+        raise SystemExit("STOP: target.pkl differs from fetch.json's hash")
+    with open(tfile, "rb") as f:
+        target = pickle.load(f)
+    device = from_target("file:" + os.path.abspath(tfile), target, True)
+    fe, fq = _failed(target)
+    rng = np.random.default_rng(a.seed)
+    bad = 0
+    for spec in a.arms:
+        arm = S.Arm(spec, device)
+        for L in a.layers:
+            th = rng.uniform(-1, 1, TL.n_params(a.n, L))
+            x = rng.uniform(-1, 1, a.n)
+            c = arm.compile(TL.model_circuit(TL.angle_list(th, x, a.n, L, a.enc), a.n, L))
+            pr = _isa_problems(c, target, fe, fq)
+            q2 = sum(1 for i in c.data if i.operation.num_qubits == 2)
+            act = len({c.find_bit(q).index for i in c.data for q in i.qubits})
+            print(f"{spec:28s} L {L:2d}: {act} active qubits, {q2} two-qubit gates: "
+                  + ("OK" if not pr else "PROBLEM " + "; ".join(pr[:3])), flush=True)
+            bad += bool(pr)
+    print(f"{stamp()} precheck on {fetch['backend']} (calibration {fetch['calibration_time']}): "
+          + ("all OK" if not bad else f"STOP: {bad} case(s) with problems"))
+    if bad:
+        raise SystemExit(1)
 
 
 # ------------------------------------------------------------------------------------------------ assemble (pod)
@@ -477,6 +516,13 @@ def main(argv=None):
     p.add_argument("--loops", type=int, required=True)
     p.add_argument("--traj", type=int, default=1024)
     p.add_argument("--reps", type=int, default=20000)
+    k = sp.add_parser("precheck")
+    k.add_argument("--fetch", required=True)
+    k.add_argument("--arms", nargs="+", default=["qiskit:2:target:template", "psfai:template"])
+    k.add_argument("--layers", type=int, nargs="+", default=[8, 16])
+    k.add_argument("--n", type=int, default=10)
+    k.add_argument("--enc", type=float, default=1.5707963267948966)
+    k.add_argument("--seed", type=int, default=20261020)
     s = sp.add_parser("assemble")
     s.add_argument("--fetch", required=True)
     s.add_argument("--runs", required=True)
@@ -493,7 +539,7 @@ def main(argv=None):
     c = sp.add_parser("score")
     c.add_argument("--job", required=True)
     a = ap.parse_args(argv)
-    dict(fetch=cmd_fetch, plans=cmd_plans, assemble=cmd_assemble, submit=cmd_submit, result=cmd_result,
+    dict(fetch=cmd_fetch, precheck=cmd_precheck, plans=cmd_plans, assemble=cmd_assemble, submit=cmd_submit, result=cmd_result,
          score=cmd_score)[a.cmd](a)
     return 0
 
