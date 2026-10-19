@@ -60,3 +60,27 @@ into the next revision, not into these files.
 - S2R2-B r3 (B closed at its pilot) and C r2 (workplace, 06:16 CEST). Home check of C r2 §3: the CE formula matches
   `toqb.s2r2._ce` as `toqb.s2rc` uses it (p = (1 + z) / 2 = 1 - P(1), clipped to [1e-4, 1 - 1e-4]; -log p for y = +1,
   -log(1 - p) for y = -1), so its `[ ]` "to confirm against toqb/s2rc.py" is confirmed.
+
+**X22 r3, C r3, consult A-D and `pn_power2.py` (workplace, 10:00 CEST; home review 2026-10-19 evening):**
+
+- `pn_power2.py` rerun at home (scipy, seed 20261019): every H1 power, critical accuracy, cost and H2 power figure in
+  consult §C and C r3 §4 is reproduced.
+- consult §A's two code facts are confirmed: `CudaqEngine.kernel` caches one kernel per plan with the slot angles as a
+  `list` argument, and `check_cudaq` times after one warm-up call, so the 68 x 32 times are warm. The home note of the
+  check (`results/cudaq-check-2026-10-19/README.md`), which blamed the 4-40 s first calls, was wrong and is corrected
+  there.
+- Home addition to §A: the warm cost per call divided by the plan's inline noise operations is 0.23-0.25 ms for all
+  four plans (PSF L 8 0.626 s / 2,693; Qiskit L 8 0.762 / 3,073; PSF L 16 1.272 / 5,313; Qiskit L 16 1.503 / 6,262).
+  The fixed cost per call is therefore proportional to the number of inline noise operations (inferred from four
+  points; not profiled), which points at C1 (fewer calls) and C3 (gate-attached noise) first. Subtracting it from the
+  1 x 4,096 times leaves an estimated simulation share of about 0.12 / 1.07 s (PSF / Qiskit, L 8) and 0.13 / 2.22 s
+  (L 16): differences of single measurements, rough. So the home reading "PSF's saving carries over to CUDA-Q
+  (2.4-2.7 x)" in instruction 4 measured mostly the per-call cost, not the simulation.
+- C r3 §3's `[ ]` on the CE formula: confirmed against `toqb.s2r2._ce` (as for r2).
+- consult §B (ii): the owner rules of 2026-10-14 (no effort on calibration data) and 2026-10-15 (placement ignored for
+  now) are the rules meant; option 3 needs them lifted explicitly. Home addition: the stand-in's deviations from the
+  twin (T1 / T2 scaled, ZZ, over-rotation) act less on better qubits, so Qiskit's calibration-aware placement should
+  lower its own twin deviation; if so, the confound works against PSF in H2 as well as in CE (inferred, not checked).
+- Open for the owner, not in the drafts: whether the stamp is paid (Pay-As-You-Go, $1.60 / s) or uses the remaining
+  open-plan minutes (about 2 minutes as of 2026-10-15). About 120 s of QPU time fits, by the same time model, 800
+  points at N = 250 (82.8 s) or about 700 points at N = 500, not P_8 200 / P_16 300 at N = 1,000 (306 s).

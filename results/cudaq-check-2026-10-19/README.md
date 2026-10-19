@@ -16,12 +16,15 @@ engines' <Z> agree within 1.66 standard errors at most (gate: 4 se); the u3 mapp
 | 1 x 4096 trajectories | traj2 | 0.77 | 1.58 | 1.00 | 3.16 | 2.1 / 3.2 |
 | | CUDA-Q | 0.75 | 1.83 | 1.40 | 3.72 | 2.4 / 2.7 |
 
-**Readings:**
+**Readings (corrected the same evening; the first version blamed the 4-40 s first calls, which the timings do not
+include):**
 
-- One circuit, many trajectories: CUDA-Q and traj2 run at the same speed (0.75-1.4 x), and PSF's shorter circuits
-  save the same factor on both engines (Qiskit / PSF 2.4-2.7 x on CUDA-Q, 2.1-3.2 x on traj2): the compression carries
-  over to CUDA-Q.
-- Many different circuits, few trajectories each (training): CUDA-Q is 50-150 x slower than traj2 and PSF's saving
-  shrinks to 1.2 x. That is a per-circuit cost of this wrapper (`toqb.cudaq_engine`: one `cudaq.sample` call per
-  circuit and trajectory batch; first calls 4-40 s), not a measured limit of CUDA-Q; batched or asynchronous
-  submission was not tried.
+- The times are warm: the kernel is built once per plan and the check times after one warm-up call.
+- The warm CUDA-Q cost per call, 68 x 32 time / 68, is 0.63 / 0.76 / 1.27 / 1.50 s (PSF L 8 / Qiskit L 8 / PSF L 16 /
+  Qiskit L 16): 0.23-0.25 ms per inline noise operation of the plan in all four. A call costs about the same at 32
+  trajectories as at 4,096 for PSF. So a fixed cost per call, proportional to the number of inline noise operations,
+  dominates (inferred from four points; not profiled). Batched calls (broadcast) or gate-attached noise are the
+  first candidates; neither was tried.
+- 1 x 4,096 minus that fixed cost leaves an estimated simulation share of about 0.12 / 1.07 s (L 8, PSF / Qiskit) and
+  0.13 / 2.22 s (L 16): rough (differences of single measurements). The Qiskit / PSF ratio of the whole 1 x 4,096 call
+  (2.4-2.7 x) therefore measures mostly the per-call cost, not the simulation.
