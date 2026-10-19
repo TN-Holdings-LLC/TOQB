@@ -6,6 +6,7 @@ Spec strings:
     grid:RxC               an R x C square grid
     heavyhex:D             Qiskit's heavy-hex map of distance D
     full:N                 all-to-all on N qubits
+    file:PATH              a Target saved with pickle (`toqb.s2rc_device fetch`: a device's Target on one day)
     bp:<test id>           the backend Benchpress builds for that test (toqb.benchpress_source): its FlexibleBackend's
                            map and basis (no Target: abstract maps carry no calibration), or the fake device with its
                            Target
@@ -66,6 +67,11 @@ def get_device(spec: str) -> Device:
         from toqb.benchpress_source import build
         _, backend, _ = build(arg)
         return from_target(spec, backend.target, type(backend).__name__ != "FlexibleBackend")
+    if kind == "file":
+        import pickle
+        with open(arg, "rb") as f:
+            target = pickle.load(f)
+        return from_target(spec, target, True)
     if kind == "snapshot" and arg == "marrakesh":
         # The stand-in's own calibration as published (toqb.s2r.SNAPSHOT, ibm_marrakesh, 2026-10-13) without the
         # stand-in's deliberate deviations (T1 / T2 scaling, over-rotation, ZZ): the twin a user would build from the

@@ -21,6 +21,12 @@
 
 The device job itself (IBM hardware) is not run here; it needs the owner's go-ahead and a twin built from that day's
 calibration. The record holds the final parameters, so the same model can be compiled and sent later.
+
+For the device step (`toqb.s2rc_device`): the plan's device is then `file:<target.pkl>` (the day's Target saved at
+home), `"verify": false` skips step 3, and `--qpy FILE` writes the compiled test circuits, exactly the ones the
+prediction was made for, to a QPY file (its SHA-256 goes into the record):
+
+    python -m toqb.s2rc PLAN.json OUT.json SPEC [--qpy FILE.qpy]
 """
 from __future__ import annotations
 
@@ -33,6 +39,10 @@ import numpy as np
 from toqb import s2r as S
 from toqb import s2r2 as S2
 from toqb import task_loop as TL
+
+
+class _SkipVerify(Exception):
+    """Raised after the prediction when the plan says "verify": false (device step: no stand-in)."""
 
 
 def _scores(z, y):
@@ -61,11 +71,16 @@ def predict_job(p1, y, shots, reps, level, seed, traj=None):
                 ce_exact=S2._ce(1 - 2 * np.asarray(p1), y), reps=reps, level=level, shots=shots)
 
 
-def run_s2rc(plan, spec):
+def run_s2rc(plan, spec, keep=None):
+    """One run. With a dict `keep`, the compiled test circuits are put into keep["circuits"]."""
     task, p, pr = plan["task"], plan["train"], plan["predict"]
     R = S2.Runner(plan, spec)
     rec = dict(kind="s2rc", arm=spec, seed=p["seed"], plan=plan["name"], started=S._cest(), train=p, predict=pr,
-               version=R.arm.version(), standin=R.standin.params, engine=R.eng.xp.__name__, dtype=str(R.eng.dtype))
+               version=R.arm.version(), standin=R.standin.params, engine=R.eng.xp.__name__, dtype=str(R.eng.dtype),
+               device=plan["device"], task=task, verify=plan.get("verify", True))
+    if plan["device"].startswith("file:"):
+        import hashlib
+        rec["target_sha256"] = hashlib.sha256(open(plan["device"][5:], "rb").read()).hexdigest()
     Xtr, ytr, Xte, yte = S2.teacher_data2(task)
     n, L = task["n"], task["layers"]
     d = TL.n_params(n, L)
@@ -114,6 +129,11 @@ def run_s2rc(plan, spec):
         rec["prediction_shots_only"] = predict_job(p1, yte, pr["shots"], pr["reps"], pr["level"], pr["seed"] + 1)
         rec["prediction"]["twin_p1"] = [float(x) for x in p1]
         rec["chance"] = dict(acc=0.5, ce=float(np.log(2)))
+        rec["test_labels"] = [int(v) for v in yte]
+        if keep is not None:
+            keep["circuits"] = cs
+        if not plan.get("verify", True):
+            raise _SkipVerify
         # verify on the stand-in (rehearsal)
         z_dev = R.z("dev", cs, pr["shots"], pr["seed"] + 2, shots=True)
         z_dev_exact = R.z("dev", cs, pr["traj"], pr["seed"] + 3)
@@ -131,6 +151,8 @@ def run_s2rc(plan, spec):
             acc_gap=acc - P["acc_mean"], standin_ce_exact=S2._ce(z_dev_exact, yte),
             twin_vs_standin_p1_rmse=float(np.sqrt(np.mean(((1 - z_dev_exact) / 2 - p1) ** 2))),
             standin_p1=[float(x) for x in (1 - z_dev_exact) / 2])
+    except _SkipVerify:
+        R.t["eval"] += time.perf_counter() - s
     except Exception as exc:  # noqa: BLE001 - recorded
         rec["error"] = f"{type(exc).__name__}: {exc}"
     rec.update(wall_s=time.perf_counter() - t0, times=R.t, structures=R.n_struct, compiled=R.arm.compiled,
@@ -142,17 +164,29 @@ def run_s2rc(plan, spec):
 
 
 def main(argv):
-    """python -m toqb.s2rc PLAN.json OUT.json SPEC"""
+    """python -m toqb.s2rc PLAN.json OUT.json SPEC [--qpy FILE.qpy]"""
     import sys
+    qpy_file = None
+    if len(argv) == 5 and argv[3] == "--qpy":
+        qpy_file, argv = argv[4], argv[:3]
     if len(argv) != 3:
         print(main.__doc__)
         return 1
     plan_file, out, spec = argv
-    if os.path.exists(out):
-        print(f"{out} exists: a run never overwrites another", file=sys.stderr)
-        return 2
+    for f in (out, qpy_file):
+        if f and os.path.exists(f):
+            print(f"{f} exists: a run never overwrites another", file=sys.stderr)
+            return 2
     plan = json.load(open(plan_file, encoding="utf-8"))
-    rec = run_s2rc(plan, spec)
+    keep = {} if qpy_file else None
+    rec = run_s2rc(plan, spec, keep)
+    if qpy_file and keep.get("circuits") is not None:
+        import hashlib
+        from qiskit import qpy
+        with open(qpy_file, "wb") as f:
+            qpy.dump(list(keep["circuits"]), f)
+        rec["export"] = dict(qpy=os.path.basename(qpy_file), circuits=len(keep["circuits"]),
+                             sha256=hashlib.sha256(open(qpy_file, "rb").read()).hexdigest())
     with open(out + ".tmp", "w", encoding="utf-8") as f:
         json.dump(rec, f)
     os.replace(out + ".tmp", out)
@@ -162,6 +196,10 @@ def main(argv):
         short.update(pred_ce=round(P["ce_mean"], 4), pred_ce_int=[round(x, 4) for x in P["ce_interval"]],
                      standin_ce=round(Rh["ce"], 4), inside=Rh["ce_inside"], pred_acc=round(P["acc_mean"], 3),
                      standin_acc=round(Rh["acc"], 3), h1_p=Rh["h1_p"], p1_rmse=round(Rh["twin_vs_standin_p1_rmse"], 4))
+    elif "prediction" in rec:
+        P = rec["prediction"]
+        short.update(pred_ce=round(P["ce_mean"], 4), pred_ce_int=[round(x, 4) for x in P["ce_interval"]],
+                     pred_acc=round(P["acc_mean"], 3), export=rec.get("export", {}).get("sha256", "")[:12])
     print(json.dumps(short), flush=True)
     return 0
 
