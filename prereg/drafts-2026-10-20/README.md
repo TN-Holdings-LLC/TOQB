@@ -29,3 +29,28 @@ Written at the workplace (about 01:40 CEST) from the home handover of 2026-10-20
 Qiskit level 2 against the Target, the device rule E1-E4 with the order marrakesh, fez, kingston) and fills settings
 from the code (training block identical to the rehearsal's; CE formula confirmed). Still to confirm: T_pred 1,024 and
 R 20,000; H2 by Wilcoxon as written. The rehearsal record, W_r and P1's reading are filled in before fixing. Not fixed.
+
+## Home review, 2026-10-20 (about 06:35 CEST): W4 (TOQB v0.2, prediction layer) and W5 (`toqb/predscore.py`)
+
+Exploratory; nothing here changes the device day's code (new files only).
+
+- **Tests run at home:** `tests/test_predscore.py` 10 of 10 pass (38 s, cloud workspace, one core); the rest of the
+  suite unchanged, 80 passed, 5 skipped.
+- **Checked:** the predictive distribution (binomial mixed over the twin's Monte Carlo error by Gauss-Hermite), the
+  mid-distribution PIT and the calibration z are the standard constructions and are coded as written. The converters'
+  field names match `toqb/s2rc_device.py` (manifest `cells`, `pubs`, `run_sha256`, `twin_p1`, `labels`, `written`;
+  raw counts `rows`, `fetched`, `calibration_at_fetch`, `job_id`) and `toqb/s2rc.py` (`prediction.twin_p1`,
+  `test_labels`, `rehearsal.standin_p1`).
+- **Not yet checked:** a real record. After the rehearsal, `from-s2rc` and `from-rehearsal` on its records; and
+  `from-device` on the home dry run's job folder (2026-10-19), before the stamp.
+- **Notes for the owner:**
+  - The Monte Carlo error Normal(p1, p1(1 − p1)/T) is an upper bound for traj2 (each trajectory gives an exact P(1),
+    whose spread is at most p1(1 − p1)), as in `s2rc`. Coverage therefore errs on the wide side: z leans positive.
+    That is conservative, and it should be stated in the score.
+  - `claimable` compares the manifest's `written` time with the raw counts' `fetched` time. A stricter order is the
+    manifest against `submission.json`'s `submitted` time (truth cannot exist before the job is submitted). Proposed as
+    a small change.
+  - Aer's density matrix as the reference twin is reasonable for n = 10 (4^10 entries); W4 already states its limit
+    near n = 12-13.
+  - Agree with W5's point 3: the stamp's official score stays `s2rc_device score` (design C's H1 and H2); `predscore`
+    is a second, report-only view of the same job.
