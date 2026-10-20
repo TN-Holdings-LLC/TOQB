@@ -1,6 +1,6 @@
 """The reference twin of TOQB v0.2's prediction layer (W4 section 2): Qiskit Aer with the vendor's standard noise model.
 
-    python -m toqb.reftwin JOB_DIR FETCH_DIR OUT_DIR [--shots T] [--threads N] [--first K] [--device GPU]
+    python -m toqb.reftwin JOB_DIR FETCH_DIR OUT_DIR [--shots T] [--threads N] [--first K] [--device GPU] [--cells 1,3]
 
 For every cell of a `toqb.s2rc_device` job folder (manifest.json and circuits.qpy, written by `assemble` before any
 submission), it predicts P(1) of clbit 0 for every point and writes one prediction artifact per cell
@@ -17,6 +17,8 @@ submission), it predicts P(1) of clbit 0 for every point and writes one predicti
 - **Blind.** It reads the job's circuits and the fetched Target only (both checked by SHA-256 against the manifest);
   it never reads results. Run it before submission, and fix its outputs' hashes with the manifest's.
 - **Seeds.** Point i of the job (its position in circuits.qpy) is run with seed_simulator = 20261020 + i.
+- **Cells.** `--cells` restricts the run to some cells of the job (by the manifest's cell numbers), so that two
+  processes can share a machine; each writes its own OUT_DIR. The seeds do not depend on the split.
 - **Device.** CPU by default. `--device GPU` needs `qiskit-aer-gpu` and runs the same model and method on the GPU,
   with Aer's batched shots (`batched_shots_gpu`): the same distribution, another random stream (2026-10-20: on the
   pod's CPU quota of about 24 cores a point took 15.6 s on average, too slow for the device day).
@@ -67,7 +69,7 @@ def p1_clbit0(counts):
     return one / total
 
 
-def run(job_dir, fetch_dir, out_dir, shots=1024, threads=0, first=None, device="CPU"):
+def run(job_dir, fetch_dir, out_dir, shots=1024, threads=0, first=None, device="CPU", cells=None):
     from qiskit import qpy
     from qiskit_aer import AerSimulator
     import qiskit_aer
@@ -109,6 +111,8 @@ def run(job_dir, fetch_dir, out_dir, shots=1024, threads=0, first=None, device="
             if seen.get(k, 0) < ((first + 1) // 2 if y > 0 else first // 2):
                 seen[k] = seen.get(k, 0) + 1
                 idx.append(i)
+    if cells is not None:
+        idx = [i for i in idx if man["pubs"][i]["cell"] in cells]
     p1 = {}
     t1 = time.perf_counter()
     for i in idx:
@@ -120,8 +124,10 @@ def run(job_dir, fetch_dir, out_dir, shots=1024, threads=0, first=None, device="
                    points=len(idx), noise_model_s=round(t_nm, 3), run_s=round(t_run, 3),
                    inputs=dict(manifest_sha256=sha256_file(man_f), qpy_sha256=man["qpy_sha256"],
                                target_sha256=man["fetch"]["target_sha256"]),
-                   smoke=bool(first), cells={})
+                   smoke=bool(first), cells_run=sorted(cells) if cells is not None else "all", cells={})
     for c in man["cells"]:
+        if cells is not None and c["cell"] not in cells:
+            continue
         pts = [(p["point"], i) for i, p in enumerate(man["pubs"]) if p["cell"] == c["cell"] and i in p1]
         pts.sort()
         pred = dict(
@@ -170,6 +176,7 @@ def main(argv):
     threads = opt("--threads", int, 0)
     first = opt("--first", int, None)
     device = opt("--device", str, "CPU")
+    cells = opt("--cells", lambda x: {int(v) for v in x.split(",")}, None)
     if device not in ("CPU", "GPU"):
         print("--device is CPU or GPU")
         return 1
@@ -177,7 +184,7 @@ def main(argv):
         print(__doc__)
         return 1
     try:
-        run(argv[0], argv[1], argv[2], shots=shots, threads=threads, first=first, device=device)
+        run(argv[0], argv[1], argv[2], shots=shots, threads=threads, first=first, device=device, cells=cells)
     except Stop as exc:
         print(f"STOP: {exc}", file=sys.stderr)
         return 2

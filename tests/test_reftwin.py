@@ -108,3 +108,14 @@ def test_first_k_takes_both_classes():
         RT.run(job, fetch, out, shots=50, threads=1, first=2)
         pred = json.load(open(os.path.join(out, "ref_cell0.json")))
         assert sorted(p["label"] for p in pred["points"]) == [-1, 1]
+
+
+def test_cells_split_matches_the_whole_run():
+    from qiskit_ibm_runtime.fake_provider import FakeManilaV2
+    with tempfile.TemporaryDirectory() as d:
+        job, fetch, _ = _job(d, FakeManilaV2())
+        RT.run(job, fetch, os.path.join(d, "all"), shots=100, threads=1)
+        RT.run(job, fetch, os.path.join(d, "part"), shots=100, threads=1, cells={1})
+        a = json.load(open(os.path.join(d, "all", "ref_cell1.json")))["points"]
+        b = json.load(open(os.path.join(d, "part", "ref_cell1.json")))["points"]
+        assert a == b and not os.path.exists(os.path.join(d, "part", "ref_cell0.json"))
