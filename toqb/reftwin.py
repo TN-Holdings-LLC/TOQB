@@ -1,6 +1,6 @@
 """The reference twin of TOQB v0.2's prediction layer (W4 section 2): Qiskit Aer with the vendor's standard noise model.
 
-    python -m toqb.reftwin JOB_DIR FETCH_DIR OUT_DIR [--shots T] [--threads N] [--first K]
+    python -m toqb.reftwin JOB_DIR FETCH_DIR OUT_DIR [--shots T] [--threads N] [--first K] [--device GPU]
 
 For every cell of a `toqb.s2rc_device` job folder (manifest.json and circuits.qpy, written by `assemble` before any
 submission), it predicts P(1) of clbit 0 for every point and writes one prediction artifact per cell
@@ -17,6 +17,9 @@ submission), it predicts P(1) of clbit 0 for every point and writes one predicti
 - **Blind.** It reads the job's circuits and the fetched Target only (both checked by SHA-256 against the manifest);
   it never reads results. Run it before submission, and fix its outputs' hashes with the manifest's.
 - **Seeds.** Point i of the job (its position in circuits.qpy) is run with seed_simulator = 20261020 + i.
+- **Device.** CPU by default. `--device GPU` needs `qiskit-aer-gpu` and runs the same model and method on the GPU,
+  with Aer's batched shots (`batched_shots_gpu`): the same distribution, another random stream (2026-10-20: on the
+  pod's CPU quota of about 24 cores a point took 15.6 s on average, too slow for the device day).
 
 Exit 0 written, 2 STOP (a hash differs, or an output exists: nothing is overwritten).
 """
@@ -64,7 +67,7 @@ def p1_clbit0(counts):
     return one / total
 
 
-def run(job_dir, fetch_dir, out_dir, shots=1024, threads=0, first=None):
+def run(job_dir, fetch_dir, out_dir, shots=1024, threads=0, first=None, device="CPU"):
     from qiskit import qpy
     from qiskit_aer import AerSimulator
     import qiskit_aer
@@ -89,7 +92,10 @@ def run(job_dir, fetch_dir, out_dir, shots=1024, threads=0, first=None):
     t0 = time.perf_counter()
     nm = noise_model(target)
     t_nm = time.perf_counter() - t0
-    sim = AerSimulator(method="statevector", noise_model=nm, max_parallel_threads=threads)
+    opts = dict(method="statevector", noise_model=nm, max_parallel_threads=threads, device=device)
+    if device == "GPU":
+        opts["batched_shots_gpu"] = True
+    sim = AerSimulator(**opts)
     idx = list(range(len(circs)))
     if first:
         # smoke runs only: the first `first` points of every cell
@@ -101,7 +107,7 @@ def run(job_dir, fetch_dir, out_dir, shots=1024, threads=0, first=None):
         p1[i] = p1_clbit0(res.get_counts(0))
     t_run = time.perf_counter() - t1
     os.makedirs(out_dir)
-    summary = dict(version=VERSION, written=now(), aer=qiskit_aer.__version__, shots=shots, threads=threads,
+    summary = dict(version=VERSION, written=now(), aer=qiskit_aer.__version__, shots=shots, threads=threads, device=device,
                    points=len(idx), noise_model_s=round(t_nm, 3), run_s=round(t_run, 3),
                    inputs=dict(manifest_sha256=sha256_file(man_f), qpy_sha256=man["qpy_sha256"],
                                target_sha256=man["fetch"]["target_sha256"]),
@@ -120,7 +126,7 @@ def run(job_dir, fetch_dir, out_dir, shots=1024, threads=0, first=None):
                       model="NoiseModel.from_backend(Target) defaults: depolarizing gate error, thermal relaxation "
                             "over gate durations, readout error; unscheduled (no idle relaxation), no crosstalk",
                       mc_error="binomial: P(1) estimated from `traj` noisy shots"),
-            compiler=dict(arm=c["arm"]), cell=dict(layers=c["layers"], seed=c["seed"], name=c["name"]),
+            compiler=dict(arm=c["arm"]), cell=dict(layers=c["layers"], seed=c["seed"], name=c["name"]), device=device,
             shots=man["shots"],
             points=[dict(i=pt, label=int(c["labels"][pt]), p1=float(p1[i])) for pt, i in pts],
             job={}, cost=dict(run_s_all_cells=round(t_run, 3), threads=threads),
@@ -154,11 +160,15 @@ def main(argv):
     shots = opt("--shots", int, 1024)
     threads = opt("--threads", int, 0)
     first = opt("--first", int, None)
+    device = opt("--device", str, "CPU")
+    if device not in ("CPU", "GPU"):
+        print("--device is CPU or GPU")
+        return 1
     if len(argv) != 3:
         print(__doc__)
         return 1
     try:
-        run(argv[0], argv[1], argv[2], shots=shots, threads=threads, first=first)
+        run(argv[0], argv[1], argv[2], shots=shots, threads=threads, first=first, device=device)
     except Stop as exc:
         print(f"STOP: {exc}", file=sys.stderr)
         return 2
