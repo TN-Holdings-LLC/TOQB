@@ -22,3 +22,10 @@ Written at the workplace (about 01:40 CEST) from the home handover of 2026-10-20
   2026-10-19); it can be closed.
 - C r6 §5, P1 (reading the properties history) is an IBM connection: it needs the owner's permission.
 - X22 r4: no change proposed.
+
+## Home, 2026-10-20 (about 06:10 CEST): C r7 final draft
+
+`C_preregistration_r7_final_draft.md` applies the owner's decisions of 06:05 CEST (seed 301, 2,000 loops, 6 h limit,
+Qiskit level 2 against the Target, the device rule E1-E4 with the order marrakesh, fez, kingston) and fills settings
+from the code (training block identical to the rehearsal's; CE formula confirmed). Still to confirm: T_pred 1,024 and
+R 20,000; H2 by Wilcoxon as written. The rehearsal record, W_r and P1's reading are filled in before fixing. Not fixed.
