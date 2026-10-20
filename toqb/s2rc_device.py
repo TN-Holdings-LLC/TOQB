@@ -25,8 +25,9 @@ What `assemble` checks before it writes anything (it stops on the first failure)
 - every circuit uses only operations and qubit pairs the Target supports, and no element reported as failed;
 - the job's QPU time by the time model below is at most --max-seconds.
 Its manifest (circuits, predictions, labels, hashes) is written before any submission; `submit` refuses a job folder
-whose files differ from it, a job already submitted, and, on IBM, a backend whose calibration time differs from the
-fetched one (design C section 5: retrain on a new calibration).
+whose files differ from it, a job already submitted, and, on IBM, a job that uses an element failed in the calibration
+in effect at submission (owner decision of 2026-10-20: a new calibration timestamp alone no longer stops it; P1
+showed one about every 2 h).
 
 QPU time model: 0.036 s per circuit + 0.00027 s per shot (+ about 3 s per job). Checked on 2026-10-19 against three
 earlier jobs on ibm_marrakesh: 60 circuits x 6,000 shots, 99.4 s predicted, 102 s billed; 81 circuits, 198,000 shots,
@@ -420,6 +421,17 @@ def _read_job(job):
     return man
 
 
+def submit_problems(circs, target):
+    """Problems of the job against the calibration in effect at submission: any circuit on an unsupported or failed
+    element (`_isa_problems` with `devices._failed`, as assemble). Each problem is prefixed with its circuit index."""
+    from toqb.devices import _failed
+    fe, fq = _failed(target)
+    out = []
+    for i, c in enumerate(circs):
+        out += [f"circuit {i}: {p}" for p in _isa_problems(c, target, fe, fq)]
+    return out
+
+
 def cmd_submit(a):
     from qiskit import qpy
     man = _read_job(a.job)
@@ -450,9 +462,13 @@ def cmd_submit(a):
     from qiskit_ibm_runtime import SamplerV2
     backend = _service().backend(man["fetch"]["backend"])
     cal = calibration_time(backend)
-    if cal != man["fetch"]["calibration_time"]:
-        raise SystemExit(f"STOP: {backend.name}'s calibration is now {cal}, not the fetched "
-                         f"{man['fetch']['calibration_time']}. Design C section 5: fetch again and retrain; not submitted.")
+    # owner decision of 2026-10-20 (12:32 CEST, after P1 showed a new calibration timestamp about every 2 h): a new
+    # timestamp no longer stops the submission. The job stops only when one of its qubits or couplers is failed in
+    # the calibration in effect now (the same rule as assemble); the fetched and current timestamps are recorded.
+    probs = submit_problems(circs, backend.target)
+    if probs:
+        raise SystemExit(f"STOP: in {backend.name}'s calibration of {cal}, the job uses failed elements: "
+                         + "; ".join(probs[:5]) + ". Fetch again and retrain (design C section 5); not submitted.")
     sampler = SamplerV2(mode=backend)
     sampler.options.dynamical_decoupling.enable = False
     sampler.options.twirling.enable_gates = False

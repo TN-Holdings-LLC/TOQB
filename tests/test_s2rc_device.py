@@ -53,3 +53,25 @@ def test_props_values_and_drift_summary():
     w[k] = 0.6
     d = drift_summary(v, w)
     assert d["cz"]["changed"] == 1 and d["cz"]["failed_flips"] == 1 and d["T1"]["changed"] == 0
+
+
+def test_submit_stops_only_on_failed_elements():
+    """Owner decision 2026-10-20: a new calibration timestamp does not stop the submission; a used failed element does."""
+    import copy
+    from qiskit import QuantumCircuit, transpile
+    from qiskit.transpiler import InstructionProperties
+    from qiskit_ibm_runtime.fake_provider import FakeFez
+    from toqb.s2rc_device import submit_problems
+    tg = FakeFez().target
+    qc = QuantumCircuit(2, 1)
+    qc.h(0)
+    qc.cx(0, 1)
+    qc.measure(1, 0)
+    c = transpile(qc, target=tg, optimization_level=1, initial_layout=[0, 1], seed_transpiler=1)
+    assert submit_problems([c], tg) == []
+    edge = next(tuple(c.find_bit(q).index for q in i.qubits) for i in c.data if i.operation.name == "cz")
+    bad = copy.deepcopy(tg)
+    old = bad["cz"][edge]
+    bad.update_instruction_properties("cz", edge, InstructionProperties(duration=old.duration, error=0.6))
+    probs = submit_problems([c], bad)
+    assert probs and "failed coupler" in probs[0]

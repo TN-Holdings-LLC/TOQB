@@ -69,3 +69,10 @@ Exploratory; nothing here changes the device day's code (new files only).
   three seeds, with each seed in the results folder; the report's order as drafted, with the reference twin's own row;
   the prediction cost is `times.eval` with the template's note until `s2rc` records the prediction separately; the
   vanity wording as in the template.
+
+## Home, 2026-10-20 (about 12:45 CEST): C r8
+
+P1 found a new calibration timestamp about every 2 h (TOQB `results/p1-calibration-2026-10-20/`). Owner's decision
+(12:32 CEST): no rule built around the vendor's calibration cadence. C r8: `submit` no longer stops on a new timestamp,
+only on a failed element the job uses (code: `toqb/s2rc_device.py submit_problems`, test added); P2 and P4 dropped;
+the reference twin runs after submission and before the results are read. Not fixed.
