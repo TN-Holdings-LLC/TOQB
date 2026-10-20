@@ -1,0 +1,3 @@
+E4-brier ta=1.0 L8 sweep0: train loss 0.2407 acc 0.594 | test acc 0.596 CE 0.7642 |theta|max 0.000 (6 s)
+E4-brier ta=1.0 L8 sweep1: train loss 0.1723 acc 0.812 | test acc 0.632 CE 0.6197 |theta|max 3.142 (253 s)
+E4-brier ta=1.0 L8 sweep2: train loss 0.1375 acc 0.859 | test acc 0.722 CE 0.5772 |theta|max 6.283 (505 s)

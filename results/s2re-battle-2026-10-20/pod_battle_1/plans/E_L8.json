@@ -1,0 +1,31 @@
+{
+ "name": "S2RE battle E L8 s201",
+ "device": "snapshot:marrakesh",
+ "task": {
+  "n": 10,
+  "layers": 8,
+  "enc": 1.5707963267948966,
+  "teacher_seed": 4,
+  "teacher_angle": 0.3,
+  "teacher_gap": 0.2,
+  "n_train": 64,
+  "n_test": 500
+ },
+ "train": {
+  "seed": 201,
+  "feat_traj": 1024
+ },
+ "predict": {
+  "traj": 1024,
+  "shots": 1000,
+  "reps": 20000,
+  "level": 0.99,
+  "seed": 50201
+ },
+ "standin": {
+  "t12": 0.3,
+  "over": 0.01,
+  "zz_hz": 10000.0,
+  "seed": 20261017
+ }
+}

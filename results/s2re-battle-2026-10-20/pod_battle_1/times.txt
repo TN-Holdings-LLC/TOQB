@@ -1,0 +1,6 @@
+NVIDIA A100-SXM4-80GB, 81920 MiB
+toqb d2a58ab C against E: the battle script runs PSF's arm only by default (owner, 2026-10-20: the opponent is ourselves, not Qiskit) and runs on the home GPU too (TOQB_DIR, PSF_DIR, VENV_ACT); a batched exact simulator of the model (equal to exact_z0, tested)
+SEEDS=201 202 203 FEAT=1024 PAR=6 teacher_angle=0.3 ARMS=psfai:template
+start 2026-10-20 14:50:03 CEST
+8 runs
+end 2026-10-20 16:44:28 CEST

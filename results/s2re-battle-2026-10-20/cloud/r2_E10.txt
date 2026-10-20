@@ -1,0 +1,1 @@
+E teacher_angle=1.0 L8: test acc 0.542 CE 0.7312; theta=0: acc 0.596 CE 0.7642 (237 s)

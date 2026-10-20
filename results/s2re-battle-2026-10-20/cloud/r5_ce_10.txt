@@ -1,0 +1,4 @@
+E4-ce ta=1.0 L8 sweep0: train loss 0.6852 acc 0.594 | test acc 0.596 CE 0.7642 |theta|max 0.000 (6 s)
+E4-ce ta=1.0 L8 sweep1: train loss 0.5241 acc 0.797 | test acc 0.576 CE 0.6461 |theta|max 3.142 (251 s)
+E4-ce ta=1.0 L8 sweep2: train loss 0.4476 acc 0.812 | test acc 0.686 CE 0.5818 |theta|max 5.374 (501 s)
+E4-ce ta=1.0 L8 sweep3: train loss 0.4036 acc 0.875 | test acc 0.718 CE 0.5787 |theta|max 7.569 (752 s)

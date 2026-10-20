@@ -1,0 +1,5 @@
+sinusoid check: F(0.7) 0.342741 vs formula 0.342741
+E3 ta=0.3 L8 sweep0: train mean(yf) 0.4622 acc 0.969 | test acc 0.948 CE 0.2972 |theta|max 0.000 (9 s)
+E3 ta=0.3 L8 sweep1: train mean(yf) 0.5405 acc 0.969 | test acc 0.916 CE 0.3313 |theta|max 3.142 (256 s)
+E3 ta=0.3 L8 sweep2: train mean(yf) 0.5649 acc 0.984 | test acc 0.934 CE 0.3144 |theta|max 3.192 (508 s)
+E3 ta=0.3 L8 sweep3: train mean(yf) 0.5737 acc 0.984 | test acc 0.940 CE 0.3156 |theta|max 3.884 (747 s)

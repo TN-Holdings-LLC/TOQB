@@ -1,0 +1,1 @@
+C start=random teacher_angle=1.0 L8 s201: test acc 0.714 CE 0.5589 (1380 s)

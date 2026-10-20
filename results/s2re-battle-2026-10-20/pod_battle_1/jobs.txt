@@ -1,0 +1,8 @@
+<pod>/s2re_battle_1/plans/C0_L16_s201.json psfai:template
+<pod>/s2re_battle_1/plans/C0_L16_s202.json psfai:template
+<pod>/s2re_battle_1/plans/C0_L16_s203.json psfai:template
+<pod>/s2re_battle_1/plans/C0_L8_s201.json psfai:template
+<pod>/s2re_battle_1/plans/C0_L8_s202.json psfai:template
+<pod>/s2re_battle_1/plans/C0_L8_s203.json psfai:template
+<pod>/s2re_battle_1/plans/E_L16.json psfai:template
+<pod>/s2re_battle_1/plans/E_L8.json psfai:template

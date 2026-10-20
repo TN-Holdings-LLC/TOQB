@@ -1,0 +1,4 @@
+E2 ta=0.3 L8 it0: train acc 0.969 resid 0.2969 | test acc 0.948 CE 0.2972 |theta|max 0.000 (6 s)
+E2 ta=0.3 L8 it1: train acc 1.000 resid 0.2007 | test acc 0.966 CE 0.3180 |theta|max 0.774 (250 s)
+E2 ta=0.3 L8 it2: train acc 0.469 resid 0.5712 | test acc 0.460 CE 0.7226 |theta|max 79.049 (490 s)
+E2 ta=0.3 L8 it3: train acc 0.469 resid 0.5934 | test acc 0.466 CE 0.7279 |theta|max 105.179 (744 s)
