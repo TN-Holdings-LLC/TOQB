@@ -15,8 +15,8 @@ fixing.
 
 Filled from the code, unchanged since the rehearsal (TOQB `5a6981e`; `toqb/s2rc_device.py plans` writes the same
 training block as `gpu/s2rc_rehearsal.sh`): the training settings of §7, and the CE formula of §3 (confirmed equal to
-the scoring code). Still to confirm by the owner before fixing: T_pred and R (§3, §7), and H2's test (Wilcoxon as
-written, §2). Filled in after the rehearsal: §6's record and W_r (§5). P1's reading (§5) is added when it exists.
+the scoring code). Confirmed by the owner at 06:35 CEST: T_pred = 1,024 and R = 20,000 (§3, §7), and H2's test by
+Wilcoxon as written (§2). Filled in after the rehearsal: §6's record and W_r (§5). P1's reading (§5) is added when it exists.
 
 **Revision r6 (2026-10-20, 01:40 CEST, workplace).** The r5 file is unchanged. All four items are proposals for
 the owner; hypotheses, tests, α, P, N and M are unchanged.
@@ -163,8 +163,7 @@ accuracy to chance, most plausibly at L = 16 or for the wider Qiskit circuits.
   - d_{m,i} = e_{QK,m,i} − e_{PSF,m,i}.
 - **Statistic:** average d over the models for each point, d̄_i. Then a one-sided Wilcoxon signed-rank test over the P
   points (H2: d̄ > 0), per depth; α = 0.01, Holm over the 2 depths.
-  - Wilcoxon as written. r7: the paired t alternative is not adopted unless the owner says so before fixing (`[ ]`
-    to confirm).
+  - Wilcoxon as written; the paired t alternative is not adopted (owner, r7, 06:35 CEST).
 - **Why the points are the unit.** With M = 5 models, a test over models alone cannot reach p < 0.01: the smallest
   one-sided Wilcoxon p for n = 5 is 1/32 ≈ 0.031.
 - **Shot-noise floor.** e includes shot noise of size about √(p(1−p)/N), which is similar for both compilers at the same
@@ -181,8 +180,8 @@ accuracy to chance, most plausibly at L = 16 or for the wider Qiskit circuits.
 ## 3. How the twin's prediction is made
 
 1. **Twin output.** For each cell, model and test point, the twin gives p1_i, the predicted P(1) including readout
-   error. It is computed with traj2 from T_pred trajectories, T_pred = 1,024 (r4 proposal, the code's default and the
-   rehearsal's value; `[ ]` owner to confirm).
+   error. It is computed with traj2 from T_pred trajectories, T_pred = 1,024 (the code's default and the rehearsal's value; owner,
+   r7).
 2. **Replicates.** For r = 1 … R (R = 20,000, as T_pred), as implemented in `toqb/s2rc.py`:
    - (twin computational error) draw p1'_i ~ N(p1_i, p1_i(1 − p1_i)/T_pred), clipped to [0, 1]. This is an upper-side
      estimate of the trajectory Monte Carlo error;
@@ -555,7 +554,7 @@ Procedure check (a): {passed / fault}.
 | test points P, shots N | **P_8 = 150, P_16 = 500, N = 250** (§4, option A; owner, r5) | owner |
 | models (seeds) per cell, M | **M = 1** (owner, r5), so the pooling question of §2 does not arise | owner |
 | seeds | **301** (owner, r7); already used and excluded: 9001-9020, 101-102, 201-203, 299 | owner |
-| T_pred, R (prediction) | T_pred = 1,024, R = 20,000 (r4 proposal, the code's defaults, as in the rehearsal; `[ ]` owner to confirm). r6 notes: the twin's Monte Carlo error per point at T_pred = 1,024 is about 0.5/√1,024 = 0.016 at most, half the shot noise at N = 250 (0.032), and it is inside the interval by design. R = 20,000 leaves 100 replicates in each 0.5 % tail of the 99 % interval | owner |
+| T_pred, R (prediction) | **T_pred = 1,024, R = 20,000** (the code's defaults, as in the rehearsal; owner, r7). r6 notes: the twin's Monte Carlo error per point at T_pred = 1,024 is about 0.5/√1,024 = 0.016 at most, half the shot noise at N = 250 (0.032), and it is inside the interval by design. R = 20,000 leaves 100 replicates in each 0.5 % tail of the 99 % interval | owner |
 | time limit T0 → submission | **6 h**, with the replacement rule from the rehearsal (§5) (owner, r7) | owner |
 | device | **the rule of §5** (eligibility E1-E4, then the fixed order marrakesh, fez, kingston) (owner, r7) | owner |
 

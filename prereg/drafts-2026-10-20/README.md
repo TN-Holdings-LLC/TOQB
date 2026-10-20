@@ -54,3 +54,4 @@ Exploratory; nothing here changes the device day's code (new files only).
     near n = 12-13.
   - Agree with W5's point 3: the stamp's official score stays `s2rc_device score` (design C's H1 and H2); `predscore`
     is a second, report-only view of the same job.
+- 06:35 CEST: the owner confirmed T_pred 1,024, R 20,000 and H2 by Wilcoxon (C r7), and accepted W4/W5 with the home notes; details left to home.

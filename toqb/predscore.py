@@ -226,7 +226,9 @@ def score(pred, meas, pred_sha, meas_sha, ref=None, ref_sha=None):
                classes={"+1": int(np.sum(y > 0)), "-1": int(np.sum(y < 0))})
     # when was the prediction fixed: its own field, or the device job's manifest (written and hashed before submission)
     t_pred = parse_time(pred.get("fixed_at")) or parse_time(meas.get("prediction_fixed_at"))
-    t_obs = parse_time(meas.get("observed_at"))
+    # the truth cannot exist before the job was submitted: compare with the submission time when the measurement has
+    # it (home review, 2026-10-20), else with the time the truth was observed
+    t_obs = parse_time(meas.get("truth_not_before")) or parse_time(meas.get("observed_at"))
     order = None if (t_pred is None or t_obs is None) else bool(t_pred < t_obs)
     by_hash = bool(pred.get("fixed_by_hash", False) or meas.get("inputs", {}).get("manifest_sha256"))
     out["prediction_fixed_before_truth"] = order
@@ -243,6 +245,9 @@ def score(pred, meas, pred_sha, meas_sha, ref=None, ref_sha=None):
         warn.append("the truth was observed before the prediction was fixed")
     if meas["tier"] != "device":
         warn.append(f"truth tier '{meas['tier']}': not evidence about a device")
+    if pred["twin"].get("traj"):
+        warn.append("the twin's Monte Carlo error is modelled as Normal(p1, p1 (1 - p1) / traj), an upper bound for "
+                    "trajectories that each give an exact P(1): coverage errs on the wide side")
     if meas["kind"] == "exact-no-shots":
         warn.append("exact truth without shots: log scores are per shot (Bernoulli), not comparable with shot scores")
     out["warnings"] = warn
@@ -369,6 +374,8 @@ def meas_from_device(job_dir, cell, pred, pred_sha):
     """A shots measurement for one cell of a toqb.s2rc_device job folder (manifest.json, raw_counts.json)."""
     man_f, raw_f = os.path.join(job_dir, "manifest.json"), os.path.join(job_dir, "raw_counts.json")
     man, raw = load_json(man_f), load_json(raw_f)
+    sub_f = os.path.join(job_dir, "submission.json")
+    submitted = load_json(sub_f).get("submitted") if os.path.exists(sub_f) else None
     cells = {c["cell"]: c for c in man["cells"]}
     if cell not in cells:
         raise Stop(f"cell {cell} is not in the manifest")
@@ -385,7 +392,7 @@ def meas_from_device(job_dir, cell, pred, pred_sha):
             pts.append(dict(i=pub["point"], k=int(k), n=int(n)))
     pts.sort(key=lambda d: d["i"])
     return dict(format=FORMAT_MEAS, written=now_stamp(), kind="shots", tier="device",
-                observed_at=raw.get("fetched"), prediction_fixed_at=man.get("written"),
+                observed_at=raw.get("fetched"), truth_not_before=submitted, prediction_fixed_at=man.get("written"),
                 truth_producer="IBM device via toqb.s2rc_device submit / result",
                 backend=man["fetch"].get("backend"), calibration_fetched=man["fetch"].get("calibration_time"),
                 calibration_at_result=raw.get("calibration_at_fetch"), job_id=raw.get("job_id"),

@@ -223,6 +223,35 @@ def test_converter_from_device():
     assert sc["claimable"] is True and sc["tier"] == "device"
 
 
+def test_device_order_uses_submission_time():
+    """Home review (2026-10-20): the prediction must be fixed before the job was submitted, not only before the
+    results were fetched. A manifest written after the submission time is not claimable."""
+    y, p_true, rng = _truth(40, 11)
+    p1 = _twin_p1(p_true, rng)
+    k = rng.binomial(250, p_true)
+    with tempfile.TemporaryDirectory() as d:
+        job = os.path.join(d, "job")
+        os.makedirs(job)
+        man = dict(written="2026-10-20T09:00:00+00:00 (x)", qpy_sha256="q" * 64,
+                   fetch=dict(backend="ibm_test", calibration_time="t0"),
+                   cells=[dict(cell=0, run_sha256="r" * 64, labels=[int(v) for v in y], twin_p1=[float(v) for v in p1])],
+                   pubs=[dict(cell=0, point=i) for i in range(len(y))])
+        rows = [dict(pub=i, counts={"1": int(k[i]), "0": int(250 - k[i])}) for i in range(len(y))]
+        raw = dict(fetched="2026-10-20T12:00:00+00:00 (x)", job_id="j", rows=rows)
+        sub = dict(job_id="j", submitted="2026-10-20T08:30:00+00:00 (x)")
+        for name, obj in (("manifest.json", man), ("raw_counts.json", raw), ("submission.json", sub)):
+            with open(os.path.join(job, name), "w", encoding="utf-8") as f:
+                json.dump(obj, f)
+        pr = _pred(y, p1)
+        pr["inputs"]["run_record_sha256"] = "r" * 64
+        pf, _ = _write(d, "pred.json", pr)
+        mf, out = os.path.join(d, "meas.json"), os.path.join(d, "score.json")
+        assert PS.main(["from-device", job, "0", mf, "--pred", pf]) == 0
+        assert PS.main([pf, mf, out]) == 0
+        sc = PS.load_json(out)
+    assert sc["prediction_fixed_before_truth"] is False and sc["claimable"] is False
+
+
 def test_scorer_cannot_produce_truth():
     """The truth / scored separation, as a rule a test can check: predscore imports no simulator or engine."""
     src = open(os.path.join(os.path.dirname(PS.__file__), "predscore.py"), encoding="utf-8").read()
