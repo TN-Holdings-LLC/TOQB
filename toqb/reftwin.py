@@ -98,8 +98,17 @@ def run(job_dir, fetch_dir, out_dir, shots=1024, threads=0, first=None, device="
     sim = AerSimulator(**opts)
     idx = list(range(len(circs)))
     if first:
-        # smoke runs only: the first `first` points of every cell
-        idx = [i for i, p in enumerate(man["pubs"]) if p["point"] < first]
+        # smoke runs only: per cell, the first ceil(first / 2) points of class +1 and the first floor(first / 2) of
+        # class -1 (the test points are ordered by class, so "the first K" would be one class, which predscore refuses)
+        lab = {c["cell"]: c["labels"] for c in man["cells"]}
+        seen = {}
+        idx = []
+        for i, p in enumerate(man["pubs"]):
+            y = lab[p["cell"]][p["point"]]
+            k = (p["cell"], y)
+            if seen.get(k, 0) < ((first + 1) // 2 if y > 0 else first // 2):
+                seen[k] = seen.get(k, 0) + 1
+                idx.append(i)
     p1 = {}
     t1 = time.perf_counter()
     for i in idx:
@@ -132,7 +141,7 @@ def run(job_dir, fetch_dir, out_dir, shots=1024, threads=0, first=None, device="
             job={}, cost=dict(run_s_all_cells=round(t_run, 3), threads=threads),
             notes=["fixed_by_hash becomes true when this file's SHA-256 is recorded before submission"])
         if first:
-            pred["notes"].append(f"smoke run: only the first {first} points of each cell")
+            pred["notes"].append(f"smoke run: {first} points of each cell, both classes")
         f = os.path.join(out_dir, f"ref_cell{c['cell']}.json")
         data = json.dumps(pred, indent=1, sort_keys=True).encode("utf-8")
         with open(f, "wb") as fh:

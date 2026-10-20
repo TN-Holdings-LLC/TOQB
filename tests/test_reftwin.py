@@ -98,3 +98,13 @@ def test_hash_mismatch_and_existing_output_stop():
             f.write(b"x")
         with pytest.raises(RT.Stop):
             RT.run(job, fetch, os.path.join(d, "ref2"), shots=10)
+
+
+def test_first_k_takes_both_classes():
+    from qiskit_ibm_runtime.fake_provider import FakeManilaV2
+    with tempfile.TemporaryDirectory() as d:
+        job, fetch, _ = _job(d, FakeManilaV2())
+        out = os.path.join(d, "ref")
+        RT.run(job, fetch, out, shots=50, threads=1, first=2)
+        pred = json.load(open(os.path.join(out, "ref_cell0.json")))
+        assert sorted(p["label"] for p in pred["points"]) == [-1, 1]
