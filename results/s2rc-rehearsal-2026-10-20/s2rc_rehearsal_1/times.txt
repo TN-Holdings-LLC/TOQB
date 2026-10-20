@@ -1,0 +1,8 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+cpus 224
+toqb 5a6981e Workplace drafts C r6 (device-day schedule, 6 h limit, device rule, calibration-update steps) and X22 r4 (CUDA-Q cost per inline noise operation, F3 list, pod procedure), with the home review; s2rc_device precheck: both compilers' circuits on the fetched Target checked for ISA and failed elements before training
+psf-zero 7a827829 Owner decisions of 2026-10-19: psfz pure Rust by default, an outside library by a Cargo feature for the pod (lapack: the MPS twin's SVD through a system zgesdd; 3.6-6.6 x faster on the twin check, exactness unchanged, compile still identical to r4 on 96/96); IR v0 = TFIM chain, ring classifier, rzz layer
+LR=0.4 LOOPS=2000 SEEDS=201 202 203 P=500 SHOTS=1000 PAR=6
+start 2026-10-20 04:07:09 CEST
+12 runs
+end 2026-10-20 09:29:24 CEST

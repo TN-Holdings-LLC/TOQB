@@ -1,0 +1,75 @@
+{
+ "bernoulli_score": {
+  "per_point_per_shot": -0.6529955361577136
+ },
+ "claimable": false,
+ "classes": {
+  "+1": 250,
+  "-1": 250
+ },
+ "coverage_twin_error": {
+  "0.50": 0.704,
+  "0.90": 0.928,
+  "0.99": 0.97
+ },
+ "deviation": {
+  "mean_abs": 0.0088458009124586,
+  "rms": 0.013478808062261639
+ },
+ "format": "toqb-score/0",
+ "information": {
+  "chance": {
+   "per_shot_per_point_nats": 0.040151644402231776
+  }
+ },
+ "inputs": {
+  "measurement_sha256": "e5a9e626523f0ecab0445025e063748daeb8adba2155f1a1401855b51deaadd6",
+  "prediction_sha256": "a555ab9a03f307b8ab5268cc3d7dbad30f3c3e61775422adb0446fc25c6a912b",
+  "reference_sha256": null
+ },
+ "job": {
+  "acc_strict_exact": 0.542,
+  "acc_strict_pred": 0.554,
+  "ce_exact": 0.6130719842443078,
+  "ce_exact_pred": 0.6077735120049624
+ },
+ "kind": "exact-no-shots",
+ "per_class": {
+  "+1": {
+   "bernoulli_score_mean": -0.620632764935518,
+   "coverage_twin_error": {
+    "0.50": 0.668,
+    "0.90": 0.916,
+    "0.99": 0.968
+   },
+   "mean_abs_dev": 0.009322420602381885,
+   "points": 250
+  },
+  "-1": {
+   "bernoulli_score_mean": -0.685358307379909,
+   "coverage_twin_error": {
+    "0.50": 0.74,
+    "0.90": 0.94,
+    "0.99": 0.972
+   },
+   "mean_abs_dev": 0.008369181222535316,
+   "points": 250
+  }
+ },
+ "points": 500,
+ "prediction_fixed_before_truth": null,
+ "prediction_fixed_by_hash": false,
+ "producer": {
+  "name": "toqb.predscore",
+  "script_sha256": "22eda6deb7ab88c2597a2e40ac380d5f487873890bdd1445b92fd23291e2f4af",
+  "version": "toqb.predscore prototype 0.1 (2026-10-20)"
+ },
+ "tier": "stand-in",
+ "warnings": [
+  "the order of prediction and truth could not be read from the artifacts' times",
+  "truth tier 'stand-in': not evidence about a device",
+  "the twin's Monte Carlo error is modelled as Normal(p1, p1 (1 - p1) / traj), an upper bound for trajectories that each give an exact P(1): coverage errs on the wide side",
+  "exact truth without shots: log scores are per shot (Bernoulli), not comparable with shot scores"
+ ],
+ "written": "2026-10-20T07:40:58+00:00"
+}

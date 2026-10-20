@@ -1,0 +1,12 @@
+<pod>/s2rc_rehearsal_1/plans/L16_s201.json qiskit:2:target:template
+<pod>/s2rc_rehearsal_1/plans/L16_s201.json psfai:template
+<pod>/s2rc_rehearsal_1/plans/L16_s202.json qiskit:2:target:template
+<pod>/s2rc_rehearsal_1/plans/L16_s202.json psfai:template
+<pod>/s2rc_rehearsal_1/plans/L16_s203.json qiskit:2:target:template
+<pod>/s2rc_rehearsal_1/plans/L16_s203.json psfai:template
+<pod>/s2rc_rehearsal_1/plans/L8_s201.json qiskit:2:target:template
+<pod>/s2rc_rehearsal_1/plans/L8_s201.json psfai:template
+<pod>/s2rc_rehearsal_1/plans/L8_s202.json qiskit:2:target:template
+<pod>/s2rc_rehearsal_1/plans/L8_s202.json psfai:template
+<pod>/s2rc_rehearsal_1/plans/L8_s203.json qiskit:2:target:template
+<pod>/s2rc_rehearsal_1/plans/L8_s203.json psfai:template

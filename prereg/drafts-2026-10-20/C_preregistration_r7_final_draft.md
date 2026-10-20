@@ -322,14 +322,19 @@ connection (`toqb/s2rc_device.py`):
    with all cells in parallel, and make the predictions (§3); the compiled test circuits are written to QPY.
 4. **[pod]** `assemble`: checks (same Target hash, QPY hashes, ISA and failed elements, modelled QPU time within the
    limit) and writes the job folder: one QPY file and a manifest with every prediction, label and hash.
+4b. **[pod] (r7, owner 2026-10-20; report only)** `toqb.reftwin JOB FETCH REF --shots T`: the reference twin (Aer's
+   standard noise model from the fetched Target) predicts the same circuits, blind. Its outputs' SHA-256
+   (`reftwin.json`) are fixed with the manifest's in step 5. It feeds TOQB v0.2's prediction layer only; H1, H2, R1
+   and R2 do not use it. Duration on the pod: {from the dry run of 2026-10-20}; T = {…}.
 5. **[home]** Copy the job folder home. Fix this document (SHA-256 and CEST time), with the manifest's SHA-256 in it.
 6. **[home, VPN off]** `submit`: one job. It stops if the backend's calibration time differs from the fetched one
    (retrain, as below), if the files differ from the manifest, or if a job was already submitted.
 7. **[home, VPN off]** `result`, then `score` (offline).
 
 **Time limit.** From T0 to job submission: at most 6 h (owner, r7), or W_r + 1.6 h if the rehearsal's W_r exceeds
-4.4 h (rule below). Rehearsal: W_r = {Qiskit L 16 wall time incl. prediction, from the rehearsal record}; the limit is
-{6 h or W_r + 1.6 h}.
+4.4 h (rule below). Rehearsal: W_r = 17,004 s = 4.72 h (the largest Qiskit L 16 run, training
+plus prediction, with the stand-in's verification included because the record does not separate it); W_r > 4.4 h,
+so **the limit is W_r + 1.6 h = 6.32 h**.
 
 **Training time, measured.** The source is B's pod pilot (2026-10-19, one H100, 6 runs at a time, evaluation
 included; wall time ÷ loops, mean of the 3 learning rates × 2 seeds).
@@ -535,9 +540,12 @@ stop the device step.
 **The rehearsal record is fixed** (SHA-256 and CEST time) before this document is fixed.
 
 **Rehearsal record (r7; filled in before fixing).** Run 2026-10-20 from 04:07:09 CEST on one H100 (PAR 6), TOQB
-`5a6981e`, psf-zero `7a827829`, seeds 201-203, LR 0.4, 2,000 loops, P 500, N 1,000. Record: {zip SHA-256 and CEST
-time}. Per cell: {table of predicted CE with interval, stand-in CE, inside, predicted and stand-in accuracy, H1, H2}.
-Procedure check (a): {passed / fault}.
+`5a6981e`, psf-zero `7a827829`, seeds 201-203, LR 0.4, 2,000 loops, P 500, N 1,000. Record: the pod's zip, SHA-256
+`d93dc912365e71bedefb4b31b015e627e98b0292537d0d4e554e8794fa5b389c`, fixed at home on 2026-10-20 at 09:45 CEST; per
+run and cell in TOQB `results/s2rc-rehearsal-2026-10-20/README.md`. Procedure check (a): passed (12 of 12 runs valid,
+no fault). Record (b), in short: H1 below 0.01 in every cell for every seed; R1, stand-in CE inside the twin + shots
+interval for PSF in 6 of 6 runs and for Qiskit in 1 of 6 (every miss above the interval); H2's direction (the twin's
+P(1) error larger for Qiskit) at both depths. None of this changes the device test.
 
 - Nothing in the device test is changed because of it: hypotheses, α, test statistics, P, N, M, seeds, loop count and
   learning rate stay as they are.

@@ -1,0 +1,75 @@
+{
+ "bernoulli_score": {
+  "per_point_per_shot": -0.6608802197292546
+ },
+ "claimable": false,
+ "classes": {
+  "+1": 250,
+  "-1": 250
+ },
+ "coverage_twin_error": {
+  "0.50": 0.718,
+  "0.90": 0.966,
+  "0.99": 0.992
+ },
+ "deviation": {
+  "mean_abs": 0.0077898880528131185,
+  "rms": 0.01052068815725821
+ },
+ "format": "toqb-score/0",
+ "information": {
+  "chance": {
+   "per_shot_per_point_nats": 0.03226696083069064
+  }
+ },
+ "inputs": {
+  "measurement_sha256": "719597e65ba118b3f1a55fe896b3374156f2b99beb20d7dac1537afd5542ae98",
+  "prediction_sha256": "3a99be73429076238d0979a75eec0553a4f9ba5f4d0604592533154264515909",
+  "reference_sha256": null
+ },
+ "job": {
+  "acc_strict_exact": 0.772,
+  "acc_strict_pred": 0.766,
+  "ce_exact": 0.566930969558602,
+  "ce_exact_pred": 0.5667553757918509
+ },
+ "kind": "exact-no-shots",
+ "per_class": {
+  "+1": {
+   "bernoulli_score_mean": -0.6325576320551942,
+   "coverage_twin_error": {
+    "0.50": 0.652,
+    "0.90": 0.948,
+    "0.99": 0.988
+   },
+   "mean_abs_dev": 0.008375951661144448,
+   "points": 250
+  },
+  "-1": {
+   "bernoulli_score_mean": -0.6892028074033151,
+   "coverage_twin_error": {
+    "0.50": 0.784,
+    "0.90": 0.984,
+    "0.99": 0.996
+   },
+   "mean_abs_dev": 0.0072038244444817875,
+   "points": 250
+  }
+ },
+ "points": 500,
+ "prediction_fixed_before_truth": null,
+ "prediction_fixed_by_hash": false,
+ "producer": {
+  "name": "toqb.predscore",
+  "script_sha256": "22eda6deb7ab88c2597a2e40ac380d5f487873890bdd1445b92fd23291e2f4af",
+  "version": "toqb.predscore prototype 0.1 (2026-10-20)"
+ },
+ "tier": "stand-in",
+ "warnings": [
+  "the order of prediction and truth could not be read from the artifacts' times",
+  "truth tier 'stand-in': not evidence about a device",
+  "the twin's Monte Carlo error is modelled as Normal(p1, p1 (1 - p1) / traj), an upper bound for trajectories that each give an exact P(1): coverage errs on the wide side",
+  "exact truth without shots: log scores are per shot (Bernoulli), not comparable with shot scores"
+ ],
+ "written": "2026-10-20T07:41:10+00:00"
+}

@@ -1,0 +1,75 @@
+{
+ "bernoulli_score": {
+  "per_point_per_shot": -0.6788991188482127
+ },
+ "claimable": false,
+ "classes": {
+  "+1": 250,
+  "-1": 250
+ },
+ "coverage_twin_error": {
+  "0.50": 0.84,
+  "0.90": 0.966,
+  "0.99": 0.992
+ },
+ "deviation": {
+  "mean_abs": 0.005474590858646108,
+  "rms": 0.008763111188952696
+ },
+ "format": "toqb-score/0",
+ "information": {
+  "chance": {
+   "per_shot_per_point_nats": 0.01424806171173245
+  }
+ },
+ "inputs": {
+  "measurement_sha256": "006b12c949351291ee03ef789b95bdc1a42b44eddbd3ea886d208334cd426f0d",
+  "prediction_sha256": "dc998d335495c325a22d4b622a679c4eb7d08b8118ae5c5b8f16150254a81669",
+  "reference_sha256": null
+ },
+ "job": {
+  "acc_strict_exact": 0.54,
+  "acc_strict_pred": 0.528,
+  "ce_exact": 0.6319599097821388,
+  "ce_exact_pred": 0.6304593889451021
+ },
+ "kind": "exact-no-shots",
+ "per_class": {
+  "+1": {
+   "bernoulli_score_mean": -0.6663927632395419,
+   "coverage_twin_error": {
+    "0.50": 0.744,
+    "0.90": 0.936,
+    "0.99": 0.984
+   },
+   "mean_abs_dev": 0.007393340836486668,
+   "points": 250
+  },
+  "-1": {
+   "bernoulli_score_mean": -0.6914054744568837,
+   "coverage_twin_error": {
+    "0.50": 0.936,
+    "0.90": 0.996,
+    "0.99": 1.0
+   },
+   "mean_abs_dev": 0.0035558408808055485,
+   "points": 250
+  }
+ },
+ "points": 500,
+ "prediction_fixed_before_truth": null,
+ "prediction_fixed_by_hash": false,
+ "producer": {
+  "name": "toqb.predscore",
+  "script_sha256": "22eda6deb7ab88c2597a2e40ac380d5f487873890bdd1445b92fd23291e2f4af",
+  "version": "toqb.predscore prototype 0.1 (2026-10-20)"
+ },
+ "tier": "stand-in",
+ "warnings": [
+  "the order of prediction and truth could not be read from the artifacts' times",
+  "truth tier 'stand-in': not evidence about a device",
+  "the twin's Monte Carlo error is modelled as Normal(p1, p1 (1 - p1) / traj), an upper bound for trajectories that each give an exact P(1): coverage errs on the wide side",
+  "exact truth without shots: log scores are per shot (Bernoulli), not comparable with shot scores"
+ ],
+ "written": "2026-10-20T07:40:39+00:00"
+}

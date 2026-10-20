@@ -1,0 +1,75 @@
+{
+ "bernoulli_score": {
+  "per_point_per_shot": -0.619680619421063
+ },
+ "claimable": false,
+ "classes": {
+  "+1": 250,
+  "-1": 250
+ },
+ "coverage_twin_error": {
+  "0.50": 0.396,
+  "0.90": 0.688,
+  "0.99": 0.814
+ },
+ "deviation": {
+  "mean_abs": 0.025292035402888907,
+  "rms": 0.04138769746380639
+ },
+ "format": "toqb-score/0",
+ "information": {
+  "chance": {
+   "per_shot_per_point_nats": 0.0734665611388823
+  }
+ },
+ "inputs": {
+  "measurement_sha256": "a5552a749d8d645db32fff42b1dd70f4a035668feec7562529c2b53aff258f2c",
+  "prediction_sha256": "5bebf7bb775fe6bd937e8bee4bc574db3180ece0bc615ae747253276fd24c3a4",
+  "reference_sha256": null
+ },
+ "job": {
+  "acc_strict_exact": 0.696,
+  "acc_strict_pred": 0.736,
+  "ce_exact": 0.524816683710045,
+  "ce_exact_pred": 0.51514185866328
+ },
+ "kind": "exact-no-shots",
+ "per_class": {
+  "+1": {
+   "bernoulli_score_mean": -0.5559072050690772,
+   "coverage_twin_error": {
+    "0.50": 0.476,
+    "0.90": 0.788,
+    "0.99": 0.9
+   },
+   "mean_abs_dev": 0.015417768259171155,
+   "points": 250
+  },
+  "-1": {
+   "bernoulli_score_mean": -0.6834540337730489,
+   "coverage_twin_error": {
+    "0.50": 0.316,
+    "0.90": 0.588,
+    "0.99": 0.728
+   },
+   "mean_abs_dev": 0.035166302546606666,
+   "points": 250
+  }
+ },
+ "points": 500,
+ "prediction_fixed_before_truth": null,
+ "prediction_fixed_by_hash": false,
+ "producer": {
+  "name": "toqb.predscore",
+  "script_sha256": "22eda6deb7ab88c2597a2e40ac380d5f487873890bdd1445b92fd23291e2f4af",
+  "version": "toqb.predscore prototype 0.1 (2026-10-20)"
+ },
+ "tier": "stand-in",
+ "warnings": [
+  "the order of prediction and truth could not be read from the artifacts' times",
+  "truth tier 'stand-in': not evidence about a device",
+  "the twin's Monte Carlo error is modelled as Normal(p1, p1 (1 - p1) / traj), an upper bound for trajectories that each give an exact P(1): coverage errs on the wide side",
+  "exact truth without shots: log scores are per shot (Bernoulli), not comparable with shot scores"
+ ],
+ "written": "2026-10-20T07:41:22+00:00"
+}
