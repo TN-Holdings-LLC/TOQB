@@ -158,6 +158,50 @@ def cmd_fetch(a):
           f"{info['num_qubits']} qubits) to {out}/target.pkl, sha256 {info['target_sha256'][:16]}...")
 
 
+# ------------------------------------------------------------------------------------------------ history (home)
+
+def update_summary(stamps):
+    """Distinct calibration timestamps (ISO strings, any order, duplicates allowed) -> sorted list, gaps in hours,
+    and each update's time of day in UTC (hours). Pure; used by `history` (C r6, P1)."""
+    from datetime import datetime, timezone
+    ts = sorted({datetime.fromisoformat(str(x)).astimezone(timezone.utc) for x in stamps if x})
+    gaps = [(b - a).total_seconds() / 3600 for a, b in zip(ts, ts[1:])]
+    return dict(updates=[t.isoformat() for t in ts], gaps_h=[round(g, 2) for g in gaps],
+                utc_hour=[round(t.hour + t.minute / 60, 2) for t in ts],
+                min_gap_h=round(min(gaps), 2) if gaps else None, median_gap_h=round(float(np.median(gaps)), 2) if gaps else None)
+
+
+def cmd_history(a):
+    """Read-only (no job, no QPU time): when did each backend's calibration timestamp change over the past days?
+    Samples backend.properties(datetime=t) every STEP hours; each sample returns the calibration in effect at t, whose
+    last_update_date is the update's own time, so updates are found exactly unless two fall within one step."""
+    from datetime import datetime, timedelta, timezone
+    os.makedirs(a.out, exist_ok=True)
+    path = os.path.join(a.out, "history.json")
+    if os.path.exists(path):
+        raise SystemExit(f"{path} exists: a reading is never overwritten (use a new folder)")
+    svc = _service()
+    now = datetime.now(timezone.utc).replace(minute=0, second=0, microsecond=0)
+    rec = dict(written=stamp(), days=a.days, step_h=a.step, backends={})
+    for name in a.backends:
+        b = svc.backend(name)
+        stamps, errors = [calibration_time(b)], 0
+        for k in range(int(a.days * 24 / a.step) + 1):
+            t = now - timedelta(hours=k * a.step)
+            try:
+                stamps.append(str(b.properties(datetime=t).last_update_date))
+            except Exception:  # noqa: BLE001
+                errors += 1
+        summ = update_summary(stamps)
+        summ.update(current=stamps[0], samples=len(stamps) - 1, errors=errors)
+        # if every sample equals the current stamp, the server may not serve history at all: say so, do not guess
+        summ["history_served"] = any(x != stamps[0] for x in stamps[1:])
+        rec["backends"][name] = summ
+        print(f"{name}: {len(summ['updates'])} updates, min gap {summ['min_gap_h']} h, median {summ['median_gap_h']} h, "
+              f"UTC hours {summ['utc_hour']} ({errors} failed samples; history served: {summ['history_served']})", flush=True)
+    _dump_json(path, rec)
+
+
 # ------------------------------------------------------------------------------------------------ plans (pod)
 
 def cmd_plans(a):
@@ -536,11 +580,16 @@ def main(argv=None):
     r = sp.add_parser("result")
     r.add_argument("--job", required=True)
     r.add_argument("--wait-min", type=float, default=60)
+    h = sp.add_parser("history")
+    h.add_argument("--out", required=True)
+    h.add_argument("--backends", nargs="+", default=["ibm_marrakesh", "ibm_fez", "ibm_kingston"])
+    h.add_argument("--days", type=float, default=7)
+    h.add_argument("--step", type=float, default=2)
     c = sp.add_parser("score")
     c.add_argument("--job", required=True)
     a = ap.parse_args(argv)
     dict(fetch=cmd_fetch, precheck=cmd_precheck, plans=cmd_plans, assemble=cmd_assemble, submit=cmd_submit, result=cmd_result,
-         score=cmd_score)[a.cmd](a)
+         score=cmd_score, history=cmd_history)[a.cmd](a)
     return 0
 
 

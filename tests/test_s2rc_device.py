@@ -33,3 +33,11 @@ def test_time_model_matches_billed_jobs():
     assert abs(60 * D.PER_CIRCUIT_S + 360000 * D.PER_SHOT_S - 102) < 4
     assert abs(81 * D.PER_CIRCUIT_S + 198000 * D.PER_SHOT_S - 56) < 2
     assert abs(D.qpu_seconds(1300, 250) - (1300 * 0.036 + 1300 * 250 * 0.00027 + 3.0)) < 1e-9
+
+
+def test_update_summary():
+    from toqb.s2rc_device import update_summary
+    r = update_summary(["2026-10-19T02:00:00+00:00", "2026-10-19T02:00:00+00:00", None,
+                        "2026-10-20T04:00:00+02:00", "2026-10-18T03:30:00+00:00"])
+    assert r["updates"] == ["2026-10-18T03:30:00+00:00", "2026-10-19T02:00:00+00:00", "2026-10-20T02:00:00+00:00"]
+    assert r["gaps_h"] == [22.5, 24.0] and r["min_gap_h"] == 22.5 and r["utc_hour"] == [3.5, 2.0, 2.0]
