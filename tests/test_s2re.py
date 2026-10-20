@@ -73,3 +73,33 @@ def test_train_e4_never_raises_the_loss():
     th, hist = E.train_e4(fv, np.zeros(3), 3)
     assert all(h2 <= h1 + 1e-12 for h1, h2 in zip(hist, hist[1:]))
     assert abs(hist[-1] - float(np.mean(((fv(th) - y) / 2) ** 2))) < 1e-12
+
+
+def test_split_coefficients_are_unbiased():
+    rng = np.random.default_rng(5)
+    m = 6
+    a, b, c = rng.normal(size=(3, m)) * 0.4
+    y = rng.choice([-1.0, 1.0], m)
+    _, P, Q, R, S = E.brier_coeffs(a, b, c, y)
+    sig, N = 0.3, 40000
+    acc = np.zeros(4)
+    for _ in range(N):
+        h1 = [v + rng.normal(size=m) * sig for v in (a, b, c)]
+        h2 = [v + rng.normal(size=m) * sig for v in (a, b, c)]
+        acc += E.brier_coeffs_split(h1, h2, y)
+    est = acc / N
+    se = 4 * sig * np.sqrt(m) / np.sqrt(N) * 3
+    assert np.all(np.abs(est - np.array([P, Q, R, S])) < se + 1e-3)
+
+
+def test_trig2_min_never_above_zero_shift():
+    rng = np.random.default_rng(6)
+    for _ in range(500):
+        u, dv = E.trig2_min(*rng.normal(size=4))
+        assert dv <= 1e-12
+
+
+def test_a_parameter_without_effect_stays():
+    assert E.trig2_min(1e-17, -2e-17, 0.0, 3e-18) == (0.0, 0.0)
+    u, v = E.brier_min(np.zeros(3), np.full(3, 1e-18), np.zeros(3), np.ones(3))
+    assert u == 0.0 and abs(v - 3.0) < 1e-12

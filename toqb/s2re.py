@@ -56,26 +56,49 @@ def brier_coeffs(a, b, c, y):
     return K, 2 * float(np.sum(r * b)), 2 * float(np.sum(r * c)), float(np.sum(b * b) - np.sum(c * c)) / 2, float(np.sum(b * c))
 
 
-def brier_min(a, b, c, y):
-    """The exact global minimum over u of sum_i (f_i(u) - y_i)^2 with f_i(u) = a_i + b_i cos u + c_i sin u.
-
-    The sum is a trigonometric polynomial of degree 2, K + P cos u + Q sin u + R cos 2u + S sin 2u. Its stationary
-    points, with t = tan(u / 2), are the real roots of the quartic
+def trig2_min(P, Q, R, S):
+    """The exact global minimum over u of P cos u + Q sin u + R cos 2u + S sin 2u (a trigonometric polynomial of
+    degree 2; any constant is irrelevant). Its stationary points, with t = tan(u / 2), are the real roots of the quartic
         (2S - Q) t^4 + (8R - 2P) t^3 - 12 S t^2 - (2P + 8R) t + (Q + 2S) = 0,
-    plus u = pi (t at infinity). The roots are the eigenvalues of the quartic's companion matrix (np.roots); the
-    minimum is the candidate with the lowest value. No grid, no search. Returns (u in (-pi, pi], the minimum value)."""
-    K, P, Q, R, S = brier_coeffs(a, b, c, y)
-    val = lambda u: K + P * math.cos(u) + Q * math.sin(u) + R * math.cos(2 * u) + S * math.sin(2 * u)
-    coef = np.array([2 * S - Q, 8 * R - 2 * P, -12 * S, -(2 * P + 8 * R), Q + 2 * S])
-    cand = [math.pi, 0.0]
-    if np.any(np.abs(coef) > 1e-300):
-        nz = np.flatnonzero(np.abs(coef) > 1e-14 * max(1.0, np.abs(coef).max()))
-        roots = np.roots(coef[nz[0]:]) if len(coef) - nz[0] > 1 else []
-        for t in roots:
-            if abs(t.imag) <= 1e-9 * max(1.0, abs(t.real)):
-                cand.append(2 * math.atan(t.real))
+    plus u = pi (t at infinity). The roots are the eigenvalues of the quartic's companion matrix (np.roots); u = 0 is
+    always a candidate, so the minimum is never above the value at u = 0. A parameter whose coefficients are all below
+1e-12 does not move the loss and stays (u = 0). No grid, no search.
+    Returns (u in (-pi, pi], the value minus the value at u = 0)."""
+    val = lambda u: P * math.cos(u) + Q * math.sin(u) + R * math.cos(2 * u) + S * math.sin(2 * u)
+    coef = np.array([2 * S - Q, 8 * R - 2 * P, -12 * S, -(2 * P + 8 * R), Q + 2 * S], float)
+    cand = [0.0, math.pi]
+    big = np.abs(coef).max()
+    if big <= 1e-12:
+        return 0.0, 0.0  # the parameter does not move the loss (to rounding): it stays where it is
+    if big > 0:
+        nz = np.flatnonzero(np.abs(coef) > 1e-14 * big)
+        if len(coef) - nz[0] > 1:
+            for t in np.roots(coef[nz[0]:]):
+                if abs(t.imag) <= 1e-9 * max(1.0, abs(t.real)):
+                    cand.append(2 * math.atan(t.real))
     u = min(cand, key=val)
-    return u, val(u)
+    return u, val(u) - val(0.0)
+
+
+def brier_min(a, b, c, y):
+    """The exact global minimum over u of sum_i (f_i(u) - y_i)^2 with f_i(u) = a_i + b_i cos u + c_i sin u: the sum is
+    K + P cos u + Q sin u + R cos 2u + S sin 2u (brier_coeffs), minimised by trig2_min.
+    Returns (u in (-pi, pi], the minimum value)."""
+    K, P, Q, R, S = brier_coeffs(a, b, c, y)
+    u, _ = trig2_min(P, Q, R, S)
+    return u, K + P * math.cos(u) + Q * math.sin(u) + R * math.cos(2 * u) + S * math.sin(2 * u)
+
+
+def brier_coeffs_split(h1, h2, y):
+    """(P, Q, R, S) of the Brier sum from two independent noisy estimates h1 = (a, b, c) and h2 of the same sinusoids
+    (two halves of the twin's trajectories). Every product takes one factor from each half, so each coefficient is an
+    unbiased estimate of the noiseless one (a product of two estimates from one half would carry the variance)."""
+    a1, b1, c1 = (np.asarray(v, float) for v in h1)
+    a2, b2, c2 = (np.asarray(v, float) for v in h2)
+    y = np.asarray(y, float)
+    r1, r2 = a1 - y, a2 - y
+    return (float(np.sum(r1 * b2 + r2 * b1)), float(np.sum(r1 * c2 + r2 * c1)),
+            float(np.sum(b1 * b2) - np.sum(c1 * c2)) / 2, float(np.sum(b1 * c2 + b2 * c1)) / 2)
 
 
 def train_e4(fv, theta0, sweeps):
