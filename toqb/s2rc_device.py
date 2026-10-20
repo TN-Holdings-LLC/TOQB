@@ -151,12 +151,19 @@ def cmd_fetch(a):
     os.makedirs(out, exist_ok=True)
     with open(os.path.join(out, "target.pkl"), "wb") as f:
         pickle.dump(target, f)
+    try:
+        operational = bool(backend.status().operational)  # device rule E3 (C section 5), read with the Target
+    except Exception:  # noqa: BLE001
+        operational = None
     info = dict(written=stamp(), backend=backend.name, fake=bool(a.fake), calibration_time=calibration_time(backend),
+                operational=operational, two_qubit_gate=("cz" if "cz" in target.operation_names else
+                                                         "ecr" if "ecr" in target.operation_names else None),
                 num_qubits=target.num_qubits, target_sha256=sha256_file(os.path.join(out, "target.pkl")),
                 script_sha256=sha256_file(os.path.abspath(__file__)))
     _dump_json(os.path.join(out, "fetch.json"), info)
     print(f"{info['written']} saved the Target of {info['backend']} (calibration {info['calibration_time']}; "
-          f"{info['num_qubits']} qubits) to {out}/target.pkl, sha256 {info['target_sha256'][:16]}...")
+          f"{info['num_qubits']} qubits; two-qubit gate {info['two_qubit_gate']}; operational {operational}) to "
+          f"{out}/target.pkl, sha256 {info['target_sha256'][:16]}...")
 
 
 # ------------------------------------------------------------------------------------------------ history (home)
