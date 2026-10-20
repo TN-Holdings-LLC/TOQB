@@ -570,6 +570,18 @@ Procedure check (a): {passed / fault}.
 | Vanity | "On the real device, accuracy `[ ]` %" |
 | Essential | how well the GPU twin predicted the device (R1, R2) and the PSF / Qiskit difference (H2); device use: 1 job, $`[ ]`; accuracy above 0.5 is a low bar, and the CE and accuracy shortfall against the twin's prediction is reported next to it |
 
+## 8b. A note on the learning curve (r7, found 2026-10-20 during the rehearsal)
+
+- `toqb/s2rc.py` records the twin's CE every 200 loops on the first `curve_points` = 100 test points. `teacher_data2`
+  returns the test points ordered by class (all label +1 first, then all −1), and does not shuffle them.
+- So for P = 500 the curve is computed on 100 points of class +1 only; for P = 150 on 75 of class +1 and 25 of class −1.
+  The curve's CE is therefore not comparable with the predicted CE (all P points, both classes). Checked from the code;
+  that it explains the whole gap seen in the tuning run (curve 0.10-0.17 below the predicted CE) is to be checked with
+  the rehearsal records (`twin_p1` and `test_labels` give the CE on the first 100 points directly).
+- Nothing tested here uses the curve: training draws from the shuffled training points, and the predictions, H1, H2,
+  R1 and R2 use all P test points. The code stays as in the rehearsal for the device day; the curve is reported with
+  this note. Changing it is left to the owner, after the stamp.
+
 ## 9. What this experiment cannot show
 
 - **That device information improved learning.** Design C uses no device information during training.
