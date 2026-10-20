@@ -41,3 +41,15 @@ def test_update_summary():
                         "2026-10-20T04:00:00+02:00", "2026-10-18T03:30:00+00:00"])
     assert r["updates"] == ["2026-10-18T03:30:00+00:00", "2026-10-19T02:00:00+00:00", "2026-10-20T02:00:00+00:00"]
     assert r["gaps_h"] == [22.5, 24.0] and r["min_gap_h"] == 22.5 and r["utc_hour"] == [3.5, 2.0, 2.0]
+
+
+def test_props_values_and_drift_summary():
+    from qiskit_ibm_runtime.fake_provider import FakeFez
+    from toqb.s2rc_device import props_values, drift_summary
+    v = props_values(FakeFez().properties())
+    assert any(k[0] == "cz" for k in v) and any(k[0] == "readout_error" for k in v) and any(k[0] == "T1" for k in v)
+    w = dict(v)
+    k = next(k for k in v if k[0] == "cz")
+    w[k] = 0.6
+    d = drift_summary(v, w)
+    assert d["cz"]["changed"] == 1 and d["cz"]["failed_flips"] == 1 and d["T1"]["changed"] == 0

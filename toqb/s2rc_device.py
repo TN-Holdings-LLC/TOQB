@@ -202,6 +202,63 @@ def cmd_history(a):
     _dump_json(path, rec)
 
 
+def props_values(props):
+    """{(kind, element): value} from BackendProperties: cz / sx gate error per element, readout error, T1, T2."""
+    out = {}
+    for g in props.gates:
+        if g.gate in ("cz", "sx"):
+            for prm in g.parameters:
+                if prm.name == "gate_error":
+                    out[(g.gate, tuple(g.qubits))] = prm.value
+    for q, plist in enumerate(props.qubits):
+        for prm in plist:
+            if prm.name in ("readout_error", "T1", "T2"):
+                out[(prm.name, (q,))] = prm.value
+    return out
+
+
+def drift_summary(a_vals, b_vals):
+    """Per kind: how many elements changed, the median and largest |relative change|, and how many crossed the
+    failed-element rule (error >= 0.5) in either direction. Pure; used by `drift`."""
+    kinds = sorted({k for k, _ in a_vals})
+    res = {}
+    for kind in kinds:
+        keys = [k for k in a_vals if k[0] == kind and k in b_vals and a_vals[k] is not None and b_vals[k] is not None]
+        rel = np.array([abs(b_vals[k] - a_vals[k]) / abs(a_vals[k]) for k in keys if a_vals[k]] or [0.0])
+        failed_flip = sum(1 for k in keys if kind not in ("T1", "T2") and (a_vals[k] >= 0.5) != (b_vals[k] >= 0.5))
+        res[kind] = dict(elements=len(keys), changed=int(sum(1 for k in keys if a_vals[k] != b_vals[k])),
+                         median_rel=round(float(np.median(rel)), 4), max_rel=round(float(np.max(rel)), 4),
+                         failed_flips=failed_flip)
+    return res
+
+
+def cmd_drift(a):
+    """Read-only (no job, no QPU time): how much do the calibration values change between consecutive updates?
+    For each backend, the calibration in effect now and those in effect `--back` hours earlier, compared pairwise."""
+    from datetime import datetime, timedelta, timezone
+    os.makedirs(a.out, exist_ok=True)
+    path = os.path.join(a.out, "drift.json")
+    if os.path.exists(path):
+        raise SystemExit(f"{path} exists: a reading is never overwritten (use a new folder)")
+    svc = _service()
+    now = datetime.now(timezone.utc)
+    rec = dict(written=stamp(), back_h=a.back, backends={})
+    for name in a.backends:
+        b = svc.backend(name)
+        snaps = []
+        for h in [0] + list(a.back):
+            pr = b.properties(datetime=now - timedelta(hours=h)) if h else b.properties(refresh=True)
+            snaps.append((h, str(pr.last_update_date), props_values(pr)))
+        pairs = {}
+        for (h0, t0, v0), (h1, t1, v1) in zip(snaps[1:], snaps[:-1]):
+            pairs[f"{t0} -> {t1}"] = drift_summary(v0, v1)
+        rec["backends"][name] = pairs
+        for k, v in pairs.items():
+            print(f"{name} {k}: " + "; ".join(f"{kind} {d['changed']}/{d['elements']} changed, median {d['median_rel']:.1%}, "
+                                             f"max {d['max_rel']:.0%}, failed flips {d['failed_flips']}" for kind, d in v.items()), flush=True)
+    _dump_json(path, rec)
+
+
 # ------------------------------------------------------------------------------------------------ plans (pod)
 
 def cmd_plans(a):
@@ -585,11 +642,15 @@ def main(argv=None):
     h.add_argument("--backends", nargs="+", default=["ibm_marrakesh", "ibm_fez", "ibm_kingston"])
     h.add_argument("--days", type=float, default=7)
     h.add_argument("--step", type=float, default=2)
+    dr = sp.add_parser("drift")
+    dr.add_argument("--out", required=True)
+    dr.add_argument("--backends", nargs="+", default=["ibm_marrakesh", "ibm_fez", "ibm_kingston"])
+    dr.add_argument("--back", type=float, nargs="+", default=[2.5, 5.0])
     c = sp.add_parser("score")
     c.add_argument("--job", required=True)
     a = ap.parse_args(argv)
     dict(fetch=cmd_fetch, precheck=cmd_precheck, plans=cmd_plans, assemble=cmd_assemble, submit=cmd_submit, result=cmd_result,
-         score=cmd_score, history=cmd_history)[a.cmd](a)
+         score=cmd_score, history=cmd_history, drift=cmd_drift)[a.cmd](a)
     return 0
 
 
