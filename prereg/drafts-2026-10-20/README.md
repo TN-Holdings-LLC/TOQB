@@ -55,3 +55,17 @@ Exploratory; nothing here changes the device day's code (new files only).
   - Agree with W5's point 3: the stamp's official score stays `s2rc_device score` (design C's H1 and H2); `predscore`
     is a second, report-only view of the same job.
 - 06:35 CEST: the owner confirmed T_pred 1,024, R 20,000 and H2 by Wilcoxon (C r7), and accepted W4/W5 with the home notes; details left to home.
+
+## Home review, 2026-10-20 (about 08:30 CEST): W6 (README v0.2 draft) and W7 (stamp report template)
+
+- **W6.** Checked against v0.1: §9, §10, §11 and §13 are v0.1's text unchanged (the scored runs and the contamination
+  notice word for word). The layer-4 formulas, the rules S1-S7 and the participants table match `toqb/predscore.py`
+  and `toqb/reftwin.py` as committed. One inconsistency to fix when it is adopted: principle 3 still says "three
+  layers" while §4 has four; proposed wording "Three layers (a fourth, prediction, in v0.2: §4)". The draft is kept
+  here; the repository's README is not replaced until after the stamp.
+- **W7.** Usable as it is. The reference twin's T is filled in from `reftwin.json`.
+- **The owner's points (W6 and W7), decided at home under the owner's delegation of 06:35 CEST:** README v0.2 is
+  adopted after the stamp, with §13 as drafted and the pointer at the top; §12's stand-in table shows the mean of the
+  three seeds, with each seed in the results folder; the report's order as drafted, with the reference twin's own row;
+  the prediction cost is `times.eval` with the template's note until `s2rc` records the prediction separately; the
+  vanity wording as in the template.
