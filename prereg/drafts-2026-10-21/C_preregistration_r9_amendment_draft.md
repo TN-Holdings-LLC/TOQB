@@ -36,7 +36,9 @@ listed here. Fixed on the device day by the SHA-256 of this file, of r8, of `job
    - The PSF arm's ring template (psf_ai_compile a22's `model_template`: reading, schedules N2 and item 31, placement
      on the device's snake, blocks, runs, the choice by duration then CZ count) is built by PSF-Zero's
      `rust/psfbind` (`toqb.ringport`), and on the day also by the Python beside it: any difference stops the run
-     (`TOQB_RUST_TEMPLATE=check`, `gpu/rust_psf.sh`). A case the Rust does not port (an embedding ring; not the
+     (`TOQB_RUST_TEMPLATE=check`, `gpu/rust_psf.sh`): a difference above 1e-12 in a fixed angle or factor, or any
+     difference in the gate list, the runs' structure, the layout or the values' order (`ringport.compare`; bit-identical
+     on every case checked at home and at the workplace). A case the Rust does not port (an embedding ring; not the
      S2R model's case) is built by the Python and listed in the run's arm stats. A placement by search is never
      made (item 6).
    - Evidence before the day: bit-identical templates (fixed angles and factors differ by 0.0) on the stand-in at
@@ -51,6 +53,8 @@ listed here. Fixed on the device day by the SHA-256 of this file, of r8, of `job
    search. From r9 that fallback is outside the scope: the template is not built (`ringport.OutOfScope`), nothing
    falls back to the Python, and the device is not eligible for the day:
    - **E5.** PSF's template places the 10-qubit ring (L 8 and 16) on a snake piece of the device, by the formula.
+   - E5 is applied by the Rust builder only, so the day runs with `RUST=1` (the script's default); with `RUST=0`
+     the Python would place by VF2 without a word, and that is not the day's configuration.
    - With the published calibration of 2026-10-13 (`snapshot:marrakesh`), marrakesh meets E5. On the day it is read
      from the fetched Target by `choose` (and by `precheck` for one device).
 

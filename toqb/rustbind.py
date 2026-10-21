@@ -34,7 +34,10 @@ def cdll():
     path = os.environ.get("PSF_BIND_LIB")
     if not path:
         repo = os.environ.get("PSF_ZERO_REPO", "")
-        hits = glob.glob(os.path.join(repo, "rust", "psfbind", "target", "release", "libpsfbind.*"))
+        rel = os.path.join(repo, "rust", "psfbind", "target", "release")
+        # the shared library only: cargo also writes libpsfbind.d and libpsfbind.rlib next to it
+        hits = [h for ext in ("so", "dylib") for h in glob.glob(os.path.join(rel, "libpsfbind." + ext))]
+        hits += glob.glob(os.path.join(rel, "psfbind.dll"))
         if not hits:
             raise Unsupported("libpsfbind not found: build rust/psfbind (cargo build --release) or set PSF_BIND_LIB")
         path = hits[0]

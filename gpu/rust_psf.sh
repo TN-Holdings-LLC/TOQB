@@ -5,9 +5,9 @@
 # . "$HOME/.cargo/env"). RUST=0: the Python path, as before.
 if [ "${RUST:-1}" = "1" ]; then
   [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"  # rustup's cargo (gpu/setup_and_bench.sh installs it there)
-  if command -v cargo > /dev/null 2>&1; then
-    cargo build --release --quiet --manifest-path "$PSF/rust/psfbind/Cargo.toml" || { echo "STOP: rust/psfbind did not build"; exit 1; }
-  fi
+  # always rebuilt from the checked-out psf-zero, so an older library never runs; no cargo, no run
+  command -v cargo > /dev/null 2>&1 || { echo "STOP: RUST=1 needs cargo (see the header of gpu/rust_psf.sh)"; exit 1; }
+  cargo build --release --quiet --manifest-path "$PSF/rust/psfbind/Cargo.toml" || { echo "STOP: rust/psfbind did not build"; exit 1; }
   python - <<'PY' || { echo "STOP: RUST=1 needs PSF-Zero's rust/psfbind built with the ring builder (install cargo, see gpu/rust_psf.sh)"; exit 1; }
 from toqb import rustbind as RB
 lib = RB.cdll()
