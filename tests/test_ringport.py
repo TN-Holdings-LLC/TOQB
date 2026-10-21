@@ -204,3 +204,42 @@ def test_choose_takes_the_first_eligible(tmp_path, monkeypatch, capsys):
     with pytest.raises(SystemExit):  # never overwritten
         SD.cmd_choose(argparse.Namespace(fetches=folders, out=str(out), arms=["psfai:template"], layers=[2], n=10,
                                          enc=1.5707963267948966, seed=1))
+
+
+def _broken_snake(tg):
+    """FakeTorino with failed couplers (seeded) so that no snake piece holds 14 qubits."""
+    import copy
+    import random
+    from qiskit.transpiler import InstructionProperties
+    t = copy.deepcopy(tg)
+    r = random.Random(0)
+    qs = r.sample(range(t.num_qubits), 6)
+    for q in qs[:3]:
+        p = t["sx"][(q,)]
+        t.update_instruction_properties("sx", (q,), InstructionProperties(duration=p.duration, error=0.6))
+    cz = [qa for qa in t["cz"] if qa is not None]
+    for qa in r.sample(cz, 6):
+        p = t["cz"][qa]
+        t.update_instruction_properties("cz", qa, InstructionProperties(duration=p.duration,
+                                                                        error=1.0 if r.random() < 0.3 else 0.7))
+    return t
+
+
+def test_vf2_placement_is_out_of_scope(monkeypatch):
+    """Owner, 2026-10-21 (formula only): where the Python would place the ring by VF2's search, the Rust builder
+    stops with OutOfScope and the arm does not fall back to the Python."""
+    pytest.importorskip("qiskit_ibm_runtime")
+    from toqb.devices import get_device
+    tg = _broken_snake(get_device("fake:FakeTorino").target)
+    qc = _model(14, 6, 1406)
+    a = TL.make_loop_arm("psfai:template")
+    a.setup(tg)
+    assert type(a.ai.model_template(qc, tg)).__name__ == "RingTemplate"  # the Python finds one by VF2
+    with pytest.raises(RP.OutOfScope):
+        RP.ring_template(qc, tg, a.ai)
+    for mode in ("1", "check"):
+        monkeypatch.setenv("TOQB_RUST_TEMPLATE", mode)
+        b = TL.make_loop_arm("psfai:template")
+        b.setup(tg)
+        with pytest.raises(RP.OutOfScope):
+            b.compile_circuit(qc)
