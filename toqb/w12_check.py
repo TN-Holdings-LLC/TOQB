@@ -7,7 +7,8 @@
 For every recorded point of every run (Z: theta = 0; C0 and E4: each checkpoint's theta and the final parameters):
 - T1: the 64 training points' Brier mean(((f - y) / 2)^2) and accuracy, noiseless (exact <Z0>);
 - T2: the same Brier on the twin (the run's own plan, arm and stand-in snapshot), 1,024 trajectories, seed
-  predict.seed + 5 (fixed by W12, used by no run);
+  predict.seed + 5 (fixed by W12, used by no run); the twin's per-point <Z0> on the training points is kept too
+  (z_train), for a readout calibration fitted on training points only;
 - T3: the 500 test points' CE (toqb.s2r2._ce) and accuracy, noiseless;
 - T4: E4's claimed training change, the cumulative sum of brier_change_per_sweep.
 The table adds the stand-in's test CE (the record's exact P(1)) and the realised change on the twin (T2 at the point
@@ -99,7 +100,8 @@ def twin(out, dirs):
             seed = int(rec["predict"]["seed"]) + 5
             for lab, cost, th, _ in points(rec):
                 z = R.z("sim", [R.compile(th, x) for x in Xtr], TRAJ, seed)
-                row = dict(file=name, point=lab, cost=cost, t2_brier=_brier(z, ytr), traj=TRAJ, seed=seed)
+                row = dict(file=name, point=lab, cost=cost, t2_brier=_brier(z, ytr), traj=TRAJ, seed=seed,
+                           z_train=[round(float(v), 6) for v in z])
                 fh.write(json.dumps(row) + "\n")
                 fh.flush()
                 print(name, lab, round(row["t2_brier"], 4), flush=True)
