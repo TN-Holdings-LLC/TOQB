@@ -1,0 +1,7 @@
+L8 t4 (19 s): theta0 Brier 0.2407 acc 0.594 | 1C0 Brier 0.1650 acc 0.766 | 1E4 Brier 0.1554 acc 0.875
+L8 t5 (27 s): theta0 Brier 0.3144 acc 0.469 | 1C0 Brier 0.1078 acc 0.875 | 1E4 Brier 0.1185 acc 0.828
+L8 t6 (32 s): theta0 Brier 0.2281 acc 0.672 | 1C0 Brier 0.0872 acc 0.891 | 1E4 Brier 0.0831 acc 0.938
+L16 t4 (250 s): theta0 Brier 0.3193 acc 0.531 | 2C0 Brier 0.1747 acc 0.812 | 2E4 Brier 0.2315 acc 0.641
+L16 t5 (250 s): theta0 Brier 0.2962 acc 0.531 | 2C0 Brier 0.2220 acc 0.594 | 2E4 Brier 0.2506 acc 0.547
+L16 t6 (504 s): theta0 Brier 0.2247 acc 0.641 | 2C0 Brier 0.1636 acc 0.719 | 2E4 Brier 0.1747 acc 0.609
+

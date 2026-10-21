@@ -21,3 +21,25 @@ TIEs. E4 against theta = 0 is a WIN overall (Z 12.19). E4 stayed within C0's bud
 - The prediction layer: 18 of 18 runs inside the twin's 99 % CE interval (twin-standin P(1) rms 0.003 to 0.012).
 - Next: the fruit match (`prereg/drafts-2026-10-21/F1_fruit_match_design_2026-10-21.md`) asks the declared question
   of the convergent zone: whether E4 is ahead of C0 early, at the same cost.
+
+## Diagnosis of L 16 (2026-10-21, from these records; asked by the workplace: NIBP, overfitting or twin mismatch?)
+
+1. **Twin against stand-in: not the cause.** In all 18 runs the twin's test CE and the stand-in's differ by at most
+   0.002 (L 16 included).
+2. **C0's gradient norm (an NIBP sign): no flattening at L 16.** Mean over the first / last 200 loops: L 8 0.39-0.41 /
+   0.32-0.40; L 16 0.40-0.47 / 0.28-0.37. C0's estimate carries trajectory noise, so this is not decisive alone.
+3. **Training fit, noiseless (`diag_trainfit.py`, `diag_trainfit.txt`: exact <Z0> on the 64 training points at the
+   final parameters):**
+
+| | theta = 0 Brier / acc | C0 | E4 |
+|---|---|---|---|
+| L 8, teachers 4 / 5 / 6 | 0.241 / 0.594, 0.314 / 0.469, 0.228 / 0.672 | 0.165 / 0.766, 0.108 / 0.875, 0.087 / 0.891 | 0.155 / 0.875, 0.119 / 0.828, 0.083 / 0.938 |
+| L 16, teachers 4 / 5 / 6 | 0.319 / 0.531, 0.296 / 0.531, 0.225 / 0.641 | 0.175 / 0.812, 0.222 / 0.594, 0.164 / 0.719 | 0.232 / 0.641, 0.251 / 0.547, 0.175 / 0.609 |
+
+Reading:
+- At L 16, C0 fits the training points (accuracy up to 0.81) while its test stays near chance: overfitting, not a
+  flat landscape (a barren plateau would stop the training fit too).
+- E4's estimated training Brier change at L 16 (about -0.28 over two sweeps) is far larger than its noiseless training
+  fit shows (-0.05 to -0.09). The coefficients are unbiased, but each step takes the minimum of a noisy estimate, so
+  the estimated decrease is optimistic (selection on noise, a winner's curse), and it accumulates over 330
+  parameters. This is a flaw of E4 under noise, found here; the running fruit match (L 8) is unchanged.
