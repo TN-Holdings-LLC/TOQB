@@ -1,6 +1,6 @@
 #!/bin/bash
 # GPU pod, design C's device day, C r9 draft (2026-10-21): C r8's day (below) plus two items, nothing else changed:
-#   - INIT: the training's start, uniform(-INIT, INIT); 1.0 is C r8's design, 0.0 is C0 (the owner decides);
+#   - INIT: the training's start, uniform(-INIT, INIT); C r8 had 1.0; the owner chose 0.0 (C0) on 2026-10-21;
 #   - after assemble, the undamped readout is fixed before submission (toqb.s2rc_device_undamp fix: (lam, delta)
 #     from the day's twin on the training inputs, no labels, no device data) into job/undamp.json, hashed with the job.
 # C r8's text:
@@ -24,7 +24,7 @@ P16=${P16:-500}
 SHOTS=${SHOTS:-250}
 LR=${LR:-0.4}
 PAR=${PAR:-4}
-INIT=${INIT:-1.0}
+INIT=${INIT:-0.0}
 [ -d "$TQ" ] && [ -f "$VA" ] && [ -d "$PSF" ] || { echo "STOP: needs TOQB, the venv and psf"; exit 1; }
 [ -f "$FETCH/target.pkl" ] && [ -f "$FETCH/fetch.json" ] || { echo "STOP: $FETCH has no target.pkl and fetch.json"; exit 1; }
 [ -e "$OUT" ] && { echo "STOP: $OUT exists; a run never overwrites another"; exit 1; }

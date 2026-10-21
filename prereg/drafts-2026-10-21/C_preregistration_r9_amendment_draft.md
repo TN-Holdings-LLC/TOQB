@@ -25,9 +25,9 @@ listed here. Fixed on the device day by the SHA-256 of this file, of r8, of `job
    - Evidence before the day (post hoc, `results/readout-2026-10-21/`): on stand-in records the undamping recovered
      0.05 to 0.08 in CE for trained models, and turned Qiskit's raw CE lead (0.035, L 8) into a PSF lead (0.010).
      It can hurt a poor model.
-4. **The training's start (owner to decide):** r8's uniform(-1, 1) (INIT 1.0), or theta = 0 (INIT 0.0, "C0").
+4. **The training's start: theta = 0 (C0; INIT 0.0), owner, 2026-10-21** (r8 had uniform(-1, 1), INIT 1.0).
    - On the stand-in (2026-10-20, L 8, angle 0.3), C0 scored 0.815 against 0.745 in accuracy.
-   - The script `gpu/s2rc_device_day_r9.sh` takes INIT; its default is r8's 1.0.
+   - The script `gpu/s2rc_device_day_r9.sh` takes INIT; its default is now 0.0.
 
 ## The day (times are estimates)
 
