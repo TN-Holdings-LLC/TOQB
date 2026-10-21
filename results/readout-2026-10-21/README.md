@@ -41,3 +41,26 @@ Reading:
   takes them from the twin alone on the training inputs (the twin and the stand-in agree within P(1) rms 0.01), or by
   formula from the noise model. Rescaling an expectation value by a known noise factor is a known error-mitigation
   idea (not checked by search today), not new.
+
+## Test 3: the honest version, the twin alone (`honest_undamp.py`, `honest_undamp.jsonl`)
+
+(lam, delta) from the twin alone: its outputs on the 64 training inputs (64 trajectories, seed predict.seed + 5)
+against exact noiseless outputs on the same inputs; no labels and no stand-in in the fit. Applied to the stand-in's
+recorded test outputs. Fruit match, 9 runs per arm and point (cloud CPU, about 110 s per parameter set).
+
+| arm, point | lam / delta | stand-in CE raw -> undamped | accuracy | CE better in |
+|---|---|---|---|---|
+| Z | 0.379 / 0.054 | 0.6432 -> 0.8487 | 0.643 -> 0.663 | 4 / 9 |
+| C0 25.5 % | 0.416 / 0.048 | 0.5928 -> 0.5432 | 0.723 -> 0.758 | 6 / 9 |
+| C0 100 % | 0.437 / 0.050 | 0.5823 -> 0.5291 | 0.734 -> 0.757 | 6 / 9 |
+| E4 25.5 % | 0.408 / 0.042 | 0.5991 -> 0.5226 | 0.721 -> 0.766 | 8 / 9 |
+| E4 76.5 % | 0.426 / 0.051 | 0.6020 -> 0.5356 | 0.686 -> 0.738 | 8 / 9 |
+
+By angle (trained models): at 0.3 and 1.0 undamping helps every arm (CE -0.06 to -0.15, accuracy up to +0.08); at 2.0
+it helps E4 slightly and hurts C0 (CE 0.610 -> 0.629 at 100 %, 0.649 -> 0.715 at 25.5 %); theta = 0 is hurt at 1.0 and
+2.0. Undamping restores the noiseless model's own confidence: it helps where the noiseless answers are good and hurts
+where they are confidently wrong.
+
+Reading: the twin-only, label-free undamping matches the diagnostic (test 2): on average it recovers 0.05 to 0.08 in
+CE and 0.02 to 0.05 in accuracy for trained models, more than any optimiser difference seen today. It is not uniform:
+it can hurt a poor model. The E4-against-C0 order after undamping is not read here (not a pre-registered comparison).
