@@ -1,0 +1,1 @@
+C0 s201 teacher 1.0 ts6 L8: test acc 0.798 CE 0.4038 evals 128000 (691 s)

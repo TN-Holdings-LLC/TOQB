@@ -1,0 +1,5 @@
+E4q teacher 1.0 ts5 L8 sweep1/5: train Brier 0.0934 | test acc 0.838 CE 0.4668 evals 21824 (122 s)
+E4q teacher 1.0 ts5 L8 sweep2/5: train Brier 0.0670 | test acc 0.876 CE 0.4039 evals 43584 (240 s)
+E4q teacher 1.0 ts5 L8 sweep3/5: train Brier 0.0569 | test acc 0.882 CE 0.3894 evals 65344 (361 s)
+E4q teacher 1.0 ts5 L8 sweep4/5: train Brier 0.0522 | test acc 0.876 CE 0.3853 evals 87104 (484 s)
+E4q teacher 1.0 ts5 L8 sweep5/5: train Brier 0.0496 | test acc 0.880 CE 0.3850 evals 108864 (604 s)

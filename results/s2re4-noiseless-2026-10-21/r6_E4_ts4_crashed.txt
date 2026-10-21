@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "<scratch>/round6.py", line 43, in <module>
+    th, hist = E.train_e4(fv, th, 1)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "<toqb>/toqb/s2re.py", line 95, in train_e4
+    u, _ = brier_min(a, b, c, y)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "<toqb>/toqb/s2re.py", line 73, in brier_min
+    roots = np.roots(coef[nz[0]:]) if len(coef) - nz[0] > 1 else []
+                                                  ~~^^^
+IndexError: index 0 is out of bounds for axis 0 with size 0

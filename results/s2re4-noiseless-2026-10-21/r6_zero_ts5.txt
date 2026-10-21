@@ -1,0 +1,1 @@
+theta0 teacher 1.0 ts5 L8: test acc 0.590 CE 0.7663
