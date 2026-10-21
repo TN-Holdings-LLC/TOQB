@@ -71,3 +71,17 @@ def test_score_refuses_another_manifest(tmp_path, monkeypatch):
         f.write(" ")
     with pytest.raises(SystemExit):
         D.cmd_score(argparse.Namespace(job=job))
+
+
+def test_snapshot_fetch_folder(tmp_path):
+    """s2rc_device snapshot (C r9 item 7): a fetch folder from the published calibration, hashed, never overwritten."""
+    pytest.importorskip("qiskit")
+    from toqb import s2rc_device as SD
+    out = str(tmp_path / "snap")
+    SD.cmd_snapshot(argparse.Namespace(out=out))
+    fj = json.load(open(os.path.join(out, "fetch.json")))
+    assert fj["backend"] == "ibm_marrakesh" and fj["source"].startswith("snapshot") and not fj["fake"]
+    assert fj["target_sha256"] == _sha(os.path.join(out, "target.pkl"))
+    assert fj["calibration_time"].startswith("2026-10-13")
+    with pytest.raises(SystemExit):
+        SD.cmd_snapshot(argparse.Namespace(out=out))

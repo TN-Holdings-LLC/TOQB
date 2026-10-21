@@ -4,6 +4,7 @@
 # cargo the script stops (install: curl --proto '=https' -sSf https://sh.rustup.rs | sh -s -- -y; then
 # . "$HOME/.cargo/env"). RUST=0: the Python path, as before.
 if [ "${RUST:-1}" = "1" ]; then
+  [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"  # rustup's cargo (gpu/setup_and_bench.sh installs it there)
   if command -v cargo > /dev/null 2>&1; then
     cargo build --release --quiet --manifest-path "$PSF/rust/psfbind/Cargo.toml" || { echo "STOP: rust/psfbind did not build"; exit 1; }
   fi

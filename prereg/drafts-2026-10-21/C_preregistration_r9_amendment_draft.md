@@ -54,14 +54,26 @@ listed here. Fixed on the device day by the SHA-256 of this file, of r8, of `job
    - With the published calibration of 2026-10-13 (`snapshot:marrakesh`), marrakesh meets E5. On the day it is read
      from the fetched Target by `choose` (and by `precheck` for one device).
 
+7. **The training on the published calibration, not a fetch on the day (owner, 2026-10-22 01:41 CEST: "the placement
+   and such need not be held to; drop that idea").**
+   - The twin and the plans use ibm_marrakesh's published calibration of 2026-10-13 11:37 CEST (the stand-in's
+     snapshot, `snapshot:marrakesh`, the calibration of the tuning run and the rehearsal), written as a fetch folder
+     by `toqb.s2rc_device snapshot` on the pod (no IBM connection; `fetch.json` says `source: snapshot`). No Target
+     is fetched before training; T0 is the snapshot's calibration time.
+   - The device is ibm_marrakesh, the first of the fixed order; E2 and E5 are read on the snapshot (precheck: all OK
+     on 2026-10-22). E3 and E4 are read at submission: `submit` reads the calibration in effect then and stops if the
+     job uses a failed qubit or coupler (r8, kept by the owner on 2026-10-21); `calibration_at_submit` is recorded.
+   - Consequence, stated before the run: the twin's calibration is nine days older than the device's on the day, so
+     the predictions (H1, H2, the undamped readout) are tested against that drift. This is the owner's choice.
+
 ## The day (times are estimates)
 
 | step | where | duration |
 |---|---|---|
 | pod start and bundle | pod | 10 min |
-| fetch (T0) of marrakesh, fez, kingston | home, VPN off | 10 min |
+| snapshot fetch folder (T0 = the snapshot, 2026-10-13 11:37 CEST; item 7) | pod | 1 min |
 | Rust (cargo) install and build | pod | 5 min |
-| choose (E2-E5 in the fixed order), precheck, plans, training of 4 runs (L 8 and 16, PSF and Qiskit, seed 301), assemble, undamp fix, zip | pod | about 3.5 to 4 h |
+| precheck (E2, E5 on the snapshot), plans, training of 4 runs (L 8 and 16, PSF and Qiskit, seed 301), assemble, undamp fix, zip | pod | about 3.5 to 4 h |
 | fix r9 (hashes and time) | home | 10 min |
 | submit (QPU about 138 s by the job's model) and the queue | home, VPN off | minutes to hours (queue) |
 | result, score (r8) and undamp score | home, VPN off | 15 min |

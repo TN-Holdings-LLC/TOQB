@@ -166,6 +166,32 @@ def cmd_fetch(a):
           f"{out}/target.pkl, sha256 {info['target_sha256'][:16]}...")
 
 
+def cmd_snapshot(a):
+    """Owner, 2026-10-22 (C r9 item 7): the day trains on ibm_marrakesh's published calibration of 2026-10-13 (the
+    stand-in's snapshot, `snapshot:marrakesh`), not on a Target fetched that day. Writes a fetch folder (target.pkl,
+    fetch.json) from the snapshot so that plans, precheck, assemble and submit run unchanged; no IBM connection. The
+    calibration in effect at submission is still read, and a failed element still stops the submission (r8)."""
+    from toqb.devices import get_device
+    from toqb.s2r import SNAPSHOT
+    out = a.out
+    if os.path.exists(os.path.join(out, "fetch.json")):
+        raise SystemExit(f"{out}/fetch.json exists: a fetch is never overwritten (use a new folder)")
+    target = get_device("snapshot:marrakesh").target
+    snap = _load_json(SNAPSHOT)
+    os.makedirs(out, exist_ok=True)
+    with open(os.path.join(out, "target.pkl"), "wb") as f:
+        pickle.dump(target, f)
+    info = dict(written=stamp(), backend=snap["device"], fake=False,
+                source="snapshot: the published calibration (toqb/data), not fetched on the day (owner, 2026-10-22)",
+                snapshot_sha256=sha256_file(SNAPSHOT), calibration_time=snap["calibration_time"], operational=None,
+                two_qubit_gate=("cz" if "cz" in target.operation_names else None), num_qubits=target.num_qubits,
+                target_sha256=sha256_file(os.path.join(out, "target.pkl")),
+                script_sha256=sha256_file(os.path.abspath(__file__)))
+    _dump_json(os.path.join(out, "fetch.json"), info)
+    print(f"{info['written']} wrote the snapshot Target of {info['backend']} (calibration {info['calibration_time']}; "
+          f"not fetched) to {out}/target.pkl, sha256 {info['target_sha256'][:16]}...")
+
+
 # ------------------------------------------------------------------------------------------------ history (home)
 
 def update_summary(stamps):
@@ -695,6 +721,8 @@ def main(argv=None):
     k.add_argument("--n", type=int, default=10)
     k.add_argument("--enc", type=float, default=1.5707963267948966)
     k.add_argument("--seed", type=int, default=20261020)
+    sn = sp.add_parser("snapshot")
+    sn.add_argument("--out", required=True)
     ch = sp.add_parser("choose")
     ch.add_argument("--fetches", nargs="+", required=True)
     ch.add_argument("--out", required=True)
@@ -728,7 +756,7 @@ def main(argv=None):
     c = sp.add_parser("score")
     c.add_argument("--job", required=True)
     a = ap.parse_args(argv)
-    dict(fetch=cmd_fetch, precheck=cmd_precheck, choose=cmd_choose, plans=cmd_plans, assemble=cmd_assemble, submit=cmd_submit, result=cmd_result,
+    dict(fetch=cmd_fetch, snapshot=cmd_snapshot, precheck=cmd_precheck, choose=cmd_choose, plans=cmd_plans, assemble=cmd_assemble, submit=cmd_submit, result=cmd_result,
          score=cmd_score, history=cmd_history, drift=cmd_drift)[a.cmd](a)
     return 0
 
