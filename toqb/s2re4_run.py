@@ -19,6 +19,10 @@ in "budget_traj_circuits" (design C's training: loops x 2 pairs x sim_batch x si
 evaluations are monitoring, not training, and are excluded for both). "sweeps": 0 is the theta = 0 control (no
 training; prediction and stand-in only).
 
+With "checkpoints": true in the train block (the fruit match, 2026-10-21), the run also predicts and verifies on the
+stand-in after every sweep but the last (`toqb.fruit_common.predict_verify`), into rec["checkpoints"] with the
+training cost spent so far; the checkpoints draw no training random numbers, so the training is unchanged.
+
 The record has kind "s2re4" and the same prediction and rehearsal fields as s2rc's and s2re's.
 """
 from __future__ import annotations
@@ -35,6 +39,7 @@ from toqb import s2r as S
 from toqb import s2r2 as S2
 from toqb import s2re as E
 from toqb import task_loop as TL
+from toqb.fruit_common import predict_verify
 from toqb.s2rc import _SkipVerify, _scores, predict_job
 
 
@@ -59,7 +64,7 @@ def run_s2re4(plan, spec, keep=None):
     base = int(p.get("seed", 0)) * 1000003
     t0 = time.perf_counter()
     s = t0
-    hist, steps = [], []
+    hist, steps, checkpoints = [], [], []
     try:
         for sw in range(sweeps):
             for k in range(d):
@@ -85,9 +90,17 @@ def run_s2re4(plan, spec, keep=None):
                           f"{el / done * (sweeps * d - done):.0f} s left, estimated Brier change this block "
                           f"{sum(steps[-34:]):.4f}", flush=True)
             hist.append(float(sum(steps[-d:])))
+            if p.get("checkpoints") and sw + 1 < sweeps:
+                c = predict_verify(R, th, Xte, yte, pr, verify=plan.get("verify", True))
+                c.update(sweep=sw + 1, train_traj_circuits=(sw + 1) * 3 * d * mtr * 2 * half,
+                         theta=[float(v) for v in th], wall_s=time.perf_counter() - t0)
+                checkpoints.append(c)
+                rh = c.get("rehearsal", {})
+                print(f"checkpoint sweep {sw + 1}: stand-in CE {rh.get('ce', float('nan')):.4f} acc "
+                      f"{rh.get('acc', float('nan')):.3f} inside {rh.get('ce_inside')}", flush=True)
         m = th
         rec.update(loops=0, sweeps=sweeps, half_traj=half, train_traj_circuits=sweeps * 3 * d * mtr * 2 * half,
-                   brier_change_per_sweep=hist, final_mean=[float(v) for v in m],
+                   brier_change_per_sweep=hist, checkpoints=checkpoints, final_mean=[float(v) for v in m],
                    train_wall_s=time.perf_counter() - t0, curve=[], gnorm=[])
         # predict
         cs = [R.compile(m, x) for x in Xte]
