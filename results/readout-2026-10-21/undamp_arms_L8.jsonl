@@ -1,0 +1,5 @@
+{"file": "L8_s201-psfai_template.json", "arm": "psfai:template", "L": 8, "seed": 201, "lam": 0.3822, "delta": 0.0608, "raw_ce": 0.5687, "undamped_ce": 0.4327, "raw_acc": 0.758, "undamped_acc": 0.822, "sec": 113}
+{"file": "L8_s202-psfai_template.json", "arm": "psfai:template", "L": 8, "seed": 202, "lam": 0.3954, "delta": 0.0627, "raw_ce": 0.5669, "undamped_ce": 0.4337, "raw_acc": 0.772, "undamped_acc": 0.812, "sec": 108}
+{"file": "L8_s203-psfai_template.json", "arm": "psfai:template", "L": 8, "seed": 203, "lam": 0.412, "delta": 0.0399, "raw_ce": 0.5732, "undamped_ce": 0.4588, "raw_acc": 0.716, "undamped_acc": 0.778, "sec": 106}
+{"file": "L8_s201-qiskit_2_target_template.json", "arm": "qiskit:2:target:template", "L": 8, "seed": 201, "lam": 0.5995, "delta": 0.0723, "raw_ce": 0.5373, "undamped_ce": 0.4559, "raw_acc": 0.71, "undamped_acc": 0.766, "sec": 2723}
+{"file": "L8_s202-qiskit_2_target_template.json", "arm": "qiskit:2:target:template", "L": 8, "seed": 202, "lam": 0.6127, "delta": 0.077, "raw_ce": 0.5324, "undamped_ce": 0.457, "raw_acc": 0.716, "undamped_acc": 0.77, "sec": 2722}

@@ -64,3 +64,23 @@ where they are confidently wrong.
 Reading: the twin-only, label-free undamping matches the diagnostic (test 2): on average it recovers 0.05 to 0.08 in
 CE and 0.02 to 0.05 in accuracy for trained models, more than any optimiser difference seen today. It is not uniform:
 it can hurt a poor model. The E4-against-C0 order after undamping is not read here (not a pre-registered comparison).
+
+## Test 4: both compiler arms (`undamp_arms.py`, `undamp_arms_L8.jsonl`; the rehearsal of 2026-10-20, L 8, angle 0.3)
+
+The same twin-only undamping on PSF's and Qiskit's (level 2, Target) runs, each arm trained on its own twin. Cloud
+CPU: PSF about 110 s per run, Qiskit about 2,720 s per run (deeper circuits on 14 qubits); Qiskit seed 203 did not
+finish within the 2-hour job limit and is missing. Scores below: the stand-in's exact P(1) redrawn as 1,000 shots per
+point, 200 times (mean).
+
+| run | lam | CE raw -> undamped | accuracy raw -> undamped |
+|---|---|---|---|
+| PSF 201 | 0.38 | 0.569 -> 0.436 | 0.752 -> 0.809 |
+| PSF 202 | 0.40 | 0.567 -> 0.436 | 0.758 -> 0.808 |
+| PSF 203 | 0.41 | 0.574 -> 0.461 | 0.709 -> 0.764 |
+| Qiskit 201 | 0.60 | 0.537 -> 0.457 | 0.710 -> 0.759 |
+| Qiskit 202 | 0.61 | 0.533 -> 0.458 | 0.712 -> 0.765 |
+
+Reading: raw, Qiskit is better in CE by about 0.035 (more signal survives its noise: lam 0.61 against 0.40); undamped,
+PSF is better by about 0.010 in CE and 0.03 in accuracy. Compiler figures from the same records: PSF's circuits are
+2.4 times shorter (10.4 against 25.2 us), with 9 % fewer two-qubit gates (224 against 247) on 10 qubits instead of 14,
+yet keep less signal on this stand-in. Two or three runs per arm, one easy teacher, post hoc: not a claim.
