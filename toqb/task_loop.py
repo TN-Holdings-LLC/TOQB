@@ -415,7 +415,11 @@ class PSFAILoop:
             os.chdir(here)
 
     def version(self):
-        return f"psf_compile {self.pc.VERSION}, psf_ai_compile {self.ai.AI_COMPILE_VERSION}"
+        v = f"psf_compile {self.pc.VERSION}, psf_ai_compile {self.ai.AI_COMPILE_VERSION}"
+        rust = os.environ.get("TOQB_RUST_TEMPLATE", "")
+        if self.mode == "template" and rust in ("1", "check"):  # recorded: the template is built in Rust
+            v += f", template built in Rust (toqb.ringport, TOQB_RUST_TEMPLATE={rust})"
+        return v
 
     def setup(self, target):
         self.target = target
@@ -433,8 +437,27 @@ class PSFAILoop:
         sig = self.ai._structure_sig(qc)
         if sig not in self._cache:
             make = getattr(self.ai, "model_template", None) or self.ai.ring_template  # a22 on: item 43
-            with contextlib.redirect_stdout(io.StringIO()):
-                tpl = make(qc, self.target)
+            rust = os.environ.get("TOQB_RUST_TEMPLATE", "")
+            tpl = None
+            if rust in ("1", "check"):  # toqb.ringport: the same template built in Rust (opt-in)
+                from toqb import ringport as RP
+                try:
+                    tpl = RP.ring_template(qc, self.target, self.ai)
+                    self.stats["rust_built"] = self.stats.get("rust_built", 0) + 1
+                except RP.Refused as exc:  # a case not ported: the Python builds it
+                    self.stats.setdefault("rust_refused", []).append(str(exc))
+                    rust = "refused"
+                if rust == "check":
+                    with contextlib.redirect_stdout(io.StringIO()):
+                        py = make(qc, self.target)
+                    diffs = RP.compare(py, tpl) if (py is not None and tpl is not None) else (
+                        [] if py is None and tpl is None else ["one of the two is None"])
+                    if diffs:
+                        raise RP.Mismatch(f"the Rust template differs from the Python's: {diffs[:5]}")
+                    self.stats["rust_checked"] = self.stats.get("rust_checked", 0) + 1
+            if rust not in ("1", "check"):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    tpl = make(qc, self.target)
             self._cache[sig] = tpl
             self.stats["template_builds" if tpl is not None else "template_unavailable"] += 1
         tpl = self._cache[sig]

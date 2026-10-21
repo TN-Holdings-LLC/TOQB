@@ -1,8 +1,11 @@
 #!/bin/bash
-# GPU pod, design C's device day, C r9 draft (2026-10-21): C r8's day (below) plus two items, nothing else changed:
+# GPU pod, design C's device day, C r9 draft (2026-10-21): C r8's day (below) plus three items, nothing else changed:
 #   - INIT: the training's start, uniform(-INIT, INIT); C r8 had 1.0; the owner chose 0.0 (C0) on 2026-10-21;
 #   - after assemble, the undamped readout is fixed before submission (toqb.s2rc_device_undamp fix: (lam, delta)
 #     from the day's twin on the training inputs, no labels, no device data) into job/undamp.json, hashed with the job.
+#   - RUST (default 1, gpu/rust_psf.sh): the PSF template is built in Rust (toqb.ringport) and checked identical to
+#     the Python's when built (TOQB_RUST_TEMPLATE=check; a difference stops the run); the circuits, their QPY and
+#     the binding stay Qiskit's (a device run never takes the fast path: verify false). Needs cargo on the pod.
 # C r8's text:
 # GPU pod, design C's device day (C r8 section 5, steps 2-4; no IBM connection here): from the Target fetched at
 # home, precheck, plans (seed 301, P_8 150, P_16 500, N 250, M 1, lr 0.4, 2,000 loops, T_pred 1,024, R 20,000),
@@ -35,6 +38,7 @@ export PYTHONPATH="$TQ" PSF_ZERO_REPO="$PSF" PYTHONWARNINGS=ignore TOQB_XP=${TOQ
   PSF_COMPILE_FILE="$PSF/patches/psf_compile_c61_2026-10-15/psf_compile.py" \
   PSF_AI_FILE="$PSF/patches/psf_ai_compile_a22_2026-10-15/psf_ai_compile.py"
 cd "$TQ" || exit 1
+. "$TQ/gpu/rust_psf.sh"
 step() { echo "== $1 $(TZ=Europe/Zurich date '+%H:%M:%S %Z')"; }
 { nvidia-smi --query-gpu=name,memory.total --format=csv,noheader; echo "toqb $(git log --oneline -1)"; \
   echo "psf-zero $(git -C "$PSF" log --oneline -1)"; cat "$FETCH/fetch.json"; echo; \
@@ -66,6 +70,6 @@ step undamp
 python -m toqb.s2rc_device_undamp fix --runs "$OUT/runs" --job "$OUT/job" --traj 1024 || { echo "STOP: undamp fix failed"; exit 1; }
 sha256sum "$OUT/job/manifest.json" "$OUT/job/circuits.qpy" "$OUT/job/undamp.json" | tee "$OUT/job_sha256.txt"
 step zip
-python -m zipfile -c "$DAY/s2rc_device_day.zip" "$OUT/times.txt" "$OUT/precheck.txt" "$OUT/progress.txt" "$OUT/plans" \
+python -m zipfile -c "$DAY/s2rc_device_day.zip" "$OUT/times.txt" "$OUT/rust.txt" "$OUT/precheck.txt" "$OUT/progress.txt" "$OUT/plans" \
   "$OUT/logs" "$OUT/job" "$OUT/job_sha256.txt" "$FETCH" \
   && echo "== DONE: $DAY/s2rc_device_day.zip ($(du -h "$DAY/s2rc_device_day.zip" | cut -f1))"

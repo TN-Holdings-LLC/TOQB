@@ -29,7 +29,8 @@ class Unsupported(Exception):
     pass
 
 
-def _lib():
+def cdll():
+    """PSF-Zero's built rust/psfbind ($PSF_BIND_LIB, or under $PSF_ZERO_REPO)."""
     path = os.environ.get("PSF_BIND_LIB")
     if not path:
         repo = os.environ.get("PSF_ZERO_REPO", "")
@@ -37,7 +38,11 @@ def _lib():
         if not hits:
             raise Unsupported("libpsfbind not found: build rust/psfbind (cargo build --release) or set PSF_BIND_LIB")
         path = hits[0]
-    lib = ctypes.CDLL(path)
+    return ctypes.CDLL(path)
+
+
+def _lib():
+    lib = cdll()
     f = lib.psfbind_angles
     f.restype = ctypes.c_int
     P = np.ctypeslib.ndpointer

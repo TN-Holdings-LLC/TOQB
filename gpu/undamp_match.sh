@@ -4,6 +4,8 @@
 # ladder (angles 0.3, 1.0, 2.0) x L 8: 18 runs; then toqb.undamp_run on each (final parameters, 1,024 trajectories).
 # Scoring at home: toqb.match_score_undamp RUNS UNDAMP OUT.md. Simulation only, no IBM.
 # Order: the Qiskit runs first (about twice as long), then PSF, then the undamp step.
+# RUST (default 1, gpu/rust_psf.sh): the PSF arm's template built in Rust and checked against the Python's, and bound in
+# Rust (TOQB_FAST_PSF=1: records bit-identical to the Python path); RUST=0 for the Python path. Needs cargo.
 #   DAY=... OUT=... setsid nohup bash TOQB/gpu/undamp_match.sh > undamp.txt 2>&1 < /dev/null &
 set -u
 W=$(pwd)
@@ -24,6 +26,7 @@ export PYTHONPATH="$TQ" PSF_ZERO_REPO="$PSF" PYTHONWARNINGS=ignore TOQB_XP=cupy 
   PSF_COMPILE_FILE="$PSF/patches/psf_compile_c61_2026-10-15/psf_compile.py" \
   PSF_AI_FILE="$PSF/patches/psf_ai_compile_a22_2026-10-15/psf_ai_compile.py"
 cd "$TQ" || exit 1
+. "$TQ/gpu/rust_psf.sh"
 python - "$OUT/plans" <<'PY'
 import json, sys
 out = sys.argv[1]

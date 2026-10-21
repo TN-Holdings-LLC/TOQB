@@ -28,6 +28,18 @@ listed here. Fixed on the device day by the SHA-256 of this file, of r8, of `job
 4. **The training's start: theta = 0 (C0; INIT 0.0), owner, 2026-10-21** (r8 had uniform(-1, 1), INIT 1.0).
    - On the stand-in (2026-10-20, L 8, angle 0.3), C0 scored 0.815 against 0.745 in accuracy.
    - The script `gpu/s2rc_device_day_r9.sh` takes INIT; its default is now 0.0.
+5. **The PSF template built in Rust (owner, 2026-10-21: use it on the day).**
+   - The PSF arm's ring template (psf_ai_compile a22's `model_template`: reading, schedules N2 and item 31, placement
+     on the device's snake, blocks, runs, the choice by duration then CZ count) is built by PSF-Zero's
+     `rust/psfbind` (`toqb.ringport`), and on the day also by the Python beside it: any difference stops the run
+     (`TOQB_RUST_TEMPLATE=check`, `gpu/rust_psf.sh`). A case the Rust does not port (VF2 placement, an embedding
+     ring) is built by the Python and listed in the run's arm stats.
+   - Evidence before the day: bit-identical templates (fixed angles and factors differ by 0.0) on the stand-in at
+     L 2, 8, 16, and identical on 146 of 150 cases over five devices with random failed elements (4 refused, VF2).
+   - Nothing else changes: the circuits (gates, qubits, angles bit for bit), the binding (`RingTemplate.angles`),
+     the QPY export and the job. Checked on a device-style run (verify false): the same record, times aside, and the
+     same QPY bytes once Qiskit's automatic circuit names are set aside (`assign_parameters` appends a process-wide
+     counter that counts the circuits made before; the Python builder makes more of them).
 
 ## The day (times are estimates)
 
