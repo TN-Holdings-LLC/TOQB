@@ -1,0 +1,86 @@
+{"file": "0Z_L8_a0.3_t7-psfai_template.json", "point": "theta = 0", "cost": 0, "t1_brier": 0.07503794764180433, "t1_acc": 0.96875, "t3_ce": 0.3117800702007711, "t3_acc": 0.948}
+{"file": "0Z_L8_a0.3_t8-psfai_template.json", "point": "theta = 0", "cost": 0, "t1_brier": 0.07587730056427539, "t1_acc": 0.921875, "t3_ce": 0.30709856884210557, "t3_acc": 0.934}
+{"file": "0Z_L8_a0.3_t9-psfai_template.json", "point": "theta = 0", "cost": 0, "t1_brier": 0.0993481233487413, "t1_acc": 0.9375, "t3_ce": 0.3258981801075607, "t3_acc": 0.94}
+{"file": "0Z_L8_a1.0_t7-psfai_template.json", "point": "theta = 0", "cost": 0, "t1_brier": 0.26900107775725446, "t1_acc": 0.546875, "t3_ce": 0.8105078535905826, "t3_acc": 0.506}
+{"file": "0Z_L8_a1.0_t8-psfai_template.json", "point": "theta = 0", "cost": 0, "t1_brier": 0.22921898046475853, "t1_acc": 0.671875, "t3_ce": 0.7753932160061578, "t3_acc": 0.546}
+{"file": "0Z_L8_a1.0_t9-psfai_template.json", "point": "theta = 0", "cost": 0, "t1_brier": 0.24054275244655596, "t1_acc": 0.578125, "t3_ce": 0.5866867108780652, "t3_acc": 0.62}
+{"file": "0Z_L8_a2.0_t7-psfai_template.json", "point": "theta = 0", "cost": 0, "t1_brier": 0.42591592201630335, "t1_acc": 0.390625, "t3_ce": 1.2577219988240642, "t3_acc": 0.4}
+{"file": "0Z_L8_a2.0_t8-psfai_template.json", "point": "theta = 0", "cost": 0, "t1_brier": 0.31127867371591383, "t1_acc": 0.53125, "t3_ce": 0.8686271010955419, "t3_acc": 0.496}
+{"file": "0Z_L8_a2.0_t9-psfai_template.json", "point": "theta = 0", "cost": 0, "t1_brier": 0.29327268147642443, "t1_acc": 0.578125, "t3_ce": 1.007294925150311, "t3_acc": 0.494}
+{"file": "2C0_L8_a0.3_t7_s201-psfai_template.json", "point": "loop 510", "cost": 1044480, "t1_brier": 0.08370484693601893, "t1_acc": 1.0, "t3_ce": 0.4205729483996511, "t3_acc": 0.862}
+{"file": "2C0_L8_a0.3_t7_s201-psfai_template.json", "point": "loop 1020", "cost": 2088960, "t1_brier": 0.08567475091537408, "t1_acc": 0.9375, "t3_ce": 0.44950564175093166, "t3_acc": 0.816}
+{"file": "2C0_L8_a0.3_t7_s201-psfai_template.json", "point": "loop 1530", "cost": 3133440, "t1_brier": 0.09433800266151912, "t1_acc": 0.9375, "t3_ce": 0.4711888782963237, "t3_acc": 0.796}
+{"file": "2C0_L8_a0.3_t7_s201-psfai_template.json", "point": "loop 2000", "cost": 4096000, "t1_brier": 0.10210100987018719, "t1_acc": 0.828125, "t3_ce": 0.4590276907467312, "t3_acc": 0.814}
+{"file": "2C0_L8_a0.3_t8_s201-psfai_template.json", "point": "loop 510", "cost": 1044480, "t1_brier": 0.06426986863309654, "t1_acc": 1.0, "t3_ce": 0.31235250624720584, "t3_acc": 0.978}
+{"file": "2C0_L8_a0.3_t8_s201-psfai_template.json", "point": "loop 1020", "cost": 2088960, "t1_brier": 0.0631104291241112, "t1_acc": 0.984375, "t3_ce": 0.3208771953140063, "t3_acc": 0.968}
+{"file": "2C0_L8_a0.3_t8_s201-psfai_template.json", "point": "loop 1530", "cost": 3133440, "t1_brier": 0.06371025046444508, "t1_acc": 0.984375, "t3_ce": 0.3683688069519662, "t3_acc": 0.908}
+{"file": "2C0_L8_a0.3_t8_s201-psfai_template.json", "point": "loop 2000", "cost": 4096000, "t1_brier": 0.06956865354546507, "t1_acc": 0.953125, "t3_ce": 0.3875849466905977, "t3_acc": 0.846}
+{"file": "2C0_L8_a0.3_t9_s201-psfai_template.json", "point": "loop 510", "cost": 1044480, "t1_brier": 0.073936070177743, "t1_acc": 0.953125, "t3_ce": 0.3593366742062244, "t3_acc": 0.926}
+{"file": "2C0_L8_a0.3_t9_s201-psfai_template.json", "point": "loop 1020", "cost": 2088960, "t1_brier": 0.0804262845548745, "t1_acc": 0.984375, "t3_ce": 0.3759136411737684, "t3_acc": 0.916}
+{"file": "2C0_L8_a0.3_t9_s201-psfai_template.json", "point": "loop 1530", "cost": 3133440, "t1_brier": 0.0795729748093181, "t1_acc": 0.96875, "t3_ce": 0.4063122807944359, "t3_acc": 0.862}
+{"file": "2C0_L8_a0.3_t9_s201-psfai_template.json", "point": "loop 2000", "cost": 4096000, "t1_brier": 0.08849008644544723, "t1_acc": 0.921875, "t3_ce": 0.4249467080061941, "t3_acc": 0.862}
+{"file": "2C0_L8_a1.0_t7_s201-psfai_template.json", "point": "loop 510", "cost": 1044480, "t1_brier": 0.17527741411715825, "t1_acc": 0.6875, "t3_ce": 0.6346041446095418, "t3_acc": 0.61}
+{"file": "2C0_L8_a1.0_t7_s201-psfai_template.json", "point": "loop 1020", "cost": 2088960, "t1_brier": 0.13356213179178303, "t1_acc": 0.875, "t3_ce": 0.5976059277164444, "t3_acc": 0.668}
+{"file": "2C0_L8_a1.0_t7_s201-psfai_template.json", "point": "loop 1530", "cost": 3133440, "t1_brier": 0.1332956876009888, "t1_acc": 0.828125, "t3_ce": 0.5913360064910081, "t3_acc": 0.666}
+{"file": "2C0_L8_a1.0_t7_s201-psfai_template.json", "point": "loop 2000", "cost": 4096000, "t1_brier": 0.13978555282549032, "t1_acc": 0.796875, "t3_ce": 0.6104927726444817, "t3_acc": 0.64}
+{"file": "2C0_L8_a1.0_t8_s201-psfai_template.json", "point": "loop 510", "cost": 1044480, "t1_brier": 0.12601252368158183, "t1_acc": 0.828125, "t3_ce": 0.47477216586546966, "t3_acc": 0.772}
+{"file": "2C0_L8_a1.0_t8_s201-psfai_template.json", "point": "loop 1020", "cost": 2088960, "t1_brier": 0.11290434516836824, "t1_acc": 0.890625, "t3_ce": 0.46262997602845546, "t3_acc": 0.778}
+{"file": "2C0_L8_a1.0_t8_s201-psfai_template.json", "point": "loop 1530", "cost": 3133440, "t1_brier": 0.092225012087236, "t1_acc": 0.9375, "t3_ce": 0.4530366541077742, "t3_acc": 0.812}
+{"file": "2C0_L8_a1.0_t8_s201-psfai_template.json", "point": "loop 2000", "cost": 4096000, "t1_brier": 0.09450279945718004, "t1_acc": 0.875, "t3_ce": 0.45415728893616036, "t3_acc": 0.772}
+{"file": "2C0_L8_a1.0_t9_s201-psfai_template.json", "point": "loop 510", "cost": 1044480, "t1_brier": 0.14097503605384312, "t1_acc": 0.828125, "t3_ce": 0.4319430863868255, "t3_acc": 0.786}
+{"file": "2C0_L8_a1.0_t9_s201-psfai_template.json", "point": "loop 1020", "cost": 2088960, "t1_brier": 0.11825045058510886, "t1_acc": 0.859375, "t3_ce": 0.39726262583909067, "t3_acc": 0.814}
+{"file": "2C0_L8_a1.0_t9_s201-psfai_template.json", "point": "loop 1530", "cost": 3133440, "t1_brier": 0.10301993485180001, "t1_acc": 0.90625, "t3_ce": 0.41362996008922137, "t3_acc": 0.79}
+{"file": "2C0_L8_a1.0_t9_s201-psfai_template.json", "point": "loop 2000", "cost": 4096000, "t1_brier": 0.10760987588837209, "t1_acc": 0.890625, "t3_ce": 0.4002852776366134, "t3_acc": 0.82}
+{"file": "2C0_L8_a2.0_t7_s201-psfai_template.json", "point": "loop 510", "cost": 1044480, "t1_brier": 0.13839983432903674, "t1_acc": 0.8125, "t3_ce": 0.6178037697470564, "t3_acc": 0.694}
+{"file": "2C0_L8_a2.0_t7_s201-psfai_template.json", "point": "loop 1020", "cost": 2088960, "t1_brier": 0.12440344102872834, "t1_acc": 0.84375, "t3_ce": 0.5897450515235694, "t3_acc": 0.74}
+{"file": "2C0_L8_a2.0_t7_s201-psfai_template.json", "point": "loop 1530", "cost": 3133440, "t1_brier": 0.11146690511848728, "t1_acc": 0.84375, "t3_ce": 0.5869542367989732, "t3_acc": 0.702}
+{"file": "2C0_L8_a2.0_t7_s201-psfai_template.json", "point": "loop 2000", "cost": 4096000, "t1_brier": 0.11160963954211489, "t1_acc": 0.84375, "t3_ce": 0.5876669090289104, "t3_acc": 0.716}
+{"file": "2C0_L8_a2.0_t8_s201-psfai_template.json", "point": "loop 510", "cost": 1044480, "t1_brier": 0.17829788144423336, "t1_acc": 0.6875, "t3_ce": 0.7212083279254241, "t3_acc": 0.472}
+{"file": "2C0_L8_a2.0_t8_s201-psfai_template.json", "point": "loop 1020", "cost": 2088960, "t1_brier": 0.14882523678750942, "t1_acc": 0.859375, "t3_ce": 0.6418206502985458, "t3_acc": 0.594}
+{"file": "2C0_L8_a2.0_t8_s201-psfai_template.json", "point": "loop 1530", "cost": 3133440, "t1_brier": 0.1425652537889922, "t1_acc": 0.84375, "t3_ce": 0.5633231354630518, "t3_acc": 0.694}
+{"file": "2C0_L8_a2.0_t8_s201-psfai_template.json", "point": "loop 2000", "cost": 4096000, "t1_brier": 0.12589179237019835, "t1_acc": 0.875, "t3_ce": 0.5196915801498073, "t3_acc": 0.722}
+{"file": "2C0_L8_a2.0_t9_s201-psfai_template.json", "point": "loop 510", "cost": 1044480, "t1_brier": 0.15223252379476956, "t1_acc": 0.8125, "t3_ce": 0.6354563846395807, "t3_acc": 0.624}
+{"file": "2C0_L8_a2.0_t9_s201-psfai_template.json", "point": "loop 1020", "cost": 2088960, "t1_brier": 0.16660218113212277, "t1_acc": 0.765625, "t3_ce": 0.6610162720735958, "t3_acc": 0.598}
+{"file": "2C0_L8_a2.0_t9_s201-psfai_template.json", "point": "loop 1530", "cost": 3133440, "t1_brier": 0.14426720466197818, "t1_acc": 0.84375, "t3_ce": 0.6293713192541152, "t3_acc": 0.65}
+{"file": "2C0_L8_a2.0_t9_s201-psfai_template.json", "point": "loop 2000", "cost": 4096000, "t1_brier": 0.13310518621813455, "t1_acc": 0.828125, "t3_ce": 0.6417417042592264, "t3_acc": 0.626}
+{"file": "2E4_L8_a0.3_t7_s7-psfai_template.json", "point": "sweep 1", "cost": 1044480, "t1_brier": 0.10239367812631861, "t1_acc": 0.921875, "t3_ce": 0.45672685688928744, "t3_acc": 0.792}
+{"file": "2E4_L8_a0.3_t7_s7-psfai_template.json", "point": "sweep 2", "cost": 2088960, "t1_brier": 0.0996611920027737, "t1_acc": 0.90625, "t3_ce": 0.48112324565816356, "t3_acc": 0.756}
+{"file": "2E4_L8_a0.3_t7_s7-psfai_template.json", "point": "sweep 3", "cost": 3133440, "t1_brier": 0.1189059375882328, "t1_acc": 0.875, "t3_ce": 0.5287476502511004, "t3_acc": 0.72}
+{"file": "2E4_L8_a0.3_t8_s8-psfai_template.json", "point": "sweep 1", "cost": 1044480, "t1_brier": 0.06961099950018607, "t1_acc": 0.953125, "t3_ce": 0.3581025917311178, "t3_acc": 0.908}
+{"file": "2E4_L8_a0.3_t8_s8-psfai_template.json", "point": "sweep 2", "cost": 2088960, "t1_brier": 0.061241761136663006, "t1_acc": 0.953125, "t3_ce": 0.36042501977619135, "t3_acc": 0.898}
+{"file": "2E4_L8_a0.3_t8_s8-psfai_template.json", "point": "sweep 3", "cost": 3133440, "t1_brier": 0.0925860323913189, "t1_acc": 0.890625, "t3_ce": 0.4914871068970596, "t3_acc": 0.746}
+{"file": "2E4_L8_a0.3_t9_s9-psfai_template.json", "point": "sweep 1", "cost": 1044480, "t1_brier": 0.09117136867281682, "t1_acc": 0.953125, "t3_ce": 0.43904035200576275, "t3_acc": 0.804}
+{"file": "2E4_L8_a0.3_t9_s9-psfai_template.json", "point": "sweep 2", "cost": 2088960, "t1_brier": 0.09982216034281916, "t1_acc": 0.921875, "t3_ce": 0.4471060926791274, "t3_acc": 0.798}
+{"file": "2E4_L8_a0.3_t9_s9-psfai_template.json", "point": "sweep 3", "cost": 3133440, "t1_brier": 0.1017030680443267, "t1_acc": 0.90625, "t3_ce": 0.4941325010192327, "t3_acc": 0.732}
+{"file": "2E4_L8_a1.0_t7_s7-psfai_template.json", "point": "sweep 1", "cost": 1044480, "t1_brier": 0.1374491843162073, "t1_acc": 0.875, "t3_ce": 0.6136774507112761, "t3_acc": 0.646}
+{"file": "2E4_L8_a1.0_t7_s7-psfai_template.json", "point": "sweep 2", "cost": 2088960, "t1_brier": 0.12925546459914974, "t1_acc": 0.90625, "t3_ce": 0.6011291787339607, "t3_acc": 0.654}
+{"file": "2E4_L8_a1.0_t7_s7-psfai_template.json", "point": "sweep 3", "cost": 3133440, "t1_brier": 0.15430589425727168, "t1_acc": 0.828125, "t3_ce": 0.6294165978855458, "t3_acc": 0.598}
+{"file": "2E4_L8_a1.0_t8_s8-psfai_template.json", "point": "sweep 1", "cost": 1044480, "t1_brier": 0.15854336532652138, "t1_acc": 0.75, "t3_ce": 0.5212238464486688, "t3_acc": 0.67}
+{"file": "2E4_L8_a1.0_t8_s8-psfai_template.json", "point": "sweep 2", "cost": 2088960, "t1_brier": 0.13574782129272522, "t1_acc": 0.875, "t3_ce": 0.5094902646708573, "t3_acc": 0.73}
+{"file": "2E4_L8_a1.0_t8_s8-psfai_template.json", "point": "sweep 3", "cost": 3133440, "t1_brier": 0.1301362090127799, "t1_acc": 0.796875, "t3_ce": 0.5284224572898677, "t3_acc": 0.692}
+{"file": "2E4_L8_a1.0_t9_s9-psfai_template.json", "point": "sweep 1", "cost": 1044480, "t1_brier": 0.12693058472934962, "t1_acc": 0.875, "t3_ce": 0.4826552779932801, "t3_acc": 0.748}
+{"file": "2E4_L8_a1.0_t9_s9-psfai_template.json", "point": "sweep 2", "cost": 2088960, "t1_brier": 0.0924596184439663, "t1_acc": 0.96875, "t3_ce": 0.43372548819496465, "t3_acc": 0.818}
+{"file": "2E4_L8_a1.0_t9_s9-psfai_template.json", "point": "sweep 3", "cost": 3133440, "t1_brier": 0.10317292805062733, "t1_acc": 0.890625, "t3_ce": 0.4483225820020574, "t3_acc": 0.764}
+{"file": "2E4_L8_a2.0_t7_s7-psfai_template.json", "point": "sweep 1", "cost": 1044480, "t1_brier": 0.13685589888122052, "t1_acc": 0.8125, "t3_ce": 0.5748343103006878, "t3_acc": 0.71}
+{"file": "2E4_L8_a2.0_t7_s7-psfai_template.json", "point": "sweep 2", "cost": 2088960, "t1_brier": 0.12018477723571154, "t1_acc": 0.828125, "t3_ce": 0.5919655318945102, "t3_acc": 0.696}
+{"file": "2E4_L8_a2.0_t7_s7-psfai_template.json", "point": "sweep 3", "cost": 3133440, "t1_brier": 0.14624726542702243, "t1_acc": 0.78125, "t3_ce": 0.5816752235153058, "t3_acc": 0.7}
+{"file": "2E4_L8_a2.0_t8_s8-psfai_template.json", "point": "sweep 1", "cost": 1044480, "t1_brier": 0.18477487562261657, "t1_acc": 0.765625, "t3_ce": 0.6233405002582263, "t3_acc": 0.668}
+{"file": "2E4_L8_a2.0_t8_s8-psfai_template.json", "point": "sweep 2", "cost": 2088960, "t1_brier": 0.14761248521260753, "t1_acc": 0.859375, "t3_ce": 0.5983615070264341, "t3_acc": 0.678}
+{"file": "2E4_L8_a2.0_t8_s8-psfai_template.json", "point": "sweep 3", "cost": 3133440, "t1_brier": 0.13392052203900598, "t1_acc": 0.890625, "t3_ce": 0.5906592809308904, "t3_acc": 0.684}
+{"file": "2E4_L8_a2.0_t9_s9-psfai_template.json", "point": "sweep 1", "cost": 1044480, "t1_brier": 0.19177948560200742, "t1_acc": 0.75, "t3_ce": 0.6122408040240865, "t3_acc": 0.62}
+{"file": "2E4_L8_a2.0_t9_s9-psfai_template.json", "point": "sweep 2", "cost": 2088960, "t1_brier": 0.15978553776900847, "t1_acc": 0.8125, "t3_ce": 0.6011641526284254, "t3_acc": 0.67}
+{"file": "2E4_L8_a2.0_t9_s9-psfai_template.json", "point": "sweep 3", "cost": 3133440, "t1_brier": 0.16835137484527185, "t1_acc": 0.78125, "t3_ce": 0.6087383968442934, "t3_acc": 0.618}
+{"file": "3C0_L8_a1.0_t7_s202-psfai_template.json", "point": "loop 510", "cost": 1044480, "t1_brier": 0.14019115602434434, "t1_acc": 0.75, "t3_ce": 0.6397438063418559, "t3_acc": 0.598}
+{"file": "3C0_L8_a1.0_t7_s202-psfai_template.json", "point": "loop 1020", "cost": 2088960, "t1_brier": 0.12840270805098467, "t1_acc": 0.890625, "t3_ce": 0.621815015776504, "t3_acc": 0.636}
+{"file": "3C0_L8_a1.0_t7_s202-psfai_template.json", "point": "loop 1530", "cost": 3133440, "t1_brier": 0.13024472939502052, "t1_acc": 0.859375, "t3_ce": 0.6244729639217759, "t3_acc": 0.624}
+{"file": "3C0_L8_a1.0_t7_s202-psfai_template.json", "point": "loop 2000", "cost": 4096000, "t1_brier": 0.13509084108649036, "t1_acc": 0.84375, "t3_ce": 0.6465266195458951, "t3_acc": 0.592}
+{"file": "3C0_L8_a1.0_t7_s203-psfai_template.json", "point": "loop 510", "cost": 1044480, "t1_brier": 0.1562705606754346, "t1_acc": 0.84375, "t3_ce": 0.6514493292770979, "t3_acc": 0.636}
+{"file": "3C0_L8_a1.0_t7_s203-psfai_template.json", "point": "loop 1020", "cost": 2088960, "t1_brier": 0.13737229490294744, "t1_acc": 0.890625, "t3_ce": 0.6432170785026703, "t3_acc": 0.652}
+{"file": "3C0_L8_a1.0_t7_s203-psfai_template.json", "point": "loop 1530", "cost": 3133440, "t1_brier": 0.1420093437378978, "t1_acc": 0.828125, "t3_ce": 0.653783405633101, "t3_acc": 0.668}
+{"file": "3C0_L8_a1.0_t7_s203-psfai_template.json", "point": "loop 2000", "cost": 4096000, "t1_brier": 0.12952635008173416, "t1_acc": 0.859375, "t3_ce": 0.6442277297844152, "t3_acc": 0.634}
+{"file": "3E4_L8_a1.0_t7_s1007-psfai_template.json", "point": "sweep 1", "cost": 1044480, "t1_brier": 0.17548142394367874, "t1_acc": 0.734375, "t3_ce": 0.6423735231269517, "t3_acc": 0.622}
+{"file": "3E4_L8_a1.0_t7_s1007-psfai_template.json", "point": "sweep 2", "cost": 2088960, "t1_brier": 0.1881153956524846, "t1_acc": 0.671875, "t3_ce": 0.6393779909339569, "t3_acc": 0.628}
+{"file": "3E4_L8_a1.0_t7_s1007-psfai_template.json", "point": "sweep 3", "cost": 3133440, "t1_brier": 0.1652345765188648, "t1_acc": 0.765625, "t3_ce": 0.6664671190085919, "t3_acc": 0.584}
+{"file": "3E4_L8_a1.0_t7_s2007-psfai_template.json", "point": "sweep 1", "cost": 1044480, "t1_brier": 0.146346999264043, "t1_acc": 0.84375, "t3_ce": 0.5926616637799449, "t3_acc": 0.634}
+{"file": "3E4_L8_a1.0_t7_s2007-psfai_template.json", "point": "sweep 2", "cost": 2088960, "t1_brier": 0.1313176652349405, "t1_acc": 0.828125, "t3_ce": 0.5781678309963233, "t3_acc": 0.642}
+{"file": "3E4_L8_a1.0_t7_s2007-psfai_template.json", "point": "sweep 3", "cost": 3133440, "t1_brier": 0.1284011341672106, "t1_acc": 0.84375, "t3_ce": 0.5649136693551747, "t3_acc": 0.682}
