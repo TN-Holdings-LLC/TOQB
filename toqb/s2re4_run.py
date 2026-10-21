@@ -23,6 +23,11 @@ With "checkpoints": true in the train block (the fruit match, 2026-10-21), the r
 stand-in after every sweep but the last (`toqb.fruit_common.predict_verify`), into rec["checkpoints"] with the
 training cost spent so far; the checkpoints draw no training random numbers, so the training is unchanged.
 
+With "variant": "e4v" in the train block (W13, 2026-10-21), each parameter's step is chosen on two quarters of the
+`traj` trajectories and checked on the other two (`toqb.s2re4v.select_verify`); the step is taken only if the check
+says it lowers the training Brier. The cost per sweep is the same (3 x d x m circuits x traj trajectories), so the
+budget points are E4's. The default ("variant" absent or "e4") is E4 exactly as before.
+
 The record has kind "s2re4" and the same prediction and rehearsal fields as s2rc's and s2re's.
 """
 from __future__ import annotations
@@ -38,6 +43,7 @@ import numpy as np
 from toqb import s2r as S
 from toqb import s2r2 as S2
 from toqb import s2re as E
+from toqb import s2re4v as V
 from toqb import task_loop as TL
 from toqb.fruit_common import predict_verify
 from toqb.s2rc import _SkipVerify, _scores, predict_job
@@ -60,13 +66,23 @@ def run_s2re4(plan, spec, keep=None):
     d, mtr = TL.n_params(n, L), len(Xtr)
     th = np.zeros(d)
     sweeps = sweeps_for(p, d, mtr)
-    half = int(p.get("traj", 32)) // 2
+    variant = p.get("variant", "e4")
+    if variant not in ("e4", "e4v"):
+        raise ValueError(f"unknown E4 variant {variant!r}")
+    traj = int(p.get("traj", 32))
+    if variant == "e4v" and traj % V.QUARTERS:
+        raise ValueError(f"e4v needs traj divisible by {V.QUARTERS}, got {traj}")
+    half = traj // 2
+    quarter = traj // V.QUARTERS
+    tpp = 2 * half if variant == "e4" else V.QUARTERS * quarter  # trajectories per circuit (E4: unchanged)
     base = int(p.get("seed", 0)) * 1000003
     t0 = time.perf_counter()
     s = t0
     hist, steps, checkpoints = [], [], []
+    hist_sel, steps_sel, acc_sweep = [], [], []
     try:
         for sw in range(sweeps):
+            n_acc = 0
             for k in range(d):
                 e = np.zeros(d)
                 e[k] = math.pi / 2
@@ -75,33 +91,52 @@ def run_s2re4(plan, spec, keep=None):
                 R.t["compile_e4"] = R.t.get("compile_e4", 0.0) + time.perf_counter() - s
                 s = time.perf_counter()
                 hs = []
-                for h in range(2):
-                    zs = R.z("sim", cs, half, base + 7 * (sw * d + k) + 3 * h + 1, crn=True).reshape(3, mtr)
-                    hs.append(E.sinusoid(zs[2], zs[0], zs[1]))
+                if variant == "e4":
+                    for h in range(2):
+                        zs = R.z("sim", cs, half, base + 7 * (sw * d + k) + 3 * h + 1, crn=True).reshape(3, mtr)
+                        hs.append(E.sinusoid(zs[2], zs[0], zs[1]))
+                else:
+                    for g in range(V.QUARTERS):
+                        zs = R.z("sim", cs, quarter, V.quarter_seed(base, sw, d, k, g), crn=True).reshape(3, mtr)
+                        hs.append(E.sinusoid(zs[2], zs[0], zs[1]))
                 R.t["sim"] += time.perf_counter() - s
-                P, Q, Rr, Ss = E.brier_coeffs_split(hs[0], hs[1], ytr)
-                u, dv = E.trig2_min(P, Q, Rr, Ss)
+                if variant == "e4":
+                    P, Q, Rr, Ss = E.brier_coeffs_split(hs[0], hs[1], ytr)
+                    u, dv = E.trig2_min(P, Q, Rr, Ss)
+                else:
+                    u, dv, dsel, ok = V.select_verify(hs, ytr)
+                    steps_sel.append(round(float(dsel) / (4 * mtr), 6))
+                    n_acc += int(ok)
                 th[k] += u
                 steps.append(round(float(dv) / (4 * mtr), 6))
                 if (k + 1) % 34 == 0 or k == d - 1:
                     el = time.perf_counter() - t0
                     done = sw * d + k + 1
+                    extra = f", accepted {n_acc}/{k + 1}" if variant == "e4v" else ""
                     print(f"progress sweep {sw + 1}/{sweeps} parameter {k + 1}/{d}, {el:.0f} s, about "
                           f"{el / done * (sweeps * d - done):.0f} s left, estimated Brier change this block "
-                          f"{sum(steps[-34:]):.4f}", flush=True)
+                          f"{sum(steps[-34:]):.4f}{extra}", flush=True)
             hist.append(float(sum(steps[-d:])))
+            if variant == "e4v":
+                hist_sel.append(float(sum(steps_sel[-d:])))
+                acc_sweep.append(n_acc)
             if p.get("checkpoints") and sw + 1 < sweeps:
                 c = predict_verify(R, th, Xte, yte, pr, verify=plan.get("verify", True))
-                c.update(sweep=sw + 1, train_traj_circuits=(sw + 1) * 3 * d * mtr * 2 * half,
+                c.update(sweep=sw + 1, train_traj_circuits=(sw + 1) * 3 * d * mtr * tpp,
                          theta=[float(v) for v in th], wall_s=time.perf_counter() - t0)
                 checkpoints.append(c)
                 rh = c.get("rehearsal", {})
                 print(f"checkpoint sweep {sw + 1}: stand-in CE {rh.get('ce', float('nan')):.4f} acc "
                       f"{rh.get('acc', float('nan')):.3f} inside {rh.get('ce_inside')}", flush=True)
         m = th
-        rec.update(loops=0, sweeps=sweeps, half_traj=half, train_traj_circuits=sweeps * 3 * d * mtr * 2 * half,
+        rec.update(loops=0, sweeps=sweeps, half_traj=half, train_traj_circuits=sweeps * 3 * d * mtr * tpp,
                    brier_change_per_sweep=hist, checkpoints=checkpoints, final_mean=[float(v) for v in m],
                    train_wall_s=time.perf_counter() - t0, curve=[], gnorm=[])
+        if variant == "e4v":
+            # brier_change_per_sweep holds the checked (quarter 3-4) changes of the accepted steps; they are chosen by
+            # their own sign, so their sum is optimistic too. The realised change is measured as in W12.
+            rec.update(variant="e4v", quarter_traj=quarter, brier_change_selected_per_sweep=hist_sel,
+                       accepted_per_sweep=acc_sweep, n_params=d)
         # predict
         cs = [R.compile(m, x) for x in Xte]
         s = time.perf_counter()
