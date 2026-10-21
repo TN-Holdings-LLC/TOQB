@@ -1,6 +1,6 @@
 # W14 (draft, home, 2026-10-21): the undamped-readout match
 
-**Status.** Draft for the owner. Nothing has been run. The owner fixes the headline and the points of section 4, then
+**Status.** Owner, 2026-10-21: the headline is B and C together (a group is won only if both are WIN there). Points 2 to 4 as proposed below. Nothing has been run. The owner fixes the headline and the points of section 4, then
 the rule text and `toqb/match_score_undamp.py` are fixed by SHA-256 before the first record is read.
 
 ## Why

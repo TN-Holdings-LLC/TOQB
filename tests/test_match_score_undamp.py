@@ -41,6 +41,8 @@ def test_undamping_a_shrunk_right_model_wins(tmp_path):
     # the same model undamped on both arms: the same answers, a tie
     assert res["comparisons"]["C"]["groups"][0]["verdict"] == "TIE"
     assert "PSF undamped" in M.markdown(res)
+    # the headline needs B and C: C is a tie here, so the group is not won
+    assert res["headline"]["won"] == 0 and res["headline"]["groups"][0]["B"] == "WIN"
 
 
 def test_shot_mismatch_and_missing_output_stop(tmp_path):

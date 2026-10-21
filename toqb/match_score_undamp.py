@@ -9,7 +9,7 @@ the per-point CE, raw (p = 1 - P(1)) or undamped (z_u = clip((1 - 2 P(1) - delta
 with toqb.s2r2's clip. Comparisons X against Y per task: Wilcoxon signed-rank on d = CE(Y) - CE(X), Holm over the
 group's tasks, WIN / LOSS / TIE at alpha; per group (angle, L): Stouffer with Holm over groups (W11's rule).
 
-Comparisons (W14 draft; the owner fixes which is the headline before any record is read):
+Comparisons (W14; the owner's headline of 2026-10-21: a group is won only if B and C are both WIN there):
   A. PSF undamped against PSF raw (does the readout help PSF?)
   B. PSF undamped against Qiskit raw (the new pipeline against the opponent as it stands)
   C. PSF undamped against Qiskit undamped (the same readout on both)
@@ -116,13 +116,26 @@ def score(tasks, alpha=0.01):
             g["verdict"] = ("MIXED" if w and l else "WIN" if a < alpha and g["Z"] > 0 and not l
                             else "LOSS" if a < alpha and g["Z"] < 0 and not w else "TIE")
         res["comparisons"][cid] = dict(x=x, y=yl, tasks=rows, groups=gres)
+    # the headline (owner, 2026-10-21): per group, won only if B (PSF undamped against Qiskit raw) and C (PSF
+    # undamped against Qiskit undamped) are both WIN
+    gb = {tuple(g["group"]): g["verdict"] for g in res["comparisons"]["B"]["groups"]}
+    gc = {tuple(g["group"]): g["verdict"] for g in res["comparisons"]["C"]["groups"]}
+    hl = [dict(group=list(g), B=gb.get(g), C=gc.get(g), won=gb.get(g) == "WIN" and gc.get(g) == "WIN")
+          for g in sorted(set(gb) | set(gc))]
+    res["headline"] = dict(groups=hl, won=sum(h["won"] for h in hl), of=len(hl))
     return res
 
 
 def markdown(res):
     L = ["# The undamped-readout match: score", "",
          f"Rules: W14 draft (2026-10-21), alpha {res['alpha']}; W8's per-point statistics; groups (angle, L), Holm over "
-         "groups. Truth tier: stand-in (simulation).", "", "## Per arm and readout (means over tasks)", "",
+         "groups. Truth tier: stand-in (simulation).", "",
+         "## Headline (owner, 2026-10-21: B and C both WIN in a group)", "",
+         "| group (angle, L) | B: PSF undamped vs Qiskit raw | C: PSF undamped vs Qiskit undamped | won |", "|---|---|---|---|"]
+    for h in res["headline"]["groups"]:
+        L.append(f"| {h['group'][0]}, L{h['group'][1]} | {h['B']} | {h['C']} | {'YES' if h['won'] else 'NO'} |")
+    L += ["", f"Won in {res['headline']['won']} of {res['headline']['of']} groups.", "",
+          "## Per arm and readout (means over tasks)", "",
          "| arm, readout | tasks | CE | accuracy | lam / delta | undamped prediction inside |", "|---|---|---|---|---|---|"]
     for lab, v in sorted(res["arms"].items()):
         ins = sum(1 for r in v if r["inside"]) if "undamped" in lab else "-"
