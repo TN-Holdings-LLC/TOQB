@@ -7,9 +7,10 @@
 #   C0: toqb.s2rc_ckpt (design C's loop, unchanged, with checkpoints), from theta = 0, 2,000 loops; checkpoints at the
 #       loops of the same cost as E4's sweeps (one C0 loop 2,048 trajectory-circuits; one E4 sweep 3 x d x 64 x 32):
 #       L 8 (d 170): 510, 1,020, 1,530; L 16 (d 330): 990, 1,980.
-# Cells: angles 0.3, 1.0, 2.0 at L 8 and angle 1.0 at L 16, teachers 7, 8, 9. F3 (reproducibility): angle 1.0, L 8,
+# Cells: angles 0.3, 1.0, 2.0 at L 8, teachers 7, 8, 9 (owner, 2026-10-21 05:30 CEST: the short version; L 16 was
+# cut after the test match, where no method learned at L 16). F3 (reproducibility): angle 1.0, L 8,
 # teacher 7: C0 also with seeds 202 and 203, E4 also with twin seeds 1007 and 2007.
-# Order: all Z, then the L 16 runs (the longest), then the L 8 runs.
+# Order: all Z, then the runs (C0 and E4), then the F3 extra seeds.
 #   DAY=... OUT=... setsid nohup bash TOQB/gpu/fruit_match.sh > fruit.txt 2>&1 < /dev/null &
 set -u
 W=$(pwd)
@@ -50,7 +51,7 @@ def plan(L, a, ts, kind, seed):
                      "teacher_gap": 0.2, "n_train": 64, "n_test": 500},
             "train": train, "predict": {"traj": 1024, "shots": 1000, "reps": 20000, "level": 0.99, "seed": 50000 + ts},
             "standin": {"t12": 0.3, "over": 0.01, "zz_hz": 10000.0, "seed": 20261017}}
-cells = [(8, a, ts) for a in (0.3, 1.0, 2.0) for ts in (7, 8, 9)] + [(16, 1.0, ts) for ts in (7, 8, 9)]
+cells = [(8, a, ts) for a in (0.3, 1.0, 2.0) for ts in (7, 8, 9)]
 for L, a, ts in cells:
     pre = "1" if L == 16 else "2"
     tag = f"L{L}_a{a}_t{ts}"

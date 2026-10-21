@@ -1,6 +1,7 @@
 # The fruit match: E4 against C where the formula has a guarantee (design draft, 2026-10-21)
 
-**Status.** Draft for the owner. Nothing is run until the owner fixes the scope. Rules follow W8's machinery; the
+**Status.** Owner, 2026-10-21 05:30 CEST: the short version (3 angles at L 8, teachers 7, 8, 9, F3), after the
+test match (`results/s2re4-match-2026-10-21/`: no method learned at L 16). Earlier: draft for the owner. Nothing is run until the owner fixes the scope. Rules follow W8's machinery; the
 decision rules are fixed by SHA-256 before the first record is read, like W8.
 
 ## Why (owner, 2026-10-21)
