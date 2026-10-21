@@ -10,9 +10,13 @@ listed here. Fixed on the device day by the SHA-256 of this file, of r8, of `job
    submission is recorded (`submission.json`: calibration_at_submit, as r8), and, if fetched again before
    submitting, its difference from T0's (`toqb.s2rc_device drift`) is reported. Neither stops the submission.
 2. **Device and placement: no choice by calibration.** r8's rule stays (E1-E4, then the fixed order marrakesh, fez,
-   kingston). The only check on the calibration is r8's: a job that uses a failed qubit or coupler is not submitted
-   (E4 and submit's check). PSF's placement is its fixed template. Qiskit's calibration-aware placement is recorded as
-   Qiskit's own choice.
+   kingston), with E5 added (item 6). The only check on the calibration is r8's: a job that uses a failed qubit or
+   coupler is not submitted (E4 and submit's check). PSF's placement is its fixed template. Qiskit's
+   calibration-aware placement is recorded as Qiskit's own choice.
+   - E2-E5 are applied on the pod to the three fetched Targets in the fixed order (`toqb.s2rc_device choose`,
+     `FETCHES=` in `gpu/s2rc_device_day_r9.sh`); the first eligible device is used and `choice.json` records why
+     the others were not. E1 (the plan) is confirmed at home. E3 is read from each fetch; "unknown" is recorded, not
+     excluded.
 3. **The undamped readout, added and reported (not a hypothesis).**
    - After assemble, for each cell, (lam, delta) come from the day's twin on the run's 64 training inputs (1,024
      trajectories, seed predict.seed + 5) against the exact noiseless model. No labels and no device data are used.
@@ -32,22 +36,32 @@ listed here. Fixed on the device day by the SHA-256 of this file, of r8, of `job
    - The PSF arm's ring template (psf_ai_compile a22's `model_template`: reading, schedules N2 and item 31, placement
      on the device's snake, blocks, runs, the choice by duration then CZ count) is built by PSF-Zero's
      `rust/psfbind` (`toqb.ringport`), and on the day also by the Python beside it: any difference stops the run
-     (`TOQB_RUST_TEMPLATE=check`, `gpu/rust_psf.sh`). A case the Rust does not port (VF2 placement, an embedding
-     ring) is built by the Python and listed in the run's arm stats.
+     (`TOQB_RUST_TEMPLATE=check`, `gpu/rust_psf.sh`). A case the Rust does not port (an embedding ring; not the
+     S2R model's case) is built by the Python and listed in the run's arm stats. A placement by search is never
+     made (item 6).
    - Evidence before the day: bit-identical templates (fixed angles and factors differ by 0.0) on the stand-in at
-     L 2, 8, 16, and identical on 146 of 150 cases over five devices with random failed elements (4 refused, VF2).
+     L 2, 8, 16, and identical on 146 of 150 cases over five devices with random failed elements (the other 4 would
+     need VF2's search: out of scope by item 6).
    - Nothing else changes: the circuits (gates, qubits, angles bit for bit), the binding (`RingTemplate.angles`),
      the QPY export and the job. Checked on a device-style run (verify false): the same record, times aside, and the
      same QPY bytes once Qiskit's automatic circuit names are set aside (`assign_parameters` appends a process-wide
      counter that counts the circuits made before; the Python builder makes more of them).
+6. **Formula only: no placement by search (owner, 2026-10-21, "B").** psf_ai_compile a22 places the ring on the
+   longest surviving piece of the device's snake and, when no piece is long enough, falls back to rustworkx's VF2
+   search. From r9 that fallback is outside the scope: the template is not built (`ringport.OutOfScope`), nothing
+   falls back to the Python, and the device is not eligible for the day:
+   - **E5.** PSF's template places the 10-qubit ring (L 8 and 16) on a snake piece of the device, by the formula.
+   - With the published calibration of 2026-10-13 (`snapshot:marrakesh`), marrakesh meets E5. On the day it is read
+     from the fetched Target by `choose` (and by `precheck` for one device).
 
 ## The day (times are estimates)
 
 | step | where | duration |
 |---|---|---|
 | pod start and bundle | pod | 10 min |
-| fetch (T0) | home, VPN off | 10 min |
-| precheck, plans, training of 4 runs (L 8 and 16, PSF and Qiskit, seed 301), assemble, undamp fix, zip | pod | about 3.5 to 4 h |
+| fetch (T0) of marrakesh, fez, kingston | home, VPN off | 10 min |
+| Rust (cargo) install and build | pod | 5 min |
+| choose (E2-E5 in the fixed order), precheck, plans, training of 4 runs (L 8 and 16, PSF and Qiskit, seed 301), assemble, undamp fix, zip | pod | about 3.5 to 4 h |
 | fix r9 (hashes and time) | home | 10 min |
 | submit (QPU about 138 s by the job's model) and the queue | home, VPN off | minutes to hours (queue) |
 | result, score (r8) and undamp score | home, VPN off | 15 min |

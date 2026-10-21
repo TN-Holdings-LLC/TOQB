@@ -6,14 +6,16 @@ runs, and the choice between the schedules -- ported to PSF-Zero's `rust/psfbind
     input_json(qc)        the input circuit (name, qubits, clbits, rotation angle, other single-qubit matrices)
     blocks_json(ai)       the fixed CZ / SWAP blocks as a22 decomposes them (`_block_ops`: Qiskit's
                           TwoQubitBasisDecomposer, checked to 1e-12 there): constants handed to the builder
-    build(...)            the Rust answer as a dict: status "built" (with the template), "none" (the Python's None) or
-                          "refused" (a case not ported, with its reason: the caller builds with the Python)
+    build(...)            the Rust answer as a dict: status "built" (with the template), "none" (the Python's None),
+                          "refused" (a case not ported, with its reason: the caller builds with the Python) or
+                          "out_of_scope" (owner, 2026-10-21: a placement that would need VF2's search; no fallback)
     ring_template(...)    a psf_ai_compile.RingTemplate from the Rust answer (the same class, so binding, the fast path
                           and QPY export are unchanged), None, or raises Refused
     compare(a, b)         the differences between two RingTemplates (gate list, fixed angles, runs, layout, values)
 
 The arm uses it only when asked (`TOQB_RUST_TEMPLATE=1`: Rust, the Python for a refused case; `=check`: Rust, and the
-Python's template built beside it must be identical or the run stops).
+Python's template built beside it must be identical or the run stops). In both, a placement that would need VF2's
+search raises OutOfScope (the owner's rule of 2026-10-21, formula only): the device is not used for PSF.
 """
 from __future__ import annotations
 
@@ -26,6 +28,11 @@ from toqb import rustbind as RB
 
 class Refused(Exception):
     pass
+
+
+class OutOfScope(Exception):
+    """The owner's rule of 2026-10-21 (formula only): no snake piece of the device holds the ring, so a placement
+    would need VF2's search. The template is not built and nothing falls back to the Python (which would search)."""
 
 
 class Mismatch(Exception):
@@ -124,8 +131,11 @@ def build(qc, target, ai, max_error=0.5, schedule=None):
 
 
 def ring_template(qc, target, ai, max_error=0.5, schedule=None):
-    """A RingTemplate from Rust (None as the Python's None); Refused for a case not ported."""
+    """A RingTemplate from Rust (None as the Python's None); Refused for a case not ported; OutOfScope for a placement
+    that would need VF2's search (never built, by the owner's rule)."""
     ans = build(qc, target, ai, max_error, schedule)
+    if ans["status"] == "out_of_scope":
+        raise OutOfScope(ans["reason"])
     if ans["status"] == "refused":
         raise Refused(ans["reason"])
     if ans["status"] == "none":

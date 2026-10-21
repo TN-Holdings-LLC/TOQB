@@ -292,39 +292,87 @@ def cmd_plans(a):
 
 # ------------------------------------------------------------------------------------------------ precheck (pod)
 
-def cmd_precheck(a):
+def _precheck(fetch_dir, arms, layers, n, enc, seed):
     """Compile the model circuit once per compiler and depth on the fetched Target (random angles; the structure does
-    not depend on them) and apply assemble's checks, so a failed element or a non-native gate stops the day before
-    training starts rather than after it."""
+    not depend on them) and apply assemble's checks; also r9's E5 (PSF's placement by the formula, never by VF2's
+    search). Returns (fetch.json, number of cases with problems)."""
     from toqb import s2r as S
     from toqb import task_loop as TL
     from toqb.devices import _failed, from_target
-    fetch = _load_json(os.path.join(a.fetch, "fetch.json"))
-    tfile = os.path.join(a.fetch, "target.pkl")
+    fetch = _load_json(os.path.join(fetch_dir, "fetch.json"))
+    tfile = os.path.join(fetch_dir, "target.pkl")
     if sha256_file(tfile) != fetch["target_sha256"]:
         raise SystemExit("STOP: target.pkl differs from fetch.json's hash")
     with open(tfile, "rb") as f:
         target = pickle.load(f)
     device = from_target("file:" + os.path.abspath(tfile), target, True)
     fe, fq = _failed(target)
-    rng = np.random.default_rng(a.seed)
+    rng = np.random.default_rng(seed)
     bad = 0
-    for spec in a.arms:
+    for spec in arms:
         arm = S.Arm(spec, device)
-        for L in a.layers:
-            th = rng.uniform(-1, 1, TL.n_params(a.n, L))
-            x = rng.uniform(-1, 1, a.n)
-            c = arm.compile(TL.model_circuit(TL.angle_list(th, x, a.n, L, a.enc), a.n, L))
+        for L in layers:
+            th = rng.uniform(-1, 1, TL.n_params(n, L))
+            x = rng.uniform(-1, 1, n)
+            try:
+                c = arm.compile(TL.model_circuit(TL.angle_list(th, x, n, L, enc), n, L))
+            except Exception as exc:  # noqa: BLE001 - r9 E5: PSF's placement would need a search (ringport.OutOfScope)
+                if type(exc).__name__ != "OutOfScope":
+                    raise
+                print(f"{spec:28s} L {L:2d}: OUT OF SCOPE (E5): {exc}", flush=True)
+                bad += 1
+                continue
             pr = _isa_problems(c, target, fe, fq)
             q2 = sum(1 for i in c.data if i.operation.num_qubits == 2)
             act = len({c.find_bit(q).index for i in c.data for q in i.qubits})
             print(f"{spec:28s} L {L:2d}: {act} active qubits, {q2} two-qubit gates: "
                   + ("OK" if not pr else "PROBLEM " + "; ".join(pr[:3])), flush=True)
             bad += bool(pr)
+    return fetch, bad
+
+
+def cmd_precheck(a):
+    """The checks of `_precheck` on one fetched Target, so a failed element, a non-native gate or a placement outside
+    the scope stops the day before training starts rather than after it."""
+    fetch, bad = _precheck(a.fetch, a.arms, a.layers, a.n, a.enc, a.seed)
     print(f"{stamp()} precheck on {fetch['backend']} (calibration {fetch['calibration_time']}): "
           + ("all OK" if not bad else f"STOP: {bad} case(s) with problems"))
     if bad:
         raise SystemExit(1)
+
+
+def cmd_choose(a):
+    """C r9's device rule on the pod: the fetched Targets in the fixed order (marrakesh, fez, kingston as given),
+    each read for E2 (cz), E3 (operational, as fetched; unknown is recorded, not excluded) and E4 + E5 (`_precheck`:
+    no failed element, PSF placed by the formula); the first eligible is used. No error rate is read. Writes
+    choice.json (never overwritten) and prints `CHOSEN <folder>` last."""
+    if os.path.exists(a.out):
+        raise SystemExit(f"STOP: {a.out} exists; a choice is never overwritten")
+    rows, chosen = [], None
+    for fd in a.fetches:
+        fj = _load_json(os.path.join(fd, "fetch.json"))
+        why = []
+        if fj.get("two_qubit_gate") != "cz":
+            why.append(f"E2: two-qubit gate {fj.get('two_qubit_gate')}")
+        if fj.get("operational") is False:
+            why.append("E3: not operational at fetch")
+        if not why:
+            print(f"== {fj['backend']} (calibration {fj['calibration_time']})", flush=True)
+            _, bad = _precheck(fd, a.arms, a.layers, a.n, a.enc, a.seed)
+            if bad:
+                why.append(f"E4/E5: {bad} case(s) with problems")
+        rows.append(dict(folder=os.path.abspath(fd), backend=fj["backend"], calibration_time=fj["calibration_time"],
+                         operational=fj.get("operational"), target_sha256=fj["target_sha256"], eligible=not why,
+                         reasons=why))
+        print(f"{fj['backend']}: " + ("eligible" if not why else "not eligible: " + "; ".join(why)), flush=True)
+        if not why:
+            chosen = rows[-1]
+            break
+    _dump_json(a.out, dict(written=stamp(), rule="C r9: E1-E5, then the fixed order as given", devices=rows,
+                           chosen=chosen))
+    if chosen is None:
+        raise SystemExit("STOP: no device is eligible")
+    print(f"CHOSEN {chosen['folder']}")
 
 
 # ------------------------------------------------------------------------------------------------ assemble (pod)
@@ -647,6 +695,14 @@ def main(argv=None):
     k.add_argument("--n", type=int, default=10)
     k.add_argument("--enc", type=float, default=1.5707963267948966)
     k.add_argument("--seed", type=int, default=20261020)
+    ch = sp.add_parser("choose")
+    ch.add_argument("--fetches", nargs="+", required=True)
+    ch.add_argument("--out", required=True)
+    ch.add_argument("--arms", nargs="+", default=["qiskit:2:target:template", "psfai:template"])
+    ch.add_argument("--layers", type=int, nargs="+", default=[8, 16])
+    ch.add_argument("--n", type=int, default=10)
+    ch.add_argument("--enc", type=float, default=1.5707963267948966)
+    ch.add_argument("--seed", type=int, default=20261020)
     s = sp.add_parser("assemble")
     s.add_argument("--fetch", required=True)
     s.add_argument("--runs", required=True)
@@ -672,7 +728,7 @@ def main(argv=None):
     c = sp.add_parser("score")
     c.add_argument("--job", required=True)
     a = ap.parse_args(argv)
-    dict(fetch=cmd_fetch, precheck=cmd_precheck, plans=cmd_plans, assemble=cmd_assemble, submit=cmd_submit, result=cmd_result,
+    dict(fetch=cmd_fetch, precheck=cmd_precheck, choose=cmd_choose, plans=cmd_plans, assemble=cmd_assemble, submit=cmd_submit, result=cmd_result,
          score=cmd_score, history=cmd_history, drift=cmd_drift)[a.cmd](a)
     return 0
 

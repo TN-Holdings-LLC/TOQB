@@ -137,3 +137,70 @@ def test_device_style_run_and_qpy_unchanged(monkeypatch):
     assert out[""][0]["valid"] and out["check"][0]["valid"]
     assert _strip_times(out[""][0]) == _strip_times(out["check"][0])
     assert out[""][1] == out["check"][1]
+
+
+def _cut_target(every=6, at=2):
+    """The snapshot device with every coupler (q, q + 1), q % every == at, reported failed (error 0.7): the snake's
+    pieces are too short for a 10-ring, so the Python would place it by VF2's search."""
+    import copy
+    from qiskit.transpiler import InstructionProperties
+    from toqb.devices import get_device
+    t = copy.deepcopy(get_device("snapshot:marrakesh").target)
+    for qa in list(t["cz"]):
+        if qa is None:
+            continue
+        a, b = sorted(qa)
+        if b == a + 1 and a % every == at:
+            p = t["cz"][qa]
+            t.update_instruction_properties("cz", qa, InstructionProperties(duration=p.duration, error=0.7))
+    return t
+
+
+def test_search_placement_is_out_of_scope(monkeypatch):
+    """Owner, 2026-10-21 (formula only): where the Python would place the ring by VF2's search, the Rust builder stops
+    with OutOfScope and the arm does not fall back to the Python."""
+    t = _cut_target()
+    qc = _model(10, 2, 0)
+    a = TL.make_loop_arm("psfai:template")
+    a.setup(t)
+    assert type(a.ai.model_template(qc, t)).__name__ == "RingTemplate"  # the Python would search and build
+    with pytest.raises(RP.OutOfScope):
+        RP.ring_template(qc, t, a.ai)
+    for mode in ("1", "check"):
+        monkeypatch.setenv("TOQB_RUST_TEMPLATE", mode)
+        b = TL.make_loop_arm("psfai:template")
+        b.setup(t)
+        with pytest.raises(RP.OutOfScope):
+            b.compile_circuit(qc)
+
+
+def test_choose_takes_the_first_eligible(tmp_path, monkeypatch, capsys):
+    """s2rc_device choose: the fixed order, E5 applied; a device whose PSF placement would need a search is passed
+    over, the next eligible one is chosen, and choice.json records why."""
+    import argparse
+    import json
+    import pickle
+    from toqb import s2rc_device as SD
+    from toqb.devices import get_device
+    monkeypatch.setenv("TOQB_RUST_TEMPLATE", "check")
+    folders = []
+    for name, tg in (("cut", _cut_target()), ("whole", get_device("snapshot:marrakesh").target)):
+        d = tmp_path / name
+        d.mkdir()
+        with open(d / "target.pkl", "wb") as f:
+            pickle.dump(tg, f)
+        json.dump(dict(backend=f"test_{name}", calibration_time="2026-10-21T00:00:00+00:00", operational=True,
+                       two_qubit_gate="cz", num_qubits=tg.num_qubits,
+                       target_sha256=SD.sha256_file(str(d / "target.pkl"))), open(d / "fetch.json", "w"))
+        folders.append(str(d))
+    out = tmp_path / "choice.json"
+    SD.cmd_choose(argparse.Namespace(fetches=folders, out=str(out), arms=["psfai:template"], layers=[2], n=10,
+                                     enc=1.5707963267948966, seed=1))
+    ch = json.load(open(out))
+    assert ch["chosen"]["backend"] == "test_whole"
+    assert not ch["devices"][0]["eligible"] and "E4/E5" in ch["devices"][0]["reasons"][0]
+    printed = capsys.readouterr().out
+    assert "OUT OF SCOPE (E5)" in printed and printed.strip().splitlines()[-1].startswith("CHOSEN ")
+    with pytest.raises(SystemExit):  # never overwritten
+        SD.cmd_choose(argparse.Namespace(fetches=folders, out=str(out), arms=["psfai:template"], layers=[2], n=10,
+                                         enc=1.5707963267948966, seed=1))

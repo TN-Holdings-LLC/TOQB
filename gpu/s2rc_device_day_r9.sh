@@ -1,11 +1,14 @@
 #!/bin/bash
-# GPU pod, design C's device day, C r9 draft (2026-10-21): C r8's day (below) plus three items, nothing else changed:
+# GPU pod, design C's device day, C r9 draft (2026-10-21): C r8's day (below) plus four items, nothing else changed:
 #   - INIT: the training's start, uniform(-INIT, INIT); C r8 had 1.0; the owner chose 0.0 (C0) on 2026-10-21;
 #   - after assemble, the undamped readout is fixed before submission (toqb.s2rc_device_undamp fix: (lam, delta)
 #     from the day's twin on the training inputs, no labels, no device data) into job/undamp.json, hashed with the job.
 #   - RUST (default 1, gpu/rust_psf.sh): the PSF template is built in Rust (toqb.ringport) and checked identical to
 #     the Python's when built (TOQB_RUST_TEMPLATE=check; a difference stops the run); the circuits, their QPY and
 #     the binding stay Qiskit's (a device run never takes the fast path: verify false). Needs cargo on the pod.
+#     A placement that would need VF2's search is outside the scope (owner, 2026-10-21): E5 below;
+#   - FETCHES (the fetched folders in the fixed order marrakesh, fez, kingston): `s2rc_device choose` applies E2-E5
+#     and the first eligible device is used (FETCH alone: that device, checked by precheck as before).
 # C r8's text:
 # GPU pod, design C's device day (C r8 section 5, steps 2-4; no IBM connection here): from the Target fetched at
 # home, precheck, plans (seed 301, P_8 150, P_16 500, N 250, M 1, lr 0.4, 2,000 loops, T_pred 1,024, R 20,000),
@@ -17,7 +20,9 @@ W=$(pwd)
 TQ=${TOQB_DIR:-$W/TOQB}
 PSF=${PSF_DIR:-$W/psf}
 VA=${VENV_ACT:-$W/venv/bin/activate}
-FETCH=${FETCH:?set FETCH to the fetched Target folder}
+FETCH=${FETCH:-}
+FETCHES=${FETCHES:-}
+[ -n "$FETCH$FETCHES" ] || { echo "STOP: set FETCHES (the fetched folders in the fixed order) or FETCH (one folder)"; exit 1; }
 DAY=${DAY:?set DAY to the folder that receives the zip}
 OUT=${OUT:?set OUT to a new folder for the results}
 SEED=${SEED:-301}
@@ -29,7 +34,6 @@ LR=${LR:-0.4}
 PAR=${PAR:-4}
 INIT=${INIT:-0.0}
 [ -d "$TQ" ] && [ -f "$VA" ] && [ -d "$PSF" ] || { echo "STOP: needs TOQB, the venv and psf"; exit 1; }
-[ -f "$FETCH/target.pkl" ] && [ -f "$FETCH/fetch.json" ] || { echo "STOP: $FETCH has no target.pkl and fetch.json"; exit 1; }
 [ -e "$OUT" ] && { echo "STOP: $OUT exists; a run never overwrites another"; exit 1; }
 . "$VA"
 mkdir -p "$OUT/runs" "$OUT/logs" "$DAY"
@@ -39,6 +43,16 @@ export PYTHONPATH="$TQ" PSF_ZERO_REPO="$PSF" PYTHONWARNINGS=ignore TOQB_XP=${TOQ
   PSF_AI_FILE="$PSF/patches/psf_ai_compile_a22_2026-10-15/psf_ai_compile.py"
 cd "$TQ" || exit 1
 . "$TQ/gpu/rust_psf.sh"
+ZEXTRA=""
+if [ -n "$FETCHES" ]; then  # r9's device rule: E2-E5 in the fixed order, the first eligible is used
+  echo "== choose $(TZ=Europe/Zurich date '+%H:%M:%S %Z')"
+  python -m toqb.s2rc_device choose --fetches $FETCHES --out "$OUT/choice.json" | tee "$OUT/choose.txt"
+  FETCH=$(grep '^CHOSEN ' "$OUT/choose.txt" | tail -n 1 | cut -d' ' -f2-)
+  [ -n "$FETCH" ] || { echo "STOP: no device is eligible (see $OUT/choose.txt)"; exit 1; }
+  ZEXTRA="$OUT/choice.json $OUT/choose.txt $FETCHES"
+fi
+[ -f "$FETCH/target.pkl" ] && [ -f "$FETCH/fetch.json" ] || { echo "STOP: $FETCH has no target.pkl and fetch.json"; exit 1; }
+[ -n "$ZEXTRA" ] || ZEXTRA="$FETCH"
 step() { echo "== $1 $(TZ=Europe/Zurich date '+%H:%M:%S %Z')"; }
 { nvidia-smi --query-gpu=name,memory.total --format=csv,noheader; echo "toqb $(git log --oneline -1)"; \
   echo "psf-zero $(git -C "$PSF" log --oneline -1)"; cat "$FETCH/fetch.json"; echo; \
@@ -71,5 +85,5 @@ python -m toqb.s2rc_device_undamp fix --runs "$OUT/runs" --job "$OUT/job" --traj
 sha256sum "$OUT/job/manifest.json" "$OUT/job/circuits.qpy" "$OUT/job/undamp.json" | tee "$OUT/job_sha256.txt"
 step zip
 python -m zipfile -c "$DAY/s2rc_device_day.zip" "$OUT/times.txt" "$OUT/rust.txt" "$OUT/precheck.txt" "$OUT/progress.txt" "$OUT/plans" \
-  "$OUT/logs" "$OUT/job" "$OUT/job_sha256.txt" "$FETCH" \
+  "$OUT/logs" "$OUT/job" "$OUT/job_sha256.txt" $ZEXTRA \
   && echo "== DONE: $DAY/s2rc_device_day.zip ($(du -h "$DAY/s2rc_device_day.zip" | cut -f1))"
