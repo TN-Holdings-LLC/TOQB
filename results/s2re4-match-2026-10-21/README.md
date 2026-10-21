@@ -43,3 +43,21 @@ Reading:
   fit shows (-0.05 to -0.09). The coefficients are unbiased, but each step takes the minimum of a noisy estimate, so
   the estimated decrease is optimistic (selection on noise, a winner's curse), and it accumulates over 330
   parameters. This is a flaw of E4 under noise, found here; the running fruit match (L 8) is unchanged.
+
+4. **Test fit, noiseless (`diag_testfit.py`, `diag_testfit.txt`; the workplace's check: is the test also near chance
+   without noise?):** training / test accuracy, exact <Z0>, final parameters.
+
+| | theta = 0 | C0 | E4 |
+|---|---|---|---|
+| L 16 teacher 4 | 0.531 / 0.556 | **0.812 / 0.578** | 0.641 / 0.560 |
+| L 16 teacher 5 | 0.531 / 0.508 | 0.594 / 0.594 | 0.547 / 0.528 |
+| L 16 teacher 6 | 0.641 / 0.612 | 0.719 / 0.620 | 0.609 / 0.628 |
+| L 8 teacher 4 | 0.594 / 0.596 | 0.766 / 0.732 | 0.875 / 0.776 |
+| L 8 teacher 5 | 0.469 / 0.590 | 0.875 / 0.832 | 0.828 / 0.824 |
+| L 8 teacher 6 | 0.672 / 0.624 | 0.891 / 0.810 | 0.938 / 0.822 |
+
+Reading: at L 16 the noiseless test accuracy is also near theta = 0's, so the failure is not the noise's shrinkage of
+the outputs. C0 on teacher 4 is plain overfitting (training 0.81, test 0.58); on teachers 5 and 6 neither method
+fits the training points well (0.55 to 0.72) and the test does not move: at L 16 with 64 points and 330 parameters
+the training points do not determine a model that generalises. At L 8 both methods generalise (test 0.73 to 0.83
+without noise; about 0.79 on the stand-in).

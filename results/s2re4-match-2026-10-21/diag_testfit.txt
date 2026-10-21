@@ -1,0 +1,7 @@
+L16 t4 (261 s): theta0 train acc 0.531 test acc 0.556 test CE 1.0218 | C0 train acc 0.812 test acc 0.578 test CE 0.6831 | E4 train acc 0.641 test acc 0.560 test CE 0.6828
+L16 t5 (257 s): theta0 train acc 0.531 test acc 0.508 test CE 0.9566 | C0 train acc 0.594 test acc 0.594 test CE 0.6751 | E4 train acc 0.547 test acc 0.528 test CE 0.6910
+L16 t6 (510 s): theta0 train acc 0.641 test acc 0.612 test CE 0.8155 | C0 train acc 0.719 test acc 0.620 test CE 0.6138 | E4 train acc 0.609 test acc 0.628 test CE 0.5901
+L8 t4 (27 s): theta0 train acc 0.594 test acc 0.596 test CE 0.7642 | C0 train acc 0.766 test acc 0.732 test CE 0.5400 | E4 train acc 0.875 test acc 0.776 test CE 0.5373
+L8 t5 (36 s): theta0 train acc 0.469 test acc 0.590 test CE 0.7663 | C0 train acc 0.875 test acc 0.832 test CE 0.3912 | E4 train acc 0.828 test acc 0.824 test CE 0.4092
+L8 t6 (39 s): theta0 train acc 0.672 test acc 0.624 test CE 0.6265 | C0 train acc 0.891 test acc 0.810 test CE 0.3767 | E4 train acc 0.938 test acc 0.822 test CE 0.4080
+
