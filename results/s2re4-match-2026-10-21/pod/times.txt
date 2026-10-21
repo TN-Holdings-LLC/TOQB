@@ -1,0 +1,6 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb dcbc4be E4 on the twin and the E4-against-C test match: same start, same cost, theta = 0 control, unbiased noisy coefficients
+TASKS=4 5 6 TA=1.0 CSEED=201 TRAJ=32 PAR=6 ARMS=psfai:template
+start 2026-10-21 02:37:57 CEST
+18 runs
+end 2026-10-21 05:15:49 CEST
