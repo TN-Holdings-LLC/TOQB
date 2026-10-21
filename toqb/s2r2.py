@@ -68,6 +68,34 @@ def teacher_data2(task):
     return Xtr[p], ytr[p], Xte, yte
 
 
+class _Point:
+    """A point of the fast path (TOQB_FAST_PSF): the model's parameters and input, compiled on demand in Rust."""
+
+    __slots__ = ("theta", "x")
+
+    def __init__(self, theta, x):
+        self.theta, self.x = theta, x
+
+
+def _make_fast(R):
+    import sys
+    try:
+        from toqb import rustbind
+        F = rustbind.FastPSF(R)
+        rng = np.random.default_rng(20261021)
+        d = TL.n_params(R.task["n"], R.task["layers"])
+        ths = [rng.uniform(-np.pi, np.pi, d) for _ in range(4)]
+        xs = [rng.uniform(-1, 1, R.task["n"]) for _ in range(4)]
+        err = max(F.check("sim", ths, xs), F.check("dev", ths, xs))
+        if err > 1e-12:
+            print(f"note: TOQB_FAST_PSF off: the fast path differs from the slow one by {err:.2e}", file=sys.stderr)
+            return None
+        return F
+    except Exception as exc:  # noqa: BLE001 - the slow path stays
+        print(f"note: TOQB_FAST_PSF off: {type(exc).__name__}: {exc}", file=sys.stderr)
+        return None
+
+
 class Runner:
     """Compiles with one arm and evaluates circuits in the simulator's model and on the stand-in, by trajectories."""
 
@@ -85,11 +113,21 @@ class Runner:
         self.sk = {"sim": {}, "dev": {}}
         self.n_struct = 0
         self.t = dict(compile=0.0, sim=0.0, dev=0.0, eval=0.0)
+        # opt-in (2026-10-21): TOQB_FAST_PSF=1 binds the PSF template arm in Rust (toqb.rustbind) and skips the
+        # Qiskit circuits; never for a device run (verify false: its circuits are exported); checked against the
+        # slow path on random points before use, and off (with a note) if it is unavailable or differs.
+        self._fast = None
+        if (os.environ.get("TOQB_FAST_PSF") == "1" and spec.startswith("psfai:template")
+                and plan.get("verify", True)):
+            self._fast = _make_fast(self)
 
     def compile(self, theta, x):
         n, L, enc = self.task["n"], self.task["layers"], self.task["enc"]
         s = time.perf_counter()
-        c = self.arm.compile(TL.model_circuit(TL.angle_list(theta, x, n, L, enc), n, L))
+        if self._fast is not None:
+            c = _Point(np.array(theta, dtype=float), np.array(x, dtype=float))
+        else:
+            c = self.arm.compile(TL.model_circuit(TL.angle_list(theta, x, n, L, enc), n, L))
         self.t["compile"] += time.perf_counter() - s
         return c
 
@@ -111,6 +149,11 @@ class Runner:
     def z(self, model, circuits, T, seed, shots=False, crn=False):
         """<Z> on clbit 0 of each circuit: the trajectory mean (T trajectories; with `crn` every circuit of a structure
         sees the same draws), or from T shots if `shots`."""
+        if self._fast is not None and circuits and isinstance(circuits[0], _Point):
+            if not all(isinstance(c, _Point) for c in circuits):
+                raise ValueError("Runner.z: fast points and circuits mixed in one call")
+            return self._fast.z(model, [c.theta for c in circuits], [c.x for c in circuits], T, seed, shots=shots,
+                                crn=crn)
         groups = {}
         for i, c in enumerate(circuits):
             key, sk = self._skel(model, c)
