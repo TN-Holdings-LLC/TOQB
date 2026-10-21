@@ -1,0 +1,6 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb 69c1b14 Fruit match, short version (owner, 05:30 CEST): L 16 cut; 3 angles at L 8, teachers 7, 8, 9, F3; 31 runs
+TRAJ=32 PAR=6 ARMS=psfai:template
+start 2026-10-21 05:37:54 CEST
+31 runs
+end 2026-10-21 09:11:03 CEST
