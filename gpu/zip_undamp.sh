@@ -2,6 +2,8 @@
 # GPU pod, report only (declared in prereg/drafts-2026-10-22/zip_undamp_note.md): toqb.undamp_run --final-only on the
 # four records of results/zip-compare-2026-10-22/runs (item 31 and zipper, L 8 and 16), then
 # toqb.zip_undamp_summary. Run from /workspace (venv, TOQB, psf there):
+# TOQB_TRAJ_MEM_GB defaults to 4, as the runs it reads: another value reshapes the trajectory batches and the redraw
+# of the stand-in's shots differs (2026-10-22).
 #   OUT=/workspace/zu_2026-10-22 setsid nohup bash TOQB/gpu/zip_undamp.sh > zu.txt 2>&1 < /dev/null &
 set -u
 W=$(pwd)
@@ -14,7 +16,7 @@ PAR=${PAR:-2}
 . "$VA"
 mkdir -p "$OUT/logs" "$OUT/undamp"
 export PYTHONPATH="$TQ" PSF_ZERO_REPO="$PSF" PYTHONWARNINGS=ignore TOQB_XP=${TOQB_XP:-cupy} TOQB_TRAJ_DTYPE=complex64 \
-  TOQB_TRAJ_MEM_GB=${TOQB_TRAJ_MEM_GB:-4}  # 4, as the runs it reads (another value reshapes the trajectory batches and the redraw differs) OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 RAYON_NUM_THREADS=1 \
+  TOQB_TRAJ_MEM_GB=${TOQB_TRAJ_MEM_GB:-4} OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 RAYON_NUM_THREADS=1 \
   PSF_COMPILE_FILE="$PSF/patches/psf_compile_c61_2026-10-15/psf_compile.py" \
   PSF_AI_FILE="$PSF/patches/psf_ai_compile_a22_2026-10-15/psf_ai_compile.py"
 cd "$TQ" || exit 1
