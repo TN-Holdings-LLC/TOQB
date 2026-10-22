@@ -1,6 +1,6 @@
 # S2R design C: pre-registration r9 = r8 + this amendment (draft, 2026-10-21)
 
-**Status.** Draft. The base is `prereg/drafts-2026-10-20/C_preregistration_r8_final_draft.md`, unchanged except as
+**Status.** Fixed on 2026-10-22 (see `prereg/drafts-2026-10-22/C_r9_FIXED.md`). The base is `prereg/drafts-2026-10-20/C_preregistration_r8_final_draft.md`, unchanged except as
 listed here. Fixed on the device day by the SHA-256 of this file, of r8, of `job/manifest.json` and of
 `job/undamp.json`, with the CEST time, before the submission.
 
@@ -83,6 +83,9 @@ listed here. Fixed on the device day by the SHA-256 of this file, of r8, of `job
    used, `trained_for` (ibm_marrakesh) and every device tried with its reasons. If none takes the job, nothing is
    submitted (`submission_refused.json`) and the day ends. H1, H2 and the undamped readout are scored the same way
    on whichever device ran the job; a device other than marrakesh is reported as such.
+
+9. **No reference twin (owner, 2026-10-22, about 02:20 CEST).** r8's step 6b (the reference twin, report only, about
+   5 h on the pod's CPU) is not run. H1, H2 and the undamped readout do not use it.
 
 ## The day (times are estimates)
 

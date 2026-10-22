@@ -1,0 +1,17 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb 5e96bbe C r9 item 8 (owner, 2026-10-22): a failed element at submission sends the same circuits to the next device
+psf-zero 6269c4fe psfbind ring.rs: a placement by VF2's search is out of scope (owner, 2026-10-21, formula only)
+{
+ "written": "2026-10-22T00:12:23+00:00 (2026-10-22 02:12:23 CEST)",
+ "backend": "ibm_marrakesh",
+ "fake": false,
+ "source": "snapshot: the published calibration (toqb/data), not fetched on the day (owner, 2026-10-22)",
+ "snapshot_sha256": "c4caf4cb6708c18ce36292833f81292377c39a5316d40ea62622bb2a5b9357ac",
+ "calibration_time": "2026-10-13 11:37:12+02:00",
+ "operational": null,
+ "two_qubit_gate": "cz",
+ "num_qubits": 156,
+ "target_sha256": "a715121cdc6ac457960bd0f7586b43822e38b2ae39b56e1eec765e47749df245",
+ "script_sha256": "28d8e8498d30c7aed7c4f9a9989caa0e179406ad5a81f6cc8cf1c3d028a1f5ca"
+}
+SEED=301 LOOPS=2000 P8=150 P16=500 SHOTS=250 LR=0.4 PAR=4 INIT=0.0

@@ -1,0 +1,125 @@
+{
+ "written": "2026-10-22T01:53:37+00:00 (2026-10-22 03:53:37 CEST)",
+ "manifest_sha256": "ef5771eaf9b17023ede689ed409921c07efe277790a83e436fa3a1815e3c2ace",
+ "readout": "z_u = clip((z - delta) / lam, -1, 1); p = (1 + z_u) / 2",
+ "cells": [
+  {
+   "cell": 0,
+   "name": "L16_s301-psfai_template",
+   "arm": "psfai:template",
+   "layers": 16,
+   "lam": 0.2683584502706574,
+   "delta": 0.046338920890877905,
+   "fit_rms": 0.0752587601442437,
+   "traj": 1024,
+   "seed": 50306,
+   "prediction_undamped": {
+    "ce_mean": 0.5474587430377755,
+    "ce_interval": [
+     0.5119870487697227,
+     0.5938829714860925
+    ],
+    "acc_mean": 0.6828599,
+    "acc_interval": [
+     0.638,
+     0.728
+    ],
+    "ce_exact": 0.5055097243669052,
+    "reps": 20000,
+    "level": 0.99,
+    "shots": 250,
+    "lam": 0.2683584502706574,
+    "delta": 0.046338920890877905
+   }
+  },
+  {
+   "cell": 1,
+   "name": "L16_s301-qiskit_2_target_template",
+   "arm": "qiskit:2:target:template",
+   "layers": 16,
+   "lam": 0.49591150512900645,
+   "delta": 0.08695309464410722,
+   "fit_rms": 0.09983281271094854,
+   "traj": 1024,
+   "seed": 50306,
+   "prediction_undamped": {
+    "ce_mean": 0.5069804608555246,
+    "ce_interval": [
+     0.49193869430660486,
+     0.5250555406769188
+    ],
+    "acc_mean": 0.7272175,
+    "acc_interval": [
+     0.692,
+     0.76
+    ],
+    "ce_exact": 0.4972399213113741,
+    "reps": 20000,
+    "level": 0.99,
+    "shots": 250,
+    "lam": 0.49591150512900645,
+    "delta": 0.08695309464410722
+   }
+  },
+  {
+   "cell": 2,
+   "name": "L8_s301-psfai_template",
+   "arm": "psfai:template",
+   "layers": 8,
+   "lam": 0.33387784299858125,
+   "delta": 0.05240919040930682,
+   "fit_rms": 0.08658687891166007,
+   "traj": 1024,
+   "seed": 50306,
+   "prediction_undamped": {
+    "ce_mean": 0.4160940284365304,
+    "ce_interval": [
+     0.37848136452335385,
+     0.4783212584286138
+    ],
+    "acc_mean": 0.8034236666666666,
+    "acc_interval": [
+     0.74,
+     0.8666666666666667
+    ],
+    "ce_exact": 0.39738276993703786,
+    "reps": 20000,
+    "level": 0.99,
+    "shots": 250,
+    "lam": 0.33387784299858125,
+    "delta": 0.05240919040930682
+   }
+  },
+  {
+   "cell": 3,
+   "name": "L8_s301-qiskit_2_target_template",
+   "arm": "qiskit:2:target:template",
+   "layers": 8,
+   "lam": 0.6142962663098446,
+   "delta": 0.08481621234055907,
+   "fit_rms": 0.0822646287098061,
+   "traj": 1024,
+   "seed": 50306,
+   "prediction_undamped": {
+    "ce_mean": 0.4429830815555023,
+    "ce_interval": [
+     0.4233301692631609,
+     0.4634044868332031
+    ],
+    "acc_mean": 0.7897783333333332,
+    "acc_interval": [
+     0.7333333333333333,
+     0.8466666666666667
+    ],
+    "ce_exact": 0.43795337851127525,
+    "reps": 20000,
+    "level": 0.99,
+    "shots": 250,
+    "lam": 0.6142962663098446,
+    "delta": 0.08481621234055907
+   }
+  }
+ ],
+ "script_sha256": "7371f415b1760ad65f4d104cb04f260cf97c00ae962e1ac9df431956e50a5525",
+ "undamp_sha256": "d9d617887f743ef7e65eced4f3705c42e11a22ec04336df7aa1e477d89cbd8f7"
+}

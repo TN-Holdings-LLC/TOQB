@@ -1,0 +1,5 @@
+qiskit:2:target:template     L  8: 14 active qubits, 247 two-qubit gates: OK
+qiskit:2:target:template     L 16: 14 active qubits, 506 two-qubit gates: OK
+psfai:template               L  8: 10 active qubits, 224 two-qubit gates: OK
+psfai:template               L 16: 10 active qubits, 448 two-qubit gates: OK
+2026-10-22T00:12:24+00:00 (2026-10-22 02:12:24 CEST) precheck on ibm_marrakesh (calibration 2026-10-13 11:37:12+02:00): all OK

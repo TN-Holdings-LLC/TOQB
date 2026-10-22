@@ -1,0 +1,4 @@
+L8_s301 psfai:template done 02:41:54 {"kind": "s2rc", "arm": "psfai:template", "seed": 301, "valid": true, "loops": 2000, "wall_s": 1764.747175522003, "error": null, "pred_ce": 0.5618, "pred_ce_int": [0.5488, 0.5747], "pred_acc": 0.771, 
+L8_s301 qiskit:2:target:template done 03:06:14 {"kind": "s2rc", "arm": "qiskit:2:target:template", "seed": 301, "valid": true, "loops": 2000, "wall_s": 3224.1765840449953, "error": null, "pred_ce": 0.5205, "pred_ce_int": [0.5078, 0.5333], "pred_ac
+L16_s301 psfai:template done 03:11:14 {"kind": "s2rc", "arm": "psfai:template", "seed": 301, "valid": true, "loops": 2000, "wall_s": 3498.6247353490035, "error": null, "pred_ce": 0.6291, "pred_ce_int": [0.6213, 0.6369], "pred_acc": 0.624,
+L16_s301 qiskit:2:target:template done 03:50:19 {"kind": "s2rc", "arm": "qiskit:2:target:template", "seed": 301, "valid": true, "loops": 2000, "wall_s": 5844.370130593976, "error": null, "pred_ce": 0.5852, "pred_ce_int": [0.5777, 0.5927], "pred_acc
