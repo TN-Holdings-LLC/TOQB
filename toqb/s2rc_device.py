@@ -658,7 +658,9 @@ def cmd_score(a):
     for i, pub in enumerate(man["pubs"]):
         p_hat.setdefault(pub["cell"], {})[pub["point"]] = p1_of_counts(rows[i])
     out = dict(scored=stamp(), job_id=raw["job_id"], status=raw.get("status"), metrics=raw.get("metrics"),
-               backend=man["fetch"]["backend"], calibration_fetched=man["fetch"]["calibration_time"],
+               backend=(_load_json(os.path.join(a.job, "submission.json")).get("backend")
+                        if os.path.exists(os.path.join(a.job, "submission.json")) else None) or man["fetch"]["backend"],
+               trained_for=man["fetch"]["backend"], calibration_fetched=man["fetch"]["calibration_time"],
                calibration_at_result=raw.get("calibration_at_fetch"), shots=N, alpha=ALPHA, cells=[], h2=[])
     for c in man["cells"]:
         P = c["points"]

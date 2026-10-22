@@ -1,4 +1,4 @@
-# C r9 fixed (home, 2026-10-22 04:01 CEST, before submission; no device result exists)
+# C r9 fixed (cloud session, 2026-10-22 04:01 CEST, before submission; no device result exists)
 
 C r9 = r8 + the amendment below. Fixed by these SHA-256 and this CEST time, before `submit`. The job was built on the
 pod from 02:12 to 03:53 CEST (`results/device-2026-10-22/times.txt`); nothing has been sent to IBM.
@@ -11,10 +11,12 @@ pod from 02:12 to 03:53 CEST (`results/device-2026-10-22/times.txt`); nothing ha
 | job/circuits.qpy | 3565c21865039c002660e20d5ccc19b1d2f8aa3b867904d0b6b265da86a19ef5 |
 | job/undamp.json (lam, delta and the undamped prediction per cell; bound to the manifest's SHA-256) | 6c58f2ec3ca8ee38846f0270b035bfe866ed048f1cfde353f0583f3c552c3252 |
 | the snapshot Target (target.pkl; fetch.json source "snapshot", calibration 2026-10-13 11:37 CEST) | a715121cdc6ac457960bd0f7586b43822e38b2ae39b56e1eec765e47749df245 |
-| toqb/s2rc_device.py (submit with item 8, result, score; equal to the manifest's script_sha256) | 28d8e8498d30c7aed7c4f9a9989caa0e179406ad5a81f6cc8cf1c3d028a1f5ca |
+| toqb/s2rc_device.py (submit with item 8, result, score) | db54fbd7033226a3187ca14378b844fa3a2b3dce47e1cf9067120406fe129c2d |
 | toqb/s2rc_device_undamp.py (the undamped score) | 7371f415b1760ad65f4d104cb04f260cf97c00ae962e1ac9df431956e50a5525 |
 
-Code: TOQB 5e96bbe on the pod (psf-zero 6269c4f); the PSF template built in Rust and checked against the Python's
+The pod built the job with toqb/s2rc_device.py of SHA-256 28d8e8498d30c7aed7c4f9a9989caa0e179406ad5a81f6cc8cf1c3d028a1f5ca (the manifest's
+script_sha256); the version above differs only in `score`'s report fields (the device that ran the job, and the one
+trained for, under item 8), changed before fixing. Code: TOQB 5e96bbe on the pod (psf-zero 6269c4f); the PSF template built in Rust and checked against the Python's
 (RUST=1, TOQB_RUST_TEMPLATE=check: no difference, all four runs valid). Precheck on the snapshot: all OK.
 
 ## The predictions (twin on the snapshot; 99 % intervals; raw readout = H1 / H2's)
