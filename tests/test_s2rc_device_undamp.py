@@ -85,3 +85,43 @@ def test_snapshot_fetch_folder(tmp_path):
     assert fj["calibration_time"].startswith("2026-10-13")
     with pytest.raises(SystemExit):
         SD.cmd_snapshot(argparse.Namespace(out=out))
+
+
+class _FakeBackend:
+    def __init__(self, name, target, operational=True):
+        self.name, self.target, self._op = name, target, operational
+
+    def status(self):
+        return type("S", (), {"operational": self._op})()
+
+
+def test_pick_backend_moves_on_in_the_fixed_order(monkeypatch):
+    """C r9 item 8 (owner, 2026-10-22): a failed element under the job on the first device sends the same circuits to
+    the next device in the fixed order; everything tried is recorded; none eligible gives None."""
+    pytest.importorskip("qiskit")
+    import copy
+    from qiskit import QuantumCircuit
+    from qiskit.transpiler import InstructionProperties
+    from toqb import s2rc_device as SD
+    from toqb.devices import get_device
+    good = get_device("snapshot:marrakesh").target
+    bad = copy.deepcopy(good)
+    p = bad["cz"][(0, 1)] if (0, 1) in bad["cz"] else None
+    qa = (0, 1) if p is not None else (1, 0)
+    p = bad["cz"][qa]
+    bad.update_instruction_properties("cz", qa, InstructionProperties(duration=p.duration, error=0.9))
+    qc = QuantumCircuit(good.num_qubits, 1)
+    qc.cz(*qa)
+    qc.measure(0, 0)
+    monkeypatch.setattr(SD, "calibration_time", lambda b: f"cal-{b.name}")
+    backs = {"ibm_marrakesh": _FakeBackend("ibm_marrakesh", bad), "ibm_fez": _FakeBackend("ibm_fez", good),
+             "ibm_kingston": _FakeBackend("ibm_kingston", good)}
+    b, cal, tried = SD.pick_backend([qc], backs.__getitem__, "ibm_marrakesh")
+    assert b.name == "ibm_fez" and cal == "cal-ibm_fez"
+    assert [t["backend"] for t in tried] == ["ibm_marrakesh", "ibm_fez"] and tried[0]["reasons"]
+    backs["ibm_fez"] = _FakeBackend("ibm_fez", good, operational=False)
+    b, _, tried = SD.pick_backend([qc], backs.__getitem__, "ibm_marrakesh")
+    assert b.name == "ibm_kingston" and len(tried) == 3
+    backs["ibm_kingston"] = _FakeBackend("ibm_kingston", bad)
+    b, _, tried = SD.pick_backend([qc], backs.__getitem__, "ibm_marrakesh")
+    assert b is None and len(tried) == 3

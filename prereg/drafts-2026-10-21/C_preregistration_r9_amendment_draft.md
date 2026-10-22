@@ -4,12 +4,16 @@
 listed here. Fixed on the device day by the SHA-256 of this file, of r8, of `job/manifest.json` and of
 `job/undamp.json`, with the CEST time, before the submission.
 
-## Changes (owner, 2026-10-21)
+## Changes (owner, 2026-10-21 and 2026-10-22)
 
 1. **No time limit from T0 to submission.** r8's limit (6.32 h, §5 and §7) is removed. The calibration in effect at
    submission is recorded (`submission.json`: calibration_at_submit, as r8), and, if fetched again before
    submitting, its difference from T0's (`toqb.s2rc_device drift`) is reported. Neither stops the submission.
-2. **Device and placement: no choice by calibration.** r8's rule stays (E1-E4, then the fixed order marrakesh, fez,
+   - With it, r8's retraining condition "the time limit would be exceeded" (§5, "Retraining with the day's
+     calibration") is removed. r8's other condition (a failed element at submission) is replaced by item 8.
+2. **Device and placement: no choice by calibration.** *For the day, the fetch of three Targets and `choose` below are
+   replaced by items 7 and 8 (no Target is fetched before training; the fixed order is applied at submission). The
+   text is kept for a day that fetches.* r8's rule stays (E1-E4, then the fixed order marrakesh, fez,
    kingston), with E5 added (item 6). The only check on the calibration is r8's: a job that uses a failed qubit or
    coupler is not submitted (E4 and submit's check). PSF's placement is its fixed template. Qiskit's
    calibration-aware placement is recorded as Qiskit's own choice.
@@ -56,7 +60,7 @@ listed here. Fixed on the device day by the SHA-256 of this file, of r8, of `job
    - E5 is applied by the Rust builder only, so the day runs with `RUST=1` (the script's default); with `RUST=0`
      the Python would place by VF2 without a word, and that is not the day's configuration.
    - With the published calibration of 2026-10-13 (`snapshot:marrakesh`), marrakesh meets E5. On the day it is read
-     from the fetched Target by `choose` (and by `precheck` for one device).
+     on that snapshot by `precheck` (item 7; `choose` is for a day that fetches).
 
 7. **The training on the published calibration, not a fetch on the day (owner, 2026-10-22 01:41 CEST: "the placement
    and such need not be held to; drop that idea").**
@@ -65,10 +69,20 @@ listed here. Fixed on the device day by the SHA-256 of this file, of r8, of `job
      by `toqb.s2rc_device snapshot` on the pod (no IBM connection; `fetch.json` says `source: snapshot`). No Target
      is fetched before training; T0 is the snapshot's calibration time.
    - The device is ibm_marrakesh, the first of the fixed order; E2 and E5 are read on the snapshot (precheck: all OK
-     on 2026-10-22). E3 and E4 are read at submission: `submit` reads the calibration in effect then and stops if the
-     job uses a failed qubit or coupler (r8, kept by the owner on 2026-10-21); `calibration_at_submit` is recorded.
+     on 2026-10-22). E3 and E4 are read at submission, on the calibration in effect then (item 8);
+     `calibration_at_submit` is recorded. r8's reference twin (6b, report only), if run, uses the same snapshot.
    - Consequence, stated before the run: the twin's calibration is nine days older than the device's on the day, so
      the predictions (H1, H2, the undamped readout) are tested against that drift. This is the owner's choice.
+
+8. **A failed element at submission: the same circuits to the next device (owner, 2026-10-22 02:00 CEST).** r8 retrained on a
+   new fetch; with item 7 that would rebuild the same placement or contradict item 7. Instead, `submit`
+   (`toqb.s2rc_device.pick_backend`) reads, in the fixed order starting at ibm_marrakesh, each device's calibration
+   in effect then and sends the job's own circuits (no recompiling, no retraining, the manifest and its hashes
+   unchanged) to the first device with the job's number of qubits, not reported non-operational, and with no failed
+   or unsupported element under the job (r8's rule, both compilers' circuits). `submission.json` records the device
+   used, `trained_for` (ibm_marrakesh) and every device tried with its reasons. If none takes the job, nothing is
+   submitted (`submission_refused.json`) and the day ends. H1, H2 and the undamped readout are scored the same way
+   on whichever device ran the job; a device other than marrakesh is reported as such.
 
 ## The day (times are estimates)
 

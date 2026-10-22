@@ -513,6 +513,42 @@ def submit_problems(circs, target):
     return out
 
 
+ORDER = ("ibm_marrakesh", "ibm_fez", "ibm_kingston")  # r8's fixed order
+
+
+def pick_backend(circs, get_backend, first):
+    """C r9 item 8 (owner, 2026-10-22): at submission, the job's own circuits go to the first device, in the fixed
+    order starting at the job's (`first`), whose calibration in effect now has the same number of qubits, reports it
+    operational (unknown is not excluded) and has no failed or unsupported element under the job (r8's rule); no
+    retraining. Returns (backend, calibration time, tried) with tried = [{backend, calibration, reasons}], or
+    (None, None, tried) when no device takes the job."""
+    names = [first] + [b for b in ORDER if b != first]
+    tried = []
+    for name in names:
+        try:
+            backend = get_backend(name)
+        except Exception as exc:  # noqa: BLE001 - recorded; the next device in the order is tried
+            tried.append(dict(backend=name, calibration=None, reasons=[f"not reachable: {type(exc).__name__}"]))
+            continue
+        cal = calibration_time(backend)
+        why = []
+        if backend.target.num_qubits != circs[0].num_qubits:
+            why.append(f"{backend.target.num_qubits} qubits, the job {circs[0].num_qubits}")
+        else:
+            try:
+                if backend.status().operational is False:
+                    why.append("not operational")
+            except Exception:  # noqa: BLE001
+                pass
+            probs = submit_problems(circs, backend.target)
+            if probs:
+                why.append("failed or unsupported elements: " + "; ".join(probs[:5]))
+        tried.append(dict(backend=backend.name, calibration=cal, reasons=why))
+        if not why:
+            return backend, cal, tried
+    return None, None, tried
+
+
 def cmd_submit(a):
     from qiskit import qpy
     man = _read_job(a.job)
@@ -541,15 +577,17 @@ def cmd_submit(a):
         print(f"{stamp()} LOCAL run (no IBM connection): {len(circs)} circuits x {N} shots; raw_counts.json written")
         return
     from qiskit_ibm_runtime import SamplerV2
-    backend = _service().backend(man["fetch"]["backend"])
-    cal = calibration_time(backend)
-    # owner decision of 2026-10-20 (12:32 CEST, after P1 showed a new calibration timestamp about every 2 h): a new
-    # timestamp no longer stops the submission. The job stops only when one of its qubits or couplers is failed in
-    # the calibration in effect now (the same rule as assemble); the fetched and current timestamps are recorded.
-    probs = submit_problems(circs, backend.target)
-    if probs:
-        raise SystemExit(f"STOP: in {backend.name}'s calibration of {cal}, the job uses failed elements: "
-                         + "; ".join(probs[:5]) + ". Fetch again and retrain (design C section 5); not submitted.")
+    # owner decision of 2026-10-20: a new calibration timestamp does not stop the submission; a failed element under
+    # the job does. Owner decision of 2026-10-22 (C r9 item 8): then the same circuits go to the next device in the
+    # fixed order (pick_backend), no retraining; every device tried and why is recorded.
+    service = _service()
+    backend, cal, tried = pick_backend(circs, service.backend, man["fetch"]["backend"])
+    for t in tried:
+        print(f"{t['backend']} (calibration {t['calibration']}): "
+              + ("takes the job" if not t["reasons"] else "passed over: " + "; ".join(t["reasons"])), flush=True)
+    if backend is None:
+        _dump_json(os.path.join(a.job, "submission_refused.json"), dict(written=stamp(), tried=tried))
+        raise SystemExit("STOP: no device in the fixed order takes the job; not submitted (submission_refused.json)")
     sampler = SamplerV2(mode=backend)
     sampler.options.dynamical_decoupling.enable = False
     sampler.options.twirling.enable_gates = False
@@ -557,7 +595,7 @@ def cmd_submit(a):
     t_sub = stamp()
     job = sampler.run([(c, None, N) for c in circs])
     _dump_json(sub_file, dict(job_id=job.job_id(), submitted=t_sub, local=False, backend=backend.name,
-                              calibration_at_submit=cal, options="dynamical decoupling off, twirling off (gates and "
+                              trained_for=man["fetch"]["backend"], tried=tried, calibration_at_submit=cal, options="dynamical decoupling off, twirling off (gates and "
                               "measure); SamplerV2 applies no other error mitigation"))
     print(f"{stamp()} submitted job {job.job_id()} ({len(circs)} circuits x {N} shots) to {backend.name}. "
           f"Results are not read here.")
@@ -597,7 +635,8 @@ def cmd_result(a):
     except Exception as exc:  # noqa: BLE001
         metrics = dict(error=type(exc).__name__)
     try:
-        cal_run = calibration_time(_service().backend(_load_json(os.path.join(a.job, "manifest.json"))["fetch"]["backend"]))
+        cal_run = calibration_time(_service().backend(sub.get("backend")
+                                                      or _load_json(os.path.join(a.job, "manifest.json"))["fetch"]["backend"]))
     except Exception:  # noqa: BLE001
         cal_run = None
     _dump_json(raw_file, dict(fetched=stamp(), job_id=sub["job_id"], status=st, metrics=metrics,

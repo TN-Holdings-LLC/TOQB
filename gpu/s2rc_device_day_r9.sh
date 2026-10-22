@@ -85,5 +85,5 @@ python -m toqb.s2rc_device_undamp fix --runs "$OUT/runs" --job "$OUT/job" --traj
 sha256sum "$OUT/job/manifest.json" "$OUT/job/circuits.qpy" "$OUT/job/undamp.json" | tee "$OUT/job_sha256.txt"
 step zip
 python -m zipfile -c "$DAY/s2rc_device_day.zip" "$OUT/times.txt" "$OUT/rust.txt" "$OUT/precheck.txt" "$OUT/progress.txt" "$OUT/plans" \
-  "$OUT/logs" "$OUT/job" "$OUT/job_sha256.txt" $ZEXTRA \
+  "$OUT/logs" "$OUT/runs" "$OUT/job" "$OUT/job_sha256.txt" $ZEXTRA \
   && echo "== DONE: $DAY/s2rc_device_day.zip ($(du -h "$DAY/s2rc_device_day.zip" | cut -f1))"
