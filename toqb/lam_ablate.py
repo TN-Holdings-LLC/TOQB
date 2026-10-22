@@ -1,7 +1,7 @@
 """Which noise source sets the shrink lam? (report only, declared 2026-10-22 in
 prereg/drafts-2026-10-22/lam_ablate_note.md)
 
-    python -m toqb.lam_ablate RUNS_DIR OUT_DIR
+    python -m toqb.lam_ablate RUNS_DIR OUT_DIR [full,none,...]
 
 The lam swap (results/lam-swap-2026-10-22) is repeated with the twin's noise taken apart. The twin (toqb.fast_noise) has
 four sources, each read from the calibration: two-qubit depolarizing (the CZ error), one-qubit depolarizing (sx, x),
@@ -34,6 +34,7 @@ from toqb.devices import FAILED_ERROR
 
 ARMS = {"t": "psfai:template", "z": "psfai:template_zip"}
 VARIANTS = ("full", "no_cz", "no_1q", "no_relax", "no_readout")
+ALL_OFF = ("no_cz", "no_1q", "no_relax", "no_readout")  # "none": every source off (added 2026-10-22, lam_none_note.md)
 OFF_T = 1000.0
 
 
@@ -44,6 +45,10 @@ class Stop(Exception):
 def variant_target(target, variant):
     """A copy of the target with one noise source switched off (the twin reads only these fields)."""
     from qiskit.transpiler import InstructionProperties
+    if variant == "none":
+        for v in ALL_OFF:
+            target = variant_target(target, v)
+        return target
     t = pickle.loads(pickle.dumps(target))
     if variant == "full":
         return t
@@ -72,13 +77,16 @@ def signature(c):
 def main(argv=None):
     argv = sys.argv[1:] if argv is None else argv
     runs, out = argv[0], argv[1]
+    variants = tuple(argv[2].split(",")) if len(argv) > 2 else VARIANTS
+    if variants[0] != "full" or any(v not in VARIANTS + ("none",) for v in variants):
+        raise Stop(f"variants {variants}: the first must be full, the others among {VARIANTS[1:] + ('none',)}")
     if os.path.exists(out):
         raise Stop(f"{out} exists; a run never overwrites another")
     os.makedirs(out)
     from toqb.devices import get_device
     base = get_device("snapshot:marrakesh").target
     dev = {}
-    for v in VARIANTS:
+    for v in variants:
         path = os.path.join(out, f"target_{v}.pkl")
         with open(path, "wb") as f:
             pickle.dump(variant_target(base, v), f)
@@ -99,7 +107,7 @@ def main(argv=None):
             qc = TL.model_circuit(TL.angle_list(theta, Xtr[0], task["n"], L, task["enc"]), task["n"], L)
             for circ in ("t", "z"):
                 ref = None
-                for v in VARIANTS:
+                for v in variants:
                     plan = dict(name=rec["plan"], device=dev[v], task=task, train=rec["train"],
                                 predict=rec["predict"], standin=rec["standin"])
                     R = S2.Runner(plan, ARMS[circ])
@@ -116,14 +124,14 @@ def main(argv=None):
                     rows.append(row)
                     print(json.dumps(row), flush=True)
     json.dump(rows, open(os.path.join(out, "lam_ablate.json"), "w"), indent=1)
-    print("| L | model / circuit | " + " | ".join(VARIANTS) + " |")
-    print("|---|---|" + "---|" * len(VARIANTS))
+    print("| L | model / circuit | " + " | ".join(variants) + " |")
+    print("|---|---|" + "---|" * len(variants))
     for L in (8, 16):
         for model in ("t", "z"):
             for circ in ("t", "z"):
                 rs = {r["twin"]: r for r in rows if (r["L"], r["model"], r["circuit"]) == (L, model, circ)}
                 print(f"| {L} | {model} / {circ} | " + " | ".join(
-                    f"{rs[v]['lam']:.3f} ({rs[v]['delta']:+.3f}, {rs[v]['fit_rms']:.3f})" for v in VARIANTS) + " |")
+                    f"{rs[v]['lam']:.3f} ({rs[v]['delta']:+.3f}, {rs[v]['fit_rms']:.3f})" for v in variants) + " |")
     return 0
 
 
