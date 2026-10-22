@@ -417,6 +417,8 @@ class PSFAILoop:
     def version(self):
         v = f"psf_compile {self.pc.VERSION}, psf_ai_compile {self.ai.AI_COMPILE_VERSION}"
         rust = os.environ.get("TOQB_RUST_TEMPLATE", "")
+        if self.mode == "template_zip":
+            v += ", template with the workplace's zipper candidate (toqb.ring_zip; report-only, Python)"
         if self.mode == "template" and rust in ("1", "check"):  # recorded: the template is built in Rust
             v += f", template built in Rust (toqb.ringport, TOQB_RUST_TEMPLATE={rust})"
         return v
@@ -432,6 +434,8 @@ class PSFAILoop:
             return self.ai.compile_for_model_circuit(qc, self.cmap, self.basis, target=self.target)
 
     def compile_circuit(self, qc):
+        if self.mode == "template_zip":  # report-only (2026-10-22): a22's ring template with the zipper candidate
+            return self._compile_zip(qc)
         if self.mode != "template":
             return self._recompile(qc)
         sig = self.ai._structure_sig(qc)
@@ -466,6 +470,28 @@ class PSFAILoop:
         out = tpl.bind(qc)
         out.metadata = dict(toqb_initial=list(tpl.layout), toqb_final=list(tpl.layout))
         return out
+
+
+def _psfai_compile_zip(self, qc):
+    """psfai:template_zip: as psfai:template (one template per structure, then bound), with the template from
+    toqb.ring_zip.model_template_z (a22's choice among N2, item 31 and the workplace's zipper, by item 84's rule).
+    Python only (the Rust builder has no zipper); report-only, never a pre-registered arm."""
+    from toqb import ring_zip as RZ
+    sig = self.ai._structure_sig(qc)
+    if sig not in self._cache:
+        with contextlib.redirect_stdout(io.StringIO()):
+            tpl = RZ.model_template_z(self.ai, self.pc, qc, self.target)
+        self._cache[sig] = tpl
+        self.stats["template_builds" if tpl is not None else "template_unavailable"] += 1
+    tpl = self._cache[sig]
+    if tpl is None:
+        return self._recompile(qc)
+    out = tpl.bind(qc)
+    out.metadata = dict(toqb_initial=list(tpl.layout), toqb_final=list(tpl.layout))
+    return out
+
+
+PSFAILoop._compile_zip = _psfai_compile_zip
 
 
 def make_loop_arm(spec):
