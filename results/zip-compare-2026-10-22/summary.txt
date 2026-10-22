@@ -1,0 +1,5 @@
+run | stand-in CE | in twin 99 % interval | stand-in acc | twin pred CE [interval] | CZ | duration us
+L16_s301-psfai_template.json | 0.6323 | True | 0.618 | 0.6291 [0.6213, 0.6369] | 448 | 18.02
+L16_s301-psfai_template_zip.json | 0.6446 | True | 0.710 | 0.6456 [0.6377, 0.6534] | 336 | 11.65
+L8_s301-psfai_template.json | 0.5629 | True | 0.783 | 0.5618 [0.5488, 0.5747] | 224 | 10.39
+L8_s301-psfai_template_zip.json | 0.5662 | True | 0.823 | 0.5678 [0.5547, 0.5808] | 168 | 7.20

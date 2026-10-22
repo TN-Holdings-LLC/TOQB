@@ -1,0 +1,6 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb 66a6bd8 Report-only zipper comparison (owner, 2026-10-22): arm psfai:template_zip, gpu/zip_compare.sh, declaration note
+psf-zero 6269c4fe psfbind ring.rs: a placement by VF2's search is out of scope (owner, 2026-10-21, formula only)
+PLANS=<pod>/device_2026-10-22/plans PAR=4
+start 2026-10-22 04:04:10 CEST
+end 2026-10-22 04:25:30 CEST
