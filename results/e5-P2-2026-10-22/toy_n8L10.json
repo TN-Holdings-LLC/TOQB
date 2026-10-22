@@ -1,0 +1,293 @@
+{
+ "N": 8,
+ "L": 10,
+ "sweeps": 4,
+ "lam": 0.33,
+ "delta": 0.05,
+ "T": 32,
+ "angle": 1.0,
+ "teachers": {
+  "7": {
+   "E4": [
+    {
+     "sweep": 0,
+     "ce": 0.7557771993648504,
+     "acc": 0.398,
+     "acc_noiseless": 0.41,
+     "ce_undamped": 1.0827661242407498,
+     "moved": 0
+    },
+    {
+     "sweep": 1,
+     "ce": 0.7083559142158087,
+     "acc": 0.378,
+     "acc_noiseless": 0.504,
+     "ce_undamped": 0.7024013165198009,
+     "moved": 168,
+     "claimed_brier": -2.094305390441834
+    },
+    {
+     "sweep": 2,
+     "ce": 0.704104539313001,
+     "acc": 0.396,
+     "acc_noiseless": 0.536,
+     "ce_undamped": 0.6855109012148088,
+     "moved": 168,
+     "claimed_brier": -2.8055760020078453
+    },
+    {
+     "sweep": 3,
+     "ce": 0.7092211919226776,
+     "acc": 0.384,
+     "acc_noiseless": 0.526,
+     "ce_undamped": 0.7032060567067708,
+     "moved": 168,
+     "claimed_brier": -2.255884965226011
+    },
+    {
+     "sweep": 4,
+     "ce": 0.7014433242850948,
+     "acc": 0.43,
+     "acc_noiseless": 0.55,
+     "ce_undamped": 0.6817911912182313,
+     "moved": 168,
+     "claimed_brier": -2.337986735636405
+    }
+   ],
+   "E5": [
+    {
+     "sweep": 0,
+     "ce": 0.7557771993648504,
+     "acc": 0.398,
+     "acc_noiseless": 0.41,
+     "ce_undamped": 1.0827661242407498,
+     "moved": 0
+    },
+    {
+     "sweep": 1,
+     "ce": 0.7083387101966256,
+     "acc": 0.412,
+     "acc_noiseless": 0.496,
+     "ce_undamped": 0.7054785302442724,
+     "moved": 65,
+     "claimed_brier": -1.4960366920795933
+    },
+    {
+     "sweep": 2,
+     "ce": 0.7158429319959257,
+     "acc": 0.404,
+     "acc_noiseless": 0.464,
+     "ce_undamped": 0.7312885346944223,
+     "moved": 71,
+     "claimed_brier": -2.0578735411762015
+    },
+    {
+     "sweep": 3,
+     "ce": 0.7105655738399882,
+     "acc": 0.412,
+     "acc_noiseless": 0.502,
+     "ce_undamped": 0.7114014999438691,
+     "moved": 81,
+     "claimed_brier": -2.2544129505048773
+    },
+    {
+     "sweep": 4,
+     "ce": 0.6993068803514412,
+     "acc": 0.452,
+     "acc_noiseless": 0.584,
+     "ce_undamped": 0.676056521375756,
+     "moved": 55,
+     "claimed_brier": -1.305922003210867
+    }
+   ]
+  },
+  "8": {
+   "E4": [
+    {
+     "sweep": 0,
+     "ce": 0.5716856639004471,
+     "acc": 0.748,
+     "acc_noiseless": 0.742,
+     "ce_undamped": 0.5011929956176563,
+     "moved": 0
+    },
+    {
+     "sweep": 1,
+     "ce": 0.5625429548970368,
+     "acc": 0.77,
+     "acc_noiseless": 0.776,
+     "ce_undamped": 0.416412973518411,
+     "moved": 168,
+     "claimed_brier": -1.9138847568593713
+    },
+    {
+     "sweep": 2,
+     "ce": 0.6157200406400757,
+     "acc": 0.768,
+     "acc_noiseless": 0.724,
+     "ce_undamped": 0.5502867044191494,
+     "moved": 168,
+     "claimed_brier": -2.2271832153278437
+    },
+    {
+     "sweep": 3,
+     "ce": 0.6651688730656475,
+     "acc": 0.722,
+     "acc_noiseless": 0.54,
+     "ce_undamped": 0.6895587627979904,
+     "moved": 168,
+     "claimed_brier": -2.269210456369561
+    },
+    {
+     "sweep": 4,
+     "ce": 0.6705366833530775,
+     "acc": 0.676,
+     "acc_noiseless": 0.512,
+     "ce_undamped": 0.7069815249274832,
+     "moved": 168,
+     "claimed_brier": -2.287042606642577
+    }
+   ],
+   "E5": [
+    {
+     "sweep": 0,
+     "ce": 0.5716856639004471,
+     "acc": 0.748,
+     "acc_noiseless": 0.742,
+     "ce_undamped": 0.5011929956176563,
+     "moved": 0
+    },
+    {
+     "sweep": 1,
+     "ce": 0.5656513106407426,
+     "acc": 0.742,
+     "acc_noiseless": 0.75,
+     "ce_undamped": 0.44479060766460793,
+     "moved": 66,
+     "claimed_brier": -1.3386585500810044
+    },
+    {
+     "sweep": 2,
+     "ce": 0.5646343412671707,
+     "acc": 0.756,
+     "acc_noiseless": 0.746,
+     "ce_undamped": 0.44253675768104406,
+     "moved": 65,
+     "claimed_brier": -1.4305180387512817
+    },
+    {
+     "sweep": 3,
+     "ce": 0.5732555073631709,
+     "acc": 0.752,
+     "acc_noiseless": 0.728,
+     "ce_undamped": 0.4550138336994295,
+     "moved": 67,
+     "claimed_brier": -1.6270959280434107
+    },
+    {
+     "sweep": 4,
+     "ce": 0.5699283116383429,
+     "acc": 0.744,
+     "acc_noiseless": 0.696,
+     "ce_undamped": 0.44737914158373854,
+     "moved": 61,
+     "claimed_brier": -1.292179787432404
+    }
+   ]
+  },
+  "9": {
+   "E4": [
+    {
+     "sweep": 0,
+     "ce": 0.5494098603634417,
+     "acc": 0.786,
+     "acc_noiseless": 0.764,
+     "ce_undamped": 0.441064568069595,
+     "moved": 0
+    },
+    {
+     "sweep": 1,
+     "ce": 0.5371849526528238,
+     "acc": 0.81,
+     "acc_noiseless": 0.808,
+     "ce_undamped": 0.37550931052573994,
+     "moved": 168,
+     "claimed_brier": -1.869047091801643
+    },
+    {
+     "sweep": 2,
+     "ce": 0.5514612764285524,
+     "acc": 0.798,
+     "acc_noiseless": 0.772,
+     "ce_undamped": 0.4036633670899421,
+     "moved": 168,
+     "claimed_brier": -1.862279153713266
+    },
+    {
+     "sweep": 3,
+     "ce": 0.560822335606003,
+     "acc": 0.81,
+     "acc_noiseless": 0.792,
+     "ce_undamped": 0.42527977306579035,
+     "moved": 168,
+     "claimed_brier": -1.7519973128983293
+    },
+    {
+     "sweep": 4,
+     "ce": 0.5684026210998274,
+     "acc": 0.808,
+     "acc_noiseless": 0.784,
+     "ce_undamped": 0.44292034448642364,
+     "moved": 168,
+     "claimed_brier": -1.9738271161272876
+    }
+   ],
+   "E5": [
+    {
+     "sweep": 0,
+     "ce": 0.5494098603634417,
+     "acc": 0.786,
+     "acc_noiseless": 0.764,
+     "ce_undamped": 0.441064568069595,
+     "moved": 0
+    },
+    {
+     "sweep": 1,
+     "ce": 0.5359333228024982,
+     "acc": 0.816,
+     "acc_noiseless": 0.812,
+     "ce_undamped": 0.3789901538322819,
+     "moved": 69,
+     "claimed_brier": -1.2512650036997766
+    },
+    {
+     "sweep": 2,
+     "ce": 0.5412457441890249,
+     "acc": 0.804,
+     "acc_noiseless": 0.812,
+     "ce_undamped": 0.3835234031450833,
+     "moved": 75,
+     "claimed_brier": -1.4409692765556492
+    },
+    {
+     "sweep": 3,
+     "ce": 0.5465901909901959,
+     "acc": 0.802,
+     "acc_noiseless": 0.816,
+     "ce_undamped": 0.39448369108560943,
+     "moved": 57,
+     "claimed_brier": -1.0295668432161362
+    },
+    {
+     "sweep": 4,
+     "ce": 0.540964953572461,
+     "acc": 0.816,
+     "acc_noiseless": 0.808,
+     "ce_undamped": 0.3797197978004441,
+     "moved": 78,
+     "claimed_brier": -1.6201199155394965
+    }
+   ]
+  }
+ }
+}
