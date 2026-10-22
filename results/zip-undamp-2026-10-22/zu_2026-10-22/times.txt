@@ -1,0 +1,4 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb fdd1653 Report-only undamped readout on the zipper comparison: gpu/zip_undamp.sh and toqb.zip_undamp_summary (W12's noiseless |z| check)
+start 2026-10-22 07:51:23 CEST
+end 2026-10-22 07:54:06 CEST

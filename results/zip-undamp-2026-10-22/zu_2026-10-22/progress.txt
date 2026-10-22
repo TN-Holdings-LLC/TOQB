@@ -1,0 +1,4 @@
+L16_s301-psfai_template_zip done 07:52:35 loop 2000: lam 0.158 delta +0.015 | stand-in CE 0.6490 -> 0.5467, acc 0.691 -> 0.710 | undamped prediction 0.5832 [0.5015, 0.6868] inside True | shots reproduced False
+L16_s301-psfai_template done 07:52:40 loop 2000: lam 0.268 delta +0.046 | stand-in CE 0.6289 -> 0.5265, acc 0.633 -> 0.696 | undamped prediction 0.5475 [0.5120, 0.5939] inside True | shots reproduced False
+L8_s301-psfai_template done 07:52:54 loop 2000: lam 0.334 delta +0.052 | stand-in CE 0.5629 -> 0.4040, acc 0.783 -> 0.833 | undamped prediction 0.4161 [0.3785, 0.4783] inside True | shots reproduced True
+L8_s301-psfai_template_zip done 07:52:57 loop 2000: lam 0.369 delta +0.011 | stand-in CE 0.5662 -> 0.4096, acc 0.823 -> 0.840 | undamped prediction 0.4167 [0.3840, 0.4514] inside True | shots reproduced True

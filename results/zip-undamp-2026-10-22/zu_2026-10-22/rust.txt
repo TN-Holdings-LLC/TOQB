@@ -1,0 +1,1 @@
+RUST=1: TOQB_FAST_PSF=1 TOQB_RUST_TEMPLATE=check (psf-zero 6269c4f)

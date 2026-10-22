@@ -14,7 +14,7 @@ PAR=${PAR:-2}
 . "$VA"
 mkdir -p "$OUT/logs" "$OUT/undamp"
 export PYTHONPATH="$TQ" PSF_ZERO_REPO="$PSF" PYTHONWARNINGS=ignore TOQB_XP=${TOQB_XP:-cupy} TOQB_TRAJ_DTYPE=complex64 \
-  TOQB_TRAJ_MEM_GB=${TOQB_TRAJ_MEM_GB:-8} OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 RAYON_NUM_THREADS=1 \
+  TOQB_TRAJ_MEM_GB=${TOQB_TRAJ_MEM_GB:-4}  # 4, as the runs it reads (another value reshapes the trajectory batches and the redraw differs) OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 RAYON_NUM_THREADS=1 \
   PSF_COMPILE_FILE="$PSF/patches/psf_compile_c61_2026-10-15/psf_compile.py" \
   PSF_AI_FILE="$PSF/patches/psf_ai_compile_a22_2026-10-15/psf_ai_compile.py"
 cd "$TQ" || exit 1
