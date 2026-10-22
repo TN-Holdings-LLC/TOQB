@@ -37,3 +37,15 @@ PSF L 16 worse (0.572 -> 0.797); Qiskit L 8 worse (0.661 -> 0.691).
   (its calibration-aware placement used the 9-day-old errors; not checked).
 - This motivates measuring (lam, delta) on the device itself from the training inputs (label-free), as a pre-registered
   next step; it is not claimed from these numbers.
+
+## Post hoc diagnostic 2: the calibration in effect during the run (fetched 12:58 CEST, calibration 12:21 CEST)
+`device/map_posthoc.txt` (`toqb.device_map_posthoc`), snapshot (2026-10-13) against the run's calibration, on each
+cell's own qubits and couplers:
+
+- PSF (both depths, qubits 47-55 and 59): its qubits improved since the snapshot (median T1 144 -> 181 us; mean CZ
+  error 0.0077 -> 0.0061; worst coupler 47-48 0.0285 -> 0.0201); the readout qubit 47's T1 doubled (133 -> 249 us).
+  This explains part of the twin's under-statement of PSF's signal; whether it explains a factor 2 to 2.7 is not known
+  (it would need the twin rebuilt on this calibration).
+- Qiskit L 8 read out on qubit 102, which degraded (readout error 0.019 -> 0.043, T1 95 -> 77 us), and coupler 116-121
+  worsened (CZ error 0.002 -> 0.007). Qiskit L 16 read out on qubit 143, which did not degrade. A plausible part of
+  Qiskit L 8's collapse and offset; not shown to be the whole cause.
