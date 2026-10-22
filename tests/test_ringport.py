@@ -225,12 +225,57 @@ def _broken_snake(tg):
     return t
 
 
-def test_vf2_placement_is_out_of_scope(monkeypatch):
-    """Owner, 2026-10-21 (formula only): where the Python would place the ring by VF2's search, the Rust builder
-    stops with OutOfScope and the arm does not fall back to the Python."""
+def test_second_snake_is_used(monkeypatch):
+    """Owner, 2026-10-22 (E5's scope): where the snake on the couplers of the most common gate length does not hold the
+    ring but the snake on every working coupler does, the Rust builder places it there (formula, no search)."""
     pytest.importorskip("qiskit_ibm_runtime")
     from toqb.devices import get_device
     tg = _broken_snake(get_device("fake:FakeTorino").target)
+    qc = _model(14, 6, 1406)
+    a = TL.make_loop_arm("psfai:template")
+    a.setup(tg)
+    pc = a.pc
+    K, kadj, fadj, snake = pc._chain_lattice(tg, 0.5)
+    assert pc._chain_place(14, K, fadj, snake)[1] != "snake"
+    line, how = pc._chain_place(14, K, kadj, snake)
+    assert how == "snake"
+    t = RP.ring_template(qc, tg, a.ai)
+    assert sorted(t.layout) == sorted(line)
+
+
+def _broken_both(tg):
+    """FakeTorino with failed couplers (seeded) so that neither snake holds 14 qubits while VF2 still finds a path."""
+    import copy
+    import random
+    from qiskit.transpiler import InstructionProperties
+    from toqb import task_loop as TL_
+    a = TL_.make_loop_arm("psfai:template")
+    a.setup(tg)
+    pc = a.pc
+    cz = sorted(qa for qa in tg["cz"] if qa is not None)
+    for seed in range(200):
+        t = copy.deepcopy(tg)
+        r = random.Random(seed)
+        for qa in r.sample(cz, 14):
+            p = t["cz"][qa]
+            t.update_instruction_properties("cz", qa, InstructionProperties(duration=p.duration, error=0.7))
+        lat = pc._chain_lattice(t, 0.5)
+        if lat is None:
+            continue
+        K, kadj, fadj, snake = lat
+        hf = pc._chain_place(14, K, fadj, snake)[1]
+        hk = pc._chain_place(14, K, kadj, snake)[1]
+        if hf == "vf2_path" and hk != "snake":
+            return t
+    raise AssertionError("no seed gives a device where only VF2 places 14 qubits")
+
+
+def test_vf2_placement_is_out_of_scope(monkeypatch):
+    """Owner, 2026-10-21 (formula only; scope 2026-10-22): where neither snake holds the ring and the Python would
+    place it by VF2's search, the Rust builder stops with OutOfScope and the arm does not fall back to the Python."""
+    pytest.importorskip("qiskit_ibm_runtime")
+    from toqb.devices import get_device
+    tg = _broken_both(get_device("fake:FakeTorino").target)
     qc = _model(14, 6, 1406)
     a = TL.make_loop_arm("psfai:template")
     a.setup(tg)

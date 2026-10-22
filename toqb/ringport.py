@@ -31,8 +31,12 @@ class Refused(Exception):
 
 
 class OutOfScope(Exception):
-    """The owner's rule of 2026-10-21 (formula only): no snake piece of the device holds the ring, so a placement
-    would need VF2's search. The template is not built and nothing falls back to the Python (which would search)."""
+    """The owner's rule of 2026-10-21 (formula only): no snake piece of the device holds the ring -- on the couplers
+    of the most common gate length, nor (owner, 2026-10-22; psfbind ring r2) on every working coupler -- so a
+    placement would need VF2's search. The template is not built and nothing falls back to the Python (which would
+    search). Where only the second snake holds the ring, psfbind r2 builds there while a22's Python (the reference of
+    TOQB_RUST_TEMPLATE=check) searches first: check mode then stops with Mismatch (PSF-Zero's AI front end a24 is the
+    reference that agrees)."""
 
 
 class Mismatch(Exception):
