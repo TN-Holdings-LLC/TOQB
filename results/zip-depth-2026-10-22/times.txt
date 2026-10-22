@@ -1,0 +1,7 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb 0bbf228 Declare (report only, rule fixed before the run): the depth sweep of the zipper against item 31, gpu/zip_depth.sh and toqb.zip_depth_score
+psf-zero 6269c4fe psfbind ring.rs: a placement by VF2's search is out of scope (owner, 2026-10-21, formula only)
+PAR=4 UPAR=2 TOQB_TRAJ_MEM_GB=4
+start 2026-10-22 13:40:01 CEST
+trained 2026-10-22 15:35:01 CEST
+end 2026-10-22 15:56:16 CEST
