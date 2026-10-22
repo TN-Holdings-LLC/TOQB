@@ -1,0 +1,11 @@
+RUST=1: TOQB_FAST_PSF=1 TOQB_RUST_TEMPLATE=check (psf-zero 6269c4f)
+start 2026-10-22 13:28:08 CEST toqb 72afd4f results: post hoc calibration comparison for the device day (snapshot vs the run's calibration on each cell's qubits)
+{"L": 8, "model": "t", "circuit": "t", "lam": 0.33387784299858125, "delta": 0.05240919040930682, "fit_rms": 0.08658687891166007}
+{"L": 8, "model": "t", "circuit": "z", "lam": 0.36613925778712497, "delta": 0.010675705161931746, "fit_rms": 0.026272955800780075}
+{"L": 8, "model": "z", "circuit": "t", "lam": 0.33666035437781694, "delta": 0.05512128822847831, "fit_rms": 0.0867300396665965}
+{"L": 8, "model": "z", "circuit": "z", "lam": 0.3688756447677057, "delta": 0.01121945329681801, "fit_rms": 0.02654360062289278}
+{"L": 16, "model": "t", "circuit": "t", "lam": 0.2683584502706573, "delta": 0.04633892089087789, "fit_rms": 0.0752587601442437}
+{"L": 16, "model": "t", "circuit": "z", "lam": 0.18260767529366054, "delta": 0.010673342800870015, "fit_rms": 0.024453217777609934}
+{"L": 16, "model": "z", "circuit": "t", "lam": 0.18150222695188697, "delta": 0.06920943118079206, "fit_rms": 0.08158787644722235}
+{"L": 16, "model": "z", "circuit": "z", "lam": 0.1576452656995396, "delta": 0.014587192873901327, "fit_rms": 0.02760443920639125}
+== DONE 13:30:46
