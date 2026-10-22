@@ -26,3 +26,16 @@ Read at L 16 with item 31's model (lam full / with the source off):
   gives part of delta (L 16: 0.046 to 0.028). The zipper's fit rms (0.019 to 0.032) is about the trajectory noise.
 - Open: whether the compiled circuits equal the ideal model without noise. Checked next with every source off
   (`lam_none_note.md`).
+
+## Every source off (declared in `lam_none_note.md`, `39ffb3f`; 14:22-14:26 CEST): `la_none.txt`
+
+On all 8 (L, model, circuit): lam 1.000 (|1 - lam| < 1.1e-5), delta below 1.1e-5, fit rms below 1e-6. The compiled
+circuits of both arms are the ideal model at L 8 and 16 (up to complex64 rounding). So training saw the model, the
+"noiseless CE" of the depth sweep's rule is that of the circuit run, and the differences above are the noise's:
+
+- not one source, and not the amount of error (the zipper has less by every count), but how each circuit carries
+  local noise to the readout. Item 31's circuit leaves a residual (fit rms 0.06 to 0.09 under every twin): its noise
+  is not one uniform shrink, and lam depends on the model. The zipper's residual (0.02 to 0.03) is about the
+  trajectory noise of 1,024 trajectories (not checked with more): on the twin its noise acts as one uniform shrink,
+  which at L 16 is stronger than item 31's.
+- Not claimed: one seed and teacher, the twin on the 2026-10-13 calibration.
