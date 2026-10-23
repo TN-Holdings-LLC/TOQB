@@ -1,0 +1,7 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb f5ed070 Declare (report only, two rules fixed before the run): the far-teacher test (L 16, teachers 17-19 at angle 1.0; zipper against item 31 at 500 and 2,000 loops; A accuracy, B what training added from theta = 0), gpu/far_teacher.sh, toqb.theta0_eval, toqb.far_score
+psf-zero 9f0d44ef Addendum 526: AI front end a24 -- the ring template built in Rust by default (psfbind ring r2), the ring placed by formula only (E5), the zipper as an option (PSF_RING_ZIP=1); a23's output wherever a23 did not search (check_a24: PASS); psf_compile unchanged
+PAR=12 TEACHERS=17 18 19 TOQB_TRAJ_MEM_GB=4
+start 2026-10-23 08:59:08 CEST
+trained 2026-10-23 09:36:48 CEST
+end 2026-10-23 09:47:51 CEST

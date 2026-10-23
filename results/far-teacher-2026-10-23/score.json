@@ -1,0 +1,391 @@
+{
+ "alpha": 0.01,
+ "A": [
+  {
+   "loop": 500,
+   "wins": 1,
+   "holds": false,
+   "rows": [
+    {
+     "loop": 500,
+     "teacher": 17,
+     "zipper": 0.584,
+     "item31": 0.546,
+     "diff": 0.03799999999999992,
+     "b": 51,
+     "c": 32,
+     "p": 0.047524889256531824,
+     "p_holm": 0.10008008669082602,
+     "verdict": "TIE"
+    },
+    {
+     "loop": 500,
+     "teacher": 18,
+     "zipper": 0.776,
+     "item31": 0.538,
+     "diff": 0.238,
+     "b": 153,
+     "c": 34,
+     "p": 3.158636364811134e-19,
+     "p_holm": 1.8951818188866805e-18,
+     "verdict": "WIN"
+    },
+    {
+     "loop": 500,
+     "teacher": 19,
+     "zipper": 0.576,
+     "item31": 0.554,
+     "diff": 0.02199999999999991,
+     "b": 70,
+     "c": 59,
+     "p": 0.3786876626931184,
+     "p_holm": 0.3786876626931184,
+     "verdict": "TIE"
+    }
+   ]
+  },
+  {
+   "loop": 2000,
+   "wins": 2,
+   "holds": true,
+   "rows": [
+    {
+     "loop": 2000,
+     "teacher": 17,
+     "zipper": 0.622,
+     "item31": 0.578,
+     "diff": 0.04400000000000004,
+     "b": 60,
+     "c": 38,
+     "p": 0.03336002889694201,
+     "p_holm": 0.10008008669082602,
+     "verdict": "TIE"
+    },
+    {
+     "loop": 2000,
+     "teacher": 18,
+     "zipper": 0.78,
+     "item31": 0.636,
+     "diff": 0.14400000000000002,
+     "b": 116,
+     "c": 44,
+     "p": 1.1344537659400485e-08,
+     "p_holm": 4.537815063760194e-08,
+     "verdict": "WIN"
+    },
+    {
+     "loop": 2000,
+     "teacher": 19,
+     "zipper": 0.658,
+     "item31": 0.514,
+     "diff": 0.14400000000000002,
+     "b": 115,
+     "c": 43,
+     "p": 9.028801681530553e-09,
+     "p_holm": 4.5144008407652764e-08,
+     "verdict": "WIN"
+    }
+   ]
+  }
+ ],
+ "B": [
+  {
+   "loop": 500,
+   "wins": 1,
+   "holds": false,
+   "rows": [
+    {
+     "loop": 500,
+     "teacher": 17,
+     "gain_zipper": 0.008000000000000007,
+     "gain_item31": 0.008000000000000007,
+     "mean_d": 0.0,
+     "z": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "verdict": "TIE"
+    },
+    {
+     "loop": 500,
+     "teacher": 18,
+     "gain_zipper": 0.15200000000000002,
+     "gain_item31": 0.018000000000000016,
+     "mean_d": 0.134,
+     "z": 5.149076992010402,
+     "p": 2.6177142134382233e-07,
+     "p_holm": 1.3088571067191116e-06,
+     "verdict": "WIN"
+    },
+    {
+     "loop": 500,
+     "teacher": 19,
+     "gain_zipper": 0.07599999999999996,
+     "gain_item31": 0.020000000000000018,
+     "mean_d": 0.056,
+     "z": 2.085511775432291,
+     "p": 0.037022870406016505,
+     "p_holm": 0.14809148162406602,
+     "verdict": "TIE"
+    }
+   ]
+  },
+  {
+   "loop": 2000,
+   "wins": 1,
+   "holds": false,
+   "rows": [
+    {
+     "loop": 2000,
+     "teacher": 17,
+     "gain_zipper": 0.04600000000000004,
+     "gain_item31": 0.039999999999999925,
+     "mean_d": 0.006,
+     "z": 0.2803474895759827,
+     "p": 0.7792109194873622,
+     "p_holm": 1.0,
+     "verdict": "TIE"
+    },
+    {
+     "loop": 2000,
+     "teacher": 18,
+     "gain_zipper": 0.15600000000000003,
+     "gain_item31": 0.11599999999999999,
+     "mean_d": 0.04,
+     "z": 1.4291164397146574,
+     "p": 0.15297076915546004,
+     "p_holm": 0.4589123074663801,
+     "verdict": "TIE"
+    },
+    {
+     "loop": 2000,
+     "teacher": 19,
+     "gain_zipper": 0.15800000000000003,
+     "gain_item31": -0.020000000000000018,
+     "mean_d": 0.178,
+     "z": 5.998634555755501,
+     "p": 1.9898359980589535e-09,
+     "p_holm": 1.1939015988353721e-08,
+     "verdict": "WIN"
+    }
+   ]
+  }
+ ],
+ "runs": [
+  {
+   "acc": 0.538,
+   "acc_shots": 0.561,
+   "auc_standin": 0.765088,
+   "auc_noiseless": 0.674176,
+   "noiseless_acc": 0.574,
+   "noiseless_ce": 0.9468902489477176,
+   "plus_share": 0.934,
+   "teacher": 17,
+   "arm": "item31",
+   "loop": 0
+  },
+  {
+   "acc": 0.546,
+   "acc_shots": 0.574,
+   "auc_standin": 0.767296,
+   "auc_noiseless": 0.723536,
+   "noiseless_acc": 0.598,
+   "noiseless_ce": 0.7080747068561113,
+   "plus_share": 0.938,
+   "teacher": 17,
+   "arm": "item31",
+   "loop": 500
+  },
+  {
+   "acc": 0.578,
+   "acc_shots": 0.577,
+   "auc_standin": 0.767136,
+   "auc_noiseless": 0.75984,
+   "noiseless_acc": 0.638,
+   "noiseless_ce": 0.6438147335992893,
+   "plus_share": 0.89,
+   "teacher": 17,
+   "arm": "item31",
+   "loop": 2000
+  },
+  {
+   "acc": 0.576,
+   "acc_shots": 0.595,
+   "auc_standin": 0.70928,
+   "auc_noiseless": 0.674176,
+   "noiseless_acc": 0.574,
+   "noiseless_ce": 0.9468902489477176,
+   "plus_share": 0.832,
+   "teacher": 17,
+   "arm": "zipper",
+   "loop": 0
+  },
+  {
+   "acc": 0.584,
+   "acc_shots": 0.613,
+   "auc_standin": 0.734848,
+   "auc_noiseless": 0.727968,
+   "noiseless_acc": 0.594,
+   "noiseless_ce": 0.6987223229051497,
+   "plus_share": 0.812,
+   "teacher": 17,
+   "arm": "zipper",
+   "loop": 500
+  },
+  {
+   "acc": 0.622,
+   "acc_shots": 0.606,
+   "auc_standin": 0.762016,
+   "auc_noiseless": 0.761264,
+   "noiseless_acc": 0.63,
+   "noiseless_ce": 0.6230544362971371,
+   "plus_share": 0.758,
+   "teacher": 17,
+   "arm": "zipper",
+   "loop": 2000
+  },
+  {
+   "acc": 0.52,
+   "acc_shots": 0.566,
+   "auc_standin": 0.779456,
+   "auc_noiseless": 0.803872,
+   "noiseless_acc": 0.64,
+   "noiseless_ce": 0.6895248325384757,
+   "plus_share": 0.92,
+   "teacher": 18,
+   "arm": "item31",
+   "loop": 0
+  },
+  {
+   "acc": 0.538,
+   "acc_shots": 0.585,
+   "auc_standin": 0.801328,
+   "auc_noiseless": 0.831296,
+   "noiseless_acc": 0.65,
+   "noiseless_ce": 0.5287315394699608,
+   "plus_share": 0.89,
+   "teacher": 18,
+   "arm": "item31",
+   "loop": 500
+  },
+  {
+   "acc": 0.636,
+   "acc_shots": 0.67,
+   "auc_standin": 0.86384,
+   "auc_noiseless": 0.886992,
+   "noiseless_acc": 0.758,
+   "noiseless_ce": 0.46432471018097593,
+   "plus_share": 0.836,
+   "teacher": 18,
+   "arm": "item31",
+   "loop": 2000
+  },
+  {
+   "acc": 0.624,
+   "acc_shots": 0.642,
+   "auc_standin": 0.818672,
+   "auc_noiseless": 0.803872,
+   "noiseless_acc": 0.64,
+   "noiseless_ce": 0.6895248325384757,
+   "plus_share": 0.776,
+   "teacher": 18,
+   "arm": "zipper",
+   "loop": 0
+  },
+  {
+   "acc": 0.776,
+   "acc_shots": 0.711,
+   "auc_standin": 0.886272,
+   "auc_noiseless": 0.874384,
+   "noiseless_acc": 0.77,
+   "noiseless_ce": 0.46326976321912605,
+   "plus_share": 0.556,
+   "teacher": 18,
+   "arm": "zipper",
+   "loop": 500
+  },
+  {
+   "acc": 0.78,
+   "acc_shots": 0.763,
+   "auc_standin": 0.909504,
+   "auc_noiseless": 0.902304,
+   "noiseless_acc": 0.786,
+   "noiseless_ce": 0.44112449515223434,
+   "plus_share": 0.552,
+   "teacher": 18,
+   "arm": "zipper",
+   "loop": 2000
+  },
+  {
+   "acc": 0.534,
+   "acc_shots": 0.536,
+   "auc_standin": 0.551216,
+   "auc_noiseless": 0.49704,
+   "noiseless_acc": 0.498,
+   "noiseless_ce": 1.1588793308871215,
+   "plus_share": 0.846,
+   "teacher": 19,
+   "arm": "item31",
+   "loop": 0
+  },
+  {
+   "acc": 0.554,
+   "acc_shots": 0.577,
+   "auc_standin": 0.669872,
+   "auc_noiseless": 0.628288,
+   "noiseless_acc": 0.558,
+   "noiseless_ce": 0.7121467788755513,
+   "plus_share": 0.874,
+   "teacher": 19,
+   "arm": "item31",
+   "loop": 500
+  },
+  {
+   "acc": 0.514,
+   "acc_shots": 0.572,
+   "auc_standin": 0.665824,
+   "auc_noiseless": 0.665712,
+   "noiseless_acc": 0.566,
+   "noiseless_ce": 0.684990090465018,
+   "plus_share": 0.838,
+   "teacher": 19,
+   "arm": "item31",
+   "loop": 2000
+  },
+  {
+   "acc": 0.5,
+   "acc_shots": 0.495,
+   "auc_standin": 0.509696,
+   "auc_noiseless": 0.49704,
+   "noiseless_acc": 0.498,
+   "noiseless_ce": 1.1588793308871215,
+   "plus_share": 0.744,
+   "teacher": 19,
+   "arm": "zipper",
+   "loop": 0
+  },
+  {
+   "acc": 0.576,
+   "acc_shots": 0.553,
+   "auc_standin": 0.660768,
+   "auc_noiseless": 0.65248,
+   "noiseless_acc": 0.59,
+   "noiseless_ce": 0.6811286029559704,
+   "plus_share": 0.692,
+   "teacher": 19,
+   "arm": "zipper",
+   "loop": 500
+  },
+  {
+   "acc": 0.658,
+   "acc_shots": 0.612,
+   "auc_standin": 0.739296,
+   "auc_noiseless": 0.70488,
+   "noiseless_acc": 0.64,
+   "noiseless_ce": 0.6257767233731888,
+   "plus_share": 0.622,
+   "teacher": 19,
+   "arm": "zipper",
+   "loop": 2000
+  }
+ ]
+}

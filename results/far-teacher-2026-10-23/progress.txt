@@ -1,0 +1,12 @@
+L16_t17_a10_s301 psfai:template_zip theta0 done 09:06:56 theta = 0, psfai:template_zip: stand-in acc 0.595 (with shots), CE 0.6733
+L16_t18_a10_s301 psfai:template_zip theta0 done 09:08:56 theta = 0, psfai:template_zip: stand-in acc 0.642 (with shots), CE 0.6508
+L16_t17_a10_s301 psfai:template theta0 done 09:09:42 theta = 0, psfai:template: stand-in acc 0.561 (with shots), CE 0.6508
+L16_t18_a10_s301 psfai:template theta0 done 09:10:40 theta = 0, psfai:template: stand-in acc 0.566 (with shots), CE 0.6325
+L16_t19_a10_s301 psfai:template_zip theta0 done 09:10:55 theta = 0, psfai:template_zip: stand-in acc 0.495 (with shots), CE 0.7025
+L16_t19_a10_s301 psfai:template theta0 done 09:12:08 theta = 0, psfai:template: stand-in acc 0.536 (with shots), CE 0.7014
+L16_t17_a10_s301 psfai:template_zip train done 09:30:37 {"kind": "s2rc", "arm": "psfai:template_zip", "seed": 301, "valid": true, "loops": 2000, "wall_s": 1742.5607547950349, "error": null, "checkpoints": [[500, 0.6691]], "pred_ce": 0.6638, "standin_ce": 0
+L16_t19_a10_s301 psfai:template_zip train done 09:31:30 {"kind": "s2rc", "arm": "psfai:template_zip", "seed": 301, "valid": true, "loops": 2000, "wall_s": 1635.5361414300278, "error": null, "checkpoints": [[500, 0.6832]], "pred_ce": 0.6728, "standin_ce": 0
+L16_t18_a10_s301 psfai:template_zip train done 09:33:19 {"kind": "s2rc", "arm": "psfai:template_zip", "seed": 301, "valid": true, "loops": 2000, "wall_s": 1859.6474369429634, "error": null, "checkpoints": [[500, 0.6351]], "pred_ce": 0.6316, "standin_ce": 0
+L16_t17_a10_s301 psfai:template train done 09:34:48 {"kind": "s2rc", "arm": "psfai:template", "seed": 301, "valid": true, "loops": 2000, "wall_s": 1996.7743999710074, "error": null, "checkpoints": [[500, 0.648]], "pred_ce": 0.6494, "standin_ce": 0.6494
+L16_t18_a10_s301 psfai:template train done 09:35:16 {"kind": "s2rc", "arm": "psfai:template", "seed": 301, "valid": true, "loops": 2000, "wall_s": 1982.5862288000062, "error": null, "checkpoints": [[500, 0.6226]], "pred_ce": 0.607, "standin_ce": 0.6081
+L16_t19_a10_s301 psfai:template train done 09:36:48 {"kind": "s2rc", "arm": "psfai:template", "seed": 301, "valid": true, "loops": 2000, "wall_s": 1952.9176754250075, "error": null, "checkpoints": [[500, 0.6638]], "pred_ce": 0.6587, "standin_ce": 0.657
