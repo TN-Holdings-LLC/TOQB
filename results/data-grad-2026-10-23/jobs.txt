@@ -1,0 +1,12 @@
+<pod>/dg_2026-10-23/plans/L16_t14_n064_s301.json psfai:template_zip
+<pod>/dg_2026-10-23/plans/L16_t14_n064_s301.json psfai:template
+<pod>/dg_2026-10-23/plans/L16_t14_n256_s301.json psfai:template_zip
+<pod>/dg_2026-10-23/plans/L16_t14_n256_s301.json psfai:template
+<pod>/dg_2026-10-23/plans/L16_t15_n064_s301.json psfai:template_zip
+<pod>/dg_2026-10-23/plans/L16_t15_n064_s301.json psfai:template
+<pod>/dg_2026-10-23/plans/L16_t15_n256_s301.json psfai:template_zip
+<pod>/dg_2026-10-23/plans/L16_t15_n256_s301.json psfai:template
+<pod>/dg_2026-10-23/plans/L16_t16_n064_s301.json psfai:template_zip
+<pod>/dg_2026-10-23/plans/L16_t16_n064_s301.json psfai:template
+<pod>/dg_2026-10-23/plans/L16_t16_n256_s301.json psfai:template_zip
+<pod>/dg_2026-10-23/plans/L16_t16_n256_s301.json psfai:template

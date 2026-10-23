@@ -1,0 +1,49 @@
+{
+ "kind": "grad_agree",
+ "source": {
+  "plan": "data grad (report only): L16 t16 n64 s301",
+  "arm": "psfai:template_zip",
+  "seed": 301
+ },
+ "task": {
+  "n": 10,
+  "layers": 16,
+  "enc": 1.5707963267948966,
+  "teacher_seed": 16,
+  "teacher_angle": 0.3,
+  "teacher_gap": 0.2,
+  "n_train": 64,
+  "n_test": 500,
+  "test_after": 128
+ },
+ "dirs": 64,
+ "traj": 32,
+ "inputs": 64,
+ "h": 0.1,
+ "dir_seed": 20261023,
+ "started": "2026-10-23 01:42:28",
+ "points": [
+  {
+   "point": "start",
+   "cos_twin_ideal": 0.8941302985689167,
+   "cos_twin1_ideal": 0.9100298121345998,
+   "cos_twin2_ideal": 0.6281580628685608,
+   "cos_twin1_twin2": 0.593321208565795,
+   "norm_twin": 0.17074396789607543,
+   "norm_ideal": 0.9313068859142946,
+   "scale": 0.18333802796749482,
+   "wall_s": 227.6793360390002
+  },
+  {
+   "point": "loop 2000",
+   "cos_twin_ideal": 0.7968586480769239,
+   "cos_twin1_ideal": 0.8544963461123716,
+   "cos_twin2_ideal": 0.463846543712391,
+   "cos_twin1_twin2": 0.4661177080307379,
+   "norm_twin": 0.11552475892983878,
+   "norm_ideal": 0.4976984165573392,
+   "scale": 0.23211799573111425,
+   "wall_s": 222.74175453401404
+  }
+ ]
+}

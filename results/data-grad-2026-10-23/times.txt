@@ -1,0 +1,7 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb 3c1ba20 Declare (report only, two rules fixed before the run): the data and gradient test (L 16, 64 against 256 training points on one test set, zipper against item 31, gradient agreement twin against noiseless); teacher_data2's optional test_after
+psf-zero 9f0d44ef Addendum 526: AI front end a24 -- the ring template built in Rust by default (psfbind ring r2), the ring placed by formula only (E5), the zipper as an option (PSF_RING_ZIP=1); a23's output wherever a23 did not search (check_a24: PASS); psf_compile unchanged
+PAR=6 GPAR=6 TOQB_TRAJ_MEM_GB=4
+start 2026-10-23 02:34:49 CEST
+trained 2026-10-23 03:32:23 CEST
+end 2026-10-23 04:00:29 CEST
