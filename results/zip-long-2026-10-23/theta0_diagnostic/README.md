@@ -21,3 +21,18 @@ Reading: both effects are there.
   claim; the declared test with a teacher far from the start is the clean one.
 - Accuracy with the 500-loop delta shift is in the commit message's run (approximate: delta was not measured at
   theta = 0); AUC is the cleaner measure here.
+
+## With theta = 0's own lam and delta (theta0_lam.json, run on the pod after all; post hoc)
+
+lam / delta at theta = 0: item 31 0.148 / +0.048, 0.200 / +0.073, 0.114 / +0.074; zipper 0.138 / +0.017, 0.149 /
++0.017, 0.137 / +0.019 (teachers 11-13). Shot-free stand-in accuracy with each run's delta removed, McNemar, Holm:
+
+| teacher | theta = 0: zipper / item 31 (Holm p) | 500 loops (delta of that point) | gain 0 -> 500: zipper / item 31 |
+|---|---|---|---|
+| 11 | 0.636 / 0.718 (1e-3, item 31 ahead) | 0.878 / 0.736 | +0.242 / +0.018 |
+| 12 | 0.882 / 0.814 (1e-3) | 0.932 / 0.802 | +0.050 / -0.012 |
+| 13 | 0.974 / 0.788 (1e-21) | 0.912 / 0.768 | -0.062 / -0.020 |
+
+The same picture as the AUC: on teacher 11, the task that needs learning, item 31 reads the untrained model out
+better, and in 500 loops the zipper gains +0.24 against item 31's +0.02 and overtakes it; on teachers 12 and 13 the
+zipper's lead is mostly there before training (readout), and training adds little or takes some away.
