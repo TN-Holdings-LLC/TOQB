@@ -1,0 +1,6 @@
+L16_t17_a10_s301 qiskit:2:target:template theta0 done 14:11:06 theta = 0, qiskit:2:target:template: stand-in acc 0.560 (with shots), CE 0.6640
+L16_t18_a10_s301 qiskit:2:target:template theta0 done 14:12:49 theta = 0, qiskit:2:target:template: stand-in acc 0.519 (with shots), CE 0.6603
+L16_t19_a10_s301 qiskit:2:target:template theta0 done 14:14:46 theta = 0, qiskit:2:target:template: stand-in acc 0.533 (with shots), CE 0.7359
+L16_t17_a10_s301 qiskit:2:target:template train done 17:32:28 {"kind": "s2rc", "arm": "qiskit:2:target:template", "seed": 301, "valid": true, "loops": 2000, "wall_s": 16533.004877079977, "error": null, "checkpoints": [[500, 0.6482]], "pred_ce": 0.6409, "standin_
+L16_t18_a10_s301 qiskit:2:target:template train done 17:33:29 {"kind": "s2rc", "arm": "qiskit:2:target:template", "seed": 301, "valid": true, "loops": 2000, "wall_s": 16551.343508698978, "error": null, "checkpoints": [[500, 0.5852]], "pred_ce": 0.5381, "standin_
+L16_t19_a10_s301 qiskit:2:target:template train done 17:33:33 {"kind": "s2rc", "arm": "qiskit:2:target:template", "seed": 301, "valid": true, "loops": 2000, "wall_s": 16443.596735935018, "error": null, "checkpoints": [[500, 0.6592]], "pred_ce": 0.6455, "standin_

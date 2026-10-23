@@ -1,0 +1,575 @@
+{
+ "alpha": 0.01,
+ "A": [
+  {
+   "loop": 500,
+   "wins": 1,
+   "losses": 0,
+   "zipper": false,
+   "qiskit": false,
+   "rows": [
+    {
+     "loop": 500,
+     "teacher": 17,
+     "zipper": 0.584,
+     "qiskit": 0.566,
+     "diff": 0.018000000000000016,
+     "b": 46,
+     "c": 37,
+     "p": 0.37999939641191804,
+     "p_holm": 0.7599987928238361,
+     "verdict": "TIE"
+    },
+    {
+     "loop": 500,
+     "teacher": 18,
+     "zipper": 0.776,
+     "qiskit": 0.554,
+     "diff": 0.22199999999999998,
+     "b": 160,
+     "c": 49,
+     "p": 6.1102096261540755e-15,
+     "p_holm": 3.666125775692445e-14,
+     "verdict": "WIN"
+    },
+    {
+     "loop": 500,
+     "teacher": 19,
+     "zipper": 0.576,
+     "qiskit": 0.614,
+     "diff": -0.038000000000000034,
+     "b": 48,
+     "c": 67,
+     "p": 0.09281592098218967,
+     "p_holm": 0.27844776294656903,
+     "verdict": "TIE"
+    }
+   ]
+  },
+  {
+   "loop": 2000,
+   "wins": 1,
+   "losses": 0,
+   "zipper": false,
+   "qiskit": false,
+   "rows": [
+    {
+     "loop": 2000,
+     "teacher": 17,
+     "zipper": 0.622,
+     "qiskit": 0.57,
+     "diff": 0.052000000000000046,
+     "b": 68,
+     "c": 42,
+     "p": 0.01674502147823378,
+     "p_holm": 0.06698008591293513,
+     "verdict": "TIE"
+    },
+    {
+     "loop": 2000,
+     "teacher": 18,
+     "zipper": 0.78,
+     "qiskit": 0.778,
+     "diff": 0.0020000000000000018,
+     "b": 39,
+     "c": 38,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "verdict": "TIE"
+    },
+    {
+     "loop": 2000,
+     "teacher": 19,
+     "zipper": 0.658,
+     "qiskit": 0.582,
+     "diff": 0.07600000000000007,
+     "b": 91,
+     "c": 53,
+     "p": 0.0019425319700803305,
+     "p_holm": 0.009712659850401652,
+     "verdict": "WIN"
+    }
+   ]
+  }
+ ],
+ "B": [
+  {
+   "loop": 500,
+   "wins": 0,
+   "losses": 0,
+   "zipper": false,
+   "qiskit": false,
+   "rows": [
+    {
+     "loop": 500,
+     "teacher": 17,
+     "zipper": 0.594,
+     "qiskit": 0.626,
+     "diff": -0.03200000000000003,
+     "b": 38,
+     "c": 54,
+     "p": 0.11737015883134433,
+     "p_holm": 0.5868507941567216,
+     "verdict": "TIE"
+    },
+    {
+     "loop": 500,
+     "teacher": 18,
+     "zipper": 0.77,
+     "qiskit": 0.764,
+     "diff": 0.006000000000000005,
+     "b": 55,
+     "c": 52,
+     "p": 0.846802075189195,
+     "p_holm": 1.0,
+     "verdict": "TIE"
+    },
+    {
+     "loop": 500,
+     "teacher": 19,
+     "zipper": 0.59,
+     "qiskit": 0.624,
+     "diff": -0.03400000000000003,
+     "b": 64,
+     "c": 81,
+     "p": 0.18374624131166653,
+     "p_holm": 0.5868507941567216,
+     "verdict": "TIE"
+    }
+   ]
+  },
+  {
+   "loop": 2000,
+   "wins": 0,
+   "losses": 0,
+   "zipper": false,
+   "qiskit": false,
+   "rows": [
+    {
+     "loop": 2000,
+     "teacher": 17,
+     "zipper": 0.63,
+     "qiskit": 0.63,
+     "diff": 0.0,
+     "b": 56,
+     "c": 56,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "verdict": "TIE"
+    },
+    {
+     "loop": 2000,
+     "teacher": 18,
+     "zipper": 0.786,
+     "qiskit": 0.818,
+     "diff": -0.03199999999999992,
+     "b": 32,
+     "c": 48,
+     "p": 0.09291188222054622,
+     "p_holm": 0.5574712933232773,
+     "verdict": "TIE"
+    },
+    {
+     "loop": 2000,
+     "teacher": 19,
+     "zipper": 0.64,
+     "qiskit": 0.6,
+     "diff": 0.040000000000000036,
+     "b": 87,
+     "c": 67,
+     "p": 0.12547871343864167,
+     "p_holm": 0.5868507941567216,
+     "verdict": "TIE"
+    }
+   ]
+  }
+ ],
+ "runs": [
+  {
+   "acc": 0.576,
+   "acc_shots": 0.595,
+   "auc_standin": 0.70928,
+   "auc_noiseless": 0.674176,
+   "noiseless_acc": 0.574,
+   "noiseless_ce": 0.9468902489477176,
+   "plus_share": 0.832,
+   "twin_standin_rmse": 0.013626530378437402,
+   "teacher": 17,
+   "arm": "zipper",
+   "loop": 0,
+   "q2": [
+    336
+   ],
+   "durations_us": [
+    11.652
+   ]
+  },
+  {
+   "acc": 0.584,
+   "acc_shots": 0.613,
+   "auc_standin": 0.734848,
+   "auc_noiseless": 0.727968,
+   "noiseless_acc": 0.594,
+   "noiseless_ce": 0.6987223229051497,
+   "plus_share": 0.812,
+   "twin_standin_rmse": 0.012181877414437606,
+   "teacher": 17,
+   "arm": "zipper",
+   "loop": 500,
+   "q2": [
+    336
+   ],
+   "durations_us": [
+    11.652
+   ]
+  },
+  {
+   "acc": 0.622,
+   "acc_shots": 0.606,
+   "auc_standin": 0.762016,
+   "auc_noiseless": 0.761264,
+   "noiseless_acc": 0.63,
+   "noiseless_ce": 0.6230544362971371,
+   "plus_share": 0.758,
+   "twin_standin_rmse": 0.010971417965319297,
+   "teacher": 17,
+   "arm": "zipper",
+   "loop": 2000,
+   "q2": [
+    336
+   ],
+   "durations_us": [
+    11.652
+   ]
+  },
+  {
+   "acc": 0.55,
+   "acc_shots": 0.56,
+   "auc_standin": 0.764576,
+   "auc_noiseless": 0.674176,
+   "noiseless_acc": 0.574,
+   "noiseless_ce": 0.9468902489477176,
+   "plus_share": 0.93,
+   "twin_standin_rmse": 0.04229689316690515,
+   "teacher": 17,
+   "arm": "qiskit",
+   "loop": 0,
+   "q2": [
+    506
+   ],
+   "durations_us": [
+    48.216
+   ]
+  },
+  {
+   "acc": 0.566,
+   "acc_shots": 0.58,
+   "auc_standin": 0.768944,
+   "auc_noiseless": 0.745568,
+   "noiseless_acc": 0.626,
+   "noiseless_ce": 0.6564934844665008,
+   "plus_share": 0.902,
+   "twin_standin_rmse": 0.032588252949137426,
+   "teacher": 17,
+   "arm": "qiskit",
+   "loop": 500,
+   "q2": [
+    506
+   ],
+   "durations_us": [
+    48.216
+   ]
+  },
+  {
+   "acc": 0.57,
+   "acc_shots": 0.571,
+   "auc_standin": 0.77088,
+   "auc_noiseless": 0.764288,
+   "noiseless_acc": 0.63,
+   "noiseless_ce": 0.6651910834546783,
+   "plus_share": 0.906,
+   "twin_standin_rmse": 0.01629899072078758,
+   "teacher": 17,
+   "arm": "qiskit",
+   "loop": 2000,
+   "q2": [
+    506
+   ],
+   "durations_us": [
+    48.216
+   ]
+  },
+  {
+   "acc": 0.624,
+   "acc_shots": 0.642,
+   "auc_standin": 0.818672,
+   "auc_noiseless": 0.803872,
+   "noiseless_acc": 0.64,
+   "noiseless_ce": 0.6895248325384757,
+   "plus_share": 0.776,
+   "twin_standin_rmse": 0.01322806665135685,
+   "teacher": 18,
+   "arm": "zipper",
+   "loop": 0,
+   "q2": [
+    336
+   ],
+   "durations_us": [
+    11.652
+   ]
+  },
+  {
+   "acc": 0.776,
+   "acc_shots": 0.711,
+   "auc_standin": 0.886272,
+   "auc_noiseless": 0.874384,
+   "noiseless_acc": 0.77,
+   "noiseless_ce": 0.46326976321912605,
+   "plus_share": 0.556,
+   "twin_standin_rmse": 0.010861222741406239,
+   "teacher": 18,
+   "arm": "zipper",
+   "loop": 500,
+   "q2": [
+    336
+   ],
+   "durations_us": [
+    11.652
+   ]
+  },
+  {
+   "acc": 0.78,
+   "acc_shots": 0.763,
+   "auc_standin": 0.909504,
+   "auc_noiseless": 0.902304,
+   "noiseless_acc": 0.786,
+   "noiseless_ce": 0.44112449515223434,
+   "plus_share": 0.552,
+   "twin_standin_rmse": 0.00999774064454103,
+   "teacher": 18,
+   "arm": "zipper",
+   "loop": 2000,
+   "q2": [
+    336
+   ],
+   "durations_us": [
+    11.652
+   ]
+  },
+  {
+   "acc": 0.504,
+   "acc_shots": 0.519,
+   "auc_standin": 0.766176,
+   "auc_noiseless": 0.803872,
+   "noiseless_acc": 0.64,
+   "noiseless_ce": 0.6895248325384757,
+   "plus_share": 0.94,
+   "twin_standin_rmse": 0.055139959475092565,
+   "teacher": 18,
+   "arm": "qiskit",
+   "loop": 0,
+   "q2": [
+    506
+   ],
+   "durations_us": [
+    48.216
+   ]
+  },
+  {
+   "acc": 0.554,
+   "acc_shots": 0.568,
+   "auc_standin": 0.830112,
+   "auc_noiseless": 0.894544,
+   "noiseless_acc": 0.764,
+   "noiseless_ce": 0.4605260658920761,
+   "plus_share": 0.93,
+   "twin_standin_rmse": 0.029931165253470438,
+   "teacher": 18,
+   "arm": "qiskit",
+   "loop": 500,
+   "q2": [
+    506
+   ],
+   "durations_us": [
+    48.216
+   ]
+  },
+  {
+   "acc": 0.778,
+   "acc_shots": 0.734,
+   "auc_standin": 0.909088,
+   "auc_noiseless": 0.922992,
+   "noiseless_acc": 0.818,
+   "noiseless_ce": 0.4332142455497467,
+   "plus_share": 0.61,
+   "twin_standin_rmse": 0.018219371923856687,
+   "teacher": 18,
+   "arm": "qiskit",
+   "loop": 2000,
+   "q2": [
+    506
+   ],
+   "durations_us": [
+    48.216
+   ]
+  },
+  {
+   "acc": 0.5,
+   "acc_shots": 0.495,
+   "auc_standin": 0.509696,
+   "auc_noiseless": 0.49704,
+   "noiseless_acc": 0.498,
+   "noiseless_ce": 1.1588793308871215,
+   "plus_share": 0.744,
+   "twin_standin_rmse": 0.012763045672163362,
+   "teacher": 19,
+   "arm": "zipper",
+   "loop": 0,
+   "q2": [
+    336
+   ],
+   "durations_us": [
+    11.652
+   ]
+  },
+  {
+   "acc": 0.576,
+   "acc_shots": 0.553,
+   "auc_standin": 0.660768,
+   "auc_noiseless": 0.65248,
+   "noiseless_acc": 0.59,
+   "noiseless_ce": 0.6811286029559704,
+   "plus_share": 0.692,
+   "twin_standin_rmse": 0.008270428068731244,
+   "teacher": 19,
+   "arm": "zipper",
+   "loop": 500,
+   "q2": [
+    336
+   ],
+   "durations_us": [
+    11.652
+   ]
+  },
+  {
+   "acc": 0.658,
+   "acc_shots": 0.612,
+   "auc_standin": 0.739296,
+   "auc_noiseless": 0.70488,
+   "noiseless_acc": 0.64,
+   "noiseless_ce": 0.6257767233731888,
+   "plus_share": 0.622,
+   "twin_standin_rmse": 0.0077903754460050875,
+   "teacher": 19,
+   "arm": "zipper",
+   "loop": 2000,
+   "q2": [
+    336
+   ],
+   "durations_us": [
+    11.652
+   ]
+  },
+  {
+   "acc": 0.548,
+   "acc_shots": 0.533,
+   "auc_standin": 0.581712,
+   "auc_noiseless": 0.49704,
+   "noiseless_acc": 0.498,
+   "noiseless_ce": 1.1588793308871215,
+   "plus_share": 0.856,
+   "twin_standin_rmse": 0.042444933675932064,
+   "teacher": 19,
+   "arm": "qiskit",
+   "loop": 0,
+   "q2": [
+    506
+   ],
+   "durations_us": [
+    48.216
+   ]
+  },
+  {
+   "acc": 0.614,
+   "acc_shots": 0.585,
+   "auc_standin": 0.707808,
+   "auc_noiseless": 0.68712,
+   "noiseless_acc": 0.624,
+   "noiseless_ce": 0.6568753905089382,
+   "plus_share": 0.806,
+   "twin_standin_rmse": 0.01924417595121221,
+   "teacher": 19,
+   "arm": "qiskit",
+   "loop": 500,
+   "q2": [
+    506
+   ],
+   "durations_us": [
+    48.216
+   ]
+  },
+  {
+   "acc": 0.582,
+   "acc_shots": 0.589,
+   "auc_standin": 0.729984,
+   "auc_noiseless": 0.737648,
+   "noiseless_acc": 0.6,
+   "noiseless_ce": 0.6306302781657379,
+   "plus_share": 0.826,
+   "twin_standin_rmse": 0.016995855836460735,
+   "teacher": 19,
+   "arm": "qiskit",
+   "loop": 2000,
+   "q2": [
+    506
+   ],
+   "durations_us": [
+    48.216
+   ]
+  }
+ ],
+ "power": [
+  {
+   "loop": 500,
+   "teacher": 17,
+   "power_300": 0.006,
+   "sign": 1,
+   "power_500": 0.009
+  },
+  {
+   "loop": 500,
+   "teacher": 18,
+   "power_300": 0.9625,
+   "sign": 1,
+   "power_500": 1.0
+  },
+  {
+   "loop": 500,
+   "teacher": 19,
+   "power_300": 0.0335,
+   "sign": -1,
+   "power_500": 0.0575
+  },
+  {
+   "loop": 2000,
+   "teacher": 17,
+   "power_300": 0.0355,
+   "sign": 1,
+   "power_500": 0.0505
+  },
+  {
+   "loop": 2000,
+   "teacher": 18,
+   "power_300": 0.0015,
+   "sign": 1,
+   "power_500": 0.001
+  },
+  {
+   "loop": 2000,
+   "teacher": 19,
+   "power_300": 0.0025,
+   "sign": 1,
+   "power_500": 0.0005
+  }
+ ]
+}
