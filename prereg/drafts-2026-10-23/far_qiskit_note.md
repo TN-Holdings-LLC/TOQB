@@ -1,4 +1,4 @@
-# Far teachers: formula placement (PSF-Zero's zipper) against search placement (Qiskit). Report only. DRAFT: rules proposed 2026-10-23, not yet fixed; the owner confirms them before the run, then this note is fixed by SHA-256 and CEST time
+# Far teachers: formula placement (PSF-Zero's zipper) against search placement (Qiskit). Report only, two rules and a device threshold fixed before the run (declared 2026-10-23)
 
 **Why.** The project's question is formula-built placement (PSF-Zero) against search (Qiskit), trained with design C0.
 Today's diagnostics found that the earlier C tasks measured little learning: on the device day's task (teacher 4,
@@ -15,17 +15,17 @@ the remaining 1 minute of IBM time (owner, 2026-10-23 about 17:06 JST: a device 
   Target, seed_transpiler 0): 3 runs and 3 theta = 0 evaluations. The zipper (`psfai:template_zip`) is read from the
   far-teacher records; the score stops unless the test labels are identical. Script `gpu/far_qiskit.sh`, score
   `toqb.farq_score`.
-- **Rule A (proposed; owner's main measure).** Accuracy without correction, shot-free: a test point is correct when
+- **Rule A (owner's main measure).** Accuracy without correction, shot-free: a test point is correct when
   the stand-in's exact P(1) is on the label's side. At 500 and at 2,000 loops, per teacher, zipper against Qiskit:
   exact McNemar on the 500 paired points; Holm over the 6; alpha 0.01. At a point, an arm is the more accurate if it
   WINs in at least 2 of 3 teachers (either direction is reported).
-- **Rule B (proposed; replaces the far-teacher test's "gain" rule).** The trained model itself: its noiseless <Z> on
+- **Rule B (owner, 2026-10-23; replaces the far-teacher test's "gain" rule).** The trained model itself: its noiseless <Z> on
   the label's side, the same McNemar, Holm, 2 of 3. Reason: the far-teacher test's rule B (gain from theta = 0 in
   stand-in accuracy) assumed the readout offset cancels; with item 31 answering +1 on 84-94 % of balanced points it did
   not (teacher 19: +0.068 noiseless, -0.020 on the stand-in). B reads what was learned, free of the circuit's offset.
-- **Decision aid for the device (proposed).** Per teacher and point, the power of one exact McNemar at alpha 0.01 in
+- **Decision aid for the device (owner, 2026-10-23).** Per teacher and point, the power of one exact McNemar at alpha 0.01 in
   the stand-in's direction, with 300 and 500 test points drawn from the 500 and each answer from 250 shots of the
-  stand-in's P(1) (2,000 repetitions, seed 20261024). Proposed threshold: a device declaration is written only if the
+  stand-in's P(1) (2,000 repetitions, seed 20261024). Threshold: a device declaration is written only if the
   power at 300 points is at least 0.8 for at least 2 of 3 teachers at one loop count; otherwise the minute is kept.
   The device is not the stand-in: the twin's scale was off by 1.5-2.3x for PSF on the device day (Qiskit 1.00).
 - **Reported, without a claim.** Accuracy with 250 shots; the share of +1 answers; the stand-in and noiseless AUC and
@@ -41,8 +41,8 @@ the remaining 1 minute of IBM time (owner, 2026-10-23 about 17:06 JST: a device 
   longer (506 CZ, 48 us against the zipper's 336, 11.7 us), so training perhaps 30-50 min (6 jobs together); score
   about 15 min; about 1-1.5 h, about $4-6.
 
-## For the owner to confirm before the run
+## Owner's confirmation (2026-10-23 12:29 CEST)
 
 1. Rule B as the trained model's noiseless accuracy (instead of the gain from theta = 0).
-2. The device threshold: power at 300 points at least 0.8 in 2 of 3 teachers.
+2. The device threshold: power at 300 points at least 0.8 in 2 of 3 teachers at one loop count.
 3. Zipper only against Qiskit (item 31 left out).

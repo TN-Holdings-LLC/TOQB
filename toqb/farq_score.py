@@ -11,9 +11,10 @@ Rule A (at 500 and at 2,000 loops): accuracy without correction, shot-free (the 
 side); per teacher the zipper against Qiskit, exact McNemar on the 500 paired test points; Holm over the 6 comparisons,
 alpha 0.01. At a point, an arm is the more accurate if it WINs in at least 2 of 3 teachers.
 Rule B (the same points): the trained model itself, noiseless (its exact <Z> on the label's side: read without the
-circuit's readout offset; proposed 2026-10-23, the owner confirms before the run); the same McNemar, Holm over 6, 2 of 3.
+circuit's readout offset; owner, 2026-10-23); the same McNemar, Holm over 6, 2 of 3.
 Reported: accuracy with the run's shots, the share of +1 answers, the stand-in and noiseless AUC, all at theta = 0, 500
-and 2,000 loops; and a decision aid for a device run (proposed 2026-10-23): the power of one exact McNemar at alpha 0.01
+and 2,000 loops; and a decision aid for a device run (owner, 2026-10-23: a device declaration only if the power at
+300 points is at least 0.8 in 2 of 3 teachers at one loop count): the power of one exact McNemar at alpha 0.01
 with 300 (and 500) test points drawn from the 500 and each arm's answer from 250 shots of the stand-in's P(1).
 """
 from __future__ import annotations
