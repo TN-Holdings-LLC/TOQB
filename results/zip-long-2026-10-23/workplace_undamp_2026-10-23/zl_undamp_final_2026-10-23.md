@@ -165,3 +165,161 @@ stand-in's exact per-point P(1) and the test labels, both stored in the zl run f
 - Undamp at the 500-loop checkpoint for t12 and t13, final-point style, one point per call, so that reading 2 rests
   on 3 teachers.
 - The parameter-swap test as before.
+
+---
+
+## Addendum 2 (2026-10-23 07:32 CEST): the untrained model is already near the teacher; this weakens "learns better early"
+
+**Data.** The twin's learning curve stored in each zl run: `curve`, 100 points and 64 trajectories, so it is noisy.
+The twin's accuracy at loop 0 (θ = 0, untrained) and later:
+
+| run | 0 | 200 | 1,000 | 4,000 | 16,000 |
+|---|---|---|---|---|---|
+| item 31 t11 | 0.91 | 0.93 | 0.88 | 0.86 | 0.82 |
+| zipper t11 | 0.83 | 0.95 | 0.86 | 0.80 | 0.65 |
+| item 31 t12 | 0.89 | 0.90 | 0.90 | 0.87 | 0.86 |
+| zipper t12 | 0.90 | 0.92 | 0.88 | 0.83 | 0.70 |
+| item 31 t13 | 0.89 | 0.88 | 0.85 | 0.90 | 0.90 |
+| zipper t13 | 0.95 | 0.95 | 0.90 | 0.87 | 0.80 |
+
+- **The twin's CE is at or near its best at loop 0-200 in 6/6 runs**, and it worsens from there.
+- **Why the untrained model scores so well:** the task draws the teacher's angles from ±0.3 around 0 and starts the
+  student at θ = 0, so the untrained student is already close to the teacher. Training mostly drifts away from a
+  near-optimal start.
+- **Consequence for the addendum above.** At loop 0 the two arms are the same logical model with the same θ.
+  - The zipper's δ-free lead at 500 loops (+0.142, t11) may therefore be the same near-initial model read out better
+    (fewer CZ), not better learning.
+  - **Unconfirmed:** which of the two it is. Reading 2 of Addendum 1 ("better early learning") is withdrawn until
+    the θ = 0 check below has run.
+- **Answer to "does training become unnecessary?"**
+  - In this task, nearly: θ = 0 already scores 0.83-0.95 on the twin.
+  - But this is a property of the task (teacher near the start), not of the compiler or the method.
+  - It says nothing about tasks whose teacher is far from the start. In the workplace toy with teacher angle 1.0,
+    θ = 0 gave 0.74 noiseless.
+  - Choosing a loop budget from these curves would be a search. Any budget must be declared before the run, on fresh
+    teachers.
+
+**Cheapest check (declared first; owner decides).** Evaluate both arms at θ = 0 on the stand-in, shot-free (about 1
+minute per arm, no training).
+
+- If the zipper's δ-free lead at θ = 0 is already about +0.14, the lead is the schedule's readout, not learning.
+- Then a task whose teacher is far from the start (a larger teacher angle, declared in advance) is needed before
+  any claim about learning or training time.
+
+---
+
+## Addendum 3 (2026-10-23 07:36 CEST): the 500-loop checkpoint on all three teachers (home's u500 run)
+
+**Data.** Home ran the undamp step at the 500-loop checkpoint for all six runs (u500.zip).
+
+- λ and δ come from that log (3 decimals).
+- The stand-in's exact per-point P(1) comes from the zl run files.
+- Shot-free. Exact McNemar, Holm over the three teachers. Script: `ck500.py`.
+
+| teacher | raw: zipper / item 31 (gap), Holm p | δ-free: zipper / item 31 (gap), Holm p | +1 calls raw → δ-free: item 31 / zipper |
+|---|---|---|---|
+| t11 | 0.866 / 0.682 (+0.184), 2e-15 | 0.878 / 0.736 (+0.142), 1.4e-11 | 0.80 → 0.35 / 0.59 → 0.49 |
+| t12 | 0.908 / 0.626 (+0.282), 9e-36 | 0.932 / 0.802 (+0.130), 9e-14 | 0.84 → 0.39 / 0.56 → 0.46 |
+| t13 | 0.942 / 0.654 (+0.288), 3e-35 | 0.912 / 0.768 (+0.144), 2e-13 | 0.83 → 0.33 / 0.54 → 0.47 |
+
+The twin's interval held in 5 of 6 cases. Zipper t13 fell outside, better than predicted (0.4385 against
+[0.4493, 0.6251]).
+
+**Reading:**
+
+1. **At 500 loops the zipper leads beyond the offset in 3/3:** +0.13 to +0.14, Holm p ≤ 1.4e-11. At 16,000 loops the
+   δ-free lead is about 0 in 3/3 (Addendum 1). The early δ-free lead is now on three teachers, not one.
+2. **Its cause is still open.** It is either better learning or the same near-initial model read out better (fewer
+   CZ); see Addendum 2. The θ = 0 check decides between the two.
+3. **The twin's δ over-corrects item 31.** After the shift item 31 calls +1 on only 33-39 % of the points, against
+   50 % positive labels.
+   - Its δ-free accuracy is therefore probably somewhat understated, and the +0.13 to +0.14 should be read as an
+     upper side.
+   - No other threshold is tried here: choosing one would be a search.
+4. **Shot noise:**
+   - With 250 shots, the zipper's undamped accuracy is 0.732 / 0.792 / 0.768 against item 31's 0.742 / 0.728 /
+     0.734.
+   - The zipper's small λ (0.147-0.160) makes its decisions shot-fragile, and the lead nearly vanishes at this shot
+     count.
+   - Any device test must state its shot count and expect this.
+5. **Vanity and essential numbers:**
+   - **Vanity:** "zipper +0.18 to +0.29 at 500 loops, p ≤ 1e-15".
+   - **Essential:** +0.13 to +0.14 once item 31's offset is removed (an upper side, given δ's over-correction). With
+     250 shots it is close to 0. Whether the lead is learning or readout is unresolved.
+
+#### Update (2026-10-23 07:39 CEST): Addendum 3 rechecked with home's u500 files (full-precision λ, δ)
+
+**Check.** u500.zip carries the six undamp records and the run files, cut at the 500-loop checkpoint. Script:
+`ck500x.py`.
+
+- The stand-in's exact CE was reproduced to 1e-6 in 6/6, both raw and undamped.
+- The test labels are identical across the two arms.
+
+**Changes from the 3-decimal δ:**
+
+- **t11, δ-free:** zipper 0.876 against 0.878 before; gap +0.140, Holm p 3.6e-11.
+- **t12, δ-free:** item 31 0.800 against 0.802 before; gap +0.132, Holm p 4.9e-14.
+- **Everything else is unchanged,** including t13 (+0.144, 1.7e-13), all raw numbers and the +1 call rates.
+
+The reading of Addendum 3 stands.
+
+---
+
+## Addendum 4 (2026-10-23 08:13 CEST): θ = 0 (untrained) on the stand-in, shot-free, raw readout
+
+**Data.** Home ran `predict_verify` at θ = 0 for both arms and the three teachers (theta0.json).
+
+- **Values used:** the stand-in's exact per-point P(1), against the zl run files' test labels.
+- **Labels:** identical across arms. The run files' labels are assumed equal to `teacher_data2`'s, from the same
+  task.
+- **Test:** exact McNemar, Holm over the three teachers. Script: `theta0_check.py`.
+- **Not yet δ-free:** θ = 0's λ and δ (theta0_lam.json) have not arrived.
+
+**Zipper against item 31, by training point:**
+
+| loops | t11: zip / q31 (gap), Holm p | t12 | t13 |
+|---|---|---|---|
+| 0 | 0.602 / 0.574 (+0.028), 0.17 | 0.856 / 0.656 (+0.200), 9e-21 | 0.968 / 0.754 (+0.214), 1e-30 |
+| 500 | 0.866 / 0.682 (+0.184), 2e-15 | 0.908 / 0.626 (+0.282), 9e-36 | 0.942 / 0.654 (+0.288), 3e-35 |
+| 16,000 | 0.710 / 0.532 (+0.178), 5e-9 | 0.714 / 0.586 (+0.128), 9e-7 | 0.738 / 0.588 (+0.150), 9e-9 |
+
+**Learning from 0 to 500 loops, within each arm** (paired over points, Holm over teachers):
+
+| arm | t11 | t12 | t13 |
+|---|---|---|---|
+| item 31 | +0.108 (4e-6) | −0.030 (0.036) | −0.100 (2e-9) |
+| zipper | +0.264 (9e-25) | +0.052 (0.008) | −0.026 (0.019) |
+
+- **Item 31 calls +1 on 74-87 % of the points at θ = 0**, so its offset is already there before any training.
+- **The twin's accuracy at θ = 0** (from theta0.json's twin P(1)) is 0.57-0.64 for t11 and 0.68-0.95 for t12 and t13.
+  t11 is the teacher farthest from the start.
+
+**Reading (raw readout, offset included):**
+
+1. **The lead has two sources, and which one dominates depends on the teacher.**
+   - **t12 and t13** (start already near the teacher): the zipper leads by +0.20 to +0.21 before any training. That
+     is the circuit, not learning.
+   - **t11** (start farther away): no lead at θ = 0 (+0.028, not significant). The lead appears through training:
+     the zipper gains +0.264 against item 31's +0.108.
+2. **The gap widens from 0 to 500 loops for all three teachers:** +0.156 (t11), +0.082 (t12), +0.074 (t13).
+   - This is descriptive; no interaction test was declared.
+   - In t13 the gap widens because item 31 degrades more (−0.100 against −0.026), not because the zipper learns more.
+3. **Where training has room (t11), the zipper learns more; where the start is near the teacher (t13), it degrades
+   less.** Both are consistent with a cleaner training signal (the gradient-direction hypothesis), but the cause has
+   not been tested.
+4. **Vanity and essential numbers:**
+   - **Vanity:** "the zipper leads by +0.18 to +0.29 at 500 loops".
+   - **Essential:**
+     - In 2 of 3 teachers about +0.2 of it is there before training (the circuit's readout, item 31's offset
+       included).
+     - Training adds +0.07 to +0.16 to the gap in 3/3.
+     - In the one teacher that needs learning, the zipper's own gain is +0.264 against +0.108.
+5. **Pending:**
+   - the δ-free version, once theta0_lam.json arrives;
+   - the stand-in only, three teachers.
+
+**Correction to Addendum 2.** The worry that the 500-loop lead might be "the same near-initial model read out better"
+is half right.
+
+- **True for t12 and t13**, raw.
+- **Not true for t11**, where the lead is built by training.
