@@ -34,6 +34,7 @@ from toqb.s2rc import _scores
 
 ARMS = {"psfai:template": "item31", "psfai:template_zip": "zipper"}
 POINTS = (500, 2000)
+PER_POINT = ("ok", "ok_nl", "p1")  # per-point arrays, kept out of the per-run report
 _DATA = {}
 
 
@@ -45,14 +46,14 @@ def auc(s, y):
     return float((r[pos].sum() - n1 * (n1 + 1) / 2) / (n1 * n0))
 
 
-def load(runs_dir, t0_dir):
+def load(runs_dir, t0_dir, arms=ARMS):
     cells = {}
     for f in sorted(glob.glob(os.path.join(runs_dir, "*.json"))):
         name = os.path.basename(f)
         rec = json.load(open(f, encoding="utf-8"))
         if not rec.get("valid"):
             raise Stop(f"{name}: not a valid run ({rec.get('error')})")
-        arm = ARMS.get(rec["arm"])
+        arm = arms.get(rec["arm"])
         if arm is None:
             raise Stop(f"{name}: unknown arm {rec['arm']}")
         t0f = os.path.join(t0_dir, name)
@@ -75,10 +76,13 @@ def load(runs_dir, t0_dir):
             p1 = np.asarray(rh["standin_p1"])
             zi = U.ideal_z(theta, Xte, task)
             ce0, acc0 = _scores(zi, y)
-            rows[loop] = dict(ok=correct_points(p1, y), acc=float(correct_points(p1, y).mean()), acc_shots=rh["acc"],
+            rows[loop] = dict(ok=correct_points(p1, y), ok_nl=np.sign(zi) == y, p1=p1,
+                              acc=float(correct_points(p1, y).mean()), acc_shots=rh["acc"],
                               auc_standin=auc(1 - 2 * p1, y), auc_noiseless=auc(zi, y), noiseless_acc=float(acc0),
-                              noiseless_ce=float(ce0), plus_share=float(np.mean(p1 < 0.5)))
-        cells.setdefault(int(task["teacher_seed"]), {})[arm] = dict(file=name, rows=rows)
+                              noiseless_ce=float(ce0), plus_share=float(np.mean(p1 < 0.5)),
+                              twin_standin_rmse=rh.get("twin_vs_standin_p1_rmse"))
+        cells.setdefault(int(task["teacher_seed"]), {})[arm] = dict(file=name, rows=rows, y=y, q2=rec.get("q2"),
+                                                                    durations_us=rec.get("durations_us"))
     return cells
 
 
@@ -90,7 +94,7 @@ def score(cells, alpha=0.01):
             if arm not in cells[t]:
                 raise Stop(f"teacher {t}: no {arm} run")
             for loop, r in sorted(cells[t][arm]["rows"].items()):
-                res["runs"].append({k: v for k, v in r.items() if k != "ok"} | dict(teacher=t, arm=arm, loop=loop))
+                res["runs"].append({k: v for k, v in r.items() if k not in PER_POINT} | dict(teacher=t, arm=arm, loop=loop))
     a_rows, b_rows = [], []
     for loop in POINTS:
         for t in teachers:
