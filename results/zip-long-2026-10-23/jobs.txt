@@ -1,0 +1,6 @@
+<pod>/zl_2026-10-23/plans/L16_t11_s301.json psfai:template_zip
+<pod>/zl_2026-10-23/plans/L16_t11_s301.json psfai:template
+<pod>/zl_2026-10-23/plans/L16_t12_s301.json psfai:template_zip
+<pod>/zl_2026-10-23/plans/L16_t12_s301.json psfai:template
+<pod>/zl_2026-10-23/plans/L16_t13_s301.json psfai:template_zip
+<pod>/zl_2026-10-23/plans/L16_t13_s301.json psfai:template

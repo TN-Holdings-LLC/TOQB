@@ -2,6 +2,8 @@
 run in prereg/drafts-2026-10-23/zip_long_note.md):
 
     python -m toqb.zip_long_score RUNS_DIR UNDAMP_DIR OUT.md [--json OUT.json] [--alpha 0.01] [--prev PREV_RUNS_DIR]
+    (UNDAMP_DIR "-": without the undamped readout; lam, delta and the undamped CE are left out. 2026-10-23: the owner
+    dropped the undamped readout that morning, and on the pod it ran at 11-14 min a point, so it was stopped.)
 
 RUNS_DIR: toqb.s2rc_ckpt records of gpu/zip_long.sh (L 16, teachers 11-13, seed 301, 16,000 loops, checkpoints 500,
 1,000, 2,000, 4,000, 8,000 and the final); UNDAMP_DIR: toqb.undamp_run outputs at every point.
@@ -30,7 +32,7 @@ import numpy as np
 
 from toqb import s2r2 as S2
 from toqb import undamp as U
-from toqb.match_score import Stop, ce_points, holm, signed_rank_z, verdict
+from toqb.match_score import Stop, ce_points, correct_points, holm, signed_rank_z, verdict
 from toqb.s2rc import _scores
 
 ARMS = {"psfai:template": "item31", "psfai:template_zip": "zipper"}
@@ -52,8 +54,10 @@ def load(runs_dir, und_dir):
         arm = ARMS.get(rec["arm"])
         if arm is None:
             raise Stop(f"{name}: unknown arm {rec['arm']}")
-        und = json.load(open(os.path.join(und_dir, name), encoding="utf-8"))
-        upts = {p["point"]: p for p in und["points"]}
+        upts = None
+        if und_dir != "-":
+            und = json.load(open(os.path.join(und_dir, name), encoding="utf-8"))
+            upts = {p["point"]: p for p in und["points"]}
         task = rec["task"]
         Xtr, ytr, Xte, yte = S2.teacher_data2(task)
         y = np.asarray(yte)
@@ -62,19 +66,22 @@ def load(runs_dir, und_dir):
         curve = {c["loop"]: c["twin_ce"] for c in rec["curve"]}
         rows = []
         for loop, theta, rh in pts:
-            u = upts.get(f"loop {loop}")
-            if u is None:
+            u = None if upts is None else upts.get(f"loop {loop}")
+            if upts is not None and u is None:
                 raise Stop(f"{name}: no undamp output at loop {loop}")
             zte, ce_te, acc_te = _ideal(theta, Xte, yte, task)
             _, ce_tr, acc_tr = _ideal(theta, Xtr, ytr, task)
             p1 = np.asarray(rh["standin_p1"])
-            pu = (1 - U.apply(1 - 2 * p1, u["lam"], u["delta"])) / 2
+            pu = None if u is None else (1 - U.apply(1 - 2 * p1, u["lam"], u["delta"])) / 2
             rows.append(dict(loop=loop, theta=np.asarray(theta), noiseless_ce_pts=ce_points((1 - zte) / 2, y),
                              noiseless_ce=ce_te, noiseless_acc=acc_te, noiseless_train_ce=ce_tr,
-                             noiseless_train_acc=acc_tr, lam=u["lam"], delta=u["delta"], fit_rms=u["fit_rms"],
+                             noiseless_train_acc=acc_tr, lam=None if u is None else u["lam"],
+                             delta=None if u is None else u["delta"], fit_rms=None if u is None else u["fit_rms"],
                              standin_ce_raw_exact=float(ce_points(p1, y).mean()),
-                             standin_ce_und_exact=float(ce_points(pu, y).mean()),
-                             standin_ce_shots=rh["ce"], reproduced=u["raw"]["reproduced"],
+                             standin_acc_raw_exact=float(correct_points(p1, y).mean()),
+                             standin_ce_und_exact=None if pu is None else float(ce_points(pu, y).mean()),
+                             standin_ce_shots=rh["ce"], standin_acc_shots=rh["acc"],
+                             reproduced=None if u is None else u["raw"]["reproduced"],
                              twin_curve_ce=curve.get(loop)))
         key = (int(task["layers"]), int(task["teacher_seed"]))
         runs.setdefault(key, {})[arm] = dict(file=name, rows=rows, y=y)
@@ -139,12 +146,16 @@ def markdown(res):
           f"teachers: the gain {'PERSISTS' if fin['persists'] else 'does not persist'}.", "",
           "## Per run and point", "",
           "| teacher | arm | loops | noiseless CE test / train | noiseless acc test / train | lam / delta | stand-in CE "
-          "no shots raw / undamped | with shots | twin curve CE |", "|---|---|---|---|---|---|---|---|---|"]
+          "no shots raw / undamped | with shots | stand-in acc no shots / with shots | twin curve CE |",
+          "|---|---|---|---|---|---|---|---|---|---|"]
     for r in sorted(res["runs"], key=lambda r: (r["teacher"], r["arm"], r["loop"])):
         tc = "-" if r["twin_curve_ce"] is None else f"{r['twin_curve_ce']:.4f}"
+        ld = "-" if r["lam"] is None else f"{r['lam']:.3f} / {r['delta']:+.3f}"
+        un = "-" if r["standin_ce_und_exact"] is None else f"{r['standin_ce_und_exact']:.4f}"
         L.append(f"| {r['teacher']} | {r['arm']} | {r['loop']} | {r['noiseless_ce']:.4f} / {r['noiseless_train_ce']:.4f}"
-                 f" | {r['noiseless_acc']:.3f} / {r['noiseless_train_acc']:.3f} | {r['lam']:.3f} / {r['delta']:+.3f} | "
-                 f"{r['standin_ce_raw_exact']:.4f} / {r['standin_ce_und_exact']:.4f} | {r['standin_ce_shots']:.4f} | {tc} |")
+                 f" | {r['noiseless_acc']:.3f} / {r['noiseless_train_acc']:.3f} | {ld} | "
+                 f"{r['standin_ce_raw_exact']:.4f} / {un} | {r['standin_ce_shots']:.4f} | "
+                 f"{r['standin_acc_raw_exact']:.3f} / {r['standin_acc_shots']:.3f} | {tc} |")
     if res["reproduction"]:
         L += ["", "## The 2,000-loop point against yesterday's depth sweep (same plan up to the loop count)", "",
               "| teacher | arm | equal bit for bit | max abs difference |", "|---|---|---|---|"]

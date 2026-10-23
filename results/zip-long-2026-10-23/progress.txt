@@ -1,0 +1,9 @@
+L16_t12_s301 psfai:template_zip done 04:02:31 {"kind": "s2rc", "arm": "psfai:template_zip", "seed": 301, "valid": true, "loops": 16000, "wall_s": 7240.18613821402, "error": null, "checkpoints": [[500, 0.6302], [1000, 0.6361], [2000, 0.6388], [400
+L16_t13_s301 psfai:template_zip done 04:08:38 {"kind": "s2rc", "arm": "psfai:template_zip", "seed": 301, "valid": true, "loops": 16000, "wall_s": 7608.101191400026, "error": null, "checkpoints": [[500, 0.6347], [1000, 0.6412], [2000, 0.6452], [40
+L16_t13_s301 psfai:template done 04:24:30 {"kind": "s2rc", "arm": "psfai:template", "seed": 301, "valid": true, "loops": 16000, "wall_s": 8557.692327958008, "error": null, "checkpoints": [[500, 0.6317], [1000, 0.6335], [2000, 0.6356], [4000, 
+L16_t11_s301 psfai:template_zip done 04:40:20 {"kind": "s2rc", "arm": "psfai:template_zip", "seed": 301, "valid": true, "loops": 16000, "wall_s": 9511.279962335015, "error": null, "checkpoints": [[500, 0.6426], [1000, 0.6494], [2000, 0.65], [4000
+L16_t11_s301 psfai:template done 05:49:11 {"kind": "s2rc", "arm": "psfai:template", "seed": 301, "valid": true, "loops": 16000, "wall_s": 13640.046953384008, "error": null, "checkpoints": [[500, 0.6327], [1000, 0.638], [2000, 0.641], [4000, 0
+L16_t12_s301 psfai:template done 05:49:12 {"kind": "s2rc", "arm": "psfai:template", "seed": 301, "valid": true, "loops": 16000, "wall_s": 13638.27629518701, "error": null, "checkpoints": [[500, 0.6214], [1000, 0.6207], [2000, 0.6233], [4000, 
+L16_t11_s301-psfai_template_zip undamp 06:33:21 Terminated
+L16_t12_s301-psfai_template undamp 06:33:23 Terminated
+L16_t11_s301-psfai_template undamp 06:33:24 Terminated

@@ -1,0 +1,7 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb 376a709 Declare (report only, one rule fixed before the run): long training with checkpoints, zipper against item 31 at L 16 (16,000 loops, points 500-16,000), gpu/zip_long.sh and toqb.zip_long_score
+psf-zero 9f0d44ef Addendum 526: AI front end a24 -- the ring template built in Rust by default (psfbind ring r2), the ring placed by formula only (E5), the zipper as an option (PSF_RING_ZIP=1); a23's output wherever a23 did not search (check_a24: PASS); psf_compile unchanged
+PAR=6 UPAR=3 TOQB_TRAJ_MEM_GB=4
+start 2026-10-23 02:00:09 CEST
+trained 2026-10-23 05:49:12 CEST
+end 2026-10-23 06:33:24 CEST
