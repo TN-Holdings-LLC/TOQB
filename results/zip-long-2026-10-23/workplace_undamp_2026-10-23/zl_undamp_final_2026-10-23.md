@@ -323,3 +323,67 @@ is half right.
 
 - **True for t12 and t13**, raw.
 - **Not true for t11**, where the lead is built by training.
+
+---
+
+## Addendum 5 (2026-10-23 08:25 CEST): θ = 0 δ-free; item 31 does not learn in the first 500 loops, the zipper does
+
+**Data.** θ = 0's λ and δ come from home's theta0_lam.json (toqb.undamp.estimate, the 64 training inputs, 1,024
+trajectories, seed predict.seed + 5, as undamp_run).
+
+| arm | δ at θ = 0, t11 / t12 / t13 | λ at θ = 0 |
+|---|---|---|
+| item 31 | +0.048 / +0.073 / +0.074 | 0.11-0.20 |
+| zipper | +0.017 / +0.017 / +0.019 | 0.14-0.15 |
+
+The δ at 500 and 16,000 loops come from u500 and undamp_final. Each point is δ-free: the sign of z − δ, shot-free,
+on the stand-in. Script: `theta0_dfree.py`.
+
+**Zipper against item 31, δ-free:**
+
+| loops | t11: zip / q31 (gap), Holm p | t12 | t13 |
+|---|---|---|---|
+| 0 | 0.636 / 0.718 (−0.082), 0.001 | 0.882 / 0.814 (+0.068), 0.001 | 0.974 / 0.788 (+0.186), 1e-21 |
+| 500 | 0.876 / 0.736 (+0.140), 4e-11 | 0.932 / 0.800 (+0.132), 5e-14 | 0.912 / 0.768 (+0.144), 2e-13 |
+| 16,000 | 0.704 / 0.712 (−0.008), 0.8 | 0.698 / 0.734 (−0.036), 0.42 | 0.748 / 0.724 (+0.024), 0.56 |
+
+**Learning from 0 to 500 loops within each arm, δ-free** (paired over points, Holm over teachers):
+
+| arm | t11 | t12 | t13 |
+|---|---|---|---|
+| item 31 | +0.018 (0.42) | −0.014 (0.42) | −0.020 (0.064) |
+| zipper | +0.240 (7e-20) | +0.050 (8e-4) | −0.062 (3e-7) |
+
+**Reading:**
+
+1. **At θ = 0 the circuits differ less than the raw numbers said.** Raw, the zipper led by +0.03 to +0.21; most of
+   that was item 31's offset.
+   - δ-free the picture is mixed: item 31 is better for t11 (−0.082), the zipper for t12 and t13 (+0.068, +0.186).
+   - Addendum 4's reading 1 ("about +0.2 before training is the circuit") is corrected: it was largely item 31's
+     offset.
+2. **In the first 500 loops item 31 does not learn, once its offset is removed:** +0.018, −0.014 and −0.020, none
+   significant.
+   - Its raw gain in t11 (+0.108, Addendum 4) was its offset changing, not the model improving.
+3. **The zipper does learn where there is room:**
+   - t11: +0.240, from 0.636 to 0.876;
+   - t12: +0.050.
+   - It loses from a near-perfect start in t13: 0.974 to 0.912.
+4. **So the 500-loop δ-free lead (+0.13 to +0.14 in 3/3) is built by the zipper's training in t11 and t12, and in t13
+   is what remains of a head start.**
+5. **Long training erases it:** the δ-free gap at 16,000 loops is about 0 in 3/3, with both arms near 0.70-0.75.
+6. **For the study-method hypothesis** (a cleaner training signal from the zipper):
+   - **Supported early:** item 31's training signal moves the model nowhere δ-free; the zipper's improves it.
+   - **Not supported over long training:** there the zipper drifts back down.
+   - **Unconfirmed:** the mechanism. It is consistent with the higher gradient cosine seen in the data/gradient test,
+     but that has not been tested as a cause.
+7. **Vanity and essential numbers:**
+   - **Vanity:** "the zipper leads by +0.18 to +0.29 at 500 loops".
+   - **Essential:** δ-free and shot-free, the zipper's own early learning is +0.24 and +0.05 against item 31's about
+     0 (2 of 3 teachers). The lead is +0.13 to +0.14 at 500 loops and about 0 at 16,000 loops. With 250 shots it
+     largely disappears (λ ≈ 0.15).
+8. **Limits:**
+   - the stand-in only;
+   - λ and δ are the twin's estimates, and δ over-corrects item 31 (+1 calls 32-42 %);
+   - three teachers;
+   - this whole chain is post hoc, not declared.
+   - A declared test on fresh teachers, with a teacher farther from the start, is needed before any claim.
