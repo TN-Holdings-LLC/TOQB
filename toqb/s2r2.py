@@ -40,12 +40,22 @@ from toqb import traj2 as T2
 
 
 def teacher_data2(task):
-    """(X_train, y_train, X_test, y_test): the narrow teacher, the gap, balanced classes (see the module)."""
+    """(X_train, y_train, X_test, y_test): the narrow teacher, the gap, balanced classes (see the module).
+
+    Optional `test_after` (2026-10-23): the test points start after that many points per class, so that tasks with
+    different n_train share one test set (n_train 64 with test_after 128 tests on the points of n_train 256; its
+    training points are the first 32 per class, a subset of those of 256). Without it, the behaviour is unchanged."""
     n, L, enc = task["n"], task["layers"], task["enc"]
     rng = np.random.default_rng(task["teacher_seed"])
     a = task["teacher_angle"]
     teacher = rng.uniform(-a, a, TL.n_params(n, L))
-    want = {1.0: (task["n_train"] + task["n_test"]) // 2, -1.0: (task["n_train"] + task["n_test"]) // 2}
+    skip = task.get("test_after")
+    if skip is None:
+        want = {1.0: (task["n_train"] + task["n_test"]) // 2, -1.0: (task["n_train"] + task["n_test"]) // 2}
+    else:
+        if int(skip) < task["n_train"] // 2:
+            raise ValueError("teacher_data2: test_after must be at least n_train / 2")
+        want = {1.0: int(skip) + task["n_test"] // 2, -1.0: int(skip) + task["n_test"] // 2}
     got = {1.0: [], -1.0: []}
     tries = 0
     while len(got[1.0]) < want[1.0] or len(got[-1.0]) < want[-1.0]:
@@ -60,10 +70,11 @@ def teacher_data2(task):
         if len(got[y]) < want[y]:
             got[y].append(x)
     htr = task["n_train"] // 2
+    st = htr if skip is None else int(skip)
     Xtr = np.array(got[1.0][:htr] + got[-1.0][:htr])
     ytr = np.array([1.0] * htr + [-1.0] * htr)
-    Xte = np.array(got[1.0][htr:] + got[-1.0][htr:])
-    yte = np.array([1.0] * (len(got[1.0]) - htr) + [-1.0] * (len(got[-1.0]) - htr))
+    Xte = np.array(got[1.0][st:] + got[-1.0][st:])
+    yte = np.array([1.0] * (len(got[1.0]) - st) + [-1.0] * (len(got[-1.0]) - st))
     p = rng.permutation(len(Xtr))
     return Xtr[p], ytr[p], Xte, yte
 
