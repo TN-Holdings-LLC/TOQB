@@ -1,0 +1,6 @@
+L16_t11_s301-psfai_template 06:52:01 loop 16000: lam 0.317 delta +0.036 | stand-in CE 0.6439 -> 0.6106, acc 0.587 -> 0.648 | undamped prediction 0.6195 [0.5775, 0.6727] inside True | shots reproduced True
+L16_t11_s301-psfai_template_zip 06:53:18 loop 16000: lam 0.227 delta -0.007 | stand-in CE 0.6474 -> 0.5909, acc 0.672 -> 0.674 | undamped prediction 0.6175 [0.5604, 0.6887] inside True | shots reproduced True
+L16_t12_s301-psfai_template 06:54:40 loop 16000: lam 0.293 delta +0.056 | stand-in CE 0.6310 -> 0.5407, acc 0.617 -> 0.676 | undamped prediction 0.5664 [0.5308, 0.6119] inside True | shots reproduced True
+L16_t12_s301-psfai_template_zip 06:55:44 loop 16000: lam 0.221 delta -0.006 | stand-in CE 0.6492 -> 0.5956, acc 0.686 -> 0.686 | undamped prediction 0.6395 [0.5735, 0.7214] inside True | shots reproduced True
+L16_t13_s301-psfai_template 06:57:26 loop 16000: lam 0.233 delta +0.048 | stand-in CE 0.6462 -> 0.5992, acc 0.630 -> 0.676 | undamped prediction 0.6224 [0.5679, 0.6914] inside True | shots reproduced True
+L16_t13_s301-psfai_template_zip 06:58:27 loop 16000: lam 0.195 delta +0.008 | stand-in CE 0.6532 -> 0.5606, acc 0.687 -> 0.684 | undamped prediction 0.6336 [0.5698, 0.7158] inside False | shots reproduced True
