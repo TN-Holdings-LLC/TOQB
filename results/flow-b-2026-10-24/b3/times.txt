@@ -1,0 +1,7 @@
+NVIDIA GeForce RTX 4070, 12282 MiB
+toqb 4fe51cd Declare flow B (owner 2026-10-24 06:55 CEST): B1 the a24 switch on the GPU (check), B2 where the readout offset comes from (report, toqb.offset_ablate), B3 decaying against constant step (one rule: noiseless accuracy of the zipper's trained model at 4,000 loops, McNemar, Holm over teachers 20-22, 2 of 3; toqb.lrdecay_score); s2rc_ckpt's optional lr_decay (default unchanged; tested); gpu/flow_b.sh. flow_b_note.md SHA-256 a2eebb57e5a21247fb5407c797c6ccd72539d147ef5570c46cd6d785a2a960c0
+psf-zero 1294780c README: Paper 3 on Zenodo (DOI 10.5281/zenodo.23600812; all versions 10.5281/zenodo.23600811): badge, papers list, BibTeX
+PART=b3 PAR=1 TOQB_TRAJ_MEM_GB=3
+start 2026-10-24 12:16:28 CEST
+trained 2026-10-24 19:09:31 CEST
+end 2026-10-24 19:17:30 CEST

@@ -1,0 +1,442 @@
+{
+ "alpha": 0.01,
+ "final": 4000,
+ "rule": [
+  {
+   "loop": 4000,
+   "teacher": 20,
+   "decay": 0.62,
+   "const": 0.63,
+   "diff": -0.010000000000000009,
+   "b": 73,
+   "c": 78,
+   "p": 0.7449138782509725,
+   "p_holm": 1.0,
+   "verdict": "TIE"
+  },
+  {
+   "loop": 4000,
+   "teacher": 21,
+   "decay": 0.618,
+   "const": 0.652,
+   "diff": -0.03400000000000003,
+   "b": 33,
+   "c": 50,
+   "p": 0.07841962481580764,
+   "p_holm": 0.2352588744474229,
+   "verdict": "TIE"
+  },
+  {
+   "loop": 4000,
+   "teacher": 22,
+   "decay": 0.638,
+   "const": 0.642,
+   "diff": -0.0040000000000000036,
+   "b": 30,
+   "c": 32,
+   "p": 0.8990763136528589,
+   "p_holm": 1.0,
+   "verdict": "TIE"
+  }
+ ],
+ "wins": 0,
+ "losses": 0,
+ "holds": false,
+ "reverse": false,
+ "all": [
+  {
+   "loop": 500,
+   "teacher": 20,
+   "decay": 0.534,
+   "const": 0.542,
+   "diff": -0.008000000000000007,
+   "b": 6,
+   "c": 10,
+   "p": 0.454498291015625
+  },
+  {
+   "loop": 500,
+   "teacher": 21,
+   "decay": 0.536,
+   "const": 0.53,
+   "diff": 0.006000000000000005,
+   "b": 7,
+   "c": 4,
+   "p": 0.548828125
+  },
+  {
+   "loop": 500,
+   "teacher": 22,
+   "decay": 0.568,
+   "const": 0.578,
+   "diff": -0.010000000000000009,
+   "b": 9,
+   "c": 14,
+   "p": 0.4048728942871094
+  },
+  {
+   "loop": 1000,
+   "teacher": 20,
+   "decay": 0.548,
+   "const": 0.574,
+   "diff": -0.025999999999999912,
+   "b": 25,
+   "c": 38,
+   "p": 0.12991792302255253
+  },
+  {
+   "loop": 1000,
+   "teacher": 21,
+   "decay": 0.584,
+   "const": 0.598,
+   "diff": -0.014000000000000012,
+   "b": 21,
+   "c": 28,
+   "p": 0.3916029105474905
+  },
+  {
+   "loop": 1000,
+   "teacher": 22,
+   "decay": 0.594,
+   "const": 0.608,
+   "diff": -0.014000000000000012,
+   "b": 19,
+   "c": 26,
+   "p": 0.3712980344710104
+  },
+  {
+   "loop": 2000,
+   "teacher": 20,
+   "decay": 0.574,
+   "const": 0.602,
+   "diff": -0.028000000000000025,
+   "b": 53,
+   "c": 67,
+   "p": 0.2352033679725253
+  },
+  {
+   "loop": 2000,
+   "teacher": 21,
+   "decay": 0.624,
+   "const": 0.63,
+   "diff": -0.006000000000000005,
+   "b": 26,
+   "c": 29,
+   "p": 0.7877061896700431
+  },
+  {
+   "loop": 2000,
+   "teacher": 22,
+   "decay": 0.636,
+   "const": 0.644,
+   "diff": -0.008000000000000007,
+   "b": 23,
+   "c": 27,
+   "p": 0.6718110337653656
+  },
+  {
+   "loop": 4000,
+   "teacher": 20,
+   "decay": 0.62,
+   "const": 0.63,
+   "diff": -0.010000000000000009,
+   "b": 73,
+   "c": 78,
+   "p": 0.7449138782509725,
+   "p_holm": 1.0,
+   "verdict": "TIE"
+  },
+  {
+   "loop": 4000,
+   "teacher": 21,
+   "decay": 0.618,
+   "const": 0.652,
+   "diff": -0.03400000000000003,
+   "b": 33,
+   "c": 50,
+   "p": 0.07841962481580764,
+   "p_holm": 0.2352588744474229,
+   "verdict": "TIE"
+  },
+  {
+   "loop": 4000,
+   "teacher": 22,
+   "decay": 0.638,
+   "const": 0.642,
+   "diff": -0.0040000000000000036,
+   "b": 30,
+   "c": 32,
+   "p": 0.8990763136528589,
+   "p_holm": 1.0,
+   "verdict": "TIE"
+  }
+ ],
+ "drift": [
+  {
+   "teacher": 20,
+   "schedule": "const",
+   "best_loop": 4000,
+   "best": 0.63,
+   "final": 0.63,
+   "change": 0.0
+  },
+  {
+   "teacher": 20,
+   "schedule": "decay",
+   "best_loop": 4000,
+   "best": 0.62,
+   "final": 0.62,
+   "change": 0.0
+  },
+  {
+   "teacher": 21,
+   "schedule": "const",
+   "best_loop": 4000,
+   "best": 0.652,
+   "final": 0.652,
+   "change": 0.0
+  },
+  {
+   "teacher": 21,
+   "schedule": "decay",
+   "best_loop": 2000,
+   "best": 0.624,
+   "final": 0.618,
+   "change": -0.006000000000000005
+  },
+  {
+   "teacher": 22,
+   "schedule": "const",
+   "best_loop": 2000,
+   "best": 0.644,
+   "final": 0.642,
+   "change": -0.0020000000000000018
+  },
+  {
+   "teacher": 22,
+   "schedule": "decay",
+   "best_loop": 4000,
+   "best": 0.638,
+   "final": 0.638,
+   "change": 0.0
+  }
+ ],
+ "runs": [
+  {
+   "noiseless_acc": 0.542,
+   "acc": 0.558,
+   "acc_shots": 0.56,
+   "plus_share": 0.754,
+   "teacher": 20,
+   "schedule": "const",
+   "loop": 500
+  },
+  {
+   "noiseless_acc": 0.574,
+   "acc": 0.552,
+   "acc_shots": 0.551,
+   "plus_share": 0.708,
+   "teacher": 20,
+   "schedule": "const",
+   "loop": 1000
+  },
+  {
+   "noiseless_acc": 0.602,
+   "acc": 0.602,
+   "acc_shots": 0.589,
+   "plus_share": 0.67,
+   "teacher": 20,
+   "schedule": "const",
+   "loop": 2000
+  },
+  {
+   "noiseless_acc": 0.63,
+   "acc": 0.644,
+   "acc_shots": 0.626,
+   "plus_share": 0.672,
+   "teacher": 20,
+   "schedule": "const",
+   "loop": 4000
+  },
+  {
+   "noiseless_acc": 0.534,
+   "acc": 0.558,
+   "acc_shots": 0.551,
+   "plus_share": 0.758,
+   "teacher": 20,
+   "schedule": "decay",
+   "loop": 500
+  },
+  {
+   "noiseless_acc": 0.548,
+   "acc": 0.528,
+   "acc_shots": 0.555,
+   "plus_share": 0.748,
+   "teacher": 20,
+   "schedule": "decay",
+   "loop": 1000
+  },
+  {
+   "noiseless_acc": 0.574,
+   "acc": 0.566,
+   "acc_shots": 0.569,
+   "plus_share": 0.71,
+   "teacher": 20,
+   "schedule": "decay",
+   "loop": 2000
+  },
+  {
+   "noiseless_acc": 0.62,
+   "acc": 0.624,
+   "acc_shots": 0.59,
+   "plus_share": 0.612,
+   "teacher": 20,
+   "schedule": "decay",
+   "loop": 4000
+  },
+  {
+   "noiseless_acc": 0.53,
+   "acc": 0.524,
+   "acc_shots": 0.54,
+   "plus_share": 0.812,
+   "teacher": 21,
+   "schedule": "const",
+   "loop": 500
+  },
+  {
+   "noiseless_acc": 0.598,
+   "acc": 0.59,
+   "acc_shots": 0.605,
+   "plus_share": 0.734,
+   "teacher": 21,
+   "schedule": "const",
+   "loop": 1000
+  },
+  {
+   "noiseless_acc": 0.63,
+   "acc": 0.614,
+   "acc_shots": 0.609,
+   "plus_share": 0.73,
+   "teacher": 21,
+   "schedule": "const",
+   "loop": 2000
+  },
+  {
+   "noiseless_acc": 0.652,
+   "acc": 0.634,
+   "acc_shots": 0.623,
+   "plus_share": 0.678,
+   "teacher": 21,
+   "schedule": "const",
+   "loop": 4000
+  },
+  {
+   "noiseless_acc": 0.536,
+   "acc": 0.526,
+   "acc_shots": 0.544,
+   "plus_share": 0.81,
+   "teacher": 21,
+   "schedule": "decay",
+   "loop": 500
+  },
+  {
+   "noiseless_acc": 0.584,
+   "acc": 0.568,
+   "acc_shots": 0.582,
+   "plus_share": 0.752,
+   "teacher": 21,
+   "schedule": "decay",
+   "loop": 1000
+  },
+  {
+   "noiseless_acc": 0.624,
+   "acc": 0.606,
+   "acc_shots": 0.618,
+   "plus_share": 0.726,
+   "teacher": 21,
+   "schedule": "decay",
+   "loop": 2000
+  },
+  {
+   "noiseless_acc": 0.618,
+   "acc": 0.632,
+   "acc_shots": 0.619,
+   "plus_share": 0.668,
+   "teacher": 21,
+   "schedule": "decay",
+   "loop": 4000
+  },
+  {
+   "noiseless_acc": 0.578,
+   "acc": 0.56,
+   "acc_shots": 0.541,
+   "plus_share": 0.668,
+   "teacher": 22,
+   "schedule": "const",
+   "loop": 500
+  },
+  {
+   "noiseless_acc": 0.608,
+   "acc": 0.606,
+   "acc_shots": 0.569,
+   "plus_share": 0.654,
+   "teacher": 22,
+   "schedule": "const",
+   "loop": 1000
+  },
+  {
+   "noiseless_acc": 0.644,
+   "acc": 0.644,
+   "acc_shots": 0.595,
+   "plus_share": 0.58,
+   "teacher": 22,
+   "schedule": "const",
+   "loop": 2000
+  },
+  {
+   "noiseless_acc": 0.642,
+   "acc": 0.628,
+   "acc_shots": 0.602,
+   "plus_share": 0.548,
+   "teacher": 22,
+   "schedule": "const",
+   "loop": 4000
+  },
+  {
+   "noiseless_acc": 0.568,
+   "acc": 0.56,
+   "acc_shots": 0.554,
+   "plus_share": 0.68,
+   "teacher": 22,
+   "schedule": "decay",
+   "loop": 500
+  },
+  {
+   "noiseless_acc": 0.594,
+   "acc": 0.6,
+   "acc_shots": 0.553,
+   "plus_share": 0.68,
+   "teacher": 22,
+   "schedule": "decay",
+   "loop": 1000
+  },
+  {
+   "noiseless_acc": 0.636,
+   "acc": 0.64,
+   "acc_shots": 0.617,
+   "plus_share": 0.544,
+   "teacher": 22,
+   "schedule": "decay",
+   "loop": 2000
+  },
+  {
+   "noiseless_acc": 0.638,
+   "acc": 0.622,
+   "acc_shots": 0.625,
+   "plus_share": 0.522,
+   "teacher": 22,
+   "schedule": "decay",
+   "loop": 4000
+  }
+ ]
+}

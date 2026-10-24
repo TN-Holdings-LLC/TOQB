@@ -1,0 +1,51 @@
+{
+ "name": "flow B3: L16 t21 angle 1.0 s301 decay",
+ "device": "snapshot:marrakesh",
+ "verify": true,
+ "task": {
+  "n": 10,
+  "layers": 16,
+  "enc": 1.5707963267948966,
+  "teacher_seed": 21,
+  "teacher_angle": 1.0,
+  "teacher_gap": 0.2,
+  "n_train": 64,
+  "n_test": 500
+ },
+ "train": {
+  "seed": 301,
+  "init": 0.0,
+  "pairs": 8,
+  "sim_batch": 4,
+  "sim_traj": 32,
+  "h": 0.1,
+  "lr": 0.4,
+  "loops": 4000,
+  "curve_every": 500,
+  "curve_points": 100,
+  "curve_traj": 64,
+  "progress_every": 250,
+  "checkpoints": [
+   500,
+   1000,
+   2000
+  ],
+  "lr_decay": {
+   "A": 1000,
+   "alpha": 0.602
+  }
+ },
+ "predict": {
+  "traj": 1024,
+  "shots": 250,
+  "reps": 20000,
+  "level": 0.99,
+  "seed": 50301
+ },
+ "standin": {
+  "t12": 0.3,
+  "over": 0.01,
+  "zz_hz": 10000.0,
+  "seed": 20261017
+ }
+}

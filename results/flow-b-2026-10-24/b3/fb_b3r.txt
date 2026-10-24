@@ -1,0 +1,22 @@
+RUST=1: TOQB_FAST_PSF=1 TOQB_RUST_TEMPLATE=check PSF_RUST_TEMPLATE=check, front end a24 (default) (psf-zero 1294780)
+NVIDIA GeForce RTX 4070, 12282 MiB
+toqb 4fe51cd Declare flow B (owner 2026-10-24 06:55 CEST): B1 the a24 switch on the GPU (check), B2 where the readout offset comes from (report, toqb.offset_ablate), B3 decaying against constant step (one rule: noiseless accuracy of the zipper's trained model at 4,000 loops, McNemar, Holm over teachers 20-22, 2 of 3; toqb.lrdecay_score); s2rc_ckpt's optional lr_decay (default unchanged; tested); gpu/flow_b.sh. flow_b_note.md SHA-256 a2eebb57e5a21247fb5407c797c6ccd72539d147ef5570c46cd6d785a2a960c0
+psf-zero 1294780c README: Paper 3 on Zenodo (DOI 10.5281/zenodo.23600812; all versions 10.5281/zenodo.23600811): badge, papers list, BibTeX
+PART=b3 PAR=1 TOQB_TRAJ_MEM_GB=3
+start 2026-10-24 12:16:28 CEST
+L16_t20_a10_s301-const.json
+L16_t20_a10_s301-decay.json
+L16_t21_a10_s301-const.json
+L16_t21_a10_s301-decay.json
+L16_t22_a10_s301-const.json
+L16_t22_a10_s301-decay.json
+L16_t20_a10_s301-const done 13:26:33 {"kind": "s2rc", "arm": "psfai:template_zip", "seed": 301, "valid": true, "loops": 4000, "wall_s": 4021.749585365, "error": null, "checkpoints": [[500, 0.6827],
+L16_t20_a10_s301-decay done 14:35:29 {"kind": "s2rc", "arm": "psfai:template_zip", "seed": 301, "valid": true, "loops": 4000, "wall_s": 3954.8287427020005, "error": null, "checkpoints": [[500, 0.68
+L16_t21_a10_s301-const done 15:43:51 {"kind": "s2rc", "arm": "psfai:template_zip", "seed": 301, "valid": true, "loops": 4000, "wall_s": 3974.197667413, "error": null, "checkpoints": [[500, 0.6789],
+L16_t21_a10_s301-decay done 16:53:33 {"kind": "s2rc", "arm": "psfai:template_zip", "seed": 301, "valid": true, "loops": 4000, "wall_s": 4054.273912118002, "error": null, "checkpoints": [[500, 0.678
+L16_t22_a10_s301-const done 18:01:19 {"kind": "s2rc", "arm": "psfai:template_zip", "seed": 301, "valid": true, "loops": 4000, "wall_s": 3955.3983589810014, "error": null, "checkpoints": [[500, 0.68
+L16_t22_a10_s301-decay done 19:09:31 {"kind": "s2rc", "arm": "psfai:template_zip", "seed": 301, "valid": true, "loops": 4000, "wall_s": 3987.539487924998, "error": null, "checkpoints": [[500, 0.683
+trained 2026-10-24 19:09:31 CEST
+written <pc>/fb_b3r/score.md
+end 2026-10-24 19:17:30 CEST
+== DONE: <pc>/flow_b3.zip
