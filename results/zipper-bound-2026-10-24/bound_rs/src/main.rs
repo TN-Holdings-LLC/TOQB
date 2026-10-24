@@ -128,9 +128,21 @@ fn main() {
     }
     let mut s = S { n, edges, eid, full: (1u32 << n) - 1, seen: HashMap::new(), path: vec![], best: None };
     let lays = start_layouts(n);
-    println!("n {} start layouts {} limit {}", n, lays.len(), limit);
+    // Optional shard "k/K" (2026-10-25): only the start layouts with index i % K == k, so that several processes can
+    // share one n; the limit is then not lowered by results found in other shards.
+    let (shard, nshard): (usize, usize) = match args.get(3) {
+        Some(t) => {
+            let v: Vec<usize> = t.split('/').map(|x| x.parse().unwrap()).collect();
+            (v[0], v[1])
+        }
+        None => (0, 1),
+    };
+    println!("n {} start layouts {} limit {} shard {}/{}", n, lays.len(), limit, shard, nshard);
     let mut results: Vec<(u32, Vec<usize>, Vec<(u8, usize, usize, usize)>)> = Vec::new();
     for (i, lay) in lays.iter().enumerate() {
+        if i % nshard != shard {
+            continue;
+        }
         let mut pos = vec![0usize; n];
         for (p, &q) in lay.iter().enumerate() {
             pos[q] = p;
