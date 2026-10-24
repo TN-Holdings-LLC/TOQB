@@ -3,6 +3,20 @@
 Declared in prereg/drafts-2026-10-24/flow_c_note.md (SHA-256 8d48abb6…) and flow_c_amend1.md (SHA-256 32662b40…,
 ibm_kingston instead of ibm_marrakesh). No rule, no arm comparison, no readout corrected, nothing chosen from the result.
 
+## In short
+
+One job (dbec1jfsstms73fbq0lg), ibm_kingston, 540 circuits x 250 shots, 42 s. Every point: [points.csv](points.csv).
+
+| | zipper (336 CZ, 10.8 us) | Qiskit level 2 (506 CZ, 45.8 us) |
+|---|---|---|
+| benchmark-style number: "accuracy" on the device (not an accuracy here: all 90 points are label +1) | 0.85-0.87 | 0.37-0.47 |
+| what a device user needs: device against the twin of the day's calibration, scale / correlation | 1.00 / 0.98 | -0.16 / -0.53 |
+| per measured qubit, correlation with the noiseless values (teacher 17) | all 10 qubits 0.81-0.99 | 5 qubits about 0, 3 qubits 0.37-0.44, 2 inverted (-0.55 on the read-out qubit) |
+
+The zipper ran on hardware as its twin predicted. Qiskit's circuits, on the same device and day, lost most of their
+signal and came out inverted on the read-out qubit; the twin did not predict it and the cause is not found. One job,
+one device, 90 points of one label per cell; no arm comparison is tested.
+
 ## The jobs
 
 - **ibm_marrakesh, cancelled.** Job dbe974om94ac738rebfg (540 circuits, manifest SHA-256 3bb3a4a473b09421…), submitted
@@ -72,7 +86,9 @@ noiseless_90.json). Consequences:
 
 ## Files
 
-`fetch.json`, `fetch_after.json` (16:40 CEST); `device/` (manifest.json, submission.json, raw_counts.json.gz and its SHA-256); `runs/` (the 6
+`points.csv` (one row per circuit: cell, arm, teacher, point, label, shots, the device's count of clbit 0 = 1 and
+P(1), the day twin's, the snapshot twin's and the noiseless P(1); the full 10-bit counts are in
+`device/raw_counts.json.gz`); `fetch.json`, `fetch_after.json` (16:40 CEST); `device/` (manifest.json, submission.json, raw_counts.json.gz and its SHA-256); `runs/` (the 6
 `toqb.device_reuse` records; pod paths written `<pod>/`, so their SHA-256 differ from the manifest's, which are in
 `job_sha256.txt` with the qpy files'); `flowc.md` / `flowc.json`; `noiseless_90.json` (noiseless P(1) of the submitted
 circuits by Qiskit's `Statevector`, home); `assemble.txt`, `times.txt`, `rust.txt`, `reuse.txt`, `logs/`. The qpy
