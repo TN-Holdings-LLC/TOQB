@@ -14,6 +14,16 @@ if not os.environ.get("PSF_ZERO_REPO"):
 from toqb import task_loop as TL  # noqa: E402
 
 
+@pytest.fixture(scope="module", autouse=True)
+def _a22_front_end():
+    """These tests check TOQB's own ports against psf_ai_compile a22; from 2026-10-24 the default front end is a24."""
+    repo = os.environ["PSF_ZERO_REPO"]
+    with pytest.MonkeyPatch.context() as mp:
+        mp.setenv("PSF_AI_FILE", os.path.join(repo, "patches", "psf_ai_compile_a22_2026-10-15", "psf_ai_compile.py"))
+        mp.setenv("PSF_COMPILE_FILE", os.path.join(repo, "patches", "psf_compile_c61_2026-10-15", "psf_compile.py"))
+        yield
+
+
 def _model(L, seed):
     rng = np.random.default_rng(seed)
     th = rng.uniform(-np.pi, np.pi, TL.n_params(10, L))

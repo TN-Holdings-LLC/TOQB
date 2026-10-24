@@ -44,9 +44,12 @@ Arms ("compiler:mode"):
                              compiled by `compile_for_model_circuit`, and counted).
   psfai:recompile            `compile_for_model_circuit` every time.
 The PSF-Zero files come from $PSF_ZERO_REPO: psf_compile.py ($PSF_COMPILE_FILE, default the release at its root) and
-the front end ($PSF_AI_FILE, default patches/psf_ai_compile_a22_2026-10-15/psf_ai_compile.py). a22's embedded rings
-and compile templates need psf_compile c61 (patches/psf_compile_c61_2026-10-15/psf_compile.py as $PSF_COMPILE_FILE);
-with the release it behaves as a21.
+the front end ($PSF_AI_FILE, default patches/psf_ai_compile_a24_2026-10-22/psf_ai_compile.py since 2026-10-24; a22
+before). a24 builds the ring template in Rust (psfbind ring r2: $PSF_BIND_LIB or rust/psfbind/target/release) and
+has the zipper as an option; TOQB runs `psfai:template` with the option off and `psfai:template_zip` with it on
+(PSF_RING_ZIP set per call). On the marrakesh snapshot a24 builds both arms' circuits instruction for instruction as
+a22 / c61 with toqb.ring_zip did (results/a24-identity-2026-10-24). Earlier runs set a22 and c61
+(patches/psf_compile_c61_2026-10-15/psf_compile.py as $PSF_COMPILE_FILE) explicitly in their scripts.
 
 Price (the plan's `qpu_cost`; defaults: IBM's measured rate in PSF-Zero's TIME1 and FRAC1 runs, 0.27 ms per shot and
 0.036 s per circuit, and the Pay-As-You-Go price, $96 per minute):
@@ -395,7 +398,7 @@ class PSFAILoop:
         if not repo:
             raise RuntimeError("set PSF_ZERO_REPO to a PSF-Zero checkout")
         pc_file = os.environ.get("PSF_COMPILE_FILE", os.path.join(repo, "psf_compile.py"))
-        ai_file = os.environ.get("PSF_AI_FILE", os.path.join(repo, "patches", "psf_ai_compile_a22_2026-10-15",
+        ai_file = os.environ.get("PSF_AI_FILE", os.path.join(repo, "patches", "psf_ai_compile_a24_2026-10-22",
                                                              "psf_ai_compile.py"))
         sys.path[:0] = [os.path.join(repo, "benchmarks"), repo]
         here = os.getcwd()
@@ -413,13 +416,17 @@ class PSFAILoop:
                 spec.loader.exec_module(self.ai)
         finally:
             os.chdir(here)
+        self.a24 = hasattr(self.ai, "A24_STATS")  # a24 on: the template in Rust, the zipper as PSF_RING_ZIP
 
     def version(self):
         v = f"psf_compile {self.pc.VERSION}, psf_ai_compile {self.ai.AI_COMPILE_VERSION}"
         rust = os.environ.get("TOQB_RUST_TEMPLATE", "")
         if self.mode == "template_zip":
-            v += ", template with the workplace's zipper candidate (toqb.ring_zip; report-only, Python)"
-        if self.mode == "template" and rust in ("1", "check"):  # recorded: the template is built in Rust
+            v += (", template with the zipper (a24, PSF_RING_ZIP=1)" if self.a24 else
+                  ", template with the workplace's zipper candidate (toqb.ring_zip; report-only, Python)")
+        if self.mode == "template" and self.a24:
+            v += f", template built by a24 in Rust (PSF_RUST_TEMPLATE={os.environ.get('PSF_RUST_TEMPLATE', '')})"
+        elif self.mode == "template" and rust in ("1", "check"):  # recorded: the template is built in Rust
             v += f", template built in Rust (toqb.ringport, TOQB_RUST_TEMPLATE={rust})"
         return v
 
@@ -433,7 +440,32 @@ class PSFAILoop:
         with contextlib.redirect_stdout(io.StringIO()):
             return self.ai.compile_for_model_circuit(qc, self.cmap, self.basis, target=self.target)
 
+    def _a24_template(self, qc, zipper):
+        """a24's template for one structure, with its zipper option set for this call only."""
+        old = os.environ.get("PSF_RING_ZIP")
+        os.environ["PSF_RING_ZIP"] = "1" if zipper else ""
+        try:
+            with contextlib.redirect_stdout(io.StringIO()):
+                return self.ai.model_template(qc, self.target)
+        finally:
+            if old is None:
+                os.environ.pop("PSF_RING_ZIP", None)
+            else:
+                os.environ["PSF_RING_ZIP"] = old
+
     def compile_circuit(self, qc):
+        if self.a24 and self.mode in ("template", "template_zip"):
+            sig = self.ai._structure_sig(qc)
+            if sig not in self._cache:
+                tpl = self._a24_template(qc, self.mode == "template_zip")
+                self._cache[sig] = tpl
+                self.stats["template_builds" if tpl is not None else "template_unavailable"] += 1
+            tpl = self._cache[sig]
+            if tpl is None:
+                return self._recompile(qc)
+            out = tpl.bind(qc)
+            out.metadata = dict(toqb_initial=list(tpl.layout), toqb_final=list(tpl.layout))
+            return out
         if self.mode == "template_zip":  # report-only (2026-10-22): a22's ring template with the zipper candidate
             return self._compile_zip(qc)
         if self.mode != "template":

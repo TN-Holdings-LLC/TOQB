@@ -13,8 +13,11 @@ from toqb import rustbind as RB
 lib = RB.cdll()
 lib.psfbind_ring_template, lib.psfbind_angles
 PY
-  export TOQB_FAST_PSF=1 TOQB_RUST_TEMPLATE=check
-  echo "RUST=1: TOQB_FAST_PSF=1 TOQB_RUST_TEMPLATE=check (psf-zero $(git -C "$PSF" log --oneline -1 | cut -c1-7))" | tee "$OUT/rust.txt"
+  # a24 (the default front end from 2026-10-24) builds the template in Rust itself and checks it against its Python
+  # with PSF_RUST_TEMPLATE=check; a22 ignores both variables and is checked by TOQB_RUST_TEMPLATE=check as before
+  export TOQB_FAST_PSF=1 TOQB_RUST_TEMPLATE=check PSF_RUST_TEMPLATE=check \
+    PSF_BIND_LIB="$PSF/rust/psfbind/target/release/libpsfbind.so"
+  echo "RUST=1: TOQB_FAST_PSF=1 TOQB_RUST_TEMPLATE=check PSF_RUST_TEMPLATE=check, front end ${PSF_AI_FILE:-a24 (default)} (psf-zero $(git -C "$PSF" log --oneline -1 | cut -c1-7))" | tee "$OUT/rust.txt"
 else
   echo "RUST=0: the Python path" | tee "$OUT/rust.txt"
 fi

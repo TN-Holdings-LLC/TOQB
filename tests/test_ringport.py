@@ -21,6 +21,16 @@ except (RB.Unsupported, AttributeError) as exc:  # noqa: BLE001
     pytest.skip(f"psfbind without the ring builder: {exc}", allow_module_level=True)
 
 
+@pytest.fixture(scope="module", autouse=True)
+def _a22_front_end():
+    """These tests check TOQB's own ports against psf_ai_compile a22; from 2026-10-24 the default front end is a24."""
+    repo = os.environ["PSF_ZERO_REPO"]
+    with pytest.MonkeyPatch.context() as mp:
+        mp.setenv("PSF_AI_FILE", os.path.join(repo, "patches", "psf_ai_compile_a22_2026-10-15", "psf_ai_compile.py"))
+        mp.setenv("PSF_COMPILE_FILE", os.path.join(repo, "patches", "psf_compile_c61_2026-10-15", "psf_compile.py"))
+        yield
+
+
 @pytest.fixture(scope="module")
 def arm():
     from toqb.devices import get_device

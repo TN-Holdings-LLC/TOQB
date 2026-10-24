@@ -2,7 +2,7 @@
 
     python -m toqb.zip_a24_check OUT.json [--item31] [--n 10 12 14 16] [--L 8 16 24 32]
 
-Default: a24's zipper (PSF_RING_ZIP=1, Rust ring r2) against TOQB's report-only `psfai:template_zip` (a22 with
+--via-arm (after the switch): the a24 side through TOQB's own arms with their defaults. Default: a24's zipper (PSF_RING_ZIP=1, Rust ring r2) against TOQB's report-only `psfai:template_zip` (a22 with
 toqb.ring_zip, Python). With --item31: a24's default template (Rust ring r2, no zipper) against `psfai:template` on
 a22 / c61 (Python).
 
@@ -26,7 +26,10 @@ def build(side, ns, Ls):
     from toqb.devices import get_device
     device = get_device("snapshot:marrakesh")
     zip_mode = os.environ.get("TOQB_ZIPCHECK_ITEM31") != "1"
-    arm = S.Arm("psfai:template_zip" if (side == "toqb" and zip_mode) else "psfai:template", device)
+    if os.environ.get("TOQB_ZIPCHECK_VIA_ARM") == "1":  # after the a24 switch: TOQB's own arms on a24
+        arm = S.Arm("psfai:template_zip" if zip_mode else "psfai:template", device)
+    else:
+        arm = S.Arm("psfai:template_zip" if (side == "toqb" and zip_mode) else "psfai:template", device)
     rng = np.random.default_rng(20261024)
     out = {}
     for n in ns:
@@ -69,6 +72,9 @@ def main(argv):
     item31 = "--item31" in argv
     if item31:
         argv.remove("--item31")
+    via_arm = "--via-arm" in argv  # a24 side through TOQB's arms (PSF_RING_ZIP set per call by the arm)
+    if via_arm:
+        argv.remove("--via-arm")
     ns = [10, 12, 14, 16]
     Ls = [8, 16, 24, 32]
     if "--n" in argv:
@@ -88,8 +94,12 @@ def main(argv):
     if item31:
         env_t["TOQB_ZIPCHECK_ITEM31"] = env_a["TOQB_ZIPCHECK_ITEM31"] = "1"
         env_a.pop("PSF_RING_ZIP", None)
-    else:
+    elif not via_arm:
         env_a["PSF_RING_ZIP"] = "1"
+    if via_arm:
+        env_a["TOQB_ZIPCHECK_VIA_ARM"] = "1"
+        env_a.pop("PSF_RING_ZIP", None)
+        env_a.pop("PSF_AI_FILE", None)  # the arm's default (a24 since 2026-10-24)
     res = {}
     for side, env in (("toqb", env_t), ("a24", env_a)):
         path = out + f".{side}.json"
