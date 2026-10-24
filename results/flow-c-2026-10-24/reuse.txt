@@ -1,0 +1,6 @@
+L16_t17_a10_s301-psfai_template_zip: 90 circuits, q2 [336], durations [10.756] us, predicted acc 0.818, valid True
+L16_t17_a10_s301-qiskit_2_target_template: 90 circuits, q2 [506], durations [45.796] us, predicted acc 0.889, valid True
+L16_t18_a10_s301-psfai_template_zip: 90 circuits, q2 [336], durations [10.756] us, predicted acc 0.829, valid True
+L16_t18_a10_s301-qiskit_2_target_template: 90 circuits, q2 [506], durations [45.796] us, predicted acc 0.865, valid True
+L16_t19_a10_s301-psfai_template_zip: 90 circuits, q2 [336], durations [10.756] us, predicted acc 0.787, valid True
+L16_t19_a10_s301-qiskit_2_target_template: 90 circuits, q2 [506], durations [45.796] us, predicted acc 0.861, valid True

@@ -1,0 +1,6 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb a08aac0 gpu/flow_c_pod.sh: flow C's pod step (device_reuse for the 6 far-teacher models, 90 points each, then assemble at most 60 s), as declared in flow_c_note.md (8f95fdd)
+psf-zero c7862ef0 Paper 3, version 1.1: how the zipper arm was built (TOQB's Python implementation; PSF-Zero a24 builds the same circuits instruction for instruction, TOQB results/a24-identity-2026-10-24); no number or verdict changes
+fetch ibm_kingston 2026-10-24 15:26:59+02:00 3b93913856d2f0b9bf97ac03f89c43457157735413b02d8722c82d31065b218d
+start 2026-10-24 16:13:35 CEST
+end 2026-10-24 16:21:27 CEST

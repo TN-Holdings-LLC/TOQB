@@ -1,0 +1,2 @@
+6 cells, 540 circuits x 250 shots: predicted QPU time 58.9 s (limit 60.0 s)
+2026-10-24T14:21:26+00:00 (2026-10-24 16:21:26 CEST) manifest written before any submission: <pod>/fc_kingston_2026-10-24/job/manifest.json, sha256 63ee331f6225d3bb776a722b2b7932b2abc31b1f6f2e73edd89989f7cf1a243a

@@ -1,0 +1,186 @@
+{
+ "job_id": "dbec1jfsstms73fbq0lg",
+ "backend": "ibm_kingston",
+ "calibration": "2026-10-24 15:26:59+02:00",
+ "shots": 250,
+ "cells": [
+  {
+   "name": "L16_t17_a10_s301-psfai_template_zip",
+   "arm": "psfai:template_zip",
+   "teacher": 17,
+   "points": 90,
+   "day": {
+    "scale": 1.0028926948812895,
+    "offset": 0.009644983832671978,
+    "corr": 0.9844500502081576,
+    "rms": 0.06376405560897908
+   },
+   "snapshot": {
+    "scale": 4.446427100043083,
+    "offset": 0.0004495734097714285,
+    "corr": 0.9708393954191331,
+    "rms": 0.08701922872797599
+   },
+   "plus_device": 0.8444444444444444,
+   "plus_day": 0.8444444444444444,
+   "plus_snapshot": 0.8222222222222222,
+   "acc": 0.85,
+   "acc_pred_day": 0.8182733333333333,
+   "acc_inside_day": true
+  },
+  {
+   "name": "L16_t17_a10_s301-qiskit_2_target_template",
+   "arm": "qiskit:2:target:template",
+   "teacher": 17,
+   "points": 90,
+   "day": {
+    "scale": -0.17042470641005014,
+    "offset": 0.03508046008633175,
+    "corr": -0.5734872442680797,
+    "rms": 0.06749761789107213
+   },
+   "snapshot": {
+    "scale": -0.1807095187925881,
+    "offset": 0.03790030065012239,
+    "corr": -0.5648926171940778,
+    "rms": 0.06798785159074507
+   },
+   "plus_device": 0.3333333333333333,
+   "plus_day": 0.9222222222222223,
+   "plus_snapshot": 0.9555555555555556,
+   "acc": 0.37222222222222223,
+   "acc_pred_day": 0.8893861111111113,
+   "acc_inside_day": false
+  },
+  {
+   "name": "L16_t18_a10_s301-psfai_template_zip",
+   "arm": "psfai:template_zip",
+   "teacher": 18,
+   "points": 90,
+   "day": {
+    "scale": 1.0208119924351715,
+    "offset": 0.012225175670846106,
+    "corr": 0.9841074014610854,
+    "rms": 0.05924753957655353
+   },
+   "snapshot": {
+    "scale": 4.303575413839648,
+    "offset": 0.023109290719409526,
+    "corr": 0.9599348962119939,
+    "rms": 0.09349625887289684
+   },
+   "plus_device": 0.8444444444444444,
+   "plus_day": 0.8333333333333334,
+   "plus_snapshot": 0.8111111111111111,
+   "acc": 0.85,
+   "acc_pred_day": 0.8287677777777777,
+   "acc_inside_day": true
+  },
+  {
+   "name": "L16_t18_a10_s301-qiskit_2_target_template",
+   "arm": "qiskit:2:target:template",
+   "teacher": 18,
+   "points": 90,
+   "day": {
+    "scale": -0.1544869601611436,
+    "offset": 0.04573610510260078,
+    "corr": -0.4781308178962764,
+    "rms": 0.06498434373710586
+   },
+   "snapshot": {
+    "scale": -0.1643086464508963,
+    "offset": 0.04811084778819112,
+    "corr": -0.4717830240013695,
+    "rms": 0.06523783618433684
+   },
+   "plus_device": 0.4666666666666667,
+   "plus_day": 0.8555555555555555,
+   "plus_snapshot": 0.8777777777777778,
+   "acc": 0.4722222222222222,
+   "acc_pred_day": 0.8653108333333334,
+   "acc_inside_day": false
+  },
+  {
+   "name": "L16_t19_a10_s301-psfai_template_zip",
+   "arm": "psfai:template_zip",
+   "teacher": 19,
+   "points": 90,
+   "day": {
+    "scale": 0.9527489955821472,
+    "offset": 0.03253735539076496,
+    "corr": 0.9735177111958307,
+    "rms": 0.05782767202956747
+   },
+   "snapshot": {
+    "scale": 4.183587375683992,
+    "offset": 0.027972634552483455,
+    "corr": 0.9464053274285245,
+    "rms": 0.08169865177334781
+   },
+   "plus_device": 0.8666666666666667,
+   "plus_day": 0.8,
+   "plus_snapshot": 0.8,
+   "acc": 0.8722222222222222,
+   "acc_pred_day": 0.7865105555555555,
+   "acc_inside_day": false
+  },
+  {
+   "name": "L16_t19_a10_s301-qiskit_2_target_template",
+   "arm": "qiskit:2:target:template",
+   "teacher": 19,
+   "points": 90,
+   "day": {
+    "scale": -0.15774583099478787,
+    "offset": 0.0395815024052805,
+    "corr": -0.5178536370518905,
+    "rms": 0.06879774666551555
+   },
+   "snapshot": {
+    "scale": -0.16695370767342932,
+    "offset": 0.04055876548053724,
+    "corr": -0.5169418235984885,
+    "rms": 0.06884208261593353
+   },
+   "plus_device": 0.36666666666666664,
+   "plus_day": 0.8666666666666667,
+   "plus_snapshot": 0.9,
+   "acc": 0.38333333333333336,
+   "acc_pred_day": 0.8614352777777778,
+   "acc_inside_day": false
+  }
+ ],
+ "arms": {
+  "psfai:template_zip": {
+   "points": 270,
+   "day": {
+    "scale": 0.9966136899789534,
+    "offset": 0.018985600477767543,
+    "corr": 0.9828030920739036,
+    "rms": 0.061058833836738866
+   },
+   "snapshot": {
+    "scale": 4.332051035661139,
+    "offset": 0.016997359153288368,
+    "corr": 0.9639841041111353,
+    "rms": 0.08794266535497405
+   },
+   "plus_device": 0.8518518518518519
+  },
+  "qiskit:2:target:template": {
+   "points": 270,
+   "day": {
+    "scale": -0.1643222920090476,
+    "offset": 0.041201184047780726,
+    "corr": -0.533373055224361,
+    "rms": 0.06746551042405506
+   },
+   "snapshot": {
+    "scale": -0.17434006609791738,
+    "offset": 0.0433056812378693,
+    "corr": -0.5285136974634257,
+    "rms": 0.06770834490684025
+   },
+   "plus_device": 0.3888888888888889
+  }
+ }
+}
