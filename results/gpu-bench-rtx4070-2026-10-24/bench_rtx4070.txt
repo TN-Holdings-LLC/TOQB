@@ -1,0 +1,20 @@
+NVIDIA GeForce RTX 4070, 12282 MiB
+12
+== check complex64
+    skeleton: sim z -0.1198 / +0.0103 against -0.1179 / +0.0055 (0.3 se); stand-in shots p1 0.5377 (1.2 se)
+psfai:template             #0 n_act 6: sim z -0.1179 traj -0.1201 (0.1 se, 12.12 s); stand-in p1 0.5285 traj 0.5291 (0.1 se) shots 0.5290 (0.1 se)
+    skeleton: sim z -0.0100 / -0.0483 against -0.0073 / -0.0517 (0.2 se); stand-in shots p1 0.4753 (2.0 se)
+psfai:template             #1 n_act 6: sim z -0.0073 traj -0.0077 (0.0 se, 6.37 s); stand-in p1 0.4910 traj 0.4902 (0.1 se) shots 0.4863 (0.6 se)
+    skeleton: sim z -0.1902 / -0.2073 against -0.1930 / -0.2060 (0.2 se); stand-in shots p1 0.5155 (0.1 se)
+psfai:template             #2 n_act 6: sim z -0.1930 traj -0.1921 (0.1 se, 6.05 s); stand-in p1 0.5149 traj 0.5146 (0.0 se) shots 0.5130 (0.2 se)
+    skeleton: sim z -0.1226 / -0.0344 against -0.1216 / -0.0355 (0.1 se); stand-in shots p1 0.5575 (1.1 se)
+qiskit:2:target:template   #0 n_act 6: sim z -0.1216 traj -0.1224 (0.1 se, 8.93 s); stand-in p1 0.5491 traj 0.5496 (0.1 se) shots 0.5555 (0.8 se)
+    skeleton: sim z -0.0328 / -0.1585 against -0.0361 / -0.1584 (0.2 se); stand-in shots p1 0.5128 (1.6 se)
+qiskit:2:target:template   #1 n_act 6: sim z -0.0361 traj -0.0340 (0.1 se, 8.26 s); stand-in p1 0.5001 traj 0.5001 (0.0 se) shots 0.4903 (1.2 se)
+    skeleton: sim z +0.1577 / +0.0939 against +0.1531 / +0.0894 (0.3 se); stand-in shots p1 0.4525 (0.3 se)
+qiskit:2:target:template   #2 n_act 6: sim z +0.1531 traj +0.1469 (0.4 se, 8.39 s); stand-in p1 0.4545 traj 0.4539 (0.1 se) shots 0.4577 (0.4 se)
+PASS largest 2.00 se
+== bench complex64 L16
+backend cupy
+n=10 L=16 psfai:template             act 10 dur 17.4 us q2 448 steps 1606 same-structure True: compile 0.4 s, programs 7.5 s, sim 50x256 42.80 s, stand-in 2x200 21.88 s; skeleton: sim 50x256 34.24 s, stand-in 2x200 11.71 s
+Terminated                 TOQB_XP=cupy TOQB_TRAJ_DTYPE=complex64 python -m toqb.bench_traj 10 16

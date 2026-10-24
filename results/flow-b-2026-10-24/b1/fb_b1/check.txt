@@ -1,0 +1,13 @@
+    skeleton: sim z -0.1198 / +0.0103 against -0.1179 / +0.0055 (0.3 se); stand-in shots p1 0.5377 (1.2 se)
+psfai:template             #0 n_act 6: sim z -0.1179 traj -0.1201 (0.1 se, 7.15 s); stand-in p1 0.5285 traj 0.5291 (0.1 se) shots 0.5290 (0.1 se)
+    skeleton: sim z -0.0100 / -0.0483 against -0.0073 / -0.0517 (0.2 se); stand-in shots p1 0.4753 (2.0 se)
+psfai:template             #1 n_act 6: sim z -0.0073 traj -0.0077 (0.0 se, 6.97 s); stand-in p1 0.4910 traj 0.4902 (0.1 se) shots 0.4863 (0.6 se)
+    skeleton: sim z -0.1902 / -0.2073 against -0.1930 / -0.2060 (0.2 se); stand-in shots p1 0.5155 (0.1 se)
+psfai:template             #2 n_act 6: sim z -0.1930 traj -0.1921 (0.1 se, 6.29 s); stand-in p1 0.5149 traj 0.5146 (0.0 se) shots 0.5130 (0.2 se)
+    skeleton: sim z -0.1226 / -0.0344 against -0.1216 / -0.0355 (0.1 se); stand-in shots p1 0.5575 (1.1 se)
+qiskit:2:target:template   #0 n_act 6: sim z -0.1216 traj -0.1224 (0.1 se, 8.45 s); stand-in p1 0.5491 traj 0.5496 (0.1 se) shots 0.5555 (0.8 se)
+    skeleton: sim z -0.0328 / -0.1585 against -0.0361 / -0.1584 (0.2 se); stand-in shots p1 0.5128 (1.6 se)
+qiskit:2:target:template   #1 n_act 6: sim z -0.0361 traj -0.0340 (0.1 se, 8.33 s); stand-in p1 0.5001 traj 0.5001 (0.0 se) shots 0.4903 (1.2 se)
+    skeleton: sim z +0.1577 / +0.0939 against +0.1531 / +0.0894 (0.3 se); stand-in shots p1 0.4525 (0.3 se)
+qiskit:2:target:template   #2 n_act 6: sim z +0.1531 traj +0.1469 (0.4 se, 10.04 s); stand-in p1 0.4545 traj 0.4539 (0.1 se) shots 0.4577 (0.4 se)
+PASS largest 2.00 se
