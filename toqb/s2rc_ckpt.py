@@ -38,6 +38,9 @@ def run_s2rc_ckpt(plan, spec):
     rng = np.random.default_rng(p["seed"])
     m = rng.uniform(-p["init"], p["init"], d)
     K, b, Ts, h, lr = p["pairs"], p["sim_batch"], p["sim_traj"], p["h"], p["lr"]
+    # optional (2026-10-24, flow B): a decaying step, lr_k = lr ((A + 1) / (k + A))^alpha (SPSA's exponent 0.602 by
+    # default; lr_1 = lr); it draws no random numbers, so a run with it shares every draw with the constant-step run
+    dec = p.get("lr_decay")
     cp = min(p["curve_points"], len(Xte))
     ckpts = sorted(int(c) for c in p.get("checkpoints", []) if 0 < int(c) < p["loops"])
     per_loop = 2 * K * b * Ts
@@ -62,7 +65,7 @@ def run_s2rc_ckpt(plan, spec):
             R.t["sim"] += time.perf_counter() - s
             ls = ((1 - zs * ytr[idx][None, :]) / 2).mean(axis=1)
             g = (((ls[:K] - ls[K:]) / (2 * h))[:, None] * D).mean(axis=0)
-            m = m - lr * g
+            m = m - (lr if not dec else lr * ((dec["A"] + 1) / (k + dec["A"])) ** dec.get("alpha", 0.602)) * g
             gnorm.append(float(np.linalg.norm(g)))
             if k % p["curve_every"] == 0 or k == p["loops"]:
                 twin_ce(k)

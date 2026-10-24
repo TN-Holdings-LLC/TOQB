@@ -56,3 +56,14 @@ def test_checkpoints_do_not_change_e4():
     one = s2re4_run.run_s2re4(_plan(dict(tr, sweeps=1)), SPEC)
     assert np.array_equal(one["final_mean"], got["checkpoints"][0]["theta"])
     assert one["rehearsal"]["ce"] == got["checkpoints"][0]["rehearsal"]["ce"]
+
+
+def test_lr_decay_option():
+    """2026-10-24: lr_decay off is the constant step (unchanged); with a huge A it is the constant step too; with a
+    small A the final parameters differ, from the same draws (the twin's curve at loop 0 is identical)."""
+    ref = s2rc_ckpt.run_s2rc_ckpt(_plan(C_TRAIN), SPEC)
+    flat = s2rc_ckpt.run_s2rc_ckpt(_plan(dict(C_TRAIN, lr_decay={"A": 1e12})), SPEC)
+    assert np.allclose(ref["final_mean"], flat["final_mean"], atol=1e-9)
+    dec = s2rc_ckpt.run_s2rc_ckpt(_plan(dict(C_TRAIN, lr_decay={"A": 1})), SPEC)
+    assert dec["curve"][0] == ref["curve"][0] or dec["curve"][0]["twin_ce"] == ref["curve"][0]["twin_ce"]
+    assert not np.allclose(ref["final_mean"], dec["final_mean"])
