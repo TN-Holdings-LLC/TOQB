@@ -45,10 +45,10 @@ one device, 90 points of one label per cell; no arm comparison is tested.
    the same way as for the zipper, whose result matches. Points the noiseless circuit puts at P(1) 0.02-0.06 read about
    0.55 on the device: the signal is inverted, not only damped. **Cause not found.** Facts from the fetched
    calibration (15:26:59): Qiskit reads out on qubit 43 (readout error 3.4 %, T2 92 us), its CZ pairs have mean error
-   0.22 % (max 0.81 %), and two of its 14 qubits have T2 of 29-31 us (48, 25); the zipper reads out on qubit 59 (0.48 %),
+   0.22 % (max 0.81 %), and three of its 14 qubits have T2 of 29-33 us (48, 25, 37); the zipper reads out on qubit 59 (0.48 %),
    CZ mean 0.13 % (max 0.18 %), T2 at least 129 us. Dephasing alone damps towards zero and does not invert; a coherent
-   error during the long circuit (ZZ, detuning; dynamical decoupling was off) or a change at the 16:09 calibration are
-   candidates, not checked.
+   error during the long circuit (ZZ, detuning; dynamical decoupling was off) was a candidate; uniform ZZ and a change
+   in the reported calibration at 16:09 were checked afterwards and do not explain it (below).
 3. **Question 2 (a twin of a fresh calibration predicts the scale): yes for the zipper; not answerable for Qiskit.**
    On the device day (ibm_marrakesh, 9-day-old snapshot) the twin under-stated the zipper's signal 1.5-2.3x; here,
    with a calibration 1 hour old, scale 1.00. One job, one device: this does not separate "calibration age" from
