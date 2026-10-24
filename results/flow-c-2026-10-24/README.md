@@ -42,6 +42,22 @@ ibm_kingston instead of ibm_marrakesh). No rule, no arm comparison, no readout c
 4. The snapshot twin (ibm_marrakesh, 2026-10-13) is another device's twin; its column is reported and not read
    (amendment 1).
 
+## Exploratory, after the job (not pre-registered; scripts not in the repository)
+
+- **The calibration at submission (16:09:07) reports the same values** for all 24 qubits of both arms as the fetch of
+  15:26:59 (T1, T2, readout and sx errors identical; fetch of 16:40 CEST, target SHA-256 3a32f22658d60212…). The
+  inversion is not explained by a change in the reported calibration.
+- **Uniform static ZZ does not reproduce it.** The day twin plus 10 kHz static ZZ on every coupler (the stand-in's
+  crosstalk model on the fetched Target; 15 points of teacher 17, 64 trajectories): correlation with the twin 0.96,
+  with the device -0.58, the same as without ZZ.
+- **Per measured qubit** (teacher 17, 90 points; noiseless <Z> of the submitted circuit against the device's):
+  - zipper: all 10 qubits follow the noiseless values, correlation 0.81-0.99, slope 0.62-0.88;
+  - Qiskit: the signal is lost on most qubits (correlation -0.08 to +0.07 on 46, 27, 49, 45, 44), partly kept on
+    25, 26, 28 (+0.37 to +0.44, slope 0.19-0.38), and inverted on 43 (-0.55, the read-out qubit) and 29 (-0.24).
+  Qiskit's whole circuit, not one readout, ran far worse than its twin says. Where (a coupler, leakage, a qubit with a
+  two-level system near its frequency; three of its qubits have T2 of 29-33 us) is not found; finding it would need
+  device time.
+
 ## A flaw in the note (Claude's): the 90 points are all of one label
 
 flow_c_note.md says the first 90 test points have "labels balanced to within the draw". They do not: each teacher's
@@ -56,7 +72,7 @@ noiseless_90.json). Consequences:
 
 ## Files
 
-`fetch.json`; `device/` (manifest.json, submission.json, raw_counts.json.gz and its SHA-256); `runs/` (the 6
+`fetch.json`, `fetch_after.json` (16:40 CEST); `device/` (manifest.json, submission.json, raw_counts.json.gz and its SHA-256); `runs/` (the 6
 `toqb.device_reuse` records; pod paths written `<pod>/`, so their SHA-256 differ from the manifest's, which are in
 `job_sha256.txt` with the qpy files'); `flowc.md` / `flowc.json`; `noiseless_90.json` (noiseless P(1) of the submitted
 circuits by Qiskit's `Statevector`, home); `assemble.txt`, `times.txt`, `rust.txt`, `reuse.txt`, `logs/`. The qpy
