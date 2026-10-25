@@ -1,0 +1,17 @@
+n 5 start layouts 8 (minimum ring length) limit 4 shard 0/1
+layout 0 [0, 1, 2, 3, 4]: > 4
+layout 1 [0, 1, 2, 4, 3]: 4
+layout 2 [0, 1, 4, 2, 3]: > 4
+layout 3 [0, 1, 4, 3, 2]: 4
+layout 4 [0, 4, 1, 2, 3]: 4
+layout 5 [0, 4, 1, 3, 2]: > 4
+layout 6 [0, 4, 3, 1, 2]: 4
+layout 7 [0, 4, 3, 2, 1]: > 4
+n 5 optimal extra 4 CZ per layer 9 (restricted: start layouts of minimum ring length)
+start [0, 1, 2, 4, 3]
+   (cz, 1, 1, 2)
+   (czswap, 0, 0, 1)
+   (cz, 3, 4, 3)
+   (swap, 2, 2, 4)
+   (cz, 1, 0, 4)
+   (cz, 3, 2, 3)
