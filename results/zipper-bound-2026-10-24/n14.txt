@@ -1,0 +1,8 @@
+n 14, limit 17, 64 shards (bound_rs de3640b, run_bound14_pod.sh), CPU pod AMD EPYC 9575F, 32 vCPU, 30 workers, 2026-10-25 00:22 to about 01:07 UTC
+start layouts searched: 4096 (all, indices 0-4095)
+reaching extra 17 (31 CZ per layer):
+layout 3276 [0, 13, 12, 1, 2, 11, 10, 3, 4, 9, 8, 5, 6, 7]: 17
+layout 819 [0, 1, 2, 13, 12, 3, 4, 11, 10, 5, 6, 9, 8, 7]: 17
+all other 4094 start layouts: > 17
+n 14 optimal extra 17 CZ per layer 31 (restricted: start layouts of minimum ring length)
+worker seconds in all: 40687 (11.3 CPU hours); longest shard 2137 s
