@@ -76,5 +76,5 @@ line of that pair only. The relative order of any two nodes that are not ring ne
 one pair per SWAP. L1 is therefore a statement about orders: making every ring edge adjacent at some time forces at
 least floor((n - 3)/2) such pairs to change order. Not yet shown. Tried and too weak: per edge, the count of
 crossings with edges at ring distance 2 or more must reach 0 at some time; one plain SWAP can lower up to four such
-counts, which gives about n/8, not n/2. No published result on this problem was found (closest: circular sorting,
+counts, and the bound this gives is far below n/2. No published result on this problem was found (closest: circular sorting,
 Adin, Alon and Roichman).
