@@ -32,10 +32,10 @@ than 20 active qubits)
 **Read (no rule, nothing chosen from it).**
 
 - **Vanity:** the hole schedule has the fewest two-qubit gates and the shortest duration in every cell.
-- **What a device user needs (on TOQB's models, not a device):** with 1-4 holes (n = 10, 11, 16-19) the hole schedule
-  keeps the most signal at both depths: 1.2-1.4 times the zipper's at L = 8 and 1.2-7 times at L = 16 (n = 10, 11:
-  5 and 4.7-7). With 6-7 holes (n = 13, 14) it keeps the least at L = 16 (0.07-0.19). At n = 9 (3 holes, L = 16) and
-  n = 15 (5 holes) the arms are close. So the number of holes decides, and it is known from n by formula: the hole
+- **What a device user needs (on TOQB's models, not a device):** with 1-4 holes (n = 9-11, 16-19) the hole schedule
+  keeps the most signal in every cell but one (n = 9, L = 16: Qiskit 0.32 / 0.26 against 0.26 / 0.26): 1.3-2.2 times
+  the zipper's at L = 8 and 1.2-7 times at L = 16 (n = 10, 11: 4.7-7). With 6-7 holes (n = 13, 14) it keeps the least
+  at L = 16 (0.07-0.19); with 5 (n = 15) the arms are close. So the number of holes decides, and it is known from n by formula: the hole
   schedule for a cycle a few qubits longer than the ring, the zipper otherwise. Why many holes hurt is not checked
   (one reading: a hole not exactly |0> carries its error along each move, and 6-7 holes move every layer).
 - Qiskit varies most with n (L = 16: 0.40 at n = 14, 0.02-0.12 at n = 10, 11, 16) and could be run only where its
