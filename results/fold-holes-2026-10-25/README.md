@@ -44,6 +44,14 @@ circuit per n, L = 16, random angles, `snapshot:marrakesh`, durations from the T
 - Where a cycle of exactly n exists (n = 12, 20, 24, 28, 32), every method needs n CZ per layer and the holes add
   nothing. For n below 9 the zipper is cheaper (n = 6: 11 against 18).
 
-**Not done.** The cycle is found here by VF2 (a search; prototype only): a formula placement (the outline of a fixed
-row or cluster of cells, avoiding failed elements by rule) is still to be written. Not in any compiler; not run on a
+**Placement by formula (2026-10-25, later): `fold_place.py`, `fold_place.txt`.** The heavy-hex is read off the coupling
+graph (bridges: two neighbours not consecutive; rows: what is left without them; cells: between consecutive bridges
+of a row pair). The cycle is the outline of a fixed shape of cells: k cells side by side (8k + 4 qubits: 12, 20, 28),
+or k cells plus k2 cells side by side in the next row pair down (24, 32, 36, ...); the shortest length m >= n, and
+among those the first shape in a fixed order (row pairs top to bottom, cells left to right) whose qubits and couplers
+all work. No search over mappings and no error value decides. On FakeMarrakesh, FakeKingston, FakeFez (Heron r2) and
+FakeTorino (r1): lengths 12, 20, 24, 28, 32, 36, every cycle on the devices' couplers; n up to 36 (larger n needs a
+third family, not written). The cost table above used VF2's cycles of the same lengths, so its counts hold.
+
+**Not done.** Not in any compiler; not run on a
 device; one random model per n.
