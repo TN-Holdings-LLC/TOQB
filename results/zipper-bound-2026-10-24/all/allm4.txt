@@ -1,0 +1,5 @@
+n 4 start layouts 3 (all, up to symmetry) limit 1 shard 0/1
+layout 0 [0, 1, 2, 3]: > 1
+layout 1 [0, 1, 3, 2]: > 1
+layout 2 [0, 2, 1, 3]: > 1
+n 4 nothing found up to the limit

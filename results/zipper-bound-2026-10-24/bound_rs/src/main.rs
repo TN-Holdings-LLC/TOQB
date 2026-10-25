@@ -116,6 +116,50 @@ fn start_layouts(n: usize) -> Vec<Vec<usize>> {
     out
 }
 
+/// Every layout of the n ring nodes on the line (2026-10-25), one per class under the ring's symmetries (rotation and
+/// reflection of the labels) and the line's reflection: the minimum-length restriction removed (ZB_ALL=1).
+fn all_layouts(n: usize) -> Vec<Vec<usize>> {
+    use std::collections::HashSet;
+    fn canon(l: &[usize], n: usize) -> Vec<usize> {
+        let mut best: Option<Vec<usize>> = None;
+        for c in 0..n {
+            for refl in [false, true] {
+                let m: Vec<usize> = l.iter().map(|&q| if refl { (n + c - q) % n } else { (q + c) % n }).collect();
+                for rev in [false, true] {
+                    let mut v = m.clone();
+                    if rev {
+                        v.reverse();
+                    }
+                    if best.as_ref().map_or(true, |b| v < *b) {
+                        best = Some(v);
+                    }
+                }
+            }
+        }
+        best.unwrap()
+    }
+    let mut seen: HashSet<Vec<usize>> = HashSet::new();
+    let mut a: Vec<usize> = (0..n).collect();
+    // Heap's algorithm over all n! permutations
+    let mut c = vec![0usize; n];
+    seen.insert(canon(&a, n));
+    let mut i = 0;
+    while i < n {
+        if c[i] < i {
+            if i % 2 == 0 { a.swap(0, i); } else { a.swap(c[i], i); }
+            seen.insert(canon(&a, n));
+            c[i] += 1;
+            i = 0;
+        } else {
+            c[i] = 0;
+            i += 1;
+        }
+    }
+    let mut out: Vec<Vec<usize>> = seen.into_iter().collect();
+    out.sort();
+    out
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
     let n: usize = args[1].parse().unwrap();
@@ -127,7 +171,8 @@ fn main() {
         eid[b][a] = k as i32;
     }
     let mut s = S { n, edges, eid, full: (1u32 << n) - 1, seen: HashMap::new(), path: vec![], best: None };
-    let lays = start_layouts(n);
+    let all = env::var("ZB_ALL").map(|v| v == "1").unwrap_or(false);
+    let lays = if all { all_layouts(n) } else { start_layouts(n) };
     // Optional shard "k/K" (2026-10-25): only the start layouts with index i % K == k, so that several processes can
     // share one n; the limit is then not lowered by results found in other shards.
     let (shard, nshard): (usize, usize) = match args.get(3) {
@@ -137,7 +182,7 @@ fn main() {
         }
         None => (0, 1),
     };
-    println!("n {} start layouts {} limit {} shard {}/{}", n, lays.len(), limit, shard, nshard);
+    println!("n {} start layouts {} ({}) limit {} shard {}/{}", n, lays.len(), if all { "all, up to symmetry" } else { "minimum ring length" }, limit, shard, nshard);
     let mut results: Vec<(u32, Vec<usize>, Vec<(u8, usize, usize, usize)>)> = Vec::new();
     for (i, lay) in lays.iter().enumerate() {
         if i % nshard != shard {
@@ -173,7 +218,7 @@ fn main() {
     results.sort_by_key(|t| t.0);
     match results.first() {
         Some((b, lay, path)) => {
-            println!("n {} optimal extra {} CZ per layer {} (restricted: start layouts of minimum ring length)", n, b, n as u32 + b);
+            println!("n {} optimal extra {} CZ per layer {} ({})", n, b, n as u32 + b, if all { "every start layout" } else { "restricted: start layouts of minimum ring length" });
             println!("start {:?}", lay);
             for st in path {
                 let nm = ["cz", "czswap", "swap"][st.0 as usize];

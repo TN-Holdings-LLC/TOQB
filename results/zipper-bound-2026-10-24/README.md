@@ -18,3 +18,20 @@ printed in `nN.txt` (cloud container, 2 CPUs).
 - **Limit of the claim (unchanged from bound.py):** the search starts from every layout of minimum total ring length
   (256 at n = 10), not from longer layouts; within that class the zipper is optimal for n = 4, 6, 8, 10, 12 and 14. Whether 5n/2 - 4 is a lower bound for
   every start layout and every even n is not shown by any search here.
+
+## Every start layout, n = 4, 6, 8 and 10 (2026-10-25)
+
+`ZB_ALL=1 zipper_bound N LIMIT [k/K]` searches every layout of the n ring nodes on the line, one per class under the
+ring's symmetries (rotation and reflection of the labels) and the line's reflection, instead of the minimum-length
+layouts only. Output in `all/` (cloud container, 2 CPUs; n = 10 in two shards).
+
+| n | start layouts (classes) | least extra / CZ per layer | start layouts reaching it | search below it |
+|---|---|---|---|---|
+| 4 | 3 | 2 / 6 | 1: (0, 1, 2, 3) | nothing at extra 1 (`allm4.txt`) |
+| 6 | 38 | 5 / 11 | 1: (0, 1, 2, 5, 4, 3) | nothing at extra 4 (`allm6.txt`) |
+| 8 | 1,320 | 8 / 16 | 1: (0, 1, 2, 7, 6, 3, 4, 5) | nothing at extra 7 (`allm8.txt`) |
+| 10 | 91,296 | 11 / 21 | 1: (0, 1, 2, 9, 8, 3, 4, 7, 6, 5) | none of the other 91,295 reaches 11 or less |
+
+For n = 4 to 10, **5n/2 - 4 is the least over every start layout**, and the zipper's start layout is the only one
+(up to symmetry) that reaches it. The restriction to minimum-length layouts removed no better schedule here. Still a
+search, not a proof: n >= 12 over every layout, and every even n, are not shown.
