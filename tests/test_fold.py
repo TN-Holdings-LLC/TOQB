@@ -73,3 +73,17 @@ def test_refuses_other_circuits():
     qc.cz(0, 2)
     with pytest.raises(F.FoldRefused):
         F.read_ring(qc)
+
+
+@pytest.mark.parametrize("n", [13, 15, 17])
+def test_pend_arm_is_exact(n):
+    """fold:pend (2026-10-26): the 12-cycle with n - 12 ring nodes hung off it, n + (n - 12) two-qubit gates per
+    layer, n active qubits, exact on every clbit."""
+    arm = S.Arm("fold:pend", get_device("snapshot:marrakesh"))
+    for L in (2, 4):
+        qc = model(n, L, 10 * n + L)
+        c = arm.compile(qc)
+        assert max(abs(a - b) for a, b in zip(p1_all(c), p1_all(qc))) < 1e-9
+        assert arm.arm.stats["last"]["m"] == 12
+        assert sum(1 for i in c.data if len(i.qubits) == 2) == L * (2 * n - 12)
+        assert len({c.find_bit(q).index for i in c.data for q in i.qubits}) == n

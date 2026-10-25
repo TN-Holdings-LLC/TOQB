@@ -16,7 +16,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-FOLD_VERSION = "toqb fold 2026-10-25.1 (hole schedule on a formula-placed heavy-hex cycle)"
+FOLD_VERSION = "toqb fold 2026-10-26.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle)"
 
 
 class FoldRefused(RuntimeError):
@@ -232,15 +232,137 @@ def hole_circuit(qc, cyc, nq):
     return out, [start[r] for r in range(n)], [cyc[pos[r]] for r in range(n)]
 
 
+# ------------------------------------------------------------------------------------------------ pend (2026-10-26)
+# The ring on the longest formula-placed cycle of m <= n qubits, its n - m extra nodes hung off the cycle on outside
+# neighbours ("pendants"); per layer each pendant node trades places with its cycle node by one CZ+SWAP block (two
+# two-qubit gates): n + (n - m) two-qubit gates per layer. Analysis arm `fold:pend`, not a PSF-Zero compiler.
+
+def _working(target, name, qa):
+    p = target[name].get(qa) if name in target.operation_names else None
+    return p is not None and (p.error is None or p.error < 1)
+
+
+def pend_place(target, n):
+    """(m, shape name, cycle qubits, {cycle position: pendant qubit}) for a ring of n on `target`, or None: the
+    longest cycle of m <= n qubits (the shapes and order of `fold_place`) whose qubits and couplers all work and which
+    has n - m cycle nodes with a working outside neighbour; pendants spread evenly over those nodes in cycle order,
+    each node's smallest working outside neighbour not used before."""
+    edges = {tuple(sorted(qa)) for qa in target["cz"] if qa is not None and _working(target, "cz", qa)}
+    nb = defaultdict(set)
+    for a, b in edges:
+        nb[a].add(b)
+        nb[b].add(a)
+    ok = lambda q: _working(target, "sx", (q,)) and _working(target, "measure", (q,))  # noqa: E731
+    cands = shapes(lattice(edges, target.num_qubits))
+    for m in sorted({c[0] for c in cands}, reverse=True):
+        if m > n:
+            continue
+        k = n - m
+        for length, name, cyc in cands:
+            if length != m or not all(ok(q) for q in cyc):
+                continue
+            if not all(tuple(sorted((cyc[i], cyc[(i + 1) % m]))) in edges for i in range(m)):
+                continue
+            inside, used, spots = set(cyc), set(), []
+            for p, q in enumerate(cyc):
+                outs = sorted(x for x in nb[q] if x not in inside and ok(x))
+                if outs:
+                    spots.append((p, outs))
+            if len(spots) < k:
+                continue
+            pick = [spots[(j * len(spots)) // k] for j in range(k)] if k else []
+            pend = {}
+            for p, outs in pick:
+                free = [x for x in outs if x not in used]
+                if not free:
+                    break
+                pend[p] = free[0]
+                used.add(free[0])
+            if len(pend) == k:
+                return m, name, cyc, pend
+    return None
+
+
+def pend_circuit(qc, cyc, pend, nq):
+    """The pendant schedule of `qc` on the cycle `cyc` with pendants {cycle position: device qubit}:
+    (circuit, initial device qubit of each ring index, final one)."""
+    from qiskit import QuantumCircuit
+    n, layers, final, meas = read_ring(qc)
+    m = len(cyc)
+    oc, op, r = [None] * m, {}, 0
+    for p in range(m):
+        oc[p] = r
+        r += 1
+        if p in pend:
+            op[p] = r
+            r += 1
+    if r != n:
+        raise FoldRefused(f"pend: {m} + {len(pend)} places for {n} ring nodes")
+
+    def where():
+        w = {v: cyc[p] for p, v in enumerate(oc)}
+        w.update({v: pend[p] for p, v in op.items()})
+        return w
+
+    start = where()
+    out = QuantumCircuit(nq, qc.num_clbits)
+    for layer in layers:
+        w = where()
+        for i in range(n):
+            for o in layer[i]:
+                out.append(o, [w[i]])
+        need = {frozenset((i, (i + 1) % n)) for i in range(n)}
+        while need:
+            progress = False
+            rounds = []
+            for p in range(m):  # plain CZ on ring edges between neighbouring cycle nodes
+                e = frozenset((oc[p], oc[(p + 1) % m]))
+                if e in need:
+                    for rd in rounds:
+                        if all({p, (p + 1) % m}.isdisjoint({q, (q + 1) % m}) for q in rd):
+                            rd.append(p)
+                            break
+                    else:
+                        rounds.append([p])
+                    need.discard(e)
+            for rd in rounds:
+                for p in rd:
+                    out.cz(cyc[p], cyc[(p + 1) % m])
+                progress = True
+            for p in sorted(op):  # a CZ+SWAP block where the cycle node's other ring edge is done
+                u, v = oc[p], op[p]
+                e = frozenset((u, v))
+                other = frozenset((u, (u - 1) % n)) if (u + 1) % n == v else frozenset((u, (u + 1) % n))
+                if e in need and other not in need:
+                    a, b = cyc[p], pend[p]
+                    out.h(b)  # CZ then SWAP on (a, b) = H(b), CX(b, a), CX(a, b), H(a)
+                    out.cx(b, a)
+                    out.cx(a, b)
+                    out.h(a)
+                    oc[p], op[p] = v, u
+                    need.discard(e)
+                    progress = True
+            if not progress:
+                raise FoldRefused("pend: no schedule step left")
+    w = where()
+    for i in range(n):
+        for o in final[i]:
+            out.append(o, [w[i]])
+    for q, c in meas:
+        out.measure(w[q], c)
+    return out, [start[i] for i in range(n)], [w[i] for i in range(n)]
+
+
 # ------------------------------------------------------------------------------------------------ the arm
 
 class FoldLoop:
-    """`fold:template`: the hole schedule, built and transpiled once per structure, the angles bound per call."""
+    """`fold:template`: the hole schedule; `fold:pend` (2026-10-26): the pendant schedule; each built and transpiled
+    once per structure, the angles bound per call."""
 
     def __init__(self, mode="template"):
-        if mode != "template":
-            raise ValueError("fold: only the template mode")
-        self.mode, self.name = mode, "fold:template"
+        if mode not in ("template", "pend"):
+            raise ValueError("fold: the modes are template (holes) and pend (pendants)")
+        self.mode, self.name = mode, f"fold:{mode}"
         self.stats = dict(template_builds=0, refused=0)
 
     def version(self):
@@ -267,12 +389,20 @@ class FoldLoop:
                 op.params = [pv[k + j] for j in range(len(op.params))]
                 k += len(op.params)
             par.append(op, ins.qubits, ins.clbits)
-        placed = fold_place(self.target, qc.num_qubits)
-        if placed is None:
-            self.stats["refused"] += 1
-            raise FoldRefused(f"no cycle of >= {qc.num_qubits} qubits by the formula")
-        m, shape, cyc = placed
-        hc, init, fin = hole_circuit(par, cyc, self.target.num_qubits)
+        if self.mode == "pend":
+            placed = pend_place(self.target, qc.num_qubits)
+            if placed is None:
+                self.stats["refused"] += 1
+                raise FoldRefused(f"pend: no cycle of <= {qc.num_qubits} qubits with enough pendants by the formula")
+            m, shape, cyc, pend = placed
+            hc, init, fin = pend_circuit(par, cyc, pend, self.target.num_qubits)
+        else:
+            placed = fold_place(self.target, qc.num_qubits)
+            if placed is None:
+                self.stats["refused"] += 1
+                raise FoldRefused(f"no cycle of >= {qc.num_qubits} qubits by the formula")
+            m, shape, cyc = placed
+            hc, init, fin = hole_circuit(par, cyc, self.target.num_qubits)
         tq = self.pm.run(hc)
         self.stats["template_builds"] += 1
         self.stats["last"] = dict(m=m, shape=str(shape))
