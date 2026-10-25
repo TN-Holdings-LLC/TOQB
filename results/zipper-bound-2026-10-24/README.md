@@ -35,3 +35,25 @@ layouts only. Output in `all/` (cloud container, 2 CPUs; n = 10 in two shards).
 For n = 4 to 10, **5n/2 - 4 is the least over every start layout**, and the zipper's start layout is the only one
 (up to symmetry) that reaches it. The restriction to minimum-length layouts removed no better schedule here. Still a
 search, not a proof: n >= 12 over every layout, and every even n, are not shown.
+
+## Towards a proof (2026-10-25; work in progress, nothing proven)
+
+The cost of a schedule is s + 3t (s CZ+SWAP blocks, t plain SWAPs). The bound 5n/2 - 4 CZ per layer (extra 3n/2 - 4)
+follows for every even n from two statements:
+
+- **L1.** Every schedule needs t >= n/2 - 2 plain SWAPs.
+- **L2.** A schedule with exactly t = n/2 - 2 needs s >= 2 CZ+SWAP blocks.
+
+Then t >= n/2 - 1 costs at least 3n/2 - 3, and t = n/2 - 2 costs at least 3(n/2 - 2) + 2 = 3n/2 - 4; the zipper has
+t = n/2 - 2 and s = 2 (as found by the searches at n = 10 and 12).
+
+**Checked exactly, not proven:** `hstar/` computes the exact cost-to-go from every state (every layout, every set of
+done edges) by a reverse Dijkstra, with the move costs as arguments (`hstar N CZSWAP_COST SWAP_COST`). Output in
+`hstar/frontier.txt`: with CZ+SWAP free and SWAP 1, the least is n/2 - 2 (L1); with costs 1 and 20, the least is
+20 (n/2 - 2) + 2 (L1 and L2 together); with costs 1 and 3, the least is 3n/2 - 4; for n = 4, 6 and 8, over every start
+layout.
+
+**A structural fact behind L1.** A CZ+SWAP exchanges two ring neighbours, so it changes the relative order on the
+line of that pair only. The relative order of any two nodes that are not ring neighbours changes only by plain SWAPs,
+one pair per SWAP. L1 is therefore a statement about orders: making every ring edge adjacent at some time forces at
+least n/2 - 2 such pairs to change order. Not yet shown.
