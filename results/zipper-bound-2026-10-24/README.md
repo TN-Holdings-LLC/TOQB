@@ -53,7 +53,28 @@ done edges) by a reverse Dijkstra, with the move costs as arguments (`hstar N CZ
 20 (n/2 - 2) + 2 (L1 and L2 together); with costs 1 and 3, the least is 3n/2 - 4; for n = 4, 6 and 8, over every start
 layout.
 
+**More checks (2026-10-25, later).** `hstar/frontier.txt` now covers n = 4 to 9, odd n included (n = 9 in the cloud
+container, about 6 min per cost setting), and the relaxed problem (`HSTAR_RELAX=1`: ring neighbours adjacent on the
+line may swap at cost 0 without a CZ):
+
+| n | least extra cost (costs 1, 3) | least plain SWAPs t (CZ+SWAP free) | same, relaxed | costs 1, 20 |
+|---|---|---|---|---|
+| 4 | 2 | 0 | 0 | 2 = 20*0 + 2 |
+| 5 | 4 | 1 | 1 | 21 = 20*1 + 1 |
+| 6 | 5 | 1 | 1 | 22 = 20*1 + 2 |
+| 7 | 7 | 2 | 2 | 41 = 20*2 + 1 |
+| 8 | 8 | 2 | 2 | 42 = 20*2 + 2 |
+| 9 | 10 | 3 | (not run) | 61 = 20*3 + 1 |
+
+So for every n from 4 to 9: t >= floor((n - 3)/2) plain SWAPs; at that count at least 2 CZ+SWAP blocks for even n and
+1 for odd n; the least extra cost is floor((3n - 7)/2), i.e. 5n/2 - 4 CZ per layer for even n and (5n - 7)/2 for odd n
+(9, 14 and 19 at n = 5, 7 and 9: the target for a zipper of odd n). The relaxed problem gives the same t up to n = 8:
+L1 does not depend on the CZ+SWAP blocks needing an undone edge; it is a statement about orders alone.
+
 **A structural fact behind L1.** A CZ+SWAP exchanges two ring neighbours, so it changes the relative order on the
 line of that pair only. The relative order of any two nodes that are not ring neighbours changes only by plain SWAPs,
 one pair per SWAP. L1 is therefore a statement about orders: making every ring edge adjacent at some time forces at
-least n/2 - 2 such pairs to change order. Not yet shown.
+least floor((n - 3)/2) such pairs to change order. Not yet shown. Tried and too weak: per edge, the count of
+crossings with edges at ring distance 2 or more must reach 0 at some time; one plain SWAP can lower up to four such
+counts, which gives about n/8, not n/2. No published result on this problem was found (closest: circular sorting,
+Adin, Alon and Roichman).
