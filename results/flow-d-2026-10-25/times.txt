@@ -1,0 +1,8 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb 76ea393 Declare flow D (owner's go of 2026-10-25, a GPU pod; report only, no rule): toqb.fold_lam, the signal (lam) each arm keeps on the twin and the stand-in against the noiseless model, fold:template / psfai:template_zip / qiskit:2:target:template, n = 9-19, L = 8 then 16, 24 inputs, 256 trajectories; gpu/fold_lam.sh. fold_lam_note.md SHA-256 06e80a2d6930acaed849448f79e5ca72242f484b4863ee8dc3788a5a68dc455f
+psf-zero fab36026 AI front end a25 and psfbind ring r3 (owner, 2026-10-25): the zipper schedule also for odd n (item 49): one CZ+SWAP block at the left end, (n-3)/2 interior SWAPs, (5n-7)/2 CZ per layer, the least found by exhaustive search (TOQB results/zipper-odd-2026-10-25). Even n and calls without PSF_RING_ZIP: a24's output bit for bit (check_a25: 544 + 288 calls); odd n built on all 256 calls with every Rust template equal to the Python's, the zipper chosen for every odd ring size; test_a25 13 passed, a24's tests pass on r3
+note 06e80a2d6930acaed849448f79e5ca72242f484b4863ee8dc3788a5a68dc455f  prereg/drafts-2026-10-25/fold_lam_note.md
+start 2026-10-25 12:35:42 CET
+amend1 start 2026-10-25 13:11:46 CET
+L 8b done 2026-10-25 13:46:33 CET
+L 16 done 2026-10-25 14:58:41 CET
