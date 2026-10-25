@@ -17,7 +17,7 @@ PY
   # with PSF_RUST_TEMPLATE=check; a22 ignores both variables and is checked by TOQB_RUST_TEMPLATE=check as before
   export TOQB_FAST_PSF=1 TOQB_RUST_TEMPLATE=check PSF_RUST_TEMPLATE=check \
     PSF_BIND_LIB="$PSF/rust/psfbind/target/release/libpsfbind.so"
-  echo "RUST=1: TOQB_FAST_PSF=1 TOQB_RUST_TEMPLATE=check PSF_RUST_TEMPLATE=check, front end ${PSF_AI_FILE:-a24 (default)} (psf-zero $(git -C "$PSF" log --oneline -1 | cut -c1-7))" | tee "$OUT/rust.txt"
+  echo "RUST=1: TOQB_FAST_PSF=1 TOQB_RUST_TEMPLATE=check PSF_RUST_TEMPLATE=check, front end ${PSF_AI_FILE:-a25 (default)} (psf-zero $(git -C "$PSF" log --oneline -1 | cut -c1-7))" | tee "$OUT/rust.txt"
 else
   echo "RUST=0: the Python path" | tee "$OUT/rust.txt"
 fi
