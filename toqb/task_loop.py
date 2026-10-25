@@ -533,6 +533,9 @@ def make_loop_arm(spec):
         return QiskitLoop(int(parts[1]), parts[3])
     if parts[0] == "psfai" and len(parts) == 2:
         return PSFAILoop(parts[1])
+    if parts[0] == "fold" and len(parts) == 2:  # 2026-10-25: the hole schedule (toqb.fold), analysis arm
+        from toqb.fold import FoldLoop
+        return FoldLoop(parts[1])
     raise ValueError(f"unknown loop arm {spec!r}")
 
 

@@ -53,5 +53,25 @@ all work. No search over mappings and no error value decides. On FakeMarrakesh, 
 FakeTorino (r1): lengths 12, 20, 24, 28, 32, 36, every cycle on the devices' couplers; n up to 36 (larger n needs a
 third family, not written). The cost table above used VF2's cycles of the same lengths, so its counts hold.
 
-**Not done.** Not in any compiler; not run on a
+**As a TOQB arm (2026-10-25, later): `fold:template` (`toqb/fold.py`, `tests/test_fold.py`).** The hole schedule on
+the formula-placed cycle, built and transpiled once per structure (level 1, layout fixed, no routing), angles bound
+per call, as `qiskit:L:target:template` (single-qubit runs are not merged into closed-form angles as PSF-Zero's
+templates do). Tests: exact against the logical model on every clbit (n = 9, 10, 11; L = 2, 4; bound twice), n + 2(m -
+n) two-qubit gates per layer, a failed coupler avoided, other circuits refused.
+
+**Signal kept on the twin and the stand-in** (`twin_lam.py`; one random model, 12 random inputs, L = 8, 128
+trajectories; z ~ lam z_noiseless + delta; cloud container, CPU):
+
+| n | twin lam: fold / zipper | stand-in lam: fold / zipper | two-qubit gates: fold / zipper | us: fold / zipper |
+|---|---|---|---|---|
+| 9 | 0.636 / 0.377 | -- | 120 / 152 | 6.4 / 7.2 |
+| 10 | 0.699 / 0.357 | 0.652 / 0.427 | 112 / 168 | 5.5 / 7.2 |
+| 11 | 0.843 / 0.439 | 0.812 / 0.448 | 104 / 192 | 5.0 / 7.2 |
+
+On both noise models the hole schedule keeps 1.5-2.0 times the zipper's signal at L = 8 (shots for the same
+precision scale as 1/lam^2: about 2.3-3.8 times fewer). Correlation with the noiseless model 0.994-0.999 against
+0.965-0.982. Qiskit and L = 16 were not run here (14-16 active qubits and 16 layers are slow on this CPU; for the GPU).
+The twin and the stand-in are TOQB's models of a 2026-10-13 calibration, not a device.
+
+**Not done.** Not in PSF-Zero's compiler; not run on a
 device; one random model per n.

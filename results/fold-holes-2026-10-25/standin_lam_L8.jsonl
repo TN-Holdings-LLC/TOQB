@@ -1,0 +1,4 @@
+{"n": 10, "L": 8, "arm": "fold:template", "lam": 0.6517, "delta": -0.0025, "corr": 0.994, "q2": 112, "us": 5.54, "s": 107.6}
+{"n": 10, "L": 8, "arm": "psfai:template_zip", "lam": 0.4268, "delta": 0.0054, "corr": 0.9779, "q2": 168, "us": 7.2, "s": 25.4}
+{"n": 11, "L": 8, "arm": "fold:template", "lam": 0.8117, "delta": 0.0026, "corr": 0.9986, "q2": 104, "us": 4.95, "s": 97.9}
+{"n": 11, "L": 8, "arm": "psfai:template_zip", "lam": 0.4482, "delta": 0.0046, "corr": 0.965, "q2": 192, "us": 7.2, "s": 69.5}
