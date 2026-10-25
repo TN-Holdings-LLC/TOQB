@@ -44,9 +44,10 @@ Arms ("compiler:mode"):
                              compiled by `compile_for_model_circuit`, and counted).
   psfai:recompile            `compile_for_model_circuit` every time.
 The PSF-Zero files come from $PSF_ZERO_REPO: psf_compile.py ($PSF_COMPILE_FILE, default the release at its root) and
-the front end ($PSF_AI_FILE, default patches/psf_ai_compile_a24_2026-10-22/psf_ai_compile.py since 2026-10-24; a22
-before). a24 builds the ring template in Rust (psfbind ring r2: $PSF_BIND_LIB or rust/psfbind/target/release) and
-has the zipper as an option; TOQB runs `psfai:template` with the option off and `psfai:template_zip` with it on
+the front end ($PSF_AI_FILE, default patches/psf_ai_compile_a25_2026-10-25/psf_ai_compile.py since 2026-10-25, a24
+from 2026-10-24, a22 before; a25 is a24 with the zipper also for odd n, results/zipper-odd-2026-10-25, and needs
+psfbind ring r3). a24 builds the ring template in Rust (psfbind ring r2: $PSF_BIND_LIB or rust/psfbind/target/release)
+and has the zipper as an option; TOQB runs `psfai:template` with the option off and `psfai:template_zip` with it on
 (PSF_RING_ZIP set per call). On the marrakesh snapshot a24 builds both arms' circuits instruction for instruction as
 a22 / c61 with toqb.ring_zip did (results/a24-identity-2026-10-24). Earlier runs set a22 and c61
 (patches/psf_compile_c61_2026-10-15/psf_compile.py as $PSF_COMPILE_FILE) explicitly in their scripts.
@@ -398,7 +399,7 @@ class PSFAILoop:
         if not repo:
             raise RuntimeError("set PSF_ZERO_REPO to a PSF-Zero checkout")
         pc_file = os.environ.get("PSF_COMPILE_FILE", os.path.join(repo, "psf_compile.py"))
-        ai_file = os.environ.get("PSF_AI_FILE", os.path.join(repo, "patches", "psf_ai_compile_a24_2026-10-22",
+        ai_file = os.environ.get("PSF_AI_FILE", os.path.join(repo, "patches", "psf_ai_compile_a25_2026-10-25",
                                                              "psf_ai_compile.py"))
         sys.path[:0] = [os.path.join(repo, "benchmarks"), repo]
         here = os.getcwd()

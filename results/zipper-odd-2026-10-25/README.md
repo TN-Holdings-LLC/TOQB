@@ -26,5 +26,9 @@ function returns exactly `ring_rounds_zip`'s rounds (checked for n = 4 to 40), s
   state (`results/zipper-bound-2026-10-24/hstar`) gives the same least for n = 5, 7 and 9 from every start layout.
   As for even n, this is a search result, not a proof for every n.
 
-**Not done.** The compilers are unchanged: TOQB's `ring_zip.py` and PSF-Zero's a24 still refuse odd n. Using the odd
-zipper in a compiler is a change to that compiler and waits for the owner's decision.
+**In the compilers (owner, 2026-10-25: "a change of specification is fine").** PSF-Zero `fab3602`: AI front end a25
+(item 49) and `rust/psfbind` ring r3 build this schedule for odd n with `PSF_RING_ZIP=1`; every other output is a24's,
+bit for bit (PSF-Zero `patches/psf_ai_compile_a25_2026-10-25/check_a25_result.txt`). TOQB's default front end is a25
+from this commit on (`toqb/task_loop.py`); `tests/test_a25_odd_zip.py`: the `psfai:template_zip` arm on the marrakesh
+snapshot builds n = 5, 7, 9, 11 at L = 2, 4 with (5n - 7)/2 CZ per layer and the logical model's P(1) (statevector,
+to 1e-9). TOQB's own `ring_zip.py` (the prototype's copy, report only) stays even-only. Not run on a device.

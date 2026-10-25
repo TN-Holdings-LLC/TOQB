@@ -1,4 +1,4 @@
-"""The a24 switch (2026-10-24): with the default front end (a24), TOQB's psfai:template and psfai:template_zip arms
+"""The a24 switch (2026-10-24): with the default front end (a24; a25 since 2026-10-25, the same output for even n), TOQB's psfai:template and psfai:template_zip arms
 compile the S2R model instruction for instruction as they did on a22 / c61 (toqb.zip_a24_check --via-arm). Needs
 PSF-Zero with rust/psfbind built (skipped without)."""
 import json
