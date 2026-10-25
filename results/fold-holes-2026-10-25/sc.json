@@ -1,0 +1,490 @@
+{
+ "device": "snapshot:marrakesh",
+ "arms": [
+  "psfai:template",
+  "psfai:template_zip",
+  "qiskit:2:target:template"
+ ],
+ "rows": [
+  {
+   "arm": "psfai:template",
+   "n": 9,
+   "L": 16,
+   "q2": 432,
+   "duration_us": 18.02,
+   "active": 9,
+   "compile_s": 0.5,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template",
+   "n": 10,
+   "L": 16,
+   "q2": 448,
+   "duration_us": 18.02,
+   "active": 10,
+   "compile_s": 0.16,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template",
+   "n": 11,
+   "L": 16,
+   "q2": 528,
+   "duration_us": 18.02,
+   "active": 11,
+   "compile_s": 0.17,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template",
+   "n": 13,
+   "L": 16,
+   "q2": 640,
+   "duration_us": 18.02,
+   "active": 13,
+   "compile_s": 0.26,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template",
+   "n": 14,
+   "L": 16,
+   "q2": 656,
+   "duration_us": 18.02,
+   "active": 14,
+   "compile_s": 0.23,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template",
+   "n": 15,
+   "L": 16,
+   "q2": 736,
+   "duration_us": 18.02,
+   "active": 15,
+   "compile_s": 0.22,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template",
+   "n": 16,
+   "L": 16,
+   "q2": 784,
+   "duration_us": 18.02,
+   "active": 16,
+   "compile_s": 0.28,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template",
+   "n": 17,
+   "L": 16,
+   "q2": 848,
+   "duration_us": 18.02,
+   "active": 17,
+   "compile_s": 0.29,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template",
+   "n": 18,
+   "L": 16,
+   "q2": 864,
+   "duration_us": 18.02,
+   "active": 18,
+   "compile_s": 0.3,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template",
+   "n": 19,
+   "L": 16,
+   "q2": 944,
+   "duration_us": 18.02,
+   "active": 19,
+   "compile_s": 0.31,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template",
+   "n": 21,
+   "L": 16,
+   "q2": 1056,
+   "duration_us": 18.02,
+   "active": 21,
+   "compile_s": 0.35,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template",
+   "n": 22,
+   "L": 16,
+   "q2": 1072,
+   "duration_us": 18.02,
+   "active": 22,
+   "compile_s": 0.39,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template",
+   "n": 23,
+   "L": 16,
+   "q2": 1152,
+   "duration_us": 18.02,
+   "active": 23,
+   "compile_s": 0.43,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template",
+   "n": 25,
+   "L": 16,
+   "q2": 1264,
+   "duration_us": 18.02,
+   "active": 25,
+   "compile_s": 0.37,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template",
+   "n": 26,
+   "L": 16,
+   "q2": 1280,
+   "duration_us": 18.02,
+   "active": 26,
+   "compile_s": 0.59,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template",
+   "n": 30,
+   "L": 16,
+   "q2": 1488,
+   "duration_us": 18.02,
+   "active": 30,
+   "compile_s": 0.95,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template_zip",
+   "n": 9,
+   "L": 16,
+   "q2": 304,
+   "duration_us": 11.652,
+   "active": 9,
+   "compile_s": 0.13,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template_zip",
+   "n": 10,
+   "L": 16,
+   "q2": 336,
+   "duration_us": 11.652,
+   "active": 10,
+   "compile_s": 0.13,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template_zip",
+   "n": 11,
+   "L": 16,
+   "q2": 384,
+   "duration_us": 11.652,
+   "active": 11,
+   "compile_s": 0.14,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template_zip",
+   "n": 13,
+   "L": 16,
+   "q2": 464,
+   "duration_us": 11.652,
+   "active": 13,
+   "compile_s": 0.13,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template_zip",
+   "n": 14,
+   "L": 16,
+   "q2": 496,
+   "duration_us": 11.652,
+   "active": 14,
+   "compile_s": 0.2,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template_zip",
+   "n": 15,
+   "L": 16,
+   "q2": 544,
+   "duration_us": 11.652,
+   "active": 15,
+   "compile_s": 0.2,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template_zip",
+   "n": 16,
+   "L": 16,
+   "q2": 576,
+   "duration_us": 11.652,
+   "active": 16,
+   "compile_s": 0.28,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template_zip",
+   "n": 17,
+   "L": 16,
+   "q2": 624,
+   "duration_us": 11.652,
+   "active": 17,
+   "compile_s": 0.18,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template_zip",
+   "n": 18,
+   "L": 16,
+   "q2": 656,
+   "duration_us": 11.652,
+   "active": 18,
+   "compile_s": 0.27,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template_zip",
+   "n": 19,
+   "L": 16,
+   "q2": 704,
+   "duration_us": 11.652,
+   "active": 19,
+   "compile_s": 0.26,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template_zip",
+   "n": 21,
+   "L": 16,
+   "q2": 784,
+   "duration_us": 11.652,
+   "active": 21,
+   "compile_s": 0.28,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template_zip",
+   "n": 22,
+   "L": 16,
+   "q2": 816,
+   "duration_us": 11.652,
+   "active": 22,
+   "compile_s": 0.34,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template_zip",
+   "n": 23,
+   "L": 16,
+   "q2": 864,
+   "duration_us": 11.668,
+   "active": 23,
+   "compile_s": 0.34,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template_zip",
+   "n": 25,
+   "L": 16,
+   "q2": 944,
+   "duration_us": 12.42,
+   "active": 25,
+   "compile_s": 0.31,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template_zip",
+   "n": 26,
+   "L": 16,
+   "q2": 976,
+   "duration_us": 12.42,
+   "active": 26,
+   "compile_s": 0.48,
+   "ok": true
+  },
+  {
+   "arm": "psfai:template_zip",
+   "n": 30,
+   "L": 16,
+   "q2": 1136,
+   "duration_us": 12.42,
+   "active": 30,
+   "compile_s": 0.8,
+   "ok": true
+  },
+  {
+   "arm": "qiskit:2:target:template",
+   "n": 9,
+   "L": 16,
+   "q2": 297,
+   "duration_us": 29.948,
+   "active": 12,
+   "compile_s": 0.11,
+   "ok": true
+  },
+  {
+   "arm": "qiskit:2:target:template",
+   "n": 10,
+   "L": 16,
+   "q2": 506,
+   "duration_us": 48.216,
+   "active": 14,
+   "compile_s": 0.09,
+   "ok": true
+  },
+  {
+   "arm": "qiskit:2:target:template",
+   "n": 11,
+   "L": 16,
+   "q2": 493,
+   "duration_us": 43.992,
+   "active": 16,
+   "compile_s": 0.11,
+   "ok": true
+  },
+  {
+   "arm": "qiskit:2:target:template",
+   "n": 13,
+   "L": 16,
+   "q2": 571,
+   "duration_us": 57.124,
+   "active": 20,
+   "compile_s": 0.14,
+   "ok": true
+  },
+  {
+   "arm": "qiskit:2:target:template",
+   "n": 14,
+   "L": 16,
+   "q2": 530,
+   "duration_us": 52.272,
+   "active": 20,
+   "compile_s": 0.13,
+   "ok": true
+  },
+  {
+   "arm": "qiskit:2:target:template",
+   "n": 15,
+   "L": 16,
+   "q2": 699,
+   "duration_us": 69.284,
+   "active": 24,
+   "compile_s": 0.17,
+   "ok": true
+  },
+  {
+   "arm": "qiskit:2:target:template",
+   "n": 16,
+   "L": 16,
+   "q2": 968,
+   "duration_us": 99.92,
+   "active": 16,
+   "compile_s": 0.17,
+   "ok": true
+  },
+  {
+   "arm": "qiskit:2:target:template",
+   "n": 17,
+   "L": 16,
+   "q2": 629,
+   "duration_us": 59.856,
+   "active": 24,
+   "compile_s": 0.24,
+   "ok": true
+  },
+  {
+   "arm": "qiskit:2:target:template",
+   "n": 18,
+   "L": 16,
+   "q2": 639,
+   "duration_us": 56.048,
+   "active": 22,
+   "compile_s": 0.28,
+   "ok": true
+  },
+  {
+   "arm": "qiskit:2:target:template",
+   "n": 19,
+   "L": 16,
+   "q2": 967,
+   "duration_us": 95.464,
+   "active": 32,
+   "compile_s": 0.23,
+   "ok": true
+  },
+  {
+   "arm": "qiskit:2:target:template",
+   "n": 21,
+   "L": 16,
+   "q2": 894,
+   "duration_us": 86.336,
+   "active": 32,
+   "compile_s": 0.28,
+   "ok": true
+  },
+  {
+   "arm": "qiskit:2:target:template",
+   "n": 22,
+   "L": 16,
+   "q2": 652,
+   "duration_us": 60.424,
+   "active": 28,
+   "compile_s": 0.29,
+   "ok": true
+  },
+  {
+   "arm": "qiskit:2:target:template",
+   "n": 23,
+   "L": 16,
+   "q2": 1043,
+   "duration_us": 96.24,
+   "active": 33,
+   "compile_s": 0.36,
+   "ok": true
+  },
+  {
+   "arm": "qiskit:2:target:template",
+   "n": 25,
+   "L": 16,
+   "q2": 1571,
+   "duration_us": 155.336,
+   "active": 38,
+   "compile_s": 0.54,
+   "ok": true
+  },
+  {
+   "arm": "qiskit:2:target:template",
+   "n": 26,
+   "L": 16,
+   "q2": 1412,
+   "duration_us": 128.232,
+   "active": 45,
+   "compile_s": 0.57,
+   "ok": true
+  },
+  {
+   "arm": "qiskit:2:target:template",
+   "n": 30,
+   "L": 16,
+   "q2": 2102,
+   "duration_us": 187.552,
+   "active": 40,
+   "compile_s": 1.2,
+   "ok": true
+  }
+ ]
+}
