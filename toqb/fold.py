@@ -242,11 +242,11 @@ def _working(target, name, qa):
     return p is not None and (p.error is None or p.error < 1)
 
 
-def pend_place(target, n):
+def pend_place(target, n, packed=False):
     """(m, shape name, cycle qubits, {cycle position: pendant qubit}) for a ring of n on `target`, or None: the
     longest cycle of m <= n qubits (the shapes and order of `fold_place`) whose qubits and couplers all work and which
     has n - m cycle nodes with a working outside neighbour; pendants spread evenly over those nodes in cycle order,
-    each node's smallest working outside neighbour not used before."""
+    each node's smallest working outside neighbour not used before (packed=True: the first n - m such nodes)."""
     edges = {tuple(sorted(qa)) for qa in target["cz"] if qa is not None and _working(target, "cz", qa)}
     nb = defaultdict(set)
     for a, b in edges:
@@ -270,7 +270,7 @@ def pend_place(target, n):
                     spots.append((p, outs))
             if len(spots) < k:
                 continue
-            pick = [spots[(j * len(spots)) // k] for j in range(k)] if k else []
+            pick = spots[:k] if packed else ([spots[(j * len(spots)) // k] for j in range(k)] if k else [])
             pend = {}
             for p, outs in pick:
                 free = [x for x in outs if x not in used]
@@ -356,12 +356,14 @@ def pend_circuit(qc, cyc, pend, nq):
 # ------------------------------------------------------------------------------------------------ the arm
 
 class FoldLoop:
-    """`fold:template`: the hole schedule; `fold:pend` (2026-10-26): the pendant schedule; each built and transpiled
-    once per structure, the angles bound per call."""
+    """`fold:template`: the hole schedule; `fold:pend` (2026-10-26): the pendant schedule, pendants spread; each built
+    and transpiled once per structure, the angles bound per call. Variants (2026-10-26): `fold:pendpack`, pendants on
+    the first cycle nodes that have one; `fold:pendbind`, pendants spread, the angles bound before transpiling (level
+    1), so that runs of single-qubit gates are merged per call."""
 
     def __init__(self, mode="template"):
-        if mode not in ("template", "pend"):
-            raise ValueError("fold: the modes are template (holes) and pend (pendants)")
+        if mode not in ("template", "pend", "pendpack", "pendbind"):
+            raise ValueError("fold: the modes are template (holes), pend, pendpack and pendbind (pendants)")
         self.mode, self.name = mode, f"fold:{mode}"
         self.stats = dict(template_builds=0, refused=0)
 
@@ -389,8 +391,8 @@ class FoldLoop:
                 op.params = [pv[k + j] for j in range(len(op.params))]
                 k += len(op.params)
             par.append(op, ins.qubits, ins.clbits)
-        if self.mode == "pend":
-            placed = pend_place(self.target, qc.num_qubits)
+        if self.mode.startswith("pend"):
+            placed = pend_place(self.target, qc.num_qubits, packed=self.mode == "pendpack")
             if placed is None:
                 self.stats["refused"] += 1
                 raise FoldRefused(f"pend: no cycle of <= {qc.num_qubits} qubits with enough pendants by the formula")
@@ -411,6 +413,20 @@ class FoldLoop:
 
     def compile_circuit(self, qc):
         from toqb.task_loop import _qiskit_sig
+        if self.mode == "pendbind":
+            n = qc.num_qubits
+            if n not in self._cache:
+                placed = pend_place(self.target, n)
+                if placed is None:
+                    self.stats["refused"] += 1
+                    raise FoldRefused(f"pend: no cycle of <= {n} qubits with enough pendants by the formula")
+                self._cache[n] = placed
+            m, shape, cyc, pend = self._cache[n]
+            hc, init, fin = pend_circuit(qc, cyc, pend, self.target.num_qubits)
+            out = self.pm.run(hc)
+            self.stats["last"] = dict(m=m, shape=str(shape))
+            out.metadata = dict(toqb_initial=list(init), toqb_final=list(fin))
+            return out
         sig = _qiskit_sig(qc)
         if sig not in self._cache:
             self._cache[sig] = self._template(qc)
