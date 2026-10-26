@@ -1,0 +1,6 @@
+toqb 2fbe135 Declare device test D1 (owner's go of 2026-10-26, th
+psf-zero 62ae3c20 AI front end a26 (owner, 2026-1
+note a751e2527b2b3148f1268facddc41d5b372fda7997ddc1c86423953f49a001c3  prereg/drafts-2026-10-26/pend_device_note.md
+fetch ibm_kingston 2026-10-26 11:01:44+01:00 6779a003eb3cfdb33e8faaa823b2c14a353d7a68201d0b583f8b29ea5f912f94
+start 2026-10-26 11:45:16 CET
+end 2026-10-26 11:45:52 CET
