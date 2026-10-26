@@ -8,6 +8,10 @@ no training: z_device ~ lam z_noiseless + delta over P random inputs of one rand
     [pod]   python -m toqb.s2rc_device assemble --fetch DAY/fetch --runs RUNS --out JOB --max-seconds 20
     [home]  python -m toqb.s2rc_device submit --job JOB ; python -m toqb.s2rc_device result --job JOB
     [any]   python -m toqb.lam_device score JOB RUNS
+    [pod]   python -m toqb.lam_device rehearse RUNS [--shots 250 --points P --reps 2000]   (before any device: the job's outcome
+                if the device were the day's twin -- each arm's slope and the difference of every two arms, with the
+                shot noise drawn `reps` times; how often the proposed rule (difference > 2 standard errors) would
+                decide)
 
 `build` writes RUNS/<name>.json and .qpy in the form `toqb.s2rc_device assemble` reads. The model and inputs are
 fold_lam's (seed 1000 n + L + 100000 mseed; inputs uniform in [-1, 1], P of them). `assemble` needs labels: they are
@@ -169,11 +173,50 @@ def cmd_score(argv):
     return 0
 
 
+def cmd_rehearse(argv):
+    import glob
+    runs = argv[0]
+    shots = int(argv[argv.index("--shots") + 1]) if "--shots" in argv else None
+    reps = int(argv[argv.index("--reps") + 1]) if "--reps" in argv else 2000
+    npts = int(argv[argv.index("--points") + 1]) if "--points" in argv else None  # the first P points (a build's
+    # inputs are drawn row by row, so its first P equal a build with P)
+    recs = [json.load(open(f)) for f in sorted(glob.glob(os.path.join(runs, "*.json")))]
+    recs = [r for r in recs if r.get("lam_test")]
+    rng = np.random.default_rng(12345)
+    draws = {}
+    for r in recs:
+        zl, zt = np.array(r["noiseless_z"])[:npts], np.array(r["twin"]["z"])[:npts]
+        N = shots or r["predict"]["shots"]
+        p1 = np.clip((1 - zt) / 2, 0, 1)
+        lam_se = []
+        for _ in range(reps):
+            zd = 1 - 2 * rng.binomial(N, p1) / N
+            lam, _, se, _ = fit(zd, zl)
+            lam_se.append((lam, se))
+        a = np.array(lam_se)
+        draws[(r["task"]["n"], r["task"]["layers"], r["seed"], r["arm"])] = a
+        print(f"n {r['task']['n']} L {r['task']['layers']} model {r['seed']} {r['arm']:22s} twin lam {r['twin']['lam']:.3f};"
+              f" with {N} shots x {len(zl)} points: slope {a[:, 0].mean():.3f} +- {a[:, 0].std():.3f} (fit's own SE "
+              f"{a[:, 1].mean():.3f}); noiseless z sd {zl.std():.3f}")
+    keys = sorted(draws)
+    for i in range(len(keys)):
+        for j in range(i + 1, len(keys)):
+            if keys[i][:3] != keys[j][:3]:
+                continue
+            A, B = draws[keys[i]], draws[keys[j]]
+            d = A[:, 0] - B[:, 0]
+            se = np.hypot(A[:, 1], B[:, 1])
+            print(f"n {keys[i][0]} model {keys[i][2]}: {keys[i][3]} - {keys[j][3]}: difference {d.mean():+.3f} +- "
+                  f"{d.std():.3f}; the rule (> 2 SE) decides for the first in {np.mean(d > 2 * se):.0%}, for the "
+                  f"second in {np.mean(d < -2 * se):.0%}, TIE in {np.mean(abs(d) <= 2 * se):.0%}")
+    return 0
+
+
 def main(argv):
-    if not argv or argv[0] not in ("build", "score"):
+    if not argv or argv[0] not in ("build", "score", "rehearse"):
         print(__doc__)
         return 1
-    return cmd_build(argv[1:]) if argv[0] == "build" else cmd_score(argv[1:])
+    return {"build": cmd_build, "score": cmd_score, "rehearse": cmd_rehearse}[argv[0]](argv[1:])
 
 
 if __name__ == "__main__":
