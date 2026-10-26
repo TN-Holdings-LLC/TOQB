@@ -1,0 +1,6 @@
+toqb 0a53248 Declare device test D2 (owner's go of 2026-10-26 20:
+psf-zero 2bed479d a26's evidence corrected (2026-
+note 1d54d1c983190ab3e309ebe7edead67baa66fb4eea123653804e4758da9c58b1  prereg/drafts-2026-10-26/pend_device_d2_note.md
+fetch ibm_fez 2026-10-26 11:45:47+01:00 8e42c5b8f7f0e8c779aa07511171a3d48a0967325850bcb4f545d0873d9a7c1b
+start 2026-10-26 12:49:47 CET
+end 2026-10-26 12:50:16 CET
