@@ -1,0 +1,7 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb 8726ca1 toqb.lam_device rehearse and gpu/lam_rehearse.sh (report only): the device test's outcome if the device were the day's twin, with the shot noise drawn 2000 times, for 48 / 96 points and 250 / 1000 shots, before any device. Found on the CPU: random models at n = 13, L = 16 have a noiseless z spread of only 0.08-0.10, so 48 points x 250 shots give a slope error near 0.1, not 0.03; the rehearsal on kingston's Target sizes the job before the draft is fixed
+psf-zero 62ae3c20 AI front end a26 (owner, 2026-10-26): item 50, a ring classifier that does not embed is folded onto one of the device's own heavy-hex cycles by default -- extra nodes hung off a shorter cycle (n + (n - m) two-qubit gates per layer on n qubits) or a longer cycle's spare qubits moved as |0> holes (n + 2 (m - n)), the fewest extra gates against the zipper's deciding; ported from TOQB fold:rule (145f38b), the same circuits instruction for instruction on snapshot:marrakesh (n = 8-19). PSF_RING_FOLD=0 gives a25's output (check_a26: 680 of 680 calls identical); by default 176 folded cases exact on every clbit and 328 other calls a25's (RESULT PASS); test_a26 8 passed. Evidence on TOQB's models only (flow F: WIN at n = 13-18, 24 of 24 models); not run on a device. README and docs/RELEASES.md updated
+note c1cddfb606335c6b69bded2243cd82b3f12dcce0f1696b901fde1675248ccd1c  prereg/drafts-2026-10-26/rule_match_k_note.md
+target 3b93913856d2f0b9bf97ac03f89c43457157735413b02d8722c82d31065b218d
+start 2026-10-26 11:27:45 CET
+main done 2026-10-26 11:56:28 CET

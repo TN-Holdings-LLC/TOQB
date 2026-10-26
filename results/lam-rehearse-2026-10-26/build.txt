@@ -1,0 +1,4 @@
+lam_n13_L16_m0-fold_rule: 96 circuits, 224 two-qubit gates, 9.16 us; twin lam 0.771 +- 0.008 (delta +0.003, corr 0.995); noiseless z spread 0.082; valid True
+lam_n13_L16_m0-psfai_template_zip: 96 circuits, 464 two-qubit gates, 10.76 us; twin lam 0.685 +- 0.010 (delta +0.003, corr 0.990); noiseless z spread 0.082; valid True
+lam_n13_L16_m1-fold_rule: 96 circuits, 224 two-qubit gates, 9.16 us; twin lam 0.761 +- 0.008 (delta +0.001, corr 0.994); noiseless z spread 0.086; valid True
+lam_n13_L16_m1-psfai_template_zip: 96 circuits, 464 two-qubit gates, 10.76 us; twin lam 0.657 +- 0.011 (delta +0.001, corr 0.988); noiseless z spread 0.086; valid True

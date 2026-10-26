@@ -2,8 +2,8 @@
 
 `gpu/lam_rehearse.sh` (toqb `8726ca1`, H100 pod): `fold:rule` and the zipper at n = 13, L = 16, models 0 and 1, 96
 random inputs, compiled for the Target of flow C (SHA-256 3b939138…) and predicted by its twin (256 trajectories); then
-the job's outcome if the device were that twin, shot noise drawn 2000 times. The text below is the pod's
-`rehearse.txt` and build lines as printed (pasted from the terminal; the zip follows).
+the job's outcome if the device were that twin, shot noise drawn 2000 times: `build.txt`, `rehearse.txt`, `runs/`
+(lam_rehearse.zip SHA-256 f0d59300…).
 
 | | fold:rule (pendants) | zipper |
 |---|---|---|

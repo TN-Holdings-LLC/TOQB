@@ -1,0 +1,2 @@
+toqb 8726ca1 toqb.lam_device rehearse and gpu/lam_rehearse.sh (re; start 2026-10-26 11:27:44 CET
+done 2026-10-26 11:29:20 CET

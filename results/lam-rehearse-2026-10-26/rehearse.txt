@@ -1,0 +1,28 @@
+== 48 points, 250 shots
+n 13 L 16 model 0 fold:rule              twin lam 0.771; with 250 shots x 48 points: slope 0.801 +- 0.111 (fit's own SE 0.112); noiseless z sd 0.081
+n 13 L 16 model 0 psfai:template_zip     twin lam 0.685; with 250 shots x 48 points: slope 0.724 +- 0.109 (fit's own SE 0.112); noiseless z sd 0.081
+n 13 L 16 model 1 fold:rule              twin lam 0.761; with 250 shots x 48 points: slope 0.771 +- 0.098 (fit's own SE 0.099); noiseless z sd 0.092
+n 13 L 16 model 1 psfai:template_zip     twin lam 0.657; with 250 shots x 48 points: slope 0.668 +- 0.100 (fit's own SE 0.100); noiseless z sd 0.092
+n 13 model 0: fold:rule - psfai:template_zip: difference +0.077 +- 0.158; the rule (> 2 SE) decides for the first in 6%, for the second in 1%, TIE in 93%
+n 13 model 1: fold:rule - psfai:template_zip: difference +0.103 +- 0.141; the rule (> 2 SE) decides for the first in 10%, for the second in 0%, TIE in 90%
+== 48 points, 1000 shots
+n 13 L 16 model 0 fold:rule              twin lam 0.771; with 1000 shots x 48 points: slope 0.801 +- 0.057 (fit's own SE 0.057); noiseless z sd 0.081
+n 13 L 16 model 0 psfai:template_zip     twin lam 0.685; with 1000 shots x 48 points: slope 0.726 +- 0.054 (fit's own SE 0.057); noiseless z sd 0.081
+n 13 L 16 model 1 fold:rule              twin lam 0.761; with 1000 shots x 48 points: slope 0.769 +- 0.049 (fit's own SE 0.050); noiseless z sd 0.092
+n 13 L 16 model 1 psfai:template_zip     twin lam 0.657; with 1000 shots x 48 points: slope 0.670 +- 0.050 (fit's own SE 0.051); noiseless z sd 0.092
+n 13 model 0: fold:rule - psfai:template_zip: difference +0.075 +- 0.079; the rule (> 2 SE) decides for the first in 14%, for the second in 0%, TIE in 86%
+n 13 model 1: fold:rule - psfai:template_zip: difference +0.099 +- 0.069; the rule (> 2 SE) decides for the first in 26%, for the second in 0%, TIE in 74%
+== 96 points, 250 shots
+n 13 L 16 model 0 fold:rule              twin lam 0.771; with 250 shots x 96 points: slope 0.773 +- 0.078 (fit's own SE 0.078); noiseless z sd 0.082
+n 13 L 16 model 0 psfai:template_zip     twin lam 0.685; with 250 shots x 96 points: slope 0.686 +- 0.078 (fit's own SE 0.079); noiseless z sd 0.082
+n 13 L 16 model 1 fold:rule              twin lam 0.761; with 250 shots x 96 points: slope 0.760 +- 0.073 (fit's own SE 0.075); noiseless z sd 0.086
+n 13 L 16 model 1 psfai:template_zip     twin lam 0.657; with 250 shots x 96 points: slope 0.657 +- 0.076 (fit's own SE 0.075); noiseless z sd 0.086
+n 13 model 0: fold:rule - psfai:template_zip: difference +0.087 +- 0.109; the rule (> 2 SE) decides for the first in 11%, for the second in 0%, TIE in 89%
+n 13 model 1: fold:rule - psfai:template_zip: difference +0.104 +- 0.103; the rule (> 2 SE) decides for the first in 15%, for the second in 0%, TIE in 85%
+== 96 points, 1000 shots
+n 13 L 16 model 0 fold:rule              twin lam 0.771; with 1000 shots x 96 points: slope 0.772 +- 0.039 (fit's own SE 0.040); noiseless z sd 0.082
+n 13 L 16 model 0 psfai:template_zip     twin lam 0.685; with 1000 shots x 96 points: slope 0.685 +- 0.038 (fit's own SE 0.040); noiseless z sd 0.082
+n 13 L 16 model 1 fold:rule              twin lam 0.761; with 1000 shots x 96 points: slope 0.762 +- 0.037 (fit's own SE 0.038); noiseless z sd 0.086
+n 13 L 16 model 1 psfai:template_zip     twin lam 0.657; with 1000 shots x 96 points: slope 0.657 +- 0.037 (fit's own SE 0.039); noiseless z sd 0.086
+n 13 model 0: fold:rule - psfai:template_zip: difference +0.087 +- 0.053; the rule (> 2 SE) decides for the first in 31%, for the second in 0%, TIE in 69%
+n 13 model 1: fold:rule - psfai:template_zip: difference +0.105 +- 0.053; the rule (> 2 SE) decides for the first in 47%, for the second in 0%, TIE in 53%
