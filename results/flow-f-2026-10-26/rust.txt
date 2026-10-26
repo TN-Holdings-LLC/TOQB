@@ -1,0 +1,1 @@
+RUST=1: TOQB_FAST_PSF=1 TOQB_RUST_TEMPLATE=check PSF_RUST_TEMPLATE=check, front end a25 (default) (psf-zero 807debe)
