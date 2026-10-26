@@ -2,7 +2,7 @@
 
     python -m toqb.fold_lam OUT.jsonl [--n 9 10 ...] [--L 8 16] [--P 24] [--T 256] [--models sim dev]
                                       [--arms fold:template psfai:template_zip qiskit:2:target:template]
-                                      [--max-active 22]
+                                      [--max-active 22] [--models-seed 0 1 2 3]
 
 For each (n, L): one random model of TOQB's ring classifier and P random inputs (seeded by n and L, the same for every
 arm); each arm compiles them for `snapshot:marrakesh`; <Z> of clbit 0 on the twin ("sim") and the stand-in ("dev")
@@ -10,6 +10,9 @@ with T trajectories; least-squares z ~ lam z_noiseless + delta against the noise
 correlation, the two-qubit count, the scheduled duration and the active qubits. An arm whose circuit has more than
 --max-active active qubits is recorded as skipped (the trajectory state would not fit). One JSON line per (n, L, arm,
 model), appended as it is done; the output file must not exist.
+
+--models-seed (2026-10-26): the random models per (n, L); model 0 is seeded by 1000 n + L as before (flow D and E),
+model s > 0 by 1000 n + L + 100000 s. Rows carry "mseed".
 """
 from __future__ import annotations
 
@@ -35,7 +38,7 @@ def main(argv):
         print(f"STOP: {out} exists: an output is never overwritten", file=sys.stderr)
         return 2
     opts = {"--n": ["9", "10", "11"], "--L": ["8"], "--P": ["12"], "--T": ["128"], "--models": ["sim", "dev"],
-            "--arms": ["fold:template", "psfai:template_zip", "qiskit:2:target:template"], "--max-active": ["22"]}
+            "--arms": ["fold:template", "psfai:template_zip", "qiskit:2:target:template"], "--max-active": ["22"], "--models-seed": ["0"]}
     key = None
     for a in argv:
         if a in opts:
@@ -47,9 +50,9 @@ def main(argv):
     from toqb import task_loop as TL
     ns, Ls = [int(v) for v in opts["--n"]], [int(v) for v in opts["--L"]]
     P, T, maxa = int(opts["--P"][0]), int(opts["--T"][0]), int(opts["--max-active"][0])
-    for n in ns:
-        for L in Ls:
-            rng = np.random.default_rng(1000 * n + L)
+    for n, L, ms in [(n, L, ms) for n in ns for L in Ls for ms in [int(v) for v in opts["--models-seed"]]]:
+        if True:
+            rng = np.random.default_rng(1000 * n + L + 100000 * ms)
             theta = rng.uniform(-1, 1, TL.n_params(n, L))
             X = rng.uniform(-1, 1, (P, n))
             zl = []
@@ -63,6 +66,8 @@ def main(argv):
                 plan = dict(name="fold-lam", device="snapshot:marrakesh", verify=False, task=task,
                             predict=dict(traj=T, seed=1), standin=dict(t12=0.3, over=0.01, zz_hz=1e4, seed=20261017))
                 base = dict(n=n, L=L, arm=arm, P=P, T=T)
+                if ms:
+                    base["mseed"] = ms
                 try:
                     t0 = time.time()
                     R = S2.Runner(plan, arm)

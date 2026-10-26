@@ -87,3 +87,15 @@ def test_pend_arm_is_exact(n):
         assert arm.arm.stats["last"]["m"] == 12
         assert sum(1 for i in c.data if len(i.qubits) == 2) == L * (2 * n - 12)
         assert len({c.find_bit(q).index for i in c.data for q in i.qubits}) == n
+
+
+@pytest.mark.parametrize("mode", ["rule", "rulerot"])
+def test_rule_arms(mode):
+    """fold:rule / fold:rulerot (2026-10-26): the count rule picks holes at n = 11, pendants at 13, holes at 18; every
+    choice exact on every clbit; rulerot reads ring node 0 off a qubit without a pendant."""
+    arm = S.Arm(f"fold:{mode}", get_device("snapshot:marrakesh"))
+    for n, want in ((11, "holes"), (13, "pend"), (18, "holes")):
+        qc = model(n, 2, 10 * n + 2)
+        c = arm.compile(qc)
+        assert arm.arm.stats["choice"] == want
+        assert max(abs(a - b) for a, b in zip(p1_all(c), p1_all(qc))) < 1e-9

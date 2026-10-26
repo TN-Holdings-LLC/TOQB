@@ -283,16 +283,26 @@ def pend_place(target, n, packed=False):
     return None
 
 
-def pend_circuit(qc, cyc, pend, nq):
-    """The pendant schedule of `qc` on the cycle `cyc` with pendants {cycle position: device qubit}:
-    (circuit, initial device qubit of each ring index, final one)."""
+def readout_start(m, pend):
+    """`fold:rulerot` (2026-10-26): the cycle position for ring node 0 (the read-out node): a position without a
+    pendant, farthest along the cycle from every pendant's position; the smallest such position on ties."""
+    if not pend:
+        return 0
+    dist = lambda p: min(min((p - h) % m, (h - p) % m) for h in pend)  # noqa: E731
+    free = [p for p in range(m) if p not in pend]
+    return max(free, key=lambda p: (dist(p), -p))
+
+
+def pend_circuit(qc, cyc, pend, nq, start=0):
+    """The pendant schedule of `qc` on the cycle `cyc` with pendants {cycle position: device qubit}, ring node 0 at
+    cycle position `start` (2026-10-26; 0 before): (circuit, initial device qubit of each ring index, final one)."""
     from qiskit import QuantumCircuit
     n, layers, final, meas = read_ring(qc)
     m = len(cyc)
     if len(pend) >= m:  # workplace review 2026-10-26: every block would wait for its neighbour round the cycle
         raise FoldRefused("pend: every cycle node has a pendant (k = m); no schedule")
     oc, op, r = [None] * m, {}, 0
-    for p in range(m):
+    for p in [(start + t) % m for t in range(m)]:
         oc[p] = r
         r += 1
         if p in pend:
@@ -361,11 +371,15 @@ class FoldLoop:
     """`fold:template`: the hole schedule; `fold:pend` (2026-10-26): the pendant schedule, pendants spread; each built
     and transpiled once per structure, the angles bound per call. Variants (2026-10-26): `fold:pendpack`, pendants on
     the first cycle nodes that have one; `fold:pendbind`, pendants spread, the angles bound before transpiling (level
-    1), so that runs of single-qubit gates are merged per call."""
+    1), so that runs of single-qubit gates are merged per call. `fold:rule` (2026-10-26, the workplace's count rule):
+    of the extra two-qubit gates per layer -- pendants n - m_below, holes 2 (m_above - n), the zipper (5n - 8)/2 - n or
+    (5n - 7)/2 - n -- the fewest decides (ties: pendants, then holes); the zipper is not built here (refused).
+    `fold:rulerot`: the same, with ring node 0 (the read-out node) on the plain cycle node farthest from the
+    pendants."""
 
     def __init__(self, mode="template"):
-        if mode not in ("template", "pend", "pendpack", "pendbind"):
-            raise ValueError("fold: the modes are template (holes), pend, pendpack and pendbind (pendants)")
+        if mode not in ("template", "pend", "pendpack", "pendbind", "rule", "rulerot"):
+            raise ValueError("fold: the modes are template (holes), pend, pendpack, pendbind (pendants), rule, rulerot")
         self.mode, self.name = mode, f"fold:{mode}"
         self.stats = dict(template_builds=0, refused=0)
 
@@ -393,7 +407,26 @@ class FoldLoop:
                 op.params = [pv[k + j] for j in range(len(op.params))]
                 k += len(op.params)
             par.append(op, ins.qubits, ins.clbits)
-        if self.mode.startswith("pend"):
+        if self.mode in ("rule", "rulerot"):
+            n = qc.num_qubits
+            below, above = pend_place(self.target, n), fold_place(self.target, n)
+            ep = (n - below[0]) if below else None
+            eh = 2 * (above[0] - n) if above else None
+            ez = (5 * n - 8) // 2 - n if n % 2 == 0 else (5 * n - 7) // 2 - n  # the zipper's extra CZ per layer
+            best = min(e for e in (ep, eh, ez) if e is not None)
+            if ep is not None and ep == best:
+                m, shape, cyc, pend = below
+                st = readout_start(m, pend) if self.mode == "rulerot" else 0
+                hc, init, fin = pend_circuit(par, cyc, pend, self.target.num_qubits, start=st)
+                self.stats["choice"] = "pend"
+            elif eh is not None and eh == best:
+                m, shape, cyc = above
+                hc, init, fin = hole_circuit(par, cyc, self.target.num_qubits)
+                self.stats["choice"] = "holes"
+            else:
+                self.stats["refused"] += 1
+                raise FoldRefused(f"rule: the zipper has the fewest extra gates at n = {n} (not built by this arm)")
+        elif self.mode.startswith("pend"):
             placed = pend_place(self.target, qc.num_qubits, packed=self.mode == "pendpack")
             if placed is None:
                 self.stats["refused"] += 1
