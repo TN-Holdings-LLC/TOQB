@@ -289,6 +289,8 @@ def pend_circuit(qc, cyc, pend, nq):
     from qiskit import QuantumCircuit
     n, layers, final, meas = read_ring(qc)
     m = len(cyc)
+    if len(pend) >= m:  # workplace review 2026-10-26: every block would wait for its neighbour round the cycle
+        raise FoldRefused("pend: every cycle node has a pendant (k = m); no schedule")
     oc, op, r = [None] * m, {}, 0
     for p in range(m):
         oc[p] = r
