@@ -48,3 +48,8 @@ The prediction (WIN at every n) held. The rule chose pendants at n = 13-17 and h
 
 **Not claimed.** No device; the twin and the stand-in are TOQB's models of a 2026-10-13 calibration; four models per
 n; one placement per n.
+
+**Added 2026-10-26 evening (flow G, results/flow-g-2026-10-26).** On the twin of ibm_kingston's 2026-10-24 calibration
+(the kind that matched the device for the zipper) the same match gave WIN at every n again, but with ratios of
+1.07-1.28 at n = 13-17 and about even at 18: the ratios above (1.5-8.2) came mostly from this snapshot's pessimism for
+the zipper (model 0, n = 13: the zipper's lam 0.27 here, 0.66 there). The verdicts stand; their size does not.
