@@ -1,0 +1,14 @@
+pendants: cycle m + leaves on hubs; bound n+k
+m=4 hubs=(0,) adjacent=False n=5: least 6, n+k 6 OK
+m=4 hubs=(0, 1) adjacent=True n=6: least 8, n+k 8 OK
+m=4 hubs=(0, 2) adjacent=False n=6: least 8, n+k 8 OK
+m=4 hubs=(0, 3) adjacent=True n=6: least 8, n+k 8 OK
+m=5 hubs=(0,) adjacent=False n=6: least 7, n+k 7 OK
+m=5 hubs=(0, 1) adjacent=True n=7: least 9, n+k 9 OK
+m=5 hubs=(0, 2) adjacent=False n=7: least 9, n+k 9 OK
+m=5 hubs=(0, 3) adjacent=False n=7: least 9, n+k 9 OK
+m=5 hubs=(0, 4) adjacent=True n=7: least 9, n+k 9 OK
+m=6 hubs=(0,) adjacent=False n=7: least 8, n+k 8 OK
+m=6 hubs=(0, 1) adjacent=True n=8: least 10, n+k 10 OK
+m=6 hubs=(0, 2) adjacent=False n=8: least 10, n+k 10 OK
+m=6 hubs=(0, 3) adjacent=False n=8: least 10, n+k 10 OK

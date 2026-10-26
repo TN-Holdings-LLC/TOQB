@@ -1,0 +1,4 @@
+FakeMarrakesh 156 {12: 21, 20: 44} deg3-deg3 couplers: 0
+FakeTorino 133 {12: 18, 20: 37} deg3-deg3 couplers: 0
+FakeFez 156 {12: 21, 20: 44} deg3-deg3 couplers: 0
+FakeKingston 156 {12: 21, 20: 44} deg3-deg3 couplers: 0
