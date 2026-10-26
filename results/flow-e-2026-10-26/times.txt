@@ -1,0 +1,7 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb 560083c Declare flow E (owner's go of 2026-10-26, a GPU pod; report only, no rule): toqb.fold_lam for fold:pend, fold:pendbind and the zipper at n = 13-18, L = 8 then 16, P 24, T 256, twin and stand-in, flow D's seeds; the zipper's lines checked against flow D's, the hole schedule taken from flow D. pend_lam_note.md SHA-256 cbea56bd0e51a8c82921b1031bffda9280eabb80429ec8e5123af121ab44ce3e, 2026-10-26 00:55 CET; gpu/pend_lam.sh (flow D's script with these arms and sizes); smoke on CPU (n = 13, L = 2, P 2, T 4) runs every arm
+psf-zero 807debef README restructured (owner, 2026-10-25): 714 lines to 250; what PSF-Zero does now and its results first, the benchmark number and the device user's number side by side (chains 19/23, F 1.21; order 8/8; QAOA/BA lost 0.78; Benchpress 1.046 x; the zipper's search-minimal CZ count; Paper 3; the ibm_kingston job); rings on hardware stated (the old "have not run on a device yet" removed); release notices left to docs/RELEASES.md; Quick start on compile_for_hardware, compile_template and a25; install builds psfz and psfbind r3; the old README kept as docs/README_2026-10-25_before_restructure.md
+note cbea56bd0e51a8c82921b1031bffda9280eabb80429ec8e5123af121ab44ce3e  prereg/drafts-2026-10-26/pend_lam_note.md
+start 2026-10-26 01:23:22 CET
+L 8 done 2026-10-26 01:31:35 CET
+L 16 done 2026-10-26 01:46:37 CET
