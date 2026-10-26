@@ -1,0 +1,18 @@
+E1 L=8: cells 32, Spearman 0.454, pairs 28, ordered alike 23 (82%): FAIL
+   misordered n=9: fold:template lam 0.64 E1 0.500 | qiskit:2:target:template lam 0.52 E1 0.543
+   misordered n=13: psfai:template_zip lam 0.58 E1 0.143 | qiskit:2:target:template lam 0.32 E1 0.268
+   misordered n=18: fold:pend lam 0.75 E1 0.073 | psfai:template_zip lam 0.61 E1 0.090
+   misordered n=18: fold:pend lam 0.75 E1 0.073 | qiskit:2:target:template lam 0.25 E1 0.154
+   misordered n=18: psfai:template_zip lam 0.61 E1 0.090 | qiskit:2:target:template lam 0.25 E1 0.154
+E1 L=16: cells 32, Spearman 0.481, pairs 29, ordered alike 26 (90%): FAIL
+   misordered n=13: fold:template lam 0.12 E1 0.086 | psfai:template_zip lam 0.27 E1 0.021
+   misordered n=16: psfai:template_zip lam 0.33 E1 0.016 | qiskit:2:target:template lam 0.10 E1 0.046
+   misordered n=18: fold:pend lam 0.51 E1 0.005 | psfai:template_zip lam 0.30 E1 0.008
+E2 L=8: cells 32, Spearman 0.684, pairs 28, ordered alike 26 (93%): FAIL
+   misordered n=13: psfai:template_zip lam 0.58 E2 0.218 | qiskit:2:target:template lam 0.32 E2 0.270
+   misordered n=18: fold:pend lam 0.75 E2 0.159 | psfai:template_zip lam 0.61 E2 0.226
+E2 L=16: cells 32, Spearman 0.568, pairs 29, ordered alike 26 (90%): FAIL
+   misordered n=13: fold:template lam 0.12 E2 0.110 | psfai:template_zip lam 0.27 E2 0.032
+   misordered n=16: psfai:template_zip lam 0.33 E2 0.031 | qiskit:2:target:template lam 0.10 E2 0.046
+   misordered n=18: fold:pend lam 0.51 E2 0.012 | psfai:template_zip lam 0.30 E2 0.021
+used: none
