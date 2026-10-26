@@ -13,6 +13,9 @@ model), appended as it is done; the output file must not exist.
 
 --models-seed (2026-10-26): the random models per (n, L); model 0 is seeded by 1000 n + L as before (flow D and E),
 model s > 0 by 1000 n + L + 100000 s. Rows carry "mseed".
+--device (2026-10-26): a TOQB device spec, snapshot:marrakesh by default (flows D-F); e.g. file:<target.pkl> for a
+Target saved from a device (the twin is built from it; its stand-in model "dev" is TOQB's marrakesh stand-in and is
+not meaningful for another device). Rows carry "device" when it is not the default.
 """
 from __future__ import annotations
 
@@ -38,7 +41,8 @@ def main(argv):
         print(f"STOP: {out} exists: an output is never overwritten", file=sys.stderr)
         return 2
     opts = {"--n": ["9", "10", "11"], "--L": ["8"], "--P": ["12"], "--T": ["128"], "--models": ["sim", "dev"],
-            "--arms": ["fold:template", "psfai:template_zip", "qiskit:2:target:template"], "--max-active": ["22"], "--models-seed": ["0"]}
+            "--arms": ["fold:template", "psfai:template_zip", "qiskit:2:target:template"], "--max-active": ["22"], "--models-seed": ["0"],
+            "--device": ["snapshot:marrakesh"]}
     key = None
     for a in argv:
         if a in opts:
@@ -63,11 +67,13 @@ def main(argv):
             zl = np.array(zl)
             task = dict(n=n, layers=L, enc=float(np.pi / 2))
             for arm in opts["--arms"]:
-                plan = dict(name="fold-lam", device="snapshot:marrakesh", verify=False, task=task,
+                plan = dict(name="fold-lam", device=opts["--device"][0], verify=False, task=task,
                             predict=dict(traj=T, seed=1), standin=dict(t12=0.3, over=0.01, zz_hz=1e4, seed=20261017))
                 base = dict(n=n, L=L, arm=arm, P=P, T=T)
                 if ms:
                     base["mseed"] = ms
+                if opts["--device"][0] != "snapshot:marrakesh":
+                    base["device"] = opts["--device"][0].split("/")[-1]
                 try:
                     t0 = time.time()
                     R = S2.Runner(plan, arm)
