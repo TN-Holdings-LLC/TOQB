@@ -1,0 +1,3 @@
+toqb d4ce74d; psf-zero 62ae3c2; note ecc156b4f5ae212aaf9b7583ce8eaf4bed9ca16e1281bbab269fca86c296a390; start 2026-10-26 06:18:12 CET
+restarted as a tracked job (the first start was stopped after seconds, before any line was written) 2026-10-26 06:18:31 CET
+stopped by the container's 2 h limit 2026-10-26 08:18:38 CET: n = 8, 9 complete (all four models), n = 10 not written
