@@ -1,0 +1,9 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb 42b6d72 Declare flow K (owner's go of 2026-10-27, 13:03 CET): the count rule against the zipper laid on the rule's own cycle (new arm fold:zipcyc; tests: exact, 5n/2 - 4 per layer, cycle qubits only), same classifiers and qubits, n = 18 and 20 on the kingston 2026-10-24 twin; rule rows reused from flows G and J after a declared check; prediction WIN at n = 20, no direction at 18. zipcyc_k_note.md SHA-256 7ee78daf83a9d93cff4a272dc99a094aa28a664632aef6795590ced311c24556
+psf-zero 61d0b545 README: Paper 4 (DOI 10.5281/zenodo.23665575); device row adds D2 (ibm_fez)
+note 7ee78daf83a9d93cff4a272dc99a094aa28a664632aef6795590ced311c24556  prereg/drafts-2026-10-27/zipcyc_k_note.md
+target 3b93913856d2f0b9bf97ac03f89c43457157735413b02d8722c82d31065b218d
+start 2026-10-27 13:15:23 CET
+check PASS (fold:rule n = 18, 20 model 0 equal to flows G and J)
+main start 2026-10-27 13:24:14 CET
+main done 2026-10-27 14:03:57 CET
