@@ -99,3 +99,19 @@ def test_rule_arms(mode):
         c = arm.compile(qc)
         assert arm.arm.stats["choice"] == want
         assert max(abs(a - b) for a, b in zip(p1_all(c), p1_all(qc))) < 1e-9
+
+
+@pytest.mark.parametrize("n", [8, 10])
+def test_zipcyc_is_exact_and_on_the_cycle(n):
+    """flow K (2026-10-27): the zipper on the first n qubits of fold_place's cycle is exact, with 5n/2 - 4 two-qubit
+    gates per layer, on qubits of that cycle only."""
+    dev = get_device("snapshot:marrakesh")
+    arm = S.Arm("fold:zipcyc", dev)
+    m, _, cyc = F.fold_place(dev.target, n)
+    for L in (2, 4):
+        qc = model(n, L, 10 * n + L + 7)
+        c = arm.compile(qc)
+        assert max(abs(a - b) for a, b in zip(p1_all(c), p1_all(qc))) < 1e-9
+        assert sum(1 for i in c.data if len(i.qubits) == 2) == L * (5 * n // 2 - 4)
+        used = {c.find_bit(q).index for i in c.data for q in i.qubits if i.operation.name not in ("barrier", "delay")}
+        assert used <= set(cyc[:n])

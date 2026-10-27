@@ -232,6 +232,56 @@ def hole_circuit(qc, cyc, nq):
     return out, [start[r] for r in range(n)], [cyc[pos[r]] for r in range(n)]
 
 
+def zip_circuit(qc, line, nq):
+    """The zipper schedule (toqb.ring_zip, even n) of `qc` on the device path `line` (n device qubits, consecutive
+    ones coupled), 2026-10-27, for flow K: (circuit, initial device qubit of each ring index, final one). The end
+    blocks are CZ+SWAP written as H(b), CX(b, a), CX(a, b), H(a); odd layers run the rounds backwards."""
+    from qiskit import QuantumCircuit
+    from toqb.ring_zip import ring_rounds_zip
+    n, layers, final, meas = read_ring(qc)
+    if len(line) != n:
+        raise FoldRefused(f"zipcyc: a path of {len(line)} qubits for a ring of {n}")
+    order, rounds = ring_rounds_zip(n)
+    pos = {r: p for p, r in enumerate(order)}
+    start = {r: line[p] for r, p in pos.items()}
+    out = QuantumCircuit(nq, qc.num_clbits)
+
+    def at(p):
+        return [r for r, q in pos.items() if q == p][0]
+
+    for k, layer in enumerate(layers):
+        for r in range(n):
+            for op in layer[r]:
+                out.append(op, [line[pos[r]]])
+        for czs, swaps in (rounds if k % 2 == 0 else rounds[::-1]):
+            sw = {p for p, _ in swaps}
+            for a, b in czs:
+                pa, pb = sorted((pos[a], pos[b]))
+                if pb != pa + 1:
+                    raise FoldRefused(f"zipcyc: ring edge ({a}, {b}) not adjacent")
+                if pa in sw:  # CZ+SWAP block
+                    qa, qb = line[pa], line[pb]
+                    out.h(qb)
+                    out.cx(qb, qa)
+                    out.cx(qa, qb)
+                    out.h(qa)
+                    ra, rb = at(pa), at(pb)
+                    pos[ra], pos[rb] = pb, pa
+                    sw.discard(pa)
+                else:
+                    out.cz(line[pa], line[pb])
+            for p in sorted(sw):  # plain SWAPs
+                out.swap(line[p], line[p + 1])
+                ra, rb = at(p), at(p + 1)
+                pos[ra], pos[rb] = p + 1, p
+    for r in range(n):
+        for op in final[r]:
+            out.append(op, [line[pos[r]]])
+    for q, c in meas:
+        out.measure(line[pos[q]], c)
+    return out, [start[r] for r in range(n)], [line[pos[r]] for r in range(n)]
+
+
 # ------------------------------------------------------------------------------------------------ pend (2026-10-26)
 # The ring on the longest formula-placed cycle of m <= n qubits, its n - m extra nodes hung off the cycle on outside
 # neighbours ("pendants"); per layer each pendant node trades places with its cycle node by one CZ+SWAP block (two
@@ -375,11 +425,13 @@ class FoldLoop:
     of the extra two-qubit gates per layer -- pendants n - m_below, holes 2 (m_above - n), the zipper (5n - 8)/2 - n or
     (5n - 7)/2 - n -- the fewest decides (ties: pendants, then holes); the zipper is not built here (refused).
     `fold:rulerot`: the same, with ring node 0 (the read-out node) on the plain cycle node farthest from the
-    pendants."""
+    pendants. `fold:zipcyc` (2026-10-27, flow K): the zipper schedule on the first n qubits, in cycle order, of the
+    cycle `fold_place` gives (m >= n), so that it runs on the qubits of the hole schedule or the bare ring."""
 
     def __init__(self, mode="template"):
-        if mode not in ("template", "pend", "pendpack", "pendbind", "rule", "rulerot"):
-            raise ValueError("fold: the modes are template (holes), pend, pendpack, pendbind (pendants), rule, rulerot")
+        if mode not in ("template", "pend", "pendpack", "pendbind", "rule", "rulerot", "zipcyc"):
+            raise ValueError("fold: the modes are template (holes), pend, pendpack, pendbind (pendants), rule, rulerot, "
+                             "zipcyc")
         self.mode, self.name = mode, f"fold:{mode}"
         self.stats = dict(template_builds=0, refused=0)
 
@@ -426,6 +478,13 @@ class FoldLoop:
             else:
                 self.stats["refused"] += 1
                 raise FoldRefused(f"rule: the zipper has the fewest extra gates at n = {n} (not built by this arm)")
+        elif self.mode == "zipcyc":  # flow K: the zipper on the first n qubits of fold_place's cycle (m >= n)
+            placed = fold_place(self.target, qc.num_qubits)
+            if placed is None or qc.num_qubits % 2:
+                self.stats["refused"] += 1
+                raise FoldRefused(f"zipcyc: no cycle of >= {qc.num_qubits} qubits, or n odd")
+            m, shape, cyc = placed
+            hc, init, fin = zip_circuit(par, list(cyc[:qc.num_qubits]), self.target.num_qubits)
         elif self.mode.startswith("pend"):
             placed = pend_place(self.target, qc.num_qubits, packed=self.mode == "pendpack")
             if placed is None:
