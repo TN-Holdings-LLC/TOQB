@@ -26,7 +26,7 @@ cd "$TQ" || exit 1
 stamp() { echo "$1 $(TZ=Europe/Zurich date '+%Y-%m-%d %H:%M:%S %Z')" | tee -a "$OUT/times.txt"; }
 { nvidia-smi --query-gpu=name,memory.total --format=csv,noheader; echo "toqb $(git log --oneline -1)"; \
   echo "psf-zero $(git -C "$PSF" log --oneline -1)"; echo "note $(sha256sum "$NOTE")"; \
-  echo "target $(sha256sum "$TARGET" | cut -c1-64)"; } | tee "$OUT/times.txt"
+  echo "target $(sha256sum "$TARGET" | cut -c1-64)"; echo "noiseless ${TOQB_NOISELESS:-qiskit}"; } | tee "$OUT/times.txt"
 stamp start
 for n in $NS; do
   stamp "n$n start"

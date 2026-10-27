@@ -16,6 +16,9 @@ model s > 0 by 1000 n + L + 100000 s. Rows carry "mseed".
 --device (2026-10-26): a TOQB device spec, snapshot:marrakesh by default (flows D-F); e.g. file:<target.pkl> for a
 Target saved from a device (the twin is built from it; its stand-in model "dev" is TOQB's marrakesh stand-in and is
 not meaningful for another device). Rows carry "device" when it is not the default.
+TOQB_NOISELESS (2026-10-27): the noiseless reference by Qiskit's Statevector on the CPU ("qiskit", the default, as
+before) or by toqb.noiseless_xp's direct statevector on numpy or cupy ("numpy", "cupy"; checked against Qiskit's by
+`python -m toqb.noiseless_xp check`). Rows carry "noiseless" when it is not the default.
 """
 from __future__ import annotations
 
@@ -52,6 +55,11 @@ def main(argv):
     from qiskit.quantum_info import Statevector
     from toqb import s2r2 as S2
     from toqb import task_loop as TL
+    from toqb import noiseless_xp as NX
+    nl = os.environ.get("TOQB_NOISELESS", "qiskit")  # qiskit (default, as before), numpy or cupy
+    if nl not in ("qiskit", "numpy", "cupy"):
+        print(f"STOP: TOQB_NOISELESS={nl}", file=sys.stderr)
+        return 2
     ns, Ls = [int(v) for v in opts["--n"]], [int(v) for v in opts["--L"]]
     P, T, maxa = int(opts["--P"][0]), int(opts["--T"][0]), int(opts["--max-active"][0])
     for n, L, ms in [(n, L, ms) for n in ns for L in Ls for ms in [int(v) for v in opts["--models-seed"]]]:
@@ -61,9 +69,12 @@ def main(argv):
             X = rng.uniform(-1, 1, (P, n))
             zl = []
             for x in X:
-                q = TL.model_circuit(TL.angle_list(theta, x, n, L, np.pi / 2), n, L).remove_final_measurements(
-                    inplace=False)
-                zl.append(1 - 2 * Statevector(q).probabilities([0])[1])
+                if nl == "qiskit":
+                    q = TL.model_circuit(TL.angle_list(theta, x, n, L, np.pi / 2), n, L).remove_final_measurements(
+                        inplace=False)
+                    zl.append(1 - 2 * Statevector(q).probabilities([0])[1])
+                else:
+                    zl.append(NX.z0(TL.angle_list(theta, x, n, L, np.pi / 2), n, L, NX._xp(nl)))
             zl = np.array(zl)
             task = dict(n=n, layers=L, enc=float(np.pi / 2))
             for arm in opts["--arms"]:
@@ -72,6 +83,8 @@ def main(argv):
                 base = dict(n=n, L=L, arm=arm, P=P, T=T)
                 if ms:
                     base["mseed"] = ms
+                if nl != "qiskit":
+                    base["noiseless"] = nl
                 if opts["--device"][0] != "snapshot:marrakesh":
                     base["device"] = opts["--device"][0].split("/")[-1]
                 try:
