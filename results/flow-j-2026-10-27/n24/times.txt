@@ -1,0 +1,9 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb 90e7127 Flow J amendment 2 (owner, 2026-10-27, 09:09 CET): n = 24's noiseless reference on the GPU. toqb/noiseless_xp.py (direct complex128 statevector on numpy or cupy; check against Qiskit's Statevector: 2.8e-15 on numpy), fold_lam's TOQB_NOISELESS (default qiskit, unchanged), rule_lam_big.sh records the mode, gpu/rule_lam_big_n24.sh runs two declared checks (equal to Qiskit within 1e-9; n = 20 model 0 equal to the CPU-reference row) before n = 24. rule_lam_big_amend2.md SHA-256 04b70974a12411b994c44fbbf72130f9d66242219ad402508ba37d9ecc99706f
+psf-zero 61d0b545 README: Paper 4 (DOI 10.5281/zenodo.23665575); device row adds D2 (ibm_fez)
+note 04b70974a12411b994c44fbbf72130f9d66242219ad402508ba37d9ecc99706f  prereg/drafts-2026-10-27/rule_lam_big_amend2.md
+target 3b93913856d2f0b9bf97ac03f89c43457157735413b02d8722c82d31065b218d
+noiseless cupy
+start 2026-10-27 11:40:23 CET
+n24 start 2026-10-27 11:40:23 CET
+n24 done 2026-10-27 19:56:15 CET

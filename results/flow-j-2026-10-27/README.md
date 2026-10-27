@@ -5,7 +5,7 @@ Declared in prereg/drafts-2026-10-27/rule_lam_big_note.md (SHA-256 5b5b69ad…, 
 07:51:05-08:12:27 CET, n = 22 08:12:27-11:36:48 CET. `fold:rule` only, L = 16, P = 24, T = 256, models 0-3, twin
 ("sim"), noiseless reference by Qiskit's Statevector on the CPU. Files: `n20.jsonl`, `n22.jsonl` (the `.log` files are
 copies), `times.txt`, `rust.txt`; rule_lam_big_n22.zip SHA-256 806839d20dd3f5f895cb37e097d358a464a376d555b56b14c3a3e711d202dbf6.
-n = 24 (amendments 1 and 2, the reference on the GPU) is a separate run, reported in its own folder.
+n = 24 (amendments 1 and 2, the reference on the GPU) is a separate run, reported below and in `n24/`.
 
 | n | the rule's placement | two-qubit gates (per layer) | us | lam per model (± standard error) | corr | prediction |
 |---|---|---|---|---|---|---|
@@ -35,3 +35,23 @@ reference on the CPU); n = 22 938 (about 2,100 more for the reference).
 
 **Not claimed.** No device; one day's calibration of one device; random models; one placement per n; no second arm, so
 no match.
+
+## n = 24 (amendments 1 and 2)
+
+Declared in prereg/drafts-2026-10-27/rule_lam_big_amend1.md (`6924d12`, 08:57 CET) and rule_lam_big_amend2.md (SHA-256
+04b70974…, `90e7127`, 09:09 CET: the noiseless reference on the GPU). Same pod, toqb `90e7127`, psf-zero `61d0b545`.
+**Checks (declared): passed** (11:37:38-11:40:23 CET, read from the pod's `rule_lam_big_n24_2026-10-27_check/times.txt`,
+not retrieved as a file): the direct statevector equals Qiskit's within 2.78e-15 (numpy and cupy, n = 3-13); n = 20,
+model 0, rerun with the reference on the GPU equals the CPU-reference row. n = 24 11:40:23-19:56:15 CET, 7,415 s a
+model. Files in `n24/` (`n24.jsonl`, `.log` copy, `times.txt`, `rust.txt`); rule_lam_big_n24.zip SHA-256
+fe54d590f4a8faf57dc294e140229f93d17e950b3ae874f6f4b536a95c615a3a. Rows carry "noiseless": "cupy".
+
+| n | placement | two-qubit gates (per layer) | us | lam per model (± standard error) | corr | prediction |
+|---|---|---|---|---|---|---|
+| 24 | the ring itself on a 24-cycle (qubits 3-7, 16, 17, 21-23, 27-29, 36, 38, 41-49) | 384 (24) | 5.6 | 0.833 ± 0.024, 0.832 ± 0.015, 0.810 ± 0.009, 0.805 ± 0.013 | 0.991-0.999 | >= 0.61 every model: **held** |
+
+- **Vanity:** 384 two-qubit gates against the zipper's 896; 5.6 us.
+- **What a device user needs:** the bare ring on a 24-cycle kept 0.80-0.83 of the signal (shots 1.44-1.54 times those
+  of a noiseless circuit), the same level as the bare ring on the 20-cycle (0.78-0.86). The 24-cycle shares most of
+  its qubits with the 20-cycle but not all, and the classifiers differ, so this is a comparison of places and models
+  as well as of size.
