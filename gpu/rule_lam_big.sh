@@ -1,7 +1,7 @@
 #!/bin/bash
-# DRAFT run script for prereg/drafts-2026-10-27/rule_lam_big_draft.md (not declared yet): fold:rule's lam at n = 20,
+# Flow J (prereg/drafts-2026-10-27/rule_lam_big_note.md): fold:rule's lam at n = 20,
 # 22, 24 on the twin of ibm_kingston's 2026-10-24 calibration. Run from the folder that holds TOQB, psf and venv:
-#   TARGET=/workspace/target.pkl OUT=/workspace/rule_lam_big NS="20 22 24" bash TOQB/gpu/rule_lam_big.sh 2>&1 | tee rb.txt
+#   TARGET=/workspace/target.pkl OUT=/workspace/rule_lam_big NS="20 22" bash TOQB/gpu/rule_lam_big.sh 2>&1 | tee rb.txt
 # A zip of everything so far is written after each n (rule_lam_big_n<n>.zip).
 set -u
 W=$(pwd)
@@ -10,8 +10,8 @@ PSF=${PSF_DIR:-$W/psf}
 VA=${VENV_ACT:-$W/venv/bin/activate}
 OUT=${OUT:?set OUT}
 TARGET=${TARGET:?set TARGET}
-NS=${NS:-"20 22 24"}
-NOTE=${NOTE:-prereg/drafts-2026-10-27/rule_lam_big_draft.md}
+NS=${NS:-"20 22"}
+NOTE=${NOTE:-prereg/drafts-2026-10-27/rule_lam_big_note.md}
 WANT=3b93913856d2f0b9bf97ac03f89c43457157735413b02d8722c82d31065b218d
 [ -d "$TQ" ] && [ -f "$VA" ] && [ -d "$PSF" ] || { echo "STOP: needs TOQB, venv, psf"; exit 1; }
 [ -e "$OUT" ] && { echo "STOP: $OUT exists; a run never overwrites another"; exit 1; }
