@@ -1,0 +1,11 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb e42eb8a data/targets: the 2026-10-24 ibm_kingston Target (flow C's, SHA-256 3b939138...) so that a fresh pod gets it with the clone
+psf-zero 61d0b545 README: Paper 4 (DOI 10.5281/zenodo.23665575); device row adds D2 (ibm_fez)
+note a6c4193e41f4bb5f2cb0ab59eb4b34975a05f28f9fb0eae87b3886b258bbf0f2  prereg/drafts-2026-10-26/qiskit_match_k_note.md
+target 3b93913856d2f0b9bf97ac03f89c43457157735413b02d8722c82d31065b218d
+start 2026-10-26 15:15:52 CET
+check PASS (equal to flow G)
+part1 start 2026-10-26 15:16:03 CET
+part1 done 2026-10-26 17:33:04 CET
+part2 start 2026-10-26 17:33:04 CET
+stopped by owner after n = 15 2026-10-27 07:40:41 CET
