@@ -1,0 +1,10 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb 5da4fff Declare flow J (owner's go of 2026-10-27, 07:49 CET): fold:rule's lam at n = 20 and 22 on the kingston 2026-10-24 twin, rule only, four models, L = 16; prediction n = 20 >= 0.61 every model, n = 22 between 0.50 and n = 20's largest; gpu/rule_lam_big.sh defaults to n = 20 22 and this note. rule_lam_big_note.md SHA-256 5b5b69ada966949ad7c6a9a2a7451ed65a209ef1b2324ce8499817a4e7511e2f
+psf-zero 61d0b545 README: Paper 4 (DOI 10.5281/zenodo.23665575); device row adds D2 (ibm_fez)
+note 5b5b69ada966949ad7c6a9a2a7451ed65a209ef1b2324ce8499817a4e7511e2f  prereg/drafts-2026-10-27/rule_lam_big_note.md
+target 3b93913856d2f0b9bf97ac03f89c43457157735413b02d8722c82d31065b218d
+start 2026-10-27 07:51:05 CET
+n20 start 2026-10-27 07:51:05 CET
+n20 done 2026-10-27 08:12:27 CET
+n22 start 2026-10-27 08:12:27 CET
+n22 done 2026-10-27 11:36:48 CET
