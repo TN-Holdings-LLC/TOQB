@@ -1,0 +1,33 @@
+measure,L,model_or_seed,lam,se,corr,q2,us,sim_seconds,source
+real,8,0,0.94547,,0.99936,160,3.94,72.0,main/real_L8.jsonl
+real,8,1,0.92043,,0.99914,160,3.94,71.5,main/real_L8.jsonl
+real,8,2,0.94916,,0.99947,160,3.94,71.6,main/real_L8.jsonl
+real,8,3,0.92077,,0.99943,160,3.94,71.5,main/real_L8.jsonl
+real,16,0,0.84549,,0.98783,320,5.636,141.7,flow-j-2026-10-27/n20.jsonl (model 0 re-run equal: main/check.jsonl)
+real,16,1,0.86047,,0.99713,320,5.636,141.2,flow-j-2026-10-27/n20.jsonl (model 0 re-run equal: main/check.jsonl)
+real,16,2,0.779,,0.99362,320,5.636,141.2,flow-j-2026-10-27/n20.jsonl (model 0 re-run equal: main/check.jsonl)
+real,16,3,0.78852,,0.99078,320,5.636,141.3,flow-j-2026-10-27/n20.jsonl (model 0 re-run equal: main/check.jsonl)
+real,24,0,0.71341,,0.97666,480,7.332,211.6,amend1_L24/real_L24.jsonl
+real,24,1,0.7033,,0.98021,480,7.332,211.2,amend1_L24/real_L24.jsonl
+real,24,2,0.66182,,0.98431,480,7.332,211.2,amend1_L24/real_L24.jsonl
+real,24,3,0.70594,,0.98435,480,7.332,211.2,amend1_L24/real_L24.jsonl
+clifford,8,0,0.86353,0.01112,,160,4.004,75.4,main/clifford.jsonl
+clifford,8,1,0.8811,0.00907,,160,4.004,74.9,main/clifford.jsonl
+clifford,8,2,0.84173,0.01639,,160,4.004,74.8,main/clifford.jsonl
+clifford,8,3,0.85238,0.01107,,160,4.004,74.9,main/clifford.jsonl
+clifford,16,0,0.64115,0.01925,,320,5.7,144.7,main/clifford.jsonl
+clifford,16,1,0.60968,0.01971,,320,5.7,144.7,main/clifford.jsonl
+clifford,16,2,0.611,0.02214,,320,5.7,144.7,main/clifford.jsonl
+clifford,16,3,0.60792,0.0223,,320,5.7,144.7,main/clifford.jsonl
+clifford,24,0,0.38699,0.02202,,480,7.396,215.1,amend1_L24/clifford_L24.jsonl
+clifford,24,1,0.38696,0.02817,,480,7.396,214.6,amend1_L24/clifford_L24.jsonl
+clifford,24,2,0.41217,0.02535,,480,7.396,214.6,amend1_L24/clifford_L24.jsonl
+clifford,24,3,0.38151,0.02287,,480,7.396,214.5,amend1_L24/clifford_L24.jsonl
+clifford,50,0,0.09018,0.01359,,1000,12.908,441.7,main/clifford.jsonl
+clifford,50,1,0.05568,0.01192,,1000,12.908,441.7,main/clifford.jsonl
+clifford,50,2,0.04406,0.01338,,1000,12.908,441.6,main/clifford.jsonl
+clifford,50,3,0.05541,0.0093,,1000,12.908,441.7,main/clifford.jsonl
+clifford,100,0,0.00331,0.01271,,2000,23.508,878.2,main/clifford.jsonl
+clifford,100,1,-0.01242,0.00879,,2000,23.508,878.3,main/clifford.jsonl
+clifford,100,2,-0.0014,0.00683,,2000,23.508,878.4,main/clifford.jsonl
+clifford,100,3,0.00663,0.01106,,2000,23.508,878.5,main/clifford.jsonl

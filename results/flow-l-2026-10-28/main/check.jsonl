@@ -1,0 +1,1 @@
+{"n": 20, "L": 16, "arm": "fold:rule", "P": 24, "T": 256, "device": "target.pkl", "q2": 320, "us": 5.636, "active": 20, "version": "toqb fold 2026-10-26.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle); qiskit 2.5.2", "model": "sim", "lam": 0.84549, "delta": 0.00538, "corr": 0.98783, "rms": 0.01209, "s": 142.6}

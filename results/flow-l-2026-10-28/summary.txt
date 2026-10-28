@@ -1,0 +1,15 @@
+Flow L summary (n = 20, fold:rule, ibm_kingston 2026-10-24 twin, P = 24, T = 256; four models / seeds each)
+
+Bridge (declared rule: AGREE if |mean C - mean real| <= 2 sqrt(SE_C^2 + SE_r^2), SE = sd of four / 2)
+   L     real      SE    lam_C      SE    diff    2 SE  ratio  verdict
+   8   0.9340  0.0077   0.8597  0.0084  0.0743  0.0229  0.920  DIFFER
+  16   0.8184  0.0203   0.6174  0.0079  0.2009  0.0436  0.754  DIFFER
+  24   0.6961  0.0116   0.3919  0.0069  0.3042  0.0270  0.563  DIFFER
+  50        -       -   0.0613  0.0100   (lam_C / SE = 6.1)
+ 100        -       -  -0.0010  0.0042   (lam_C / SE = -0.2)
+
+Per-layer factor (mean(L2) / mean(L1))^(1 / (L2 - L1))
+lam_C: L 8-16: 0.9595, L 16-24: 0.9448, L 24-50: 0.9311
+real: L 8-16: 0.9836, L 16-24: 0.9800
+
+Shots relative to lam = 1 (1 / mean^2): L 8: C 1.4 / real 1.15, L 16: C 2.6 / real 1.49, L 24: C 6.5 / real 2.06, L 50: C 265.8

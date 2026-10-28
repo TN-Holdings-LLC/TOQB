@@ -1,0 +1,4 @@
+note clifford_lam_amend1.md dadc1d872a47d892b81cfeb68b46f49de1d789a4d3413ded89fc2e5c7c6d5a73; toqb 8904b2e
+start 2026-10-28 03:26:26 CET
+clifford start 2026-10-28 04:26:16 CET
+all done 2026-10-28 04:40:50 CET

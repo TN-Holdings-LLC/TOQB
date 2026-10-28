@@ -1,0 +1,10 @@
+NVIDIA H100 80GB HBM3, 81559 MiB
+toqb 8904b2e Declare flow L (owner's go of 2026-10-28, 00:51 CET): Clifford eigenstate lam_C of the bare 20-ring at L = 8, 16, 50, 100 (toqb/clifford_lam.py; tests: noiseless value equals the sign exactly, logical and compiled, one template), with the real-angle bridge at L = 8 and 16 (flow J reused after a check); prediction AGREE at L = 8, none at 16, lam_C(100) above 0. clifford_lam_note.md SHA-256 1afcd16bc30df9a13b730c84f855b00be12a88736df39eea6b6db8e7448fe330
+psf-zero 4346919f docs: Paper 4 version 1.2 (2026-10-28): the workplace's read of v1.1 (R1-R4 wording in Related work, A1 in the abstract) and Kashif & Shafique (arXiv:2605.25552) cited
+note 1afcd16bc30df9a13b730c84f855b00be12a88736df39eea6b6db8e7448fe330  prereg/drafts-2026-10-28/clifford_lam_note.md
+target 3b93913856d2f0b9bf97ac03f89c43457157735413b02d8722c82d31065b218d
+start 2026-10-28 01:12:11 CET
+check PASS (n = 20, L = 16, model 0 equal to flow J)
+real L8 start 2026-10-28 01:22:22 CET
+clifford start 2026-10-28 01:41:17 CET
+all done 2026-10-28 03:25:46 CET
