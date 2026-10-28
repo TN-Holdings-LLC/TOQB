@@ -77,6 +77,8 @@ def cmd_build(argv):
     p.add_argument("--P", type=int, default=48)
     p.add_argument("--shots", type=int, default=250)
     p.add_argument("--traj", type=int, default=256)
+    p.add_argument("--kind", default="classifier", choices=["classifier", "kising"])
+    p.add_argument("--h", type=float, default=0.6)
     a = p.parse_args(argv)
     from toqb import s2r as S
     from toqb import s2r2 as S2
@@ -86,7 +88,10 @@ def cmd_build(argv):
     if sha256_file(tfile) != fj["target_sha256"]:
         print("STOP: target.pkl differs from fetch.json's hash", file=sys.stderr)
         return 2
-    name = f"lam_n{a.n}_L{a.L}_m{a.mseed}-{a.arm.replace(':', '_')}"
+    if a.kind == "kising":  # toqb.kising: X-basis inputs drawn as in its main (seed number = mseed), exact reference
+        name = f"kising_n{a.n}_L{a.L}_s{a.mseed}_h{a.h:g}-{a.arm.replace(':', '_')}"
+    else:
+        name = f"lam_n{a.n}_L{a.L}_m{a.mseed}-{a.arm.replace(':', '_')}"
     os.makedirs(a.out, exist_ok=True)
     jf, qf = os.path.join(a.out, name + ".json"), os.path.join(a.out, name + ".qpy")
     for f in (jf, qf):
@@ -94,15 +99,25 @@ def cmd_build(argv):
             print(f"STOP: {f} exists: a run never overwrites another", file=sys.stderr)
             return 2
     t0 = time.perf_counter()
-    theta, X = model_inputs(a.n, a.L, a.mseed, a.P)
-    zl = noiseless_z(theta, X, a.n, a.L)
+    if a.kind == "kising":
+        from toqb import kising as K
+        rng = np.random.default_rng(8_000_000 + 1000 * a.n + a.L + 100000 * a.mseed)
+        X = [rng.choice([1, -1], a.n) for _ in range(a.P)]
+        theta = np.zeros(0)
+        zl = np.array([K.z_noiseless(s, a.n, a.L, a.h) for s in X])
+    else:
+        theta, X = model_inputs(a.n, a.L, a.mseed, a.P)
+        zl = noiseless_z(theta, X, a.n, a.L)
     labels = np.where(zl >= 0, 1, -1)
     task = dict(n=a.n, layers=a.L, enc=float(np.pi / 2))
     pr = dict(traj=a.traj, seed=7, shots=a.shots, reps=2000, level=0.99)
     plan = dict(name=f"lam device test: {name}", device="file:" + tfile, verify=False, task=task, predict=pr,
                 standin=dict(t12=0.3, over=0.01, zz_hz=1e4, seed=20261017))
     R = S2.Runner(plan, a.arm)
-    cs = [R.compile(theta, x) for x in X]
+    if a.kind == "kising":
+        cs = [R.arm.compile(K.circuit(s, a.n, a.L, a.h)) for s in X]
+    else:
+        cs = [R.compile(theta, x) for x in X]
     zt = R.z("sim", cs, a.traj, pr["seed"])
     lam, delta, se, corr = fit(zt, zl)
     p1 = (1 - zt) / 2
@@ -113,6 +128,8 @@ def cmd_build(argv):
                inputs=[[float(v) for v in x] for x in X], noiseless_z=[float(v) for v in zl],
                twin=dict(lam=lam, delta=delta, se=se, corr=corr, z=[float(v) for v in zt]),
                q2=int(q2), us=round(d * 1e6, 3))
+    if a.kind == "kising":
+        rec.update(kising=dict(h=a.h, J="pi/4", readout_sign=K.SIGN_OF_READOUT))
     rec["prediction"] = predict_job(p1, labels, a.shots, pr["reps"], pr["level"], pr["seed"] + 1, traj=a.traj)
     rec["prediction_shots_only"] = predict_job(p1, labels, a.shots, pr["reps"], pr["level"], pr["seed"] + 1)
     rec["prediction"]["twin_p1"] = [float(x) for x in p1]
