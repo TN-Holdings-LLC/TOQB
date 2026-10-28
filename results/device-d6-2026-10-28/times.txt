@@ -1,0 +1,8 @@
+toqb 30da96a Declare device test D6 (owner's go of 2026-10-28, 15
+psf-zero 2cc4f7b6 docs: Paper 5 notes (2026-10-28
+note 85b358b769e80e1ed8b2cbe3e11e4c19aaa8eff18c91e0d4c35d59abacd1dc6b  prereg/drafts-2026-10-28/device_d6_note.md
+tests 15 passed in 9.76s
+fetch ibm_kingston 2026-10-28 14:37:55+01:00 dd62d35343d4d95885490a00775bba491bd9d9bf33d4f47d5264803a3505a53c
+start 2026-10-28 15:39:03 CET
+check PASS (GPU reference against Qiskit, n = 13, L = 16, 4 inputs: 2.0e-15)
+end 2026-10-28 15:46:56 CET

@@ -1,0 +1,54 @@
+lam_n13_L16_m0-fold_rule                 device lam 0.779 +- 0.113 (corr 0.658) | no twin | 224 two-qubit gates, 9.156 us
+lam_n13_L16_m0-qiskit_2_blind_template   device lam 0.379 +- 0.106 (corr 0.414) | no twin | 271 two-qubit gates, 22.344 us
+lam_n14_L16_m0-fold_rule                 device lam 0.752 +- 0.077 (corr 0.779) | no twin | 256 two-qubit gates, 9.156 us
+lam_n14_L16_m0-fold_zipcyc               device lam 0.609 +- 0.103 (corr 0.598) | no twin | 496 two-qubit gates, 10.628 us
+lam_n14_L16_m0-qiskit_2_blind_template   device lam -0.078 +- 0.223 (corr -0.044) | no twin | 533 two-qubit gates, 50.556 us
+lam_n15_L16_m0-fold_rule                 device lam 0.895 +- 0.075 (corr 0.835) | no twin | 288 two-qubit gates, 9.348 us
+lam_n15_L16_m0-qiskit_2_blind_template   device lam 0.001 +- 0.074 (corr 0.002) | no twin | 906 two-qubit gates, 88.032 us
+lam_n16_L16_m0-fold_rule                 device lam 0.846 +- 0.091 (corr 0.764) | no twin | 320 two-qubit gates, 9.348 us
+lam_n16_L16_m0-fold_zipcyc               device lam 0.479 +- 0.092 (corr 0.550) | no twin | 576 two-qubit gates, 10.628 us
+lam_n16_L16_m0-qiskit_2_blind_template   device lam -0.022 +- 0.112 (corr -0.025) | no twin | 460 two-qubit gates, 41.944 us
+lam_n17_L16_m0-fold_rule                 device lam 0.908 +- 0.083 (corr 0.811) | no twin | 352 two-qubit gates, 9.348 us
+lam_n17_L16_m0-qiskit_2_blind_template   device lam -0.068 +- 0.096 (corr -0.090) | no twin | 821 two-qubit gates, 78.536 us
+lam_n18_L16_m0-fold_rule                 device lam 0.580 +- 0.086 (corr 0.650) | no twin | 352 two-qubit gates, 6.66 us
+lam_n18_L16_m0-fold_zipcyc               device lam 0.497 +- 0.087 (corr 0.589) | no twin | 656 two-qubit gates, 10.628 us
+lam_n18_L16_m0-qiskit_2_blind_template   device lam 0.054 +- 0.135 (corr 0.051) | no twin | 789 two-qubit gates, 74.72 us
+lam_n19_L16_m0-fold_rule                 device lam 0.783 +- 0.107 (corr 0.680) | no twin | 336 two-qubit gates, 6.236 us
+lam_n19_L16_m0-qiskit_2_blind_template   device lam 0.368 +- 0.143 (corr 0.310) | no twin | 751 two-qubit gates, 70.408 us
+lam_n20_L16_m0-fold_rule                 device lam 0.833 +- 0.071 (corr 0.830) | no twin | 320 two-qubit gates, 5.636 us
+lam_n20_L16_m0-fold_zipcyc               device lam 0.692 +- 0.063 (corr 0.815) | no twin | 736 two-qubit gates, 10.628 us
+lam_n20_L16_m0-qiskit_2_blind_template   device lam 0.485 +- 0.113 (corr 0.479) | no twin | 320 two-qubit gates, 25.86 us
+lam_n21_L16_m0-fold_rule                 device lam 0.851 +- 0.085 (corr 0.786) | no twin | 352 two-qubit gates, 9.156 us
+lam_n21_L16_m0-qiskit_2_blind_template   device lam 0.080 +- 0.098 (corr 0.103) | no twin | 926 two-qubit gates, 83.756 us
+lam_n22_L16_m0-fold_rule                 device lam 0.687 +- 0.116 (corr 0.601) | no twin | 384 two-qubit gates, 9.156 us
+lam_n22_L16_m0-fold_zipcyc               device lam 0.321 +- 0.126 (corr 0.307) | no twin | 816 two-qubit gates, 10.628 us
+lam_n22_L16_m0-qiskit_2_blind_template   device lam 0.085 +- 0.101 (corr 0.106) | no twin | 1216 two-qubit gates, 107.712 us
+lam_n23_L16_m0-fold_rule                 device lam 0.368 +- 0.146 (corr 0.305) | no twin | 400 two-qubit gates, 6.156 us
+lam_n23_L16_m0-qiskit_2_blind_template   device lam 0.003 +- 0.210 (corr 0.002) | no twin | 1034 two-qubit gates, 92.612 us
+lam_n24_L16_m0-fold_rule                 device lam 0.996 +- 0.134 (corr 0.688) | no twin | 384 two-qubit gates, 5.636 us
+lam_n24_L16_m0-fold_zipcyc               device lam 0.378 +- 0.105 (corr 0.416) | no twin | 896 two-qubit gates, 10.628 us
+lam_n24_L16_m0-qiskit_2_blind_template   device lam 0.405 +- 0.141 (corr 0.343) | no twin | 384 two-qubit gates, 30.02 us
+n 13 L 16 model 0: fold:rule - qiskit:2:blind:template: device +0.401 +- 0.155; no twin
+n 14 L 16 model 0: fold:rule - fold:zipcyc: device +0.143 +- 0.129; no twin
+n 14 L 16 model 0: fold:rule - qiskit:2:blind:template: device +0.830 +- 0.236; no twin
+n 14 L 16 model 0: fold:zipcyc - qiskit:2:blind:template: device +0.687 +- 0.246; no twin
+n 15 L 16 model 0: fold:rule - qiskit:2:blind:template: device +0.894 +- 0.106; no twin
+n 16 L 16 model 0: fold:rule - fold:zipcyc: device +0.366 +- 0.129; no twin
+n 16 L 16 model 0: fold:rule - qiskit:2:blind:template: device +0.868 +- 0.144; no twin
+n 16 L 16 model 0: fold:zipcyc - qiskit:2:blind:template: device +0.502 +- 0.145; no twin
+n 17 L 16 model 0: fold:rule - qiskit:2:blind:template: device +0.976 +- 0.127; no twin
+n 18 L 16 model 0: fold:rule - fold:zipcyc: device +0.083 +- 0.122; no twin
+n 18 L 16 model 0: fold:rule - qiskit:2:blind:template: device +0.526 +- 0.160; no twin
+n 18 L 16 model 0: fold:zipcyc - qiskit:2:blind:template: device +0.443 +- 0.161; no twin
+n 19 L 16 model 0: fold:rule - qiskit:2:blind:template: device +0.415 +- 0.179; no twin
+n 20 L 16 model 0: fold:rule - fold:zipcyc: device +0.141 +- 0.095; no twin
+n 20 L 16 model 0: fold:rule - qiskit:2:blind:template: device +0.348 +- 0.133; no twin
+n 20 L 16 model 0: fold:zipcyc - qiskit:2:blind:template: device +0.207 +- 0.129; no twin
+n 21 L 16 model 0: fold:rule - qiskit:2:blind:template: device +0.770 +- 0.130; no twin
+n 22 L 16 model 0: fold:rule - fold:zipcyc: device +0.366 +- 0.171; no twin
+n 22 L 16 model 0: fold:rule - qiskit:2:blind:template: device +0.602 +- 0.154; no twin
+n 22 L 16 model 0: fold:zipcyc - qiskit:2:blind:template: device +0.236 +- 0.162; no twin
+n 23 L 16 model 0: fold:rule - qiskit:2:blind:template: device +0.365 +- 0.256; no twin
+n 24 L 16 model 0: fold:rule - fold:zipcyc: device +0.619 +- 0.170; no twin
+n 24 L 16 model 0: fold:rule - qiskit:2:blind:template: device +0.592 +- 0.194; no twin
+n 24 L 16 model 0: fold:zipcyc - qiskit:2:blind:template: device -0.027 +- 0.176; no twin
