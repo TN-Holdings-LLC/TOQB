@@ -1,0 +1,9 @@
+NVIDIA H100 NVL, 95830 MiB
+toqb 3ce7002 Declare flow M (owner's go of 2026-10-28, 05:13 CET; the workplace's direction (A), h = 0.6 by the owner): the kicked Ising ring at J = pi/4 on fold:rule, n = 20, L = 8-100, exact free-fermion reference (toqb/kising.py; tests: exact equals statevector, the circuit measures -<X_0>, compiled exact with one template); rule CLIFFORD-SIDE / CLASSIFIER-SIDE against flow L at L = 8, 16, 24; prediction CLIFFORD-SIDE at 16 and 24. kising_m_note.md SHA-256 1f4529309c0042e5187066615ffb91a737db58581c969b71f56b09a91da7b6bb
+psf-zero 4346919f docs: Paper 4 version 1.2 (2026-10-28): the workplace's read of v1.1 (R1-R4 wording in Related work, A1 in the abstract) and Kashif & Shafique (arXiv:2605.25552) cited
+note 1f4529309c0042e5187066615ffb91a737db58581c969b71f56b09a91da7b6bb  prereg/drafts-2026-10-28/kising_m_note.md
+target 3b93913856d2f0b9bf97ac03f89c43457157735413b02d8722c82d31065b218d
+start 2026-10-28 05:38:36 CET
+check PASS (tests/test_kising.py, 6 passed) 2026-10-28 05:38:38 CET
+kising start 2026-10-28 05:38:38 CET
+all done 2026-10-28 08:15:38 CET

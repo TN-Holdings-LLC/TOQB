@@ -1,0 +1,12 @@
+Flow M summary (kicked Ising ring, J = pi/4, h = 0.6, n = 20, fold:rule, kingston 2026-10-24 twin; four seeds of
+24 inputs each, T = 256). SE = sd of four / 2. Flow L means for comparison.
+
+   L    lam_K      SE        corr       sd z0    q2      us |   lam_C    real  side
+   8   0.8727  0.0011  1.00-1.00  0.09-0.11   160    3.94 |  0.8597  0.9340  CLIFFORD-SIDE; |K-C| 0.013 (2 SE 0.017), |K-real| 0.061 (2 SE 0.016)
+  16   0.4525  0.0115  0.93-0.98  0.24-0.29   320   5.636 |  0.6174  0.8184  CLIFFORD-SIDE; |K-C| 0.165 (2 SE 0.028), |K-real| 0.366 (2 SE 0.047)
+  24   0.2914  0.0067  0.93-0.97  0.36-0.46   480   7.332 |  0.3919  0.6961  CLIFFORD-SIDE; |K-C| 0.101 (2 SE 0.019), |K-real| 0.405 (2 SE 0.027)
+  50   0.0842  0.0126  0.22-0.56  0.12-0.21  1000  12.844 |  0.0613       -  |K-C| 0.023 (2 SE 0.032); lam_K / SE 6.7
+ 100   0.0459  0.0096  0.29-0.64  0.22-0.28  2000  23.444 | -0.0010       -  |K-C| 0.047 (2 SE 0.021); lam_K / SE 4.8
+
+Per-layer factor of lam_K: L 8-16: 0.9212, L 16-24: 0.9465, L 24-50: 0.9534, L 50-100: 0.9880
+Shots relative to lam = 1 (1/lam^2): L 8: 1, L 16: 5, L 24: 12, L 50: 141, L 100: 474
