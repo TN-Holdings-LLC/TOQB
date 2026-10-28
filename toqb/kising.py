@@ -92,6 +92,49 @@ def x_exact(s, n, Ls, h):
     return out
 
 
+def _weights(n):
+    """Pauli weight of the string i g_k g_l (W) and of P i g_k g_l with P = prod X (WP), Jordan-Wigner in the X basis."""
+    m = 2 * n
+    W, WP = np.zeros((m, m), int), np.zeros((m, m), int)
+    for k in range(m):
+        for l in range(m):
+            if k == l:
+                continue
+            j, jp = sorted((k // 2, l // 2))
+            W[k, l] = jp - j + 1
+            WP[k, l] = n - W[k, l] + 2 if j != jp else n - 1
+    return W, WP
+
+
+def x0_noisy(s, n, Ls, h, p, J=np.pi / 4):
+    """{L: <X_0>} after L steps, each followed by depolarizing noise of probability p on every qubit; exact for this
+    Pauli noise at any n (the workplace's noisy_ff.py, 2026-10-28: bilinears and P * bilinears are single Pauli strings,
+    so the channel rescales them, and the step keeps their span; one recursion per parity sector). p = 0 gives
+    x_exact's value."""
+    s = np.asarray(s)
+    par, m = int(np.prod(s)), 2 * n
+    Mp, Mm = _step_map(n, h, +1, J), _step_map(n, h, -1, J)
+    W, WP = _weights(n)
+    f = 1 - 4 * p / 3
+    D, DP = f ** W, f ** WP
+    cx = -1.0  # X_j = cx * (i/2)[g_2j, g_2j+1] in this convention (x_exact's sign)
+    A = np.zeros((m, m))
+    A[0, 1], A[1, 0] = cx, -cx
+    B = np.zeros((m, m))
+    C = np.zeros((m, m))
+    for j in range(n):
+        C[2 * j, 2 * j + 1], C[2 * j + 1, 2 * j] = s[j] * cx, -s[j] * cx
+    out, a, b, t = {}, A, B, 0
+    for L in sorted(Ls):
+        for _ in range(L - t):
+            a, b = a * D, b * DP
+            sp, sm = Mp @ (a + b) @ Mp.T, Mm @ (a - b) @ Mm.T
+            a, b = (sp + sm) / 2, (sp - sm) / 2
+        t = L
+        out[L] = float(0.5 * np.sum((a + par * b) * C))
+    return out
+
+
 def z_noiseless(s, n, L, h):
     """The noiseless <Z_0> the circuit of `circuit(s, n, L, h)` measures."""
     return SIGN_OF_READOUT * float(x_exact(s, n, [L], h)[L][0])

@@ -79,6 +79,8 @@ def cmd_build(argv):
     p.add_argument("--traj", type=int, default=256)
     p.add_argument("--kind", default="classifier", choices=["classifier", "kising"])
     p.add_argument("--h", type=float, default=0.6)
+    p.add_argument("--twin", default="sim", choices=["sim", "none"],
+                   help="none: no twin (rings too large to simulate); the job's p1 stand-in is the noiseless value")
     a = p.parse_args(argv)
     from toqb import s2r as S
     from toqb import s2r2 as S2
@@ -118,15 +120,20 @@ def cmd_build(argv):
         cs = [R.arm.compile(K.circuit(s, a.n, a.L, a.h)) for s in X]
     else:
         cs = [R.compile(theta, x) for x in X]
-    zt = R.z("sim", cs, a.traj, pr["seed"])
-    lam, delta, se, corr = fit(zt, zl)
-    p1 = (1 - zt) / 2
+    if a.twin == "none":
+        zt = np.asarray(zl, dtype=float)  # stand-in for assemble's bookkeeping only; no twin prediction exists
+        twin = None
+    else:
+        zt = R.z("sim", cs, a.traj, pr["seed"])
+        lam, delta, se, corr = fit(zt, zl)
+        twin = dict(lam=lam, delta=delta, se=se, corr=corr, z=[float(v) for v in zt])
+    p1 = np.clip((1 - np.asarray(zt, dtype=float)) / 2, 0, 1)
     d, q2 = R.arm.duration(cs[0], (a.n, a.L))
     rec = dict(kind="s2rc", lam_test=True, arm=a.arm, seed=a.mseed, plan=plan["name"], task=task, predict=pr,
                standin=plan["standin"], verify=False, device=plan["device"], target_sha256=fj["target_sha256"],
                version=R.arm.version(), final_mean=[float(v) for v in theta], loops=0, started=S._cest(),
                inputs=[[float(v) for v in x] for x in X], noiseless_z=[float(v) for v in zl],
-               twin=dict(lam=lam, delta=delta, se=se, corr=corr, z=[float(v) for v in zt]),
+               twin=twin,
                q2=int(q2), us=round(d * 1e6, 3))
     if a.kind == "kising":
         rec.update(kising=dict(h=a.h, J="pi/4", readout_sign=K.SIGN_OF_READOUT))
@@ -142,8 +149,10 @@ def cmd_build(argv):
                on_failed_ops=R.arm.on_failed_ops, ended=S._cest())
     rec["valid"] = not R.arm.structural_fail and not R.arm.on_failed_ops
     json.dump(rec, open(jf, "w", encoding="utf-8"))
-    print(f"{name}: {len(cs)} circuits, {q2} two-qubit gates, {d * 1e6:.2f} us; twin lam {lam:.3f} +- {se:.3f} "
-          f"(delta {delta:+.3f}, corr {corr:.3f}); noiseless z spread {zl.std():.3f}; valid {rec['valid']}")
+    tw = (f"twin lam {twin['lam']:.3f} +- {twin['se']:.3f} (delta {twin['delta']:+.3f}, corr {twin['corr']:.3f})"
+          if twin else "no twin")
+    print(f"{name}: {len(cs)} circuits, {q2} two-qubit gates, {d * 1e6:.2f} us; {tw}; noiseless z spread "
+          f"{zl.std():.3f}; valid {rec['valid']}")
     return 0 if rec["valid"] else 2
 
 
@@ -167,10 +176,11 @@ def cmd_score(argv):
         lam, delta, se, corr = fit(zd, zl)
         cells.append(dict(name=c["name"], arm=rec["arm"], n=rec["task"]["n"], L=rec["task"]["layers"],
                           mseed=rec["seed"], device=dict(lam=lam, delta=delta, se=se, corr=corr),
-                          twin=rec["twin"] | {"z": None}, q2=rec.get("q2"), us=rec.get("us"),
+                          twin=(rec["twin"] | {"z": None}) if rec["twin"] else None, q2=rec.get("q2"), us=rec.get("us"),
                           device_z=[float(v) for v in zd]))
-        print(f"{c['name']:40s} device lam {lam:.3f} +- {se:.3f} (corr {corr:.3f}) | twin {rec['twin']['lam']:.3f} "
-              f"+- {rec['twin']['se']:.3f} | {rec.get('q2')} two-qubit gates, {rec.get('us')} us")
+        tw = f"twin {rec['twin']['lam']:.3f} +- {rec['twin']['se']:.3f}" if rec["twin"] else "no twin"
+        print(f"{c['name']:40s} device lam {lam:.3f} +- {se:.3f} (corr {corr:.3f}) | {tw} | {rec.get('q2')} "
+              f"two-qubit gates, {rec.get('us')} us")
     groups = {}
     for c in cells:
         groups.setdefault((c["n"], c["L"], c["mseed"]), []).append(c)
@@ -180,8 +190,8 @@ def cmd_score(argv):
                 a, b = g[i], g[j]
                 dlam = a["device"]["lam"] - b["device"]["lam"]
                 se = float(np.hypot(a["device"]["se"], b["device"]["se"]))
-                print(f"n {k[0]} L {k[1]} model {k[2]}: {a['arm']} - {b['arm']}: device {dlam:+.3f} +- {se:.3f}; "
-                      f"twin {a['twin']['lam'] - b['twin']['lam']:+.3f}")
+                tw = (f"twin {a['twin']['lam'] - b['twin']['lam']:+.3f}" if a["twin"] and b["twin"] else "no twin")
+                print(f"n {k[0]} L {k[1]} model {k[2]}: {a['arm']} - {b['arm']}: device {dlam:+.3f} +- {se:.3f}; {tw}")
     out = os.path.join(job, "lam_score.json")
     if os.path.exists(out):
         print(f"{out} exists; not written")
@@ -198,7 +208,7 @@ def cmd_rehearse(argv):
     npts = int(argv[argv.index("--points") + 1]) if "--points" in argv else None  # the first P points (a build's
     # inputs are drawn row by row, so its first P equal a build with P)
     recs = [json.load(open(f)) for f in sorted(glob.glob(os.path.join(runs, "*.json")))]
-    recs = [r for r in recs if r.get("lam_test")]
+    recs = [r for r in recs if r.get("lam_test") and r.get("twin")]  # no rehearsal without a twin
     rng = np.random.default_rng(12345)
     draws = {}
     for r in recs:

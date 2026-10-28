@@ -55,3 +55,40 @@ def test_compiled_is_exact_and_one_structure(n):
         sigs.add(tuple((i.operation.name, tuple(c.find_bit(q).index for q in i.qubits)) for i in c.data))
     assert arm.arm.stats["template_builds"] == 1
     assert len(sigs) == 1
+
+
+@pytest.mark.parametrize("n,L,p", [(4, 3, 0.02), (5, 6, 0.01), (6, 4, 0.04)])
+def test_noisy_recursion_equals_density_matrix(n, L, p):
+    """x0_noisy against an exact density matrix: each step (CZ ring, Z, RX(2h)) then depolarizing p on every qubit."""
+    from qiskit import QuantumCircuit
+    from qiskit.quantum_info import DensityMatrix, Operator
+    h = 0.6
+    step = QuantumCircuit(n)
+    for q in range(n):
+        step.cz(q, (q + 1) % n)
+    for q in range(n):
+        step.z(q)
+        step.rx(2 * h, q)
+    U = Operator(step).data
+    I2, X, Y, Z = np.eye(2), np.array([[0, 1], [1, 0]]), np.array([[0, -1j], [1j, 0]]), np.diag([1.0, -1.0])
+
+    def on(q, m):  # Qiskit order: qubit q is bit q (rightmost factor is qubit 0)
+        out = np.array([[1.0]])
+        for k in reversed(range(n)):
+            out = np.kron(out, m if k == q else I2)
+        return out
+
+    rng = np.random.default_rng(10 * n + L)
+    s = rng.choice([1, -1], n)
+    prep = QuantumCircuit(n)
+    for q in range(n):
+        prep.h(q)
+        if s[q] == -1:
+            prep.z(q)
+    rho = DensityMatrix(prep).data
+    for _ in range(L):
+        rho = U @ rho @ U.conj().T
+        for q in range(n):
+            rho = (1 - p) * rho + p / 3 * sum(on(q, P) @ rho @ on(q, P).conj().T for P in (X, Y, Z))
+    ref = float(np.real(np.trace(on(0, X) @ rho)))
+    assert abs(K.x0_noisy(s, n, [L], h, p)[L] - ref) < 1e-10
