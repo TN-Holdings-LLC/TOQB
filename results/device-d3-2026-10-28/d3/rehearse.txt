@@ -1,0 +1,1 @@
+n 20 L 24 model 0 fold:rule              twin lam 0.247; with 250 shots x 64 points: slope 0.247 +- 0.021 (fit's own SE 0.025); noiseless z sd 0.379

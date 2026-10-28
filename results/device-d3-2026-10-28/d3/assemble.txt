@@ -1,0 +1,2 @@
+1 cells, 64 circuits x 250 shots: predicted QPU time 9.6 s (limit 10.0 s)
+2026-10-28T11:01:56+00:00 (2026-10-28 12:01:56 CET) manifest written before any submission: /workspace/d3/job/manifest.json, sha256 c5c462279aab83fc32ce3b63605b94bd8e2196047ddca17180283962a3824910

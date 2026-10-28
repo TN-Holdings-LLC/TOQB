@@ -1,0 +1,1 @@
+kising_n20_L24_s0_h0.6-fold_rule: 64 circuits, 480 two-qubit gates, 7.33 us; twin lam 0.247 +- 0.014 (delta +0.004, corr 0.912); noiseless z spread 0.379; valid True

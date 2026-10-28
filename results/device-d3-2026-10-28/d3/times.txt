@@ -1,0 +1,9 @@
+toqb 55642f1 results: flow M (kicked Ising ring, J = pi/4, h = 0.
+psf-zero 2cc4f7b6 docs: Paper 5 notes (2026-10-28
+note 558aa6cd9de3994c14c1c1d01e6f62080797838c04ddf28353772a5f09af16ea  prereg/drafts-2026-10-28/kising_device_d3_note.md
+amend1 2828c7a921c7df1db4f540bce9f0c30711861b0ce47ce367bf65702102b353cd  prereg/drafts-2026-10-28/kising_device_d3_amend1.md
+amend2 4048455345b293a2f0ccdf05430328c04d4446f019f3e1e2be8a66f7def215a2  prereg/drafts-2026-10-28/kising_device_d3_amend2.md
+amend3 ec85287eb0eec29a99711cd0f3d12775129a88d039617d8f4e0290e780700881  prereg/drafts-2026-10-28/kising_device_d3_amend3.md
+fetch ibm_kingston 2026-10-28 11:36:52+01:00 4c3a43e94ca193b464bb0e54de398f53efcdb4e8b54d36948672975498af9cee
+start 2026-10-28 11:52:23 CET
+end 2026-10-28 12:01:56 CET
