@@ -1,0 +1,6 @@
+toqb ca1a78f Declare device test D4 (owner's go of 2026-10-28, 12
+psf-zero 2cc4f7b6 docs: Paper 5 notes (2026-10-28
+note ea7d872de09dd1fef74c830607db2655a0b1bb3e56bcfbf27973ba79e48f4609  prereg/drafts-2026-10-28/kising_device_d4_note.md
+fetch ibm_kingston 2026-10-28 11:36:52+01:00 4c3a43e94ca193b464bb0e54de398f53efcdb4e8b54d36948672975498af9cee
+start 2026-10-28 12:20:17 CET
+end 2026-10-28 12:59:47 CET
