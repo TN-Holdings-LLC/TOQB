@@ -79,8 +79,10 @@ def cmd_build(argv):
     p.add_argument("--traj", type=int, default=256)
     p.add_argument("--kind", default="classifier", choices=["classifier", "kising"])
     p.add_argument("--h", type=float, default=0.6)
-    p.add_argument("--twin", default="sim", choices=["sim", "none"],
-                   help="none: no twin (rings too large to simulate); the job's p1 stand-in is the noiseless value")
+    p.add_argument("--twin", default="sim", choices=["sim", "none", "auto"],
+                   help="none: no twin (rings too large to simulate); the job's p1 stand-in is the noiseless value; "
+                        "auto: sim if the compiled circuit has at most --max-active active qubits, else none")
+    p.add_argument("--max-active", type=int, default=24)
     a = p.parse_args(argv)
     from toqb import s2r as S
     from toqb import s2r2 as S2
@@ -120,7 +122,9 @@ def cmd_build(argv):
         cs = [R.arm.compile(K.circuit(s, a.n, a.L, a.h)) for s in X]
     else:
         cs = [R.compile(theta, x) for x in X]
-    if a.twin == "none":
+    from toqb.fold_lam import active
+    n_active = active(cs[0])
+    if a.twin == "none" or (a.twin == "auto" and n_active > a.max_active):
         zt = np.asarray(zl, dtype=float)  # stand-in for assemble's bookkeeping only; no twin prediction exists
         twin = None
     else:
@@ -134,7 +138,7 @@ def cmd_build(argv):
                version=R.arm.version(), final_mean=[float(v) for v in theta], loops=0, started=S._cest(),
                inputs=[[float(v) for v in x] for x in X], noiseless_z=[float(v) for v in zl],
                twin=twin,
-               q2=int(q2), us=round(d * 1e6, 3))
+               q2=int(q2), us=round(d * 1e6, 3), active=int(n_active))
     if a.kind == "kising":
         rec.update(kising=dict(h=a.h, J="pi/4", readout_sign=K.SIGN_OF_READOUT))
     rec["prediction"] = predict_job(p1, labels, a.shots, pr["reps"], pr["level"], pr["seed"] + 1, traj=a.traj)
