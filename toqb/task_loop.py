@@ -342,9 +342,9 @@ def _qiskit_sig(qc):
 
 
 class QiskitLoop:
-    def __init__(self, level, mode):
-        self.level, self.mode = level, mode
-        self.name = f"qiskit:{level}:target:{mode}"
+    def __init__(self, level, mode, blind=False):
+        self.level, self.mode, self.blind = level, mode, blind
+        self.name = f"qiskit:{level}:{'blind' if blind else 'target'}:{mode}"
         self.stats = dict(template_builds=0, template_unavailable=0)
 
     def version(self):
@@ -353,7 +353,13 @@ class QiskitLoop:
 
     def setup(self, target):
         from qiskit.transpiler import generate_preset_pass_manager
-        self.pm = generate_preset_pass_manager(self.level, target=target, seed_transpiler=0)
+        if self.blind:  # 2026-10-28: no error rate or duration reaches Qiskit; only the working couplers and the basis
+            from qiskit.transpiler import CouplingMap
+            edges, basis = blind_device(target)
+            self.pm = generate_preset_pass_manager(self.level, coupling_map=CouplingMap(edges), basis_gates=basis,
+                                                   seed_transpiler=0)
+        else:
+            self.pm = generate_preset_pass_manager(self.level, target=target, seed_transpiler=0)
         self._cache = {}
 
     def _template(self, qc):
@@ -527,10 +533,31 @@ def _psfai_compile_zip(self, qc):
 PSFAILoop._compile_zip = _psfai_compile_zip
 
 
+def blind_device(target):
+    """(edges, basis) of a Target with every quality number dropped: the two-qubit couplers whose gate and both
+    qubits work (error < 1, as `toqb.fold`'s failed-element rule), in both directions, and the operation names. The
+    same failed-element information the fold arms use, and nothing else."""
+    def ok(p):
+        return p is not None and (p.error is None or p.error < 1)
+    sx = target["sx"] if "sx" in target.operation_names else {}
+    good_q = {q[0] for q, p in sx.items() if ok(p)} if sx else set(range(target.num_qubits))
+    edges = set()
+    for name in target.operation_names:
+        if target.operation_from_name(name).num_qubits != 2:
+            continue
+        for qargs, p in target[name].items():
+            if qargs and ok(p) and qargs[0] in good_q and qargs[1] in good_q:
+                edges.add(tuple(qargs))
+                edges.add((qargs[1], qargs[0]))
+    std = ("cz", "ecr", "cx", "rzz", "sx", "x", "rz", "id", "measure")  # standard ISA names only
+    basis = [n for n in target.operation_names if n in std]
+    return sorted(edges), basis
+
+
 def make_loop_arm(spec):
     parts = spec.split(":")
-    if parts[0] == "qiskit" and len(parts) == 4 and parts[2] == "target":
-        return QiskitLoop(int(parts[1]), parts[3])
+    if parts[0] == "qiskit" and len(parts) == 4 and parts[2] in ("target", "blind"):
+        return QiskitLoop(int(parts[1]), parts[3], blind=parts[2] == "blind")
     if parts[0] == "psfai" and len(parts) == 2:
         return PSFAILoop(parts[1])
     if parts[0] == "fold" and len(parts) == 2:  # 2026-10-25: the hole schedule (toqb.fold), analysis arm

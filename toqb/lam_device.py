@@ -46,8 +46,15 @@ def model_inputs(n, L, mseed, P):
 
 
 def noiseless_z(theta, X, n, L):
-    from qiskit.quantum_info import Statevector
+    """Noiseless <Z_0> per input: Qiskit's Statevector, or with TOQB_NOISELESS=numpy|cupy the direct statevector of
+    `toqb.noiseless_xp` (checked equal to Qiskit's to 1e-9 there and in tests/test_lam_device_blind.py)."""
     from toqb import task_loop as TL
+    mode = os.environ.get("TOQB_NOISELESS", "qiskit")
+    if mode in ("numpy", "cupy"):
+        from toqb import noiseless_xp as NX
+        xp = NX._xp(mode)
+        return np.array([NX.z0(TL.angle_list(theta, x, n, L, np.pi / 2), n, L, xp) for x in X])
+    from qiskit.quantum_info import Statevector
     out = []
     for x in X:
         q = TL.model_circuit(TL.angle_list(theta, x, n, L, np.pi / 2), n, L).remove_final_measurements(inplace=False)
