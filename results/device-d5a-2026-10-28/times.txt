@@ -1,0 +1,17 @@
+toqb 7148f53 Declare D5 amendment 1 (owner, 2026-10-28, 12:57 CET
+psf-zero 2cc4f7b6 docs: Paper 5 notes (2026-10-28
+note 4d737d053946d63d1f95dfcc9eed97023dc9aa949413b3d142195cb12d7061ed  prereg/drafts-2026-10-28/device_d5_note.md
+amend1 3b83d226bac34e2002c5abac407e690ae543ec13f7c924b0d71b0234a33265b5  prereg/drafts-2026-10-28/device_d5_amend1.md
+tests 11 passed in 1.69s
+fetch ibm_kingston 2026-10-28 11:36:52+01:00 4c3a43e94ca193b464bb0e54de398f53efcdb4e8b54d36948672975498af9cee
+start 2026-10-28 13:04:06 CET
+toqb d760f74 Declare D5 amendment 2 (owner, 2026-10-28, 13:35 CET
+psf-zero 2cc4f7b6 docs: Paper 5 notes (2026-10-28
+note 4d737d053946d63d1f95dfcc9eed97023dc9aa949413b3d142195cb12d7061ed  prereg/drafts-2026-10-28/device_d5_note.md
+amend1 3b83d226bac34e2002c5abac407e690ae543ec13f7c924b0d71b0234a33265b5  prereg/drafts-2026-10-28/device_d5_amend1.md
+amend2 9794d89ca68ec3a341328400a5a6b5d130645e392748bf04412647befcab0c77  prereg/drafts-2026-10-28/device_d5_amend2.md
+tests 11 passed in 1.85s
+fetch ibm_kingston 2026-10-28 11:36:52+01:00 4c3a43e94ca193b464bb0e54de398f53efcdb4e8b54d36948672975498af9cee
+continue (d5b) 2026-10-28 13:36:33 CET
+part A: amend3 f5cabe69e9114f377a29491109f1a698e85a899f1c6ca3f3e7e32f061aae1e26; toqb 9c99889
+part A start 2026-10-28 14:07:56 CET

@@ -1,0 +1,4 @@
+lam_n20_L16_m0-fold_rule: 64 circuits, 320 two-qubit gates, 5.64 us; twin lam 0.857 +- 0.010 (delta +0.005, corr 0.995); noiseless z spread 0.116; valid True
+STOP: /workspace/d5/runs/lam_n20_L16_m0-fold_rule.json exists: a run never overwrites another
+lam_n20_L16_m0-fold_zipcyc: 64 circuits, 736 two-qubit gates, 10.63 us; twin lam 0.651 +- 0.028 (delta +0.014, corr 0.946); noiseless z spread 0.116; valid True
+lam_n20_L16_m0-qiskit_2_target_template: 64 circuits, 320 two-qubit gates, 25.03 us; no twin; noiseless z spread 0.116; valid True
