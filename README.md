@@ -3,9 +3,17 @@
 TOQB compares quantum compilers on the quality of what they return within a time budget, from the circuit's
 structure to a task's accuracy on a noisy device.
 
-**Status: v0.1.** It has the specification, a budgeted runner and the standard compilation set (the layer-1
-circuits, below). Layer 2 is not built yet. Of layer 3, the variational-loop scenario (v15, below) has had two
-scored runs, at 6 qubits.
+**Status (2026-10-29).** The specification, a budgeted runner and the standard compilation set (layer 1) are as in
+v0.1. Layer 3's variational-loop scenario has had scored runs at 6 qubits (below). Since 2026-10-22 the work has moved
+to **declared tests on IBM devices**: how much of a circuit's signal each placement keeps, and how deep it stays
+readable, when no placement reads the calibration's quality numbers ([Device results](#device-results-no-calibration-map)).
+Layer 2 as specified (stale calibrations, estimated success probability) is not built as a standard set; its
+questions are answered by the device tests instead.
+
+**The standard since 2026-10-29: no calibration map.** A placement that reads only the coupling graph, the basis and
+which elements have failed is *map-free*; this is how every arm is compared. A placement that reads error rates is
+*map-aware*: a special condition, always labelled so. A classical computer has no daily map, and a map is stale
+once read.
 
 **Scored runs.** Each was pre-registered and its lock pushed before it ran.
 
@@ -17,6 +25,57 @@ scored runs, at 6 qubits.
 - Loop reach run, 6 qubits, 8 layers, 1,000 iterations, 200 seeds, [`results/loop-n6-reach-2026-10-16/`](results/loop-n6-reach-2026-10-16/).
 
 Numbers from this repository should be cited from these results, with their run.
+
+## Device results (no calibration map)
+
+Every device test was declared (SHA-256 and CET time, in [`prereg/`](prereg/)) before its calibration was fetched.
+No mitigation, dynamical decoupling or twirling. Predictions that failed are reported as failed.
+
+**Noise wall, stage 1 (2026-10-29), two devices.** The kicked-Ising ring (J = pi/4, h = 0.6; exact answer at any n)
+at n = 20 and 36, L = 24, 50, 100 steps (up to 3600 CZ per circuit). Probe: a weight-2 charge conserved by the circuit
+itself, read with four inputs that cancel readout and first-order relaxation; no calibration data used. Arms:
+`fold:rule` (the ring on a lattice cycle, by formula), `fold:zipcyc` (the zipper on the same qubits) and
+`qiskit:2:blind:template` (Qiskit level 2 given the coupling map and basis only). L* is the 1/e decay length.
+
+| | marrakesh n = 20 | marrakesh n = 36 | kingston n = 20 | kingston n = 36 |
+|---|---|---|---|---|
+| L*, rule | 56.5 | 56.6 | 81.3 | 89.7 |
+| L*, zipper | 15.1 | 15.7 | 22.6 | 25.6 |
+| L*, blind Qiskit | 26.4 | 15.7 | 22.0 | 17.0 |
+| rule's lead (Delta L) against zipper / blind Qiskit | +41 / +30 | +41 / +41 | +59 / +59 | +64 / +73 |
+| rule wins on the charge (2 SE) | 6/6 | 6/6 | 6/6 | 6/6 |
+
+- **Benchmark number:** the rule won all 24 comparisons and stayed readable 30-73 steps deeper.
+- **Device user's number:** at n = 36, L = 100 the rule's charge was 0.178 +- 0.006 (marrakesh) and 0.314 +- 0.006
+  (kingston); the others' were zero within 2 SE.
+- **Failed declared predictions:** one depolarizing rate did not describe the decay on either device (shot-noise-only
+  tolerance; rates scatter by 10-20 % between depth segments); the rule's size independence held on marrakesh but not
+  on kingston; the zipper's penalty was 3.5-3.7 times the rule's decay rate on both devices, not the 2.2-2.4 its gate
+  count and duration predict; the single-qubit output probe (P2, 250 shots) was at the noise floor.
+- **Fixed after the run (post-hoc, to be declared next):** the rule's own L = 24 point with a +-20 % rate band (8/8);
+  a constant zipper penalty of 3.6 +- 0.3 (4/4, and 4/4 when fitted on one device and applied to the other). A
+  map-aware formula (median CZ error of the ring) failed across devices (1/4).
+- Results: [`results/noise-wall-1-marrakesh-2026-10-29/`](results/noise-wall-1-marrakesh-2026-10-29/),
+  [`results/noise-wall-1-kingston-2026-10-29/`](results/noise-wall-1-kingston-2026-10-29/) (figure
+  `declared_vs_fixed_two_devices.png`).
+
+**Earlier device tests** (ibm_kingston unless noted; each folder's README has the declaration, jobs and verdicts):
+
+| test | date | what | result |
+|---|---|---|---|
+| [D6](results/device-d6-2026-10-28/) | 10-28 | ring classifier, L = 16, n = 13-24; rule, zipper, blind Qiskit; no simulator | rule against blind Qiskit: 11 wins, 1 tie, 0 losses; against the zipper (even n): 3 wins, 3 ties |
+| [D5 part A](results/device-d5a-2026-10-28/) | 10-28 | n = 20, the same qubits; **map-aware** Qiskit (special condition) | rule 0.943 +- 0.044, zipper 0.600 +- 0.044 (win), map-aware Qiskit 0.765 +- 0.099 (tie) |
+| [D4](results/device-d4-2026-10-28/) | 10-28 | kicked Ising ring, n = 20, L = 100 | device 0.022 +- 0.011 against twin 0.028: agree |
+| [D3](results/device-d3-2026-10-28/) | 10-28 | kicked Ising ring, n = 20, L = 24 | device 0.186 +- 0.022 against twin 0.247: below |
+| [D2](results/device-d2-2026-10-26/) | 10-26 | the folded ring on ibm_fez against the day's twin | 0.50 +- 0.10 against 0.59 |
+| [D1](results/device-d1-2026-10-26/) | 10-26 | the folded ring against the day's twin | 0.90 +- 0.12 against 0.77 |
+| [C r9](results/device-2026-10-22/) | 10-22 | design C's device day | see the folder |
+
+Twin accuracy over six device points: device / twin = 0.75-1.18, with no fixed sign. The twin is used for rankings,
+with a +-20 % band on values, and is always built from the day's calibration.
+
+Papers that use these results: PSF-Zero's Paper 4 (formula schedules on heavy-hex) and the draft of Paper 5
+(readable depth without the calibration map), in [psf-zero `docs/papers/`](https://github.com/TN-Holdings-LLC/psf-zero/tree/main/docs/papers).
 
 **Contamination notice (2026-10-10).** In runs 1 and 2, some outputs on FakeTorino placed gates on couplers the
 device reports as failed. They are unusable on the device, and they were scored. That includes 5 of the
@@ -79,8 +138,9 @@ compilers.
    as one participant, never as the reference. Its known weaknesses under these rules are listed in the results like
    anyone else's.
 6. **Hardware.** Simulation on fake devices shares its noise model with any compiler that reads the device's
-   calibration, so it favours them. The calibration split reduces this. Small runs on real hardware are planned after
-   the first standard run.
+   calibration, so it favours them. The calibration split reduces this. Since 2026-10-22, short declared runs on IBM
+   devices (ibm_kingston, ibm_marrakesh, ibm_fez) carry the main results; see
+   [Device results](#device-results-no-calibration-map). Qiskit arms run on devices only, never in long simulations.
 
 ## Sizes
 
@@ -301,8 +361,15 @@ toqb/
   score_loop.py v15: the report of a loop run (the result for the money first)
   pennylane_device.py  v15: CompiledDevice, a PennyLane device that compiles with a TOQB arm and prices each execution
   classical.py  v15: classical reference models for the loop task (numpy only)
+  fold.py       formula placements of a ring on heavy-hex (fold:rule, fold:zipcyc, holes, pendants)
+  lam_device.py the signal-on-the-device test: build, rehearse and score the kept signal (lam) per arm
+  s2rc_device.py  device steps: fetch the day's Target, assemble one job, submit, fetch results (IBM key at home only)
+  kising.py     kicked Ising ring at J = pi/4: circuits and the exact (and exactly noisy) free-fermion answer
+  kising_formula.py  the formula prediction of the device slope from one depolarizing rate
+  kising_charge.py   noise wall probe P1: the conserved weight-2 charge, readable depth L*, Delta L, kappa
+gpu/            run scripts for pods and home builds (device_d6.sh, noise_wall_1.sh, ...)
 examples/       pennylane_spsa.py: the loop task trained from PennyLane
-prereg/         pre-registrations of scored runs
+prereg/         pre-registrations of scored runs and declarations of device tests (drafts-YYYY-MM-DD/)
 tests/          tests that need no quantum package
 ```
 
