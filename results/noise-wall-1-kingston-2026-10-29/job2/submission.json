@@ -1,0 +1,16 @@
+{
+ "job_id": "dbhil0kdgr2s73ctkd20",
+ "submitted": "2026-10-29T11:13:24+00:00 (2026-10-29 12:13:24 CET)",
+ "local": false,
+ "backend": "ibm_kingston",
+ "trained_for": "ibm_kingston",
+ "tried": [
+  {
+   "backend": "ibm_kingston",
+   "calibration": "2026-10-29 11:57:24+01:00",
+   "reasons": []
+  }
+ ],
+ "calibration_at_submit": "2026-10-29 11:57:24+01:00",
+ "options": "dynamical decoupling off, twirling off (gates and measure); SamplerV2 applies no other error mitigation"
+}
