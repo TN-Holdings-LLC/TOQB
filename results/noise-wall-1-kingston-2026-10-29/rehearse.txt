@@ -1,0 +1,23 @@
+kcharge_n20_L100_h0.6-fold_rule              predicted rho 0.2555, shot-noise SE about 0.0074 (1000 shots per circuit); 2000 two-qubit gates, 23.444 us
+kcharge_n20_L100_h0.6-fold_zipcyc            predicted rho 0.2555, shot-noise SE about 0.0074 (1000 shots per circuit); 4600 two-qubit gates, 54.644 us
+kcharge_n20_L100_h0.6-qiskit_2_blind_template predicted rho 0.2555, shot-noise SE about 0.0074 (1000 shots per circuit); 2000 two-qubit gates, 149.844 us
+kcharge_n20_L24_h0.6-fold_rule               predicted rho 0.7207, shot-noise SE about 0.0078 (1000 shots per circuit); 480 two-qubit gates, 7.332 us
+kcharge_n20_L24_h0.6-fold_zipcyc             predicted rho 0.7207, shot-noise SE about 0.0078 (1000 shots per circuit); 1104 two-qubit gates, 14.82 us
+kcharge_n20_L24_h0.6-qiskit_2_blind_template predicted rho 0.7207, shot-noise SE about 0.0078 (1000 shots per circuit); 480 two-qubit gates, 37.668 us
+kcharge_n20_L50_h0.6-fold_rule               predicted rho 0.5054, shot-noise SE about 0.0076 (1000 shots per circuit); 1000 two-qubit gates, 12.844 us
+kcharge_n20_L50_h0.6-fold_zipcyc             predicted rho 0.5054, shot-noise SE about 0.0076 (1000 shots per circuit); 2300 two-qubit gates, 28.444 us
+kcharge_n20_L50_h0.6-qiskit_2_blind_template predicted rho 0.5054, shot-noise SE about 0.0076 (1000 shots per circuit); 1000 two-qubit gates, 76.044 us
+kcharge_n36_L100_h0.6-fold_rule              predicted rho 0.2555, shot-noise SE about 0.0055 (1000 shots per circuit); 3600 two-qubit gates, 26.244 us
+kcharge_n36_L100_h0.6-fold_zipcyc            predicted rho 0.2555, shot-noise SE about 0.0055 (1000 shots per circuit); 8600 two-qubit gates, 60.244 us
+kcharge_n36_L100_h0.6-qiskit_2_blind_template predicted rho 0.2555, shot-noise SE about 0.0055 (1000 shots per circuit); 3600 two-qubit gates, 259.844 us
+kcharge_n36_L24_h0.6-fold_rule               predicted rho 0.7207, shot-noise SE about 0.0058 (1000 shots per circuit); 864 two-qubit gates, 8.004 us
+kcharge_n36_L24_h0.6-fold_zipcyc             predicted rho 0.7207, shot-noise SE about 0.0058 (1000 shots per circuit); 2064 two-qubit gates, 16.164 us
+kcharge_n36_L24_h0.6-qiskit_2_blind_template predicted rho 0.7207, shot-noise SE about 0.0058 (1000 shots per circuit); 864 two-qubit gates, 64.068 us
+kcharge_n36_L50_h0.6-fold_rule               predicted rho 0.5054, shot-noise SE about 0.0056 (1000 shots per circuit); 1800 two-qubit gates, 14.244 us
+kcharge_n36_L50_h0.6-fold_zipcyc             predicted rho 0.5054, shot-noise SE about 0.0056 (1000 shots per circuit); 4300 two-qubit gates, 31.244 us
+kcharge_n36_L50_h0.6-qiskit_2_blind_template predicted rho 0.5054, shot-noise SE about 0.0056 (1000 shots per circuit); 1800 two-qubit gates, 131.044 us
+predicted L* (fold:rule) at p = 0.0051: 73.3
+fold:zipcyc n 20: gates 2.30, duration 2.24 -> kappa in [2.24, 2.30], L* in [31.9, 32.6], Delta L in [40.6, 41.4]
+fold:zipcyc n 36: gates 2.39, duration 2.22 -> kappa in [2.22, 2.39], L* in [30.7, 33.0], Delta L in [40.3, 42.6]
+qiskit:2:blind:template n 20: gates 1.00, duration 6.04 -> kappa in [1.00, 6.04], L* in [12.1, 73.3], Delta L in [0.0, 61.2]
+qiskit:2:blind:template n 36: gates 1.00, duration 9.38 -> kappa in [1.00, 9.38], L* in [7.8, 73.3], Delta L in [0.0, 65.5]

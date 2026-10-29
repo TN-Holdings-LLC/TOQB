@@ -1,0 +1,82 @@
+kcharge_n20_L100_h0.6-fold_rule              rho4 0.3037 +- 0.0084 | |0..0> only 0.3020 +- 0.0168 | p_eff 0.00446 | 2000 two-qubit gates, 23.444 us
+kcharge_n20_L100_h0.6-fold_zipcyc            rho4 0.0082 +- 0.0077 | |0..0> only 0.0101 +- 0.0154 | p_eff 0.01778 | 4600 two-qubit gates, 54.644 us
+kcharge_n20_L100_h0.6-qiskit_2_blind_template rho4 0.0120 +- 0.0080 | |0..0> only 0.0671 +- 0.0157 | p_eff 0.01640 | 2000 two-qubit gates, 149.844 us
+kcharge_n20_L24_h0.6-fold_rule               rho4 0.7306 +- 0.0092 | |0..0> only 0.7298 +- 0.0184 | p_eff 0.00489 | 480 two-qubit gates, 7.332 us
+kcharge_n20_L24_h0.6-fold_zipcyc             rho4 0.3539 +- 0.0084 | |0..0> only 0.3549 +- 0.0168 | p_eff 0.01605 | 1104 two-qubit gates, 14.82 us
+kcharge_n20_L24_h0.6-qiskit_2_blind_template rho4 0.3536 +- 0.0084 | |0..0> only 0.4694 +- 0.0166 | p_eff 0.01607 | 480 two-qubit gates, 37.668 us
+kcharge_n20_L50_h0.6-fold_rule               rho4 0.5356 +- 0.0087 | |0..0> only 0.5757 +- 0.0178 | p_eff 0.00467 | 1000 two-qubit gates, 12.844 us
+kcharge_n20_L50_h0.6-fold_zipcyc             rho4 0.1000 +- 0.0079 | |0..0> only 0.1088 +- 0.0157 | p_eff 0.01707 | 2300 two-qubit gates, 28.444 us
+kcharge_n20_L50_h0.6-qiskit_2_blind_template rho4 0.0767 +- 0.0080 | |0..0> only 0.1055 +- 0.0158 | p_eff 0.01902 | 1000 two-qubit gates, 76.044 us
+kcharge_n36_L100_h0.6-fold_rule              rho4 0.3138 +- 0.0063 | |0..0> only 0.3564 +- 0.0126 | p_eff 0.00433 | 3600 two-qubit gates, 26.244 us
+kcharge_n36_L100_h0.6-fold_zipcyc            rho4 0.0136 +- 0.0058 | |0..0> only 0.0100 +- 0.0116 | p_eff 0.01594 | 8600 two-qubit gates, 60.244 us
+kcharge_n36_L100_h0.6-qiskit_2_blind_template rho4 -0.0092 +- 0.0059 | |0..0> only 0.0351 +- 0.0115 | p_eff n/a | 3600 two-qubit gates, 259.844 us
+kcharge_n36_L24_h0.6-fold_rule               rho4 0.7899 +- 0.0071 | |0..0> only 0.7858 +- 0.0140 | p_eff 0.00368 | 864 two-qubit gates, 8.004 us
+kcharge_n36_L24_h0.6-fold_zipcyc             rho4 0.3947 +- 0.0066 | |0..0> only 0.4119 +- 0.0131 | p_eff 0.01439 | 2064 two-qubit gates, 16.164 us
+kcharge_n36_L24_h0.6-qiskit_2_blind_template rho4 0.2487 +- 0.0060 | |0..0> only 0.3346 +- 0.0121 | p_eff 0.02143 | 864 two-qubit gates, 64.068 us
+kcharge_n36_L50_h0.6-fold_rule               rho4 0.5765 +- 0.0067 | |0..0> only 0.5737 +- 0.0134 | p_eff 0.00412 | 1800 two-qubit gates, 14.244 us
+kcharge_n36_L50_h0.6-fold_zipcyc             rho4 0.1408 +- 0.0060 | |0..0> only 0.1532 +- 0.0120 | p_eff 0.01456 | 4300 two-qubit gates, 31.244 us
+kcharge_n36_L50_h0.6-qiskit_2_blind_template rho4 0.0440 +- 0.0058 | |0..0> only 0.1263 +- 0.0115 | p_eff 0.02307 | 1800 two-qubit gates, 131.044 us
+P1 n 20 L 100 fold:rule: rho4 0.3037 +- 0.0084, predicted 0.2555 (declared p = 0.00510): OUTSIDE 2 SE
+P1 n 20 L 100 fold:zipcyc: rho4 0.0082 +- 0.0077, predicted 0.2555 (declared p = 0.00510): OUTSIDE 2 SE
+P1 n 20 L 100 qiskit:2:blind:template: rho4 0.0120 +- 0.0080, predicted 0.2555 (declared p = 0.00510): OUTSIDE 2 SE
+P1 n 20 L 24 fold:rule: rho4 0.7306 +- 0.0092, predicted 0.7207 (declared p = 0.00510): INSIDE 2 SE
+P1 n 20 L 24 fold:zipcyc: rho4 0.3539 +- 0.0084, predicted 0.7207 (declared p = 0.00510): OUTSIDE 2 SE
+P1 n 20 L 24 qiskit:2:blind:template: rho4 0.3536 +- 0.0084, predicted 0.7207 (declared p = 0.00510): OUTSIDE 2 SE
+P1 n 20 L 50 fold:rule: rho4 0.5356 +- 0.0087, predicted 0.5054 (declared p = 0.00510): OUTSIDE 2 SE
+P1 n 20 L 50 fold:zipcyc: rho4 0.1000 +- 0.0079, predicted 0.5054 (declared p = 0.00510): OUTSIDE 2 SE
+P1 n 20 L 50 qiskit:2:blind:template: rho4 0.0767 +- 0.0080, predicted 0.5054 (declared p = 0.00510): OUTSIDE 2 SE
+P1 n 36 L 100 fold:rule: rho4 0.3138 +- 0.0063, predicted 0.2555 (declared p = 0.00510): OUTSIDE 2 SE
+P1 n 36 L 100 fold:zipcyc: rho4 0.0136 +- 0.0058, predicted 0.2555 (declared p = 0.00510): OUTSIDE 2 SE
+P1 n 36 L 100 qiskit:2:blind:template: rho4 -0.0092 +- 0.0059, predicted 0.2555 (declared p = 0.00510): OUTSIDE 2 SE
+P1 n 36 L 24 fold:rule: rho4 0.7899 +- 0.0071, predicted 0.7207 (declared p = 0.00510): OUTSIDE 2 SE
+P1 n 36 L 24 fold:zipcyc: rho4 0.3947 +- 0.0066, predicted 0.7207 (declared p = 0.00510): OUTSIDE 2 SE
+P1 n 36 L 24 qiskit:2:blind:template: rho4 0.2487 +- 0.0060, predicted 0.7207 (declared p = 0.00510): OUTSIDE 2 SE
+P1 n 36 L 50 fold:rule: rho4 0.5765 +- 0.0067, predicted 0.5054 (declared p = 0.00510): OUTSIDE 2 SE
+P1 n 36 L 50 fold:zipcyc: rho4 0.1408 +- 0.0060, predicted 0.5054 (declared p = 0.00510): OUTSIDE 2 SE
+P1 n 36 L 50 qiskit:2:blind:template: rho4 0.0440 +- 0.0058, predicted 0.5054 (declared p = 0.00510): OUTSIDE 2 SE
+n-independence fold:rule L 24 n [20, 36]: diff +0.0593 +- 0.0116: DIFFERENT
+n-independence fold:rule L 50 n [20, 36]: diff +0.0409 +- 0.0110: DIFFERENT
+n-independence fold:rule L 100 n [20, 36]: diff +0.0101 +- 0.0105: SAME
+n-independence fold:zipcyc L 24 n [20, 36]: diff +0.0407 +- 0.0107: DIFFERENT
+n-independence fold:zipcyc L 50 n [20, 36]: diff +0.0408 +- 0.0099: DIFFERENT
+n-independence fold:zipcyc L 100 n [20, 36]: diff +0.0054 +- 0.0096: SAME
+n-independence qiskit:2:blind:template L 24 n [20, 36]: diff -0.1049 +- 0.0103: DIFFERENT
+n-independence qiskit:2:blind:template L 50 n [20, 36]: diff -0.0327 +- 0.0099: DIFFERENT
+n-independence qiskit:2:blind:template L 100 n [20, 36]: diff -0.0212 +- 0.0100: DIFFERENT
+n 20 L 24: fold:rule - fold:zipcyc: +0.3766 +- 0.0125: WIN
+n 20 L 24: fold:rule - qiskit:2:blind:template: +0.3770 +- 0.0125: WIN
+n 20 L 50: fold:rule - fold:zipcyc: +0.4356 +- 0.0117: WIN
+n 20 L 50: fold:rule - qiskit:2:blind:template: +0.4589 +- 0.0118: WIN
+n 20 L 100: fold:rule - fold:zipcyc: +0.2955 +- 0.0113: WIN
+n 20 L 100: fold:rule - qiskit:2:blind:template: +0.2917 +- 0.0116: WIN
+n 36 L 24: fold:rule - fold:zipcyc: +0.3953 +- 0.0097: WIN
+n 36 L 24: fold:rule - qiskit:2:blind:template: +0.5412 +- 0.0093: WIN
+n 36 L 50: fold:rule - fold:zipcyc: +0.4357 +- 0.0091: WIN
+n 36 L 50: fold:rule - qiskit:2:blind:template: +0.5326 +- 0.0089: WIN
+n 36 L 100: fold:rule - fold:zipcyc: +0.3002 +- 0.0086: WIN
+n 36 L 100: fold:rule - qiskit:2:blind:template: +0.3230 +- 0.0086: WIN
+readable depth fold:rule n 20: L* 81.3 +- 1.3 (fit over L = [24, 50, 100])
+readable depth fold:rule n 36: L* 89.7 +- 1.1 (fit over L = [24, 50, 100])
+readable depth fold:zipcyc n 20: L* 22.6 +- 0.4 (fit over L = [24, 50, 100])
+readable depth fold:zipcyc n 36: L* 25.6 +- 0.3 (fit over L = [24, 50, 100])
+readable depth qiskit:2:blind:template n 20: L* 22.0 +- 0.4 (fit over L = [24, 50, 100])
+readable depth qiskit:2:blind:template n 36: L* 17.0 +- 0.3 (fit over L = [24, 50, 100])
+L* fold:rule n 20: 81.3 +- 1.3, predicted 73.3 +- 5.3 (declared): INSIDE
+L* fold:rule n 36: 89.7 +- 1.1, predicted 73.3 +- 5.3 (declared): ABOVE
+Delta L fold:zipcyc n 20: L* 22.6, Delta L +58.7 +- 1.4, kappa 3.60 +- 0.09 | gates 2.30, duration 2.24: rule A ABOVE
+Delta L fold:zipcyc n 36: L* 25.6, Delta L +64.1 +- 1.2, kappa 3.50 +- 0.06 | gates 2.39, duration 2.22: rule A ABOVE
+Delta L qiskit:2:blind:template n 20: L* 22.0, Delta L +59.3 +- 1.4, kappa 3.70 +- 0.09 | gates 1.00, duration 6.04: rule A INSIDE | phi 0.54 +- 0.02
+Delta L qiskit:2:blind:template n 36: L* 17.0, Delta L +72.7 +- 1.1, kappa 5.27 +- 0.11 | gates 1.00, duration 9.38: rule A INSIDE | phi 0.51 +- 0.01
+phi n-consistency qiskit:2:blind:template n [20, 36]: diff -0.03 +- 0.02: SAME
+P2 kising_n20_L24_s0_h0.6-fold_rule: device 0.061 +- 0.031 | formula 0.185 +- 0.021: BELOW
+P2 kising_n20_L24_s0_h0.6-fold_zipcyc: device -0.004 +- 0.020 | formula 0.185 +- 0.021: BELOW
+P2 kising_n20_L24_s0_h0.6-qiskit_2_blind_template: device 0.012 +- 0.018 | formula 0.185 +- 0.021: BELOW
+P2 kising_n20_L50_s0_h0.6-fold_rule: device 0.027 +- 0.055 | formula 0.069 +- 0.009: AGREE
+P2 kising_n20_L50_s0_h0.6-fold_zipcyc: device -0.024 +- 0.048 | formula 0.069 +- 0.009: AGREE
+P2 kising_n20_L50_s0_h0.6-qiskit_2_blind_template: device 0.015 +- 0.055 | formula 0.069 +- 0.009: AGREE
+P2 kising_n36_L24_s0_h0.6-fold_rule: device 0.236 +- 0.060 | formula 0.190 +- 0.013: AGREE
+P2 kising_n36_L24_s0_h0.6-fold_zipcyc: device 0.063 +- 0.053 | formula 0.190 +- 0.013: BELOW
+P2 kising_n36_L24_s0_h0.6-qiskit_2_blind_template: device 0.049 +- 0.045 | formula 0.190 +- 0.013: BELOW
+P2 kising_n36_L50_s0_h0.6-fold_rule: device -0.008 +- 0.049 | formula 0.047 +- 0.004: AGREE
+P2 kising_n36_L50_s0_h0.6-fold_zipcyc: device 0.012 +- 0.040 | formula 0.047 +- 0.004: AGREE
+P2 kising_n36_L50_s0_h0.6-qiskit_2_blind_template: device -0.044 +- 0.043 | formula 0.047 +- 0.004: BELOW

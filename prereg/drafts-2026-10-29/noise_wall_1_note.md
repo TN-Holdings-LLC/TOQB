@@ -1,4 +1,6 @@
-# Noise wall, stage 1 (DRAFT r2 by the workplace, 2026-10-29; owner's go pending): probe P1 (the weight-2 conserved charge) and probe P2 (<X_0>) of the kicked-Ising ring on ibm_kingston, n = 20 and 36, three map-free arms, device only. To be fixed by SHA-256 and CET time before the fetch
+# Noise wall, stage 1 (r3, FIXED 2026-10-29 11:13 CET on the owner's go: the workplace's r2 plus the readable depth L* and Delta L added at home; rule 6 judged, owner's decision): probe P1 (the weight-2 conserved charge) and probe P2 (<X_0>) of the kicked-Ising ring on ibm_kingston, n = 20 and 36, three map-free arms, device only.
+
+**Run order (owner, 2026-10-29).** The second device, ibm_marrakesh (`noise_wall_1_second_device_note.md`, fixed at the same time), is run first because its queue is empty; this device (ibm_kingston, 122 pending jobs at 11:08 CET) follows. Both declarations are fixed before either device is fetched, so neither device's result is seen before the other's predictions are fixed.
 
 **Why.** Design: the workplace's r2 (`noise_wall_test_design_r2_2026-10-29.md`), reviewed at home. Two device points of
 the kicked-Ising ring (D3 at L = 24, D4 at L = 100, n = 20) are both described by one uniform depolarizing rate,
@@ -108,6 +110,25 @@ physical qubits that record's circuit measures, and read in Z.
 
 **P2.** The device slope λ against the exact free-fermion z, as in D3/D4.
 
+**Readable depth, per (n, arm)** (added in r3, owner's request 2026-10-29: the wall reported as a depth).
+
+- **L\*.** The decay length (the 1/e depth) of the four-input ratio: a one-parameter fit ρ(L) = exp(−L/L\*) over
+  L = 24, 50, 100, weighted least squares on the ρ scale (weights 1/SE²; ρ ≤ 0 points kept). ρ(0) = 1 by construction
+  (each record's own readout reference), so there is no amplitude parameter. SE from the curvature of the fit.
+  `kising_charge.decay_length`.
+- **Why the 1/e depth.** It needs no shot budget and no threshold, and it lies inside the measured range (about 73
+  layers at p = 0.0051, against L = 24-100). A depth "readable at S shots" follows from it by extrapolation and is
+  reported only.
+- **Against the rule (arm A), for X = B, D at the same n:** ΔL_X = L\*_A − L\*_X and κ_X = L\*_A / L\*_X (the ratio
+  of per-step decay rates), SE by the delta method.
+- **Structure ratios, from the records only (no error rate read).** g_X = ΣG_X / ΣG_A (two-qubit gates) and
+  t_X = ΣT_X / ΣT_A (scheduled duration), summed over the common L cells.
+- **Structure model.** κ = (1 − φ) g + φ t, where φ in [0, 1] is the share of the rule's decay that scales with
+  duration rather than with gate count. φ_X = (κ_X − g_X) / (t_X − g_X), reported where |t − g| > 0.2.
+- **What this is not.** L\* is the decay length of a weight-2 quantity. A wider observable decays faster (P2: λ ≈ 0.19
+  at L = 24 where ρ ≈ 0.72). L\* measures the per-step error of the placement, not the depth at which an arbitrary
+  output stays readable.
+
 ## Rules
 
 1. **P1 against the prediction.** The predicted ρ is inside the measured ρ ± 2 SE, for arm A at each n and L.
@@ -116,6 +137,12 @@ physical qubits that record's circuit measures, and read in Z.
    - SE from the p range 0.00475-0.00548;
    - AGREE if |λ_device − λ_formula| ≤ 2 √(SE_device² + SE_formula²), else BELOW or ABOVE.
 4. **Arms, per n and L.** WIN, LOSS or TIE at 2 SE on ρ (P1) and on λ (P2), A against B and A against D, as D6.
+5. **L\* of arm A against the prediction.** INSIDE if |L\*_A − L\*_pred| ≤ 2 √(SE² + SE_pred²), SE_pred half the
+   spread over the p range; else BELOW or ABOVE. (This is rule 1 written as a depth; it adds no independent test.)
+6. **Arm B against its structure bracket (no free parameter).** κ_B inside [min(g_B, t_B) − 2 SE, max(g_B, t_B) + 2 SE]:
+   INSIDE, else BELOW (the zipper loses less than its structure says) or ABOVE (more).
+7. **Arm D, n-consistency of φ.** |φ_D(n = 36) − φ_D(n = 20)| ≤ 2 SE: SAME, else DIFFERENT. (Arm D has g = 1, so κ_D
+   measures φ directly; this asks whether one φ describes the device at both sizes.)
 
 ## Predictions
 
@@ -149,6 +176,24 @@ circuit).
 
   The L = 50 cells therefore decide only coarsely.
 
+**Readable depth** (r3; g and t from a home rehearsal build on the stored 2026-10-24 kingston map, summed over
+L = 24, 50, 100; the run uses the day's build).
+
+| | n = 20 | n = 36 |
+|---|---|---|
+| L\*_A, predicted (rule 5) | 73.3 (68.2-78.7) | 73.3 (68.2-78.7) |
+| B: g, t | 2.30, 2.24 | 2.39, 2.22 |
+| B: κ bracket (rule 6) | 2.24-2.30 | 2.22-2.39 |
+| B: L\*, ΔL | 31.9-32.6, 40.6-41.4 | 30.7-33.0, 40.3-42.6 |
+| D: g, t | 1.00, 6.04 | 1.00, 9.38 |
+
+- **Prediction for rules 5-7:** INSIDE, INSIDE, SAME.
+- **Rule 6 is a sharp test** (the bracket is narrow, because the zipper's gate and duration ratios nearly coincide).
+  It is not a safe one: on D6 (classifier, L = 16) the zipper's loss against the rule scattered on both sides of its
+  gate ratio.
+- **Arm D, expectation only:** φ ≈ 0.8 (D6 at n = 20, post-hoc: κ = ln 0.49 / ln 0.83 = 3.8 at t = 4.6; plausible
+  range 0.2-1.0). Then L\*_D ≈ 15 at n = 20 and ≈ 10 at n = 36, ΔL ≈ 59 and 64.
+
 **Arms (expectations, not rules).**
 
 - **A against B: WIN at both n.** The zipper uses 2.3-2.4 times the two-qubit gates and about twice the duration.
@@ -165,5 +210,8 @@ judged.
 - **Noise model.** p_eff assumes uniform Pauli noise. P1 sees only weight-2 damping; P2 is the check on spreading.
 - **Readout.** It cancels only within a record, where the reference and the circuit share the measured qubits.
 - **Arm D across L.** Qiskit's qubits may differ between its L cells.
+- **Readable depth.** The one-parameter exponential ignores the relaxation bias and any non-exponential decay; with
+  three depths it cannot test the exponential form. The structure model has two terms only (gates and duration);
+  single-qubit gates, crosstalk and per-coupler differences are not in it.
 - **Scope.** One device, one day, h = 0.6, n = 20 and 36.
 - **Classical hardness.** Every reference is classically solvable; no classical-hardness claim is made.

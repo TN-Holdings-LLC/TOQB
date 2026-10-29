@@ -1,0 +1,11 @@
+toqb dbe6d8a Noise wall stage 1 on ibm_marrakesh (2026-10-29 11:1
+psf-zero 72753325 README: headline figure of devi
+note 7415beca7ee87eb33ba9d378841d9ecd2c885910735a10f34d82078786e74f3c  prereg/drafts-2026-10-29/noise_wall_1_note.md
+tests 40 passed in 102.70s (0:01:42)
+fetch ibm_kingston 2026-10-29 11:51:22+01:00 f8b6889f7623ab4f7175651dc6b8dbeef8ec901150643137b5c951cc341dd5d2
+charge (b, c) declared: -1.2860758110631627 -1.2860758110631603
+device ibm_kingston
+start 2026-10-29 12:05:29 CET
+charge check n 20 PASS (max diff 0.0e+00, dim 2)
+charge check n 36 PASS (max diff 4.9e-15, dim 2)
+end 2026-10-29 12:08:46 CET

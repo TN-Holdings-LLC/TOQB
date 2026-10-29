@@ -1,4 +1,4 @@
-# Noise wall, stage 1, second device (DRAFT by the workplace, 2026-10-29; owner's go pending): the same test as the first device's declaration (noise_wall_1_note.md, SHA-256 054a8519fb53a44739be8059466d5eeb49f9d9334a3a52c76fe03844f299ef4e) on <DEVICE> (ibm_marrakesh or ibm_fez, the owner's choice), with predictions carried over from structure only. To be fixed by SHA-256 and CET time before the first device runs
+# Noise wall, stage 1, second device (r2, FIXED 2026-10-29 11:13 CET on the owner's go: the workplace's draft plus the readable depth carried over, added at home): the same test as the first device's declaration (noise_wall_1_note.md r3, SHA-256 7415beca7ee87eb33ba9d378841d9ecd2c885910735a10f34d82078786e74f3c) on ibm_marrakesh (the owner's choice, 2026-10-29: the emptiest queue), with predictions carried over from structure only. Run first (owner: emptiest queue first); ibm_kingston follows under the first declaration. Both fixed before either fetch
 
 **Why.** One device on one day cannot tell a property of the method from a property of the machine.
 
@@ -22,15 +22,15 @@
   - Readout reference per record (step 1).
 - **P2.** 64 inputs, L = 24 and 50.
 - **Jobs.** Job 1: P1, 288 circuits × 1,000 shots. Job 2: P2, 768 circuits × 250 shots. `--max-seconds 120` each.
-- **Run.** `gpu/noise_wall_1.sh` with `NOTE=prereg/drafts-2026-10-29/noise_wall_1_second_device_note.md DEVICE=<DEVICE>`.
-  The fetch must be of `<DEVICE>`; the script checks it.
+- **Run.** `gpu/noise_wall_1.sh` with `NOTE=prereg/drafts-2026-10-29/noise_wall_1_second_device_note.md DEVICE=ibm_marrakesh`.
+  The fetch must be of ibm_marrakesh; the script checks it.
 
 ## Device-dependent numbers
 
 **Time model.** The same for both devices: 91.1 s + 82.5 s, about 3 minutes per device (about 6 minutes for both;
 "about 10 minutes" kept as a margin).
 
-### `<DEVICE>` = ibm_marrakesh
+### ibm_marrakesh (the device of this declaration)
 
 Its 2026-10-13 published calibration (`snapshot:marrakesh`) was checked at home and at the workplace. Every arm
 places at both n.
@@ -43,7 +43,7 @@ places at both n.
 
 The day's map is checked again before the build.
 
-### `<DEVICE>` = ibm_fez
+### ibm_fez (not chosen; kept for the record)
 
 Home checks on the day's map.
 
@@ -74,10 +74,18 @@ They would be recorded as NOT RUN. That is a reason to prefer marrakesh, unless 
 4. **Arms.** The signs of rule − zipcyc and rule − blind Qiskit, on ρ (P1) and λ (P2), by D6's rule (WIN, LOSS or TIE at
    2 SE). Predicted: WIN against both at both n, as on the first device.
 
+5. **Readable depth** (r2, as rules 5-7 of the first declaration).
+   - L\*_A against L\*_pred = −1 / (2 ln(1 − 4p/3)) at prediction 1's p (with its range): INSIDE, else BELOW or ABOVE.
+   - Arm B: κ_B inside its structure bracket [min(g, t), max(g, t)] ± 2 SE, with g and t from this device's own
+     build. This rule has no free parameter, so it carries over unchanged. Predicted: INSIDE. (marrakesh 10/13, from
+     the table above: g = 2.30, t = 2.02-2.37 at n = 20.)
+   - Arm D: φ_D the same at n = 20 and 36 (2 SE): SAME. The value of φ is not carried over.
+
 ## Not carried over (measured anew on each device)
 
 - **The value of p_eff.**
-- **The wall depth that follows from it.**
+- **The wall depth that follows from it** (L\* and ΔL themselves; only rule 5's form and the bracket carry over).
+- **The value of φ.**
 
 ## Limits
 

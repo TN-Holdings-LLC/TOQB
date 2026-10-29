@@ -1,0 +1,11 @@
+toqb 0ee6343 Fix the noise wall stage 1 declarations (2026-10-29 
+psf-zero 72753325 README: headline figure of devi
+note d963adb6731d69fea46edcec12b6f44a810bd95817840d76d8fd2a468a55ebef  prereg/drafts-2026-10-29/noise_wall_1_second_device_note.md
+tests 40 passed in 104.64s (0:01:44)
+fetch ibm_marrakesh 2026-10-29 11:03:12+01:00 da19f889510ad4b2b17c5ddab08f8cdef4090170b055d315e816ad61f8296b70
+charge (b, c) declared: -1.2860758110631627 -1.2860758110631603
+device ibm_marrakesh
+start 2026-10-29 11:15:27 CET
+charge check n 20 PASS (max diff 0.0e+00, dim 2)
+charge check n 36 PASS (max diff 4.9e-15, dim 2)
+end 2026-10-29 11:18:42 CET

@@ -338,6 +338,123 @@ def rho_predicted(p, L):
     return (1 - 4 * p / 3) ** (2 * L)
 
 
+def decay_length_predicted(p):
+    """Decay length L* (the 1/e depth) of rho(L) = (1 - 4p/3)^(2L) = exp(-L / L*)."""
+    return float(-1.0 / (2 * np.log(1 - 4 * p / 3)))
+
+
+def decay_length(Ls, rhos, ses):
+    """Readable-depth measure of one (arm, n): the decay length L* of a one-parameter fit rho(L) = exp(-L / L*) to the
+    measured four-input ratios (weighted least squares on the rho scale, weights 1 / SE^2; points with rho <= 0 are
+    kept). rho(0) = 1 by construction (each record's own readout reference), so there is no amplitude parameter.
+    Returns (L*, SE) with the SE from the curvature of the weighted sum of squares, or (None, None) if every rho is
+    <= 0."""
+    Ls, rhos, ses = (np.asarray(v, float) for v in (Ls, rhos, ses))
+    if not np.any(rhos > 0):
+        return None, None
+    w = 1.0 / ses ** 2
+
+    def chi2(k):  # k = 1 / L*
+        return float(np.sum(w * (rhos - np.exp(-k * Ls)) ** 2))
+    # initial bracket from the per-point estimates, then golden-section search in k
+    ks = [-np.log(r) / L for r, L in zip(rhos, Ls) if 0 < r < 1]
+    lo, hi = 1e-6, max(ks + [1.0 / Ls.min()]) * 10
+    g = (np.sqrt(5) - 1) / 2
+    a, b = lo, hi
+    for _ in range(200):
+        c, d = b - g * (b - a), a + g * (b - a)
+        if chi2(c) < chi2(d):
+            b = d
+        else:
+            a = c
+    k = (a + b) / 2
+    J = Ls * np.exp(-k * Ls)  # -d rho / d k
+    se_k = 1.0 / np.sqrt(np.sum(w * J * J))
+    return float(1.0 / k), float(se_k / k ** 2)
+
+
+def wall(cells, p=None, p_range=None, ref="fold:rule"):
+    """Readable depth (owner, 2026-10-29: the noise wall reported as L* and Delta L).
+
+    Per (arm, n): L* from decay_length over the arm's L cells. Per other arm X at the same n, with the cells of both
+    arms at the same L:
+      - kappa_X = L*_ref / L*_X (the ratio of per-step decay rates) and Delta L_X = L*_ref - L*_X, SE by the delta
+        method (the two fits independent);
+      - the structure ratios g_X = sum G_X / sum G_ref (two-qubit gates) and t_X = sum T_X / sum T_ref (scheduled
+        duration), from the records only (no error rate is read);
+      - the structure model kappa = (1 - phi) g + phi t, phi in [0, 1] the duration share of the reference's decay.
+        Rule A (no free parameter): kappa_X inside [min(g, t) - 2 SE, max(g, t) + 2 SE] -> INSIDE, else BELOW or
+        ABOVE. Its use is for the arm whose g and t are both away from 1 (fold:zipcyc).
+      - phi_X = (kappa_X - g) / (t - g) when |t - g| > 0.2 (else None), with its SE.
+    Rule B (n-consistency of phi, per arm): |phi(n2) - phi(n1)| <= 2 SE -> SAME, else DIFFERENT.
+    If p is given, the reference's L* is also compared with decay_length_predicted(p): INSIDE if
+    |L* - L*_pred| <= 2 sqrt(SE^2 + SE_pred^2), SE_pred half the spread over p_range."""
+    by = {}
+    for c in cells:
+        by.setdefault((c["arm"], c["n"]), {})[c["L"]] = c
+    fits = {}
+    for (arm, n), g in sorted(by.items()):
+        Ls = sorted(g)
+        Lst, se = decay_length(Ls, [g[L]["rho4"] for L in Ls], [g[L]["se4"] for L in Ls])
+        fits[(arm, n)] = dict(arm=arm, n=n, Ls=Ls, L_star=Lst, se=se)
+    ref_pred = None
+    if p is not None:
+        lp = decay_length_predicted(p)
+        ends = [decay_length_predicted(q) for q in (p_range or []) if q is not None]
+        sp = (max(ends) - min(ends)) / 2 if len(ends) == 2 else 0.0
+        ref_pred = []
+        for (arm, n), f in sorted(fits.items()):
+            if arm != ref or f["L_star"] is None:
+                continue
+            tol = 2 * float(np.hypot(f["se"], sp))
+            d = f["L_star"] - lp
+            ref_pred.append(dict(arm=arm, n=n, L_star=f["L_star"], se=f["se"], pred=lp, se_pred=sp, two_se=tol,
+                                 verdict="INSIDE" if abs(d) <= tol else ("BELOW" if d < 0 else "ABOVE")))
+    rel = []
+    for (arm, n), f in sorted(fits.items()):
+        if arm == ref or (ref, n) not in fits:
+            continue
+        r = fits[(ref, n)]
+        common = sorted(set(by[(arm, n)]) & set(by[(ref, n)]))
+        x = dict(arm=arm, n=n, L_star=f["L_star"], se=f["se"], L_star_ref=r["L_star"], se_ref=r["se"])
+        G = [by[(k, n)][L].get("q2") for k in (arm, ref) for L in common]
+        T = [by[(k, n)][L].get("us") for k in (arm, ref) for L in common]
+        h = len(common)
+        g = (sum(G[:h]) / sum(G[h:])) if common and None not in G else None
+        t = (sum(T[:h]) / sum(T[h:])) if common and None not in T else None
+        x.update(g=g, t=t)
+        if f["L_star"] is None or r["L_star"] is None:
+            rel.append(x)
+            continue
+        kap = r["L_star"] / f["L_star"]
+        se_k = kap * float(np.hypot(r["se"] / r["L_star"], f["se"] / f["L_star"]))
+        x.update(kappa=kap, se_kappa=se_k, delta_L=r["L_star"] - f["L_star"],
+                 se_delta_L=float(np.hypot(r["se"], f["se"])))
+        if g is not None and t is not None:
+            lo, hi = min(g, t), max(g, t)
+            x["bracket"] = [lo, hi]
+            x["rule_A"] = ("INSIDE" if lo - 2 * se_k <= kap <= hi + 2 * se_k
+                           else ("BELOW" if kap < lo else "ABOVE"))
+            if abs(t - g) > 0.2:
+                x["phi"] = (kap - g) / (t - g)
+                x["se_phi"] = se_k / abs(t - g)
+        rel.append(x)
+    cons = []
+    by_arm = {}
+    for x in rel:
+        if x.get("phi") is not None:
+            by_arm.setdefault(x["arm"], []).append(x)
+    for arm, xs in sorted(by_arm.items()):
+        xs = sorted(xs, key=lambda v: v["n"])
+        for i in range(len(xs)):
+            for j in range(i + 1, len(xs)):
+                d = xs[j]["phi"] - xs[i]["phi"]
+                se = float(np.hypot(xs[i]["se_phi"], xs[j]["se_phi"]))
+                cons.append(dict(arm=arm, n=[xs[i]["n"], xs[j]["n"]], diff=d, se=se,
+                                 verdict="SAME" if abs(d) <= 2 * se else "DIFFERENT"))
+    return dict(fits=list(fits.values()), ref_prediction=ref_pred, relative=rel, phi_consistency=cons)
+
+
 def estimate(cell_counts, n, L, coef):
     """cell_counts: {(input, setting): counts} with setting in SETTINGS or "ref". Returns the four-input rho, the
     |0..0>-only rho, both with SE, and p_eff."""
@@ -613,6 +730,26 @@ def cmd_score(argv):
               f"{'SAME' if x['same'] else 'DIFFERENT'}")
     for x in duel:
         print(f"n {x['n']} L {x['L']}: fold:rule - {x['other']}: {x['diff']:+.4f} +- {x['se']:.4f}: {x['verdict']}")
+    wl = wall(cells, p_used, p_rng)
+    for f in wl["fits"]:
+        ls = "n/a" if f["L_star"] is None else f"{f['L_star']:.1f} +- {f['se']:.1f}"
+        print(f"readable depth {f['arm']} n {f['n']}: L* {ls} (fit over L = {f['Ls']})")
+    for x in wl["ref_prediction"] or []:
+        print(f"L* fold:rule n {x['n']}: {x['L_star']:.1f} +- {x['se']:.1f}, predicted {x['pred']:.1f} +- "
+              f"{x['se_pred']:.1f} ({p_src}): {x['verdict']}")
+    for x in wl["relative"]:
+        if "kappa" not in x:
+            print(f"Delta L {x['arm']} n {x['n']}: n/a")
+            continue
+        s = (f"Delta L {x['arm']} n {x['n']}: L* {x['L_star']:.1f}, Delta L {x['delta_L']:+.1f} +- {x['se_delta_L']:.1f},"
+             f" kappa {x['kappa']:.2f} +- {x['se_kappa']:.2f}")
+        if "bracket" in x:
+            s += f" | gates {x['g']:.2f}, duration {x['t']:.2f}: rule A {x['rule_A']}"
+        if "phi" in x:
+            s += f" | phi {x['phi']:.2f} +- {x['se_phi']:.2f}"
+        print(s)
+    for x in wl["phi_consistency"]:
+        print(f"phi n-consistency {x['arm']} n {x['n']}: diff {x['diff']:+.2f} +- {x['se']:.2f}: {x['verdict']}")
     p2 = None
     if a.p2_job and a.p2_runs and p_used is not None:
         sc = json.load(open(os.path.join(a.p2_job, "lam_score.json")))
@@ -630,7 +767,7 @@ def cmd_score(argv):
                   f" +- {x['se_pred']:.3f}: {x['verdict']}")
     out = os.path.join(a.job, a.out_name)
     res = dict(cells=cells, p=dict(value=p_used, range=p_rng, source=p_src), p1_verdicts=verdicts,
-               n_independence=nind, duels=duel, p2=p2)
+               n_independence=nind, duels=duel, wall=wl, p2=p2)
     if os.path.exists(out):
         print(f"{out} exists; not written")
     else:
@@ -655,6 +792,7 @@ def cmd_rehearse(argv):
     p.add_argument("runs")
     p.add_argument("--p", type=float, required=True)
     a = p.parse_args(argv)
+    cells = []
     for f in sorted(glob.glob(os.path.join(a.runs, "kcharge_*.json"))):
         r = json.load(open(f))
         n, L, S = r["task"]["n"], r["task"]["layers"], r["predict"]["shots"]
@@ -662,6 +800,16 @@ def cmd_rehearse(argv):
         rho = rho_predicted(a.p, L)
         print(f"{os.path.basename(f)[:-5]:44s} predicted rho {rho:.4f}, shot-noise SE about {se_model(rho, n, S, coef):.4f}"
               f" ({S} shots per circuit); {r['q2']} two-qubit gates, {r['us']} us")
+        cells.append(dict(arm=r["arm"], n=n, L=L, q2=r["q2"], us=r["us"], rho4=rho, se4=se_model(rho, n, S, coef)))
+    # readable depth: the reference's predicted L*, and each other arm's structure bracket from its records alone
+    lp = decay_length_predicted(a.p)
+    print(f"predicted L* (fold:rule) at p = {a.p}: {lp:.1f}")
+    for x in wall(cells)["relative"]:
+        if x.get("g") is None or x.get("t") is None:
+            continue
+        lo, hi = min(x["g"], x["t"]), max(x["g"], x["t"])
+        print(f"{x['arm']} n {x['n']}: gates {x['g']:.2f}, duration {x['t']:.2f} -> kappa in [{lo:.2f}, {hi:.2f}], "
+              f"L* in [{lp / hi:.1f}, {lp / lo:.1f}], Delta L in [{lp - lp / lo:.1f}, {lp - lp / hi:.1f}]")
     return 0
 
 

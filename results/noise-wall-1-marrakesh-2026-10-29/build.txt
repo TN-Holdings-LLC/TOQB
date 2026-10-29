@@ -1,0 +1,30 @@
+kcharge_n20_L24_h0.6-fold_rule: 16 circuits (12 + 4 references), 480 two-qubit gates, 8.13 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kcharge_n20_L50_h0.6-fold_rule: 16 circuits (12 + 4 references), 1000 two-qubit gates, 13.96 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kcharge_n20_L100_h0.6-fold_rule: 16 circuits (12 + 4 references), 2000 two-qubit gates, 25.16 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kising_n20_L24_s0_h0.6-fold_rule: 64 circuits, 480 two-qubit gates, 8.13 us; no twin; noiseless z spread 0.379; valid True
+kising_n20_L50_s0_h0.6-fold_rule: 64 circuits, 1000 two-qubit gates, 13.96 us; no twin; noiseless z spread 0.165; valid True
+kcharge_n20_L24_h0.6-fold_zipcyc: 16 circuits (12 + 4 references), 1104 two-qubit gates, 16.39 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kcharge_n20_L50_h0.6-fold_zipcyc: 16 circuits (12 + 4 references), 2300 two-qubit gates, 31.16 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kcharge_n20_L100_h0.6-fold_zipcyc: 16 circuits (12 + 4 references), 4600 two-qubit gates, 59.56 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kising_n20_L24_s0_h0.6-fold_zipcyc: 64 circuits, 1104 two-qubit gates, 16.39 us; no twin; noiseless z spread 0.379; valid True
+kising_n20_L50_s0_h0.6-fold_zipcyc: 64 circuits, 2300 two-qubit gates, 31.16 us; no twin; noiseless z spread 0.165; valid True
+kcharge_n20_L24_h0.6-qiskit_2_blind_template: 16 circuits (12 + 4 references), 480 two-qubit gates, 38.28 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kcharge_n20_L50_h0.6-qiskit_2_blind_template: 16 circuits (12 + 4 references), 1000 two-qubit gates, 76.76 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kcharge_n20_L100_h0.6-qiskit_2_blind_template: 16 circuits (12 + 4 references), 2000 two-qubit gates, 150.76 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kising_n20_L24_s0_h0.6-qiskit_2_blind_template: 64 circuits, 480 two-qubit gates, 38.28 us; no twin; noiseless z spread 0.379; valid True
+kising_n20_L50_s0_h0.6-qiskit_2_blind_template: 64 circuits, 1000 two-qubit gates, 76.76 us; no twin; noiseless z spread 0.165; valid True
+kcharge_n36_L24_h0.6-fold_rule: 16 circuits (12 + 4 references), 864 two-qubit gates, 8.32 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kcharge_n36_L50_h0.6-fold_rule: 16 circuits (12 + 4 references), 1800 two-qubit gates, 14.36 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kcharge_n36_L100_h0.6-fold_rule: 16 circuits (12 + 4 references), 3600 two-qubit gates, 25.96 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kising_n36_L24_s0_h0.6-fold_rule: 64 circuits, 864 two-qubit gates, 8.32 us; no twin; noiseless z spread 0.164; valid True
+kising_n36_L50_s0_h0.6-fold_rule: 64 circuits, 1800 two-qubit gates, 14.36 us; no twin; noiseless z spread 0.214; valid True
+kcharge_n36_L24_h0.6-fold_zipcyc: 16 circuits (12 + 4 references), 2064 two-qubit gates, 16.68 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kcharge_n36_L50_h0.6-fold_zipcyc: 16 circuits (12 + 4 references), 4300 two-qubit gates, 31.76 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kcharge_n36_L100_h0.6-fold_zipcyc: 16 circuits (12 + 4 references), 8600 two-qubit gates, 60.76 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kising_n36_L24_s0_h0.6-fold_zipcyc: 64 circuits, 2064 two-qubit gates, 16.68 us; no twin; noiseless z spread 0.164; valid True
+kising_n36_L50_s0_h0.6-fold_zipcyc: 64 circuits, 4300 two-qubit gates, 31.76 us; no twin; noiseless z spread 0.214; valid True
+kcharge_n36_L24_h0.6-qiskit_2_blind_template: 16 circuits (12 + 4 references), 864 two-qubit gates, 65.06 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kcharge_n36_L50_h0.6-qiskit_2_blind_template: 16 circuits (12 + 4 references), 1800 two-qubit gates, 132.56 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kcharge_n36_L100_h0.6-qiskit_2_blind_template: 16 circuits (12 + 4 references), 3600 two-qubit gates, 262.36 us; charge (b, c) = (-1.28608, -1.28608); valid True
+kising_n36_L24_s0_h0.6-qiskit_2_blind_template: 64 circuits, 864 two-qubit gates, 65.06 us; no twin; noiseless z spread 0.164; valid True
+kising_n36_L50_s0_h0.6-qiskit_2_blind_template: 64 circuits, 1800 two-qubit gates, 132.56 us; no twin; noiseless z spread 0.214; valid True

@@ -1,0 +1,20 @@
+kising_n20_L50_s0_h0.6-fold_zipcyc       device lam 0.088 +- 0.048 (corr 0.228) | no twin | 2300 two-qubit gates, 31.156 us
+kising_n20_L50_s0_h0.6-qiskit_2_blind_template device lam -0.045 +- 0.045 (corr -0.127) | no twin | 1000 two-qubit gates, 76.756 us
+kising_n36_L24_s0_h0.6-fold_rule         device lam 0.004 +- 0.056 (corr 0.008) | no twin | 864 two-qubit gates, 8.324 us
+kising_n36_L24_s0_h0.6-fold_zipcyc       device lam 0.020 +- 0.041 (corr 0.062) | no twin | 2064 two-qubit gates, 16.676 us
+kising_n36_L24_s0_h0.6-qiskit_2_blind_template device lam 0.146 +- 0.045 (corr 0.378) | no twin | 864 two-qubit gates, 65.06 us
+kising_n36_L50_s0_h0.6-fold_rule         device lam 0.127 +- 0.039 (corr 0.381) | no twin | 1800 two-qubit gates, 14.356 us
+kising_n36_L50_s0_h0.6-fold_zipcyc       device lam 0.049 +- 0.036 (corr 0.172) | no twin | 4300 two-qubit gates, 31.756 us
+kising_n36_L50_s0_h0.6-qiskit_2_blind_template device lam -0.033 +- 0.038 (corr -0.110) | no twin | 1800 two-qubit gates, 132.556 us
+n 20 L 24 model 0: fold:rule - fold:zipcyc: device +0.021 +- 0.033; no twin
+n 20 L 24 model 0: fold:rule - qiskit:2:blind:template: device +0.006 +- 0.033; no twin
+n 20 L 24 model 0: fold:zipcyc - qiskit:2:blind:template: device -0.014 +- 0.032; no twin
+n 20 L 50 model 0: fold:rule - fold:zipcyc: device -0.015 +- 0.070; no twin
+n 20 L 50 model 0: fold:rule - qiskit:2:blind:template: device +0.118 +- 0.068; no twin
+n 20 L 50 model 0: fold:zipcyc - qiskit:2:blind:template: device +0.133 +- 0.066; no twin
+n 36 L 24 model 0: fold:rule - fold:zipcyc: device -0.016 +- 0.070; no twin
+n 36 L 24 model 0: fold:rule - qiskit:2:blind:template: device -0.142 +- 0.072; no twin
+n 36 L 24 model 0: fold:zipcyc - qiskit:2:blind:template: device -0.126 +- 0.061; no twin
+n 36 L 50 model 0: fold:rule - fold:zipcyc: device +0.078 +- 0.053; no twin
+n 36 L 50 model 0: fold:rule - qiskit:2:blind:template: device +0.160 +- 0.054; no twin
+n 36 L 50 model 0: fold:zipcyc - qiskit:2:blind:template: device +0.082 +- 0.052; no twin
