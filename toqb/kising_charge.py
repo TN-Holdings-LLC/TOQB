@@ -5,6 +5,7 @@ weight-2 conserved charge of the kicked-Ising ring (J = pi/4) read on the device
     python -m toqb.kising_charge build FETCH RUNS --arm fold:rule --n 20 --L 24 [--h 0.6] [--shots 1000]
     python -m toqb.kising_charge rehearse RUNS --p 0.0051                          (predicted rho and shot-noise SE)
     python -m toqb.kising_charge score JOB RUNS [--p 0.0051 [--p-range LO HI] | --p-from-n 20 [--p-L 50]]
+                                  [--self-ref-n 20 --self-ref-L 24]     (second device: p from its own L = 24 cell)
                                   [--p2-job JOB2 --p2-runs RUNS2] [--out-name charge_score.json]
 
 The charge. One Floquet step S = (RX(2h) Z)^{(x)n} CZ_ring is a free-fermion step (toqb.kising). Its conserved quadratic
@@ -486,6 +487,31 @@ def p2_predict(cells, p, p_range):
     return out
 
 
+def self_ref_verdicts(cells, ref_n=20, ref_L=24, arm="fold:rule"):
+    """Second-device rule (noise wall stage 1, second device): p is fixed by the device's own reference cell (arm, ref_n,
+    ref_L) alone, p = p_eff(rho_ref), with its range from rho_ref -+ SE; every other cell of the same arm is then
+    predicted, rho_pred = (1 - 4p/3)^(2L), with SE_pred = half the spread of rho_pred over the p range, and judged
+    INSIDE if |rho - rho_pred| <= 2 sqrt(SE^2 + SE_pred^2) (as toqb.kising_formula). Returns (p, p_range, verdicts);
+    p is None if the reference is missing or rho_ref <= 0."""
+    ref = [c for c in cells if c["arm"] == arm and c["n"] == ref_n and c["L"] == ref_L]
+    if len(ref) != 1 or ref[0]["p_eff"] is None:
+        return None, [None, None], []
+    r = ref[0]
+    p = r["p_eff"]
+    p_lo, p_hi = p_eff(r["rho4"] + r["se4"], ref_L), p_eff(r["rho4"] - r["se4"], ref_L)
+    out = []
+    for c in cells:
+        if c["arm"] != arm or c is r:
+            continue
+        pred = rho_predicted(p, c["L"])
+        ends = [rho_predicted(q, c["L"]) for q in (p_lo, p_hi) if q is not None]
+        sp = (max(ends) - min(ends)) / 2 if len(ends) == 2 else float("nan")
+        tol = 2 * float(np.hypot(c["se4"], sp)) if np.isfinite(sp) else 2 * c["se4"]
+        out.append(dict(name=c["name"], arm=c["arm"], n=c["n"], L=c["L"], rho4=c["rho4"], se4=c["se4"], rho_pred=pred,
+                        se_pred=sp, two_se=tol, inside_2se=bool(abs(c["rho4"] - pred) <= tol)))
+    return p, [p_lo, p_hi], out
+
+
 def cmd_score(argv):
     import argparse
     p = argparse.ArgumentParser(prog="kising_charge score")
@@ -495,6 +521,9 @@ def cmd_score(argv):
     p.add_argument("--p-range", type=float, nargs=2, default=None)
     p.add_argument("--p-from-n", type=int, default=None, help="take p from P1 of fold:rule at this n (at --p-L)")
     p.add_argument("--p-L", type=int, default=50)
+    p.add_argument("--self-ref-n", type=int, default=None,
+                   help="second-device rule: p from this device's own fold:rule cell at this n (and --self-ref-L)")
+    p.add_argument("--self-ref-L", type=int, default=24)
     p.add_argument("--p2-job", default=None, help="the P2 job folder (lam_device score must have run there)")
     p.add_argument("--p2-runs", default=None)
     p.add_argument("--out-name", default="charge_score.json", help="output file in JOB (never overwritten)")
@@ -520,15 +549,22 @@ def cmd_score(argv):
         est = estimate(cc, n, L, coef)
         cells.append(dict(name=c["name"], arm=rec["arm"], n=n, L=L, q2=rec.get("q2"), us=rec.get("us"),
                           measured_qubits=rec["charge"]["measured_qubits"], **est))
-    if a.p_from_n is not None:
+    self_ref = a.self_ref_n is not None
+    if self_ref:
+        p_used, p_rng, verdicts = self_ref_verdicts(cells, a.self_ref_n, a.self_ref_L)
+        if p_used is None:
+            raise SystemExit("STOP: no usable fold:rule cell for --self-ref-n / --self-ref-L")
+        p_src = f"self-reference fold:rule n={a.self_ref_n} L={a.self_ref_L}"
+    elif a.p_from_n is not None:
         ref = [c for c in cells if c["arm"] == "fold:rule" and c["n"] == a.p_from_n and c["L"] == a.p_L]
         if len(ref) != 1 or ref[0]["p_eff"] is None:
             raise SystemExit("STOP: no usable reference cell for --p-from-n")
         p_used, p_rng, p_src = ref[0]["p_eff"], ref[0]["p_eff_range"], f"P1 fold:rule n={a.p_from_n} L={a.p_L}"
     else:
         p_used, p_rng, p_src = a.p, a.p_range or [None, None], "declared"
-    verdicts = []
-    for c in cells:
+    if not self_ref:
+        verdicts = []
+    for c in ([] if self_ref else cells):
         if p_used is None:
             break
         pred = rho_predicted(p_used, c["L"])

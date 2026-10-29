@@ -233,3 +233,29 @@ def test_end_to_end_on_a_fake_device(tmp_path):
     assert len(res["cells"]) == 2 and len(res["p1_verdicts"]) == 2 and len(res["p2"]) == 1
     for c in res["cells"]:
         assert 0.3 < c["rho4"] < 1.2 and c["se4"] > 0
+    # second-device rule: p from the device's own cell (here n = 8, L = 4), the other cell predicted and judged
+    run("toqb.kising_charge", "score", J, R, "--self-ref-n", "8", "--self-ref-L", "4", "--p2-job", J, "--p2-runs", R,
+        "--out-name", "charge_score_selfref.json")
+    res = json.load(open(os.path.join(J, "charge_score_selfref.json")))
+    assert res["p"]["source"].startswith("self-reference") and res["p"]["value"] is not None
+    assert len(res["p1_verdicts"]) == 1 and res["p1_verdicts"][0]["L"] == 2 and len(res["p2"]) == 1
+
+
+def test_self_reference_rule():
+    """Synthetic cells: rho = (1 - 4p/3)^(2L) exactly at p = 0.006 -> p recovered from the L = 24 cell and every other
+    cell INSIDE; a cell 10 SE off is OUTSIDE; the reference itself is not judged; other arms are not judged."""
+    p0 = 0.006
+    cells = []
+    for n in (20, 36):
+        for L in (24, 50, 100):
+            r = KC.rho_predicted(p0, L)
+            cells.append(dict(name=f"n{n}L{L}", arm="fold:rule", n=n, L=L, rho4=r, se4=0.006, p_eff=KC.p_eff(r, L)))
+    cells.append(dict(name="q", arm="qiskit:2:blind:template", n=20, L=50, rho4=0.1, se4=0.01, p_eff=0.02))
+    p, rng, ver = KC.self_ref_verdicts(cells, 20, 24)
+    assert abs(p - p0) < 1e-12 and rng[0] < p < rng[1]
+    assert len(ver) == 5 and all(v["inside_2se"] for v in ver) and all(v["arm"] == "fold:rule" for v in ver)
+    # n = 36, L = 100 pushed off by 10 SE plus the prediction's full spread
+    cells[5]["rho4"] += 10 * 0.006 + 2 * abs(KC.rho_predicted(rng[0], 100) - KC.rho_predicted(rng[1], 100))
+    p, rng, ver = KC.self_ref_verdicts(cells, 20, 24)
+    assert not [v for v in ver if v["n"] == 36 and v["L"] == 100][0]["inside_2se"]
+    assert KC.self_ref_verdicts(cells, 20, 16)[0] is None  # no reference cell

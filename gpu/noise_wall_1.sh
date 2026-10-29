@@ -13,10 +13,16 @@ FETCH=${FETCH:?set FETCH}; OUT=${OUT:?set OUT}
 NS=${NS:-"20 36"}; LS=${LS:-"24 50 100"}; L2=${L2:-"24 50"}
 SHOTS1=${SHOTS1:-1000}; SHOTS2=${SHOTS2:-250}; MAX1=${MAX1:-120}; MAX2=${MAX2:-120}
 COEF=${COEF:-"-1.2860758110631627 -1.2860758110631603"}  # the declared charge (b, c), from `kising_charge charges`
-NOTE=prereg/drafts-2026-10-29/noise_wall_1_note.md
+NOTE=${NOTE:-prereg/drafts-2026-10-29/noise_wall_1_note.md}  # second device: prereg/drafts-2026-10-29/noise_wall_1_second_device_note.md
+DEVICE=${DEVICE:-}  # optional: the backend the fetch must be of (e.g. ibm_marrakesh); checked against fetch.json
 [ -d "$TQ" ] && [ -f "$VA" ] && [ -f "$FETCH/target.pkl" ] && [ -f "$FETCH/fetch.json" ] || { echo "STOP: needs TOQB, venv, fetch"; exit 1; }
 [ "${RUST:-1}" = "1" ] && { [ -d "$PSF" ] || { echo "STOP: RUST=1 needs psf (or set RUST=0)"; exit 1; }; }
 [ -e "$OUT" ] && { echo "STOP: $OUT exists"; exit 1; }
+[ -f "$TQ/$NOTE" ] || { echo "STOP: no declaration $NOTE"; exit 1; }
+if [ -n "$DEVICE" ]; then
+  FB=$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['backend'])" "$FETCH/fetch.json")
+  [ "$FB" = "$DEVICE" ] || { echo "STOP: the fetch is of $FB, not $DEVICE"; exit 1; }
+fi
 . "$VA"; mkdir -p "$OUT"
 unset PSF_AI_FILE PSF_COMPILE_FILE PSF_RING_ZIP
 export PYTHONPATH="$TQ" PSF_ZERO_REPO="$PSF" PYTHONWARNINGS=ignore OMP_NUM_THREADS=4 TOQB_NOISELESS=numpy
@@ -28,7 +34,7 @@ tail -1 "$OUT/check_tests.log" | grep -q " passed" && ! tail -1 "$OUT/check_test
 { echo "toqb $(git log --oneline -1 | cut -c1-60)"; [ -d "$PSF" ] && echo "psf-zero $(git -C "$PSF" log --oneline -1 | cut -c1-40)"; \
   echo "note $(sha256sum $NOTE)"; echo "tests $(tail -1 "$OUT/check_tests.log")"; \
   echo "fetch $(python -c "import json,sys; f=json.load(open(sys.argv[1])); print(f['backend'], f['calibration_time'], f['target_sha256'])" "$FETCH/fetch.json")"; \
-  echo "charge (b, c) declared: $COEF"; echo "start $(TZ=Europe/Zurich date '+%Y-%m-%d %H:%M:%S %Z')"; } | tee "$OUT/times.txt"
+  echo "charge (b, c) declared: $COEF"; echo "device ${DEVICE:-(from the fetch)}"; echo "start $(TZ=Europe/Zurich date '+%Y-%m-%d %H:%M:%S %Z')"; } | tee "$OUT/times.txt"
 # the declared charge must equal the one computed at each n (noiseless criterion; n-independent)
 python - $NS <<PY | tee -a "$OUT/times.txt"
 import sys
@@ -71,3 +77,6 @@ cd "$W" && python -m zipfile -c "$W/nw1_jobs.zip" "$OUT" && echo "== DONE: $W/nw
 #          --p2-job $OUT/job2 --p2-runs $OUT/runs2                                  (primary, declared p)
 #   python -m toqb.kising_charge score $OUT/job1 $OUT/runs1 --p-from-n 20 --p-L 50 \
 #          --p2-job $OUT/job2 --p2-runs $OUT/runs2 --out-name charge_score_p1ref.json   (reference only, not judged)
+# second device (NOTE=...second_device_note.md DEVICE=<backend>): p from its own fold:rule n = 20, L = 24 cell
+#   python -m toqb.kising_charge score $OUT/job1 $OUT/runs1 --self-ref-n 20 --self-ref-L 24 \
+#          --p2-job $OUT/job2 --p2-runs $OUT/runs2 --out-name charge_score_selfref.json
