@@ -1,0 +1,12 @@
+P2 kising_n20_L24_s0_h0.6-fold_rule: device 0.046 +- 0.024 | formula 0.097 +- 0.006: BELOW
+P2 kising_n20_L24_s0_h0.6-fold_zipcyc: device 0.025 +- 0.023 | formula 0.097 +- 0.006: BELOW
+P2 kising_n20_L24_s0_h0.6-qiskit_2_blind_template: device 0.040 +- 0.022 | formula 0.097 +- 0.006: BELOW
+P2 kising_n20_L50_s0_h0.6-fold_rule: device 0.073 +- 0.051 | formula 0.037 +- 0.002: AGREE
+P2 kising_n20_L50_s0_h0.6-fold_zipcyc: device 0.088 +- 0.048 | formula 0.037 +- 0.002: AGREE
+P2 kising_n20_L50_s0_h0.6-qiskit_2_blind_template: device -0.045 +- 0.045 | formula 0.037 +- 0.002: AGREE
+P2 kising_n36_L24_s0_h0.6-fold_rule: device 0.004 +- 0.056 | formula 0.137 +- 0.004: BELOW
+P2 kising_n36_L24_s0_h0.6-fold_zipcyc: device 0.020 +- 0.041 | formula 0.137 +- 0.004: BELOW
+P2 kising_n36_L24_s0_h0.6-qiskit_2_blind_template: device 0.146 +- 0.045 | formula 0.137 +- 0.004: AGREE
+P2 kising_n36_L50_s0_h0.6-fold_rule: device 0.127 +- 0.039 | formula 0.031 +- 0.001: ABOVE
+P2 kising_n36_L50_s0_h0.6-fold_zipcyc: device 0.049 +- 0.036 | formula 0.031 +- 0.001: AGREE
+P2 kising_n36_L50_s0_h0.6-qiskit_2_blind_template: device -0.033 +- 0.038 | formula 0.031 +- 0.001: AGREE
