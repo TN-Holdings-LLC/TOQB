@@ -1,4 +1,6 @@
-# Noise wall, stage 1 (DRAFT r3, 2026-10-29: the workplace's r2 plus the readable depth L* and Delta L added at home on the owner's request; owner's go pending): probe P1 (the weight-2 conserved charge) and probe P2 (<X_0>) of the kicked-Ising ring on ibm_kingston, n = 20 and 36, three map-free arms, device only. To be fixed by SHA-256 and CET time before the fetch
+# Noise wall, stage 1 (r3, FIXED 2026-10-29 11:13 CET on the owner's go: the workplace's r2 plus the readable depth L* and Delta L added at home; rule 6 judged, owner's decision): probe P1 (the weight-2 conserved charge) and probe P2 (<X_0>) of the kicked-Ising ring on ibm_kingston, n = 20 and 36, three map-free arms, device only.
+
+**Run order (owner, 2026-10-29).** The second device, ibm_marrakesh (`noise_wall_1_second_device_note.md`, fixed at the same time), is run first because its queue is empty; this device (ibm_kingston, 122 pending jobs at 11:08 CET) follows. Both declarations are fixed before either device is fetched, so neither device's result is seen before the other's predictions are fixed.
 
 **Why.** Design: the workplace's r2 (`noise_wall_test_design_r2_2026-10-29.md`), reviewed at home. Two device points of
 the kicked-Ising ring (D3 at L = 24, D4 at L = 100, n = 20) are both described by one uniform depolarizing rate,

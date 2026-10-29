@@ -1,4 +1,4 @@
-# Noise wall, stage 1, second device (DRAFT r2, 2026-10-29: the workplace's draft plus the readable depth carried over, added at home; owner's go pending): the same test as the first device's declaration (noise_wall_1_note.md r3, SHA-256 076a1b2eeb5b4a496c4dc9b1e50bbab5948f800e8ed4a4b45c9a50998a7a26b5) on <DEVICE> (ibm_marrakesh or ibm_fez, the owner's choice), with predictions carried over from structure only. To be fixed by SHA-256 and CET time before the first device runs
+# Noise wall, stage 1, second device (r2, FIXED 2026-10-29 11:13 CET on the owner's go: the workplace's draft plus the readable depth carried over, added at home): the same test as the first device's declaration (noise_wall_1_note.md r3, SHA-256 7415beca7ee87eb33ba9d378841d9ecd2c885910735a10f34d82078786e74f3c) on ibm_marrakesh (the owner's choice, 2026-10-29: the emptiest queue), with predictions carried over from structure only. Run first (owner: emptiest queue first); ibm_kingston follows under the first declaration. Both fixed before either fetch
 
 **Why.** One device on one day cannot tell a property of the method from a property of the machine.
 
@@ -22,15 +22,15 @@
   - Readout reference per record (step 1).
 - **P2.** 64 inputs, L = 24 and 50.
 - **Jobs.** Job 1: P1, 288 circuits × 1,000 shots. Job 2: P2, 768 circuits × 250 shots. `--max-seconds 120` each.
-- **Run.** `gpu/noise_wall_1.sh` with `NOTE=prereg/drafts-2026-10-29/noise_wall_1_second_device_note.md DEVICE=<DEVICE>`.
-  The fetch must be of `<DEVICE>`; the script checks it.
+- **Run.** `gpu/noise_wall_1.sh` with `NOTE=prereg/drafts-2026-10-29/noise_wall_1_second_device_note.md DEVICE=ibm_marrakesh`.
+  The fetch must be of ibm_marrakesh; the script checks it.
 
 ## Device-dependent numbers
 
 **Time model.** The same for both devices: 91.1 s + 82.5 s, about 3 minutes per device (about 6 minutes for both;
 "about 10 minutes" kept as a margin).
 
-### `<DEVICE>` = ibm_marrakesh
+### ibm_marrakesh (the device of this declaration)
 
 Its 2026-10-13 published calibration (`snapshot:marrakesh`) was checked at home and at the workplace. Every arm
 places at both n.
@@ -43,7 +43,7 @@ places at both n.
 
 The day's map is checked again before the build.
 
-### `<DEVICE>` = ibm_fez
+### ibm_fez (not chosen; kept for the record)
 
 Home checks on the day's map.
 
