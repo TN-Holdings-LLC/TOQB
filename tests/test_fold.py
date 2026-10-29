@@ -56,7 +56,7 @@ def test_fold_arm_is_exact(n):
 def test_lengths_and_failed_elements():
     t = get_device("snapshot:marrakesh").target
     assert F.fold_place(t, 19)[0] == 20 and F.fold_place(t, 21)[0] == 24 and F.fold_place(t, 36)[0] == 36
-    assert F.fold_place(t, 37) is None
+    assert F.fold_place(t, 37)[0] == 40  # 2026-10-30: bands over 3+ row pairs beyond 36 (before: None)
     m, _, cyc = F.fold_place(t, 19)
     t2 = copy.deepcopy(t)
     a, b = sorted((cyc[0], cyc[1]))

@@ -16,7 +16,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-FOLD_VERSION = "toqb fold 2026-10-26.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle)"
+FOLD_VERSION = "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36)"
 
 
 class FoldRefused(RuntimeError):
@@ -114,6 +114,73 @@ def shapes(pairs):
     return out
 
 
+def band_shapes(pairs, min_pairs=3):
+    """Outlines of bands over t >= `min_pairs` consecutive row pairs (2026-10-30; the owner's "find n's upper limit"):
+    in each row pair of the chain one run of cells (an interval of consecutive cells), each run overlapping the next
+    one along the row the two pairs share; kept when the outline is one cycle (`_as_cycle`). Constructive, no search
+    and no error value: [(length, ("band", first row pair, t, ((j, k), ...)), qubits in cycle order)] in the fixed
+    order: first row pair top to bottom, then t, then the runs (cells from the left: j, then k) from the top pair down."""
+    from itertools import product
+    keys = sorted(pairs)
+    runs = {}
+    for rp in keys:
+        nc = len(pairs[rp]) - 1
+        runs[rp] = [(j, k) for j in range(nc) for k in range(1, nc - j + 1)]
+
+    def cols(rp, j, k, side):  # column span (qubit indices along a row) of the run's upper (0) or lower (1) row
+        a_, b_ = pairs[rp][j], pairs[rp][j + k]
+        i = 0 if side == 0 else 2
+        return min(a_[i], b_[i]), max(a_[i], b_[i])
+    out = []
+    for a0 in range(len(keys)):
+        for t in range(min_pairs, len(keys) - a0 + 1):
+            chain = keys[a0:a0 + t]
+            if any(chain[i][1] != chain[i + 1][0] for i in range(t - 1)):
+                continue
+            for combo in product(*(runs[rp] for rp in chain)):
+                ok = True
+                for i in range(t - 1):
+                    lo1, hi1 = cols(chain[i], *combo[i], 1)
+                    lo2, hi2 = cols(chain[i + 1], *combo[i + 1], 0)
+                    if max(lo1, lo2) >= min(hi1, hi2):  # the runs must share at least one edge of the common row
+                        ok = False
+                        break
+                if not ok:
+                    continue
+                e = set()
+                for rp, (j, k) in zip(chain, combo):
+                    for c in range(j, j + k):
+                        e ^= _cell_edges(rp, c, pairs)
+                cyc = _as_cycle(e)
+                if cyc:
+                    out.append((len(cyc), ("band", chain[0], t, combo), cyc))
+    return out
+
+
+_BAND_CACHE = {}
+EXISTING_MAX = 36  # the longest outline `shapes` can produce on a Heron heavy-hex (row + row): placements up to it are unchanged
+
+
+def shapes_for(pairs, n, pairs_all=None):
+    """The candidate outlines for a ring of n (2026-10-30). For n <= EXISTING_MAX: `shapes` exactly as before, so every
+    placement (and every refusal) up to 36 is unchanged. For n > EXISTING_MAX: `shapes` followed by `band_shapes` read
+    off `pairs_all`, the lattice of all couplers (the device's geometry), since a failed coupler inside a row would
+    otherwise split the row and hide every band across it; the callers keep only outlines whose qubits and couplers
+    all work, so failed elements are never used."""
+    base = shapes(pairs)
+    if n <= EXISTING_MAX:
+        return base
+    src = pairs_all if pairs_all is not None else pairs
+    key = tuple(sorted((rp, tuple(v)) for rp, v in src.items()))
+    if key not in _BAND_CACHE:
+        _BAND_CACHE[key] = band_shapes(src)
+    return base + _BAND_CACHE[key]
+
+
+def _all_pairs(target):
+    return lattice({tuple(sorted(qa)) for qa in target["cz"] if qa is not None}, target.num_qubits)
+
+
 def fold_place(target, n):
     """(m, shape name, cycle qubits) for a ring of n on `target`, or None: the shortest outline of m >= n qubits, the
     first in the fixed order whose qubits (sx) and couplers (cz) all work (error < 1)."""
@@ -121,7 +188,7 @@ def fold_place(target, n):
         p = target[name].get(qa) if name in target.operation_names else None
         return p is None or (p.error is not None and p.error >= 1)
     edges = {tuple(sorted(qa)) for qa in target["cz"] if qa is not None and not bad("cz", qa)}
-    cands = shapes(lattice(edges, target.num_qubits))
+    cands = shapes_for(lattice(edges, target.num_qubits), n, _all_pairs(target))
     for m in sorted({c[0] for c in cands}):
         if m < n:
             continue
@@ -303,7 +370,7 @@ def pend_place(target, n, packed=False):
         nb[a].add(b)
         nb[b].add(a)
     ok = lambda q: _working(target, "sx", (q,)) and _working(target, "measure", (q,))  # noqa: E731
-    cands = shapes(lattice(edges, target.num_qubits))
+    cands = shapes_for(lattice(edges, target.num_qubits), n, _all_pairs(target))
     for m in sorted({c[0] for c in cands}, reverse=True):
         if m > n:
             continue
