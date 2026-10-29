@@ -259,3 +259,47 @@ def test_self_reference_rule():
     p, rng, ver = KC.self_ref_verdicts(cells, 20, 24)
     assert not [v for v in ver if v["n"] == 36 and v["L"] == 100][0]["inside_2se"]
     assert KC.self_ref_verdicts(cells, 20, 16)[0] is None  # no reference cell
+
+
+# ------------------------------------------------------------------ readable depth (L* and Delta L), 2026-10-29
+
+def test_decay_length_recovers_exponential():
+    """The one-parameter fit returns the exact L* from exact exponentials, and the predicted L* matches p."""
+    p = 0.0051
+    Lst = KC.decay_length_predicted(p)
+    assert abs(Lst - 73.3) < 0.1
+    Ls = [24, 50, 100]
+    rhos = [KC.rho_predicted(p, L) for L in Ls]
+    got, se = KC.decay_length(Ls, rhos, [0.0075] * 3)
+    assert abs(got - Lst) < 1e-3 * Lst and 0 < se < 5
+    # a non-positive point is kept and does not break the fit
+    got2, _ = KC.decay_length(Ls, [0.15, 0.02, -0.004], [0.0075] * 3)
+    assert 10 < got2 < 16
+    assert KC.decay_length(Ls, [-0.01, -0.02, 0.0], [0.0075] * 3) == (None, None)
+
+
+def _cells(arm, n, Lstar, q2, us, se=0.0075):
+    return [dict(arm=arm, n=n, L=L, rho4=float(np.exp(-L / Lstar)), se4=se, q2=q2 * L, us=us * L)
+            for L in (24, 50, 100)]
+
+
+def test_wall_rules_and_phi():
+    """Rule A (structure bracket) and phi recovery: with kappa built from the model at phi = 0.8, the zipper falls
+    INSIDE its bracket and the blind arm returns phi = 0.8 at both n (SAME); a zipper far outside is ABOVE."""
+    phi, LA = 0.8, 73.3
+    cells = []
+    for n, (gB, tB, tD) in {20: (2.3, 1.89, 4.6), 36: (2.39, 1.89, 7.1)}.items():
+        cells += _cells("fold:rule", n, LA, n, 0.38)
+        cells += _cells("fold:zipcyc", n, LA / ((1 - phi) * gB + phi * tB), n * gB, 0.38 * tB)
+        cells += _cells("qiskit:2:blind:template", n, LA / ((1 - phi) + phi * tD), n, 0.38 * tD)
+    w = KC.wall(cells, p=0.0051, p_range=[0.00475, 0.00548])
+    assert all(x["verdict"] == "INSIDE" for x in w["ref_prediction"])
+    rel = {(x["arm"], x["n"]): x for x in w["relative"]}
+    for n in (20, 36):
+        assert rel[("fold:zipcyc", n)]["rule_A"] == "INSIDE"
+        assert abs(rel[("qiskit:2:blind:template", n)]["phi"] - phi) < 0.02
+        assert rel[("fold:zipcyc", n)]["delta_L"] > 30
+    assert all(x["verdict"] == "SAME" for x in w["phi_consistency"])
+    bad = _cells("fold:rule", 20, LA, 20, 0.38) + _cells("fold:zipcyc", 20, LA / 5.0, 46, 0.38 * 1.89)
+    x = KC.wall(bad)["relative"][0]
+    assert x["rule_A"] == "ABOVE"

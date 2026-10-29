@@ -1,4 +1,4 @@
-# Noise wall, stage 1, second device (DRAFT by the workplace, 2026-10-29; owner's go pending): the same test as the first device's declaration (noise_wall_1_note.md, SHA-256 054a8519fb53a44739be8059466d5eeb49f9d9334a3a52c76fe03844f299ef4e) on <DEVICE> (ibm_marrakesh or ibm_fez, the owner's choice), with predictions carried over from structure only. To be fixed by SHA-256 and CET time before the first device runs
+# Noise wall, stage 1, second device (DRAFT r2, 2026-10-29: the workplace's draft plus the readable depth carried over, added at home; owner's go pending): the same test as the first device's declaration (noise_wall_1_note.md r3, SHA-256 076a1b2eeb5b4a496c4dc9b1e50bbab5948f800e8ed4a4b45c9a50998a7a26b5) on <DEVICE> (ibm_marrakesh or ibm_fez, the owner's choice), with predictions carried over from structure only. To be fixed by SHA-256 and CET time before the first device runs
 
 **Why.** One device on one day cannot tell a property of the method from a property of the machine.
 
@@ -74,10 +74,18 @@ They would be recorded as NOT RUN. That is a reason to prefer marrakesh, unless 
 4. **Arms.** The signs of rule − zipcyc and rule − blind Qiskit, on ρ (P1) and λ (P2), by D6's rule (WIN, LOSS or TIE at
    2 SE). Predicted: WIN against both at both n, as on the first device.
 
+5. **Readable depth** (r2, as rules 5-7 of the first declaration).
+   - L\*_A against L\*_pred = −1 / (2 ln(1 − 4p/3)) at prediction 1's p (with its range): INSIDE, else BELOW or ABOVE.
+   - Arm B: κ_B inside its structure bracket [min(g, t), max(g, t)] ± 2 SE, with g and t from this device's own
+     build. This rule has no free parameter, so it carries over unchanged. Predicted: INSIDE. (marrakesh 10/13, from
+     the table above: g = 2.30, t = 2.02-2.37 at n = 20.)
+   - Arm D: φ_D the same at n = 20 and 36 (2 SE): SAME. The value of φ is not carried over.
+
 ## Not carried over (measured anew on each device)
 
 - **The value of p_eff.**
-- **The wall depth that follows from it.**
+- **The wall depth that follows from it** (L\* and ΔL themselves; only rule 5's form and the bracket carry over).
+- **The value of φ.**
 
 ## Limits
 
