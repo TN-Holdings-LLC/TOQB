@@ -1,15 +1,16 @@
 #!/bin/bash
 # Noise wall, stage 1 (prereg/drafts-2026-10-29/noise_wall_1_note.md), the build step: probe P1 (the weight-2 conserved
 # charge, toqb.kising_charge) and probe P2 (<X_0>, toqb.lam_device --kind kising --twin none) of the kicked-Ising ring
-# (J = pi/4, h = 0.6) at n = 20 and 40; arms fold:rule, fold:zipcyc (where a cycle of n qubits exists) and
-# qiskit:2:blind:template; no twin, no quality number read by any arm. CPU is enough (the name follows the other
-# scripts). Two jobs (one shot count per job): P1 at SHOTS1 (default 1000), P2 at SHOTS2 (default 250). From
-# /workspace, with the fetch folder of the day from home:
+# (J = pi/4, h = 0.6) at n = 20 and 36 (owner, 2026-10-29: 40 dropped, fold.shapes finds cycles up to 36 on kingston);
+# arms fold:rule, fold:zipcyc and qiskit:2:blind:template (an arm that cannot be placed is recorded, not replaced);
+# no twin, no quality number read by any arm. CPU is enough (the name follows the other scripts). Two jobs (one shot
+# count per job): P1 at SHOTS1 (default 1000), P2 at SHOTS2 (default 250). From /workspace, with the fetch folder of
+# the day from home:
 #   FETCH=/root/nw1_fetch_2026-10-29 OUT=/workspace/nw1 nohup bash TOQB/gpu/noise_wall_1.sh > nw1.txt 2>&1 &
 set -u
 W=$(pwd); TQ=${TOQB_DIR:-$W/TOQB}; PSF=${PSF_DIR:-$W/psf}; VA=${VENV_ACT:-$W/venv/bin/activate}
 FETCH=${FETCH:?set FETCH}; OUT=${OUT:?set OUT}
-NS=${NS:-"20 40"}; LS=${LS:-"24 50 100"}; L2=${L2:-"24 50"}
+NS=${NS:-"20 36"}; LS=${LS:-"24 50 100"}; L2=${L2:-"24 50"}
 SHOTS1=${SHOTS1:-1000}; SHOTS2=${SHOTS2:-250}; MAX1=${MAX1:-120}; MAX2=${MAX2:-120}
 COEF=${COEF:-"-1.2860758110631627 -1.2860758110631603"}  # the declared charge (b, c), from `kising_charge charges`
 NOTE=prereg/drafts-2026-10-29/noise_wall_1_note.md
@@ -47,7 +48,7 @@ for n in $NS; do
     for L in $L2; do B2 --arm $arm --n $n --L $L --mseed 0; done
   done
 done
-# a refused placement (e.g. no cycle of n qubits for the zipper) leaves no record; it is in build.txt
+# a refused placement leaves no record; the refusal is in build.txt and nothing replaces it
 python -m toqb.kising_charge rehearse "$OUT/runs1" --p 0.0051 | tee "$OUT/rehearse.txt"
 python - "$OUT/runs1" "$OUT/runs2" <<'PY' | tee "$OUT/cells.txt"
 import glob, json, sys
@@ -69,4 +70,4 @@ cd "$W" && python -m zipfile -c "$W/nw1_jobs.zip" "$OUT" && echo "== DONE: $W/nw
 #   python -m toqb.kising_charge score $OUT/job1 $OUT/runs1 --p 0.0051 --p-range 0.00475 0.00548 \
 #          --p2-job $OUT/job2 --p2-runs $OUT/runs2                                  (primary, declared p)
 #   python -m toqb.kising_charge score $OUT/job1 $OUT/runs1 --p-from-n 20 --p-L 50 \
-#          --p2-job $OUT/job2 --p2-runs $OUT/runs2 --out-name charge_score_p1ref.json   (secondary)
+#          --p2-job $OUT/job2 --p2-runs $OUT/runs2 --out-name charge_score_p1ref.json   (reference only, not judged)
