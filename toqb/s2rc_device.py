@@ -549,6 +549,25 @@ def pick_backend(circs, get_backend, first):
     return None, None, tried
 
 
+def sampler_options(dd="off", twirl="off"):
+    """SamplerV2 options by name. The default (off, off) is the standard of every run before 2026-10-30 evening.
+    Both options read nothing from the calibration: dynamical decoupling fills every idle window with the chosen
+    sequence, gate twirling randomises every two-qubit layer; neither depends on which qubit is which."""
+    if dd not in ("off", "XX", "XpXm", "XY4") or twirl not in ("off", "gates"):
+        raise ValueError(f"unknown option dd={dd} twirl={twirl}")
+    o = {"dynamical_decoupling.enable": dd != "off", "twirling.enable_gates": twirl == "gates",
+         "twirling.enable_measure": False}
+    if dd != "off":
+        o["dynamical_decoupling.sequence_type"] = dd
+    return o
+
+
+def options_text(dd="off", twirl="off"):
+    t = ("dynamical decoupling off" if dd == "off" else f"dynamical decoupling {dd}") + ", " + \
+        ("twirling off (gates and measure)" if twirl == "off" else "gate twirling on (measure off)")
+    return t + "; SamplerV2 applies no other error mitigation"
+
+
 def cmd_submit(a):
     from qiskit import qpy
     man = _read_job(a.job)
@@ -570,7 +589,10 @@ def cmd_submit(a):
         t_sub = stamp()
         res = sim.run(circs, shots=N, seed_simulator=a.seed).result()
         rows = [dict(pub=i, counts=dict(res.get_counts(i))) for i in range(len(circs))]
+        if a.dd != "off" or a.twirl != "off":
+            print("note: --dd and --twirl act on IBM only; the local run applies neither")
         _dump_json(sub_file, dict(job_id=f"local-{a.seed}", submitted=t_sub, local=True,
+                                  options_requested=options_text(a.dd, a.twirl) + " (not applied locally)",
                                   simulator=str(sim.name) + ("" if sim.options.noise_model is None else " with noise")))
         _dump_json(os.path.join(a.job, "raw_counts.json"),
                    dict(fetched=stamp(), job_id=f"local-{a.seed}", status="DONE (local)", metrics={}, rows=rows))
@@ -589,14 +611,16 @@ def cmd_submit(a):
         _dump_json(os.path.join(a.job, "submission_refused.json"), dict(written=stamp(), tried=tried))
         raise SystemExit("STOP: no device in the fixed order takes the job; not submitted (submission_refused.json)")
     sampler = SamplerV2(mode=backend)
-    sampler.options.dynamical_decoupling.enable = False
-    sampler.options.twirling.enable_gates = False
-    sampler.options.twirling.enable_measure = False
+    for k, v in sampler_options(a.dd, a.twirl).items():
+        obj = sampler.options
+        for part in k.split(".")[:-1]:
+            obj = getattr(obj, part)
+        setattr(obj, k.split(".")[-1], v)
     t_sub = stamp()
     job = sampler.run([(c, None, N) for c in circs])
     _dump_json(sub_file, dict(job_id=job.job_id(), submitted=t_sub, local=False, backend=backend.name,
-                              trained_for=man["fetch"]["backend"], tried=tried, calibration_at_submit=cal, options="dynamical decoupling off, twirling off (gates and "
-                              "measure); SamplerV2 applies no other error mitigation"))
+                              trained_for=man["fetch"]["backend"], tried=tried, calibration_at_submit=cal,
+                              options=options_text(a.dd, a.twirl), sampler_options=sampler_options(a.dd, a.twirl)))
     print(f"{stamp()} submitted job {job.job_id()} ({len(circs)} circuits x {N} shots) to {backend.name}. "
           f"Results are not read here.")
 
@@ -782,6 +806,8 @@ def main(argv=None):
     u.add_argument("--local", action="store_true")
     u.add_argument("--noiseless", action="store_true")
     u.add_argument("--seed", type=int, default=20261019)
+    u.add_argument("--dd", default="off", choices=["off", "XX", "XpXm", "XY4"])
+    u.add_argument("--twirl", default="off", choices=["off", "gates"])
     r = sp.add_parser("result")
     r.add_argument("--job", required=True)
     r.add_argument("--wait-min", type=float, default=60)
