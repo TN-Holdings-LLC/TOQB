@@ -179,7 +179,7 @@ def cmd_score(argv):
         rec = json.load(open(rf))
         if sha256_file(rf) != c["run_sha256"]:
             raise SystemExit(f"STOP: {rf} differs from the manifest")
-        if rec.get("charge_test"):  # noise wall P1 records are scored by toqb.kising_charge (2026-10-29)
+        if rec.get("charge_test") or rec.get("echo_test"):  # P1 / echo records: toqb.kising_charge / toqb.kising_echo
             continue
         zl = np.array(rec["noiseless_z"])
         zd = np.zeros(len(zl))
