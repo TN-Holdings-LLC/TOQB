@@ -1,0 +1,15 @@
+toqb b82f321 Fix the declarations of 2026-10-30 (2026-10-30 03:30
+note 8c26afd773cbde8a4a749e6172b26bf10ab8e5579d4d3eafd290c4b3bd50f3b8  prereg/drafts-2026-10-30/qelm_A_note.md
+tests 7 passed in 2.69s
+n 20 L 19 T 64 arms fold:rule,fold:zipcyc XP cupy procs 160
+start 2026-10-30 04:19:29 CET
+2026-10-30T03:19:30+00:00 (2026-10-30 04:19:30 CET) wrote the snapshot Target of ibm_marrakesh (calibration 2026-10-13 11:37:12+02:00; not fetched) to /root/w30/qelmA/fetch/target.pkl, sha256 e0d560b0cc3d3b7c...
+teacher reused: 32a6d65651abe1ea7ca58b592280d88a2a9af04ed4ee40a13acb545adf7bb38d  /root/w30/qelmA/noiseless.json
+ceiling (noiseless) 0.840
+fold:rule: lambda 0.714: S 16: 0.644 [0.550, 0.730]; S 32: 0.697 [0.585, 0.785]; S 64: 0.748 [0.655, 0.835]; S 125: 0.794 [0.705, 0.870]; S 250: 0.821 [0.725, 0.905]
+fold:zipcyc: lambda 0.284: S 16: 0.541 [0.445, 0.640]; S 32: 0.563 [0.470, 0.650]; S 64: 0.607 [0.505, 0.700]; S 125: 0.658 [0.555, 0.765]; S 250: 0.714 [0.610, 0.795]
+qiskit:2:blind:template: lambda 0.487: S 16: 0.590 [0.475, 0.690]; S 32: 0.639 [0.520, 0.725]; S 64: 0.690 [0.585, 0.780]; S 125: 0.743 [0.645, 0.825]; S 250: 0.788 [0.705, 0.865]
+fold:rule: 984 circuits, cz 380, stand-in toqb, measured maps 1, 5565 s
+fold:zipcyc: 984 circuits, cz 874, stand-in toqb, measured maps 1, 8736 s
+end 2026-10-30 08:18:24 CET
+== DONE: /root/w30/qelmA.zip

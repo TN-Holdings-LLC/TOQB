@@ -1,0 +1,50 @@
+toqb b82f321 Fix the declarations of 2026-10-30 (2026-10-30 03:30
+note 1308cf9bec09d25cae977688baae6c16431f1f32c5dcbd6cfcae07b7d8503696  prereg/drafts-2026-10-30/echo_hz_note.md
+tests 8 passed in 60.20s (0:01:00)
+T 64 PAR 2 XP cupy
+start 2026-10-30 04:20:27 CET
+2026-10-30T03:20:27+00:00 (2026-10-30 04:20:27 CET) wrote the snapshot Target of ibm_marrakesh (calibration 2026-10-13 11:37:12+02:00; not fetched) to /root/w30/echo_twin/fetch/target.pkl, sha256 61acf7c77770ebff...
+kecho_n20_D24_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 480 two-qubit gates = 24 x 20: ACCEPTED, 8.13 us; valid True
+kecho_n20_D50_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 1000 two-qubit gates = 50 x 20: ACCEPTED, 13.96 us; valid True
+kecho_n20_D100_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 2000 two-qubit gates = 100 x 20: ACCEPTED, 25.16 us; valid True
+kecho_n20_D24_hz0.1_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 480 two-qubit gates = 24 x 20: ACCEPTED, 8.13 us; valid True
+kecho_n20_D50_hz0.1_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 1000 two-qubit gates = 50 x 20: ACCEPTED, 13.96 us; valid True
+kecho_n20_D100_hz0.1_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 2000 two-qubit gates = 100 x 20: ACCEPTED, 25.16 us; valid True
+kecho_n20_D24_hz0.3_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 480 two-qubit gates = 24 x 20: ACCEPTED, 8.13 us; valid True
+kecho_n20_D50_hz0.3_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 1000 two-qubit gates = 50 x 20: ACCEPTED, 13.96 us; valid True
+kecho_n20_D100_hz0.3_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 2000 two-qubit gates = 100 x 20: ACCEPTED, 25.16 us; valid True
+kecho_n20_D24_hz0_h0.6-fold_zipcyc: 8 circuits (4 echo + 4 references), 1104 two-qubit gates = 24 x 46: ACCEPTED, 16.39 us; valid True
+kecho_n20_D50_hz0_h0.6-fold_zipcyc: 8 circuits (4 echo + 4 references), 2300 two-qubit gates = 50 x 46: ACCEPTED, 31.16 us; valid True
+kecho_n20_D100_hz0_h0.6-fold_zipcyc: 8 circuits (4 echo + 4 references), 4600 two-qubit gates = 100 x 46: ACCEPTED, 59.56 us; valid True
+kecho_n20_D24_hz0.1_h0.6-fold_zipcyc: 8 circuits (4 echo + 4 references), 1104 two-qubit gates = 24 x 46: ACCEPTED, 16.39 us; valid True
+kecho_n20_D50_hz0.1_h0.6-fold_zipcyc: 8 circuits (4 echo + 4 references), 2300 two-qubit gates = 50 x 46: ACCEPTED, 31.16 us; valid True
+kecho_n20_D100_hz0.1_h0.6-fold_zipcyc: 8 circuits (4 echo + 4 references), 4600 two-qubit gates = 100 x 46: ACCEPTED, 59.56 us; valid True
+kecho_n20_D24_hz0.3_h0.6-fold_zipcyc: 8 circuits (4 echo + 4 references), 1104 two-qubit gates = 24 x 46: ACCEPTED, 16.39 us; valid True
+kecho_n20_D50_hz0.3_h0.6-fold_zipcyc: 8 circuits (4 echo + 4 references), 2300 two-qubit gates = 50 x 46: ACCEPTED, 31.16 us; valid True
+kecho_n20_D100_hz0.3_h0.6-fold_zipcyc: 8 circuits (4 echo + 4 references), 4600 two-qubit gates = 100 x 46: ACCEPTED, 59.56 us; valid True
+kecho_n20_D100_hz0.1_h0.6-fold_rule: twin rho_E 0.0002 (T 64), 194 s
+kecho_n20_D100_hz0_h0.6-fold_rule: twin rho_E -0.0000 (T 64), 195 s
+kecho_n20_D24_hz0.1_h0.6-fold_rule: twin rho_E 0.0945 (T 64), 67 s
+kecho_n20_D24_hz0_h0.6-fold_rule: twin rho_E 0.0844 (T 64), 67 s
+kecho_n20_D50_hz0.1_h0.6-fold_rule: twin rho_E 0.0025 (T 64), 137 s
+fold:rule hz 0.1: L* (twin) 10.137957357617276
+kecho_n20_D50_hz0_h0.6-fold_rule: twin rho_E -0.0005 (T 64), 137 s
+fold:rule hz 0: L* (twin) 9.665574090717817
+kecho_n20_D100_hz0.3_h0.6-fold_rule: twin rho_E 0.0000 (T 64), 272 s
+kecho_n20_D24_hz0.3_h0.6-fold_rule: twin rho_E 0.0994 (T 64), 67 s
+kecho_n20_D50_hz0.3_h0.6-fold_rule: twin rho_E 0.0002 (T 64), 137 s
+fold:rule hz 0.3: L* (twin) 10.337375773553898
+kecho_n20_D100_hz0_h0.6-fold_zipcyc: twin rho_E 0.0001 (T 64), 580 s
+kecho_n20_D24_hz0_h0.6-fold_zipcyc: twin rho_E 0.0007 (T 64), 141 s
+kecho_n20_D50_hz0_h0.6-fold_zipcyc: twin rho_E -0.0000 (T 64), 292 s
+fold:zipcyc hz 0: L* (twin) 3.297504899261873
+kecho_n20_D100_hz0.1_h0.6-fold_zipcyc: twin rho_E -0.0000 (T 64), 580 s
+kecho_n20_D24_hz0.1_h0.6-fold_zipcyc: twin rho_E 0.0018 (T 64), 141 s
+kecho_n20_D50_hz0.1_h0.6-fold_zipcyc: twin rho_E 0.0001 (T 64), 292 s
+fold:zipcyc hz 0.1: L* (twin) 3.790302988147661
+kecho_n20_D100_hz0.3_h0.6-fold_zipcyc: twin rho_E -0.0001 (T 64), 548 s
+kecho_n20_D24_hz0.3_h0.6-fold_zipcyc: twin rho_E 0.0028 (T 64), 94 s
+kecho_n20_D50_hz0.3_h0.6-fold_zipcyc: twin rho_E -0.0000 (T 64), 196 s
+fold:zipcyc hz 0.3: L* (twin) 4.080704214687357
+end 2026-10-30 04:58:45 CET
+== DONE: /root/w30/echo_twin.zip
