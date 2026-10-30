@@ -1,4 +1,4 @@
-# Test 3: the mirror at n = 40 and 72, and the size wall read by the ring's own parity (DRAFT at home, 2026-10-30 05:30 CET; owner's go pending; to be fixed by SHA-256 and CET time before any fetch)
+# Test 3: the mirror at n = 40 and 72, and the size wall read by the ring's own parity (home, FIXED 2026-10-30 05:32 CET on the owner's go, before any fetch)
 
 **Why.** Test 1 (`fold.band_shapes`) found rings up to 88 (kingston 10/24) and 96 (marrakesh 10/13). Noise wall stage 1
 showed that a weight-2 charge decays at a per-step rate independent of n (L* 56.5 / 56.6 on marrakesh). That makes
@@ -59,6 +59,12 @@ and 36 on each device):
   and dephasing damps X but not ZZ. Both make the parity decay faster than V* = 2 L* says. This is a stated risk, not a
   second prediction.
 - **Reported, not judged:** V* at n = 40 and 72; V* of blind Qiskit; the readout factor (the reference's signed mean) per n.
+
+## Devices (owner, 2026-10-30)
+
+The same device(s) as test 2, on the same day's fetch: parts E and P are built from the fetch that test 2 uses, and
+submitted after it. Predictions for V* exist for ibm_kingston and ibm_marrakesh only (10/29's L*); on another device
+P-A is NOT RUN, while P-B and P-C are judged.
 
 ## Time
 
