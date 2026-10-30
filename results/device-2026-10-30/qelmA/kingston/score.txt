@@ -1,0 +1,6 @@
+R: raw 0.555, ceiling 0.840, majority 0.510
+fold:rule: G PASS; lambda (X, Y, Z) 0.703, 0.656, 0.878; Q1 chi2 2.87 (FAILS); acc S 16 0.695, S 32 0.750, S 64 0.740, S 125 0.745, S 250 0.810; Q2 band 0.745-0.900: INSIDE
+fold:zipcyc: G PASS; lambda (X, Y, Z) 0.349, 0.377, 0.683; Q1 chi2 1.73 (HOLDS); acc S 16 0.595, S 32 0.600, S 64 0.650, S 125 0.650, S 250 0.715; Q2 band 0.690-0.845: INSIDE
+qiskit:2:blind:template: G PASS; lambda (X, Y, Z) 0.567, 0.488, 0.806; Q1 chi2 3.45 (FAILS); acc S 16 0.695, S 32 0.730, S 64 0.695, S 125 0.725, S 250 0.750; Q2 band 0.680-0.855: INSIDE
+Q3a: S 64 47 / 29 p 0.0252; S 250 37 / 18 p 0.00723; Holm [True, True]: WIN
+Q3b: S 64 44 / 35 p 0.184; S 250 33 / 21 p 0.0668; Holm [False, False]: not (reported, not judged)

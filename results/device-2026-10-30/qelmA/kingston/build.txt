@@ -1,0 +1,3 @@
+qelmA_n20_L19-fold_rule: 984 circuits, 380 CZ per circuit, measured maps 1: rule G PASS
+qelmA_n20_L19-fold_zipcyc: 984 circuits, 874 CZ per circuit, measured maps 1: rule G PASS
+qelmA_n20_L19-qiskit_2_blind_template: 984 circuits, 380 CZ per circuit, measured maps 1: rule G PASS

@@ -1,0 +1,7 @@
+toqb e36fe83 Test 3 addendum 2 (2026-10-30 09:03 CET, owner's go,
+note 8b13773f0dc7545ce0446d8fbbe1769f89e46fb0ed81f69ef5f3c4ea72896922  prereg/drafts-2026-10-30/test3_note.md
+tests 8 passed in 35.84s
+fetch ibm_kingston 2026-10-30 11:02:27+01:00 c5acea6d5244c7b45764b3224748791035dd716f22ca43eb7b5a3f17f8bf3fca
+start 2026-10-30 11:51:20 CET
+longest exact ring of the day: n = 88
+end 2026-10-30 11:56:09 CET

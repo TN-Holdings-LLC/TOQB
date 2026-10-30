@@ -1,0 +1,7 @@
+toqb e36fe83 Test 3 addendum 2 (2026-10-30 09:03 CET, owner's go,
+note 8c26afd773cbde8a4a749e6172b26bf10ab8e5579d4d3eafd290c4b3bd50f3b8  prereg/drafts-2026-10-30/qelm_A_note.md
+addendum 4cfff876671741f318de7d5c4cd5b5e4b1e33462a1626042cef99522380bffc6  prereg/drafts-2026-10-30/qelm_A_addendum1.md
+task 32a6d65651abe1ea7ca58b592280d88a2a9af04ed4ee40a13acb545adf7bb38d
+fetch ibm_kingston 2026-10-30 11:02:27+01:00 c5acea6d5244c7b45764b3224748791035dd716f22ca43eb7b5a3f17f8bf3fca
+start 2026-10-30 11:56:09 CET
+end 2026-10-30 12:03:31 CET

@@ -1,0 +1,16 @@
+{
+ "job_id": "dbi7qkmne4hc73be2njg",
+ "submitted": "2026-10-30T11:19:46+00:00 (2026-10-30 12:19:46 CET)",
+ "local": false,
+ "backend": "ibm_marrakesh",
+ "trained_for": "ibm_marrakesh",
+ "tried": [
+  {
+   "backend": "ibm_marrakesh",
+   "calibration": "2026-10-30 12:08:51+01:00",
+   "reasons": []
+  }
+ ],
+ "calibration_at_submit": "2026-10-30 12:08:51+01:00",
+ "options": "dynamical decoupling off, twirling off (gates and measure); SamplerV2 applies no other error mitigation"
+}

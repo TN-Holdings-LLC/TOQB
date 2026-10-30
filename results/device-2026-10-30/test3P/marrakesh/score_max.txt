@@ -1,0 +1,13 @@
+kparity_n96_L1_h0.6-fold_rule                rho_P 1.0000 +- 2.4843 (num 0.0045, ref 0.0045) | 96 two-qubit gates, 2.988 us
+kparity_n96_L2_h0.6-fold_rule                rho_P 0.6875 +- 1.5989 (num -0.0041, ref -0.0060) | 192 two-qubit gates, 3.22 us
+kparity_n96_L1_h0.6-fold_zipcyc              rho_P 1.4557 +- 1.4137 (num -0.0144, ref -0.0099) | 236 two-qubit gates, 3.336 us
+kparity_n96_L2_h0.6-fold_zipcyc              rho_P -0.8154 +- 0.6276 (num -0.0132, ref 0.0163) | 472 two-qubit gates, 3.916 us
+kparity_n96_L1_h0.6-qiskit_2_blind_template  rho_P -0.1000 +- 1.0592 (num -0.0007, ref 0.0075) | 96 two-qubit gates, 9.456 us
+kparity_n96_L2_h0.6-qiskit_2_blind_template  rho_P 1.3333 +- 17.5672 (num -0.0010, ref -0.0008) | 192 two-qubit gates, 16.156 us
+V* fold:rule n 96: 594.1 +- 3797.4 (fit over n L, L = [1, 2])
+V* fold:zipcyc n 96: 51.1 +- 207.2 (fit over n L, L = [1, 2])
+V* qiskit:2:blind:template n 96: 9.6 +- 22398.2 (fit over n L, L = [1, 2])
+n 96 L 1: fold:rule - fold:zipcyc: -0.4557 +- 2.8583: TIE
+n 96 L 1: fold:rule - qiskit:2:blind:template: +1.1000 +- 2.7007: TIE
+n 96 L 2: fold:rule - fold:zipcyc: +1.5029 +- 1.7177: TIE
+n 96 L 2: fold:rule - qiskit:2:blind:template: -0.6458 +- 17.6398: TIE

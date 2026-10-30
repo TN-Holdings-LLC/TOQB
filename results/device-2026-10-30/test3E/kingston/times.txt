@@ -1,0 +1,8 @@
+toqb e36fe83 Test 3 addendum 2 (2026-10-30 09:03 CET, owner's go,
+note 8b13773f0dc7545ce0446d8fbbe1769f89e46fb0ed81f69ef5f3c4ea72896922  prereg/drafts-2026-10-30/test3_note.md
+tests 28 passed in 204.47s (0:03:24)
+fetch ibm_kingston 2026-10-30 11:02:27+01:00 c5acea6d5244c7b45764b3224748791035dd716f22ca43eb7b5a3f17f8bf3fca
+n 40 72; hz 0 0.1 0.3; one-way L 12 25 50; h 0.6; shots 500; arms fold:rule fold:zipcyc qiskit:2:blind:template
+device ibm_kingston
+start 2026-10-30 11:39:14 CET
+end 2026-10-30 11:50:38 CET

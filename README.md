@@ -3,7 +3,7 @@
 TOQB compares quantum compilers on the quality of what they return within a time budget, from the circuit's
 structure to a task's accuracy on a noisy device.
 
-**Status (2026-10-29).** The specification, a budgeted runner and the standard compilation set (layer 1) are as in
+**Status (2026-10-30).** The specification, a budgeted runner and the standard compilation set (layer 1) are as in
 v0.1. Layer 3's variational-loop scenario has had scored runs at 6 qubits (below). Since 2026-10-22 the work has moved
 to **declared tests on IBM devices**: how much of a circuit's signal each placement keeps, and how deep it stays
 readable, when no placement reads the calibration's quality numbers ([Device results](#device-results-no-calibration-map)).
@@ -58,6 +58,16 @@ itself, read with four inputs that cancel readout and first-order relaxation; no
 - Results: [`results/noise-wall-1-marrakesh-2026-10-29/`](results/noise-wall-1-marrakesh-2026-10-29/),
   [`results/noise-wall-1-kingston-2026-10-29/`](results/noise-wall-1-kingston-2026-10-29/) (figure
   `declared_vs_fixed_two_devices.png`).
+
+**Tests 2 and 3, QELM A (2026-10-30), two devices** ([`results/device-2026-10-30/`](results/device-2026-10-30/)).
+- Mirror echo with a longitudinal field hz = 0, 0.1, 0.3 (non-integrable for hz > 0), n = 20, 36, 40, 72: the rule
+  against zipcyc and blind Qiskit, 71 wins, 11 ties, **0 losses**, 62 not judged (both on the floor). The rule's
+  echo at D = 24 is 0.17-0.44 and does not shrink with n; the twin's volume prediction (below 2 SE at n = 40, 72)
+  failed. Rule B (zipcyc's kappa 3.3-3.9) came out BELOW (kappa 1.7-2.7) wherever it could be judged.
+- Global parity (weight n): the rule's V* below the declared value in 3 of 4; at n = 40 and above the readout
+  reference collapses, so the parity's size wall is readout. Longest exact ring: kingston n = 88 (rho 0.22 +- 0.10).
+- QELM task A (kingston, n = 20, search-free classifier): all arms inside their declared bands; rule 0.810 at
+  S = 250 (ceiling 0.840) beats zipcyc at S = 64 and 250 (McNemar, Holm).
 
 **Earlier device tests** (ibm_kingston unless noted; each folder's README has the declaration, jobs and verdicts):
 

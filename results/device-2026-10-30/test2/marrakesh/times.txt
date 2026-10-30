@@ -1,0 +1,8 @@
+toqb e36fe83 Test 3 addendum 2 (2026-10-30 09:03 CET, owner's go,
+note 1308cf9bec09d25cae977688baae6c16431f1f32c5dcbd6cfcae07b7d8503696  prereg/drafts-2026-10-30/echo_hz_note.md
+tests 28 passed in 196.67s (0:03:16)
+fetch ibm_marrakesh 2026-10-30 10:20:21+01:00 2bbfbbf5abffb701dba99319ce6f536d2da0ebeac2087c9960a95e9b54367269
+n 20 36; hz 0 0.1 0.3; one-way L 12 25 50; h 0.6; shots 500; arms fold:rule fold:zipcyc qiskit:2:blind:template
+device ibm_marrakesh
+start 2026-10-30 11:32:56 CET
+end 2026-10-30 11:35:44 CET

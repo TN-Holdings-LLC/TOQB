@@ -1,0 +1,96 @@
+kecho_n40_D100_hz0.1_h0.6-fold_rule: rho_E -0.0014 +- 0.0038; weight 2 0.0250 +- 0.0038
+kecho_n40_D100_hz0.1_h0.6-fold_zipcyc: rho_E 0.0008 +- 0.0036; weight 2 0.0009 +- 0.0038
+kecho_n40_D100_hz0.1_h0.6-qiskit_2_blind_template: rho_E 0.0033 +- 0.0037; weight 2 0.0025 +- 0.0038
+kecho_n40_D100_hz0.3_h0.6-fold_rule: rho_E -0.0007 +- 0.0036; weight 2 0.0097 +- 0.0037
+kecho_n40_D100_hz0.3_h0.6-fold_zipcyc: rho_E -0.0063 +- 0.0036; weight 2 -0.0017 +- 0.0039
+kecho_n40_D100_hz0.3_h0.6-qiskit_2_blind_template: rho_E -0.0015 +- 0.0036; weight 2 0.0023 +- 0.0038
+kecho_n40_D100_hz0_h0.6-fold_rule: rho_E -0.0075 +- 0.0037; weight 2 0.0403 +- 0.0037
+kecho_n40_D100_hz0_h0.6-fold_zipcyc: rho_E 0.0028 +- 0.0037; weight 2 0.0050 +- 0.0037
+kecho_n40_D100_hz0_h0.6-qiskit_2_blind_template: rho_E 0.0029 +- 0.0036; weight 2 0.0020 +- 0.0038
+kecho_n40_D24_hz0.1_h0.6-fold_rule: rho_E 0.2054 +- 0.0054; weight 2 0.3214 +- 0.0048
+kecho_n40_D24_hz0.1_h0.6-fold_zipcyc: rho_E 0.0460 +- 0.0042; weight 2 0.0821 +- 0.0042
+kecho_n40_D24_hz0.1_h0.6-qiskit_2_blind_template: rho_E -0.0043 +- 0.0040; weight 2 0.0699 +- 0.0039
+kecho_n40_D24_hz0.3_h0.6-fold_rule: rho_E 0.2533 +- 0.0053; weight 2 0.2909 +- 0.0049
+kecho_n40_D24_hz0.3_h0.6-fold_zipcyc: rho_E 0.0493 +- 0.0041; weight 2 0.0633 +- 0.0042
+kecho_n40_D24_hz0.3_h0.6-qiskit_2_blind_template: rho_E 0.0076 +- 0.0040; weight 2 0.0457 +- 0.0039
+kecho_n40_D24_hz0_h0.6-fold_rule: rho_E 0.1727 +- 0.0056; weight 2 0.3503 +- 0.0050
+kecho_n40_D24_hz0_h0.6-fold_zipcyc: rho_E 0.0429 +- 0.0042; weight 2 0.0936 +- 0.0042
+kecho_n40_D24_hz0_h0.6-qiskit_2_blind_template: rho_E -0.0044 +- 0.0039; weight 2 0.0674 +- 0.0039
+kecho_n40_D50_hz0.1_h0.6-fold_rule: rho_E 0.0007 +- 0.0042; weight 2 0.1000 +- 0.0039
+kecho_n40_D50_hz0.1_h0.6-fold_zipcyc: rho_E -0.0003 +- 0.0035; weight 2 0.0136 +- 0.0039
+kecho_n40_D50_hz0.1_h0.6-qiskit_2_blind_template: rho_E -0.0017 +- 0.0037; weight 2 0.0152 +- 0.0038
+kecho_n40_D50_hz0.3_h0.6-fold_rule: rho_E 0.0095 +- 0.0039; weight 2 0.0413 +- 0.0039
+kecho_n40_D50_hz0.3_h0.6-fold_zipcyc: rho_E 0.0033 +- 0.0037; weight 2 0.0039 +- 0.0037
+kecho_n40_D50_hz0.3_h0.6-qiskit_2_blind_template: rho_E 0.0029 +- 0.0036; weight 2 0.0069 +- 0.0041
+kecho_n40_D50_hz0_h0.6-fold_rule: rho_E -0.0208 +- 0.0043; weight 2 0.1285 +- 0.0039
+kecho_n40_D50_hz0_h0.6-fold_zipcyc: rho_E -0.0011 +- 0.0038; weight 2 0.0147 +- 0.0038
+kecho_n40_D50_hz0_h0.6-qiskit_2_blind_template: rho_E 0.0000 +- 0.0037; weight 2 0.0171 +- 0.0037
+kecho_n72_D100_hz0.1_h0.6-fold_rule: rho_E 0.0044 +- 0.0028; weight 2 0.0198 +- 0.0028
+kecho_n72_D100_hz0.1_h0.6-fold_zipcyc: rho_E -0.0007 +- 0.0027; weight 2 -0.0004 +- 0.0028
+kecho_n72_D100_hz0.1_h0.6-qiskit_2_blind_template: rho_E -0.0019 +- 0.0027; weight 2 0.0019 +- 0.0029
+kecho_n72_D100_hz0.3_h0.6-fold_rule: rho_E -0.0030 +- 0.0027; weight 2 0.0028 +- 0.0028
+kecho_n72_D100_hz0.3_h0.6-fold_zipcyc: rho_E -0.0003 +- 0.0027; weight 2 0.0009 +- 0.0028
+kecho_n72_D100_hz0.3_h0.6-qiskit_2_blind_template: rho_E 0.0029 +- 0.0027; weight 2 0.0000 +- 0.0027
+kecho_n72_D100_hz0_h0.6-fold_rule: rho_E 0.0002 +- 0.0028; weight 2 0.0296 +- 0.0028
+kecho_n72_D100_hz0_h0.6-fold_zipcyc: rho_E 0.0011 +- 0.0027; weight 2 0.0078 +- 0.0028
+kecho_n72_D100_hz0_h0.6-qiskit_2_blind_template: rho_E -0.0033 +- 0.0027; weight 2 0.0039 +- 0.0029
+kecho_n72_D24_hz0.1_h0.6-fold_rule: rho_E 0.2112 +- 0.0041; weight 2 0.2924 +- 0.0037
+kecho_n72_D24_hz0.1_h0.6-fold_zipcyc: rho_E 0.0181 +- 0.0029; weight 2 0.0617 +- 0.0029
+kecho_n72_D24_hz0.1_h0.6-qiskit_2_blind_template: rho_E -0.0000 +- 0.0028; weight 2 0.0349 +- 0.0028
+kecho_n72_D24_hz0.3_h0.6-fold_rule: rho_E 0.2308 +- 0.0039; weight 2 0.2662 +- 0.0037
+kecho_n72_D24_hz0.3_h0.6-fold_zipcyc: rho_E 0.0205 +- 0.0029; weight 2 0.0461 +- 0.0028
+kecho_n72_D24_hz0.3_h0.6-qiskit_2_blind_template: rho_E 0.0001 +- 0.0028; weight 2 0.0253 +- 0.0028
+kecho_n72_D24_hz0_h0.6-fold_rule: rho_E 0.2007 +- 0.0042; weight 2 0.3117 +- 0.0035
+kecho_n72_D24_hz0_h0.6-fold_zipcyc: rho_E 0.0109 +- 0.0029; weight 2 0.0646 +- 0.0028
+kecho_n72_D24_hz0_h0.6-qiskit_2_blind_template: rho_E 0.0004 +- 0.0028; weight 2 0.0326 +- 0.0029
+kecho_n72_D50_hz0.1_h0.6-fold_rule: rho_E 0.0102 +- 0.0030; weight 2 0.0967 +- 0.0029
+kecho_n72_D50_hz0.1_h0.6-fold_zipcyc: rho_E 0.0003 +- 0.0027; weight 2 0.0022 +- 0.0028
+kecho_n72_D50_hz0.1_h0.6-qiskit_2_blind_template: rho_E -0.0007 +- 0.0027; weight 2 0.0046 +- 0.0028
+kecho_n72_D50_hz0.3_h0.6-fold_rule: rho_E 0.0043 +- 0.0029; weight 2 0.0490 +- 0.0029
+kecho_n72_D50_hz0.3_h0.6-fold_zipcyc: rho_E 0.0015 +- 0.0027; weight 2 -0.0008 +- 0.0027
+kecho_n72_D50_hz0.3_h0.6-qiskit_2_blind_template: rho_E 0.0005 +- 0.0028; weight 2 0.0023 +- 0.0029
+kecho_n72_D50_hz0_h0.6-fold_rule: rho_E 0.0006 +- 0.0031; weight 2 0.1157 +- 0.0029
+kecho_n72_D50_hz0_h0.6-fold_zipcyc: rho_E 0.0017 +- 0.0027; weight 2 0.0005 +- 0.0029
+kecho_n72_D50_hz0_h0.6-qiskit_2_blind_template: rho_E -0.0018 +- 0.0028; weight 2 0.0032 +- 0.0028
+hz 0 n 40 D 24: rule vs fold:zipcyc: +0.1298 +- 0.0070 WIN
+hz 0 n 40 D 24: rule vs qiskit:2:blind:template: +0.1770 +- 0.0068 WIN
+hz 0 n 40 D 50: rule vs fold:zipcyc: -0.0197 +- 0.0058 NOT JUDGED
+hz 0 n 40 D 50: rule vs qiskit:2:blind:template: -0.0208 +- 0.0057 NOT JUDGED
+hz 0 n 40 D 100: rule vs fold:zipcyc: -0.0103 +- 0.0052 NOT JUDGED
+hz 0 n 40 D 100: rule vs qiskit:2:blind:template: -0.0105 +- 0.0052 NOT JUDGED
+hz 0 n 72 D 24: rule vs fold:zipcyc: +0.1899 +- 0.0051 WIN
+hz 0 n 72 D 24: rule vs qiskit:2:blind:template: +0.2004 +- 0.0051 WIN
+hz 0 n 72 D 50: rule vs fold:zipcyc: -0.0011 +- 0.0042 NOT JUDGED
+hz 0 n 72 D 50: rule vs qiskit:2:blind:template: +0.0025 +- 0.0042 NOT JUDGED
+hz 0 n 72 D 100: rule vs fold:zipcyc: -0.0009 +- 0.0039 NOT JUDGED
+hz 0 n 72 D 100: rule vs qiskit:2:blind:template: +0.0034 +- 0.0039 NOT JUDGED
+hz 0.1 n 40 D 24: rule vs fold:zipcyc: +0.1593 +- 0.0069 WIN
+hz 0.1 n 40 D 24: rule vs qiskit:2:blind:template: +0.2097 +- 0.0067 WIN
+hz 0.1 n 40 D 50: rule vs fold:zipcyc: +0.0011 +- 0.0055 NOT JUDGED
+hz 0.1 n 40 D 50: rule vs qiskit:2:blind:template: +0.0024 +- 0.0056 NOT JUDGED
+hz 0.1 n 40 D 100: rule vs fold:zipcyc: -0.0022 +- 0.0052 NOT JUDGED
+hz 0.1 n 40 D 100: rule vs qiskit:2:blind:template: -0.0048 +- 0.0053 NOT JUDGED
+hz 0.1 n 72 D 24: rule vs fold:zipcyc: +0.1931 +- 0.0050 WIN
+hz 0.1 n 72 D 24: rule vs qiskit:2:blind:template: +0.2112 +- 0.0050 WIN
+hz 0.1 n 72 D 50: rule vs fold:zipcyc: +0.0098 +- 0.0040 WIN
+hz 0.1 n 72 D 50: rule vs qiskit:2:blind:template: +0.0109 +- 0.0040 WIN
+hz 0.1 n 72 D 100: rule vs fold:zipcyc: +0.0051 +- 0.0039 NOT JUDGED
+hz 0.1 n 72 D 100: rule vs qiskit:2:blind:template: +0.0062 +- 0.0038 NOT JUDGED
+hz 0.3 n 40 D 24: rule vs fold:zipcyc: +0.2039 +- 0.0068 WIN
+hz 0.3 n 40 D 24: rule vs qiskit:2:blind:template: +0.2457 +- 0.0066 WIN
+hz 0.3 n 40 D 50: rule vs fold:zipcyc: +0.0062 +- 0.0054 TIE
+hz 0.3 n 40 D 50: rule vs qiskit:2:blind:template: +0.0066 +- 0.0054 TIE
+hz 0.3 n 40 D 100: rule vs fold:zipcyc: +0.0056 +- 0.0051 NOT JUDGED
+hz 0.3 n 40 D 100: rule vs qiskit:2:blind:template: +0.0008 +- 0.0051 NOT JUDGED
+hz 0.3 n 72 D 24: rule vs fold:zipcyc: +0.2103 +- 0.0049 WIN
+hz 0.3 n 72 D 24: rule vs qiskit:2:blind:template: +0.2307 +- 0.0048 WIN
+hz 0.3 n 72 D 50: rule vs fold:zipcyc: +0.0028 +- 0.0040 NOT JUDGED
+hz 0.3 n 72 D 50: rule vs qiskit:2:blind:template: +0.0038 +- 0.0040 NOT JUDGED
+hz 0.3 n 72 D 100: rule vs fold:zipcyc: -0.0026 +- 0.0039 NOT JUDGED
+hz 0.3 n 72 D 100: rule vs qiskit:2:blind:template: -0.0058 +- 0.0038 NOT JUDGED
+rule B hz 0 n 40: kappa zipcyc 1.68 +- 0.06 BELOW
+rule B hz 0 n 72: kappa zipcyc 2.67 +- 0.16 BELOW
+rule B hz 0.1 n 40: kappa zipcyc 1.84 +- 0.06 BELOW
+rule B hz 0.1 n 72: kappa zipcyc 2.46 +- 0.10 BELOW
+rule B hz 0.3 n 40: kappa zipcyc 2.02 +- 0.06 BELOW
+rule B hz 0.3 n 72: kappa zipcyc 2.47 +- 0.09 BELOW

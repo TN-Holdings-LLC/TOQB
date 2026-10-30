@@ -1,0 +1,6 @@
+1 cells, 984 circuits x 250 shots: predicted QPU time 104.8 s (limit 120.0 s)
+2026-10-30T10:58:15+00:00 (2026-10-30 11:58:15 CET) manifest written before any submission: /tmp/claude-0/-home-claude/69d0c1ec-ce3d-5118-b9a2-cad8250cf611/scratchpad/run1030/kingston/wq/qelm/job_fold_rule/manifest.json, sha256 f1e6a3916318b5e02f2339ba1d6935221ff4d8a484b37a159a25b251cb44085e
+1 cells, 984 circuits x 250 shots: predicted QPU time 104.8 s (limit 120.0 s)
+2026-10-30T11:01:27+00:00 (2026-10-30 12:01:27 CET) manifest written before any submission: /tmp/claude-0/-home-claude/69d0c1ec-ce3d-5118-b9a2-cad8250cf611/scratchpad/run1030/kingston/wq/qelm/job_fold_zipcyc/manifest.json, sha256 7c9b2d8c5b3b7817c63977c565c9c48c485067ab53b5a040b4a89380c39de0e5
+1 cells, 984 circuits x 250 shots: predicted QPU time 104.8 s (limit 120.0 s)
+2026-10-30T11:03:31+00:00 (2026-10-30 12:03:31 CET) manifest written before any submission: /tmp/claude-0/-home-claude/69d0c1ec-ce3d-5118-b9a2-cad8250cf611/scratchpad/run1030/kingston/wq/qelm/job_qiskit_2_blind_template/manifest.json, sha256 d3025df277bf0a59c5f851955123041ddb691e2b0876bcc2716b0020f72a9ae2
