@@ -6,7 +6,7 @@ set -u
 W=$(pwd); TQ=${TOQB_DIR:-$W/TOQB}; VA=${VENV_ACT:-$W/venv/bin/activate}
 FETCH=${FETCH:?set FETCH}; OUT=${OUT:?set OUT}
 NS="20 36 40 72"; HZS="0 0.1 0.3"; LS="12 25 50"; H=0.6; ARM=fold:rule; SHOTS=500; MAX=120
-NOTE=prereg/drafts-2026-10-30/rerun_rule_only_note.md
+NOTE=${NOTE:-prereg/drafts-2026-10-30/rerun_rule_only_note.md}
 DEVICE=${DEVICE:-ibm_kingston}
 [ -d "$TQ" ] && [ -f "$FETCH/target.pkl" ] && [ -f "$FETCH/fetch.json" ] || { echo "STOP: needs TOQB and a fetch"; exit 1; }
 [ -e "$OUT" ] && { echo "STOP: $OUT exists"; exit 1; }
