@@ -35,7 +35,30 @@ done
 [ -n "$VSTAR" ] && python -m toqb.kising_parity rehearse "$OUT/runs" --vstar "$VSTAR" | tee "$OUT/rehearse.txt"
 python -m toqb.s2rc_device assemble --fetch "$FETCH" --runs "$OUT/runs" --out "$OUT/job" --max-seconds "$MAX" | tee "$OUT/assemble.txt"
 [ -f "$OUT/job/manifest.json" ] || { echo "STOP: no job"; exit 1; }
+# addendum 1 (2026-10-30): the longest exact ring of the day's map (fold.fold_place with m = n, even n, from 120 down),
+# L = 1 and 2, SHOTS_MAX shots (default 4000), all three arms, reported only; its own job (job_max)
+NMAX=$(python - "$FETCH/target.pkl" <<'PY'
+import pickle, sys
+from toqb import fold
+t = pickle.load(open(sys.argv[1], "rb"))
+for n in range(120, 36, -2):
+    r = fold.fold_place(t, n)
+    if r and r[0] == n:
+        print(n); break
+PY
+)
+echo "longest exact ring of the day: n = $NMAX" | tee -a "$OUT/times.txt"
+if [ -n "$NMAX" ]; then
+  for arm in fold:rule fold:zipcyc qiskit:2:blind:template; do
+    for L in 1 2; do
+      python -m toqb.kising_parity build "$FETCH" "$OUT/runs_max" --arm $arm --n $NMAX --L $L --h $H --shots ${SHOTS_MAX:-4000} 2>&1 | grep -v Warn | tail -1 | tee -a "$OUT/build.txt"
+    done
+  done
+  [ -n "$VSTAR" ] && python -m toqb.kising_parity rehearse "$OUT/runs_max" --vstar "$VSTAR" | tee -a "$OUT/rehearse.txt"
+  python -m toqb.s2rc_device assemble --fetch "$FETCH" --runs "$OUT/runs_max" --out "$OUT/job_max" --max-seconds "$MAX" | tee -a "$OUT/assemble.txt"
+fi
 echo "end $(TZ=Europe/Zurich date '+%Y-%m-%d %H:%M:%S %Z')" | tee -a "$OUT/times.txt"
 cd "$W" && python -m zipfile -c "$W/parity_job.zip" "$OUT" && echo "== DONE: $W/parity_job.zip"
 # home, after submit and result (VPN OFF):
 #   python -m toqb.kising_parity score $OUT/job $OUT/runs --vstar-pred fold:rule=<V>,fold:zipcyc=<V/3.6> --judged-n 20,36
+#   python -m toqb.kising_parity score $OUT/job_max $OUT/runs_max --judged-n ""          (addendum 1: reported only)
