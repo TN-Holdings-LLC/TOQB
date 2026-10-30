@@ -1,0 +1,2 @@
+kecho_n20_D24_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 480 two-qubit gates = 24 x 20: ACCEPTED, 7.33 us; valid True
+kecho_n40_D24_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 960 two-qubit gates = 24 x 40: ACCEPTED, 7.33 us; valid True

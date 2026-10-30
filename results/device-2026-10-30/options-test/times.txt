@@ -1,0 +1,5 @@
+toqb f06e173 Options test on ibm_kingston: declaration fixed 2026
+note 2ebd84e2cc7f68bf524e39edff4a5cb19f466be989ebf6c819d0b014bb3a924d  prereg/drafts-2026-10-30/options_test_note.md
+fetch ibm_kingston 2026-10-30 14:56:41+01:00 18b43200b9bd6642506009db6c128881f7db9156cfa26bdfe6e21f79fe989dd1
+start 2026-10-30 15:23:05 CET
+end 2026-10-30 15:23:25 CET
