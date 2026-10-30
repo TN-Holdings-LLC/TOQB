@@ -50,3 +50,18 @@ def test_data_split_is_fixed_and_scaled():
     assert Xtr.shape == (Q.N_TRAIN, Q.N) and Xte.shape == (Q.N_TEST, Q.N)
     assert Xtr.min() >= -1 and Xtr.max() <= 1 and set(np.unique(ytr)) <= {-1.0, 1.0}
     assert np.array_equal(Q.data()[0], Xtr)
+
+
+def test_depth_formula_is_the_argmax_of_the_lambda_squared_gap():
+    a, b = 56.5, 26.4
+    Ls = np.linspace(0.1, 100, 200001)
+    gap = np.exp(-2 * Ls / a) - np.exp(-2 * Ls / b)
+    assert abs(Ls[np.argmax(gap)] - Q.depth_formula(a, b)) < 1e-3
+    assert round(Q.depth_formula(56.5, 26.4)) == Q.A_L == 19
+
+
+def test_teacher_task_labels_and_margin():
+    T = Q.teacher_task(n=4, L=2, pool=520)
+    s = (T["F"] - T["mu"]) @ T["w"]
+    assert np.all(np.sign(s) == T["y"]) and np.all(np.abs(s) >= T["gamma"])
+    assert T["F"].shape == (Q.N_TRAIN + Q.N_TEST, 12) and T["kept"] >= Q.N_TRAIN + Q.N_TEST

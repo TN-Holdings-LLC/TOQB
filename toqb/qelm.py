@@ -7,7 +7,10 @@ backward light cones). Nothing here is a device result, and nothing is chosen fr
 design memo's proposals (owner decisions pending).
 
     python -m toqb.qelm check                    # circuit / basis / light-cone checks
-    python -m toqb.qelm run OUT_DIR [--device fake:FakeMarrakesh] [--arms fold:rule,fold:zipcyc,qiskit:2:blind:template]
+    python -m toqb.qelm teacher OUT_DIR [--n 20 --L 19]          # task A: inputs, noiseless features, teacher labels
+    python -m toqb.qelm predict OUT_DIR [--lstar fold:rule=56.5,fold:zipcyc=15.1,qiskit:2:blind:template=26.4]
+    python -m toqb.qelm run OUT_DIR [--task breast|teacher] [--standin aer|toqb] [--T 64] [--L 1 --enc pi/4]
+                        [--device fake:FakeMarrakesh | file:FETCH/target.pkl] [--arms fold:rule,fold:zipcyc,...]
     python -m toqb.qelm score OUT_DIR
 """
 from __future__ import annotations
@@ -53,25 +56,25 @@ def data(n=N):
 
 # ------------------------------------------------------------------------------------------------ circuit
 
-def angles(x, basis, n=N, L=L):
+def angles(x, basis, n=N, L=L, enc=ENC):
     """The model_circuit angle list: per layer RY(enc x_q), then RY(0), RZ(enc x_q) per qubit, then the CZ ring; the
     basis rotation is the last layer's RZ (+pi/2 for Y; RZ commutes with the CZ ring) and the final RY (X: -pi/2,
     Y: +pi/2, Z: 0), so that measuring Z gives <X_q>, <Y_q> or <Z_q>."""
     a = []
     for k in range(L):
         last = k == L - 1
-        a += [ENC * float(x[q]) for q in range(n)]
+        a += [enc * float(x[q]) for q in range(n)]
         for q in range(n):
-            a += [0.0, ENC * float(x[q]) + (math.pi / 2 if (last and basis == "Y") else 0.0)]
+            a += [0.0, enc * float(x[q]) + (math.pi / 2 if (last and basis == "Y") else 0.0)]
     fin = {"X": -math.pi / 2, "Y": math.pi / 2, "Z": 0.0}[basis]
     return a + [fin] * n
 
 
-def circuit(x, basis, n=N, L=L):
-    return TL.model_circuit(angles(x, basis, n, L), n, L)
+def circuit(x, basis, n=N, L=L, enc=ENC):
+    return TL.model_circuit(angles(x, basis, n, L, enc), n, L)
 
 
-def features_noiseless(X, n=N, L=L, batch=8):
+def features_noiseless(X, n=N, L=L, batch=8, enc=ENC):
     """(P, 3n): <X_q>, <Y_q>, <Z_q> (q = 0..n-1, in that block order) of the data state, by a batched statevector."""
     X = np.atleast_2d(X)
     b = np.arange(2 ** n)
@@ -88,12 +91,12 @@ def features_noiseless(X, n=N, L=L, batch=8):
         for _ in range(L):
             for q in range(n):
                 v = psi.reshape(B, 2 ** (n - 1 - q), 2, 2 ** q)
-                a = ENC * xb[:, q]
+                a = enc * xb[:, q]
                 c, sn = np.cos(a / 2)[:, None, None], np.sin(a / 2)[:, None, None]
                 a0 = v[:, :, 0, :].copy()
                 v[:, :, 0, :] = c * a0 - sn * v[:, :, 1, :]
                 v[:, :, 1, :] = sn * a0 + c * v[:, :, 1, :]
-            ph = np.exp(-0.5j * (ENC * xb) @ zq.T)  # RZ(enc x_q) on every qubit: (B, 2^n)
+            ph = np.exp(-0.5j * (enc * xb) @ zq.T)  # RZ(enc x_q) on every qubit: (B, 2^n)
             psi *= ph * ring[None, :]
         p = np.abs(psi) ** 2
         out[s:s + B, 2 * n:] = p @ zq
@@ -103,6 +106,76 @@ def features_noiseless(X, n=N, L=L, batch=8):
             out[s:s + B, q] = 2 * w.real
             out[s:s + B, n + q] = 2 * w.imag
     return out
+
+
+# ------------------------------------------------------------------------------------------------ task A (teacher)
+
+A_L = 19  # depth_formula(56.5, 26.4) = 18.9 (marrakesh n = 20, 2026-10-29); kingston's 81.3 / 22.0 gives 19.7
+A_SEED_X, A_SEED_W = 20261030, 20261031
+A_POOL, A_GAMMA_FRAC = 520, 0.25  # pool: 328 needed / P(|s| >= 0.25 sd) = 0.80 for a normal s, x 1.25 margin
+
+
+def depth_formula(lstar_rule, lstar_other):
+    """The depth at which lambda_rule^2 - lambda_other^2 is largest, with lambda = exp(-L / L*) per arm:
+    L = a b ln(a / b) / (2 (a - b)) for L* = a (rule) and b (the other arm)."""
+    a, b = float(lstar_rule), float(lstar_other)
+    return a * b * math.log(a / b) / (2 * (a - b))
+
+
+def _feat_chunk(args):
+    X, n, L, enc = args
+    return features_noiseless(X, n, L, enc=enc)
+
+
+def features_parallel(X, n, L, enc=ENC, procs=None):
+    procs = procs or int(os.environ.get("QELM_PROCS", os.cpu_count() or 1))
+    if procs <= 1 or len(X) < 2 * procs:
+        return features_noiseless(X, n, L, enc=enc)
+    from multiprocessing import Pool
+    parts = np.array_split(np.asarray(X), procs)
+    with Pool(procs) as pool:
+        return np.vstack(pool.map(_feat_chunk, [(p_, n, L, enc) for p_ in parts]))
+
+
+def teacher_task(n=N, L=A_L, enc=ENC, pool=A_POOL, gamma_frac=A_GAMMA_FRAC, seed_x=A_SEED_X, seed_w=A_SEED_W):
+    """Task A (home's instruction 2026-10-30): inputs x uniform in [-1, 1]^n (seed_x), the classifier's own noiseless
+    features f0(x) (3n), a teacher w ~ N(0, I) (seed_w), labels sign(w . (f0 - mu)) with mu the pool's mean feature
+    vector (centred, so that the classes are balanced in expectation); points with |w . (f0 - mu)| < gamma are
+    dropped, gamma = gamma_frac x sd(w . f0) over the pool. The first N_TRAIN kept points train, the next N_TEST test.
+    Nothing is redrawn: if fewer than N_TRAIN + N_TEST points are kept, it stops."""
+    X = np.random.default_rng(seed_x).uniform(-1, 1, (pool, n))
+    w = np.random.default_rng(seed_w).normal(size=3 * n)
+    F = features_parallel(X, n, L, enc)
+    mu = F.mean(axis=0)  # centred teacher: without it the features' means bias sign(w . f0) to one class (seen: 81 %)
+    s = (F - mu) @ w
+    gamma = gamma_frac * float(np.std(s))
+    keep = np.flatnonzero(np.abs(s) >= gamma)
+    if len(keep) < N_TRAIN + N_TEST:
+        raise SystemExit(f"STOP: {len(keep)} points kept of {pool}; {N_TRAIN + N_TEST} needed (no redraw)")
+    k = keep[:N_TRAIN + N_TEST]
+    y = np.sign(s[k])
+    return dict(X=X[k], F=F[k], y=y, w=w, mu=mu, gamma=gamma, kept=int(len(keep)), pool=pool, F_pool=F, X_pool=X,
+                feature_sd=float(np.std(F)), feature_sd_by_basis=[float(np.std(F[:, i * n:(i + 1) * n])) for i in range(3)])
+
+
+def write_teacher(out, n=N, L=A_L, enc=ENC):
+    """noiseless.json for task A in the format `score` reads (plus the inputs, w and gamma)."""
+    os.makedirs(out, exist_ok=True)
+    f0 = os.path.join(out, "noiseless.json")
+    if os.path.exists(f0):
+        raise SystemExit(f"STOP: {f0} exists")
+    t0 = time.perf_counter()
+    T = teacher_task(n, L, enc)
+    rec = dict(kind="qelm_noiseless", task="A_teacher", n=n, L=L, enc=enc, n_train=N_TRAIN, n_test=N_TEST,
+               split_seed=None, seed_x=A_SEED_X, seed_w=A_SEED_W, pool=T["pool"], kept=T["kept"], gamma=T["gamma"],
+               gamma_frac=A_GAMMA_FRAC, w=T["w"].tolist(), mu=T["mu"].tolist(), X=T["X"].tolist(), features=T["F"].tolist(),
+               X_pool=T["X_pool"].tolist(), features_pool=T["F_pool"].tolist(),
+               y_train=T["y"][:N_TRAIN].tolist(), y_test=T["y"][N_TRAIN:].tolist(), feature_sd=T["feature_sd"],
+               feature_sd_by_basis=T["feature_sd_by_basis"], wall_s=time.perf_counter() - t0)
+    json.dump(rec, open(f0, "w"))
+    print(f"task A: n {n}, L {L}: kept {T['kept']} of {T['pool']} (gamma {T['gamma']:.4f}), feature sd {T['feature_sd']:.4f} "
+          f"(X, Y, Z {', '.join(f'{v:.4f}' for v in T['feature_sd_by_basis'])}), {rec['wall_s']:.0f} s", flush=True)
+    return rec
 
 
 # ------------------------------------------------------------------------------------------------ classifier
@@ -246,6 +319,31 @@ def standin_p1(circuits, backend, nm=None):
     return P, cones
 
 
+def standin_toqb_p1(circuits, T=64, seed=20261030, standin=None):
+    """For each compiled circuit and each clbit: P(read 1) on TOQB's stand-in (toqb.s2r.StandIn: the published
+    marrakesh calibration with T1 / T2 on scheduled idles, static ZZ, over-rotation, readout), the mean over T
+    trajectories (toqb.traj2; TOQB_XP=cupy on a GPU). Circuits of one structure run as one batch."""
+    from toqb import kising_echo as E
+    from toqb import s2r as S
+    from toqb import traj2 as T2
+    st = standin or S.StandIn(t12=0.3, over=0.01, zz_hz=1e4, seed=20261017)
+    eng = T2.Engine()
+    groups = {}
+    for i, c in enumerate(circuits):
+        rr, _nm = st.prepared(c)
+        pl = T2.plan(c, rr, st.target, over=st.params["over"])
+        key = (len(pl.steps), tuple(pl.slot_keys), tuple(pl.act))
+        groups.setdefault(key, (pl, []))[1].append(i)
+    out = None
+    for g, (pl, idx) in enumerate(groups.values()):
+        A = np.stack([pl.angles(circuits[i]) for i in idx])
+        z = E.z_all(eng, pl, A, T, seed + 7919 * g)
+        if out is None:
+            out = np.zeros((len(circuits), z.shape[1]))
+        out[idx] = (1 - z) / 2
+    return out
+
+
 def sample_counts(p1, shots, seed):
     return np.random.default_rng(seed).binomial(shots, np.clip(p1, 0, 1))
 
@@ -260,7 +358,7 @@ def subsample(k1, shots, S, seed):
 
 # ------------------------------------------------------------------------------------------------ run
 
-def build_features(arm_spec, device_spec, Xall, n=N, L=L):
+def build_features(arm_spec, device_spec, Xall, n=N, L=L, enc=ENC):
     from toqb import s2r as S
     from toqb.devices import get_device
     dev = get_device(device_spec)
@@ -268,45 +366,88 @@ def build_features(arm_spec, device_spec, Xall, n=N, L=L):
     cs, maps = [], set()
     for x in Xall:
         for bs in BASES:
-            c = canonical_diagonal_order(A.compile(circuit(x, bs, n, L)))
+            c = canonical_diagonal_order(A.compile(circuit(x, bs, n, L, enc)))
             cs.append(c)
             maps.add(tuple(sorted(measured_map(c).items())))
     return cs, maps, A
 
 
-def run(out, device="fake:FakeMarrakesh", arms=("fold:rule", "fold:zipcyc", "qiskit:2:blind:template")):
-    from qiskit_ibm_runtime import fake_provider
+def run(out, device="fake:FakeMarrakesh", arms=("fold:rule", "fold:zipcyc", "qiskit:2:blind:template"),
+        standin="aer", T=64, task="breast", L_=None, enc=ENC, n=N):
+    """Features on a stand-in for each arm. task "breast": the w71 data (or B with L_ = 1, enc = pi / 4); task
+    "teacher": the inputs of OUT/noiseless.json (write_teacher first). standin "aer": the fake backend's Aer model,
+    exact on light cones (shallow circuits only); "toqb": TOQB's stand-in by trajectories (any depth; a pod)."""
     os.makedirs(out, exist_ok=True)
-    Xtr, ytr, Xte, yte = data()
-    Xall = np.vstack([Xtr, Xte])
-    t0 = time.perf_counter()
     f0 = os.path.join(out, "noiseless.json")
-    reuse = False
-    if os.path.exists(f0):
-        old = json.load(open(f0))
-        reuse = (old["n"] == N and old["L"] == L and old["split_seed"] == SPLIT_SEED
-                 and len(old["features"]) == len(Xall))
-    if reuse:
-        print("noiseless features: reused", flush=True)
+    if task == "teacher":
+        r0 = json.load(open(f0))
+        Xall, Lr, enc, n = np.array(r0["X"]), r0["L"], r0["enc"], r0["n"]
     else:
-        F0 = features_noiseless(Xall)
-        rec0 = dict(kind="qelm_noiseless", n=N, L=L, n_train=N_TRAIN, n_test=N_TEST, split_seed=SPLIT_SEED,
-                    features=F0.tolist(), y_train=ytr.tolist(), y_test=yte.tolist(), wall_s=time.perf_counter() - t0)
-        json.dump(rec0, open(f0, "w"))
-        print(f"noiseless features {F0.shape} in {rec0['wall_s']:.0f} s", flush=True)
-    backend = getattr(fake_provider, device.split(":")[1])()
+        Lr = L if L_ is None else L_
+        Xtr, ytr, Xte, yte = data(n)
+        Xall = np.vstack([Xtr, Xte])
+        reuse = False
+        if os.path.exists(f0):
+            old = json.load(open(f0))
+            reuse = (old["n"] == n and old["L"] == Lr and old.get("enc", ENC) == enc
+                     and old["split_seed"] == SPLIT_SEED and len(old["features"]) == len(Xall))
+        if reuse:
+            print("noiseless features: reused", flush=True)
+        else:
+            t0 = time.perf_counter()
+            F0 = features_parallel(Xall, n, Lr, enc)
+            rec0 = dict(kind="qelm_noiseless", task="breast", n=n, L=Lr, enc=enc, n_train=N_TRAIN, n_test=N_TEST,
+                        split_seed=SPLIT_SEED, X=Xall.tolist(), features=F0.tolist(), y_train=ytr.tolist(),
+                        y_test=yte.tolist(), wall_s=time.perf_counter() - t0)
+            json.dump(rec0, open(f0, "w"))
+            print(f"noiseless features {F0.shape} in {rec0['wall_s']:.0f} s", flush=True)
+    backend = None
+    if standin == "aer":
+        from qiskit_ibm_runtime import fake_provider
+        backend = getattr(fake_provider, device.split(":")[1])()
     for ai, arm in enumerate(arms):
+        fo = os.path.join(out, f"standin_{arm.replace(':', '_')}.json")
+        if os.path.exists(fo):
+            print(f"{arm}: exists, skipped", flush=True)
+            continue
         t0 = time.perf_counter()
-        cs, maps, A = build_features(arm, device, Xall)
-        P1, cones = standin_p1(cs, backend)  # rows: point-major, basis-minor
+        cs, maps, A = build_features(arm, device, Xall, n, Lr, enc)
+        if standin == "aer":
+            P1, cones = standin_p1(cs, backend)  # rows: point-major, basis-minor
+        else:
+            P1, cones = standin_toqb_p1(cs, T), [None]
         k1 = sample_counts(P1, SHOTS, SHOT_SEED + 1000 * ai)
         ops = cs[0].count_ops()
-        rec = dict(kind="qelm_standin", arm=arm, device=device, shots=SHOTS, shot_seed=SHOT_SEED + 1000 * ai,
-                   p1=P1.tolist(), k1=k1.tolist(), cones=[min(cones), max(cones)], measured_maps=len(maps),
+        rec = dict(kind="qelm_standin", arm=arm, device=device, standin=standin, T=T if standin == "toqb" else None,
+                   shots=SHOTS, shot_seed=SHOT_SEED + 1000 * ai, p1=P1.tolist(), k1=k1.tolist(),
+                   cones=[min(cones), max(cones)] if cones[0] is not None else None, measured_maps=len(maps),
                    cz_per_circuit=int(ops.get("cz", 0)), wall_s=time.perf_counter() - t0)
-        json.dump(rec, open(os.path.join(out, f"standin_{arm.replace(':', '_')}.json"), "w"))
-        print(f"{arm}: {len(cs)} circuits, cz {rec['cz_per_circuit']}, cones {rec['cones']}, measured maps "
-              f"{len(maps)}, {rec['wall_s']:.0f} s", flush=True)
+        json.dump(rec, open(fo, "w"))
+        print(f"{arm}: {len(cs)} circuits, cz {rec['cz_per_circuit']}, stand-in {standin}, measured maps {len(maps)}, "
+              f"{rec['wall_s']:.0f} s", flush=True)
+
+
+def predict(out, lstar, S_list=SUBSAMPLE, reps=REPS):
+    """Task A's declared predictions: each arm's test accuracy band when every feature is lambda f0 with
+    lambda = exp(-L / L*_arm) (L*: the noise wall's records), read with S binomial shots. No device data."""
+    r0 = json.load(open(os.path.join(out, "noiseless.json")))
+    F0 = np.array(r0["features"])
+    ytr, yte = np.array(r0["y_train"]), np.array(r0["y_test"])
+    F0tr, F0te = F0[:N_TRAIN], F0[N_TRAIN:]
+    m = F0.shape[1]
+    res = dict(L=r0["L"], lstar=lstar, ceiling=accuracy(ols_predict(ols_fit(F0tr, ytr), F0te), yte), arms={})
+    for ai, (arm, Ls) in enumerate(lstar.items()):
+        lam = math.exp(-r0["L"] / Ls)
+        res["arms"][arm] = dict(lam=lam, bands={})
+        for si, S in enumerate(S_list):
+            res["arms"][arm]["bands"][S] = predicted_band(F0tr, F0te, ytr, yte, np.zeros(m), np.full(m, lam), S,
+                                                          reps=reps, seed=100 * ai + si)
+    json.dump(res, open(os.path.join(out, "predict.json"), "w"), indent=1)
+    print(f"ceiling (noiseless) {res['ceiling']:.3f}")
+    for arm, v in res["arms"].items():
+        print(f"{arm}: lambda {v['lam']:.3f}: " + "; ".join(f"S {S}: {b[0]:.3f} [{b[1]:.3f}, {b[2]:.3f}]"
+                                                           for S, b in v["bands"].items()))
+    return res
 
 
 # ------------------------------------------------------------------------------------------------ score
@@ -351,14 +492,19 @@ def score(out):
     import glob
     r0 = json.load(open(os.path.join(out, "noiseless.json")))
     F0 = np.array(r0["features"])
+    n = int(r0["n"])
     ytr, yte = np.array(r0["y_train"]), np.array(r0["y_test"])
     F0tr, F0te = F0[:N_TRAIN], F0[N_TRAIN:]
-    Xtr, _, Xte, _ = data()
+    if "X" in r0:
+        Xall = np.array(r0["X"])
+        Xtr, Xte = Xall[:N_TRAIN], Xall[N_TRAIN:]
+    else:
+        Xtr, _, Xte, _ = data()
     md = ["# QELM prototype on simulators (REHEARSAL: noiseless reference and a fake-backend stand-in; not a device "
           "result; nothing chosen from these numbers)", ""]
     base_raw = accuracy(ols_predict(ols_fit(Xtr, ytr), Xte), yte)
     base_q = accuracy(ols_predict(ols_fit(F0tr, ytr), F0te), yte)
-    md += [f"- R1 baselines: least squares on the 20 raw PCA components {base_raw:.3f}; on the noiseless quantum "
+    md += [f"- R1 baselines: least squares on the raw inputs {base_raw:.3f}; on the noiseless quantum "
            f"features (this model's ceiling) {base_q:.3f}", ""]
     res = dict(base_raw=base_raw, base_q=base_q, arms={})
     md += ["| arm | CZ / circuit | median lambda (X, Y, Z) | Q1 chi2/dof median, share > 2 | " +
@@ -368,17 +514,17 @@ def score(out):
     for f in sorted(glob.glob(os.path.join(out, "standin_*.json"))):
         r = json.load(open(f))
         k1 = np.array(r["k1"])
-        Fd = device_features(k1, SHOTS)
+        Fd = device_features(k1, SHOTS, n)
         a, lam = affine_fit(Fd[:N_TRAIN], F0tr)
         m = np.clip(a + lam * F0tr, -1, 1)
         var = np.maximum(1 - m ** 2, 1e-6) / SHOTS
         chi = np.mean((Fd[:N_TRAIN] - m) ** 2 / var, axis=0)
-        lam_b = [float(np.median(lam[i * N:(i + 1) * N])) for i in range(3)]
+        lam_b = [float(np.median(lam[i * n:(i + 1) * n])) for i in range(3)]
         cells, ar = [], dict(lambda_median=lam_b, chi2_median=float(np.median(chi)),
                              chi2_share_gt2=float(np.mean(chi > 2)), acc={}, band={}, inside={})
         for si, S in enumerate(SUBSAMPLE):
             kS = subsample(k1, SHOTS, S, SHOT_SEED + 7 * S)
-            FdS = device_features(kS, S)
+            FdS = device_features(kS, S, n)
             z = ols_predict(ols_fit(FdS[:N_TRAIN], ytr), FdS[N_TRAIN:])
             acc = accuracy(z, yte)
             mean, lo, hi = predicted_band(F0tr, F0te, ytr, yte, a, lam, S, seed=11 + si)
@@ -471,21 +617,30 @@ def check():
 
 
 def main(argv):
-    if not argv or argv[0] not in ("check", "run", "score"):
+    if not argv or argv[0] not in ("check", "run", "score", "teacher", "predict"):
         print(__doc__)
         return 2
     if argv[0] == "check":
         r = check()
         print(json.dumps(r))
         return 0 if r["ok"] else 1
-    if argv[0] == "run":
-        a = argv[1:]
-        dev = a[a.index("--device") + 1] if "--device" in a else "fake:FakeMarrakesh"
-        arms = tuple(a[a.index("--arms") + 1].split(",")) if "--arms" in a else ("fold:rule", "fold:zipcyc",
-                                                                                 "qiskit:2:blind:template")
-        run(a[0], dev, arms)
+    a = argv[1:]
+    get = lambda k, d=None: a[a.index(k) + 1] if k in a else d  # noqa: E731
+    if argv[0] == "teacher":
+        write_teacher(a[0], int(get("--n", N)), int(get("--L", A_L)))
         return 0
-    score(argv[1])
+    if argv[0] == "predict":
+        ls = dict(kv.split("=") for kv in (get("--lstar") or "fold:rule=56.5,fold:zipcyc=15.1,qiskit:2:blind:template=26.4").split(","))
+        predict(a[0], {k: float(v) for k, v in ls.items()})
+        return 0
+    if argv[0] == "run":
+        arms = tuple(get("--arms", "fold:rule,fold:zipcyc,qiskit:2:blind:template").split(","))
+        enc = get("--enc")
+        enc = ENC if enc is None else (math.pi / 4 if enc == "pi/4" else float(enc))
+        run(a[0], get("--device", "fake:FakeMarrakesh"), arms, get("--standin", "aer"), int(get("--T", 64)),
+            get("--task", "breast"), None if get("--L") is None else int(get("--L")), enc, int(get("--n", N)))
+        return 0
+    score(a[0])
     return 0
 
 
