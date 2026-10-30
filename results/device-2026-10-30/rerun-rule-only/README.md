@@ -24,3 +24,27 @@
   structure).
 - **Correction to an earlier reading at home:** "the rule's readable depth is about 23 layers whatever n" was wrong;
   it holds for n = 20, 36, and is about 13-16 at n = 40, 72 (this morning's fits say the same).
+
+## Post hoc (owner's question, 23:08 JST): the near-random sites masked out, the rest read
+
+`posthoc_live_sites/` (`live_sites.py`, output `live_sites.txt`, `live_sites.json`). Not declared; read after both
+runs. A site is dead if its echo signal at D = 24, averaged over the 4 inputs and the 3 hz, is below 0.12 (the same
+line as a minority rate of 0.44). **Crossed:** the mask is taken from one run and applied to the other (morning ->
+rerun and rerun -> morning), so no run is read on sites chosen from itself.
+
+- Dead sites: n = 40, the same 18 qubits in both runs (3-7, 17, 27-29, 38, 49-55, 59); n = 72, 31 in both (33 and
+  31); n = 20 and 36, none.
+- On the live sites (D = 24, the range over hz and both directions):
+
+| n | live | per-bit accuracy, all -> live | rho_E, all -> live | L*, all -> live |
+|---|---|---|---|---|
+| 20 | 20 / 20 | 0.67-0.70 (no change) | 0.34-0.40 | 21.9-23.7 |
+| 36 | 36 / 36 | 0.71-0.74 (no change) | 0.43-0.49 | 23.0-26.2 |
+| 40 | 22 / 40 | 0.58-0.63 -> 0.70-0.72 | 0.17-0.26 -> 0.41-0.45 | 12.8-16.1 -> 19.7-21.3 |
+| 72 | 39-41 / 72 | 0.60-0.62 -> 0.67-0.71 | 0.20-0.25 -> 0.35-0.42 | 14.2-16.0 -> 18.6-21.2 |
+
+- Reading: most of the drop of L* at n = 40, 72 sits in the dead runs; the live sites come close to n = 20, 36 but not
+  all the way (L* about 20 against 22-26; neighbours of the dead runs are partly hit).
+- Limits: this recovers a local, per-site quantity only. A quantity that needs every bit (the parity, a classifier
+  that reads the whole ring) is lost once a dead site is in it and is not recovered by masking. To use a mask in a
+  test it must be fixed in a declaration before that test's run.
