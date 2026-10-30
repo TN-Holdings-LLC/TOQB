@@ -1,0 +1,7 @@
+toqb 5ceba46 Rule-only rerun on ibm_kingston: declaration fixed 2
+note 1f883a779fad330c5313b7c174a1650fe7b13a0d45f81ef63333e6d69e7952d0  prereg/drafts-2026-10-30/rerun_rule_only_note.md
+tests 28 passed in 144.89s (0:02:24)
+fetch ibm_kingston 2026-10-30 13:37:20+01:00 0a53c641ab14d15acc6ae6f2f878b37e8e1c4c69c09b59efb8d6bcc4c69451da
+n 20 36 40 72; hz 0 0.1 0.3; one-way L 12 25 50; h 0.6; shots 500; arm fold:rule
+start 2026-10-30 14:04:51 CET
+end 2026-10-30 14:10:53 CET

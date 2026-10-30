@@ -81,5 +81,8 @@
 1. The rule's lead in the echo survives non-integrability and size up to n = 72: 0 LOSS in 144 duels.
 2. The declared fixed numbers missed again: rule B (echo kappa) and P-A / P-B (parity V*, kappa) came out BELOW in
    most cells. The rule's advantage on the device is about 2-2.5 times zipcyc, not 3.3-3.9.
-3. No n-wall for the local echo at D = 24 up to 72; the parity's wall is readout.
+3. At D = 24 the rule's echo does not shrink with n up to 72, but its L* does: about 23 at n = 20, 36, about 13-16 at
+   n = 40, 72 (runs of near-random sites at n = 40, 72; see `rerun-rule-only/`, which repeats the pattern). The
+   parity's wall on marrakesh is readout; on kingston n = 40 the readout reference was healthy and the parity was
+   still lost (same ring as the echo's near-random runs).
 4. QELM A: all arms inside their declared accuracy bands; the rule beats zipcyc at both shot counts.
