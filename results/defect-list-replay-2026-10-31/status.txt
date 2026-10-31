@@ -1,0 +1,8 @@
+ibm_fez centre [6, 7, 17, 27]: CANDIDATE (1 sightings in 1 jobs, last 2026-10-31 03:44:02; contradictions 0)
+ibm_fez centre [26, 27, 28, 29]: CANDIDATE (1 sightings in 1 jobs, last 2026-10-31 03:44:02; contradictions 0)
+ibm_fez centre [63, 56]: CANDIDATE (2 sightings in 1 jobs, last 2026-10-31 03:44:02; contradictions 0)
+ibm_kingston centre [11, 10, 9]: LISTED (2 sightings in 2 jobs, last 2026-10-30 14:12:21; contradictions 0)
+ibm_kingston centre [28, 29, 38, 49]: LISTED (3 sightings in 3 jobs, last 2026-10-30 15:24:07; contradictions 0)
+ibm_kingston centre [87, 86, 85]: LISTED (2 sightings in 2 jobs, last 2026-10-30 14:12:21; contradictions 0)
+ibm_marrakesh centre [27, 28]: CANDIDATE (2 sightings in 1 jobs, last 2026-10-30 12:18:49; contradictions 1)
+ibm_marrakesh centre [96, 103, 104]: CANDIDATE (1 sightings in 1 jobs, last 2026-10-30 12:18:49; contradictions 0)
