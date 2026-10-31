@@ -84,8 +84,9 @@ itself, read with four inputs that cancel readout and first-order relaxation; no
 Twin accuracy over six device points: device / twin = 0.75-1.18, with no fixed sign. The twin is used for rankings,
 with a +-20 % band on values, and is always built from the day's calibration.
 
-Papers that use these results: PSF-Zero's Paper 4 (formula schedules on heavy-hex) and the draft of Paper 5
-(readable depth without the calibration map), in [psf-zero `docs/papers/`](https://github.com/TN-Holdings-LLC/psf-zero/tree/main/docs/papers).
+Papers that use these results: PSF-Zero's Paper 4 (formula schedules on heavy-hex) and Paper 5 (readable depth
+without the calibration map, version 1.0, [DOI 10.5281/zenodo.23826351](https://doi.org/10.5281/zenodo.23826351)), in
+[psf-zero `docs/papers/`](https://github.com/TN-Holdings-LLC/psf-zero/tree/main/docs/papers).
 
 **Contamination notice (2026-10-10).** In runs 1 and 2, some outputs on FakeTorino placed gates on couplers the
 device reports as failed. They are unusable on the device, and they were scored. That includes 5 of the
