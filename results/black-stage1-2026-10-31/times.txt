@@ -1,0 +1,6 @@
+toqb 5451784 Declare black stage 1 (owner's go of 2026-10-31 13:2
+note 04737044f70021b572dbcbae8f0e3842c710540d6fed9fde95d398d1460adf0e  prereg/drafts-2026-10-31/black_stage1_note.md
+tests 18 passed in 74.09s (0:01:14)
+fetch ibm_kingston 2026-10-31 13:13:30+01:00 eba317f1a9f983d158f864746e909e15a3b87353e0b3b2cc075134dedc70134c
+start 2026-10-31 13:25:17 CET
+end 2026-10-31 13:28:17 CET

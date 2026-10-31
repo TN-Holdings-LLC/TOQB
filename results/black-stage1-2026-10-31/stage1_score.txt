@@ -1,0 +1,11 @@
+P0 n 40 D 24: a dead run holds >= 2 of [28, 29, 38, 49]: PRESENT
+J1 block a over D: 2: +0.957, 4: +0.799, 6: +0.657, 8: +0.518, 12: +0.267, 16: +0.060, 20: -0.129, 24: -0.204 -> CROSSES ONCE
+   other a over D: 2: +0.861, 4: +0.744, 6: +0.596, 8: +0.493, 12: +0.276, 16: +0.112, 20: +0.007, 24: -0.036 -> CROSSES ONCE
+   rest a over D: 2: +0.961, 4: +0.937, 6: +0.909, 8: +0.873, 12: +0.764, 16: +0.669, 20: +0.551, 24: +0.409 -> NO CROSSING
+J2 D 12: |v| block 0.518, rest 0.767; mean v block (-0.007, +0.040, +0.267); transverse block 0.25, rest 0.07 -> MIXED
+   D 24: |v| block 0.215, rest 0.411; mean v block (+0.005, +0.057, -0.204); transverse block 0.30, rest 0.10 -> MIXED
+J3 D 12 connected pair correlation block/rest: X 0.057/0.026; Y 0.096/0.048; Z 0.157/0.153 -> NOT SEEN
+   D 24 connected pair correlation block/rest: X 0.032/0.040; Y 0.089/0.109; Z 0.176/0.289 -> NOT SEEN
+   control n 20 D 24: |v| 0.344, transverse 0.08
+   control n 20 D 12 Z: a +0.713, connected ZZ 0.175
+   control n 20 D 24 Z: a +0.343, connected ZZ 0.298

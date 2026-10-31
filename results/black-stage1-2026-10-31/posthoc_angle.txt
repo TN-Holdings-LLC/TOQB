@@ -1,0 +1,8 @@
+D  2: block +0.957, rest +0.961, ratio +0.996, arccos 0.091 rad
+D  4: block +0.799, rest +0.937, ratio +0.853, arccos 0.549 rad
+D  6: block +0.657, rest +0.909, ratio +0.724, arccos 0.762 rad
+D  8: block +0.518, rest +0.873, ratio +0.593, arccos 0.936 rad
+D 12: block +0.267, rest +0.764, ratio +0.349, arccos 1.214 rad
+D 16: block +0.060, rest +0.669, ratio +0.089, arccos 1.481 rad
+D 20: block -0.129, rest +0.551, ratio -0.234, arccos 1.807 rad
+D 24: block -0.204, rest +0.409, ratio -0.500, arccos 2.095 rad
