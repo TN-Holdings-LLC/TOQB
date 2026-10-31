@@ -1,0 +1,21 @@
+{
+ "job_id": "dbit85o1h92s73845bt0",
+ "submitted": "2026-10-31T11:42:05+00:00 (2026-10-31 12:42:05 CET)",
+ "local": false,
+ "backend": "ibm_kingston",
+ "trained_for": "ibm_kingston",
+ "tried": [
+  {
+   "backend": "ibm_kingston",
+   "calibration": "2026-10-31 12:20:43+01:00",
+   "reasons": []
+  }
+ ],
+ "calibration_at_submit": "2026-10-31 12:20:43+01:00",
+ "options": "dynamical decoupling off, twirling off (gates and measure); SamplerV2 applies no other error mitigation",
+ "sampler_options": {
+  "dynamical_decoupling.enable": false,
+  "twirling.enable_gates": false,
+  "twirling.enable_measure": false
+ }
+}

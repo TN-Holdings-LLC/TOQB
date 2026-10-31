@@ -1,0 +1,8 @@
+n 20: median 0.39, weak runs none
+n 40: median 0.45, weak runs none; L* 23.06 +- 0.36 against n = 20 24.07 +- 0.51 REACHED -> SAFE
+n 48: median 0.42, weak runs none; L* 22.26 +- 0.31 against n = 20 24.07 +- 0.51 SHORTER -> NOT SAFE
+n 56: median 0.40, weak runs none; L* 22.31 +- 0.30 against n = 20 24.07 +- 0.51 SHORTER -> NOT SAFE
+n 64: median 0.39, weak runs none; L* 21.30 +- 0.26 against n = 20 24.07 +- 0.51 SHORTER -> NOT SAFE
+n 72: median 0.40, weak runs none; L* 22.02 +- 0.25 against n = 20 24.07 +- 0.51 SHORTER -> NOT SAFE
+overall: NOT YET
+next list: 4 path(s) for ibm_kingston

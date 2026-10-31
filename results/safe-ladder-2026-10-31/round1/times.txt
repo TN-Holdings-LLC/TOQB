@@ -1,0 +1,7 @@
+toqb c607888 Declare the safe ladder (owner's go of 2026-10-31 12
+note 67d10447a8abedfca19eb985a03351956d44e57c1d4b2ba9db562f6c5322bae7  prereg/drafts-2026-10-31/safe_ladder_note.md
+list 7b62a4ca893167fd571aa072d4841e151ff438395abc2e8fc129c52a125f7301  /tmp/claude-0/work/toqb/results/safe-ladder-2026-10-31/seed_list.json
+fetch ibm_kingston 2026-10-31 12:20:43+01:00 c6e079e612c0fd5f6fa8fcf86fa8b770904b5325635d423eb586f13e6d6c1260
+n 20 40 48 56 64 72; hz 0; one-way L 12 25 50; h 0.6; shots 500; arm fold:rule
+start 2026-10-31 12:34:21 CET
+end 2026-10-31 12:38:14 CET

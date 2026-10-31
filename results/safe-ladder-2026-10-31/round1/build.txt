@@ -1,0 +1,24 @@
+[n 20 L 12] kecho_n20_D24_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 480 two-qubit gates = 24 x 20: ACCEPTED, 7.33 us; valid True
+[n 20 L 25] kecho_n20_D50_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 1000 two-qubit gates = 50 x 20: ACCEPTED, 12.84 us; valid True
+[n 20 L 50] kecho_n20_D100_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 2000 two-qubit gates = 100 x 20: ACCEPTED, 23.44 us; valid True
+[n 40 L 12] kecho_n40_D24_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 960 two-qubit gates = 24 x 40: ACCEPTED, 7.33 us; valid True
+[n 40 L 25] kecho_n40_D50_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 2000 two-qubit gates = 50 x 40: ACCEPTED, 12.84 us; valid True
+[n 40 L 50] kecho_n40_D100_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 4000 two-qubit gates = 100 x 40: ACCEPTED, 23.44 us; valid True
+[n 48 L 12] kecho_n48_D24_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 1152 two-qubit gates = 24 x 48: ACCEPTED, 7.33 us; valid True
+[n 48 L 25] kecho_n48_D50_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 2400 two-qubit gates = 50 x 48: ACCEPTED, 12.84 us; valid True
+[n 48 L 50] kecho_n48_D100_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 4800 two-qubit gates = 100 x 48: ACCEPTED, 23.44 us; valid True
+[n 56 L 12] kecho_n56_D24_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 1344 two-qubit gates = 24 x 56: ACCEPTED, 7.33 us; valid True
+[n 56 L 25] kecho_n56_D50_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 2800 two-qubit gates = 50 x 56: ACCEPTED, 12.84 us; valid True
+[n 56 L 50] kecho_n56_D100_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 5600 two-qubit gates = 100 x 56: ACCEPTED, 23.44 us; valid True
+[n 64 L 12] kecho_n64_D24_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 1536 two-qubit gates = 24 x 64: ACCEPTED, 7.33 us; valid True
+[n 64 L 25] kecho_n64_D50_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 3200 two-qubit gates = 50 x 64: ACCEPTED, 12.84 us; valid True
+[n 64 L 50] kecho_n64_D100_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 6400 two-qubit gates = 100 x 64: ACCEPTED, 23.44 us; valid True
+[n 72 L 12] kecho_n72_D24_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 1728 two-qubit gates = 24 x 72: ACCEPTED, 7.33 us; valid True
+[n 72 L 25] kecho_n72_D50_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 3600 two-qubit gates = 50 x 72: ACCEPTED, 12.84 us; valid True
+[n 72 L 50] kecho_n72_D100_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 7200 two-qubit gates = 100 x 72: ACCEPTED, 23.44 us; valid True
+n 20: 1 ring(s): [3, 4, 5, 6, 7, 17, 27, 26, 25, 37, 45, 44, 43, 42, 41, 36, 21, 22, 23, 16]
+n 40: 1 ring(s): [3, 4, 5, 6, 7, 17, 27, 28, 29, 30, 31, 32, 33, 39, 53, 54, 55, 59, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 56, 43, 42, 41, 36, 21, 22, 23, 16]
+n 48: 1 ring(s): [3, 4, 5, 6, 7, 17, 27, 26, 25, 37, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 59, 75, 74, 73, 79, 93, 92, 91, 90, 89, 78, 69, 68, 67, 66, 65, 64, 63, 56, 43, 42, 41, 36, 21, 22, 23, 16]
+n 56: 1 ring(s): [3, 4, 5, 6, 7, 17, 27, 26, 25, 37, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 59, 75, 74, 73, 72, 71, 70, 69, 78, 89, 88, 87, 97, 107, 106, 105, 104, 103, 96, 83, 82, 81, 76, 61, 62, 63, 56, 43, 42, 41, 36, 21, 22, 23, 16]
+n 64: 1 ring(s): [3, 16, 23, 22, 21, 36, 41, 42, 43, 44, 45, 46, 47, 57, 67, 66, 65, 64, 63, 62, 61, 76, 81, 82, 83, 96, 103, 104, 105, 106, 107, 108, 109, 110, 111, 98, 91, 90, 89, 78, 69, 70, 71, 72, 73, 74, 75, 59, 55, 54, 53, 39, 33, 32, 31, 30, 29, 28, 27, 17, 7, 6, 5, 4]
+n 72: 1 ring(s): [3, 16, 23, 22, 21, 36, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 58, 71, 70, 69, 68, 67, 66, 65, 64, 63, 62, 61, 76, 81, 82, 83, 96, 103, 104, 105, 117, 125, 126, 127, 128, 129, 118, 109, 110, 111, 98, 91, 92, 93, 79, 73, 74, 75, 59, 55, 54, 53, 39, 33, 32, 31, 30, 29, 28, 27, 17, 7, 6, 5, 4]
