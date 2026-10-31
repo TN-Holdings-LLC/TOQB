@@ -240,9 +240,12 @@ def sign_change(depths, vals, ses):
     return "OSCILLATES" if pos and neg else "MONOTONE"
 
 
-def defect_present(phys, a, path, thr=0.12, min_len=3, need=2):
-    """True if a dead run (>= min_len consecutive ring sites below thr, cyclic) holds >= need qubits of path."""
+def defect_present(phys, a, path, thr=0.12, min_len=3, need=2, rel=None):
+    """True if a dead run (>= min_len consecutive ring sites below thr, cyclic) holds >= need qubits of path. With
+    `rel`, the line is max(thr, rel x the ring's median) (a weak run, toqb.safe_loop's rule)."""
     from toqb import defect_list as DL
+    if rel is not None:
+        thr = max(thr, rel * float(np.median(a)))
     for st, ln in DL.dead_runs(np.asarray(a), thr=thr, min_len=min_len):
         q = {phys[(st + t) % len(phys)] for t in range(ln)}
         if len(q & set(path)) >= need:
@@ -270,6 +273,7 @@ def cmd_score(argv):
     p.add_argument("--segment", required=True, help="the whole dead run (the rest = the ring minus this)")
     p.add_argument("--other", default="", help="reported block")
     p.add_argument("--path", default="28,29,38,49", help="listed path for the precondition")
+    p.add_argument("--weak-rel", type=float, default=None, help="precondition on a weak run (line max(0.12, rel x median))")
     p.add_argument("--n", type=int, default=40)
     p.add_argument("--control-n", type=int, default=20)
     p.add_argument("--D", type=int, default=24)
@@ -287,8 +291,9 @@ def cmd_score(argv):
                                               corr=[float(x) for x in c])
     # P0: the defect is there today (Z, D = 24, the declared dead-run rule)
     phys, v, se, _ = data[(a.n, a.D, "Z")]
-    res["P0"] = present = defect_present(phys, v, path)
-    print(f"P0 n {a.n} D {a.D}: a dead run holds >= 2 of {sorted(path)}: {'PRESENT' if present else 'ABSENT'}")
+    res["P0"] = present = defect_present(phys, v, path, rel=a.weak_rel)
+    kind = "a dead run" if a.weak_rel is None else f"a weak run (line max(0.12, {a.weak_rel:g} x median))"
+    print(f"P0 n {a.n} D {a.D}: {kind} holds >= 2 of {sorted(path)}: {'PRESENT' if present else 'ABSENT'}")
     if not present:
         print("the defect is absent: nothing is judged (all values are reported in the output file)")
     # J1: the block's Z signal over depth (primary)

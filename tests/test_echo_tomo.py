@@ -68,3 +68,10 @@ def test_defect_present():
     a = np.array([0.5, 0.5, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 0.5])
     assert ET.defect_present(phys, a, [3, 4, 9]) is True
     assert ET.defect_present(phys, a, [7, 8]) is False
+
+
+def test_defect_present_weak_line():
+    phys = list(range(10))
+    a = np.array([0.4, 0.4, 0.15, 0.15, 0.15, 0.4, 0.4, 0.4, 0.4, 0.4])
+    assert ET.defect_present(phys, a, [2, 3]) is False
+    assert ET.defect_present(phys, a, [2, 3], rel=0.5) is True
