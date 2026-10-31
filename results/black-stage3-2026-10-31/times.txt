@@ -1,0 +1,6 @@
+toqb 80dc84a Declare black stage 3 (owner's go of 2026-10-31 13:5
+note 11f594550d1516ddda12b33e0b7a2d4158ac359ca7f2507d59d213c55da29f1a  prereg/drafts-2026-10-31/black_stage3_note.md
+tests 10 passed in 74.18s (0:01:14)
+fetch ibm_kingston 2026-10-31 14:00:07+01:00 be5df9d5d7d9fe1121a0143859931615f2fb599b07b5a16ca01e33d1a1b757b5
+start 2026-10-31 14:54:24 CET
+end 2026-10-31 14:55:49 CET
