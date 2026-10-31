@@ -1,0 +1,12 @@
+cover1A n 20: median 0.39, weak line 0.20; weak runs none
+cover1A n 40: median 0.26, weak line 0.13; weak runs 19 sites [16, 3, 4, 5, 6, 7, 17, 27, 28, 29, 38, 49, 50, 51, 52, 53, 54, 55, 59] (mean -0.10)
+cover1A n 72: median 0.17, weak line 0.12; weak runs 15 sites [67, 68, 69, 78, 89, 88, 87, 86, 85, 84, 83, 96, 103, 104, 105] (mean 0.02); 19 sites [26, 27, 28, 29, 30, 31, 18, 11, 10, 9, 8, 7, 6, 5, 4, 3, 16, 23, 22] (mean -0.01)
+cover1B n 40: median 0.44, weak line 0.22; weak runs none
+cover1B n 72: median 0.38, weak line 0.19; weak runs 9 sites [33, 34, 35, 19, 15, 14, 13, 12, 11] (mean 0.14)
+depth n 20: median 0.41, weak line 0.20; weak runs none
+depth n 40: median 0.45, weak line 0.23; weak runs none
+depth n 72: median 0.40, weak line 0.20; weak runs 4 sites [35, 19, 15, 14] (mean 0.16)
+listed ibm_kingston [11, 10, 9] (defect list list_after.json)
+listed ibm_kingston [28, 29, 38, 49] (defect list list_after.json)
+listed ibm_kingston [87, 86, 85] (defect list list_after.json)
+listed ibm_kingston [35, 19, 15, 14] (cover1B n 72)
