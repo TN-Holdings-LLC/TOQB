@@ -1,0 +1,7 @@
+toqb e4486a9 Declare coverage days (owner's go of 2026-10-31 11:2
+note 4941ddfa85077312aaca40571410dd5fbffe16d95f99d7fe54e3e70ff5bdd71d  prereg/drafts-2026-10-31/coverage_days_note.md
+list b1fe9fe7aceb8bc98e546e4ecad409de1ffa64ea97a2422d2107cd2acf186765  /tmp/claude-0/work/toqb/results/defect-list-replay-2026-10-31/observations.json
+fetch ibm_kingston 2026-10-31 10:56:15+01:00 e52672121f507c252c44fe305b507c882f5282145b7016a12662a230ceb402ee
+device ibm_kingston; list date 2026-10-31T11:35:22
+start 2026-10-31 11:36:36 CET
+end 2026-10-31 11:37:34 CET

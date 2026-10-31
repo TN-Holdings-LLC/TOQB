@@ -1,0 +1,5 @@
+ibm_kingston day1A n 20: median 0.39; dead runs none
+ibm_kingston day1A n 40: median 0.26; dead runs 18 sites, centre [28, 29, 38, 49]
+ibm_kingston day1A n 72: median 0.17; dead runs 15 sites, centre [88, 87, 86, 85]; 19 sites, centre [11, 10, 9, 8]
+ibm_kingston day1B n 40: median 0.44; dead runs none
+ibm_kingston day1B n 72: median 0.38; dead runs none

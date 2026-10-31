@@ -1,0 +1,51 @@
+{
+ "written": "2026-10-31T10:35:01+00:00 (2026-10-31 11:35:01 CET)",
+ "backend": "ibm_kingston",
+ "fake": false,
+ "calibration_time": "2026-10-31 10:56:15+01:00",
+ "operational": true,
+ "two_qubit_gate": "cz",
+ "num_qubits": 156,
+ "target_sha256": "1321a9fb5743990cb25b512e59553025dfdf5da34843d6d50e4350fa1c020c03",
+ "script_sha256": "1ee99a87bcb83f813494b66778e6d0be55bde98754c2b05e1ca25e05df0a93a3",
+ "masked_by_defect_list": {
+  "source_target_sha256": "e52672121f507c252c44fe305b507c882f5282145b7016a12662a230ceb402ee",
+  "list": "observations.json",
+  "list_sha256": "b1fe9fe7aceb8bc98e546e4ecad409de1ffa64ea97a2422d2107cd2acf186765",
+  "masked_couplers": [
+   [
+    9,
+    10
+   ],
+   [
+    29,
+    38
+   ],
+   [
+    85,
+    86
+   ]
+  ],
+  "listed_paths": [
+   [
+    11,
+    10,
+    9
+   ],
+   [
+    28,
+    29,
+    38,
+    49
+   ],
+   [
+    87,
+    86,
+    85
+   ]
+  ],
+  "min_repeats": 2,
+  "expiry_days": 7.0,
+  "now": "2026-10-31T11:35:22"
+ }
+}
