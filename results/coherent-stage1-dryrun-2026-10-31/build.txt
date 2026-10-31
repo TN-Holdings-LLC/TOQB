@@ -1,0 +1,19 @@
+[n 40 L 1 Z] kecho_n40_D2_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 80 two-qubit gates = 2 x 40: ACCEPTED, 2.67 us; valid True
+[n 40 L 2 Z] kecho_n40_D4_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 160 two-qubit gates = 4 x 40: ACCEPTED, 3.09 us; valid True
+[n 40 L 3 Z] kecho_n40_D6_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 240 two-qubit gates = 6 x 40: ACCEPTED, 3.52 us; valid True
+[n 40 L 4 Z] kecho_n40_D8_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 320 two-qubit gates = 8 x 40: ACCEPTED, 3.94 us; valid True
+[n 40 L 6 Z] kecho_n40_D12_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 480 two-qubit gates = 12 x 40: ACCEPTED, 4.79 us; valid True
+[n 40 L 8 Z] kecho_n40_D16_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 640 two-qubit gates = 16 x 40: ACCEPTED, 5.64 us; valid True
+[n 40 L 10 Z] kecho_n40_D20_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 800 two-qubit gates = 20 x 40: ACCEPTED, 6.48 us; valid True
+[n 40 L 12 Z] kecho_n40_D24_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 960 two-qubit gates = 24 x 40: ACCEPTED, 7.33 us; valid True
+[n 40 L 6 X] kecho_n40_D12_hz0_h0.6-fold_rule_bX: 8 circuits; echo circuits read in X; valid True
+[n 40 L 6 Y] kecho_n40_D12_hz0_h0.6-fold_rule_bY: 8 circuits; echo circuits read in Y; valid True
+[n 40 L 12 X] kecho_n40_D24_hz0_h0.6-fold_rule_bX: 8 circuits; echo circuits read in X; valid True
+[n 40 L 12 Y] kecho_n40_D24_hz0_h0.6-fold_rule_bY: 8 circuits; echo circuits read in Y; valid True
+[n 20 L 6 Z] kecho_n20_D12_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 240 two-qubit gates = 12 x 20: ACCEPTED, 4.79 us; valid True
+[n 20 L 12 Z] kecho_n20_D24_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 480 two-qubit gates = 24 x 20: ACCEPTED, 7.33 us; valid True
+[n 20 L 12 X] kecho_n20_D24_hz0_h0.6-fold_rule_bX: 8 circuits; echo circuits read in X; valid True
+[n 20 L 12 Y] kecho_n20_D24_hz0_h0.6-fold_rule_bY: 8 circuits; echo circuits read in Y; valid True
+n40 D24 Z: byte-identical to 30 October (42376e3f9ca59862f98caa777c1b95b25a32d50ee31f1b8a1a1f679ac1998d38)
+n 20: one ring for all records: [3, 4, 5, 6, 7, 17, 27, 26, 25, 37, 45, 44, 43, 42, 41, 36, 21, 22, 23, 16]
+n 40: one ring for all records: [3, 4, 5, 6, 7, 17, 27, 28, 29, 38, 49, 50, 51, 52, 53, 54, 55, 59, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 56, 43, 42, 41, 36, 21, 22, 23, 16]

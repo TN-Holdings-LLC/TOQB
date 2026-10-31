@@ -1,0 +1,5 @@
+D 24: block A -0.006, block B -0.094, rest +0.429, n20 +0.364
+D 50: block A -0.008, block B -0.047, rest +0.005, n20 +0.073
+D 100: block A +0.000, block B -0.000, rest +0.001, n20 +0.003
+n 20 D 24 connected ZZ, all pairs: 0.289
+n 40 D 24 connected ZZ: dead-run pairs 0.154 (17), block B pairs 0.183 (8), healthy pairs 0.315 sd 0.028 (21)

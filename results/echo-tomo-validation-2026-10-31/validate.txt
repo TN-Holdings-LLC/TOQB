@@ -1,0 +1,7 @@
+n = 8, error after every CZ on qubits (3, 4); values for the segment (3, 4) and the rest
+rx    0.08 | D 12: vz seg +0.965 rest +0.972; |v| seg 0.969 rest 0.972; transverse seg 0.09 -> MIXED | vz seg over D 4..24: +0.98 +0.97 +0.96 +0.97 +0.88 -> MONOTONE
+rx    0.15 | D 12: vz seg +0.879 rest +0.906; |v| seg 0.895 rest 0.907; transverse seg 0.19 -> MIXED | vz seg over D 4..24: +0.92 +0.89 +0.88 +0.88 +0.63 -> MONOTONE
+rzz   0.15 | D 12: vz seg +0.390 rest +0.724; |v| seg 0.391 rest 0.739; transverse seg 0.07 -> MIXED | vz seg over D 4..24: +0.67 +0.38 +0.39 +0.68 +0.42 -> MONOTONE
+rzz   0.30 | D 12: vz seg +0.074 rest +0.319; |v| seg 0.083 rest 0.421; transverse seg 0.46 -> LOST | vz seg over D 4..24: -0.07 +0.05 +0.07 +0.37 +0.12 -> OSCILLATES
+dep   0.01 | D 12: vz seg +0.715 rest +0.838; |v| seg 0.715 rest 0.838; transverse seg 0.02 -> MIXED | vz seg over D 4..24: +0.91 +0.80 +0.71 +0.63 +0.51 -> MONOTONE
+dep   0.03 | D 12: vz seg +0.360 rest +0.593; |v| seg 0.360 rest 0.593; transverse seg 0.06 -> MIXED | vz seg over D 4..24: +0.75 +0.51 +0.36 +0.25 +0.13 -> MONOTONE

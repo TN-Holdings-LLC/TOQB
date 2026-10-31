@@ -1,0 +1,5 @@
+connected ZZ correlation at D = 12, pair (3, 4) against the other neighbour pairs:
+  rx    0.15: segment pair 0.047, other pairs 0.058
+  rzz   0.15: segment pair 0.736, other pairs 0.212
+  rzz   0.30: segment pair 0.616, other pairs 0.107
+  dep   0.03: segment pair 0.199, other pairs 0.210
