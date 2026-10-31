@@ -119,11 +119,17 @@ def main(argv):
             s_ = float(np.hypot(on["block"][1], off["block"][1]))
             dr = on["rest"][0] - off["rest"][0]
             sr = float(np.hypot(on["rest"][1], off["rest"][1]))
-            res[f"{mode}_D{D}"] = dict(diff=d, se=s_, verdict=verdict(d, s_), rest_diff=dr, rest_se=sr,
-                                       rest="NO COST" if dr >= -2 * sr else "COSTS",
-                                       recovered=bool(on["block"][0] >= 0.8 * on["rest"][0]))
+            e = dict(diff=d, se=s_, verdict=verdict(d, s_), rest_diff=dr, rest_se=sr,
+                     rest="NO COST" if dr >= -2 * sr else "COSTS", recovered=bool(on["block"][0] >= 0.8 * on["rest"][0]))
+            gf = res["cells"].get(f"n{a.n}_D{D}_ff")
+            if gf:
+                dg = on["block"][0] - gf["block"][0]
+                sg = float(np.hypot(on["block"][1], gf["block"][1]))
+                e.update(vs_global=dg, vs_global_se=sg, keeps="KEEPS" if dg >= -2 * sg else "LOSES")
+            res[f"{mode}_D{D}"] = e
             print(f"{'*' if D == a.D else ' '} {mode} n {a.n} D {D}: block - off {d:+.3f} +- {s_:.3f} -> "
-                  f"{verdict(d, s_)}; rest - off {dr:+.3f} +- {sr:.3f}")
+                  f"{verdict(d, s_)}; rest - off {dr:+.3f} +- {sr:.3f} -> {e['rest']}"
+                  + (f"; block - global {dg:+.3f} +- {sg:.3f} -> {e['keeps']}" if gf else ""))
     off, on = res["cells"].get(f"n{a.control_n}_D{a.D}_off"), res["cells"].get(f"n{a.control_n}_D{a.D}_ff")
     if off and on:
         d, s = on["all"][0] - off["all"][0], float(np.hypot(on["all"][1], off["all"][1]))
