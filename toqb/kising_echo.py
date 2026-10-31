@@ -228,6 +228,7 @@ def cmd_build(argv):
     p.add_argument("--shots", type=int, default=500)
     p.add_argument("--frame-flip", action="store_true", help="X frames on the even ring qubits in even layers")
     p.add_argument("--flip-sites", default=None, help="frame flip on these ring positions only (comma separated)")
+    p.add_argument("--flip-tag", default="", help="a tag after _lf in the record name (several local flips in one job)")
     a = p.parse_args(argv)
     if a.n % 2:
         print("STOP: n must be even (Neel inputs)", file=sys.stderr)
@@ -242,7 +243,7 @@ def cmd_build(argv):
         print("STOP: target.pkl differs from fetch.json's hash", file=sys.stderr)
         return 2
     D = 2 * a.L
-    name = f"kecho_n{a.n}_D{D}_hz{a.hz:g}_h{a.h:g}-{a.arm.replace(':', '_')}" + ("_ff" if a.frame_flip else "") + ("_lf" if a.flip_sites else "")
+    name = f"kecho_n{a.n}_D{D}_hz{a.hz:g}_h{a.h:g}-{a.arm.replace(':', '_')}" + ("_ff" if a.frame_flip else "") + (f"_lf{a.flip_tag}" if a.flip_sites else "")
     os.makedirs(a.out, exist_ok=True)
     jf, qf = os.path.join(a.out, name + ".json"), os.path.join(a.out, name + ".qpy")
     for f in (jf, qf):

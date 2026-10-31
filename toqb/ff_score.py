@@ -13,7 +13,7 @@ import numpy as np
 from toqb import echo_tomo as ET
 from toqb import kising_charge as KC
 
-NAME = re.compile(r"kecho_n(\d+)_D(\d+)_hz([0-9.]+)_h([0-9.]+)-fold_rule(_ff|_lf)?$")
+NAME = re.compile(r"kecho_n(\d+)_D(\d+)_hz([0-9.]+)_h([0-9.]+)-fold_rule(_ff|_lf[A-Za-z0-9]*)?$")
 
 
 def read(job, runs):
@@ -32,7 +32,7 @@ def read(job, runs):
             raise SystemExit(f"STOP: {rf} differs from the manifest")
         rec = json.load(open(rf))
         n, D = rec["task"]["n"], rec["echo"]["D"]
-        ff = "ff" if rec["echo"].get("frame_flip") else "lf" if rec["echo"].get("flip_sites") else "off"
+        ff = "ff" if rec["echo"].get("frame_flip") else (m.group(5) or "_off")[1:]
         cc = {rec["points"][pub["point"]]["input"]: rows[k] for k, pub in enumerate(man["pubs"])
               if pub["cell"] == cid and rec["points"][pub["point"]]["setting"] == "echo"}
         a, se = ET.aligned(cc, n)
@@ -109,6 +109,21 @@ def main(argv):
               f"rest local - off {dr:+.3f} +- {sr:.3f} -> {e['rest']}"
               + (f"; block local - global {e['vs_global']:+.3f} +- {e['vs_global_se']:.3f} -> {e['keeps']}" if gf else "")
               + f"; recovered: {'YES' if e['recovered'] else 'NO'}")
+    modes = sorted({ff for (n, D, ff) in data if n == a.n and ff not in ("off", "ff", "lf")})
+    for mode in modes:
+        for D in sorted({D for (n, D, ff) in data if n == a.n}):
+            off, on = res["cells"].get(f"n{a.n}_D{D}_off"), res["cells"].get(f"n{a.n}_D{D}_{mode}")
+            if not (off and on):
+                continue
+            d = on["block"][0] - off["block"][0]
+            s_ = float(np.hypot(on["block"][1], off["block"][1]))
+            dr = on["rest"][0] - off["rest"][0]
+            sr = float(np.hypot(on["rest"][1], off["rest"][1]))
+            res[f"{mode}_D{D}"] = dict(diff=d, se=s_, verdict=verdict(d, s_), rest_diff=dr, rest_se=sr,
+                                       rest="NO COST" if dr >= -2 * sr else "COSTS",
+                                       recovered=bool(on["block"][0] >= 0.8 * on["rest"][0]))
+            print(f"{'*' if D == a.D else ' '} {mode} n {a.n} D {D}: block - off {d:+.3f} +- {s_:.3f} -> "
+                  f"{verdict(d, s_)}; rest - off {dr:+.3f} +- {sr:.3f}")
     off, on = res["cells"].get(f"n{a.control_n}_D{a.D}_off"), res["cells"].get(f"n{a.control_n}_D{a.D}_ff")
     if off and on:
         d, s = on["all"][0] - off["all"][0], float(np.hypot(on["all"][1], off["all"][1]))
