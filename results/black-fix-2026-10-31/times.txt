@@ -1,0 +1,7 @@
+toqb aff21a8 Declare the black fix (owner's go of 2026-10-31 15:2
+note 0c72bbe8c35aaaf9b292b1456f8cd645639065b868aaec1938e632b93e28165f  prereg/drafts-2026-10-31/black_fix_note.md
+tests 10 passed in 76.09s (0:01:16)
+fetch ibm_kingston 2026-10-31 14:58:44+01:00 a5fe27ba89bba498b16a7adac2034716edc17ebb76154d2cf746cac77fac2279
+arms A2 0,2,4,6,8, A3 0,2,4, B3 6,8, global
+start 2026-10-31 15:33:51 CET
+end 2026-10-31 15:36:12 CET
