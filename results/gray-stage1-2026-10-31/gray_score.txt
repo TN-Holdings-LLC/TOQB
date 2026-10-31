@@ -1,0 +1,9 @@
+P0 n 72 D 24: a weak run (line max(0.12, 0.5 x median)) holds >= 2 of [14, 15, 19, 35]: ABSENT
+the defect is absent: nothing is judged (all values are reported in the output file)
+J1 block a over D: 2: +0.961, 4: +0.942, 6: +0.926, 8: +0.891, 12: +0.825, 16: +0.721, 20: +0.612, 24: +0.480 -> NO CROSSING
+   other a over D: 2: +0.962, 4: +0.946, 6: +0.915, 8: +0.878, 12: +0.804, 16: +0.705, 20: +0.590, 24: +0.470 -> NO CROSSING
+   rest a over D: 2: +0.961, 4: +0.935, 6: +0.897, 8: +0.852, 12: +0.748, 16: +0.628, 20: +0.515, 24: +0.397 -> NO CROSSING
+J2 D 12: |v| block 0.827, rest 0.752; mean v block (-0.001, -0.041, +0.825); transverse block 0.06, rest 0.07 -> KEPT
+   D 24: |v| block 0.482, rest 0.399; mean v block (-0.019, -0.019, +0.480); transverse block 0.06, rest 0.09 -> KEPT
+J3 D 12 connected pair correlation block/rest: X 0.031/0.026; Y 0.033/0.048; Z 0.126/0.163 -> NOT SEEN
+   D 24 connected pair correlation block/rest: X 0.019/0.030; Y 0.088/0.093; Z 0.323/0.297 -> NOT SEEN

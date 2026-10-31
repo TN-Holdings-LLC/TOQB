@@ -1,0 +1,14 @@
+[L 1 Z] kecho_n72_D2_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 144 two-qubit gates = 2 x 72: ACCEPTED, 2.72 us; valid True
+[L 2 Z] kecho_n72_D4_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 288 two-qubit gates = 4 x 72: ACCEPTED, 3.20 us; valid True
+[L 3 Z] kecho_n72_D6_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 432 two-qubit gates = 6 x 72: ACCEPTED, 3.68 us; valid True
+[L 4 Z] kecho_n72_D8_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 576 two-qubit gates = 8 x 72: ACCEPTED, 4.16 us; valid True
+[L 6 Z] kecho_n72_D12_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 864 two-qubit gates = 12 x 72: ACCEPTED, 5.12 us; valid True
+[L 8 Z] kecho_n72_D16_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 1152 two-qubit gates = 16 x 72: ACCEPTED, 6.08 us; valid True
+[L 10 Z] kecho_n72_D20_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 1440 two-qubit gates = 20 x 72: ACCEPTED, 7.04 us; valid True
+[L 12 Z] kecho_n72_D24_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 1728 two-qubit gates = 24 x 72: ACCEPTED, 8.00 us; valid True
+[L 6 X] kecho_n72_D12_hz0_h0.6-fold_rule_bX: 8 circuits; echo circuits read in X; valid True
+[L 6 Y] kecho_n72_D12_hz0_h0.6-fold_rule_bY: 8 circuits; echo circuits read in Y; valid True
+[L 12 X] kecho_n72_D24_hz0_h0.6-fold_rule_bX: 8 circuits; echo circuits read in X; valid True
+[L 12 Y] kecho_n72_D24_hz0_h0.6-fold_rule_bY: 8 circuits; echo circuits read in Y; valid True
+n72 D24 Z: byte-identical to 31 October's coverage job B and clean depth (df8eda3c5118edf652c7f117dd0d494591166391ac16740bad4ee8e80cf4013c)
+1 ring(s); block [35, 19, 15, 14] on the ring: True; ring [11, 18, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 36, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 58, 71, 70, 69, 68, 67, 66, 65, 64, 63, 62, 61, 76, 81, 82, 83, 96, 103, 104, 105, 106, 107, 97, 87, 88, 89, 90, 91, 92, 93, 79, 73, 74, 75, 59, 55, 54, 53, 39, 33, 34, 35, 19, 15, 14, 13, 12]
