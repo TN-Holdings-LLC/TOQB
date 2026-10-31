@@ -1,0 +1,10 @@
+n 40 D 12 lfA: all +0.618; block +0.538 +- 0.004; rest +0.773
+n 40 D 12 lfB: all +0.533; block +0.235 +- 0.005; rest +0.758
+n 40 D 12 off: all +0.555; block +0.264 +- 0.004; rest +0.780
+n 40 D 24 lfA: all +0.252; block +0.117 +- 0.005; rest +0.414
+n 40 D 24 lfB: all +0.159; block -0.163 +- 0.005; rest +0.377
+n 40 D 24 off: all +0.181; block -0.183 +- 0.005; rest +0.421
+  lfA n 40 D 12: block - off +0.274 +- 0.006 -> HELPS; rest - off -0.008 +- 0.003
+* lfA n 40 D 24: block - off +0.299 +- 0.007 -> HELPS; rest - off -0.007 +- 0.004
+  lfB n 40 D 12: block - off -0.030 +- 0.006 -> HURTS; rest - off -0.022 +- 0.003
+* lfB n 40 D 24: block - off +0.019 +- 0.007 -> HELPS; rest - off -0.044 +- 0.004

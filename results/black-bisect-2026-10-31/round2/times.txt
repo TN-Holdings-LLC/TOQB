@@ -1,0 +1,8 @@
+toqb 5911190 results/black-bisect-2026-10-31 round 1: the flip on
+note 3697ce48b156fd858d1b3b1838838faf5e3400849c70b7156dd4ba24abbe9abd  prereg/drafts-2026-10-31/black_bisect_note.md
+tests 10 passed in 83.64s (0:01:23)
+fetch ibm_kingston 2026-10-31 14:58:44+01:00 7166df6524a9bf3293fe6cee7b8619ecf214b55f8a3f1ace06463807a30c6a6b
+arm A positions 0,2,4,6,8
+arm B positions 10,12,14,16,18
+start 2026-10-31 15:20:37 CET
+end 2026-10-31 15:22:13 CET
