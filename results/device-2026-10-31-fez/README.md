@@ -26,8 +26,8 @@
   hz 0): n = 20: 11 of 20 sites (4-7, 17, 25-27, 37, 43, 45); n = 36: 6; n = 40: 11; n = 72: 36. The decay length is
   short at every n (11-17 steps), not only above 36. The verdict is the declared one; the reason is not "no defect"
   but "defects at every size".
-- **Same circuit, two chips.** The n = 20 ring is the same physical ring, with the same compiled gates, on fez and on
-  kingston. On kingston (30 October, three runs) it had no dead site and rho_E 0.34-0.40 at D = 24; on fez it has 11
+- **Same circuit, two chips.** The n = 20 circuit is byte-identical on fez and on kingston (QPY SHA-256 671db9e3...,
+  the same in kingston's test 2 and rerun records). On kingston (30 October, three runs) it had no dead site and rho_E 0.34-0.40 at D = 24; on fez it has 11
   dead sites and rho_E 0.12-0.14. The n = 72 ring is also the same on both; its dead runs sit mostly in different
   places on the two chips. The dead runs follow the chip, not the circuit.
 - rho_E at D = 24 (hz 0 / 0.1 / 0.3): n 20 0.120 / 0.123 / 0.142; n 36 0.251 / 0.266 / 0.288; n 40 0.158 / 0.172 /
