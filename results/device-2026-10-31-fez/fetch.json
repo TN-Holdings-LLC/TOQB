@@ -1,0 +1,11 @@
+{
+ "written": "2026-10-31T02:30:04+00:00 (2026-10-31 03:30:04 CET)",
+ "backend": "ibm_fez",
+ "fake": false,
+ "calibration_time": "2026-10-31 03:16:45+01:00",
+ "operational": true,
+ "two_qubit_gate": "cz",
+ "num_qubits": 156,
+ "target_sha256": "06d7f9837aa90c491ff0d6e53833c567f7d48f0cdd1de51f5128ac1f1c5ba8bf",
+ "script_sha256": "db54fbd7033226a3187ca14378b844fa3a2b3dce47e1cf9067120406fe129c2d"
+}

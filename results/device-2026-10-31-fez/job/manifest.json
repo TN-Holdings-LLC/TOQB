@@ -1,0 +1,3196 @@
+{
+ "written": "2026-10-31T02:38:08+00:00 (2026-10-31 03:38:08 CET)",
+ "fetch": {
+  "written": "2026-10-31T02:30:04+00:00 (2026-10-31 03:30:04 CET)",
+  "backend": "ibm_fez",
+  "fake": false,
+  "calibration_time": "2026-10-31 03:16:45+01:00",
+  "operational": true,
+  "two_qubit_gate": "cz",
+  "num_qubits": 156,
+  "target_sha256": "06d7f9837aa90c491ff0d6e53833c567f7d48f0cdd1de51f5128ac1f1c5ba8bf",
+  "script_sha256": "db54fbd7033226a3187ca14378b844fa3a2b3dce47e1cf9067120406fe129c2d"
+ },
+ "shots": 500,
+ "qpu_seconds_predicted": 52.2,
+ "qpu_model": {
+  "per_circuit_s": 0.036,
+  "per_shot_s": 0.00027,
+  "per_job_s": 3.0
+ },
+ "qpy_sha256": "606bc2b26ad043690e1f45a78b93e9021d2b38ff55093408c0b6da13ab87b36a",
+ "cells": [
+  {
+   "cell": 0,
+   "name": "kecho_n20_D100_hz0.1_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 100,
+   "points": 8,
+   "run_sha256": "3e479be03bdc61a82d787dbd0082a8af0ac308acb8f77e598a79f9ebe356760f",
+   "qpy_sha256": "9a7837f1dc03b93a28607a59373c972a6cb25cec926dc2122b3594d3ec385526",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 1,
+   "name": "kecho_n20_D100_hz0.3_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 100,
+   "points": 8,
+   "run_sha256": "9914c4924b76448afa90dff09d35d07686cebdad0fdc87dfe4e5e2f04b1476f3",
+   "qpy_sha256": "5b77ee2383c1ef154c4d75c9dabde12c09af94d3b29025f8334dc3588f1d20ab",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 2,
+   "name": "kecho_n20_D100_hz0_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 100,
+   "points": 8,
+   "run_sha256": "06d42689ef532586229c6548101438779606572a0ea7156ae022d177b9ccd084",
+   "qpy_sha256": "e1b88b449c8ec7a4a3023296a4ac0f77441d1146bbb21e0056a35e1aa4e25c88",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 3,
+   "name": "kecho_n20_D24_hz0.1_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 24,
+   "points": 8,
+   "run_sha256": "0505be3fb21af622941c33231670f79d1856e596681ac08b9f3351935b5b6c58",
+   "qpy_sha256": "6919ea2e9e5cdb0bcdd869d2c856892792e39decc38e5fd9fb6c08908f8b0d32",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 4,
+   "name": "kecho_n20_D24_hz0.3_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 24,
+   "points": 8,
+   "run_sha256": "2bf51d09ef4cf69a1dcee6e08758b6f164ffbb086b80fac84b4dfa2dbf388de2",
+   "qpy_sha256": "b6c81f10d21303fe64d52f180f7d694ae484c8958768e40829812f731086dabf",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 5,
+   "name": "kecho_n20_D24_hz0_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 24,
+   "points": 8,
+   "run_sha256": "693c888e87c3cfd9810d4f98b9061898047410b9d0f3fa891a076501e58df7e1",
+   "qpy_sha256": "671db9e3a97d9f011882ccc46a450ac5c8f839d140683c31c7fead16258e7ff4",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 6,
+   "name": "kecho_n20_D50_hz0.1_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 50,
+   "points": 8,
+   "run_sha256": "154eebc472516b9d51d7ea8bb237490c9caefddf68633ee7145e67487ad45efd",
+   "qpy_sha256": "422d5a8f740222382d5d26c9f4926ffd10e14013b3f73f7eb1d11fce7913c0f2",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 7,
+   "name": "kecho_n20_D50_hz0.3_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 50,
+   "points": 8,
+   "run_sha256": "07de0c9b3f286863be595832591172dbd0d3d737a20f2ed873d3ec88d816bd82",
+   "qpy_sha256": "abe0f7ce7685325ee80d4dda940d6e6aaf5399faf1b90838f1a821422f2b162e",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 8,
+   "name": "kecho_n20_D50_hz0_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 50,
+   "points": 8,
+   "run_sha256": "499973283f19189a3e46cd1a054f02dc31c8ed129352532139a8462c7c65ea9b",
+   "qpy_sha256": "05455e47a8057e0f20b40a995f9728fb2f0fae613fb09fe89a52db78d4e90aeb",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 9,
+   "name": "kecho_n36_D100_hz0.1_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 100,
+   "points": 8,
+   "run_sha256": "0927a7eb51216b749f0709fd93b5ec750bac8a9de58b8c005954334fb458d493",
+   "qpy_sha256": "fa6d405a000a054a192ddcfce2d490f3a8cec9bde7f8290247bbc490ed16e6b2",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 10,
+   "name": "kecho_n36_D100_hz0.3_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 100,
+   "points": 8,
+   "run_sha256": "3929455e33712e812bde7ba5416c80a6a9231b49b8f401e4e9404eb6a8d2ef93",
+   "qpy_sha256": "b6d093db12d9bbb4b46c4ec0ff39dd56dcfff71aaf75598c874a223cbe5b5cca",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 11,
+   "name": "kecho_n36_D100_hz0_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 100,
+   "points": 8,
+   "run_sha256": "d5df4c1751be9c20b76dde6a783e8bb88b53b9a3435b8345003066c3079fd691",
+   "qpy_sha256": "540e6529f568bf9b408b93847ff789a718d50291c34a0616bd6d9f23f8b0eebf",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 12,
+   "name": "kecho_n36_D24_hz0.1_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 24,
+   "points": 8,
+   "run_sha256": "4fc9c903b388a9c577b6acb3a2d868de4d3c14a4dc0b4cbe5b73d6665574e89f",
+   "qpy_sha256": "d0cc590b16c3a043a8f609305daac43aaf8970f2476ccba42bde3d124735e3dc",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 13,
+   "name": "kecho_n36_D24_hz0.3_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 24,
+   "points": 8,
+   "run_sha256": "c7ed05a51cc36f9ec11041052b3679c85d2fb294fa3192b381a04ea290e58740",
+   "qpy_sha256": "479e016feeb8f5d9d2e929fe3015f939e1ba79b39f1e1e381b67d3300d0036ec",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 14,
+   "name": "kecho_n36_D24_hz0_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 24,
+   "points": 8,
+   "run_sha256": "27d865c340f0901c2c3be2255938fe8d3adec1cdb533361d6d8478b8b49ec61b",
+   "qpy_sha256": "f7ae5aadbdf1df94b491e0e7e0a3c7359b3ccf1d787e3893f12412e31878c50b",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 15,
+   "name": "kecho_n36_D50_hz0.1_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 50,
+   "points": 8,
+   "run_sha256": "13271a9e2729df0453b89172cdc21b67fc1a6ecafe87b456cbceeade7afb1722",
+   "qpy_sha256": "bc0ee140c6619b2298aeb44795f630303c649f545e070e2e9df4375f748d8a0f",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 16,
+   "name": "kecho_n36_D50_hz0.3_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 50,
+   "points": 8,
+   "run_sha256": "009423fc83e7986ae2c093718467b8f538146c79fb97d66b9b3b35a75f8da92a",
+   "qpy_sha256": "94a436a0c091ff5d14a4e7e8bf72c2f16b3b14039c2655011fa91780f3aaaddf",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 17,
+   "name": "kecho_n36_D50_hz0_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 50,
+   "points": 8,
+   "run_sha256": "8d8a634bc72457c09f4c833650e32f9ef4d84c298e337eff7567c156148ad08e",
+   "qpy_sha256": "a178402c5b0028508955bd750968851c3c588b80536ffb231b8c10cd7aad1365",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 18,
+   "name": "kecho_n40_D100_hz0.1_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 100,
+   "points": 8,
+   "run_sha256": "bee9f3a212fa5f343fc0a682cbe132a8073c967ef6b09437879b5c654f7177b3",
+   "qpy_sha256": "369dc66b48208910a2b918a6780b4233b5d7ae14940e0b76accb5c021b592954",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 19,
+   "name": "kecho_n40_D100_hz0.3_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 100,
+   "points": 8,
+   "run_sha256": "dfe0568447f256d44f23862a747d505a9c0467f05693181c1233f1776a8188cf",
+   "qpy_sha256": "3fe466477789bb1a4e5f033e5d732ce6ce92a8da2f5fe7be92e3b6feb671135b",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 20,
+   "name": "kecho_n40_D100_hz0_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 100,
+   "points": 8,
+   "run_sha256": "89da09ec794774b810ba9ac571e0f4be5fbbcced794dc990e555294a01a0db5b",
+   "qpy_sha256": "54757ac9781c208730d15971799ae87c236e5d02f0636cc8aebd59808ca85cb2",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 21,
+   "name": "kecho_n40_D24_hz0.1_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 24,
+   "points": 8,
+   "run_sha256": "29c2ea1ffdab84b0bd5a0edb93ea3dcef1f878117bab1ae7ac331f3013d8265f",
+   "qpy_sha256": "ba0e1d30148249ad105e9b6822f0f017e3bb0e5501faae6f40aed20096613a89",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 22,
+   "name": "kecho_n40_D24_hz0.3_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 24,
+   "points": 8,
+   "run_sha256": "09ca7bc174ed0646405d070f01f9f4cb244ba0298337929875bf9b551e28802c",
+   "qpy_sha256": "915c272da0e467f620f9a9c2940c3447f60e228a56e5f9ee2c2b725c70a912f1",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 23,
+   "name": "kecho_n40_D24_hz0_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 24,
+   "points": 8,
+   "run_sha256": "0dfc07be3657545d7a537c235e1a629003f9c1ba68303a9f4e2562d270068ad1",
+   "qpy_sha256": "0fb21fc6f105892eb1b300f4960b1b6445f2350a134c4e3168b03370368b95f8",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 24,
+   "name": "kecho_n40_D50_hz0.1_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 50,
+   "points": 8,
+   "run_sha256": "9a36b51886ed5906934834392c6782dee4a8f82e4dd213c3599c1f18b7f3bb3c",
+   "qpy_sha256": "4e08011ad05b9fb05c64a15685c77e78f702f2af80d3e363ed12448540bcc7e3",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 25,
+   "name": "kecho_n40_D50_hz0.3_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 50,
+   "points": 8,
+   "run_sha256": "0d9fe7868baf5a588ced8b9f889290de500ed1cbe63fcd6c07b584271d82b652",
+   "qpy_sha256": "dcb295cf172e1d27c4c8bf18f77fc5de8b317da790f64a7150e2c92ae6ae0805",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 26,
+   "name": "kecho_n40_D50_hz0_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 50,
+   "points": 8,
+   "run_sha256": "d0dbad74d55006feeca4a53108ebdcfdc0b5fe9d6a987e4614135a37c13087ff",
+   "qpy_sha256": "035858974c1597f1b93e3bd4f23d1723f7065fe4f4618c34248508a47925a10e",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 27,
+   "name": "kecho_n72_D100_hz0.1_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 100,
+   "points": 8,
+   "run_sha256": "b2dbe502b99ee12331442d8dd0061a59a7100296396c846e7988c4e541d32c6b",
+   "qpy_sha256": "bbf633332c3c08113870cea51da6e5fd7099e7bdad79c379efb17afa38851de1",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 28,
+   "name": "kecho_n72_D100_hz0.3_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 100,
+   "points": 8,
+   "run_sha256": "17a7244725fbaaf6c75886b116998a53f21afa87cd1dad586125ad8e1f0fa5f6",
+   "qpy_sha256": "4bd079edec1e44106ccf393e54208d121538e612320dbac4e1a9f601472717f7",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 29,
+   "name": "kecho_n72_D100_hz0_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 100,
+   "points": 8,
+   "run_sha256": "50634d5d3377a9dd5749d39a19bc3bffdce592e1a3a6dc5150130b6852e5697b",
+   "qpy_sha256": "28b8f0776ed276b4865c42be90646a5fd19567c9f4ca58663cb2ddd72321edda",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 30,
+   "name": "kecho_n72_D24_hz0.1_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 24,
+   "points": 8,
+   "run_sha256": "27a3145f05be1c1efc70f79e23e13d2af7de3b11b9f85a88aeb49c060afb1fc3",
+   "qpy_sha256": "cdc223c02ec411e19dc027f71250af57da305fc7cec1be4bd4f4b7ab155a7931",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 31,
+   "name": "kecho_n72_D24_hz0.3_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 24,
+   "points": 8,
+   "run_sha256": "fec641af6512184456a3ae1b9392e4e324d1b769e7224e61cea336628b163e70",
+   "qpy_sha256": "5ec2040b5c1baa87c1f690e27f134e78c5f9962820e59809daae3266d0cd04d9",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 32,
+   "name": "kecho_n72_D24_hz0_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 24,
+   "points": 8,
+   "run_sha256": "f88dfd2765368795d3b2c630ff6f0179900e7ae050ceb55308364812b9c0cb78",
+   "qpy_sha256": "ac4d617877eb6a6c6b84762abb3d60fd146c35af0231a16d65394cc540b3f0ae",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 33,
+   "name": "kecho_n72_D50_hz0.1_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 50,
+   "points": 8,
+   "run_sha256": "76bc2af7154ed4f64a76e5a944497aec1ca6c8c16ebef3711bd9ea8b48c89d4c",
+   "qpy_sha256": "d3208171c0541b489b5126f2a1096bff86dded8172fb118dab127ae7f1aacab5",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 34,
+   "name": "kecho_n72_D50_hz0.3_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 50,
+   "points": 8,
+   "run_sha256": "61e8fac3827b41949b01c7862ff96d05f7e2e2b3f49cea9bc63849e430815c22",
+   "qpy_sha256": "67b963b25ffb7b4c08425dbf2118fa9bc8d48b31fad8b9892e9c3707e65fa7da",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  },
+  {
+   "cell": 35,
+   "name": "kecho_n72_D50_hz0_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 50,
+   "points": 8,
+   "run_sha256": "5d65d735925192189fff4227613da24e2da625c51e7fa5568dd7da34ec8cc6df",
+   "qpy_sha256": "487a49dc125eca758a63cf55091e281c44bba72e97b5f2930f377622597bb688",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.695849189257081,
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_mean": 0.47125,
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.661572315114533,
+     0.7423216276224686
+    ],
+    "acc_interval": [
+     0.0,
+     0.8756249999999994
+    ]
+   }
+  }
+ ],
+ "pubs": [
+  {
+   "cell": 0,
+   "point": 0
+  },
+  {
+   "cell": 0,
+   "point": 1
+  },
+  {
+   "cell": 0,
+   "point": 2
+  },
+  {
+   "cell": 0,
+   "point": 3
+  },
+  {
+   "cell": 0,
+   "point": 4
+  },
+  {
+   "cell": 0,
+   "point": 5
+  },
+  {
+   "cell": 0,
+   "point": 6
+  },
+  {
+   "cell": 0,
+   "point": 7
+  },
+  {
+   "cell": 1,
+   "point": 0
+  },
+  {
+   "cell": 1,
+   "point": 1
+  },
+  {
+   "cell": 1,
+   "point": 2
+  },
+  {
+   "cell": 1,
+   "point": 3
+  },
+  {
+   "cell": 1,
+   "point": 4
+  },
+  {
+   "cell": 1,
+   "point": 5
+  },
+  {
+   "cell": 1,
+   "point": 6
+  },
+  {
+   "cell": 1,
+   "point": 7
+  },
+  {
+   "cell": 2,
+   "point": 0
+  },
+  {
+   "cell": 2,
+   "point": 1
+  },
+  {
+   "cell": 2,
+   "point": 2
+  },
+  {
+   "cell": 2,
+   "point": 3
+  },
+  {
+   "cell": 2,
+   "point": 4
+  },
+  {
+   "cell": 2,
+   "point": 5
+  },
+  {
+   "cell": 2,
+   "point": 6
+  },
+  {
+   "cell": 2,
+   "point": 7
+  },
+  {
+   "cell": 3,
+   "point": 0
+  },
+  {
+   "cell": 3,
+   "point": 1
+  },
+  {
+   "cell": 3,
+   "point": 2
+  },
+  {
+   "cell": 3,
+   "point": 3
+  },
+  {
+   "cell": 3,
+   "point": 4
+  },
+  {
+   "cell": 3,
+   "point": 5
+  },
+  {
+   "cell": 3,
+   "point": 6
+  },
+  {
+   "cell": 3,
+   "point": 7
+  },
+  {
+   "cell": 4,
+   "point": 0
+  },
+  {
+   "cell": 4,
+   "point": 1
+  },
+  {
+   "cell": 4,
+   "point": 2
+  },
+  {
+   "cell": 4,
+   "point": 3
+  },
+  {
+   "cell": 4,
+   "point": 4
+  },
+  {
+   "cell": 4,
+   "point": 5
+  },
+  {
+   "cell": 4,
+   "point": 6
+  },
+  {
+   "cell": 4,
+   "point": 7
+  },
+  {
+   "cell": 5,
+   "point": 0
+  },
+  {
+   "cell": 5,
+   "point": 1
+  },
+  {
+   "cell": 5,
+   "point": 2
+  },
+  {
+   "cell": 5,
+   "point": 3
+  },
+  {
+   "cell": 5,
+   "point": 4
+  },
+  {
+   "cell": 5,
+   "point": 5
+  },
+  {
+   "cell": 5,
+   "point": 6
+  },
+  {
+   "cell": 5,
+   "point": 7
+  },
+  {
+   "cell": 6,
+   "point": 0
+  },
+  {
+   "cell": 6,
+   "point": 1
+  },
+  {
+   "cell": 6,
+   "point": 2
+  },
+  {
+   "cell": 6,
+   "point": 3
+  },
+  {
+   "cell": 6,
+   "point": 4
+  },
+  {
+   "cell": 6,
+   "point": 5
+  },
+  {
+   "cell": 6,
+   "point": 6
+  },
+  {
+   "cell": 6,
+   "point": 7
+  },
+  {
+   "cell": 7,
+   "point": 0
+  },
+  {
+   "cell": 7,
+   "point": 1
+  },
+  {
+   "cell": 7,
+   "point": 2
+  },
+  {
+   "cell": 7,
+   "point": 3
+  },
+  {
+   "cell": 7,
+   "point": 4
+  },
+  {
+   "cell": 7,
+   "point": 5
+  },
+  {
+   "cell": 7,
+   "point": 6
+  },
+  {
+   "cell": 7,
+   "point": 7
+  },
+  {
+   "cell": 8,
+   "point": 0
+  },
+  {
+   "cell": 8,
+   "point": 1
+  },
+  {
+   "cell": 8,
+   "point": 2
+  },
+  {
+   "cell": 8,
+   "point": 3
+  },
+  {
+   "cell": 8,
+   "point": 4
+  },
+  {
+   "cell": 8,
+   "point": 5
+  },
+  {
+   "cell": 8,
+   "point": 6
+  },
+  {
+   "cell": 8,
+   "point": 7
+  },
+  {
+   "cell": 9,
+   "point": 0
+  },
+  {
+   "cell": 9,
+   "point": 1
+  },
+  {
+   "cell": 9,
+   "point": 2
+  },
+  {
+   "cell": 9,
+   "point": 3
+  },
+  {
+   "cell": 9,
+   "point": 4
+  },
+  {
+   "cell": 9,
+   "point": 5
+  },
+  {
+   "cell": 9,
+   "point": 6
+  },
+  {
+   "cell": 9,
+   "point": 7
+  },
+  {
+   "cell": 10,
+   "point": 0
+  },
+  {
+   "cell": 10,
+   "point": 1
+  },
+  {
+   "cell": 10,
+   "point": 2
+  },
+  {
+   "cell": 10,
+   "point": 3
+  },
+  {
+   "cell": 10,
+   "point": 4
+  },
+  {
+   "cell": 10,
+   "point": 5
+  },
+  {
+   "cell": 10,
+   "point": 6
+  },
+  {
+   "cell": 10,
+   "point": 7
+  },
+  {
+   "cell": 11,
+   "point": 0
+  },
+  {
+   "cell": 11,
+   "point": 1
+  },
+  {
+   "cell": 11,
+   "point": 2
+  },
+  {
+   "cell": 11,
+   "point": 3
+  },
+  {
+   "cell": 11,
+   "point": 4
+  },
+  {
+   "cell": 11,
+   "point": 5
+  },
+  {
+   "cell": 11,
+   "point": 6
+  },
+  {
+   "cell": 11,
+   "point": 7
+  },
+  {
+   "cell": 12,
+   "point": 0
+  },
+  {
+   "cell": 12,
+   "point": 1
+  },
+  {
+   "cell": 12,
+   "point": 2
+  },
+  {
+   "cell": 12,
+   "point": 3
+  },
+  {
+   "cell": 12,
+   "point": 4
+  },
+  {
+   "cell": 12,
+   "point": 5
+  },
+  {
+   "cell": 12,
+   "point": 6
+  },
+  {
+   "cell": 12,
+   "point": 7
+  },
+  {
+   "cell": 13,
+   "point": 0
+  },
+  {
+   "cell": 13,
+   "point": 1
+  },
+  {
+   "cell": 13,
+   "point": 2
+  },
+  {
+   "cell": 13,
+   "point": 3
+  },
+  {
+   "cell": 13,
+   "point": 4
+  },
+  {
+   "cell": 13,
+   "point": 5
+  },
+  {
+   "cell": 13,
+   "point": 6
+  },
+  {
+   "cell": 13,
+   "point": 7
+  },
+  {
+   "cell": 14,
+   "point": 0
+  },
+  {
+   "cell": 14,
+   "point": 1
+  },
+  {
+   "cell": 14,
+   "point": 2
+  },
+  {
+   "cell": 14,
+   "point": 3
+  },
+  {
+   "cell": 14,
+   "point": 4
+  },
+  {
+   "cell": 14,
+   "point": 5
+  },
+  {
+   "cell": 14,
+   "point": 6
+  },
+  {
+   "cell": 14,
+   "point": 7
+  },
+  {
+   "cell": 15,
+   "point": 0
+  },
+  {
+   "cell": 15,
+   "point": 1
+  },
+  {
+   "cell": 15,
+   "point": 2
+  },
+  {
+   "cell": 15,
+   "point": 3
+  },
+  {
+   "cell": 15,
+   "point": 4
+  },
+  {
+   "cell": 15,
+   "point": 5
+  },
+  {
+   "cell": 15,
+   "point": 6
+  },
+  {
+   "cell": 15,
+   "point": 7
+  },
+  {
+   "cell": 16,
+   "point": 0
+  },
+  {
+   "cell": 16,
+   "point": 1
+  },
+  {
+   "cell": 16,
+   "point": 2
+  },
+  {
+   "cell": 16,
+   "point": 3
+  },
+  {
+   "cell": 16,
+   "point": 4
+  },
+  {
+   "cell": 16,
+   "point": 5
+  },
+  {
+   "cell": 16,
+   "point": 6
+  },
+  {
+   "cell": 16,
+   "point": 7
+  },
+  {
+   "cell": 17,
+   "point": 0
+  },
+  {
+   "cell": 17,
+   "point": 1
+  },
+  {
+   "cell": 17,
+   "point": 2
+  },
+  {
+   "cell": 17,
+   "point": 3
+  },
+  {
+   "cell": 17,
+   "point": 4
+  },
+  {
+   "cell": 17,
+   "point": 5
+  },
+  {
+   "cell": 17,
+   "point": 6
+  },
+  {
+   "cell": 17,
+   "point": 7
+  },
+  {
+   "cell": 18,
+   "point": 0
+  },
+  {
+   "cell": 18,
+   "point": 1
+  },
+  {
+   "cell": 18,
+   "point": 2
+  },
+  {
+   "cell": 18,
+   "point": 3
+  },
+  {
+   "cell": 18,
+   "point": 4
+  },
+  {
+   "cell": 18,
+   "point": 5
+  },
+  {
+   "cell": 18,
+   "point": 6
+  },
+  {
+   "cell": 18,
+   "point": 7
+  },
+  {
+   "cell": 19,
+   "point": 0
+  },
+  {
+   "cell": 19,
+   "point": 1
+  },
+  {
+   "cell": 19,
+   "point": 2
+  },
+  {
+   "cell": 19,
+   "point": 3
+  },
+  {
+   "cell": 19,
+   "point": 4
+  },
+  {
+   "cell": 19,
+   "point": 5
+  },
+  {
+   "cell": 19,
+   "point": 6
+  },
+  {
+   "cell": 19,
+   "point": 7
+  },
+  {
+   "cell": 20,
+   "point": 0
+  },
+  {
+   "cell": 20,
+   "point": 1
+  },
+  {
+   "cell": 20,
+   "point": 2
+  },
+  {
+   "cell": 20,
+   "point": 3
+  },
+  {
+   "cell": 20,
+   "point": 4
+  },
+  {
+   "cell": 20,
+   "point": 5
+  },
+  {
+   "cell": 20,
+   "point": 6
+  },
+  {
+   "cell": 20,
+   "point": 7
+  },
+  {
+   "cell": 21,
+   "point": 0
+  },
+  {
+   "cell": 21,
+   "point": 1
+  },
+  {
+   "cell": 21,
+   "point": 2
+  },
+  {
+   "cell": 21,
+   "point": 3
+  },
+  {
+   "cell": 21,
+   "point": 4
+  },
+  {
+   "cell": 21,
+   "point": 5
+  },
+  {
+   "cell": 21,
+   "point": 6
+  },
+  {
+   "cell": 21,
+   "point": 7
+  },
+  {
+   "cell": 22,
+   "point": 0
+  },
+  {
+   "cell": 22,
+   "point": 1
+  },
+  {
+   "cell": 22,
+   "point": 2
+  },
+  {
+   "cell": 22,
+   "point": 3
+  },
+  {
+   "cell": 22,
+   "point": 4
+  },
+  {
+   "cell": 22,
+   "point": 5
+  },
+  {
+   "cell": 22,
+   "point": 6
+  },
+  {
+   "cell": 22,
+   "point": 7
+  },
+  {
+   "cell": 23,
+   "point": 0
+  },
+  {
+   "cell": 23,
+   "point": 1
+  },
+  {
+   "cell": 23,
+   "point": 2
+  },
+  {
+   "cell": 23,
+   "point": 3
+  },
+  {
+   "cell": 23,
+   "point": 4
+  },
+  {
+   "cell": 23,
+   "point": 5
+  },
+  {
+   "cell": 23,
+   "point": 6
+  },
+  {
+   "cell": 23,
+   "point": 7
+  },
+  {
+   "cell": 24,
+   "point": 0
+  },
+  {
+   "cell": 24,
+   "point": 1
+  },
+  {
+   "cell": 24,
+   "point": 2
+  },
+  {
+   "cell": 24,
+   "point": 3
+  },
+  {
+   "cell": 24,
+   "point": 4
+  },
+  {
+   "cell": 24,
+   "point": 5
+  },
+  {
+   "cell": 24,
+   "point": 6
+  },
+  {
+   "cell": 24,
+   "point": 7
+  },
+  {
+   "cell": 25,
+   "point": 0
+  },
+  {
+   "cell": 25,
+   "point": 1
+  },
+  {
+   "cell": 25,
+   "point": 2
+  },
+  {
+   "cell": 25,
+   "point": 3
+  },
+  {
+   "cell": 25,
+   "point": 4
+  },
+  {
+   "cell": 25,
+   "point": 5
+  },
+  {
+   "cell": 25,
+   "point": 6
+  },
+  {
+   "cell": 25,
+   "point": 7
+  },
+  {
+   "cell": 26,
+   "point": 0
+  },
+  {
+   "cell": 26,
+   "point": 1
+  },
+  {
+   "cell": 26,
+   "point": 2
+  },
+  {
+   "cell": 26,
+   "point": 3
+  },
+  {
+   "cell": 26,
+   "point": 4
+  },
+  {
+   "cell": 26,
+   "point": 5
+  },
+  {
+   "cell": 26,
+   "point": 6
+  },
+  {
+   "cell": 26,
+   "point": 7
+  },
+  {
+   "cell": 27,
+   "point": 0
+  },
+  {
+   "cell": 27,
+   "point": 1
+  },
+  {
+   "cell": 27,
+   "point": 2
+  },
+  {
+   "cell": 27,
+   "point": 3
+  },
+  {
+   "cell": 27,
+   "point": 4
+  },
+  {
+   "cell": 27,
+   "point": 5
+  },
+  {
+   "cell": 27,
+   "point": 6
+  },
+  {
+   "cell": 27,
+   "point": 7
+  },
+  {
+   "cell": 28,
+   "point": 0
+  },
+  {
+   "cell": 28,
+   "point": 1
+  },
+  {
+   "cell": 28,
+   "point": 2
+  },
+  {
+   "cell": 28,
+   "point": 3
+  },
+  {
+   "cell": 28,
+   "point": 4
+  },
+  {
+   "cell": 28,
+   "point": 5
+  },
+  {
+   "cell": 28,
+   "point": 6
+  },
+  {
+   "cell": 28,
+   "point": 7
+  },
+  {
+   "cell": 29,
+   "point": 0
+  },
+  {
+   "cell": 29,
+   "point": 1
+  },
+  {
+   "cell": 29,
+   "point": 2
+  },
+  {
+   "cell": 29,
+   "point": 3
+  },
+  {
+   "cell": 29,
+   "point": 4
+  },
+  {
+   "cell": 29,
+   "point": 5
+  },
+  {
+   "cell": 29,
+   "point": 6
+  },
+  {
+   "cell": 29,
+   "point": 7
+  },
+  {
+   "cell": 30,
+   "point": 0
+  },
+  {
+   "cell": 30,
+   "point": 1
+  },
+  {
+   "cell": 30,
+   "point": 2
+  },
+  {
+   "cell": 30,
+   "point": 3
+  },
+  {
+   "cell": 30,
+   "point": 4
+  },
+  {
+   "cell": 30,
+   "point": 5
+  },
+  {
+   "cell": 30,
+   "point": 6
+  },
+  {
+   "cell": 30,
+   "point": 7
+  },
+  {
+   "cell": 31,
+   "point": 0
+  },
+  {
+   "cell": 31,
+   "point": 1
+  },
+  {
+   "cell": 31,
+   "point": 2
+  },
+  {
+   "cell": 31,
+   "point": 3
+  },
+  {
+   "cell": 31,
+   "point": 4
+  },
+  {
+   "cell": 31,
+   "point": 5
+  },
+  {
+   "cell": 31,
+   "point": 6
+  },
+  {
+   "cell": 31,
+   "point": 7
+  },
+  {
+   "cell": 32,
+   "point": 0
+  },
+  {
+   "cell": 32,
+   "point": 1
+  },
+  {
+   "cell": 32,
+   "point": 2
+  },
+  {
+   "cell": 32,
+   "point": 3
+  },
+  {
+   "cell": 32,
+   "point": 4
+  },
+  {
+   "cell": 32,
+   "point": 5
+  },
+  {
+   "cell": 32,
+   "point": 6
+  },
+  {
+   "cell": 32,
+   "point": 7
+  },
+  {
+   "cell": 33,
+   "point": 0
+  },
+  {
+   "cell": 33,
+   "point": 1
+  },
+  {
+   "cell": 33,
+   "point": 2
+  },
+  {
+   "cell": 33,
+   "point": 3
+  },
+  {
+   "cell": 33,
+   "point": 4
+  },
+  {
+   "cell": 33,
+   "point": 5
+  },
+  {
+   "cell": 33,
+   "point": 6
+  },
+  {
+   "cell": 33,
+   "point": 7
+  },
+  {
+   "cell": 34,
+   "point": 0
+  },
+  {
+   "cell": 34,
+   "point": 1
+  },
+  {
+   "cell": 34,
+   "point": 2
+  },
+  {
+   "cell": 34,
+   "point": 3
+  },
+  {
+   "cell": 34,
+   "point": 4
+  },
+  {
+   "cell": 34,
+   "point": 5
+  },
+  {
+   "cell": 34,
+   "point": 6
+  },
+  {
+   "cell": 34,
+   "point": 7
+  },
+  {
+   "cell": 35,
+   "point": 0
+  },
+  {
+   "cell": 35,
+   "point": 1
+  },
+  {
+   "cell": 35,
+   "point": 2
+  },
+  {
+   "cell": 35,
+   "point": 3
+  },
+  {
+   "cell": 35,
+   "point": 4
+  },
+  {
+   "cell": 35,
+   "point": 5
+  },
+  {
+   "cell": 35,
+   "point": 6
+  },
+  {
+   "cell": 35,
+   "point": 7
+  }
+ ],
+ "script_sha256": "1ee99a87bcb83f813494b66778e6d0be55bde98754c2b05e1ca25e05df0a93a3",
+ "job_id": null
+}

@@ -1,0 +1,16 @@
+{
+ "job_id": "dbilc0ghoj4c73b6fkq0",
+ "submitted": "2026-10-31T02:44:02+00:00 (2026-10-31 03:44:02 CET)",
+ "local": false,
+ "backend": "ibm_fez",
+ "trained_for": "ibm_fez",
+ "tried": [
+  {
+   "backend": "ibm_fez",
+   "calibration": "2026-10-31 03:24:44+01:00",
+   "reasons": []
+  }
+ ],
+ "calibration_at_submit": "2026-10-31 03:24:44+01:00",
+ "options": "dynamical decoupling off, twirling off (gates and measure); SamplerV2 applies no other error mitigation"
+}

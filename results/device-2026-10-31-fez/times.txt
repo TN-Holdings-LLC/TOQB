@@ -1,0 +1,7 @@
+toqb c16ba80 README: Paper 5 version 1.0, DOI 10.5281/zenodo.2382
+note 6011c2404d78c7cc8165d1a7dd4314b03889f9a5974e59fd2797a7fad02ebdce  prereg/drafts-2026-10-30/fez_rule_only_note.md
+tests 28 passed in 131.24s (0:02:11)
+fetch ibm_fez 2026-10-31 03:16:45+01:00 06d7f9837aa90c491ff0d6e53833c567f7d48f0cdd1de51f5128ac1f1c5ba8bf
+n 20 36 40 72; hz 0 0.1 0.3; one-way L 12 25 50; h 0.6; shots 500; arm fold:rule
+start 2026-10-31 03:32:57 CET
+end 2026-10-31 03:38:08 CET
