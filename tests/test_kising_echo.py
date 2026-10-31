@@ -140,3 +140,14 @@ def test_frame_flip_keeps_the_ideal_circuit():
     assert sum(1 for i in ff.data if i.operation.name == "x") == 2 * 3 * 2  # layers 2 and 4, before and after
     strip = lambda c: c.remove_final_measurements(inplace=False)  # noqa: E731
     assert Operator(strip(ff)).equiv(Operator(strip(qc)))
+
+
+
+def test_local_frame_flip_keeps_the_ideal_circuit():
+    from qiskit.quantum_info import Operator
+    from toqb import kising_echo as KE
+    qc = KE.circuit([0, 1, 0, 1, 1, 0, 0, 1], 8, 2, 0.6, 0.0)
+    strip = lambda c: c.remove_final_measurements(inplace=False)  # noqa: E731
+    for sites in ([2], [2, 4], [1, 3, 5]):
+        ff = KE.frame_flip(qc, 8, sites)
+        assert Operator(strip(ff)).equiv(Operator(strip(qc)))

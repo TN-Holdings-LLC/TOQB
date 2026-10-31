@@ -13,7 +13,7 @@ import numpy as np
 from toqb import echo_tomo as ET
 from toqb import kising_charge as KC
 
-NAME = re.compile(r"kecho_n(\d+)_D(\d+)_hz([0-9.]+)_h([0-9.]+)-fold_rule(_ff)?$")
+NAME = re.compile(r"kecho_n(\d+)_D(\d+)_hz([0-9.]+)_h([0-9.]+)-fold_rule(_ff|_lf)?$")
 
 
 def read(job, runs):
@@ -31,7 +31,8 @@ def read(job, runs):
         if KC.sha256_file(rf) != c["run_sha256"]:
             raise SystemExit(f"STOP: {rf} differs from the manifest")
         rec = json.load(open(rf))
-        n, D, ff = rec["task"]["n"], rec["echo"]["D"], bool(rec["echo"].get("frame_flip"))
+        n, D = rec["task"]["n"], rec["echo"]["D"]
+        ff = "ff" if rec["echo"].get("frame_flip") else "lf" if rec["echo"].get("flip_sites") else "off"
         cc = {rec["points"][pub["point"]]["input"]: rows[k] for k, pub in enumerate(man["pubs"])
               if pub["cell"] == cid and rec["points"][pub["point"]]["setting"] == "echo"}
         a, se = ET.aligned(cc, n)
@@ -72,8 +73,8 @@ def main(argv):
         row = dict(phys=phys, a=[float(x) for x in v], se=[float(x) for x in se], all=mean_se(v, se, list(range(n))))
         if g:
             row["block"], row["rest"] = mean_se(v, se, g), mean_se(v, se, r)
-        res["cells"][f"n{n}_D{D}_{'ff' if ff else 'off'}"] = row
-        line = f"n {n} D {D} {'FF ' if ff else 'off'}: all {row['all'][0]:+.3f}"
+        res["cells"][f"n{n}_D{D}_{ff}"] = row
+        line = f"n {n} D {D} {ff:3s}: all {row['all'][0]:+.3f}"
         if g:
             line += f"; block {row['block'][0]:+.3f} +- {row['block'][1]:.3f}; rest {row['rest'][0]:+.3f}"
         print(line)
@@ -89,6 +90,25 @@ def main(argv):
         res[f"J_D{D}"] = e
         print(f"{'J' if D == a.D else ' '} n {a.n} D {D}: block FF - off {d:+.3f} +- {s:.3f} -> {e['verdict']}; "
               f"recovered (block >= 0.8 x rest with FF): {'YES' if rec else 'NO'}; rest FF - off {e['rest_diff']:+.3f}")
+    for D in sorted({D for (n, D, ff) in data if n == a.n}):
+        off, lf, gf = (res["cells"].get(f"n{a.n}_D{D}_{m}") for m in ("off", "lf", "ff"))
+        if not (off and lf):
+            continue
+        d = lf["block"][0] - off["block"][0]
+        s_ = float(np.hypot(lf["block"][1], off["block"][1]))
+        dr = lf["rest"][0] - off["rest"][0]
+        sr = float(np.hypot(lf["rest"][1], off["rest"][1]))
+        e = dict(diff=d, se=s_, verdict=verdict(d, s_), recovered=bool(lf["block"][0] >= 0.8 * lf["rest"][0]),
+                 rest_diff=dr, rest_se=sr, rest="NO COST" if dr >= -2 * sr else "COSTS")
+        if gf:
+            dg = lf["block"][0] - gf["block"][0]
+            sg = float(np.hypot(lf["block"][1], gf["block"][1]))
+            e.update(vs_global=dg, vs_global_se=sg, keeps="KEEPS" if dg >= -2 * sg else "LOSES")
+        res[f"L_D{D}"] = e
+        print(f"{'L' if D == a.D else ' '} n {a.n} D {D}: block local - off {d:+.3f} +- {s_:.3f} -> {e['verdict']}; "
+              f"rest local - off {dr:+.3f} +- {sr:.3f} -> {e['rest']}"
+              + (f"; block local - global {e['vs_global']:+.3f} +- {e['vs_global_se']:.3f} -> {e['keeps']}" if gf else "")
+              + f"; recovered: {'YES' if e['recovered'] else 'NO'}")
     off, on = res["cells"].get(f"n{a.control_n}_D{a.D}_off"), res["cells"].get(f"n{a.control_n}_D{a.D}_ff")
     if off and on:
         d, s = on["all"][0] - off["all"][0], float(np.hypot(on["all"][1], off["all"][1]))
