@@ -1,0 +1,9 @@
+[n 40 L 6 off] kecho_n40_D12_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 480 two-qubit gates = 12 x 40: ACCEPTED, 4.79 us; valid True
+[n 40 L 6 --frame-flip] kecho_n40_D12_hz0_h0.6-fold_rule_ff: 8 circuits (4 echo + 4 references), 480 two-qubit gates = 12 x 40: ACCEPTED, 4.98 us; valid True
+[n 40 L 12 off] kecho_n40_D24_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 960 two-qubit gates = 24 x 40: ACCEPTED, 7.33 us; valid True
+[n 40 L 12 --frame-flip] kecho_n40_D24_hz0_h0.6-fold_rule_ff: 8 circuits (4 echo + 4 references), 960 two-qubit gates = 24 x 40: ACCEPTED, 7.72 us; valid True
+[n 20 L 12 off] kecho_n20_D24_hz0_h0.6-fold_rule: 8 circuits (4 echo + 4 references), 480 two-qubit gates = 24 x 20: ACCEPTED, 7.33 us; valid True
+[n 20 L 12 --frame-flip] kecho_n20_D24_hz0_h0.6-fold_rule_ff: 8 circuits (4 echo + 4 references), 480 two-qubit gates = 24 x 20: ACCEPTED, 7.72 us; valid True
+n40 D24 off: byte-identical to 30 October (42376e3f9ca59862f98caa777c1b95b25a32d50ee31f1b8a1a1f679ac1998d38)
+n 20: 1 ring(s) over off and flip: [3, 4, 5, 6, 7, 17, 27, 26, 25, 37, 45, 44, 43, 42, 41, 36, 21, 22, 23, 16]
+n 40: 1 ring(s) over off and flip: [3, 4, 5, 6, 7, 17, 27, 28, 29, 38, 49, 50, 51, 52, 53, 54, 55, 59, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 56, 43, 42, 41, 36, 21, 22, 23, 16]

@@ -130,3 +130,13 @@ def test_end_to_end_on_a_fake_device(tmp_path):
     for c in res["cells"]:
         assert 0.2 < c["rho4"] < 1.2 and c["se4"] > 0
     assert len(res["duels"]) == 2 and "0.3" in res["walls"]
+
+
+def test_frame_flip_keeps_the_ideal_circuit():
+    from qiskit.quantum_info import Operator
+    from toqb import kising_echo as KE
+    qc = KE.circuit([0, 1, 0, 1, 1, 0], 6, 2, 0.6, 0.0)
+    ff = KE.frame_flip(qc, 6)
+    assert sum(1 for i in ff.data if i.operation.name == "x") == 2 * 3 * 2  # layers 2 and 4, before and after
+    strip = lambda c: c.remove_final_measurements(inplace=False)  # noqa: E731
+    assert Operator(strip(ff)).equiv(Operator(strip(qc)))

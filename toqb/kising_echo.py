@@ -115,6 +115,36 @@ def circuit(bits, n, L, h, hz):
     return TL.model_circuit(angles(bits, n, L, h, hz), n, 2 * L)
 
 
+def frame_flip(qc, n):
+    """The same circuit with X on the even ring qubits just before and just after the CZ ring of every even layer.
+    On an even ring every CZ (q, q+1) has exactly one flipped end and X_q CZ X_q = Z_a CZ, so each odd qubit picks up
+    Z twice: X_E (CZ ring) X_E = CZ ring exactly and the ideal circuit is unchanged. A coherent ZZ phase error on a CZ
+    changes sign under the flip, so alternate layers cancel it (exact for the mirror echo in simulation, 2026-10-31)."""
+    from qiskit import QuantumCircuit
+    if n % 2:
+        raise ValueError("frame flip needs an even ring")
+    out = QuantumCircuit(*qc.qregs, *qc.cregs, name=qc.name)
+    incz, layer = False, 0
+
+    def flips():
+        if layer % 2 == 0:
+            for q in range(0, n, 2):
+                out.x(out.qubits[q])
+    for i in qc.data:
+        nm = i.operation.name
+        if nm == "cz" and not incz:
+            incz, layer = True, layer + 1
+            flips()
+        elif nm != "cz" and incz:
+            incz = False
+            flips()
+        out.append(i.operation, [out.qubits[qc.find_bit(q).index] for q in i.qubits],
+                   [out.clbits[qc.find_bit(c).index] for c in i.clbits])
+    if incz:
+        flips()
+    return out
+
+
 def q2_count(c):
     return sum(1 for i in c.data if len(i.qubits) == 2 and i.operation.name not in ("barrier", "measure"))
 
@@ -185,6 +215,7 @@ def cmd_build(argv):
     p.add_argument("--hz", type=float, required=True)
     p.add_argument("--h", type=float, default=0.6)
     p.add_argument("--shots", type=int, default=500)
+    p.add_argument("--frame-flip", action="store_true", help="X frames on the even ring qubits in even layers")
     a = p.parse_args(argv)
     if a.n % 2:
         print("STOP: n must be even (Neel inputs)", file=sys.stderr)
@@ -199,7 +230,7 @@ def cmd_build(argv):
         print("STOP: target.pkl differs from fetch.json's hash", file=sys.stderr)
         return 2
     D = 2 * a.L
-    name = f"kecho_n{a.n}_D{D}_hz{a.hz:g}_h{a.h:g}-{a.arm.replace(':', '_')}"
+    name = f"kecho_n{a.n}_D{D}_hz{a.hz:g}_h{a.h:g}-{a.arm.replace(':', '_')}" + ("_ff" if a.frame_flip else "")
     os.makedirs(a.out, exist_ok=True)
     jf, qf = os.path.join(a.out, name + ".json"), os.path.join(a.out, name + ".qpy")
     for f in (jf, qf):
@@ -214,7 +245,8 @@ def cmd_build(argv):
     R = S2.Runner(plan, a.arm)
     cs, points = [], []
     for i in INPUTS:
-        cs.append(R.arm.compile(circuit(KC.input_bits(i, a.n), a.n, a.L, a.h, a.hz)))
+        lc = circuit(KC.input_bits(i, a.n), a.n, a.L, a.h, a.hz)
+        cs.append(R.arm.compile(frame_flip(lc, a.n) if a.frame_flip else lc))
         points.append(dict(input=i, setting="echo"))
     meas0 = None
     for i in INPUTS:
@@ -236,7 +268,7 @@ def cmd_build(argv):
     rec = dict(kind="s2rc", lam_test=True, echo_test=True, arm=a.arm, seed=0, plan=plan["name"], task=task,
                predict=pr, standin=plan["standin"], verify=False, device=plan["device"],
                target_sha256=fj["target_sha256"], version=R.arm.version(), final_mean=[], loops=0, started=S._cest(),
-               echo=dict(h=a.h, hz=a.hz, L_half=a.L, D=D, inputs=list(INPUTS), turn="flip W = X^n",
+               echo=dict(h=a.h, hz=a.hz, L_half=a.L, D=D, inputs=list(INPUTS), turn="flip W = X^n", frame_flip=bool(a.frame_flip),
                          measured_qubits={str(k): v for k, v in sorted(meas0.items())},
                          q2_per_layer=per, q2_circuits=q2s, accepted=bool(accepted)),
                points=points, inputs=[KC.input_bits(p_["input"], a.n) for p_ in points],
