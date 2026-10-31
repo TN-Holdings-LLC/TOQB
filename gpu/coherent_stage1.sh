@@ -1,5 +1,5 @@
 #!/bin/bash
-# Coherent-error stage 1 (prereg/drafts-2026-10-31/coherent_stage1_DRAFT.md; a draft until the owner fixes it):
+# Black stage 1 (prereg/drafts-2026-10-31/black_stage1_note.md; from coherent_stage1_DRAFT.md):
 # where does the signal of kingston's dead run go? The rule's mirror echo, rule only, hz 0, h 0.6, 1000 shots, one job:
 #   n = 40: Z at one-way L 1 2 3 4 6 8 10 12 (D 2 ... 24); X and Y at L 6 and 12 (D 12, 24)
 #   n = 20 (control): Z at L 6 and 12; X and Y at L 12
@@ -8,7 +8,7 @@
 set -u
 W=$(pwd); TQ=${TOQB_DIR:-$W/TOQB}; VA=${VENV_ACT:-$W/venv/bin/activate}
 FETCH=${FETCH:?set FETCH}; OUT=${OUT:?set OUT}
-NOTE=${NOTE:-prereg/drafts-2026-10-31/coherent_stage1_DRAFT.md}; DEVICE=${DEVICE:-ibm_kingston}
+NOTE=${NOTE:-prereg/drafts-2026-10-31/black_stage1_note.md}; DEVICE=${DEVICE:-ibm_kingston}
 H=0.6; SHOTS=1000; MAX=60
 # the n = 40, D = 24, Z circuit of 30 October (rerun, test 3E, options test): QPY SHA-256
 REF40=42376e3f9ca59862f98caa777c1b95b25a32d50ee31f1b8a1a1f679ac1998d38
