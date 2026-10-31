@@ -1,0 +1,9 @@
+n 20 D 24 off: all +0.350
+n 20 D 24 FF : all +0.239
+n 40 D 12 off: all +0.538; block +0.272 +- 0.004; rest +0.752
+n 40 D 12 FF : all +0.589; block +0.550 +- 0.004; rest +0.722
+n 40 D 24 off: all +0.160; block -0.197 +- 0.005; rest +0.389
+n 40 D 24 FF : all +0.214; block +0.098 +- 0.005; rest +0.354
+  n 40 D 12: block FF - off +0.278 +- 0.006 -> HELPS; recovered (block >= 0.8 x rest with FF): NO; rest FF - off -0.030
+J n 40 D 24: block FF - off +0.295 +- 0.007 -> HELPS; recovered (block >= 0.8 x rest with FF): NO; rest FF - off -0.035
+  control n 20 D 24: FF - off -0.110 +- 0.005 -> HURTS

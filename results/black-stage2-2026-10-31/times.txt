@@ -1,0 +1,6 @@
+toqb 5174dc8 Declare black stage 2 (owner's go of 2026-10-31 13:3
+note 72aedffa79a448799a998d80c57d42b2509786e95d860ef6c2fe4b5894f3f8cc  prereg/drafts-2026-10-31/black_stage2_note.md
+tests 9 passed in 74.27s (0:01:14)
+fetch ibm_kingston 2026-10-31 13:13:30+01:00 804d4da259afc63c68091e10a4b11a13a85767358502f66e8299fb2bcb78c975
+start 2026-10-31 13:45:40 CET
+end 2026-10-31 13:46:39 CET
