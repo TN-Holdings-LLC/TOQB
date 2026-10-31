@@ -1,0 +1,8 @@
+toqb e189efd Declare the black bisection (owner's go of 2026-10-3
+note 3697ce48b156fd858d1b3b1838838faf5e3400849c70b7156dd4ba24abbe9abd  prereg/drafts-2026-10-31/black_bisect_note.md
+tests 10 passed in 82.31s (0:01:22)
+fetch ibm_kingston 2026-10-31 14:58:44+01:00 3b8332f11a419786b720a268730495be087ca85bc201fa2d6a753a1ce5bd4342
+arm A positions 0,2,4,6,8,10,12,14,16,18
+arm B positions 20,22,24,26,28,30,32,34,36,38
+start 2026-10-31 15:13:10 CET
+end 2026-10-31 15:14:41 CET
