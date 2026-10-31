@@ -54,3 +54,19 @@ def test_shifted_runs_merge_to_their_common_core():
            _obs("j2", "2026-10-30 14:00:00", list(range(80, 92)), (88, 87, 86, 85))]
     ent = DL.entries(obs, min_repeats=2, expiry_days=7)
     assert len(ent) == 1 and ent[0]["status"] == "LISTED" and ent[0]["centre"] == [87, 86, 85]
+
+
+def test_usable_and_coverage_verdict():
+    a = np.array([0.5, 0.0, 0.0, 0.0, 0.5, 0.05, 0.5, 0.0, 0.0])  # one dead run (1-3); 5 and 7-8 are too short
+    assert DL.usable(a, 0.12, 3) == [0, 4, 5, 6, 7, 8]
+    assert DL.usable(a, 0.12, 2) == [0, 4, 5, 6]
+    assert DL.coverage_verdict(22, 40) == "WIDER"
+    assert DL.coverage_verdict(22, 23) == "SAME"
+    assert DL.coverage_verdict(40, 30) == "NARROWER"
+
+
+def test_path_present():
+    phys = [10, 11, 12, 13, 14, 15]
+    a = np.array([0.5, 0.0, 0.0, 0.0, 0.5, 0.5])
+    assert DL.path_present(phys, a, (11, 12, 13, 14)) is True
+    assert DL.path_present(phys, a, (13, 14, 15)) is False

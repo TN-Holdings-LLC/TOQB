@@ -13,6 +13,8 @@ reads a calibration number; the list comes only from the user's own runs.
     python -m toqb.defect_list status LIST.json [--min-repeats 2] [--expiry-days 7] [--now ISO]
     python -m toqb.defect_list place FETCH N LIST.json [--min-repeats 2] [--expiry-days 7] [--now ISO]
     python -m toqb.defect_list mask FETCH LIST.json OUT_FETCH [--min-repeats 2] [--expiry-days 7] [--now ISO]
+    python -m toqb.defect_list coverage JOB_A RUNS_A [--b JOB_B RUNS_B] [--paths 28-29-38-49,...] --out F
+    (ingest takes --base OLD.json to keep the earlier observations in front: the list grows day by day)
 
 `mask` writes a copy of the day's fetch in which the middle coupler of every listed path is marked failed (error 1),
 so that the unchanged build tools (toqb.kising_echo build with the fold:rule arm) place around the list; its
@@ -259,6 +261,59 @@ def mask_target(target, listed_paths):
     return t2, masked
 
 
+# ------------------------------------------------------------------------------------------------ coverage
+
+def usable(a, thr=0.12, min_len=3):
+    """Ring sites outside every dead run: the part of the ring that still carries information."""
+    n = len(a)
+    dead = set()
+    for st, ln in dead_runs(np.asarray(a), thr, min_len):
+        dead.update((st + t) % n for t in range(ln))
+    return [j for j in range(n) if j not in dead]
+
+
+def coverage_verdict(u_a, u_b, margin=3):
+    """WIDER: the avoiding ring keeps at least `margin` more usable sites than the standard ring at the same n;
+    NARROWER: at least `margin` fewer; SAME otherwise (margin = the shortest dead run)."""
+    d = u_b - u_a
+    return "WIDER" if d >= margin else "NARROWER" if d <= -margin else "SAME"
+
+
+def path_present(phys, a, path, thr=0.12, min_len=3, need=2):
+    """True if a dead run of this ring holds at least `need` qubits of the path."""
+    n = len(phys)
+    for st, ln in dead_runs(np.asarray(a), thr, min_len):
+        if len({phys[(st + t) % n] for t in range(ln)} & set(path)) >= need:
+            return True
+    return False
+
+
+def coverage(job_a, runs_a, job_b=None, runs_b=None, paths=(), thr=0.12, min_len=3):
+    """Per ring size: usable sites on the standard ring (job A) and on the avoiding ring (job B, if run), the mean
+    signal over the usable sites, the dead runs, the verdict, and whether each listed path is dead on job A's ring."""
+    pa = job_profiles(job_a, runs_a)[0]
+    pb = job_profiles(job_b, runs_b)[0] if job_b else {}
+    out = {}
+    for n in sorted(pa):
+        row = {}
+        for tag, prof in (("A", pa), ("B", pb)):
+            if n not in prof:
+                continue
+            phys, a = prof[n]
+            u = usable(a, thr, min_len)
+            row[tag] = dict(ring=list(phys), usable=len(u), mean_usable=float(np.mean(a[u])) if u else None,
+                            mean_all=float(np.mean(a)),
+                            dead=[dict(start=st, length=ln, qubits=[phys[(st + t) % n] for t in range(ln)])
+                                  for st, ln in dead_runs(a, thr, min_len)])
+        if "B" in row:
+            row["verdict"] = coverage_verdict(row["A"]["usable"], row["B"]["usable"])
+        phys, a = pa[n]
+        row["paths"] = {"-".join(map(str, p)): (path_present(phys, a, p, thr, min_len) if contains_path(phys, p)
+                                                 else None) for p in paths}
+        out[n] = row
+    return out
+
+
 # ------------------------------------------------------------------------------------------------ CLI
 
 def _parse_obs(items):
@@ -280,6 +335,15 @@ def main(argv):
     a1.add_argument("--thr", type=float, default=0.12)
     a1.add_argument("--min-len", type=int, default=3)
     a1.add_argument("--centre", type=int, default=4)
+    a1.add_argument("--base", default=None, help="an earlier list file whose observations are kept in front")
+    c1 = sp.add_parser("coverage")
+    c1.add_argument("job_a")
+    c1.add_argument("runs_a")
+    c1.add_argument("--b", nargs=2, metavar=("JOB_B", "RUNS_B"), default=None)
+    c1.add_argument("--paths", default="", help="listed paths to check on job A's ring, e.g. 28-29-38-49,9-10-11")
+    c1.add_argument("--thr", type=float, default=0.12)
+    c1.add_argument("--min-len", type=int, default=3)
+    c1.add_argument("--out", required=True)
     for name in ("status", "place", "mask"):
         a = sp.add_parser(name)
         if name in ("place", "mask"):
@@ -297,11 +361,39 @@ def main(argv):
         if os.path.exists(a.out):
             raise SystemExit(f"STOP: {a.out} exists")
         obs = observe(_parse_obs(a.obs), a.thr, a.min_len, a.centre)
-        json.dump(dict(params=dict(thr=a.thr, min_len=a.min_len, centre=a.centre), observations=obs),
+        prev = []
+        if a.base:
+            b = json.load(open(a.base))
+            if b["params"] != dict(thr=a.thr, min_len=a.min_len, centre=a.centre):
+                raise SystemExit(f"STOP: {a.base} was made with other parameters {b['params']}")
+            prev = b["observations"]
+            seen = {(o["device"], o["job"], o["n"]) for o in prev}
+            dup = [o for o in obs if (o["device"], o["job"], o["n"]) in seen]
+            if dup:
+                raise SystemExit(f"STOP: job {dup[0]['job']} n {dup[0]['n']} is already in {a.base}")
+        json.dump(dict(params=dict(thr=a.thr, min_len=a.min_len, centre=a.centre), observations=prev + obs,
+                       base=(dict(file=os.path.basename(a.base), sha256=KC.sha256_file(a.base)) if a.base else None)),
                   open(a.out, "w"), indent=1)
         for o in obs:
             print(f"{o['device']} {o['label']} n {o['n']}: median {o['median']:.2f}; dead runs "
                   + ("; ".join(f"{d['length']} sites, centre {d['centre']}" for d in o["dead"]) or "none"))
+        return 0
+    if a.cmd == "coverage":
+        if os.path.exists(a.out):
+            raise SystemExit(f"STOP: {a.out} exists")
+        paths = [tuple(int(x) for x in t.split("-")) for t in a.paths.split(",") if t]
+        cov = coverage(a.job_a, a.runs_a, *(a.b or (None, None)), paths=paths, thr=a.thr, min_len=a.min_len)
+        json.dump(dict(params=dict(thr=a.thr, min_len=a.min_len), job_a=a.job_a, job_b=a.b[0] if a.b else None,
+                       sizes={str(n): r for n, r in cov.items()}), open(a.out, "w"), indent=1)
+        for n, r in cov.items():
+            line = f"n {n}: usable A {r['A']['usable']}/{n} (signal {r['A']['mean_usable'] or 0:+.3f})"
+            if "B" in r:
+                line += (f", B {r['B']['usable']}/{n} (signal {r['B']['mean_usable'] or 0:+.3f})"
+                         f" -> {r['verdict']}")
+            pres = {k: v for k, v in r["paths"].items() if v is not None}
+            if pres:
+                line += "; on A's ring: " + ", ".join(f"[{k}] {'PRESENT' if v else 'ABSENT'}" for k, v in pres.items())
+            print(line)
         return 0
     data = json.load(open(a.list))
     now = dt.datetime.fromisoformat(a.now) if a.now else None

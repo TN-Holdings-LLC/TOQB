@@ -1,3 +1,5 @@
+**Superseded on 31 October by `coverage_days_note.md` (the owner's direction: judge the usable part; a rolling list). Kept as the record of the draft.**
+
 # Defect days: does the kingston defect persist, and does avoiding it help? (DRAFT, home, 2026-10-31; NOT FIXED — the owner confirms every item before it is fixed by SHA-256 and CET time)
 
 **Why.** Paper 5 found an 18-site dead run on ibm_kingston's n = 40 ring, the same in three runs on 30 October and

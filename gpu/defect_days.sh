@@ -1,15 +1,19 @@
 #!/bin/bash
-# Defect days (prereg/drafts-2026-10-31/defect_days_DRAFT.md; a draft until the owner fixes it): per day on ibm_kingston,
-# job A = the rule's echo at n 20 40 72 on the standard placement; job B = n 40 72 on the placement masked by the
-# frozen defect list (toqb.defect_list mask). D = 24, hz 0, 1000 shots. CPU only.
-#   FETCH=DAY/fetch OUT=DAY/defect LIST=results/defect-list-replay-2026-10-31/observations.json bash TOQB/gpu/defect_days.sh
+# Coverage days (prereg/drafts-2026-10-31/coverage_days_note.md): per day and device, job A = the rule's echo at
+# n 20 40 72 on the standard placement; job B = n 40 72 on the placement masked by the defect list as it stands that
+# morning (toqb.defect_list mask: LISTED paths of this device, 2 jobs, 7-day expiry). D = 24, hz 0, 1000 shots. CPU
+# only; nothing is submitted here. Works for any device; a size whose masked ring equals the standard ring is dropped
+# from job B. After the results: gpu/defect_days_score.sh (coverage, and the list for the next day).
+#   FETCH=DAY/fetch OUT=DAY/cover LIST=<list file> [DEVICE=ibm_kingston] bash TOQB/gpu/defect_days.sh
 set -u
 W=$(pwd); TQ=${TOQB_DIR:-$W/TOQB}; VA=${VENV_ACT:-$W/venv/bin/activate}
-FETCH=${FETCH:?set FETCH}; OUT=${OUT:?set OUT}; LIST=${LIST:-results/defect-list-replay-2026-10-31/observations.json}
-NOTE=${NOTE:-prereg/drafts-2026-10-31/defect_days_DRAFT.md}; DEVICE=${DEVICE:-ibm_kingston}; NOW=${NOW:-2026-10-31T12:00:00}
+FETCH=${FETCH:?set FETCH}; OUT=${OUT:?set OUT}; LIST=${LIST:-$TQ/results/defect-list-replay-2026-10-31/observations.json}
+NOTE=${NOTE:-prereg/drafts-2026-10-31/coverage_days_note.md}; DEVICE=${DEVICE:-ibm_kingston}
+NOW=${NOW:-$(TZ=Europe/Zurich date '+%Y-%m-%dT%H:%M:%S')}
+FETCH=$(realpath "$FETCH"); OUT=$(realpath -m "$OUT"); LIST=$(realpath "$LIST")
 [ -d "$TQ" ] && [ -f "$FETCH/target.pkl" ] && [ -f "$FETCH/fetch.json" ] || { echo "STOP: needs TOQB and a fetch"; exit 1; }
 [ -e "$OUT" ] && { echo "STOP: $OUT exists"; exit 1; }
-[ -f "$TQ/$NOTE" ] && [ -f "$TQ/$LIST" ] || { echo "STOP: no declaration or no list"; exit 1; }
+[ -f "$TQ/$NOTE" ] && [ -f "$LIST" ] || { echo "STOP: no declaration or no list"; exit 1; }
 FB=$(python3 -c "import json,sys; print(json.load(open(sys.argv[1]))['backend'])" "$FETCH/fetch.json")
 [ "$FB" = "$DEVICE" ] || { echo "STOP: the fetch is of $FB, not $DEVICE"; exit 1; }
 [ -f "$VA" ] && . "$VA"
@@ -20,8 +24,11 @@ python -m pytest -q tests/test_kising_echo.py tests/test_defect_list.py > "$OUT/
 tail -1 "$OUT/check_tests.log" | grep -q " passed" && ! tail -1 "$OUT/check_tests.log" | grep -q "failed" || { echo "STOP: tests (see check_tests.log)"; exit 1; }
 { echo "toqb $(git log --oneline -1 | cut -c1-60)"; echo "note $(sha256sum $NOTE)"; echo "list $(sha256sum $LIST)";
   echo "fetch $(python -c "import json,sys; f=json.load(open(sys.argv[1])); print(f['backend'], f['calibration_time'], f['target_sha256'])" "$FETCH/fetch.json")";
-  echo "start $(TZ=Europe/Zurich date '+%Y-%m-%d %H:%M:%S %Z')"; } | tee "$OUT/times.txt"
+  echo "device $DEVICE; list date $NOW"; echo "start $(TZ=Europe/Zurich date '+%Y-%m-%d %H:%M:%S %Z')"; } | tee "$OUT/times.txt"
+cp "$LIST" "$OUT/list_before.json"
+python -m toqb.defect_list status "$LIST" --now "$NOW" | grep "^$DEVICE " | tee "$OUT/list_status.txt"
 python -m toqb.defect_list mask "$FETCH" "$LIST" "$OUT/fetch_masked" --now "$NOW" | tee "$OUT/mask.txt"
+[ -f "$OUT/fetch_masked/target.pkl" ] || { echo "STOP: mask failed"; exit 1; }
 for n in 20 40 72; do
   python -m toqb.kising_echo build "$FETCH" "$OUT/runs_A" --arm fold:rule --n $n --L 12 --hz 0 --h 0.6 --shots 1000 2>&1 \
     | grep -v Warn | tail -1 | sed "s/^/[A] /" | tee -a "$OUT/build.txt"
@@ -48,5 +55,6 @@ python -m toqb.s2rc_device assemble --fetch "$FETCH" --runs "$OUT/runs_A" --out 
 if ls "$OUT"/runs_B/*.json >/dev/null 2>&1; then
   python -m toqb.s2rc_device assemble --fetch "$OUT/fetch_masked" --runs "$OUT/runs_B" --out "$OUT/job_B" --max-seconds 30 | tail -2 | tee -a "$OUT/assemble.txt"
 fi
+[ -f "$OUT/job_A/manifest.json" ] || { echo "STOP: no job A (see assemble.txt)"; exit 1; }
 echo "end $(TZ=Europe/Zurich date '+%Y-%m-%d %H:%M:%S %Z')" | tee -a "$OUT/times.txt"
-echo "== DONE: $OUT/job_A $OUT/job_B"
+echo "== DONE: $OUT/job_A $( [ -f "$OUT/job_B/manifest.json" ] && echo "$OUT/job_B" || echo '(no job B: no listed path on the standard rings)')"

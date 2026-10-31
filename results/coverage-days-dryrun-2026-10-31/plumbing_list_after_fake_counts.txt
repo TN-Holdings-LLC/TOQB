@@ -1,0 +1,3 @@
+ibm_kingston centre [11, 10, 9]: LISTED (2 sightings in 2 jobs, last 2026-10-30 14:12:21; contradictions 0)
+ibm_kingston centre [28, 29, 38, 49]: LISTED (5 sightings in 4 jobs, last 2026-11-01 10:05:00; contradictions 0)
+ibm_kingston centre [87, 86, 85]: LISTED (2 sightings in 2 jobs, last 2026-10-30 14:12:21; contradictions 0)
