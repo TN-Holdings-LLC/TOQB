@@ -1,0 +1,6 @@
+$ python3 qca_fix.py   (n = 10, block 4, 5, 6; n layers of (H, CZ ring) = identity; RZZ error after every CZ touching
+  the block; exact state vectors; probability of the right 10-bit string, mean over 4 random inputs)
+eps 0.0 off: 1.000 | local 4,6: 1.000 | global: 1.000
+eps 0.1 off: 0.923 | local 4,6: 0.939 | global: 0.920
+eps 0.2 off: 0.705 | local 4,6: 0.684 | global: 0.674
+The frame flip that cancels these errors exactly in the mirror echo gains nothing on this non-mirror circuit.
