@@ -1,0 +1,4 @@
+2 cells, 16 circuits x 1000 shots: predicted QPU time 7.9 s (limit 25.0 s)
+2026-11-01T14:48:18+00:00 (2026-11-01 15:48:18 CET) manifest written before any submission: /tmp/claude-0/-home-claude/69d0c1ec-ce3d-5118-b9a2-cad8250cf611/scratchpad/m3bdry/m/job_S/manifest.json, sha256 73c21cd889ff84a8df9252a607a4e59c42f35ba7c630423251bd3333887cb4e5
+2 cells, 16 circuits x 1000 shots: predicted QPU time 7.9 s (limit 25.0 s)
+2026-11-01T14:48:19+00:00 (2026-11-01 15:48:19 CET) manifest written before any submission: /tmp/claude-0/-home-claude/69d0c1ec-ce3d-5118-b9a2-cad8250cf611/scratchpad/m3bdry/m/job_V/manifest.json, sha256 ccc5e15994b80323b4c1c21fb2fdf688b581f456cc6e8840bf6cb20eaa1dab24

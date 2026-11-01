@@ -22,6 +22,25 @@ from toqb.kising_echo import per_layer_q2, q2_count
 INPUTS = KC.INPUTS
 
 
+def circuit_sh(bits, n, D):
+    """D layers alternating (S on every qubit, CZ ring) and (H on every qubit, CZ ring); the identity whenever D is a
+    multiple of 6, for every ring length (symplectic order 6; checked by stabilizer simulation for n = 20, 40, 72)."""
+    from qiskit import QuantumCircuit
+    if D % 6:
+        raise ValueError("D must be a multiple of 6")
+    qc = QuantumCircuit(n)
+    for q, b in enumerate(bits):
+        if b:
+            qc.x(q)
+    for t in range(1, D + 1):
+        for q in range(n):
+            (qc.s if t % 2 else qc.h)(q)
+        for q in range(n):
+            qc.cz(q, (q + 1) % n)
+    qc.measure_all()
+    return qc
+
+
 def circuit(bits, n):
     from qiskit import QuantumCircuit
     qc = QuantumCircuit(n)
@@ -47,6 +66,8 @@ def cmd_build(argv):
     p.add_argument("--arm", required=True)
     p.add_argument("--n", type=int, required=True)
     p.add_argument("--shots", type=int, default=1000)
+    p.add_argument("--kind", choices=["qca", "sh6"], default="qca", help="qca: n layers of (H, CZ); sh6: (S, CZ)(H, CZ) repeated")
+    p.add_argument("--D", type=int, default=None, help="depth for --kind sh6 (a multiple of 6)")
     a = p.parse_args(argv)
     if a.n % 2:
         print("STOP: n must be even (Neel inputs)", file=sys.stderr)
@@ -60,8 +81,8 @@ def cmd_build(argv):
     if KC.sha256_file(tfile) != fj["target_sha256"]:
         print("STOP: target.pkl differs from fetch.json's hash", file=sys.stderr)
         return 2
-    D = a.n
-    name = f"kqca_n{a.n}_D{D}-{a.arm.replace(':', '_')}"
+    D = a.n if a.kind == "qca" else a.D
+    name = (f"kqca_n{a.n}_D{D}" if a.kind == "qca" else f"kqsh_n{a.n}_D{D}") + f"-{a.arm.replace(':', '_')}"
     os.makedirs(a.out, exist_ok=True)
     jf, qf = os.path.join(a.out, name + ".json"), os.path.join(a.out, name + ".qpy")
     for f in (jf, qf):
@@ -76,7 +97,8 @@ def cmd_build(argv):
     R = S2.Runner(plan, a.arm)
     cs, points = [], []
     for i in INPUTS:
-        cs.append(R.arm.compile(circuit(KC.input_bits(i, a.n), a.n)))
+        bits = KC.input_bits(i, a.n)
+        cs.append(R.arm.compile(circuit(bits, a.n) if a.kind == "qca" else circuit_sh(bits, a.n, D)))
         points.append(dict(input=i, setting="echo"))
     meas0 = None
     for i in INPUTS:
@@ -98,7 +120,9 @@ def cmd_build(argv):
     rec = dict(kind="s2rc", lam_test=True, qca_test=True, arm=a.arm, seed=0, plan=plan["name"], task=task,
                predict=pr, standin=plan["standin"], verify=False, device=plan["device"],
                target_sha256=fj["target_sha256"], version=R.arm.version(), final_mean=[], loops=0, started=S._cest(),
-               echo=dict(D=D, inputs=list(INPUTS), circuit="n x (H on all, CZ ring): identity on the n-ring",
+               echo=dict(D=D, inputs=list(INPUTS), kind=a.kind,
+                         circuit=("n x (H on all, CZ ring): identity on the n-ring" if a.kind == "qca"
+                                  else "(S on all, CZ ring)(H on all, CZ ring) repeated: identity every 6 layers"),
                          measured_qubits={str(k): v for k, v in sorted(meas0.items())},
                          q2_per_layer=per, q2_circuits=q2s, accepted=bool(accepted)),
                points=points, inputs=[KC.input_bits(p_["input"], a.n) for p_ in points],
