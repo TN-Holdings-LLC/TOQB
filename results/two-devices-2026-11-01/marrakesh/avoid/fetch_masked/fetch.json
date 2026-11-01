@@ -1,0 +1,33 @@
+{
+ "written": "2026-11-01T11:20:26+00:00 (2026-11-01 12:20:26 CET)",
+ "backend": "ibm_marrakesh",
+ "fake": false,
+ "calibration_time": "2026-11-01 11:58:38+01:00",
+ "operational": true,
+ "two_qubit_gate": "cz",
+ "num_qubits": 156,
+ "target_sha256": "6fa5f1d3b697167ad6b187a2947096a73709ab41b143405d2db27bb5d731859f",
+ "script_sha256": "1ee99a87bcb83f813494b66778e6d0be55bde98754c2b05e1ca25e05df0a93a3",
+ "masked_by_defect_list": {
+  "source_target_sha256": "fcb40a412a3327fac07f4f401c253ae3e0d3b1b1a38f595576b68d2bebc7a2b3",
+  "list": "list_after.json",
+  "list_sha256": "82380ffaab0443b47d7bec5cba6c942ffa15bb613bdf8ef37d04aee8891b08cd",
+  "masked_couplers": [
+   [
+    27,
+    28
+   ]
+  ],
+  "listed_paths": [
+   [
+    17,
+    27,
+    28,
+    29
+   ]
+  ],
+  "min_repeats": 2,
+  "expiry_days": 7.0,
+  "now": "2026-11-01T12:26:51"
+ }
+}

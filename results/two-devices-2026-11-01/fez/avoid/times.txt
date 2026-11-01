@@ -1,0 +1,7 @@
+toqb 541d0b5 Declare two more devices (OS plan M4; owner's go of 
+note 91f2dbb882841b01c6558485d861c4002a11630cd273249f03c7cede346e9d68  prereg/drafts-2026-11-01/two_devices_note.md
+list 8b8ae519246681396708a87fbfbb91aec801d3a799694cbe0cfe7ab597873078  /tmp/claude-0/-home-claude/69d0c1ec-ce3d-5118-b9a2-cad8250cf611/scratchpad/m4fez/scan/list_after.json
+fetch ibm_fez 2026-11-01 11:10:52+01:00 27c3c5b0625b289453f24f25cc3f6c10e8ffdadb192b35ca0f0116aa08b9d2a1
+device ibm_fez; list date 2026-11-01T12:14:04
+start 2026-11-01 12:14:04 CET
+end 2026-11-01 12:14:33 CET

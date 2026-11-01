@@ -1,0 +1,7 @@
+toqb 541d0b5 Declare two more devices (OS plan M4; owner's go of 
+note 91f2dbb882841b01c6558485d861c4002a11630cd273249f03c7cede346e9d68  prereg/drafts-2026-11-01/two_devices_note.md
+list b1fe9fe7aceb8bc98e546e4ecad409de1ffa64ea97a2422d2107cd2acf186765  /tmp/claude-0/work/toqb/results/defect-list-replay-2026-10-31/observations.json
+fetch ibm_marrakesh 2026-11-01 11:58:38+01:00 fcb40a412a3327fac07f4f401c253ae3e0d3b1b1a38f595576b68d2bebc7a2b3
+device ibm_marrakesh; list date 2026-11-01T12:20:52
+start 2026-11-01 12:22:09 CET
+end 2026-11-01 12:23:10 CET

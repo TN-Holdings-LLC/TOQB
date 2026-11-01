@@ -1,0 +1,244 @@
+{
+ "written": "2026-11-01T11:14:33+00:00 (2026-11-01 12:14:33 CET)",
+ "fetch": {
+  "written": "2026-11-01T10:32:29+00:00 (2026-11-01 11:32:29 CET)",
+  "backend": "ibm_fez",
+  "fake": false,
+  "calibration_time": "2026-11-01 11:10:52+01:00",
+  "operational": true,
+  "two_qubit_gate": "cz",
+  "num_qubits": 156,
+  "target_sha256": "c97ca86f41702d7b9caf47a07c0a20635dee1c8c8d343a6e5e71392248416fce",
+  "script_sha256": "1ee99a87bcb83f813494b66778e6d0be55bde98754c2b05e1ca25e05df0a93a3",
+  "masked_by_defect_list": {
+   "source_target_sha256": "27c3c5b0625b289453f24f25cc3f6c10e8ffdadb192b35ca0f0116aa08b9d2a1",
+   "list": "list_after.json",
+   "list_sha256": "8b8ae519246681396708a87fbfbb91aec801d3a799694cbe0cfe7ab597873078",
+   "masked_couplers": [
+    [
+     7,
+     17
+    ],
+    [
+     27,
+     28
+    ],
+    [
+     56,
+     63
+    ]
+   ],
+   "listed_paths": [
+    [
+     6,
+     7,
+     17,
+     27
+    ],
+    [
+     26,
+     27,
+     28,
+     29
+    ],
+    [
+     63,
+     56
+    ]
+   ],
+   "min_repeats": 2,
+   "expiry_days": 7.0,
+   "now": "2026-11-01T12:14:04"
+  }
+ },
+ "shots": 1000,
+ "qpu_seconds_predicted": 7.9,
+ "qpu_model": {
+  "per_circuit_s": 0.036,
+  "per_shot_s": 0.00027,
+  "per_job_s": 3.0
+ },
+ "qpy_sha256": "859c8f2649d604375ff213c57456569df2c103b69e49d69f3c7c5a27247d9237",
+ "cells": [
+  {
+   "cell": 0,
+   "name": "kecho_n40_D24_hz0_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 24,
+   "points": 8,
+   "run_sha256": "e127dd0e07f492ba2ce4ac28ceb20b03721c0bbdcc76c0ee533a466e0242856f",
+   "qpy_sha256": "42414f847ba8c2f52b31567e6eb502d8b60fc01577b3d5aa6cd64951b73d8249",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.6944328046324242,
+    "ce_interval": [
+     0.6641320209906147,
+     0.7206995443563115
+    ],
+    "acc_mean": 0.473125,
+    "acc_interval": [
+     0.0,
+     0.9378124999999997
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.6641320209906147,
+     0.7206995443563115
+    ],
+    "acc_interval": [
+     0.0,
+     0.9378124999999997
+    ]
+   }
+  },
+  {
+   "cell": 1,
+   "name": "kecho_n72_D24_hz0_h0.6-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 24,
+   "points": 8,
+   "run_sha256": "aa0d7769ffa6c3c4220d08a9b9c3ce9b3050b60cd6ae8c116a556d7385d367a2",
+   "qpy_sha256": "4fe7fc61a71627caf3ff4ffdb2a2f30ac6e83d42fd45cd5ba329a3dd925df6f1",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.6944328046324242,
+    "ce_interval": [
+     0.6641320209906147,
+     0.7206995443563115
+    ],
+    "acc_mean": 0.473125,
+    "acc_interval": [
+     0.0,
+     0.9378124999999997
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.6641320209906147,
+     0.7206995443563115
+    ],
+    "acc_interval": [
+     0.0,
+     0.9378124999999997
+    ]
+   }
+  }
+ ],
+ "pubs": [
+  {
+   "cell": 0,
+   "point": 0
+  },
+  {
+   "cell": 0,
+   "point": 1
+  },
+  {
+   "cell": 0,
+   "point": 2
+  },
+  {
+   "cell": 0,
+   "point": 3
+  },
+  {
+   "cell": 0,
+   "point": 4
+  },
+  {
+   "cell": 0,
+   "point": 5
+  },
+  {
+   "cell": 0,
+   "point": 6
+  },
+  {
+   "cell": 0,
+   "point": 7
+  },
+  {
+   "cell": 1,
+   "point": 0
+  },
+  {
+   "cell": 1,
+   "point": 1
+  },
+  {
+   "cell": 1,
+   "point": 2
+  },
+  {
+   "cell": 1,
+   "point": 3
+  },
+  {
+   "cell": 1,
+   "point": 4
+  },
+  {
+   "cell": 1,
+   "point": 5
+  },
+  {
+   "cell": 1,
+   "point": 6
+  },
+  {
+   "cell": 1,
+   "point": 7
+  }
+ ],
+ "script_sha256": "1ee99a87bcb83f813494b66778e6d0be55bde98754c2b05e1ca25e05df0a93a3",
+ "job_id": null
+}

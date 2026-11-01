@@ -1,0 +1,3 @@
+ibm_fez fezSA n 20: median 0.09; dead runs 13 sites, centre [6, 7, 17, 27]
+ibm_fez fezSA n 40: median 0.15; dead runs 11 sites, centre [64, 63, 56, 43]
+ibm_fez fezSA n 72: median 0.13; dead runs 16 sites, centre [42, 43, 56, 63]; 20 sites, centre [26, 27, 28, 29]

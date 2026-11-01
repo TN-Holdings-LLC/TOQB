@@ -1,0 +1,21 @@
+{
+ "job_id": "dbjhvd9kdqps7390knsg",
+ "submitted": "2026-11-01T11:17:09+00:00 (2026-11-01 12:17:09 CET)",
+ "local": false,
+ "backend": "ibm_fez",
+ "trained_for": "ibm_fez",
+ "tried": [
+  {
+   "backend": "ibm_fez",
+   "calibration": "2026-11-01 11:32:49+01:00",
+   "reasons": []
+  }
+ ],
+ "calibration_at_submit": "2026-11-01 11:32:49+01:00",
+ "options": "dynamical decoupling off, twirling off (gates and measure); SamplerV2 applies no other error mitigation",
+ "sampler_options": {
+  "dynamical_decoupling.enable": false,
+  "twirling.enable_gates": false,
+  "twirling.enable_measure": false
+ }
+}

@@ -1,0 +1,2 @@
+3 cells, 24 circuits x 1000 shots: predicted QPU time 10.3 s (limit 30.0 s)
+2026-11-01T11:23:10+00:00 (2026-11-01 12:23:10 CET) manifest written before any submission: /tmp/claude-0/-home-claude/69d0c1ec-ce3d-5118-b9a2-cad8250cf611/scratchpad/m4mar/scan/job_A/manifest.json, sha256 207686c8a78e8f6578cef3489827b7467af16998c5e163a7f9510e25bbf952e5

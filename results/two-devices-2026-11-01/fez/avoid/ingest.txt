@@ -1,0 +1,2 @@
+ibm_fez avoid n 40: median 0.20; dead runs none
+ibm_fez avoid n 72: median 0.19; dead runs 9 sites, centre [64, 63, 62, 61]

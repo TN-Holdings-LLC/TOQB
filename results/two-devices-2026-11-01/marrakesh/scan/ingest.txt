@@ -1,0 +1,3 @@
+ibm_marrakesh marSA n 20: median 0.16; dead runs 3 sites, centre [26, 25, 37]
+ibm_marrakesh marSA n 40: median 0.27; dead runs none
+ibm_marrakesh marSA n 72: median 0.23; dead runs 5 sites, centre [37, 25, 26, 27]
