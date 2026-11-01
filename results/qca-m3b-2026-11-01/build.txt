@@ -1,0 +1,8 @@
+[S] kqsh_n72_D12-fold_rule: 8 circuits (4 inputs + 4 references), 864 two-qubit gates = 12 x 72: ACCEPTED, 4.72 us; valid True
+[V] kqsh_n72_D12-fold_rule: 8 circuits (4 inputs + 4 references), 864 two-qubit gates = 12 x 72: ACCEPTED, 4.82 us; valid True
+[S] kqsh_n72_D24-fold_rule: 8 circuits (4 inputs + 4 references), 1728 two-qubit gates = 24 x 72: ACCEPTED, 6.76 us; valid True
+[V] kqsh_n72_D24-fold_rule: 8 circuits (4 inputs + 4 references), 1728 two-qubit gates = 24 x 72: ACCEPTED, 6.96 us; valid True
+n 72 standard ring [3, 16, 23, 22, 21, 36, 41, 42, 43, 56, 63, 64, 65, 66, 67, 68, 69, 78, 89, 88, 87, 86, 85, 84, 83, 96, 103, 104, 105, 106, 107, 108, 109, 110, 111, 98, 91, 92, 93, 79, 73, 74, 75, 59, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 37, 25, 26, 27, 28, 29, 30, 31, 18, 11, 10, 9, 8, 7, 6, 5, 4]
+n 72 avoid ring    [3, 16, 23, 22, 21, 36, 41, 42, 43, 56, 63, 64, 65, 66, 67, 68, 69, 78, 89, 88, 87, 86, 85, 84, 83, 96, 103, 104, 105, 106, 107, 108, 109, 110, 111, 98, 91, 92, 93, 79, 73, 74, 75, 59, 55, 54, 53, 52, 51, 50, 49, 38, 29, 30, 31, 32, 33, 34, 35, 19, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4]
+the two rings differ
+standard ring holds (27, 28): True ; avoid ring: False

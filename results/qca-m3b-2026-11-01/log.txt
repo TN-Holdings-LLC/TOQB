@@ -1,0 +1,23 @@
+toqb 392a7ba Declare OS plan M3, second form (owner's go of 2026-
+note e3337f85d850014212b9b9ad47e76f6bc39df1a7e12f157008fd5e82e4131860  prereg/drafts-2026-11-01/qca_m3b_note.md
+list 5bfa3150b7e5a1a037f58c44bdab71603a0c02527bd01fb3eeb0579090cabe52  /tmp/claude-0/work/toqb/results/two-devices-2026-11-01/marrakesh/avoid/list_after.json
+fetch ibm_marrakesh 2026-11-01 15:00:50+01:00 74186b1d72cd1fccd86e2afccef4af40b9e18eaf835b19b5e611c0afa6bec0a3
+list date 2026-11-01T15:50:14
+start 2026-11-01 15:50:16 CET
+ibm_marrakesh centre [96, 103, 104]: CANDIDATE (1 sightings in 1 jobs, last 2026-10-30 12:18:49; contradictions 1)
+ibm_marrakesh centre [17, 27, 28, 29]: LISTED (4 sightings in 2 jobs, last 2026-11-01 12:24:27; contradictions 1)
+ibm_marrakesh: masked 1 coupler(s) [(27, 28)] from 1 listed path(s)
+[S] kqsh_n72_D12-fold_rule: 8 circuits (4 inputs + 4 references), 864 two-qubit gates = 12 x 72: ACCEPTED, 4.72 us; valid True
+[V] kqsh_n72_D12-fold_rule: 8 circuits (4 inputs + 4 references), 864 two-qubit gates = 12 x 72: ACCEPTED, 4.82 us; valid True
+[S] kqsh_n72_D24-fold_rule: 8 circuits (4 inputs + 4 references), 1728 two-qubit gates = 24 x 72: ACCEPTED, 6.76 us; valid True
+[V] kqsh_n72_D24-fold_rule: 8 circuits (4 inputs + 4 references), 1728 two-qubit gates = 24 x 72: ACCEPTED, 6.96 us; valid True
+n 72 standard ring [3, 16, 23, 22, 21, 36, 41, 42, 43, 56, 63, 64, 65, 66, 67, 68, 69, 78, 89, 88, 87, 86, 85, 84, 83, 96, 103, 104, 105, 106, 107, 108, 109, 110, 111, 98, 91, 92, 93, 79, 73, 74, 75, 59, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 37, 25, 26, 27, 28, 29, 30, 31, 18, 11, 10, 9, 8, 7, 6, 5, 4]
+n 72 avoid ring    [3, 16, 23, 22, 21, 36, 41, 42, 43, 56, 63, 64, 65, 66, 67, 68, 69, 78, 89, 88, 87, 86, 85, 84, 83, 96, 103, 104, 105, 106, 107, 108, 109, 110, 111, 98, 91, 92, 93, 79, 73, 74, 75, 59, 55, 54, 53, 52, 51, 50, 49, 38, 29, 30, 31, 32, 33, 34, 35, 19, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4]
+the two rings differ
+standard ring holds (27, 28): True ; avoid ring: False
+2 cells, 16 circuits x 1000 shots: predicted QPU time 7.9 s (limit 25.0 s)
+2026-11-01T14:51:17+00:00 (2026-11-01 15:51:17 CET) manifest written before any submission: /tmp/claude-0/-home-claude/69d0c1ec-ce3d-5118-b9a2-cad8250cf611/scratchpad/m3b/m/job_S/manifest.json, sha256 2b6bd40cfd1a8502906caf85d8016155188cb22182f208f0fbccf883f8bbae97
+2 cells, 16 circuits x 1000 shots: predicted QPU time 7.9 s (limit 25.0 s)
+2026-11-01T14:51:18+00:00 (2026-11-01 15:51:18 CET) manifest written before any submission: /tmp/claude-0/-home-claude/69d0c1ec-ce3d-5118-b9a2-cad8250cf611/scratchpad/m3b/m/job_V/manifest.json, sha256 3a5dd4ddd16b61064bbc6c0108d07d51f5ea801a4090573d947c37aeb9579fa5
+end 2026-11-01 15:51:18 CET
+== DONE: /tmp/claude-0/-home-claude/69d0c1ec-ce3d-5118-b9a2-cad8250cf611/scratchpad/m3b/m/job_S /tmp/claude-0/-home-claude/69d0c1ec-ce3d-5118-b9a2-cad8250cf611/scratchpad/m3b/m/job_V

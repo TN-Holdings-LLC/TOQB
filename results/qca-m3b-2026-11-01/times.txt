@@ -1,0 +1,7 @@
+toqb 392a7ba Declare OS plan M3, second form (owner's go of 2026-
+note e3337f85d850014212b9b9ad47e76f6bc39df1a7e12f157008fd5e82e4131860  prereg/drafts-2026-11-01/qca_m3b_note.md
+list 5bfa3150b7e5a1a037f58c44bdab71603a0c02527bd01fb3eeb0579090cabe52  /tmp/claude-0/work/toqb/results/two-devices-2026-11-01/marrakesh/avoid/list_after.json
+fetch ibm_marrakesh 2026-11-01 15:00:50+01:00 74186b1d72cd1fccd86e2afccef4af40b9e18eaf835b19b5e611c0afa6bec0a3
+list date 2026-11-01T15:50:14
+start 2026-11-01 15:50:16 CET
+end 2026-11-01 15:51:18 CET
