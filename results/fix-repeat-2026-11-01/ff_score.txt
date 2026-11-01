@@ -1,0 +1,10 @@
+n 40 D 12 ff : all +0.570; block +0.530 +- 0.004; rest +0.692
+n 40 D 12 lfB3: all +0.607; block +0.559 +- 0.004; rest +0.741
+n 40 D 12 off: all +0.534; block +0.279 +- 0.004; rest +0.744
+n 40 D 24 ff : all +0.165; block +0.096 +- 0.005; rest +0.266
+n 40 D 24 lfB3: all +0.232; block +0.112 +- 0.005; rest +0.379
+n 40 D 24 off: all +0.153; block -0.185 +- 0.005; rest +0.374
+  n 40 D 12: block FF - off +0.252 +- 0.006 -> HELPS; recovered (block >= 0.8 x rest with FF): NO; rest FF - off -0.051
+J n 40 D 24: block FF - off +0.281 +- 0.007 -> HELPS; recovered (block >= 0.8 x rest with FF): NO; rest FF - off -0.108
+  lfB3 n 40 D 12: block - off +0.281 +- 0.006 -> HELPS; rest - off -0.003 +- 0.003 -> NO COST; block - global +0.029 +- 0.006 -> KEEPS
+* lfB3 n 40 D 24: block - off +0.298 +- 0.007 -> HELPS; rest - off +0.005 +- 0.004 -> NO COST; block - global +0.017 +- 0.007 -> KEEPS

@@ -1,0 +1,7 @@
+toqb af76d3e Declare the fix repeat (owner's go of 2026-11-01 03:
+note 935d3a5d739ecd151f5270828cd66b9cae601034c3c27b58f37c6f720ffbf386  prereg/drafts-2026-11-01/fix_repeat_note.md
+tests 10 passed in 69.11s (0:01:09)
+fetch ibm_kingston 2026-11-01 02:53:40+01:00 f266a3ba0cb10a8b07dd70808e268cd9f5aa8e26ca95810ca82fc889e4cd7075
+arms B3 6,8 (27, 29), global
+start 2026-11-01 03:07:13 CET
+end 2026-11-01 03:08:30 CET
