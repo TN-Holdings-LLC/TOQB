@@ -1,0 +1,7 @@
+[S] kqca_n20_D20-fold_rule: 8 circuits (4 inputs + 4 references), 400 two-qubit gates = 20 x 20: ACCEPTED, 5.78 us; valid True
+[S] kqca_n40_D40-fold_rule: 8 circuits (4 inputs + 4 references), 1600 two-qubit gates = 40 x 40: ACCEPTED, 9.38 us; valid True
+[V] kqca_n40_D40-fold_rule: 8 circuits (4 inputs + 4 references), 1600 two-qubit gates = 40 x 40: ACCEPTED, 9.38 us; valid True
+n 40 standard ring [3, 4, 5, 6, 7, 17, 27, 28, 29, 38, 49, 50, 51, 52, 53, 54, 55, 59, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 56, 43, 42, 41, 36, 21, 22, 23, 16]
+n 40 avoid ring    [3, 4, 5, 6, 7, 17, 27, 28, 29, 30, 31, 32, 33, 39, 53, 54, 55, 59, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 56, 43, 42, 41, 36, 21, 22, 23, 16]
+the two rings differ
+standard ring holds [28, 29, 38, 49]: True ; avoid ring: False

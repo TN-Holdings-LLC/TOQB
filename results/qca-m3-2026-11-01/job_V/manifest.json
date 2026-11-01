@@ -1,0 +1,156 @@
+{
+ "written": "2026-11-01T11:38:53+00:00 (2026-11-01 12:38:53 CET)",
+ "fetch": {
+  "written": "2026-11-01T11:38:03+00:00 (2026-11-01 12:38:03 CET)",
+  "backend": "ibm_kingston",
+  "fake": false,
+  "calibration_time": "2026-11-01 11:36:54+01:00",
+  "operational": true,
+  "two_qubit_gate": "cz",
+  "num_qubits": 156,
+  "target_sha256": "b41bcea7928b48f8542a0abece9d6c339145a57d92e8024418b378b84bb5b5e6",
+  "script_sha256": "1ee99a87bcb83f813494b66778e6d0be55bde98754c2b05e1ca25e05df0a93a3",
+  "masked_by_defect_list": {
+   "source_target_sha256": "358f653c726069acc9aae3609fb229ef7ec5e7170fe1d71eb56d7b079c3fa154",
+   "list": "list_after.json",
+   "list_sha256": "5513102307ad647e385cf163dd27861d34e07030e7496f7dd7bc0222b8c1f21f",
+   "masked_couplers": [
+    [
+     9,
+     10
+    ],
+    [
+     29,
+     38
+    ],
+    [
+     85,
+     86
+    ]
+   ],
+   "listed_paths": [
+    [
+     11,
+     10,
+     9
+    ],
+    [
+     28,
+     29,
+     38,
+     49
+    ],
+    [
+     87,
+     86,
+     85
+    ]
+   ],
+   "min_repeats": 2,
+   "expiry_days": 7.0,
+   "now": "2026-11-01T12:38:20"
+  }
+ },
+ "shots": 1000,
+ "qpu_seconds_predicted": 5.4,
+ "qpu_model": {
+  "per_circuit_s": 0.036,
+  "per_shot_s": 0.00027,
+  "per_job_s": 3.0
+ },
+ "qpy_sha256": "b7b7ca1fc0185443704c478ba65e940446a49ced15cc1bae17751609f966353f",
+ "cells": [
+  {
+   "cell": 0,
+   "name": "kqca_n40_D40-fold_rule",
+   "arm": "fold:rule",
+   "seed": 0,
+   "layers": 40,
+   "points": 8,
+   "run_sha256": "289b86a2ea32bde0081e96dff324ab14470166a15dd7ab7ca253578aa85a13f5",
+   "qpy_sha256": "b7b7ca1fc0185443704c478ba65e940446a49ced15cc1bae17751609f966353f",
+   "version": "toqb fold 2026-10-30.1 (hole schedule on a formula-placed heavy-hex cycle; pend: ring nodes hung off a shorter cycle; bands over 3+ row pairs for n > 36); qiskit 2.5.2",
+   "labels": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "twin_p1": [
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "prediction": {
+    "ce_mean": 0.6944328046324242,
+    "ce_interval": [
+     0.6641320209906147,
+     0.7206995443563115
+    ],
+    "acc_mean": 0.473125,
+    "acc_interval": [
+     0.0,
+     0.9378124999999997
+    ],
+    "ce_exact": 0.6931471805599453,
+    "level": 0.99,
+    "reps": 200
+   },
+   "prediction_shots_only": {
+    "ce_interval": [
+     0.6641320209906147,
+     0.7206995443563115
+    ],
+    "acc_interval": [
+     0.0,
+     0.9378124999999997
+    ]
+   }
+  }
+ ],
+ "pubs": [
+  {
+   "cell": 0,
+   "point": 0
+  },
+  {
+   "cell": 0,
+   "point": 1
+  },
+  {
+   "cell": 0,
+   "point": 2
+  },
+  {
+   "cell": 0,
+   "point": 3
+  },
+  {
+   "cell": 0,
+   "point": 4
+  },
+  {
+   "cell": 0,
+   "point": 5
+  },
+  {
+   "cell": 0,
+   "point": 6
+  },
+  {
+   "cell": 0,
+   "point": 7
+  }
+ ],
+ "script_sha256": "1ee99a87bcb83f813494b66778e6d0be55bde98754c2b05e1ca25e05df0a93a3",
+ "job_id": null
+}
