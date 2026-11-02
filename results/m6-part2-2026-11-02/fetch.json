@@ -1,0 +1,11 @@
+{
+ "written": "2026-11-02T11:14:00+00:00 (2026-11-02 12:14:00 CET)",
+ "backend": "ibm_kingston",
+ "fake": false,
+ "calibration_time": "2026-11-02 11:54:20+01:00",
+ "operational": true,
+ "two_qubit_gate": "cz",
+ "num_qubits": 156,
+ "target_sha256": "8e2a05a9038051cbad2f379b2e75afbb718608384b006927bc4ad5e73aa5b6ab",
+ "script_sha256": "8c2cf837aeba16f1337804151e1bbd494f8ce7a0e9367f11e0d72ef9e31a46e6"
+}
