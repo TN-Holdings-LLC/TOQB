@@ -516,13 +516,14 @@ def submit_problems(circs, target):
 ORDER = ("ibm_marrakesh", "ibm_fez", "ibm_kingston")  # r8's fixed order
 
 
-def pick_backend(circs, get_backend, first):
+def pick_backend(circs, get_backend, first, stay=False):
     """C r9 item 8 (owner, 2026-10-22): at submission, the job's own circuits go to the first device, in the fixed
     order starting at the job's (`first`), whose calibration in effect now has the same number of qubits, reports it
     operational (unknown is not excluded) and has no failed or unsupported element under the job (r8's rule); no
     retraining. Returns (backend, calibration time, tried) with tried = [{backend, calibration, reasons}], or
-    (None, None, tried) when no device takes the job."""
-    names = [first] + [b for b in ORDER if b != first]
+    (None, None, tried) when no device takes the job. stay=True (owner, 2026-11-02, for psf-os jobs placed around
+    one device's defect list): only `first` is tried; if it does not take the job, nothing is submitted."""
+    names = [first] if stay else [first] + [b for b in ORDER if b != first]
     tried = []
     for name in names:
         try:
@@ -603,13 +604,15 @@ def cmd_submit(a):
     # the job does. Owner decision of 2026-10-22 (C r9 item 8): then the same circuits go to the next device in the
     # fixed order (pick_backend), no retraining; every device tried and why is recorded.
     service = _service()
-    backend, cal, tried = pick_backend(circs, service.backend, man["fetch"]["backend"])
+    backend, cal, tried = pick_backend(circs, service.backend, man["fetch"]["backend"], stay=a.stay)
     for t in tried:
         print(f"{t['backend']} (calibration {t['calibration']}): "
               + ("takes the job" if not t["reasons"] else "passed over: " + "; ".join(t["reasons"])), flush=True)
     if backend is None:
         _dump_json(os.path.join(a.job, "submission_refused.json"), dict(written=stamp(), tried=tried))
-        raise SystemExit("STOP: no device in the fixed order takes the job; not submitted (submission_refused.json)")
+        raise SystemExit("STOP: " + ("the job's own device does not take it (--stay)" if a.stay else
+                                     "no device in the fixed order takes the job")
+                         + "; not submitted (submission_refused.json)")
     sampler = SamplerV2(mode=backend)
     for k, v in sampler_options(a.dd, a.twirl).items():
         obj = sampler.options
@@ -808,6 +811,8 @@ def main(argv=None):
     u.add_argument("--seed", type=int, default=20261019)
     u.add_argument("--dd", default="off", choices=["off", "XX", "XpXm", "XY4"])
     u.add_argument("--twirl", default="off", choices=["off", "gates"])
+    u.add_argument("--stay", action="store_true",
+                   help="never move the job to another device (psf-os jobs: placed around one device's defect list)")
     r = sp.add_parser("result")
     r.add_argument("--job", required=True)
     r.add_argument("--wait-min", type=float, default=60)

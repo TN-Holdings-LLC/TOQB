@@ -125,3 +125,30 @@ def test_pick_backend_moves_on_in_the_fixed_order(monkeypatch):
     backs["ibm_kingston"] = _FakeBackend("ibm_kingston", bad)
     b, _, tried = SD.pick_backend([qc], backs.__getitem__, "ibm_marrakesh")
     assert b is None and len(tried) == 3
+
+
+def test_pick_backend_stay_never_moves(monkeypatch):
+    """--stay (owner, 2026-11-02): a failed element under the job on its own device stops the submission; no other
+    device is tried. A healthy own device takes the job as before."""
+    pytest.importorskip("qiskit")
+    import copy
+    from qiskit import QuantumCircuit
+    from qiskit.transpiler import InstructionProperties
+    from toqb import s2rc_device as SD
+    from toqb.devices import get_device
+    good = get_device("snapshot:marrakesh").target
+    bad = copy.deepcopy(good)
+    qa = (0, 1) if (0, 1) in bad["cz"] else (1, 0)
+    p = bad["cz"][qa]
+    bad.update_instruction_properties("cz", qa, InstructionProperties(duration=p.duration, error=0.9))
+    qc = QuantumCircuit(good.num_qubits, 1)
+    qc.cz(*qa)
+    qc.measure(0, 0)
+    monkeypatch.setattr(SD, "calibration_time", lambda b: f"cal-{b.name}")
+    backs = {"ibm_marrakesh": _FakeBackend("ibm_marrakesh", bad), "ibm_fez": _FakeBackend("ibm_fez", good),
+             "ibm_kingston": _FakeBackend("ibm_kingston", good)}
+    b, cal, tried = SD.pick_backend([qc], backs.__getitem__, "ibm_marrakesh", stay=True)
+    assert b is None and cal is None and [t["backend"] for t in tried] == ["ibm_marrakesh"] and tried[0]["reasons"]
+    backs["ibm_marrakesh"] = _FakeBackend("ibm_marrakesh", good)
+    b, _, tried = SD.pick_backend([qc], backs.__getitem__, "ibm_marrakesh", stay=True)
+    assert b.name == "ibm_marrakesh" and len(tried) == 1
