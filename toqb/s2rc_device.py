@@ -516,6 +516,12 @@ def submit_problems(circs, target):
 ORDER = ("ibm_marrakesh", "ibm_fez", "ibm_kingston")  # r8's fixed order
 
 
+def job_stays(flag, man):
+    """True when the job must not move to another device: --stay given, or the manifest says "stay": true (psf-os
+    writes it into every job it builds; owner, 2026-11-02, so that a forgotten flag cannot move a job)."""
+    return bool(flag) or man.get("stay") is True
+
+
 def pick_backend(circs, get_backend, first, stay=False):
     """C r9 item 8 (owner, 2026-10-22): at submission, the job's own circuits go to the first device, in the fixed
     order starting at the job's (`first`), whose calibration in effect now has the same number of qubits, reports it
@@ -604,13 +610,17 @@ def cmd_submit(a):
     # the job does. Owner decision of 2026-10-22 (C r9 item 8): then the same circuits go to the next device in the
     # fixed order (pick_backend), no retraining; every device tried and why is recorded.
     service = _service()
-    backend, cal, tried = pick_backend(circs, service.backend, man["fetch"]["backend"], stay=a.stay)
+    stay = job_stays(a.stay, man)
+    if stay:
+        print("stay: the job is tried on " + man["fetch"]["backend"] + " only"
+              + ("" if a.stay else " (the manifest says stay)"), flush=True)
+    backend, cal, tried = pick_backend(circs, service.backend, man["fetch"]["backend"], stay=stay)
     for t in tried:
         print(f"{t['backend']} (calibration {t['calibration']}): "
               + ("takes the job" if not t["reasons"] else "passed over: " + "; ".join(t["reasons"])), flush=True)
     if backend is None:
-        _dump_json(os.path.join(a.job, "submission_refused.json"), dict(written=stamp(), tried=tried))
-        raise SystemExit("STOP: " + ("the job's own device does not take it (--stay)" if a.stay else
+        _dump_json(os.path.join(a.job, "submission_refused.json"), dict(written=stamp(), tried=tried, stay=stay))
+        raise SystemExit("STOP: " + ("the job's own device does not take it (stay)" if stay else
                                      "no device in the fixed order takes the job")
                          + "; not submitted (submission_refused.json)")
     sampler = SamplerV2(mode=backend)
@@ -622,7 +632,7 @@ def cmd_submit(a):
     t_sub = stamp()
     job = sampler.run([(c, None, N) for c in circs])
     _dump_json(sub_file, dict(job_id=job.job_id(), submitted=t_sub, local=False, backend=backend.name,
-                              trained_for=man["fetch"]["backend"], tried=tried, calibration_at_submit=cal,
+                              trained_for=man["fetch"]["backend"], tried=tried, stay=stay, calibration_at_submit=cal,
                               options=options_text(a.dd, a.twirl), sampler_options=sampler_options(a.dd, a.twirl)))
     print(f"{stamp()} submitted job {job.job_id()} ({len(circs)} circuits x {N} shots) to {backend.name}. "
           f"Results are not read here.")

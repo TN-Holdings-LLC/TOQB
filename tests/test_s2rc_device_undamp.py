@@ -152,3 +152,11 @@ def test_pick_backend_stay_never_moves(monkeypatch):
     backs["ibm_marrakesh"] = _FakeBackend("ibm_marrakesh", good)
     b, _, tried = SD.pick_backend([qc], backs.__getitem__, "ibm_marrakesh", stay=True)
     assert b.name == "ibm_marrakesh" and len(tried) == 1
+
+
+def test_job_stays_from_flag_or_manifest():
+    """The manifest's "stay": true acts as --stay (psf-os jobs); anything else keeps the fixed order."""
+    from toqb import s2rc_device as SD
+    assert SD.job_stays(True, {}) and SD.job_stays(False, {"stay": True}) and SD.job_stays(True, {"stay": False})
+    assert not SD.job_stays(False, {}) and not SD.job_stays(False, {"stay": False})
+    assert not SD.job_stays(False, {"stay": "true"})  # only the JSON true counts
