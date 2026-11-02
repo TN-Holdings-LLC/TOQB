@@ -1,0 +1,21 @@
+SIMULATION with a planted same-layer error on FakeKingston -- not a device result
+device fake_kingston: 176 couplers, 7 failed; planted coupler e = (42, 43); distance-one couplers [(36, 41), (40, 41), (44, 45), (56, 63)]
+V1 e alone (calibration-type) m = 2 {'pauli': {'inserted': 0, 'success_A': 1.0, 'success_B': 1.0, 'identical_counts': True}, 'coherent': {'inserted': 0, 'success_A': 1.0, 'success_B': 1.0, 'identical_counts': True}}
+V1 e alone (calibration-type) m = 8 {'pauli': {'inserted': 0, 'success_A': 1.0, 'success_B': 1.0, 'identical_counts': True}, 'coherent': {'inserted': 0, 'success_A': 1.0, 'success_B': 1.0, 'identical_counts': True}}
+V1 e alone (calibration-type) m = 32 {'pauli': {'inserted': 0, 'success_A': 1.0, 'success_B': 1.0, 'identical_counts': True}, 'coherent': {'inserted': 0, 'success_A': 1.0, 'success_B': 1.0, 'identical_counts': True}}
+V1 e with [36, 41] in the same layer m = 2 {'pauli': {'inserted': 4, 'success_A': 0.74625, 'success_B': 1.0, 'identical_counts': False}, 'coherent': {'inserted': 4, 'success_A': 0.8755, 'success_B': 1.0, 'identical_counts': False}}
+V1 e with [36, 41] in the same layer m = 8 {'pauli': {'inserted': 16, 'success_A': 0.2685, 'success_B': 1.0, 'identical_counts': False}, 'coherent': {'inserted': 16, 'success_A': 0.1745, 'success_B': 1.0, 'identical_counts': False}}
+V1 e with [36, 41] in the same layer m = 32 {'pauli': {'inserted': 64, 'success_A': 0.24975, 'success_B': 1.0, 'identical_counts': False}, 'coherent': {'inserted': 64, 'success_A': 0.025, 'success_B': 1.0, 'identical_counts': False}}
+V2 coherent n=20: [{'start': 11, 'length': 3, 'qubits': [44, 43, 42], 'covers_e': True, 'mean': 0.1025}] usable 17
+V3 coherent: [{'path': [43, 42], 'status': 'LISTED'}] {'standard': (20, True), 'avoiding': (20, False)}
+V2 pauli n=20: [{'start': 5, 'length': 16, 'qubits': [17, 27, 26, 25, 37, 45, 44, 43, 42, 41, 36, 21, 22, 23, 16, 3], 'covers_e': True, 'mean': 0.0046875}] usable 4
+V2 pauli n=40: [{'start': 25, 'length': 16, 'qubits': [68, 67, 66, 65, 64, 63, 56, 43, 42, 41, 36, 21, 22, 23, 16, 3], 'covers_e': True, 'mean': 0.0045625000000000015}] usable 24
+V2 pauli n=72: [{'start': 0, 'length': 16, 'qubits': [3, 16, 23, 22, 21, 36, 41, 42, 43, 56, 63, 62, 61, 76, 81, 82], 'covers_e': True, 'mean': 0.0023750000000000004}] usable 56
+V3 pauli n=40: {'standard': (24, True, None), 'avoiding': (40, False, 'CLEAN')}
+V3 pauli n=72: {'standard': (56, True, None), 'avoiding': (72, False, 'CLEAN')}
+listed (pauli): [{'path': [43, 42, 41], 'status': 'LISTED'}]
+V4 no flip A: 16 [0.135, 0.117, 0.092, 0.106, 0.114, 0.145] B: 20 [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+V4 flip at 12 A: 20 [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] B: 20 [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+V4 flip at 13 A: 20 [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] B: 20 [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+V4 global flip (even positions) A: 20 [1.0, 1.0, 1.0, 1.0, 1.0, 1.0] B: 20 [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+done in 187.7 s. SIMULATION with a planted same-layer error on FakeKingston -- not a device result.

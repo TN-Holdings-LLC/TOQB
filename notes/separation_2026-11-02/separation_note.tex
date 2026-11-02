@@ -1,0 +1,242 @@
+% TOQB note: calibration-only placement against self-measuring placement (workplace, 2 November 2026).
+% Not declared; not a paper. Whether it goes into Paper 6 as an appendix is decided later by home and the owner.
+% Every simulation number carries "% src: out/construction_result.json <key>" (written by construction_sim.py).
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+\sloppy
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title{Calibration-only placement against self-measuring placement:\\ a near-trivial lower bound, a construction,
+and what neither proves\\ \large TOQB note, draft (not declared)}
+\author{The Architect}
+\date{2 November 2026 (CET)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A placement policy that reads nothing about the device except its coupling graph and its calibration numbers gives
+the same placement law on any two device states with the same calibration numbers. This is close to a tautology, and
+we state it only to fix terms (Lemma~1). The content of the note is elsewhere: (i) an explicit pair of noise models
+on IBM's FakeKingston coupling graph, an error that acts only when couplers at distance one are driven in the same
+layer, under which every isolated two-qubit benchmark returns identical counts while a ring echo through the planted
+coupler dies (Section~4, checked in Aer); and (ii) a list of what the lemma and the matching upper bound for a
+self-measuring policy do not prove (Section~5). Nothing here is a device result.
+\end{abstract}
+
+\section{Terms}
+
+\begin{description}
+\item[$\theta$] the device's true state: every element's noise, including errors that appear only when several
+  elements are driven together, at the time of the run.
+\item[$C(\theta)$] the calibration numbers. We take them to be static per-element numbers (coherence times, readout)
+  together with the outcome distributions of a fixed set $\mathcal E_{\rm iso}$ of \emph{isolated} experiments:
+  experiments in which no two couplers at distance one carry a two-qubit gate in the same layer. A randomized
+  benchmark of one coupler is such an experiment; a layer-fidelity measurement on a chain of simultaneous gates is
+  not.
+\item[policy $\pi$] a map from (working coupling graph $G$, $C(\theta)$) to a probability law over placements $L$ of a
+  ring of $n$ qubits. $\Pi_C$ is the class of such maps. It contains every compiler pass that decides from those inputs
+  alone, deterministic or randomized, open or closed source. It does \emph{not} contain policies that read numbers of
+  simultaneously driven layers, policies that read results of the user's own circuits, or policies that run their own
+  test circuits on the day (the self-measuring class of Section~3).
+\item[regret $R_\theta(L)$] how far the result of placement $L$ falls short of a comparator placement in state
+  $\theta$. The comparator is fixed in (A3) below; it is not ``the best placement on the device''.
+\end{description}
+
+\section{The lower bound (two-point / averaging)}
+
+\begin{lemma}\label{lem:two}
+Let $\theta_1,\dots,\theta_M$ be states with $C(\theta_k)=c$ for all $k$, and $\pi\in\Pi_C$. Then
+\[
+\max_k \mathbb E_{L\sim\pi(G,c)}\, R_{\theta_k}(L)\;\ge\;\frac1M\,\min_L \sum_{k=1}^M R_{\theta_k}(L).
+\]
+\end{lemma}
+\begin{proof}
+The law $\mu=\pi(G,c)$ is the same for every $k$, so
+$\max_k \mathbb E_\mu R_{\theta_k} \ge \frac1M\sum_k \mathbb E_\mu R_{\theta_k} = \mathbb E_\mu\big[\frac1M\sum_k
+R_{\theta_k}(L)\big] \ge \frac1M\min_L\sum_k R_{\theta_k}(L)$.
+\end{proof}
+
+This is the two-point method of Le Cam in its simplest averaged form (see Yu~\cite{yu1997} for the method and its
+relatives). The lemma says nothing until a family $\{\theta_k\}$ with equal $C$ and a positive right-hand side is
+exhibited; with $M=2$ and one placement that is good in both states the right-hand side is $0$. Section~4 gives such
+a family.
+
+\begin{corollary}\label{cor:ring}
+Let $E_w$ be the working couplers whose two qubits work, and for $e\in E_w$ let $\theta_e$ be the baseline state
+plus the same-layer error of Section~4 on $e$. Assume (A2) and (A3) of Section~3, with a cost $\Delta>0$ for a ring through $e$. Every
+ring placement of $n$ qubits uses $n$ distinct couplers of $E_w$, so
+$\frac{1}{|E_w|}\min_L\sum_e R_{\theta_e}(L)\ge n\Delta/|E_w|$, and every $\pi\in\Pi_C$ has
+$\max_e \mathbb E\,R_{\theta_e}\ge n\Delta/|E_w|$. On FakeKingston $|E_w|=164$: the bound is $0.12\,\Delta$,
+$0.24\,\Delta$ and $0.44\,\Delta$ for $n=20$, 40 and 72.
+\end{corollary}
+% src: |E_w| = 164 counted with psf_os.device (working couplers with both qubits ok, FakeKingston); 20/164, 40/164, 72/164
+The step $C(\theta_e)=C(\theta_0)$ is exact, not approximate: the planted error is inserted only after a CZ on $e$
+whose layer also drives a coupler at distance one from $e$, and an isolated experiment contains no such layer, so its
+circuit and hence its outcome law are unchanged (V1 below confirms this numerically).
+
+\section{The upper bound for a self-measuring policy, with its assumptions}
+
+The self-measuring policy is psf-os's chain: a scan (the mirror echo at $D=24$, read per ring site), a registry
+(a path is listed after two jobs agree), and a placement by the same fixed rule with the middle coupler of each listed
+path masked. The bound below holds only under these assumptions:
+\begin{itemize}
+\item[(A1)] Where the echo is dead, the user's circuit is bad too. (Paper 6's forward test on \texttt{ibm\_marrakesh}
+  is consistent with this: the gain sat on the replaced qubits. It is not a proof.)
+\item[(A2)] The result of a placement depends only on whether its ring contains a dead path: cost $\Delta$ if it
+  does, $0$ if not. This is a simplification; real rings differ in many other ways.
+\item[(A3)] The comparator is not the best placement on the device. It is the placement the rule makes when every
+  truly dead path is masked, and we assume the rule can place a ring with those masks (psf-os does not search for the
+  best placement).
+\item[(A4)] The state does not change between the scan and the user's job. A gray (weak, same-day) entry breaks this
+  by definition; the sentinel (M6) exists to detect such a change inside the user's job.
+\end{itemize}
+
+\begin{definition}
+With the dead line $\tau=0.12$, a site is \emph{$t$-dead} if its true signal $a_j\le\tau-t$ and \emph{$t$-healthy} if
+$a_j\ge\tau+t$. A ring is \emph{$t$-separated} if every site is one or the other.
+\end{definition}
+
+\begin{proposition}\label{prop:upper}
+A site signal is $\hat a_j=\frac14\sum_{i=1}^4 \bar m_{i,j}$, each $\bar m_{i,j}$ the mean of $N$ independent outcomes
+in $\{-1,+1\}$ (four inputs, $N$ shots each). By Hoeffding's inequality~\cite{hoeffding1963} for the $4N$ bounded
+outcomes, $\Pr(|\hat a_j-a_j|\ge t)\le 2e^{-2Nt^2}$. On a $t$-separated ring of $n$ sites, one scan puts every site on
+the correct side of $\tau$ with probability at least $1-2n\,e^{-2Nt^2}$, and then its dead runs are exactly the true
+ones. Under (A1)--(A4) the expected regret of the policy is at most $4n\Delta\,e^{-2Nt^2}$ (a true dead path is missed
+only if one of the two scans misreads; a healthy path is listed only if both do, which under (A2) costs nothing as long
+as (A3) holds with the extra mask). Regret $\le\varepsilon$ needs $N\ge \ln(4n\Delta/\varepsilon)/(2t^2)$ shots per
+input, logarithmic in $n$.
+\end{proposition}
+% src: Hoeffding with 4N samples of range 2: exp(-2 (4N)^2 t^2 / (4N * 4)) = exp(-2 N t^2)
+
+\textbf{Numbers.} With $N=1000$: a site with true signal $0$ is read above $\tau$ with probability at most
+$e^{-28.8}\approx3\times10^{-13}$ (two-sided $6\times10^{-13}$); for $n=72$ the regret bound is
+$\approx9\times10^{-11}\Delta$. A site at the device's healthy level (0.35--0.45, so $t\ge0.23$) is read dead with
+probability below $10^{-45}$. The earlier estimate of $0.08\,\%$ counted one input of $1000$ shots ($e^{-7.2}$); it is
+conservative by a factor of four in the exponent.
+% src: exp(-2*1000*0.12^2) = exp(-28.8) = 3.1e-13; 4*72*exp(-28.8) = 8.9e-11; 2*exp(-2*1000*0.23^2) = 2.3e-46; exp(-7.2) = 7.5e-4
+
+\textbf{What these numbers are not.} The line $\tau=0.12$, the three sites and the two jobs are choices made for
+psf-os, not outputs of the statistics. The bound says how often a reading lands on the wrong side of a chosen line,
+given a margin $t$. A site whose true signal sits near the line has no useful margin: at $a_j=0.10$, $t=0.02$ and the
+bound is $2e^{-0.8}\approx0.90$. Section~4 meets exactly this case.
+
+\section{The construction (the centre of the note)}
+
+\textbf{State A.} On FakeKingston, after each CZ on the planted coupler $e$, if a coupler at distance one from $e$
+(disjoint from $e$, joined to it by one coupler) carries a CZ in the same ring layer, an extra ZZ error acts on $e$.
+The ring layer of a CZ is read from the compiled circuit by occurrence (the $k$-th CZ on a coupler is in layer $k$;
+every ring coupler carries one CZ per layer, asserted). Two models, fixed before any run and not tuned: coherent
+$R_{ZZ}(\pi/8)$, run as a statevector on $n=20$ rings with the scan's own echo ($h=0.6$); and Pauli $ZZ$ with
+probability $0.15$ (the value of psf-os test T3), run on the stabilizer method with the echo at its Clifford point
+($h=\pi/4$, as T3), so that $n=40$ and 72 can be simulated. \textbf{State B} is the same device with no planted error.
+No other noise is modelled, so B reads $1.000$ everywhere; that is not a realistic level, and only differences between
+A and B carry meaning.
+
+$e=(42,43)$ is fixed by rule: positions 12 and 13 (the positions at which psf-os test T3 plants on the $n=40$ ring), taken here on the standard $n=20$ ring. It lies on the
+standard rings of $n=20$, 40 and 72. On \texttt{ibm\_kingston} these qubits were healthy (Paper 6); the choice does not
+imitate the device's dead block. Its couplers at distance one are $(36,41)$, $(40,41)$, $(44,45)$, $(56,63)$.
+% src: out/construction_result.json e, distance_one
+
+\begin{table}[h]\centering\small
+\begin{tabular}{p{0.36\textwidth}p{0.42\textwidth}p{0.14\textwidth}}
+\toprule
+check & state A & state B\\
+\midrule
+V1 benchmark of $e$ alone, $m=2,8,32$ (both models) & 0 errors inserted; counts identical to B & success 1.000\\
+V1 the same with $(36,41)$ in the same layer, Pauli & success 0.74625, 0.2685, 0.24975 & 1.000\\
+V1 the same, coherent & success 0.8755, 0.1745, 0.0250 & 1.000\\
+\midrule
+V2 Pauli scan, $n=20/40/72$: dead run over $e$ & 16 sites each; usable 4, 24, 56 & usable 20, 40, 72\\
+V2 coherent scan, $n=20$ & dead run of 3 sites (44, 43, 42), mean 0.10; ring mean 0.39 & 1.000\\
+\midrule
+V3 Pauli: listed path; usable, standard $\to$ placed ring & $[43,42,41]$; $24\to40$ ($n=40$), $56\to72$ ($n=72$) & --\\
+\quad mean signal on sites already usable & $0.83\to1.00$, $0.93\to1.00$; sentinel CLEAN & --\\
+V3 coherent ($n=20$): listed path; usable & $[43,42]$; $20\to20$ & --\\
+\quad mean signal over the ring & $0.40\to1.00$; sentinel CLEAN & --\\
+\midrule
+V4 coherent, $n=20$, no flip & usable 16, dead run (44, 43, 42, 41); mean 0.40 & 1.000\\
+V4 flip at position 12 / at 13 / global (even positions) & usable 20, every site 1.000 & 1.000\\
+\bottomrule
+\end{tabular}
+% src: out/construction_result.json V1 (success_A, success_B, inserted, identical_counts); V2_pauli.*.dead/usable;
+%      V2_coherent.dead (mean 0.1025), mean(a_scan1) = 0.392; V3_pauli.listed, user.40/72 usable, mean_usable;
+%      V3_coherent.listed, user standard/avoiding usable 20/20, mean_all 0.402/1.000; V4 rows
+\caption{Aer, FakeKingston, planted same-layer error on $e=(42,43)$. Simulation, not a device result.}
+\label{tab:sim}
+\end{table}
+
+\textbf{Reading the table.} V1 is the step the lemma needs: any number made from experiments on $e$ alone is the same
+in A and B, exactly (no gate is inserted), while a benchmark that drives a distance-one coupler in the same layer sees
+the error at once. So the construction stands only against calibration that is isolated in our sense; against a
+layer-fidelity measurement that covers $e$ and a neighbour it fails, which is why such policies are outside $\Pi_C$.
+V2 and V3 show the two sides of the separation: a policy in $\Pi_C$ places the same standard ring in A and B, and in A
+that ring is dead around $e$; psf-os's scan lists the path after two scans and the placed ring reads clean.
+
+The headline and the essential number differ in the coherent case. The headline is ``usable sites $20\to20$'', no
+gain in width. The essential number is the ring mean, $0.40\to1.00$: the coherent error lowered the whole ring, but
+only three sites fell under the line, at a mean of 0.10, inside the margin where Proposition~\ref{prop:upper} says
+nothing. The same circuit was flagged dead in three of four runs (both scans, V4's unflipped run) and not in one (the
+standard user run). That psf-os listed the path here was, in that sense, luck of the shots.
+% src: V2_coherent scan 1 dead (11,3); scan 2 dead (12,3) (re-read from the work folder); V3_coherent standard dead [] ; V4 no flip dead [[44,43,42,41]]
+In the Pauli model the dead run is 16 sites wide at every size: at the Clifford point a Pauli error spreads at full
+speed along the ring, so the width depends on the model as much as on the error.
+
+V4: the coherent error is a static ZZ on one coupler, and a local frame flip at either end of $e$ (or the global flip)
+cancels it exactly in this mirror circuit, as psf-os's repair notes state. The model has no other error, so the flip
+costs nothing here; on the device the global flip cost the healthy part of the ring.
+
+\section{What neither the lemma nor the bound proves}
+
+\begin{itemize}
+\item \textbf{Whether such states occur, and how often.} The lemma needs states with equal $C$ and different damage;
+  the construction shows they can exist. How often a real device is in one is a question of observation. Our evidence
+  is \texttt{ibm\_kingston} on three days, \texttt{ibm\_fez} and \texttt{ibm\_marrakesh} on one day each.
+\item \textbf{(A1), the echo against the user's circuit.} Assumed, not shown.
+\item \textbf{(A2) and (A3).} The cost model is binary and the comparator is the rule's own family. Neither says
+  psf-os's placement is the best one on the device.
+\item \textbf{(A4).} A change between scan and job breaks the bound; the sentinel is meant to catch it, and it has
+  only run in simulation.
+\item \textbf{Scope.} ``Any company's compiler'' is too broad. The lemma covers policies that read only the coupling
+  graph and isolated calibration numbers. A policy that reads simultaneous-layer numbers (for example layer fidelity on
+  a chain) or the user's own results is outside it, and the construction must then move to couplers those numbers do
+  not cover, if any.
+\item \textbf{The thresholds.} $\tau=0.12$, three sites and two jobs are chosen values. Near the line the reading is a
+  coin toss (Section~4, coherent case).
+\item \textbf{The model's width.} The size of a dead run in simulation depends on the model (3 sites coherent, 16
+  sites Pauli at the Clifford point). Neither is a claim about the device.
+\end{itemize}
+
+\section{Relation to the device observation}
+
+On \texttt{ibm\_kingston} (30 October to 1 November 2026) the same 18 qubits of the standard $n=40$ ring formed a dead
+run in every run of a byte-identical circuit; the calibration showed nothing there~\cite{paper5}; the block behaved in
+part coherently (twirling turned its inversion into noise; its signal crossed zero over depth); and a frame flip on
+qubits 27 and 29 lifted it from $-0.19$ to $+0.13$ (31 October) and from $-0.19$ to $+0.11$ (1 November) at $D=24$ (Paper 6, draft). The construction is
+\emph{consistent} with these features: an error invisible to isolated calibration, coherent, and cancelled in a mirror
+circuit by a local flip. It is not shown to be their cause, and two features differ: on the device the flip repaired
+the block only in part, and the global flip cost the healthy part of the ring; in the model both flips repair fully
+and cost nothing.
+
+\begin{thebibliography}{9}
+\bibitem{yu1997} B.~Yu, ``Assouad, Fano, and Le Cam,'' in \emph{Festschrift for Lucien Le Cam}, Springer, New York,
+  1997. doi:10.1007/978-1-4612-1880-7\_29. [Page range: CHECK.]
+\bibitem{hoeffding1963} W.~Hoeffding, ``Probability inequalities for sums of bounded random variables,''
+  \emph{J. Amer. Statist. Assoc.} \textbf{58}(301), 13--30 (1963).
+\bibitem{paper5} The Architect, ``Readable Depth Without the Calibration Map'' (Paper 5),
+  doi:10.5281/zenodo.23827536.
+\end{thebibliography}
+
+\end{document}
