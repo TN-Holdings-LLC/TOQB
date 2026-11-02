@@ -1,0 +1,181 @@
+{
+ "dry_clifford_sentinel": false,
+ "fetch": {
+  "written": "2026-11-02T11:00:25+00:00 (2026-11-02 12:00:25 CET)",
+  "backend": "ibm_kingston",
+  "fake": false,
+  "calibration_time": "2026-11-02 11:27:08+01:00",
+  "operational": true,
+  "two_qubit_gate": "cz",
+  "num_qubits": 156,
+  "target_sha256": "1c40ad5905b3f5a58456ecedd1b587db22f08152a03e80bc999e334b4e492a00",
+  "script_sha256": "8c2cf837aeba16f1337804151e1bbd494f8ce7a0e9367f11e0d72ef9e31a46e6"
+ },
+ "registry": "/tmp/claude-0/work/toqb/results/coverage-days-2026-11-02-day3/list_after.json",
+ "registry_sha256": "d2ad1e734d64a36f50af028f19470f01a23079cd3e69f39d938add7c63750b9f",
+ "now": "2026-11-02 12:00:52",
+ "avoided": [
+  [
+   11,
+   10,
+   9
+  ],
+  [
+   28,
+   29,
+   38,
+   49
+  ],
+  [
+   87,
+   86,
+   85
+  ]
+ ],
+ "jobs": {
+  "S": {
+   "ring": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    17,
+    27,
+    28,
+    29,
+    38,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    59,
+    75,
+    74,
+    73,
+    72,
+    71,
+    70,
+    69,
+    68,
+    67,
+    66,
+    65,
+    64,
+    63,
+    56,
+    43,
+    42,
+    41,
+    36,
+    21,
+    22,
+    23,
+    16
+   ],
+   "circuits": 20,
+   "qpu_seconds_model": 9.1,
+   "circuits_sha256": "8cf6aa6ee8d97bba50a6c3a8853e44d325ffec995467c099e2a7edc357186ee3"
+  },
+  "V": {
+   "ring": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    17,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    39,
+    53,
+    54,
+    55,
+    59,
+    75,
+    74,
+    73,
+    72,
+    71,
+    70,
+    69,
+    68,
+    67,
+    66,
+    65,
+    64,
+    63,
+    56,
+    43,
+    42,
+    41,
+    36,
+    21,
+    22,
+    23,
+    16
+   ],
+   "circuits": 20,
+   "qpu_seconds_model": 9.1,
+   "circuits_sha256": "95d0b22a8c3f58866eaf39b427b1cfcba94f38ee45935bc8bd3e1919968ef1b9"
+  },
+  "P": {
+   "ring": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    17,
+    27,
+    26,
+    25,
+    37,
+    45,
+    44,
+    43,
+    42,
+    41,
+    36,
+    21,
+    22,
+    23,
+    16
+   ],
+   "circuits": 16,
+   "qpu_seconds_model": 7.9,
+   "circuits_sha256": "4b80c19a40a993c4bfd3959c4c9f217d1fb7377b9741dca7e5d42598422d24fd"
+  }
+ },
+ "masked_couplers": [
+  [
+   9,
+   10
+  ],
+  [
+   29,
+   38
+  ],
+  [
+   85,
+   86
+  ]
+ ],
+ "listed_path_on_S": [
+  [
+   28,
+   29,
+   38,
+   49
+  ]
+ ],
+ "listed_path_on_V": []
+}
