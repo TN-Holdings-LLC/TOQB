@@ -1,0 +1,7 @@
+5d5f75a5e285746cd6cb47dc277467b4496dbdb1ee3b156e31d4da858a7c90be  results/kim-lattice-2026-11-03/V/job/circuits.qpy
+89e4b0724f7db4fea15ff67da990ac91c705f0d9152e176d04c20af2b50a47f1  results/kim-lattice-2026-11-03/V/runs/ksent_n40_D24-fold_rule.qpy
+1c48baf33d5c50995e41bcf19d249033f8cc07af7a1b7764fd753d9f831ff032  results/kim-lattice-2026-11-03/V/runs/pkim_th0.000000-lattice.qpy
+3e10087bfa8907ec43341457bd1222cbb47c5fb4d0a64da6e7940dfc5025a4f3  results/kim-lattice-2026-11-03/V/runs/pkim_th0.400000-lattice.qpy
+4d3eb5d2cd6229e16f883c92d2b4e46aa4b7f4b94917472b21defd9cde0871a8  results/kim-lattice-2026-11-03/V/runs/pkim_th0.800000-lattice.qpy
+d2ce803bc99be61215e9131dfdc4cd4c422e4220845c75fee38d9cc02e82bed2  results/kim-lattice-2026-11-03/V/runs/pkim_th1.000000-lattice.qpy
+0283085f5e309ba5a5d52b4a9f251a4ea1985e79147163759ae3032ef31a2de8  results/kim-lattice-2026-11-03/V/runs/pkim_th1.570796-lattice.qpy
