@@ -1,0 +1,13 @@
+84988cd2757fe75d4b244b7b9eb384d0878443f14dc440b77cbabed6f06fd933  results/kim-cd-2026-11-03/V/job/circuits.qpy
+89e4b0724f7db4fea15ff67da990ac91c705f0d9152e176d04c20af2b50a47f1  results/kim-cd-2026-11-03/V/runs/ksent_n40_D24-fold_rule.qpy
+c5c676c7abd1b906f53887017f3b360adb350ae8b98c5aeaf6ece55069cc55c5  results/kim-cd-2026-11-03/V/runs/pkimb_th0.400000-lattice.qpy
+c3729b98e6efa3eef55cb1807e5cad766f8271d51d93a6b5d836fd9a4dff1ed7  results/kim-cd-2026-11-03/V/runs/pkimb_th0.800000-lattice.qpy
+29ed0cb6c3ad420faa5bef792b4241a18126fa1d1f660e62fe3ef6f7d9afd82c  results/kim-cd-2026-11-03/V/runs/pkimb_th1.000000-lattice.qpy
+02da4296597e1c9295b4bc9c820fc9823e0c4ae3e8f517f9d88eb6d75ab2a6ae  results/kim-cd-2026-11-03/V/runs/pkimc_th0.000000-lattice.qpy
+331305c05195daca592da3f3ce580a6fea782a2be5845ecf278bc5dc906daf78  results/kim-cd-2026-11-03/V/runs/pkimc_th0.400000-lattice.qpy
+4964cf80844d7a97c802e58126196405a837e3e5854e39387013b759448615b1  results/kim-cd-2026-11-03/V/runs/pkimc_th0.800000-lattice.qpy
+e364effe23dd85e85755003f634cc6c0c19dd23c996fe1af9d6a5f76720ab74c  results/kim-cd-2026-11-03/V/runs/pkimc_th1.000000-lattice.qpy
+ea6dba00112b87e11841c1d2a4497679935dfcde633d0ced04c2a9c36ad3f0c6  results/kim-cd-2026-11-03/V/runs/pkimc_th1.570796-lattice.qpy
+3d7cae8cc735a0e3e722af57e0d5b3a46758f6f625aefbf451e219112d3f86bd  results/kim-cd-2026-11-03/V/runs/pkims_th0.400000-lattice.qpy
+798dad37a0a2b446c4db1151b6e885a1b0485b0a387b0a29f363e063040a0153  results/kim-cd-2026-11-03/V/runs/pkims_th0.800000-lattice.qpy
+f89c5f62e36bfdaf46e8061667136e7d50489b72aa25ae20b3e38b679925abd2  results/kim-cd-2026-11-03/V/runs/pkims_th1.000000-lattice.qpy
