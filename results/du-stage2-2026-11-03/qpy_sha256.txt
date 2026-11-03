@@ -1,0 +1,6 @@
+8453f30761e9b694512bd65d0ed3dd399bc348a01063e69ad52bc350c0378435  results/du-stage2-2026-11-03/V/job/circuits.qpy
+89e4b0724f7db4fea15ff67da990ac91c705f0d9152e176d04c20af2b50a47f1  results/du-stage2-2026-11-03/V/runs/ksent_n40_D24-fold_rule.qpy
+8c20a7066fa3468e9bd8b825ebd25c3eaaf8f26b271489511e8f4195bebd318d  results/du-stage2-2026-11-03/V/runs/pdu_N33_h0.15_b0.585398-chain.qpy
+73006d61ca5a699ac7bc5644a2a7c4831cb1f8b3533a40dac702a222bdcf08ec  results/du-stage2-2026-11-03/V/runs/pdu_N33_h0.15_b0.685398-chain.qpy
+dc9345195c54b32707da3bc2a593ff6b7e4aedfebdee792a510601cadd3d01a6  results/du-stage2-2026-11-03/V/runs/pdu_N33_h0.15_b0.785398-chain.qpy
+8be897172f1296e228788330574af7373ff11eadc9e67e34dd0065597f89ec70  results/du-stage2-2026-11-03/V/runs/pdu_N33_h0_b0.785398-chain.qpy
