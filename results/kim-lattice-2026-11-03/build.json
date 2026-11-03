@@ -1,0 +1,149 @@
+{
+ "dry_clifford_sentinel": false,
+ "fetch": {
+  "written": "2026-11-03T05:02:30+00:00 (2026-11-03 06:02:30 CET)",
+  "backend": "ibm_kingston",
+  "fake": false,
+  "calibration_time": "2026-11-03 05:25:48+01:00",
+  "operational": true,
+  "two_qubit_gate": "cz",
+  "num_qubits": 156,
+  "target_sha256": "815520ec10528abfaeeb8fdf62d003463bcbf1f1d3f45f682bf9d2bd246dc759",
+  "script_sha256": "8c2cf837aeba16f1337804151e1bbd494f8ce7a0e9367f11e0d72ef9e31a46e6"
+ },
+ "registry": "results/coverage-days-2026-11-02-day3/list_after.json",
+ "registry_sha256": "d2ad1e734d64a36f50af028f19470f01a23079cd3e69f39d938add7c63750b9f",
+ "now": "2026-11-03 06:03:05",
+ "avoided": [
+  [
+   11,
+   10,
+   9
+  ],
+  [
+   28,
+   29,
+   38,
+   49
+  ],
+  [
+   87,
+   86,
+   85
+  ]
+ ],
+ "masked_couplers": [
+  [
+   9,
+   10
+  ],
+  [
+   29,
+   38
+  ],
+  [
+   85,
+   86
+  ]
+ ],
+ "thetas": [
+  0.0,
+  0.4,
+  0.8,
+  1.0,
+  1.5707963267948966
+ ],
+ "t_max": 5,
+ "shots": 4000,
+ "lattice_qubits": 151,
+ "lattice_edges": 163,
+ "colours": 3,
+ "sentinel_ring": [
+  3,
+  4,
+  5,
+  6,
+  7,
+  17,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32,
+  33,
+  39,
+  53,
+  54,
+  55,
+  59,
+  75,
+  74,
+  73,
+  72,
+  71,
+  70,
+  69,
+  68,
+  67,
+  66,
+  65,
+  64,
+  63,
+  56,
+  43,
+  42,
+  41,
+  36,
+  21,
+  22,
+  23,
+  16
+ ],
+ "circuits": 34,
+ "qpu_seconds_model": 40.9,
+ "circuits_sha256": "5d5f75a5e285746cd6cb47dc277467b4496dbdb1ee3b156e31d4da858a7c90be",
+ "answers_sha256": "a0f55b4bb0a2930322365843c7891188eeb8f82f3b64d49f61ddc983a41ff27d",
+ "cone_max": {
+  "0.000000": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "0.400000": [
+   0,
+   1,
+   4,
+   7,
+   13,
+   19
+  ],
+  "0.800000": [
+   0,
+   1,
+   4,
+   7,
+   13,
+   19
+  ],
+  "1.000000": [
+   0,
+   1,
+   4,
+   7,
+   13,
+   19
+  ],
+  "1.570796": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ }
+}
