@@ -1,0 +1,95 @@
+{
+ "stages": "BC",
+ "ts": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8
+ ],
+ "dry_clifford_sentinel": false,
+ "fetch": {
+  "written": "2026-11-03T14:05:54+00:00 (2026-11-03 15:05:54 CET)",
+  "backend": "ibm_fez",
+  "fake": false,
+  "calibration_time": "2026-11-03 14:38:24+01:00",
+  "operational": true,
+  "two_qubit_gate": "cz",
+  "num_qubits": 156,
+  "target_sha256": "0a3073468f52994d5cdbd44ee676ca1433f027e965108a4669e3c80e87e219bc",
+  "script_sha256": "8c2cf837aeba16f1337804151e1bbd494f8ce7a0e9367f11e0d72ef9e31a46e6"
+ },
+ "registry": "none",
+ "registry_sha256": null,
+ "now": "2026-11-03 15:13:04",
+ "avoided": [],
+ "masked_couplers": [],
+ "failed_couplers": [
+  [
+   32,
+   33
+  ]
+ ],
+ "failed_qubits": [
+  72
+ ],
+ "lattice": {
+  "qubits": 153,
+  "edges": 170
+ },
+ "answered_at": {
+  "6": 153,
+  "7": 95,
+  "8": 72
+ },
+ "sentinel_ring": [
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  19,
+  35,
+  34,
+  33,
+  39,
+  53,
+  52,
+  51,
+  50,
+  49,
+  48,
+  47,
+  57,
+  67,
+  66,
+  65,
+  64,
+  63,
+  56,
+  43,
+  42,
+  41,
+  36,
+  21,
+  22,
+  23,
+  16
+ ],
+ "circuits": 36,
+ "qpu_seconds_model": 43.2,
+ "circuits_sha256": "2b035f8870d68cdde9be11cb589d0bbed181c9bd7e95a031038c36783a336b03",
+ "answers_cpu_sha256": "c5b960a0f3f3105ac33805f9a26b296f31bbbd443d6dd90d55c40a6842b89205",
+ "lattice_sha256": "f155e92511f0633c892b1d277acc04fd0d333d2c18577bdb6e2b09b5dbde03be"
+}
