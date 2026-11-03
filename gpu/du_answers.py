@@ -135,7 +135,7 @@ class CupySV:
         import cupy as cp
         self.cp, self.N = cp, N
         real = "float" if dtype == np.complex64 else "double"
-        mod = cp.RawModule(code=_CUDA.replace("REAL", real), options=("-std=c++14",))
+        mod = cp.RawModule(code=_CUDA.replace("REAL", real), options=("-std=c++17",))
         self.k_one, self.k_cz = mod.get_function("one"), mod.get_function("cz")
         self.k_x, self.k_n = mod.get_function("xred"), mod.get_function("nred")
         self.dtype = dtype
