@@ -1,0 +1,14 @@
+K1 theta 0.8 t 5: max |GPU - CPU| 2.09e-06
+K2 cones [31, 31, 31, 31, 31]: max |single - double| 3.56e-06
+K3 theta pi/2 t 6: 153 qubits, max |GPU - stabilizer| 0.00e+00
+K3 theta pi/2 t 7: 95 qubits, max |GPU - stabilizer| 0.00e+00
+theta 0.4 t 6: 153 qubits answered, M over them +0.906789, 115 s
+theta 0.4 t 7: 95 qubits answered, M over them +0.887495, 263 s
+theta 0.4 t 8: 72 qubits answered, M over them +0.893231, 584 s
+theta 0.8 t 6: 153 qubits answered, M over them +0.427558, 115 s
+theta 0.8 t 7: 95 qubits answered, M over them +0.440518, 263 s
+theta 0.8 t 8: 72 qubits answered, M over them +0.448738, 584 s
+theta 1.0 t 6: 153 qubits answered, M over them +0.153680, 115 s
+theta 1.0 t 7: 95 qubits answered, M over them +0.165210, 263 s
+theta 1.0 t 8: 72 qubits answered, M over them +0.165225, 585 s
+answers_C.json sha256 4c0b7ce9e0236e5940d78cddb3ca63c2f36f343beb28e9d17332817bc53f6b64
