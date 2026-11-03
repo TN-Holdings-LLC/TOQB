@@ -1,0 +1,7 @@
+toqb e55e98a P5 stages C/D: job built from the fetch of 11:14:47 
+note a07dad9f74a2df4984bca777b53be2ef08537d4a48e6c2dcec3af21411175006  prereg/drafts-2026-11-03/kim_cd_note.md
+lattice 5896ff1d398463cf8f26674f235897c3916053a91ac1146110415205279b1240  /workspace/lattice.json
+script 46036286f1471e0de83a9664188fc28cf516075f402cf11c24df669b96f4fc2d  gpu/kim_answers.py
+NVIDIA H200, 143771 MiB
+start 2026-11-03 11:26:58 CET
+end 2026-11-03 12:06:29 CET

@@ -1,0 +1,22 @@
+toqb e55e98a P5 stages C/D: job built from the fetch of 11:14:47 
+note a07dad9f74a2df4984bca777b53be2ef08537d4a48e6c2dcec3af21411175006  prereg/drafts-2026-11-03/kim_cd_note.md
+lattice 5896ff1d398463cf8f26674f235897c3916053a91ac1146110415205279b1240  /workspace/lattice.json
+script 46036286f1471e0de83a9664188fc28cf516075f402cf11c24df669b96f4fc2d  gpu/kim_answers.py
+NVIDIA H200, 143771 MiB
+start 2026-11-03 11:26:58 CET
+K1 theta 0.8 t 5: max |GPU - CPU| 2.09e-06
+K2 cones [30, 30, 31, 31, 31]: max |single - double| 3.56e-06
+K3 theta pi/2 t 6: 151 qubits, max |GPU - stabilizer| 0.00e+00
+K3 theta pi/2 t 7: 122 qubits, max |GPU - stabilizer| 0.00e+00
+theta 0.4 t 6: 151 qubits answered, M over them +0.903571, 31 s
+theta 0.4 t 7: 122 qubits answered, M over them +0.886706, 299 s
+theta 0.4 t 8: 82 qubits answered, M over them +0.901922, 328 s
+theta 0.8 t 6: 151 qubits answered, M over them +0.441228, 31 s
+theta 0.8 t 7: 122 qubits answered, M over them +0.454465, 299 s
+theta 0.8 t 8: 82 qubits answered, M over them +0.469159, 328 s
+theta 1.0 t 6: 151 qubits answered, M over them +0.171139, 31 s
+theta 1.0 t 7: 122 qubits answered, M over them +0.179342, 299 s
+theta 1.0 t 8: 82 qubits answered, M over them +0.184331, 328 s
+answers_C.json sha256 b11c30e8e06c18b8d047f63580431175f94d7af1fbb31bdeb5d5e18b00797c09
+end 2026-11-03 12:06:29 CET
+== DONE: /workspace/kimc_answers.zip
