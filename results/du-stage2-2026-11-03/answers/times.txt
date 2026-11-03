@@ -1,0 +1,6 @@
+toqb fa6b9eb gpu/du_answers.py: compile the CUDA kernels with -st
+note cb97a0c200635320dec2d3f63b5f312aad8210defceefea7009f9a0ac1764d65  prereg/drafts-2026-11-03/du_stage2_note.md
+script 9e35e8889ea76e06a22ef4e0b2a255565d0284d03cf670912ca2ff1441ae6cbb  gpu/du_answers.py
+NVIDIA H100 80GB HBM3, 81559 MiB
+start 2026-11-03 02:46:36 CET
+end 2026-11-03 03:00:25 CET
