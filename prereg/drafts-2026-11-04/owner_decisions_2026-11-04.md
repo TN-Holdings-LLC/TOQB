@@ -14,3 +14,5 @@
 - Self-repair test (repair_note_DRAFT, task R), owner 2026-11-04 08:24 CET: confirm rule **(b)** (one job, certainly DEAD:
   a + 3 SE < line, removes); return by **expiry (7 days)**; **tonight's OS2D job is job 1** (job 2 sent right after it);
   the thresholds (0.8 / 1.25) are decided after seeing tonight's results.
+- Self-repair test, owner 2026-11-04 08:33 CET: the ledger starts from tonight's OS2D readings only (input ledger none); the
+  readings of 3 November were looked at after the fact and are not used.
