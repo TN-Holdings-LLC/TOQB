@@ -18,15 +18,24 @@ without an answer)
 | 4 | P5 stage C: t = 6-8 | GPU cones (<= 33 qubits), sealed | results/kim-cd-2026-11-03 | READS at 0.4, 0.8, 1.0; AGREES at 0.8 and 1.0 | theta 0.4 DIFFERS at t = 8 (0.053); only qubits with small cones (towards the edges) are answered at t = 7, 8 (122, 82) |
 | 5 | P5 stage E: suspect-qubit lattice (kingston) and a second device chosen by queue (fez) | as rung 4 | results/kim-e-2026-11-03 | kingston: all AGREE to depth 8 (theta 0.4: 0.031) | fez: theta 0.4 DIFFERS (0.079) through readout faults IBM does not mark (23: -0.79 at theta 0); price of the suspect rule 26 qubits |
 | 6 | P5 stage D: t = 20, 3,260 CZ, no exact answer | none; SPD estimate (workplace, rust/spd) as an independent classical value with its convergence width | results/kim-cd-2026-11-03 + notes/spd_2026-11-04 | device M 0.819, 0.253, 0.050 (theta 0.4, 0.8, 1.0); controls AGREE (0.979, 0.001) | the classical value is an estimate with a truncation error that cannot be bounded rigorously; see the SPD table |
+| 7 (top) | P6: the problem of IBM's public Qedma QESEM tutorial, the same logical circuit (35 qubits, RX 0.53, RZ 0.1, RZZ 1.0 as 2 CZ, 6 CZ layers per step), t = 1..9 | light cones, CPU t <= 5 and pod t = 6..9, sealed (f183ca5, c9097e5); equal to the tutorial's PEPS-BP to 1e-4 at t = 5, 7 | not run yet: prereg/drafts-2026-11-04/p6_device_note_DRAFT.md | to come | to come; reported next to the tutorial's unmitigated gaps 0.091, 0.139, 0.180 with the caveats (their gate implementation, suppression and shots not stated) |
 
 Sections:
 1. Introduction: why answers first; the policy (no map read, no search, answers sealed before the run).
 2. Methods: psf-os (scan, registry, avoid, sentinel), the circuits (RZZ(-pi/2) as one CZ; edge colouring), the answers
    (closed form, statevector, causal cones on GPU, sealing), scoring (READS, AGREES), the suspect-qubit rule.
 3. Rungs 1-2 (1D). 4. Rungs 3-5 (2D, two devices). 5. Rung 6 (t = 20) with the classical estimate.
-6. Limits and the comparison below. 7. What the next problem without an answer should be.
+6. Rung 7 (top): the public problem itself (P6), the same logical circuit as the tutorial; the comparison below becomes
+   direct at the level of the logical circuit. 7. Limits. 8. What the next problem without an answer should be.
+
+Order note (11/04): rung 7 is placed on top because it is the one a reader can check against a public result; rung 6
+(no answer) stays as the step beyond it.
 
 ## A fair comparison with IBM's public example (Qedma QESEM tutorial)
+
+Update (11/04): P6 runs the tutorial's logical circuit itself, so the weight-per-step difference below no longer
+applies to rung 7 (both 6 CZ layers per step if the tutorial decomposed RZZ into CZ; its page does not say whether it
+used native fractional RZZ gates). The points below stay for rungs 3-6.
 
 The tutorial (IBM Quantum documentation, "qedma-2d-ising-with-qesem", read 2026-11-04) runs a 2D kicked Ising circuit
 on 35 qubits of a Heron r2 device: RZZ(1.0), RX(0.53), RZ(0.1) per step; magnetisation at 5, 7, 9 steps; reference

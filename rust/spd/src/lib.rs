@@ -9,6 +9,8 @@
 //!   <0...0| P |0...0> is 1 for a Z-only string and 0 otherwise.
 //! Qubits up to 192 (three 64-bit words for each of the X and Z parts).
 
+pub mod layers;
+
 use std::collections::HashMap;
 use std::hash::{BuildHasherDefault, Hasher};
 

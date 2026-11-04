@@ -5,10 +5,12 @@ answers at t = 5-8. **Classical simulation only; not a device result, not a decl
 
 | file | content |
 |---|---|
-| `../../rust/spd/` | the Rust crate (no outside crates): Heisenberg-picture sparse Pauli dynamics with truncation delta, 192 qubits max, threads over qubits. `cargo test --release`: 4 tests (exact against a plain statevector at delta = 0 on a chain of 6 and a ring-with-pendant of 10, theta 0.4-1.3, t 1-5, 1e-10; qubit words beyond 64; truncation sanity) |
+| `../../rust/spd/` | the Rust crate (no outside crates): Heisenberg-picture sparse Pauli dynamics with truncation delta, 192 qubits max, threads over qubits. `cargo test --release`: 6 tests (exact against a plain statevector at delta = 0 on a chain of 6 and a ring-with-pendant of 10, theta 0.4-1.3, t 1-5, 1e-10; qubit words beyond 64; truncation sanity; the layered mode against a statevector of a 9-qubit P6-shaped piece at the P6 angles, t 1-4, and against the P5 code at RZZ(-pi/2)) |
 | `spd_check.py` | drives the binary on lattice b of `results/kim-cd-2026-11-03` and compares with `answers_cpu.json` (t = 5) and `answers_pod/answers_C.json` (t = 6, 7, 8) |
 | `spd_tables.py` | prints the tables below from `out/*.jsonl` |
 | `spd_pod.sh` | for home: the same at delta 3e-5 and 1e-5 on a many-core pod (CPU only) |
+| `spd_p6_check.py` | P6 (the Qedma patch) through the layered mode (`rust/spd/src/layers.rs`, binary `spd_layers`: RX, RZ, RZZ(theta) layers; RZZ at a generic angle branches), against the sealed answers t = 1..9 |
+| `指示書_SPD_POD_2026-11-04.md` | the pod instruction for the VS Code Claude (after the bank pod) |
 | `out/` | JSONL records (per qubit: value, peak term count, seconds) and run logs |
 
 Rules (as `gpu/spd_proto.py`, checked equal: qubit 0, theta 0.8, t 8, delta 1e-4 gives 0.7064292438257 and 55,273 peak
