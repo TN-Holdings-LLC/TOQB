@@ -1,0 +1,11 @@
+{
+ "written": "2026-11-04T10:56:28+00:00 (2026-11-04 11:56:28 CET)",
+ "backend": "ibm_marrakesh",
+ "fake": false,
+ "calibration_time": "2026-11-04 11:40:29+01:00",
+ "operational": true,
+ "two_qubit_gate": "cz",
+ "num_qubits": 156,
+ "target_sha256": "4c5a41ac415fdab142a4917e328bceeaafe2fda3ffddb502c1b4cfea4a4d66c6",
+ "script_sha256": "8c2cf837aeba16f1337804151e1bbd494f8ce7a0e9367f11e0d72ef9e31a46e6"
+}
