@@ -1,0 +1,163 @@
+{
+ "device": "ibm_fez",
+ "circuits": 70,
+ "qpu_seconds_model": 81.1,
+ "job": "/tmp/claude-0/work/toqb/results/practice-fez-2026-11-04/run/job",
+ "runs": "/tmp/claude-0/work/toqb/results/practice-fez-2026-11-04/run/runs",
+ "items": {
+  "p4_b0.485_t02": {
+   "copy": {
+    "drow": 4,
+    "dcol": 0
+   },
+   "cz": 80
+  },
+  "p4_b0.485_t04": {
+   "copy": {
+    "drow": 4,
+    "dcol": 0
+   },
+   "cz": 144
+  },
+  "p4_b0.485_t08": {
+   "copy": {
+    "drow": 4,
+    "dcol": 0
+   },
+   "cz": 272
+  },
+  "p4_b0.485_t12": {
+   "copy": {
+    "drow": 4,
+    "dcol": 0
+   },
+   "cz": 400
+  },
+  "p4_b0.485_t16": {
+   "copy": {
+    "drow": 4,
+    "dcol": 0
+   },
+   "cz": 528
+  },
+  "p4_b0.735_t02": {
+   "copy": {
+    "drow": 4,
+    "dcol": 0
+   },
+   "cz": 80
+  },
+  "p4_b0.735_t04": {
+   "copy": {
+    "drow": 4,
+    "dcol": 0
+   },
+   "cz": 144
+  },
+  "p4_b0.735_t08": {
+   "copy": {
+    "drow": 4,
+    "dcol": 0
+   },
+   "cz": 272
+  },
+  "p4_b0.735_t12": {
+   "copy": {
+    "drow": 4,
+    "dcol": 0
+   },
+   "cz": 400
+  },
+  "p4_b0.735_t16": {
+   "copy": {
+    "drow": 4,
+    "dcol": 0
+   },
+   "cz": 528
+  },
+  "p5_tx0.4_t2": {
+   "copy": {
+    "drow": 0,
+    "dcol": 0
+   },
+   "cz": 340
+  },
+  "p5_tx0.4_t4": {
+   "copy": {
+    "drow": 0,
+    "dcol": 0
+   },
+   "cz": 680
+  },
+  "p5_tx0.4_t6": {
+   "copy": {
+    "drow": 0,
+    "dcol": 0
+   },
+   "cz": 1020
+  },
+  "p5_tx0.4_t8": {
+   "copy": {
+    "drow": 0,
+    "dcol": 0
+   },
+   "cz": 1360
+  },
+  "p5_tx0.8_t2": {
+   "copy": {
+    "drow": 0,
+    "dcol": 0
+   },
+   "cz": 340
+  },
+  "p5_tx0.8_t4": {
+   "copy": {
+    "drow": 0,
+    "dcol": 0
+   },
+   "cz": 680
+  },
+  "p5_tx0.8_t6": {
+   "copy": {
+    "drow": 0,
+    "dcol": 0
+   },
+   "cz": 1020
+  },
+  "p5_tx0.8_t8": {
+   "copy": {
+    "drow": 0,
+    "dcol": 0
+   },
+   "cz": 1360
+  },
+  "p5_tx1.0_t2": {
+   "copy": {
+    "drow": 0,
+    "dcol": 0
+   },
+   "cz": 340
+  },
+  "p5_tx1.0_t4": {
+   "copy": {
+    "drow": 0,
+    "dcol": 0
+   },
+   "cz": 680
+  },
+  "p5_tx1.0_t6": {
+   "copy": {
+    "drow": 0,
+    "dcol": 0
+   },
+   "cz": 1020
+  },
+  "p5_tx1.0_t8": {
+   "copy": {
+    "drow": 0,
+    "dcol": 0
+   },
+   "cz": 1360
+  }
+ }
+}
