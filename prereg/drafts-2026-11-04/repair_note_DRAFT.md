@@ -2,8 +2,10 @@
 
 Status: a draft for home and the owner (task R). The owner's decision of 2026-11-04 07:57 CET: the chain (find,
 confirm, avoid, re-place, verify) is not counted as search, provided its rules are fixed here and applied mechanically;
-build it and test its effect. **The final thresholds are set after tonight's OS2D result** (its Q1 LOCATES and Q2
-HELPS are the 2D test of the same idea); fields marked **[after tonight]** wait for it.
+build it and test its effect. The owner's decisions of 2026-11-04 08:24 CET (`owner_decisions_2026-11-04.md`): confirm
+rule **(b)**, release by **expiry (7 days)**, **tonight's OS2D job is job 1** and job 2 is sent right after it. **Only
+the thresholds wait for tonight's results** (field marked **[after tonight]**). Home's procedure for tonight:
+`notes/repair_2026-11-04/指示書_ジョブ2_2026-11-04.md`.
 
 Tools: psf-os 1250c90 `psf_os/repair2d.py` and `psf-os repair2d` (3 tests); TOQB `gpu/repair_job2.py`,
 `notes/repair_2026-11-04/` (`ledger_from_job.py`, `repair_score.py`, `repair_posthoc.py`, `dry_counts.py` for dry runs
@@ -33,33 +35,38 @@ often has no other copy to go to: then the test is NO COPY and is reported so.
 | step | input | rule |
 |---|---|---|
 | find | job 1's floor (theta_x 0 at t = 1, 5) and mirror (t = 3, 5); the ring sentinel | per qubit, the ledger's three-valued reading with the job's own line (rule R's form: median - max(5 x 1.4826 MAD, 0.05) for the floor; median + the same for the mirror's d = floor - mirror): DEAD if beyond the line by 3 SE, HEALTHY if inside by 3 SE, UNCERTAIN otherwise. The ring sentinel goes to the registry under its existing rules (unchanged) |
-| confirm | the ledger (all earlier jobs, this device, 7 days) | **to choose one:** (a) DEAD in two different jobs in one kind (the ledger's current rule); (b) DEAD in one job (value + 3 SE < line for the floor) |
+| confirm | the test's ledger (section 3: job 1's readings only) | **rule (b)** (owner, 08:24 CET): DEAD in one job in one kind (value + 3 SE < line for the floor; value - 3 SE > line for the mirror's d). Rule (a), two different jobs, is not used here |
 | avoid | the confirmed qubits | marked failed in a copy of the device record (after the registry's mask) |
 | re-place | `lattice2d.place`, P6's six copies in P6's order | the first copy with no failed, masked or suspect element; none qualifying -> NO COPY |
 | verify | job 2 | section 3 |
-| release | | **to choose one:** "expiry", an exclusion lapses 7 days after its last DEAD (current rule); "early", it also lapses as soon as a later job of the same kind reads the qubit HEALTHY (value - 3 SE >= line) |
+| release | | **expiry** (owner, 08:24 CET): an exclusion lapses 7 days after its last DEAD (the ledger's rule). The early release (a later HEALTHY reading) is not used |
 
 - Each run of the chain writes a log: the readings, each confirmation with its reason (kind and jobs), each release
   with its reason, the excluded qubits, the copy chosen for A and for B, the copies passed over with their reasons, and
   the price. Ledger, registry and log are hashed and committed before job 2 is built.
-- Two copies in one job count as one job for rule a (one job name in the ledger).
-- **What the past data say about the choice (reference only; the owner decides; section 6):** rule a would have
+- Two copies in one job are recorded under one job name in the ledger.
+- Readings dated after the chain's "now" are never used (no look-ahead); `gpu/repair_job2.py` stops if the ledger has
+  any (a clock or time mistake), and stops if the ledger has no reading for the fetched device (job 2 on another device).
+- **What the past data said before the choice (reference only; section 6):** rule a would have
   excluded nothing on 3 November. Rule b with expiry would have excluded 11 qubits before the 17:04 job, among them
   qubit 72 (DEAD at 06:08, HEALTHY at 12:09, DEAD at 17:04 with 0.51). The scoring-only gain came entirely from 72.
   Rule b with early release would have released 72 at 12:09 and gained nothing. Three jobs on one device and day.
-  Choosing a rule after seeing this is a choice on these three jobs, not on the test, which is run later.
+  The choice was made after seeing this; it is a choice on these three jobs, not on the test, which runs later.
 
 ## 3. The test
 
 - **Device:** P6's rule (fewest pending jobs among fez, marrakesh, kingston; ties marrakesh, fez, kingston). Job 2 runs
   on job 1's device ("stay"). A and B must share one job, so if B has no copy on that device the result is NO COPY.
   The production chain would move to the next device; this test does not.
-- **Job 1 (day 1):** the OS2D cell set: P6 problem (theta_x 0.53) t = 1..5, floor theta_x 0 at t = 1, 5, mirror at
-  t = 3, 5, ring sentinel; 13 circuits, 17.5 s by the time model. **[after tonight]:** whether tonight's OS2D job may
-  serve as job 1 (then job 2 cannot follow "right after"; the gap is reported).
-- **The chain:** run on the ledger with job 1 appended (`ledger_from_job.py`, then `gpu/repair_job2.py` with the rule
-  and release declared).
-- **Job 2 (right after job 1; the gap is recorded):** the P6 problem t = 1..5 on A's copy and on B's copy, interleaved
+- **Job 1:** tonight's OS2D job (owner, 08:24 CET), as declared and run for OS2D (81ba8d4): P6 problem (theta_x 0.53)
+  t = 1..5, floor theta_x 0 at t = 1, 5, mirror at t = 3, 5, ring sentinel; 13 circuits. Its OS2D verdicts are judged
+  under OS2D's own declaration and are not changed by this test.
+- **The test's ledger:** job 1's readings only (`ledger_from_job.py` with no input ledger, WHEN read from job 1's
+  submission.json). No earlier reading is in a declared ledger file; the 3 November readings are after-the-fact only
+  and are not used.
+- **The chain:** `gpu/repair_job2.py` with rule b and expiry, on a fresh fetch of job 1's device and the registry file
+  OS2D used; "now" is the build time (CET).
+- **Job 2 (sent right after job 1's results are in; the gap between the two submissions is recorded):** the P6 problem t = 1..5 on A's copy and on B's copy, interleaved
   (A t1, B t1, A t2, ...), each copy's floor at t = 1, 5, ring sentinel. 18 circuits, 23.1 s by the time model.
   A and B on the same copy (nothing excluded on A's copy): **NOT TESTED**.
 - Answers: P6's sealed CPU answers (both copies run the same circuit on different qubits; the answers are the same).
@@ -123,6 +130,7 @@ mirror, as it should) -> chain rule b: excluded [26], A copy (0, 0), B copy (2, 
 built, 18 circuits, 23.1 s -> HELPS on synthetic counts. Rule a on the same ledger: NOT TESTED. The counts are made
 up; nothing here is a result.
 
-## 8. Choices for the owner
+## 8. Decided and open
 
-Rule a or b; release expiry or early; whether tonight's OS2D job is job 1; the thresholds after tonight.
+Decided (owner, 2026-11-04 08:24 CET): rule (b); expiry (7 days); tonight's OS2D job is job 1, job 2 right after.
+Open: the thresholds 0.8 / 1.25 **[after tonight]**.

@@ -1,0 +1,27 @@
+# Rehearsal of 指示書_ジョブ2 on FakeKingston with synthetic counts (planted readout fault on qubit 26; made-up submission times; --now given because the dry jobs carry evening times). Plumbing only, not data.
+== guard (now before the OS2D reading)
+os2d: when 2026-11-04 20:00:00 CET
+os2d A floor: line 0.929, DEAD [26]
+os2d A mirror: line 0.050, DEAD []
+STOP: the ledger has readings after now (2026-11-04 19:00:00): jobs ['os2d']
+== real order
+chain (b, expiry): excluded [26]; status TESTABLE
+fake_kingston: A copy (0, 0), B copy (2, 4); 18 circuits, 23.1 s by the model
+18 synthetic rows, bad [26]
+{"status": "TESTABLE", "price": {"excluded": 1, "excluded_in_A": 1, "copy_moved": {"drow": 2, "dcol": 4, "shared_qubits": 3}}, "lifetime_job2_floor_on_A": {"26": "DEAD"}}
+MSE A 0.00462, B 0.00008, ratio 0.02; shot SE 0.00015, spread 1e-05; verdict HELPS
+repair_job2: when 2026-11-04 20:45:00 CET
+repair_job2 A floor: line 0.930, DEAD [26]
+repair_job2 B floor: line 0.930, DEAD []
+<rehearsal>/repair_job2:
+V
+build.json
+chain.json
+
+<rehearsal>/repair_job2/V/job:
+circuits.qpy
+manifest.json
+raw_counts.json
+submission.json
+== device guard
+STOP: the ledger has no readings for fake_fez (job 2 must run on job 1's device)

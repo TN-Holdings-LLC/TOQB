@@ -44,7 +44,14 @@ now = (dt.datetime.fromisoformat(sys.argv[sys.argv.index("--now") + 1]) if "--no
        dt.datetime.now(ZoneInfo("Europe/Zurich")).replace(tzinfo=None, microsecond=0))
 avoid = R.avoid_paths(R.load(REG), dev.name, now) if REG != "none" else []
 dev_v, masked = A.mask(dev, avoid, reason=f"registry at {now.isoformat(sep=' ')}") if avoid else (dev, [])
-log = Rp.chain(dev_v, Lg.load(LED), now, I.EDGES, I.QUBITS, rule=RULE, release=REL, offsets=I.OFFSETS)
+led = Lg.load(LED)
+if not any(r["device"] == dev.name for r in led["records"]):
+    raise SystemExit(f"STOP: the ledger has no readings for {dev.name} (job 2 must run on job 1's device)")
+late = [r["job"] for r in led["records"] if dt.datetime.fromisoformat(r["when"]) > now]
+if late:
+    # a reading dated after `now` is never used by the chain (no look-ahead); here it means a clock or WHEN mistake
+    raise SystemExit(f"STOP: the ledger has readings after now ({now}): jobs {sorted(set(late))}")
+log = Rp.chain(dev_v, led, now, I.EDGES, I.QUBITS, rule=RULE, release=REL, offsets=I.OFFSETS)
 log.update(ledger_sha256=R.sha256_file(LED), registry=REG, fetch=f)
 os.makedirs(OUT)
 Rp.save_log(log, os.path.join(OUT, "chain.json"))
