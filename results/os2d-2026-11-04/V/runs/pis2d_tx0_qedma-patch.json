@@ -1,0 +1,94 @@
+{
+ "kind": "psfos",
+ "psfos_role": "user",
+ "psfos_job": {
+  "theta_x": 0.0,
+  "ts": [
+   1,
+   5
+  ],
+  "shots": 4000,
+  "kind": "ising2d"
+ },
+ "arm": "patch:copy",
+ "version": "psf-os rule compiler (TOQB fold:rule at 8d44f05, map-free Target)",
+ "device": "ibm_fez",
+ "masked": [],
+ "task": {
+  "n": 35,
+  "layers": 5
+ },
+ "copy": {
+  "drow": 0,
+  "dcol": 0,
+  "passed_over": []
+ },
+ "mapping": {
+  "3": 3,
+  "4": 4,
+  "5": 5,
+  "6": 6,
+  "7": 7,
+  "8": 8,
+  "9": 9,
+  "10": 10,
+  "11": 11,
+  "16": 16,
+  "17": 17,
+  "18": 18,
+  "21": 21,
+  "22": 22,
+  "23": 23,
+  "24": 24,
+  "25": 25,
+  "26": 26,
+  "27": 27,
+  "28": 28,
+  "29": 29,
+  "30": 30,
+  "31": 31,
+  "36": 36,
+  "37": 37,
+  "38": 38,
+  "41": 41,
+  "42": 42,
+  "43": 43,
+  "44": 44,
+  "45": 45,
+  "46": 46,
+  "47": 47,
+  "48": 48,
+  "49": 49
+ },
+ "echo": {
+  "kind": "ising2d",
+  "q2_circuits": [
+   76,
+   380
+  ],
+  "q2_expected": [
+   76,
+   380
+  ],
+  "accepted": true
+ },
+ "points": [
+  {
+   "input": "t1",
+   "setting": "z",
+   "t": 1
+  },
+  {
+   "input": "t5",
+   "setting": "z",
+   "t": 5
+  }
+ ],
+ "valid": true,
+ "shots": 4000,
+ "export": {
+  "qpy": "pis2d_tx0_qedma-patch.qpy",
+  "circuits": 2,
+  "sha256": "4d865de74384bbe40267db0c5e2bae55dc040661747e21014c2c5dcd5b24650b"
+ }
+}
