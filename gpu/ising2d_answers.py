@@ -33,13 +33,13 @@ def _u(name, angle):
     raise ValueError(name)
 
 
-def z_cone(q, t, backend="numpy", precision="double", max_qubits=33):
+def z_cone(q, t, backend="numpy", precision="double", max_qubits=33, tx=I.THETA_X):
     cq, cl = I.cone(q, t)
     if len(cq) > max_qubits:
         return None, len(cq)
     idx = {p: k for k, p in enumerate(cq)}
     sv = (DA.CupySV if backend == "cupy" else DA.NumpySV)(len(cq), np.complex64 if precision == "single" else np.complex128)
-    for op in I.ops(cq, cl, t):
+    for op in I.ops(cq, cl, t, tx=tx):
         if op[0] == "cz":
             sv.cz(idx[op[1]], idx[op[2]])
         else:
@@ -53,7 +53,7 @@ def z_cone(q, t, backend="numpy", precision="double", max_qubits=33):
     return z, len(cq)
 
 
-def run(ts, backend, precision, max_qubits=33, only=None, log=None):
+def run(ts, backend, precision, max_qubits=33, only=None, log=None, tx=I.THETA_X):
     out = {}
     for t in ts:
         t0, zs, cs = time.time(), [], []
@@ -62,7 +62,7 @@ def run(ts, backend, precision, max_qubits=33, only=None, log=None):
                 zs.append(None)
                 cs.append(None)
                 continue
-            z, m = z_cone(q, t, backend, precision, max_qubits)
+            z, m = z_cone(q, t, backend, precision, max_qubits, tx)
             zs.append(z)
             cs.append(m)
         out[str(t)] = dict(z=zs, cone=cs, seconds=round(time.time() - t0, 1))

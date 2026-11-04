@@ -8,8 +8,9 @@
 #   K1 GPU single = the CPU answers at t = 5 (every qubit): 1e-4;
 #   K2 GPU single = GPU double on the five largest cones at t = 6: 1e-4;
 #   K3 t = 1 = cos(theta_x) on every qubit: 1e-5.
+# TX=<theta_x> (default 0.53, the tutorial's) with CPU=<answers_cpu.json for that theta_x>.
 set -u
-W=$(pwd); TQ=${TOQB_DIR:-$W/TOQB}; PO=${PSFOS_DIR:-$W/psf-os}; OUT=${OUT:?set OUT}; CPU=${CPU:-$W/answers_cpu.json}
+W=$(pwd); TQ=${TOQB_DIR:-$W/TOQB}; PO=${PSFOS_DIR:-$W/psf-os}; OUT=${OUT:?set OUT}; CPU=${CPU:-$W/answers_cpu.json}; TX=${TX:-0.53}
 [ -d "$TQ" ] && [ -d "$PO" ] && [ -f "$CPU" ] || { echo "STOP: TOQB, psf-os or answers_cpu.json missing"; exit 1; }
 [ -e "$OUT" ] && { echo "STOP: $OUT exists"; exit 1; }
 mkdir -p "$OUT"
@@ -20,32 +21,34 @@ tail -1 "$OUT/check_tests.log" | grep -q " passed" && ! tail -1 "$OUT/check_test
 { echo "toqb $( (git log --oneline -1 2>/dev/null || cat COMMIT.txt) | cut -c1-60)"; echo "cpu $(sha256sum "$CPU")";
   echo "script $(sha256sum gpu/ising2d_answers.py)"; nvidia-smi --query-gpu=name,memory.total --format=csv,noheader;
   echo "start $(TZ=Europe/Zurich date '+%Y-%m-%d %H:%M:%S %Z')"; } | tee "$OUT/times.txt"
-python - "$OUT" "$CPU" <<'PY' 2>&1 | tee -a "$OUT/progress.txt"
+python - "$OUT" "$CPU" "$TX" <<'PY' 2>&1 | tee -a "$OUT/progress.txt"
 import json, os, sys, hashlib
 import numpy as np
 sys.path.insert(0, "gpu")
 import ising2d_answers as A
 from psf_os import ising2d as I
-out, cpu = sys.argv[1], json.load(open(sys.argv[2]))
+out, cpu, tx = sys.argv[1], json.load(open(sys.argv[2])), float(sys.argv[3])
+assert abs(cpu.get("theta_x", I.THETA_X) - tx) < 1e-12, "answers_cpu.json is for another theta_x"
 checks = {}
 log = lambda s: print(s, flush=True)
 def stop(m):
     json.dump(checks, open(os.path.join(out, "checks.json"), "w"), indent=1); print("STOP:", m); sys.exit(1)
-g = A.run([5], "cupy", "single")["5"]["z"]
+g = A.run([5], "cupy", "single", tx=tx)["5"]["z"]
 d = float(np.max(np.abs(np.array(g) - np.array(cpu["answers"]["5"]))))
 checks["K1"] = dict(max_diff=d, ok=d <= 1e-4); log(f"K1 t 5: max |GPU - CPU| {d:.2e}")
 if not checks["K1"]["ok"]: stop("K1")
 sizes = [len(I.cone(q, 6)[0]) for q in I.QUBITS]
 big = {I.QUBITS[i] for i in np.argsort(sizes)[-5:]}
-s = A.run([6], "cupy", "single", only=big)["6"]["z"]; dd = A.run([6], "cupy", "double", only=big)["6"]["z"]
+s = A.run([6], "cupy", "single", only=big, tx=tx)["6"]["z"]; dd = A.run([6], "cupy", "double", only=big, tx=tx)["6"]["z"]
 d = max(abs(a - b) for a, b in zip(s, dd) if a is not None)
 checks["K2"] = dict(cones=sorted(sizes)[-5:], max_diff=float(d), ok=d <= 1e-4); log(f"K2 cones {sorted(sizes)[-5:]}: max |single - double| {d:.2e}")
 if not checks["K2"]["ok"]: stop("K2")
-g1 = A.run([1], "cupy", "single")["1"]["z"]
-d = float(np.max(np.abs(np.array(g1) - np.cos(I.THETA_X))))
+g1 = A.run([1], "cupy", "single", tx=tx)["1"]["z"]
+d = float(np.max(np.abs(np.array(g1) - np.cos(tx))))
 checks["K3"] = dict(max_diff=d, ok=d <= 1e-5); log(f"K3 t 1: max |GPU - cos(theta_x)| {d:.2e}")
 if not checks["K3"]["ok"]: stop("K3")
-res = A.run([6, 7, 8, 9], "cupy", "single", log=log)
+res = A.run([6, 7, 8, 9], "cupy", "single", log=log, tx=tx)
+res["theta_x"] = tx
 json.dump(checks, open(os.path.join(out, "checks.json"), "w"), indent=1)
 json.dump(res, open(os.path.join(out, "answers_gpu.json"), "w"))
 print("answers_gpu.json sha256", hashlib.sha256(open(os.path.join(out, "answers_gpu.json"), "rb").read()).hexdigest())

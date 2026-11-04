@@ -20,3 +20,10 @@ def test_numpy_equals_aer_cones():
 def test_t1_closed_form():
     r = A.run([1], "numpy", "double")
     assert np.allclose(r["1"]["z"], np.cos(I.THETA_X), atol=1e-12)
+
+
+def test_other_theta_x():
+    for tx in (0.3, 0.8):
+        r = A.run([3], "numpy", "double", tx=tx)
+        for q, z in zip(I.QUBITS, r["3"]["z"]):
+            assert abs(z - I.answer_cone(q, 3, tx=tx)[0]) < 1e-10
