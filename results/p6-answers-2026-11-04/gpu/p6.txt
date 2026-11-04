@@ -1,0 +1,15 @@
+toqb f183ca5 P6 answers, prepared ahead (owner, 2026-11-04: do th
+cpu e2b54eafc75ec5134431f771ddbaca208485b71fc77ca3637b0aa0e25949dda2  /workspace/answers_cpu.json
+script e0b083ececba2c1331e8b97954a92ed508a889b862f9412a9db2d92e689a0323  gpu/ising2d_answers.py
+NVIDIA H200, 143771 MiB
+start 2026-11-04 01:56:43 CET
+K1 t 5: max |GPU - CPU| 1.03e-05
+K2 cones [23, 23, 27, 27, 27]: max |single - double| 1.94e-05
+K3 t 1: max |GPU - cos(theta_x)| 2.84e-08
+t 6: 35 of 35 qubits, M over them +0.792044, 2 s
+t 7: 35 of 35 qubits, M over them +0.786611, 144 s
+t 8: 32 of 35 qubits, M over them +0.774787, 169 s
+t 9: 28 of 35 qubits, M over them +0.768463, 299 s
+answers_gpu.json sha256 0482c81a428853d522f4a7a96e079f60eea584f6b801484da0d7ccfab65d436b
+end 2026-11-04 02:07:04 CET
+== DONE: /workspace/p6_answers.zip

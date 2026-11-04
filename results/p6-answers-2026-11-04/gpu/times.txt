@@ -1,0 +1,6 @@
+toqb f183ca5 P6 answers, prepared ahead (owner, 2026-11-04: do th
+cpu e2b54eafc75ec5134431f771ddbaca208485b71fc77ca3637b0aa0e25949dda2  /workspace/answers_cpu.json
+script e0b083ececba2c1331e8b97954a92ed508a889b862f9412a9db2d92e689a0323  gpu/ising2d_answers.py
+NVIDIA H200, 143771 MiB
+start 2026-11-04 01:56:43 CET
+end 2026-11-04 02:07:04 CET

@@ -1,0 +1,8 @@
+K1 t 5: max |GPU - CPU| 1.03e-05
+K2 cones [23, 23, 27, 27, 27]: max |single - double| 1.94e-05
+K3 t 1: max |GPU - cos(theta_x)| 2.84e-08
+t 6: 35 of 35 qubits, M over them +0.792044, 2 s
+t 7: 35 of 35 qubits, M over them +0.786611, 144 s
+t 8: 32 of 35 qubits, M over them +0.774787, 169 s
+t 9: 28 of 35 qubits, M over them +0.768463, 299 s
+answers_gpu.json sha256 0482c81a428853d522f4a7a96e079f60eea584f6b801484da0d7ccfab65d436b
