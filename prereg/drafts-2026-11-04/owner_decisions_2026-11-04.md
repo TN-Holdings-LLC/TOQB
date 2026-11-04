@@ -11,3 +11,6 @@
   The draft is finished after tonight's P6 and OS2D results.
 - Self-repair chain (find, confirm, avoid, re-place, verify; rules fixed in advance and applied mechanically):
   **not counted as search** by the owner (2026-11-04 07:57 CET); to be built and its effect tested (workplace task R).
+- Self-repair test (repair_note_DRAFT, task R), owner 2026-11-04 08:24 CET: confirm rule **(b)** (one job, certainly DEAD:
+  a + 3 SE < line, removes); return by **expiry (7 days)**; **tonight's OS2D job is job 1** (job 2 sent right after it);
+  the thresholds (0.8 / 1.25) are decided after seeing tonight's results.
