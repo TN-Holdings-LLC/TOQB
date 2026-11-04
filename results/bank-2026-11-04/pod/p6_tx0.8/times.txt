@@ -1,0 +1,6 @@
+toqb 7a2cc2b Problem bank of 2026-11-04 (owner: prepare the long 
+cpu 868f48d659229389b909160063d068d952ea6c2cec9d5616b7a3b64b2e1db2fb  /workspace/p6_tx0.8_answers_cpu.json
+script 4a38d19d0beb6453423b36f3a664e231b0d10700e68efff65b0062db47b4d4bf  gpu/ising2d_answers.py
+NVIDIA A100-SXM4-80GB, 81920 MiB
+start 2026-11-04 03:26:08 CET
+end 2026-11-04 03:50:46 CET

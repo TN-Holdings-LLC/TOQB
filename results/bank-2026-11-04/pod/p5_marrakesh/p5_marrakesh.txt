@@ -1,0 +1,22 @@
+toqb 7a2cc2b Problem bank of 2026-11-04 (owner: prepare the long 
+note c3dca91e89bc2b2166d179c0ed0d118fd696c56a961516dfd22e0e78538e4528  prereg/drafts-2026-11-03/kim_e_note.md
+lattice 2749b1f3b43eb3ba7135c40032902e1a114181fbef9aa86c830ec29fc73dd260  /workspace/lattice_marrakesh.json
+script 46036286f1471e0de83a9664188fc28cf516075f402cf11c24df669b96f4fc2d  gpu/kim_answers.py
+NVIDIA A100-SXM4-80GB, 81920 MiB
+start 2026-11-04 04:04:42 CET
+K1 theta 0.8 t 5: max |GPU - CPU| 2.09e-06
+K2 cones [31, 31, 31, 31, 31]: max |single - double| 3.56e-06
+K3 theta pi/2 t 6: 151 qubits, max |GPU - stabilizer| 0.00e+00
+K3 theta pi/2 t 7: 104 qubits, max |GPU - stabilizer| 0.00e+00
+theta 0.4 t 6: 151 qubits answered, M over them +0.905716, 155 s
+theta 0.4 t 7: 104 qubits answered, M over them +0.888120, 617 s
+theta 0.4 t 8: 75 qubits answered, M over them +0.894222, 828 s
+theta 0.8 t 6: 151 qubits answered, M over them +0.431709, 155 s
+theta 0.8 t 7: 104 qubits answered, M over them +0.449928, 618 s
+theta 0.8 t 8: 75 qubits answered, M over them +0.449187, 827 s
+theta 1.0 t 6: 151 qubits answered, M over them +0.159167, 155 s
+theta 1.0 t 7: 104 qubits answered, M over them +0.173533, 617 s
+theta 1.0 t 8: 75 qubits answered, M over them +0.170790, 827 s
+answers_C.json sha256 7a7924908f2c82b046eeee1f65581edecabb5e3dd5de51caafb78ea28e927f41
+end 2026-11-04 05:40:50 CET
+== DONE: /workspace/p5_marrakesh_answers.zip
