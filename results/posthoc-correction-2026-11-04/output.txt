@@ -1,0 +1,57 @@
+results/p6-device-2026-11-04
+  tx 0.53 raw              MSE 0.0410 ratio 1.00 diff t1,3,5,7,9 [-0.077, -0.135, -0.159, -0.21, -0.201]
+  tx 0.53 raw+R            MSE 0.0237 ratio 0.58 diff t1,3,5,7,9 [-0.066, -0.11, -0.129, -0.177, -0.201]
+  tx 0.53 global floor     MSE 0.0218 ratio 0.53 diff t1,3,5,7,9 [-0.008, -0.036, -0.042, -0.085, -0.057]
+  tx 0.53 per-qubit floor  MSE 0.0071 ratio 0.17 diff t1,3,5,7,9 [-0.008, -0.038, -0.035, -0.076, -0.088]
+  tx 0.53 per-qubit+R      MSE 0.0063 ratio 0.15 diff t1,3,5,7,9 [-0.007, -0.031, -0.04, -0.08, -0.088]
+  tx 0.3  raw              MSE 0.0436 ratio 1.00 diff t1,3,5,7,9 [-0.087, -0.129, -0.162, -0.206, -0.193]
+  tx 0.3  raw+R            MSE 0.0218 ratio 0.50 diff t1,3,5,7,9 [-0.074, -0.099, -0.126, -0.169, -0.193]
+  tx 0.3  global floor     MSE 0.0244 ratio 0.56 diff t1,3,5,7,9 [-0.01, -0.015, -0.017, -0.044, -0.006]
+  tx 0.3  per-qubit floor  MSE 0.0030 ratio 0.07 diff t1,3,5,7,9 [-0.011, -0.02, -0.011, -0.039, -0.047]
+  tx 0.3  per-qubit+R      MSE 0.0019 ratio 0.04 diff t1,3,5,7,9 [-0.009, -0.008, -0.017, -0.043, -0.047]
+  tx 0.8  raw              MSE 0.0206 ratio 1.00 diff t1,3,5,7,9 [-0.063, -0.093, -0.117, -0.147, -0.119]
+  tx 0.8  raw+R            MSE 0.0134 ratio 0.65 diff t1,3,5,7,9 [-0.053, -0.077, -0.1, -0.125, -0.119]
+  tx 0.8  global floor     MSE 0.0121 ratio 0.59 diff t1,3,5,7,9 [-0.007, -0.032, -0.051, -0.084, -0.05]
+  tx 0.8  per-qubit floor  MSE 0.0079 ratio 0.39 diff t1,3,5,7,9 [-0.007, -0.028, -0.037, -0.068, -0.066]
+  tx 0.8  per-qubit+R      MSE 0.0066 ratio 0.32 diff t1,3,5,7,9 [-0.006, -0.03, -0.051, -0.077, -0.066]
+results/p6-marrakesh-2026-11-04
+  tx 0.53 raw              MSE 0.1140 ratio 1.00 diff t1,3,5,7,9 [-0.131, -0.213, -0.275, -0.336, -0.398]
+  tx 0.53 raw+R            MSE 0.0713 ratio 0.63 diff t1,3,5,7,9 [-0.076, -0.165, -0.234, -0.298, -0.352]
+  tx 0.53 global floor     MSE 0.0795 ratio 0.70 diff t1,3,5,7,9 [-0.001, -0.072, -0.143, -0.204, -0.274]
+  tx 0.53 per-qubit floor  MSE 0.0884 ratio 0.78 diff t1,3,5,7,9 [-0.013, -0.084, -0.153, -0.23, -0.331]
+  tx 0.53 per-qubit+R      MSE 0.0392 ratio 0.34 diff t1,3,5,7,9 [0.002, -0.07, -0.135, -0.192, -0.244]
+  tx 0.3  raw              MSE 0.1131 ratio 1.00 diff t1,3,5,7,9 [-0.144, -0.203, -0.251, -0.316, -0.385]
+  tx 0.3  raw+R            MSE 0.0632 ratio 0.56 diff t1,3,5,7,9 [-0.085, -0.149, -0.202, -0.271, -0.337]
+  tx 0.3  global floor     MSE 0.0763 ratio 0.67 diff t1,3,5,7,9 [-0.0, -0.036, -0.075, -0.13, -0.201]
+  tx 0.3  per-qubit floor  MSE 0.0210 ratio 0.19 diff t1,3,5,7,9 [-0.001, -0.037, -0.075, -0.138, -0.181]
+  tx 0.3  per-qubit+R      MSE 0.0197 ratio 0.17 diff t1,3,5,7,9 [0.001, -0.038, -0.074, -0.129, -0.195]
+  tx 0.8  raw              MSE 0.0568 ratio 1.00 diff t1,3,5,7,9 [-0.103, -0.16, -0.188, -0.213, -0.221]
+  tx 0.8  raw+R            MSE 0.0305 ratio 0.54 diff t1,3,5,7,9 [-0.053, -0.123, -0.154, -0.184, -0.181]
+  tx 0.8  global floor     MSE 0.0468 ratio 0.82 diff t1,3,5,7,9 [0.002, -0.077, -0.114, -0.147, -0.164]
+  tx 0.8  per-qubit floor  MSE 0.2106 ratio 3.71 diff t1,3,5,7,9 [-0.043, -0.124, -0.188, -0.227, -0.279]
+  tx 0.8  per-qubit+R      MSE 0.0268 ratio 0.47 diff t1,3,5,7,9 [0.013, -0.06, -0.092, -0.122, -0.119]
+gate decay per step: median 0.9848 range [0.952 0.997]
+ tx 0.53 raw                MSE 0.0410 ratio 1.00 diff [-0.077, -0.135, -0.159, -0.21, -0.201] DIFFERS
+ tx 0.53 raw+R              MSE 0.0237 ratio 0.58 diff [-0.066, -0.11, -0.129, -0.177, -0.201] DIFFERS
+ tx 0.53 floor              MSE 0.0071 ratio 0.17 diff [-0.008, -0.038, -0.035, -0.076, -0.088] DIFFERS
+ tx 0.53 floor+R            MSE 0.0063 ratio 0.15 diff [-0.007, -0.031, -0.04, -0.08, -0.088] DIFFERS
+ tx 0.53 floor+gate(q)      MSE 0.0035 ratio 0.08 diff [0.009, 0.014, 0.044, 0.027, 0.016] AGREES
+ tx 0.53 floor+gate(q)+R    MSE 0.0028 ratio 0.07 diff [0.01, 0.021, 0.039, 0.024, 0.016] AGREES
+ tx 0.53 floor+gate(med)    MSE 0.0048 ratio 0.12 diff [0.005, 0.002, 0.026, 0.005, 0.013] AGREES
+ tx 0.53 floor+gate(med)+R  MSE 0.0037 ratio 0.09 diff [0.006, 0.008, 0.02, -0.0, 0.013] AGREES
+ tx 0.3  raw                MSE 0.0436 ratio 1.00 diff [-0.087, -0.129, -0.162, -0.206, -0.193] DIFFERS
+ tx 0.3  raw+R              MSE 0.0218 ratio 0.50 diff [-0.074, -0.099, -0.126, -0.169, -0.193] DIFFERS
+ tx 0.3  floor              MSE 0.0030 ratio 0.07 diff [-0.011, -0.02, -0.011, -0.039, -0.047] AGREES
+ tx 0.3  floor+R            MSE 0.0019 ratio 0.04 diff [-0.009, -0.008, -0.017, -0.043, -0.047] AGREES
+ tx 0.3  floor+gate(q)      MSE 0.0131 ratio 0.30 diff [0.008, 0.04, 0.089, 0.101, 0.09] DIFFERS
+ tx 0.3  floor+gate(q)+R    MSE 0.0124 ratio 0.28 diff [0.01, 0.053, 0.083, 0.099, 0.09] DIFFERS
+ tx 0.3  floor+gate(med)    MSE 0.0051 ratio 0.12 diff [0.003, 0.025, 0.064, 0.064, 0.084] DIFFERS
+ tx 0.3  floor+gate(med)+R  MSE 0.0039 ratio 0.09 diff [0.005, 0.037, 0.057, 0.06, 0.084] DIFFERS
+ tx 0.8  raw                MSE 0.0206 ratio 1.00 diff [-0.063, -0.093, -0.117, -0.147, -0.119] DIFFERS
+ tx 0.8  raw+R              MSE 0.0134 ratio 0.65 diff [-0.053, -0.077, -0.1, -0.125, -0.119] DIFFERS
+ tx 0.8  floor              MSE 0.0079 ratio 0.39 diff [-0.007, -0.028, -0.037, -0.068, -0.066] DIFFERS
+ tx 0.8  floor+R            MSE 0.0066 ratio 0.32 diff [-0.006, -0.03, -0.051, -0.077, -0.066] DIFFERS
+ tx 0.8  floor+gate(q)      MSE 0.0042 ratio 0.20 diff [0.007, 0.005, 0.006, -0.015, -0.017] AGREES
+ tx 0.8  floor+gate(q)+R    MSE 0.0024 ratio 0.12 diff [0.009, 0.003, -0.008, -0.025, -0.017] AGREES
+ tx 0.8  floor+gate(med)    MSE 0.0067 ratio 0.32 diff [0.003, -0.003, -0.002, -0.026, -0.017] AGREES
+ tx 0.8  floor+gate(med)+R  MSE 0.0044 ratio 0.22 diff [0.005, -0.006, -0.017, -0.037, -0.017] AGREES
