@@ -1,0 +1,10 @@
+[package]
+name = "spd"
+version = "0.1.0"
+edition = "2021"
+description = "Sparse Pauli dynamics for P5's kicked Ising lattice circuit (Heisenberg picture, coefficient truncation); no outside crates"
+
+[dependencies]
+
+[profile.release]
+opt-level = 3

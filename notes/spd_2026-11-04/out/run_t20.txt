@@ -1,0 +1,8 @@
+t20 theta 0.4 t 20 delta 0.001: 151 qubits, wall 1 s, peak 23081, M 0.8767 (0 capped)
+t20 theta 0.4 t 20 delta 0.0003: 151 qubits, wall 6 s, peak 110356, M 0.8959 (0 capped)
+t20 theta 0.4 t 20 delta 0.0001: 151 qubits, wall 32 s, peak 674965, M 0.8987 (0 capped)
+t20 theta 0.8 t 20 delta 0.001: 151 qubits, wall 6 s, peak 37591, M 0.2240 (0 capped)
+t20 theta 0.8 t 20 delta 0.0003: 151 qubits, wall 67 s, peak 250557, M 0.2511 (0 capped)
+t20 theta 0.8 t 20 delta 0.0001: 151 qubits, wall 721 s, peak 1780096, M 0.2609 (0 capped)
+t20 theta 1.0 t 20 delta 0.001: 151 qubits, wall 6 s, peak 78636, M 0.0219 (0 capped)
+t20 theta 1.0 t 20 delta 0.0003: 151 qubits, wall 85 s, peak 661394, M 0.0258 (0 capped)
