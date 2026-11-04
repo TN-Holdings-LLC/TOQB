@@ -1,0 +1,2 @@
+t20 theta 0.4 t 20 delta 3e-05: 151 qubits, wall 396 s, peak 3368574, M 0.8936 (0 capped)
+t20 theta 0.4 t 20 delta 1e-05: 151 qubits, wall 2180 s, peak 8364600, M 0.8908 (0 capped)
