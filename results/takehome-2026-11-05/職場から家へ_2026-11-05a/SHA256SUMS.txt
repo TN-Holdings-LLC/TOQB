@@ -1,0 +1,3 @@
+de056447ebcaa6c8d505daa68063b401f3d7dc77abda659c9b5ad87ce4cd88ea  pytest_plain.txt
+d0c01603fd81d18a742cd51b6b182c2ce95b74ac0f8078a9438d33b3ac9c816d  pytest_toqb.txt
+7517c950c6d749d4bf1219bbda2ef95edd0123248379cfda4dfb59d23c884e23  持ち帰り_README.md
