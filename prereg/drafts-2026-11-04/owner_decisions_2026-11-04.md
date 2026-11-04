@@ -9,3 +9,5 @@
 - Crosstalk test (xtalk_note_DRAFT, task Q): **adopted** (2026-11-04 07:46 CET): the job is run twice in a row (also the first pair
   of the day-to-day test N); verdicts use the larger of the shot-noise SE (bootstrap) and the between-run spread.
   The draft is finished after tonight's P6 and OS2D results.
+- Self-repair chain (find, confirm, avoid, re-place, verify; rules fixed in advance and applied mechanically):
+  **not counted as search** by the owner (2026-11-04 07:57 CET); to be built and its effect tested (workplace task R).
