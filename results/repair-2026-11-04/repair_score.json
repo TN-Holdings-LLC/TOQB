@@ -1,0 +1,32 @@
+{
+ "score": {
+  "mse_A": 0.028455377617957953,
+  "mse_B": 0.014004490863210753,
+  "ratio": 0.49215621213097643,
+  "se_diff": 0.0004720405331631047,
+  "spread": 0.0002618312015770781,
+  "uncertainty": 0.0004720405331631047,
+  "verdict": "HELPS",
+  "nboot": 200,
+  "seed": 0
+ },
+ "spread_from_job1": 0.0002618312015770781,
+ "job1_same_copy_as_A": true,
+ "price": {
+  "excluded": 4,
+  "excluded_in_A": 4,
+  "copy_moved": {
+   "drow": 2,
+   "dcol": 0,
+   "shared_qubits": 7
+  }
+ },
+ "status": "TESTABLE",
+ "lifetime_job2_floor_on_A": {
+  "17": "HEALTHY",
+  "26": "HEALTHY",
+  "27": "DEAD",
+  "28": "DEAD"
+ },
+ "job2_floor_line_A": 0.6914035000000002
+}
