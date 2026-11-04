@@ -1,0 +1,11 @@
+# Dry flow on FakeKingston with synthetic counts (product states; planted readout fault on physical qubit 26, 0.4 low in every cell). Plumbing only, not data.
+job1 A floor: line 0.929, DEAD [26]
+job1 A mirror: line 0.050, DEAD []
+chain (b, expiry): excluded [26]; status TESTABLE
+fake_kingston: A copy (0, 0), B copy (2, 4); 18 circuits, 23.1 s by the model
+18 synthetic rows, bad [26]
+job2 A floor: line 0.930, DEAD [26]
+job2 B floor: line 0.930, DEAD []
+chain (a, expiry): excluded []; status NOT TESTED (A and B on the same copy)
+{"status": "TESTABLE", "price": {"excluded": 1, "excluded_in_A": 1, "copy_moved": {"drow": 2, "dcol": 4, "shared_qubits": 3}}, "lifetime_job2_floor_on_A": {"26": "DEAD"}}
+MSE A 0.00462, B 0.00006, ratio 0.01; shot SE 0.00014, spread 1e-05; verdict HELPS

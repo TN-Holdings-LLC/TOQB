@@ -1,0 +1,406 @@
+{
+ "jobs": [
+  {
+   "job": "kingston B",
+   "when": "2026-11-03 06:08:03",
+   "line": 0.9319611999999996,
+   "dead": [
+    72,
+    87,
+    125,
+    127,
+    131
+   ]
+  },
+  {
+   "job": "kingston C/D",
+   "when": "2026-11-03 12:09:53",
+   "line": 0.9282693749999996,
+   "dead": [
+    35,
+    43,
+    69,
+    78,
+    119,
+    138
+   ]
+  },
+  {
+   "job": "kingston K",
+   "when": "2026-11-03 17:04:38",
+   "line": 0.9145076666666655,
+   "dead": [
+    7,
+    51,
+    72
+   ]
+  }
+ ],
+ "steps": [
+  {
+   "before": "kingston C/D",
+   "from_jobs": [
+    "kingston B"
+   ],
+   "rule": "a",
+   "release": "expiry",
+   "excluded": [],
+   "in_next_job": {},
+   "still_dead": 0,
+   "hours": 6.0
+  },
+  {
+   "before": "kingston C/D",
+   "from_jobs": [
+    "kingston B"
+   ],
+   "rule": "a",
+   "release": "early",
+   "excluded": [],
+   "in_next_job": {},
+   "still_dead": 0,
+   "hours": 6.0
+  },
+  {
+   "before": "kingston C/D",
+   "from_jobs": [
+    "kingston B"
+   ],
+   "rule": "b",
+   "release": "expiry",
+   "excluded": [
+    72,
+    87,
+    125,
+    127,
+    131
+   ],
+   "in_next_job": {
+    "72": [
+     "HEALTHY",
+     0.937
+    ],
+    "87": [
+     "HEALTHY",
+     0.96
+    ],
+    "125": [
+     "HEALTHY",
+     0.979
+    ],
+    "127": [
+     "HEALTHY",
+     0.953
+    ],
+    "131": [
+     "HEALTHY",
+     0.951
+    ]
+   },
+   "still_dead": 0,
+   "hours": 6.0
+  },
+  {
+   "before": "kingston C/D",
+   "from_jobs": [
+    "kingston B"
+   ],
+   "rule": "b",
+   "release": "early",
+   "excluded": [
+    72,
+    87,
+    125,
+    127,
+    131
+   ],
+   "in_next_job": {
+    "72": [
+     "HEALTHY",
+     0.937
+    ],
+    "87": [
+     "HEALTHY",
+     0.96
+    ],
+    "125": [
+     "HEALTHY",
+     0.979
+    ],
+    "127": [
+     "HEALTHY",
+     0.953
+    ],
+    "131": [
+     "HEALTHY",
+     0.951
+    ]
+   },
+   "still_dead": 0,
+   "hours": 6.0
+  },
+  {
+   "before": "kingston K",
+   "from_jobs": [
+    "kingston B",
+    "kingston C/D"
+   ],
+   "rule": "a",
+   "release": "expiry",
+   "excluded": [],
+   "in_next_job": {},
+   "still_dead": 0,
+   "hours": 4.9
+  },
+  {
+   "before": "kingston K",
+   "from_jobs": [
+    "kingston B",
+    "kingston C/D"
+   ],
+   "rule": "a",
+   "release": "early",
+   "excluded": [],
+   "in_next_job": {},
+   "still_dead": 0,
+   "hours": 4.9
+  },
+  {
+   "before": "kingston K",
+   "from_jobs": [
+    "kingston B",
+    "kingston C/D"
+   ],
+   "rule": "b",
+   "release": "expiry",
+   "excluded": [
+    35,
+    43,
+    69,
+    72,
+    78,
+    87,
+    119,
+    125,
+    127,
+    131,
+    138
+   ],
+   "in_next_job": {
+    "35": [
+     "UNCERTAIN",
+     0.913
+    ],
+    "43": [
+     "HEALTHY",
+     0.941
+    ],
+    "69": [
+     "HEALTHY",
+     0.953
+    ],
+    "72": [
+     "DEAD",
+     0.513
+    ],
+    "78": [
+     "HEALTHY",
+     0.947
+    ],
+    "87": [
+     "HEALTHY",
+     0.934
+    ],
+    "119": [
+     "not in lattice",
+     null
+    ],
+    "125": [
+     "HEALTHY",
+     0.975
+    ],
+    "127": [
+     "HEALTHY",
+     0.953
+    ],
+    "131": [
+     "not in lattice",
+     null
+    ],
+    "138": [
+     "not in lattice",
+     null
+    ]
+   },
+   "still_dead": 1,
+   "hours": 4.9
+  },
+  {
+   "before": "kingston K",
+   "from_jobs": [
+    "kingston B",
+    "kingston C/D"
+   ],
+   "rule": "b",
+   "release": "early",
+   "excluded": [
+    35,
+    43,
+    69,
+    78,
+    119,
+    138
+   ],
+   "in_next_job": {
+    "35": [
+     "UNCERTAIN",
+     0.913
+    ],
+    "43": [
+     "HEALTHY",
+     0.941
+    ],
+    "69": [
+     "HEALTHY",
+     0.953
+    ],
+    "78": [
+     "HEALTHY",
+     0.947
+    ],
+    "119": [
+     "not in lattice",
+     null
+    ],
+    "138": [
+     "not in lattice",
+     null
+    ]
+   },
+   "still_dead": 0,
+   "hours": 4.9
+  }
+ ],
+ "K_proxy": {
+  "rule b, expiry": {
+   "excluded": [
+    35,
+    43,
+    69,
+    72,
+    78,
+    87,
+    119,
+    125,
+    127,
+    131,
+    138
+   ],
+   "dropped_in_K": 8,
+   "rows": {
+    "0.4": {
+     "mse_all": 0.0020969859363602584,
+     "mse_kept": 0.0011461401008666188,
+     "ratio": 0.5465654685581611
+    },
+    "0.8": {
+     "mse_all": 0.0016334235552386029,
+     "mse_kept": 0.0013982633100654682,
+     "ratio": 0.8560322921639368
+    },
+    "1": {
+     "mse_all": 0.0010020000643954335,
+     "mse_kept": 0.0009316014212746477,
+     "ratio": 0.9297418776482199
+    }
+   },
+   "mean_ratio": 0.7774465461234392
+  },
+  "rule b, early": {
+   "excluded": [
+    35,
+    43,
+    69,
+    78,
+    119,
+    138
+   ],
+   "dropped_in_K": 4,
+   "rows": {
+    "0.4": {
+     "mse_all": 0.0020969859363602584,
+     "mse_kept": 0.001995351345694709,
+     "ratio": 0.951533012738294
+    },
+    "0.8": {
+     "mse_all": 0.0016334235552386029,
+     "mse_kept": 0.0016461402428960801,
+     "ratio": 1.0077852970937593
+    },
+    "1": {
+     "mse_all": 0.0010020000643954335,
+     "mse_kept": 0.0010144022597730058,
+     "ratio": 1.0123774397011194
+    }
+   },
+   "mean_ratio": 0.990565249844391
+  },
+  "qubit 72 only": {
+   "excluded": [
+    72
+   ],
+   "dropped_in_K": 1,
+   "rows": {
+    "0.4": {
+     "mse_all": 0.0020969859363602584,
+     "mse_kept": 0.0012908229360614621,
+     "ratio": 0.6155610839727162
+    },
+    "0.8": {
+     "mse_all": 0.0016334235552386029,
+     "mse_kept": 0.0013676880917890145,
+     "ratio": 0.8373138047401484
+    },
+    "1": {
+     "mse_all": 0.0010020000643954335,
+     "mse_kept": 0.0009062882257937049,
+     "ratio": 0.9044792091311119
+    }
+   },
+   "mean_ratio": 0.7857846992813254
+  },
+  "rule b, expiry, without 72": {
+   "excluded": [
+    35,
+    43,
+    69,
+    78,
+    87,
+    119,
+    125,
+    127,
+    131,
+    138
+   ],
+   "dropped_in_K": 7,
+   "rows": {
+    "0.4": {
+     "mse_all": 0.0020969859363602584,
+     "mse_kept": 0.001991183933952415,
+     "ratio": 0.9495456785983581
+    },
+    "0.8": {
+     "mse_all": 0.0016334235552386029,
+     "mse_kept": 0.0016765488458620563,
+     "ratio": 1.0264017807782586
+    },
+    "1": {
+     "mse_all": 0.0010020000643954335,
+     "mse_kept": 0.0010317848671721017,
+     "ratio": 1.029725350162167
+    }
+   },
+   "mean_ratio": 1.001890936512928
+  }
+ }
+}
