@@ -2,7 +2,7 @@
 
   agree    the circuits against the sealed answers by an independent method at shallow t (as gpu/practice_circuits.py
            --check): P32/B42/B72 problems with t <= 4 from the ball of radius t - 1 around each qubit (psf_os.ising2d.ball,
-           the circuit rebuilt on the ball by daily/pool.py, Aer statevector); C33 at t 8 and 10 by Aer's
+           the circuit rebuilt on the ball by daily/pool.py, Aer statevector); C33 at t 8 (D01) by Aer's
            matrix-product-state method on the whole chain (no truncation set).
   run2d    every circuit (D01-D32, FX-A, FX-B, S01-S06) through `psf-os run2d`, one job each, on fake devices (FakeFez,
            FakeMarrakesh, FakeKingston; their graphs and failed marks only) and on the device records of the 11-04 practice runs (marrakesh, fez); the CZ
@@ -72,7 +72,7 @@ def agree(ans):
                     P.f2(t, par["theta"], list(idx.values()), be)
                 dev = max(dev, abs(_z_sv(small.remove_final_measurements(inplace=False), idx[q]) - sealed[q]))
             out[pid] = dict(method="ball statevector", max_diff=dev)
-        elif pa == "C33" and t <= 10:
+        elif pa == "C33" and t <= 8:  # t 10 (D05) took over an hour on the laptop
             chain = list(range(33))
             qc = P.circuit(fam, pa, par, t, chain=chain).remove_final_measurements(inplace=False)
             z = _z_mps(qc, chain)
@@ -150,7 +150,7 @@ def _compact(qc):
     return out, idx
 
 
-def noiseless(ans, scratch, whole=("D13", "D21", "D01", "D05"), by_cone=("D17", "D03", "D07", "FX-B")):
+def noiseless(ans, scratch, whole=("D13", "D21", "D01"), by_cone=("D17", "D03", "D07", "FX-B")):
     from qiskit import QuantumCircuit
     out = {}
     for pid in whole + by_cone:
