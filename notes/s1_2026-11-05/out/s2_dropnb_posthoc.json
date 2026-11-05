@@ -1,0 +1,158 @@
+{
+ "corr_fez 0.53": {
+  "dropped": [
+   27,
+   28
+  ],
+  "neighbours": [
+   17,
+   26,
+   29
+  ],
+  "as declared": {
+   "n": 33,
+   "ratio": 0.082,
+   "worst": 0.019,
+   "agrees": true
+  },
+  "drop nb": {
+   "n": 30,
+   "ratio": 0.043,
+   "worst": 0.025,
+   "agrees": true
+  }
+ },
+ "corr_fez 0.3": {
+  "dropped": [
+   27,
+   28
+  ],
+  "neighbours": [
+   17,
+   26,
+   29
+  ],
+  "as declared": {
+   "n": 33,
+   "ratio": 0.018,
+   "worst": -0.016,
+   "agrees": true
+  },
+  "drop nb": {
+   "n": 30,
+   "ratio": 0.014,
+   "worst": -0.014,
+   "agrees": true
+  }
+ },
+ "corr_fez 0.8": {
+  "dropped": [
+   27,
+   28
+  ],
+  "neighbours": [
+   17,
+   26,
+   29
+  ],
+  "as declared": {
+   "n": 33,
+   "ratio": 0.41,
+   "worst": 0.098,
+   "agrees": false
+  },
+  "drop nb": {
+   "n": 30,
+   "ratio": 0.343,
+   "worst": 0.096,
+   "agrees": false
+  }
+ },
+ "corr_marrakesh 0.53": {
+  "dropped": [
+   23,
+   31,
+   48,
+   49
+  ],
+  "neighbours": [
+   16,
+   18,
+   22,
+   24,
+   30,
+   38,
+   47
+  ],
+  "as declared": {
+   "n": 31,
+   "ratio": 0.195,
+   "worst": -0.15,
+   "agrees": false
+  },
+  "drop nb": {
+   "n": 24,
+   "ratio": 0.104,
+   "worst": -0.12,
+   "agrees": false
+  }
+ },
+ "corr_marrakesh 0.3": {
+  "dropped": [
+   23,
+   31,
+   48,
+   49
+  ],
+  "neighbours": [
+   16,
+   18,
+   22,
+   24,
+   30,
+   38,
+   47
+  ],
+  "as declared": {
+   "n": 31,
+   "ratio": 0.111,
+   "worst": -0.13,
+   "agrees": false
+  },
+  "drop nb": {
+   "n": 24,
+   "ratio": 0.047,
+   "worst": -0.078,
+   "agrees": false
+  }
+ },
+ "corr_marrakesh 0.8": {
+  "dropped": [
+   23,
+   31,
+   48,
+   49
+  ],
+  "neighbours": [
+   16,
+   18,
+   22,
+   24,
+   30,
+   38,
+   47
+  ],
+  "as declared": {
+   "n": 31,
+   "ratio": 0.159,
+   "worst": 0.039,
+   "agrees": true
+  },
+  "drop nb": {
+   "n": 24,
+   "ratio": 0.134,
+   "worst": 0.046,
+   "agrees": true
+  }
+ }
+}
