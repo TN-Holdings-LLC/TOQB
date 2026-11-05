@@ -19,3 +19,20 @@ to see whether the direction is right". Code `gpu/twirl_explore.py` (e6d7234); s
   (hypothesis, not tested). On fez the twirled D02 correction is worse per qubit (MSE 0.0316 against 0.0117).
 - Net: half the direction. Next idea (not built): twirl each RZZ block as a unit (Paulis around the CX-RZ-CX pair),
   keeping the block's own echo; and an echo on idle qubits.
+
+## Second job: block twirl beside the CZ twirl (12:34 CET; marrakesh dbm6jcl8mdtc73d7dio0, fez dbm6jfd8mdtc73d7dit0)
+
+| M - M_exact | raw | CZ twirl | block twirl | corr. raw mirror | corr. CZ twirl | corr. block twirl |
+|---|---|---|---|---|---|---|
+| D02 marrakesh | -0.110 | -0.169 | -0.168 | +0.017 | +0.024 | +0.020 |
+| D02 fez | -0.149 | -0.241 | -0.232 | +0.002 | -0.035 | -0.031 |
+| FX-A marrakesh | -0.035 | -0.044 | -0.045 | +0.149 | +0.087 | +0.094 |
+| FX-A fez | -0.048 | -0.065 | -0.056 | +0.142 | +0.114 | +0.115 |
+
+- The block twirl loses as much forward signal as the CZ twirl: the "broken echo inside each RZZ" hypothesis is
+  refuted. Any frame randomisation costs D02 about 0.06-0.09: the untwirled circuit's smaller miss came from coherent
+  errors that happen to pull the answer up, not from a smaller loss.
+- FX-A stays over-corrected with every mirror (+0.09 to +0.15 this run; +0.05 to +0.06 an hour earlier): the mirror's
+  decay (0.36-0.50 per run) is far faster than the square of the forward decay for this chain problem, twirled or not.
+- Conclusion of the exploration: a mirror-based gate correction is problem-dependent here (D02 fits, FX-A does not)
+  and the twirl does not remove that. Only the floor step is safe for both (small).
