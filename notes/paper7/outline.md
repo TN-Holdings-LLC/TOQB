@@ -14,6 +14,17 @@ mitigation. How close does the answer come, and how is that shown honestly?
 **Not claimed (stated in the abstract and the conclusion):** quantum advantage. Every answer is computed exactly on a
 classical machine (light cones of at most 33 qubits; P32 and C33 as whole states). No correction is claimed to work.
 
+## Framing (owner / home, 2026-11-06, from the Zenodo counts of papers 1-6)
+
+Paper 3 (a pitfall in comparisons, useful to other researchers) drew the most readers. Two parts of paper 7 are of
+that kind and go to the front (abstract, introduction, first figures), ahead of our own device numbers:
+1. **The bias of an absolute criterion, in both directions** (section 6): a DIFFERS can keep as much signal as an
+   AGREES; a small-answer problem can AGREE while losing much. Any benchmark scored by |M - M_exact| <= c has it.
+2. **Anyone can check every number** (section 8): `reproduce.py` re-scores every result from committed raw counts;
+   answers sealed by hash before the run; job IDs for IBM.
+The order of sections stays (methods before results); only the abstract, the introduction and figure 4 lead with these.
+The counts behind this choice are small (tens of views per paper, repeat views possible): a hint, not evidence.
+
 ## Sections
 
 1. **Introduction: the no-map policy.**
