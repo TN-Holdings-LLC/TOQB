@@ -11,7 +11,7 @@ Built (placement, compilation, job folders) and scored at home with:
 | qiskit-ibm-runtime | 0.49.0 (installed beside; not used for building or scoring) |
 
 Submitted and collected from the owner's WSL with `python -m psf_os submit / collect` (SamplerV2, dynamical decoupling
-and twirling off); the versions on that side are not recorded yet.
+and twirling off): Python 3.12, qiskit 2.5.2, qiskit-ibm-runtime 0.49.0 (`pip show`, 2026-11-05 21:25 JST).
 
 | result | psf-os used to build |
 |---|---|
