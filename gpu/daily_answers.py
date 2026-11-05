@@ -134,8 +134,8 @@ def _sv(n, backend, precision):
     return (CupyDaily if backend == "cupy" else NumpyDaily)(n, np.complex64 if precision == "single" else np.complex128)
 
 
-def _free(sv, backend):
-    del sv
+def _free_pool(backend):
+    """Give the GPU memory back once the caller has dropped every reference to its state."""
     if backend == "cupy":
         import cupy as cp
         cp.get_default_memory_pool().free_all_blocks()
@@ -179,7 +179,8 @@ def full(circuits, backend="numpy", precision="double", log=None):
                 log(f"  t {t}: M {np.mean(list(out[t].values())):+.6f} norm {norms[t]:.8f} {time.time() - t0:.0f} s")
         if k < len(ops):
             apply(sv, ops[k], idx)
-    _free(sv, backend)
+    del sv, read
+    _free_pool(backend)
     return dict(values=out, norm=norms, basis=basis, seconds=round(time.time() - t0, 1))
 
 
@@ -251,7 +252,8 @@ def cones(qc, backend="numpy", precision="double", only=None, max_qubits=MAX_QUB
         for op in co:
             apply(sv, op, idx)
         vals[q] = sv.z(idx[q])
-        _free(sv, backend)
+        del sv
+        _free_pool(backend)
     if log:
         done = [v for v in vals.values() if v is not None]
         log(f"  {len(done)} of {len(vals)} qubits, largest cone {max(sizes.values())}, "
