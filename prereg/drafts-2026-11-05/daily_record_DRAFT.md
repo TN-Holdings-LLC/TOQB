@@ -6,6 +6,10 @@ are released in `results/daily-pool-2026-11-05/released/` (they match the hashes
 **Owner's decisions, 2026-11-05 04:35 CET:** no correction in the record for now (raw only, until a proper correction
 exists); the order of the pool does not matter (any problem may be taken first). The calendar-day rule below stays as a
 proposal only.
+**Owner's decision, 2026-11-05 04:39 CET:** D01 is the same problem as the 11-04 practice circuit p4_b0.485_t08 (and
+FX-A the same as p4_b0.485_t12; home found both): D01 is kept apart and not counted as a new problem; the new problems
+start from D02. FX-A stays the fixed problem (its repetition of 11-04 is the day-to-day series). No other pool problem
+repeats a practice circuit (F3: D15 t 14 and D27 t 20 use b = pi/4 - 0.3 at depths the practice did not run).
 
 Builds on the owner's idea (`prereg/drafts-2026-11-04/daily_record_IDEA.md`, 11-04 14:33 CET) and the owner's
 instruction of 11-05: make the problems so that solving them raises the record's value. Nothing here is fixed.
