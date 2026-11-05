@@ -149,3 +149,19 @@ def test_leakcheck_finds_sealed_values(tmp_path):
     dirty.write_text("value -0.6543 here\n")
     assert SL.leakcheck(str(d), [str(clean)]) == []
     assert [h[0] for h in SL.leakcheck(str(d), [str(clean), str(dirty)])] == [str(dirty)]
+
+
+def test_seal_add_appends_and_refuses_twice(tmp_path):
+    # made-up values only
+    from daily import seal as SL
+    res = tmp_path / "res"
+    res.mkdir()
+    (res / "sha256.txt").write_text("0" * 64 + "  answers.json\n")
+    qs = P.patch("B72")[0]
+    raw = tmp_path / "raw.json"
+    raw.write_text(json.dumps({"H01": {"values": {str(q): 0.271828 for q in qs}, "method": "cone", "failed": False}}))
+    lines = SL.seal_add(str(tmp_path / "sealed"), str(res), "hard", [str(raw)])
+    assert [ln.split("  ")[1] for ln in lines] == ["sealed/H01.json", "sealed/answers_hard.json"]
+    assert (res / "sha256.txt").read_text().splitlines()[0] == "0" * 64 + "  answers.json"
+    with pytest.raises(RuntimeError):
+        SL.seal_add(str(tmp_path / "sealed"), str(res), "hard", [str(raw)])
