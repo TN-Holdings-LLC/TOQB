@@ -1,0 +1,23 @@
+{
+ "device": "ibm_marrakesh",
+ "circuits": 10,
+ "qpu_seconds_model": 14.2,
+ "job": "/tmp/claude-0/work/toqb/results/daily/2026-11-05/ibm_marrakesh/run/job",
+ "runs": "/tmp/claude-0/work/toqb/results/daily/2026-11-05/ibm_marrakesh/run/runs",
+ "items": {
+  "FX-A": {
+   "copy": {
+    "drow": 0,
+    "dcol": 0
+   },
+   "cz": 400
+  },
+  "D02": {
+   "copy": {
+    "drow": 4,
+    "dcol": 0
+   },
+   "cz": 256
+  }
+ }
+}
