@@ -10,6 +10,10 @@
 usage: python daily/seal.py seal SEALED_DIR RESULTS_DIR RAW.json [RAW.json ...]
        python daily/seal.py redact IN.txt OUT.txt
        python daily/seal.py circuits RESULTS_DIR
+       python daily/seal.py leakcheck SEALED_DIR [FILE ...]   (no files: the files staged for the next commit)
+
+  leakcheck  before every commit: no sealed value (every <Z>/<X> and M, as 4 decimals, rounded and cut) may appear in
+            a text file to be committed; exit 1 and the hits if one does.
 """
 from __future__ import annotations
 
@@ -93,12 +97,43 @@ def circuits(results):
     return len(CIRCUIT_IDS)
 
 
+def leakcheck(sealed, files):
+    """[(file, value string)] of the sealed values (4 decimals, rounded or cut, sign ignored) found in the files."""
+    import math
+    vals = set()
+    for rec in json.load(open(os.path.join(sealed, "answers.json"))).values():
+        for v in list(rec["values"].values()) + [rec.get("M")]:
+            if v is None:
+                continue
+            a = abs(v)
+            vals.add(f"{a:.4f}")
+            vals.add(f"{math.floor(a * 1e4) / 1e4:.4f}")
+    pat = re.compile(r"(?<![0-9.])(" + "|".join(re.escape(x) for x in sorted(vals)) + r")")
+    hits = []
+    for f in files:
+        try:
+            text = open(f, encoding="utf-8").read()
+        except (UnicodeDecodeError, IsADirectoryError, FileNotFoundError):
+            continue  # binary (QPY) or removed
+        hits += [(f, m.group(1)) for m in pat.finditer(text)]
+    return hits
+
+
 if __name__ == "__main__":
     cmd = sys.argv[1]
     if cmd == "seal":
         print("\n".join(seal(sys.argv[2], sys.argv[3], sys.argv[4:])))
     elif cmd == "redact":
         redact(sys.argv[2], sys.argv[3])
+    elif cmd == "leakcheck":
+        import subprocess
+        fs = sys.argv[3:] or subprocess.run(["git", "diff", "--cached", "--name-only", "--diff-filter=d"],
+                                            capture_output=True, text=True).stdout.split()
+        h = leakcheck(sys.argv[2], fs)
+        for f, v in h:
+            print(f"LEAK {f}: {v}")
+        print(f"leakcheck: {len(fs)} files, {len(h)} hits")
+        sys.exit(1 if h else 0)
     elif cmd == "circuits":
         print(circuits(sys.argv[2]), "circuits written")
     else:
