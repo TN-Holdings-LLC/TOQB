@@ -83,12 +83,24 @@ SCALE = [
     ("S05", "F2", "B102", dict(theta=1.2), 6, 18, "G2"),
     ("S06", "F1", "B102", dict(theta_x=0.53, theta_zz=1.0), 5, 30, "G3"),
 ]
+# the hard problems (owner, 2026-11-06: "at least three, hard, problems whose solution would surprise", for Friday to
+# Sunday; counted apart from POOL and SCALE). All three use the Qedma tutorial's angles (theta_x 0.53, theta_z 0.1,
+# theta_zz 1.0; F1, two CZ per RZZ) at sizes or depths beyond what was run so far; answers exact (light cones <= 31 qubits
+# for B72 / B102 at t 6; the whole 2^32 state for P32 at t 9).
+#   H01: 72 qubits, 948 CZ, t 6 (the tutorial's form on twice its patch);
+#   H02: 102 qubits, 1356 CZ, t 6 (more CZs than the 151-qubit practice circuit of 11-04, 1328);
+#   H03: 32 qubits, t 9: the tutorial's deepest step (54 ideal CZ layers), where raw P6 missed by -0.08 to -0.21 on 11-04.
+HARD = [
+    ("H01", "F1", "B72", dict(theta_x=0.53, theta_zz=1.0), 6, 36, "G3"),
+    ("H02", "F1", "B102", dict(theta_x=0.53, theta_zz=1.0), 6, 36, "G3"),
+    ("H03", "F1", "P32", dict(theta_x=0.53, theta_zz=1.0), 9, 54, "G4"),
+]
 FXA_SEALED = ("results/bank-2026-11-04/pod/du_bank/answers.json", "h0.15_b0.485398")
 READOUT = {"F1": "Z", "F2": "Z", "F3": "X"}
 
 
 def entry(pid):
-    for e in POOL + FIXED + SCALE:
+    for e in POOL + FIXED + SCALE + HARD:
         if e[0] == pid:
             return e
     raise KeyError(pid)
