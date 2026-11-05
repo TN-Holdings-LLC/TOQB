@@ -27,7 +27,13 @@
     29
    ],
    "within_2se": 0.0625,
-   "guessable": false
+   "guessable": false,
+   "retention": 0.815516996869407,
+   "norm_error": 0.18448300313059293,
+   "slope": 0.8106929939167983,
+   "mse_after_scale": 0.012504513641134923,
+   "cz_layers": 40,
+   "decay_per_layer": 0.005246646226071062
   },
   "FX-A": {
    "beats": "BEATS",
@@ -52,7 +58,13 @@
     21
    ],
    "within_2se": 0.45454545454545453,
-   "guessable": false
+   "guessable": false,
+   "retention": 0.7318172516738926,
+   "norm_error": 0.26818274832610745,
+   "slope": 0.7227708963409956,
+   "mse_after_scale": 0.0012793955026797815,
+   "cz_layers": 25,
+   "decay_per_layer": 0.012986519449464147
   }
  }
 }
