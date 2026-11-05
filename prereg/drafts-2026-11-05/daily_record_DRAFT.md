@@ -3,7 +3,7 @@
 **Owner's decisions, 2026-11-05 04:34 CET (relayed at the workplace):** fixed problem **FX-A**; the answers may be seen at
 home so that each run is scored at once: the blind protocol below is **not adopted** (kept for the record). The values
 are released in `results/daily-pool-2026-11-05/released/` (they match the hashes committed in 12164be).
-**Owner's decisions, 2026-11-05 04:44 CET:** no correction in the record for now (raw only, until a proper correction
+**Owner's decisions, 2026-11-05 04:35 CET:** no correction in the record for now (raw only, until a proper correction
 exists); the order of the pool does not matter (any problem may be taken first). The calendar-day rule below stays as a
 proposal only.
 
