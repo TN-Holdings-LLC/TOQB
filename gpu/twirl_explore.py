@@ -64,6 +64,39 @@ def twirl(compiled, k):
     return PassManager([Optimize1qGatesDecomposition(basis=["rz", "sx", "x"])]).run(out)
 
 
+# Paulis that commute with Z x Z: P RZZ(theta) P = RZZ(theta) for any theta (a block twirl keeps the gate as written)
+ZZ_COMMUTING = [("I", "I"), ("Z", "Z"), ("Z", "I"), ("I", "Z"), ("X", "X"), ("Y", "Y"), ("X", "Y"), ("Y", "X")]
+
+
+def _logical_pauli(out, p, q):
+    if p == "X":
+        out.x(q)
+    elif p == "Y":
+        out.y(q)
+    elif p == "Z":
+        out.z(q)
+
+
+def block_twirl(logical, k):
+    """Every RZZ of the user's logical circuit -> P RZZ P with P from ZZ_COMMUTING, chosen by (5 g + 3 k + 1) mod 8 for
+    RZZ number g: the same unitary, the gate's own CZ pair and its echo untouched; the frame changes between blocks."""
+    out = logical.copy_empty_like()
+    g = 0
+    for ins in logical.data:
+        if ins.operation.name == "rzz":
+            a, b = ins.qubits
+            pa, pb = ZZ_COMMUTING[(5 * g + 3 * k + 1) % 8]
+            _logical_pauli(out, pa, a)
+            _logical_pauli(out, pb, b)
+            out.append(ins.operation, ins.qubits, ins.clbits)
+            _logical_pauli(out, pa, a)
+            _logical_pauli(out, pb, b)
+            g += 1
+        else:
+            out.append(ins.operation, ins.qubits, ins.clbits)
+    return out
+
+
 def flips(n, k):
     return [int((j + k) % 2 == 1) for j in range(n)]
 
@@ -108,8 +141,23 @@ def build(dev_dir, circ_dir, out, ids):
         cu = rc.pm.run(U.with_measure(u, phys))
         cm = rc.pm.run(M.mirror(u, phys))
         cz = M.cz_count(cu)
+        ul = U.relabel(logical, m, dev.num_qubits)  # before rzz_exact, so that RZZ(+-pi/2) blocks are twirled too
+        ub = [rzz_exact(block_twirl(ul, k)) for k in range(K)]
+        mb = []
+        for k in range(K):
+            mk = M.mirror(ub[k], phys)  # U_k, barrier, U_k^dagger; replace the second half by U_(k+1)^dagger
+            half = ub[(k + 1) % K].inverse()
+            mm = mk.copy_empty_like()
+            mm.compose(ub[k], inplace=True)
+            mm.barrier()
+            mm.compose(half, inplace=True)
+            for j, p in enumerate(phys):
+                mm.measure(p, j)
+            mb.append(mm)
         sets = {
             "raw": [readout_twirl(cu, k) for k in range(K_R)],
+            "btw": [readout_twirl(rc.pm.run(U.with_measure(rzz_exact(ub[k]), phys)), k) for k in range(K)],
+            "mbtw": [readout_twirl(rc.pm.run(rzz_exact(mb[k])), k) for k in range(K)],
             "tw": [readout_twirl(twirl(cu, k), k) for k in range(K)],
             "floor": [readout_twirl(U.floor_of(cu), k) for k in range(K_R)],
             "mraw": [readout_twirl(cm, k) for k in range(K_R)],
@@ -117,7 +165,7 @@ def build(dev_dir, circ_dir, out, ids):
             "floor2": [readout_twirl(U.floor_of(cm), k) for k in range(K_R)],
         }
         for role, cs in sets.items():
-            want = 2 * cz if role in ("mraw", "mtw", "floor2") else cz
+            want = 2 * cz if role in ("mraw", "mtw", "floor2", "mbtw") else cz
             got = [M.cz_count(c) for c in cs]
             if any(x != want for x in got):
                 raise SystemExit(f"STOP: {pid} {role}: CZ {got}, expected {want}")
@@ -165,9 +213,13 @@ def correct(d, ans, guard=0.3):
     mad = np.median(np.abs(F - med))
     keep = (F >= med - max(5 * 1.4826 * mad, 0.05)) & (F >= guard) & (F2 >= 0.05)
     res = {}
-    for name, val in (("raw", d["raw"]), ("tw", d["tw"])):
-        res[name] = val[idx]
-    for name, zk, mk in (("corr_raw", "raw", "mraw"), ("corr_tw", "tw", "mtw")):
+    pairs = [("corr_raw", "raw", "mraw"), ("corr_tw", "tw", "mtw")]
+    if "btw" in d:
+        pairs.append(("corr_btw", "btw", "mbtw"))
+    for name in ("raw", "tw", "btw"):
+        if name in d:
+            res[name] = d[name][idx]
+    for name, zk, mk in pairs:
         m = d[mk][idx]
         rate = 0.5 * np.log(np.clip(m / np.maximum(F2, 0.05), 1e-3, 1.0))
         g = float(np.exp(np.median(rate[keep])))
@@ -175,12 +227,15 @@ def correct(d, ans, guard=0.3):
         res[name + "_g"] = g
     res["floor_only_tw"] = d["tw"][idx] / F
     out = {}
-    for name in ("raw", "tw", "floor_only_tw", "corr_raw", "corr_tw"):
+    for name in ("raw", "tw", "btw", "floor_only_tw", "corr_raw", "corr_tw", "corr_btw"):
+        if name not in res:
+            continue
         v = res[name]
         sel = keep if name.startswith(("corr", "floor")) else np.ones(len(a), bool)
         out[name] = dict(diff=float(v[sel].mean() - a[sel].mean()), mse=float(np.mean((v[sel] - a[sel]) ** 2)),
                          n=int(sel.sum()))
     out["g_raw"], out["g_tw"] = res["corr_raw_g"], res["corr_tw_g"]
+    out["g_btw"] = res.get("corr_btw_g")
     out["dropped"] = [lab[idx[i]] for i in range(len(idx)) if not keep[i]]
     return out
 
@@ -192,7 +247,9 @@ def score(out, answers):
     json.dump(res, open(os.path.join(out, "scores.json"), "w"), indent=1)
     for pid, r in res.items():
         print(pid, "dropped", r["dropped"], f"| gate/run raw {r['g_raw']:.3f} tw {r['g_tw']:.3f}")
-        for name in ("raw", "tw", "floor_only_tw", "corr_raw", "corr_tw"):
+        for name in ("raw", "tw", "btw", "floor_only_tw", "corr_raw", "corr_tw", "corr_btw"):
+            if name not in r:
+                continue
             x = r[name]
             print(f"   {name:14} diff {x['diff']:+.3f}  MSE {x['mse']:.4f}  ({x['n']} q)")
     return res
