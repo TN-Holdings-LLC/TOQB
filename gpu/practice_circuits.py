@@ -25,7 +25,7 @@ CHAIN = list(range(0, 16)) + [19] + list(range(35, 19, -1))
 BANK = "results/bank-2026-11-04"
 
 
-def p4(t, b, chain=CHAIN):
+def p4(t, b, chain=CHAIN, h=H):
     from qiskit import QuantumCircuit
     n = len(chain)
     qc = QuantumCircuit(max(chain) + 1, n)
@@ -37,12 +37,12 @@ def p4(t, b, chain=CHAIN):
     for k in range(t):
         for i in range(k % 2, n - 1, 2):
             a, c = s[i], s[i + 1]
-            qc.rz(2 * H, a)
+            qc.rz(2 * h, a)
             qc.rzz(2 * J, a, c)
             qc.rx(2 * b, a)
             qc.rx(2 * b, c)
             qc.rzz(2 * J, a, c)
-            qc.rz(2 * H, a)
+            qc.rz(2 * h, a)
     for k in range(n):
         qc.h(s[k])
     for k in range(n):
