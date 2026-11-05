@@ -1,0 +1,407 @@
+{
+ "K1": [
+  {
+   "family": "F3",
+   "patch": "C33",
+   "params": "h 0.15, b pi/4-0.30",
+   "ts": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "max_diff": 3.211197927677212e-06,
+   "ok": true
+  },
+  {
+   "family": "F1",
+   "patch": "P32",
+   "params": "theta_x 0.53, theta_zz 1",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 2.5675972501471023e-06,
+   "ok": true
+  },
+  {
+   "family": "F2",
+   "patch": "B72",
+   "params": "theta 0.8",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 3.0678140261475306e-07,
+   "ok": true
+  },
+  {
+   "family": "F1",
+   "patch": "P32",
+   "params": "theta_x 0.8, theta_zz -pi/2",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 1.6484935631000397e-06,
+   "ok": true
+  },
+  {
+   "family": "F3",
+   "patch": "C33",
+   "params": "h 0.3, b pi/4-0.15",
+   "ts": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "max_diff": 2.008784983020817e-06,
+   "ok": true
+  },
+  {
+   "family": "F1",
+   "patch": "P32",
+   "params": "theta_x 0.8, theta_zz 1",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 1.5371839786615382e-06,
+   "ok": true
+  },
+  {
+   "family": "F2",
+   "patch": "B42",
+   "params": "theta 0.7",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 1.6078604136993135e-07,
+   "ok": true
+  },
+  {
+   "family": "F2",
+   "patch": "P32",
+   "params": "theta 1",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 9.397602481753253e-07,
+   "ok": true
+  },
+  {
+   "family": "F1",
+   "patch": "P32",
+   "params": "theta_x 1, theta_zz 0.6",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 2.966894289246902e-06,
+   "ok": true
+  },
+  {
+   "family": "F3",
+   "patch": "C33",
+   "params": "h 0.05, b pi/4-0.20",
+   "ts": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "max_diff": 3.6137420378334895e-07,
+   "ok": true
+  },
+  {
+   "family": "F1",
+   "patch": "P32",
+   "params": "theta_x 0.53, theta_zz -pi/2",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 2.4516611545344347e-06,
+   "ok": true
+  },
+  {
+   "family": "F2",
+   "patch": "B72",
+   "params": "theta 0.4",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 4.2664412402970697e-07,
+   "ok": true
+  },
+  {
+   "family": "F2",
+   "patch": "P32",
+   "params": "theta 0.8",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 2.716556472992515e-06,
+   "ok": true
+  },
+  {
+   "family": "F1",
+   "patch": "P32",
+   "params": "theta_x 0.3, theta_zz 1",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 1.3584527840393434e-06,
+   "ok": true
+  },
+  {
+   "family": "F2",
+   "patch": "B72",
+   "params": "theta 0.6",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 3.1560328839219665e-07,
+   "ok": true
+  },
+  {
+   "family": "F2",
+   "patch": "B42",
+   "params": "theta 0.9",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 2.678829532642979e-07,
+   "ok": true
+  },
+  {
+   "family": "F2",
+   "patch": "B72",
+   "params": "theta 1",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 1.5426380878258428e-07,
+   "ok": true
+  },
+  {
+   "family": "F2",
+   "patch": "B72",
+   "params": "theta 1.2",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 8.476804549961692e-08,
+   "ok": true
+  },
+  {
+   "family": "F2",
+   "patch": "P32",
+   "params": "theta 0.6",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 3.2661410650502987e-06,
+   "ok": true
+  }
+ ],
+ "K2": [
+  {
+   "what": "D13 whole patch",
+   "max_diff": 1.7295502121594808e-06,
+   "ok": true
+  },
+  {
+   "what": "D09 whole patch",
+   "max_diff": 2.9668942858052105e-06,
+   "ok": true
+  },
+  {
+   "what": "D21 whole patch",
+   "max_diff": 3.70298838214822e-06,
+   "ok": true
+  },
+  {
+   "what": "D08 whole patch",
+   "max_diff": 3.0212654642536307e-06,
+   "ok": true
+  },
+  {
+   "what": "D12 five largest cones",
+   "cones": [
+    29,
+    30,
+    30,
+    31,
+    31
+   ],
+   "max_diff": 2.285732929596662e-06,
+   "ok": true
+  },
+  {
+   "what": "D19 five largest cones",
+   "cones": [
+    29,
+    30,
+    30,
+    31,
+    31
+   ],
+   "max_diff": 1.471457119428532e-06,
+   "ok": true
+  },
+  {
+   "what": "D28 five largest cones",
+   "cones": [
+    29,
+    30,
+    30,
+    31,
+    31
+   ],
+   "max_diff": 3.587697310070137e-08,
+   "ok": true
+  },
+  {
+   "what": "D23 five largest cones",
+   "cones": [
+    26,
+    26,
+    27,
+    28,
+    29
+   ],
+   "max_diff": 6.545483781650319e-07,
+   "ok": true
+  },
+  {
+   "what": "F3 h 0.15, b pi/4-0.30 N 25 t 1-20",
+   "max_diff": 6.75549254031127e-06,
+   "ok": true
+  },
+  {
+   "what": "F3 h 0.3, b pi/4-0.15 N 25 t 1-16",
+   "max_diff": 1.5767887298623329e-06,
+   "ok": true
+  },
+  {
+   "what": "F3 h 0.05, b pi/4-0.20 N 25 t 1-24",
+   "max_diff": 8.518829551773521e-07,
+   "ok": true
+  }
+ ],
+ "K3": [
+  {
+   "what": "F1 theta_x 0, P32, t 4",
+   "max_diff": 6.132184076079739e-07,
+   "ok": true
+  },
+  {
+   "what": "F2 theta 0, P32, t 4",
+   "max_diff": 2.3841856489070778e-07,
+   "ok": true
+  },
+  {
+   "what": "F2 theta 0, B42, t 6",
+   "max_diff": 2.3841856489070778e-07,
+   "ok": true
+  },
+  {
+   "what": "F2 theta 0, B72, t 6",
+   "max_diff": 2.3841856489070778e-07,
+   "ok": true
+  },
+  {
+   "what": "F1 Clifford, P32, t 4",
+   "max_diff": 0.0,
+   "ok": true
+  },
+  {
+   "what": "F2 Clifford, P32, t 4",
+   "max_diff": 0.0,
+   "ok": true
+  },
+  {
+   "what": "F2 Clifford, B42, t 6",
+   "max_diff": 2.7755575615628914e-17,
+   "ok": true
+  },
+  {
+   "what": "F2 Clifford, B72, t 6",
+   "max_diff": 2.7755575615628914e-17,
+   "ok": true
+  },
+  {
+   "what": "F3 b pi/4 N 25 double t 1-8 = dual.exact",
+   "max_diff": 2.120525977034049e-14,
+   "ok": true
+  },
+  {
+   "what": "F3 b pi/4 N 33 single t 1-8 = dual.exact",
+   "max_diff": 1.0946666000655192e-05,
+   "ok": true
+  }
+ ],
+ "norm": {
+  "D01": 0.9999872936210203,
+  "D15": 0.9999779133535422,
+  "D27": 0.9999685333149343,
+  "FX-A": 0.9999810399657145,
+  "D02": 0.999996352082374,
+  "D13": 0.999998156655642,
+  "D24": 0.9999929990508287,
+  "D31": 0.9999945552260747,
+  "D04": 0.9999950890915621,
+  "D22": 0.9999919507792137,
+  "D05": 0.9999876633428293,
+  "D20": 0.9999805043524523,
+  "D06": 0.9999961284701745,
+  "D26": 0.99999763629377,
+  "D08": 0.9999952188405774,
+  "D09": 1.0000050675748278,
+  "D10": 1.000001490024855,
+  "D32": 1.0000031207530138,
+  "D11": 0.9999894866446982,
+  "D21": 0.9999962453487152,
+  "D29": 0.999992965247331,
+  "D14": 0.9999865903514094,
+  "D16": 1.0000017521431783,
+  "D18": 1.0000012586854898,
+  "D30": 1.000017732657806
+ },
+ "failed": [],
+ "K4": {
+  "sealed": "results/bank-2026-11-04/pod/du_bank/answers.json",
+  "key": "h0.15_b0.485398",
+  "t": 12,
+  "max_diff": 2.476406471829673e-06,
+  "ok": true
+ }
+}

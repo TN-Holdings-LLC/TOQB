@@ -218,3 +218,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# task T addendum A: the daily pool's answer values are sealed, never committed (only their SHA-256)
+results/daily-pool-2026-11-05/sealed/
+results/daily-pool-2026-11-05/answers.json
+results/daily-pool-2026-11-05/answers_*.json
