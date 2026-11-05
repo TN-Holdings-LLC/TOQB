@@ -124,15 +124,28 @@ def test_f3_is_practice_p4():
 
 
 def test_seal_is_canonical_and_redact_drops_values(tmp_path):
+    # made-up values only: a real answer must never appear in a test (it would be committed)
     from daily import seal as SL
-    raw = {"values": {str(q): 0.5 for q in P.patch("P32")[0]}, "method": "full", "failed": False}
+    raw = {"values": {str(q): 0.123456 for q in P.patch("P32")[0]}, "method": "full", "failed": False}
     rec = SL.record("D13", raw)
-    assert rec["M"] == 0.5 and rec["labels"] == P.patch("P32")[0]
+    assert rec["M"] == 0.123456 and rec["labels"] == P.patch("P32")[0]
     assert SL.canonical(rec) == SL.canonical(json.loads(SL.canonical(rec))) and SL.canonical(rec).endswith("}\n")
     log = tmp_path / "p.txt"
-    log.write_text("K1 F1 P32 x: max |GPU - CPU| 1e-06\n  t 2: M +0.806463 norm 1.0 3 s\n"
-                   "  72 of 72 qubits, largest cone 13, M over them +0.5, 0 s\nD13: 32 qubits, M +0.8, |<.>| 0.6-0.9\n"
+    log.write_text("K1 F1 P32 x: max |GPU - CPU| 1e-06\n  t 2: M +0.123456 norm 1.0 3 s\n"
+                   "  72 of 72 qubits, largest cone 13, M over them +0.654321, 0 s\nD13: 32 qubits, M +0.111111, |<.>| 0.2222-0.3333\n"
                    "K4 FX-A t 12: max |this run - sealed 11-04| 2.48e-06\n")
     SL.redact(str(log), str(tmp_path / "r.txt"))
     assert (tmp_path / "r.txt").read_text().splitlines() == ["K1 F1 P32 x: max |GPU - CPU| 1e-06",
                                                              "K4 FX-A t 12: max |this run - sealed 11-04| 2.48e-06"]
+
+
+def test_leakcheck_finds_sealed_values(tmp_path):
+    from daily import seal as SL
+    d = tmp_path / "sealed"
+    d.mkdir()
+    (d / "answers.json").write_text(json.dumps({"X01": {"values": {"0": 0.123456, "1": -0.654321}, "M": -0.987123}}))
+    clean, dirty = tmp_path / "a.txt", tmp_path / "b.txt"
+    clean.write_text("theta 0.53, max diff 1.2e-06\n")
+    dirty.write_text("value -0.6543 here\n")
+    assert SL.leakcheck(str(d), [str(clean)]) == []
+    assert [h[0] for h in SL.leakcheck(str(d), [str(clean), str(dirty)])] == [str(dirty)]
