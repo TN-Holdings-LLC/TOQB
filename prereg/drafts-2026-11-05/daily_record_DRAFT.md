@@ -1,5 +1,9 @@
 # DRAFT (not declared; the owner decides; workplace, 2026-11-05 02:35 CET): the standing rules of the daily record
 
+**Owner's decisions, 2026-11-05 04:34 CET (relayed at the workplace):** fixed problem **FX-A**; the answers may be seen at
+home so that each run is scored at once: the blind protocol below is **not adopted** (kept for the record). The values
+are released in `results/daily-pool-2026-11-05/released/` (they match the hashes committed in 12164be).
+
 Builds on the owner's idea (`prereg/drafts-2026-11-04/daily_record_IDEA.md`, 11-04 14:33 CET) and the owner's
 instruction of 11-05: make the problems so that solving them raises the record's value. Nothing here is fixed.
 
