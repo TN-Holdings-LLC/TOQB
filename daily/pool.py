@@ -7,6 +7,7 @@ notes/s1_2026-11-05/s1_analyse.heron_r2_edges; no calibration data):
   P32  P6's patch (psf_os.ising2d.QUBITS, 35 qubits) without 3, 11, 49: 32 qubits, 32 edges;
   B42  rows 0-2, columns 0-11 and the bridges between them (16, 17, 18, 36, 37, 38): 42 qubits, 45 edges;
   B72  rows 0-4, columns 0-11 and the bridges between them (3 per gap): 72 qubits, 79 edges;
+  B102 rows 0-6, columns 0-11 and the bridges between them (3 per gap): 102 qubits, 113 edges (the scale problems);
   C33  P4's chain (gpu/practice_circuits.CHAIN: 0..15, 19, 35..20), N = 33.
 Families (|0...0> in, no randomness):
   F1 (P6's form): each step RX(theta_x) then RZ(theta_z = 0.1) on every qubit (ascending), then RZZ(theta_zz) on every
@@ -73,12 +74,21 @@ FIXED = [
     ("FX-A", "F3", "C33", dict(h=0.15, b=PI4 - 0.3), 12, 24, "G2"),
     ("FX-B", "F2", "B72", dict(theta=0.8), 5, 15, "G1"),
 ]
+# the scale problems of the addendum (2026-11-05 02:30 CET), counted apart from POOL; answers from the light cones
+SCALE = [
+    ("S01", "F2", "B102", dict(theta=0.8), 4, 12, "G1"),
+    ("S02", "F2", "B102", dict(theta=1.0), 5, 15, "G1"),
+    ("S03", "F1", "B102", dict(theta_x=0.53, theta_zz=1.0), 3, 18, "G2"),
+    ("S04", "F2", "B102", dict(theta=0.8), 6, 18, "G2"),
+    ("S05", "F2", "B102", dict(theta=1.2), 6, 18, "G2"),
+    ("S06", "F1", "B102", dict(theta_x=0.53, theta_zz=1.0), 5, 30, "G3"),
+]
 FXA_SEALED = ("results/bank-2026-11-04/pod/du_bank/answers.json", "h0.15_b0.485398")
 READOUT = {"F1": "Z", "F2": "Z", "F3": "X"}
 
 
 def entry(pid):
-    for e in POOL + FIXED:
+    for e in POOL + FIXED + SCALE:
         if e[0] == pid:
             return e
     raise KeyError(pid)
@@ -121,6 +131,8 @@ def patch(name):
         qs = _block(range(3), range(12))
     elif name == "B72":
         qs = _block(range(5), range(12))
+    elif name == "B102":
+        qs = _block(range(7), range(12))
     else:
         raise KeyError(name)
     s = set(qs)
@@ -180,6 +192,13 @@ def cz_layers(family, params, t):
     if family == "F2":
         return 3 * t
     return 2 * t
+
+
+def cz_ideal(family, patch_name, params, t):
+    """CZ count of the ideal circuit (C33: the brickwork's two CZ per gate and the Bell pairs' CX not counted)."""
+    if family == "F3":
+        raise ValueError("not defined for F3 here")
+    return len(patch(patch_name)[1]) * cz_layers(family, params, t) // 3
 
 
 def grade(layers):

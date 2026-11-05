@@ -36,7 +36,7 @@ import du_answers as DA  # noqa: E402
 from daily import pool as P  # noqa: E402
 
 DIAGONAL = ("rz", "rzz", "cz", "z", "s", "sdg", "t", "tdg", "p")  # by name: RX(0) is still treated as non-diagonal
-FULL, CONE = ("P32", "C33"), ("B42", "B72")
+FULL, CONE = ("P32", "C33"), ("B42", "B72", "B102")
 MAX_QUBITS = 33
 
 

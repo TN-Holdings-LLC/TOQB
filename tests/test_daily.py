@@ -2,6 +2,7 @@
 Statevector, the light cones against the whole state, and the pool's data against the task's table. The GPU backend is
 checked the same way on the pod before any answer is sealed (gpu/daily_pod.sh)."""
 import importlib.util
+import json
 import os
 import sys
 
@@ -89,23 +90,28 @@ def test_numpy_rzz_and_z():
 
 def test_pool_table():
     assert len(P.POOL) == 32 and [e[0] for e in P.POOL] == [f"D{k:02d}" for k in range(1, 33)]
-    for pid, fam, pa, par, t, layers, g in P.POOL + P.FIXED:
+    for pid, fam, pa, par, t, layers, g in P.POOL + P.FIXED + P.SCALE:
         assert P.cz_layers(fam, par, t) == layers and P.grade(layers) == g, pid
         assert P.READOUT[fam] == A.program(P.problem_circuit(pid))[2]
+    # the addendum's table: ideal CZ counts and the largest cones of S01-S06
+    want = {"S01": (452, 13), "S02": (565, 19), "S03": (678, 7), "S04": (678, 31), "S05": (678, 31), "S06": (1130, 19)}
+    for pid, fam, pa, par, t, _, _ in P.SCALE:
+        got = (P.cz_ideal(fam, pa, par, t), max(A.cone_sizes(P.problem_circuit(pid)).values()))
+        assert got == want[pid], pid
 
 
 def test_patches():
     from psf_os import ising2d as I
     assert P.P32 == sorted(set(I.QUBITS) - set(P.P6_DROPPED))
-    sizes = {n: tuple(map(len, P.patch(n))) for n in ("P32", "B42", "B72", "C33")}
-    assert sizes == {"P32": (32, 32), "B42": (42, 45), "B72": (72, 79), "C33": (33, 32)}
+    sizes = {n: tuple(map(len, P.patch(n))) for n in ("P32", "B42", "B72", "B102", "C33")}
+    assert sizes == {"P32": (32, 32), "B42": (42, 45), "B72": (72, 79), "B102": (102, 113), "C33": (33, 32)}
     assert {16, 17, 18, 36, 37, 38} <= set(P.patch("B42")[0])
     spec = importlib.util.spec_from_file_location("s1a", os.path.join(HERE, "..", "notes", "s1_2026-11-05",
                                                                       "s1_analyse.py"))
     s1 = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(s1)
     assert P.heron_r2_edges() == s1.heron_r2_edges()
-    for n in ("P32", "B42", "B72", "C33"):
+    for n in ("P32", "B42", "B72", "B102", "C33"):
         assert set(P.patch(n)[1]) <= P.heron_r2_edges()
 
 
@@ -115,3 +121,18 @@ def test_f3_is_practice_p4():
         sig = lambda c: [(i.operation.name, [c.find_bit(x).index for x in i.qubits], i.operation.params)  # noqa: E731
                          for i in c.data]
         assert sig(a) == sig(b)
+
+
+def test_seal_is_canonical_and_redact_drops_values(tmp_path):
+    from daily import seal as SL
+    raw = {"values": {str(q): 0.5 for q in P.patch("P32")[0]}, "method": "full", "failed": False}
+    rec = SL.record("D13", raw)
+    assert rec["M"] == 0.5 and rec["labels"] == P.patch("P32")[0]
+    assert SL.canonical(rec) == SL.canonical(json.loads(SL.canonical(rec))) and SL.canonical(rec).endswith("}\n")
+    log = tmp_path / "p.txt"
+    log.write_text("K1 F1 P32 x: max |GPU - CPU| 1e-06\n  t 2: M +0.806463 norm 1.0 3 s\n"
+                   "  72 of 72 qubits, largest cone 13, M over them +0.5, 0 s\nD13: 32 qubits, M +0.8, |<.>| 0.6-0.9\n"
+                   "K4 FX-A t 12: max |this run - sealed 11-04| 2.48e-06\n")
+    SL.redact(str(log), str(tmp_path / "r.txt"))
+    assert (tmp_path / "r.txt").read_text().splitlines() == ["K1 F1 P32 x: max |GPU - CPU| 1e-06",
+                                                             "K4 FX-A t 12: max |this run - sealed 11-04| 2.48e-06"]
