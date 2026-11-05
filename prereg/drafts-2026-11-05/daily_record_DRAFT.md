@@ -18,6 +18,8 @@ instruction of 11-05: make the problems so that solving them raises the record's
   recorded as "not run" and D_k is not used again (no moving a hard problem to a better day).
 - **SCALE:** one S problem a week, in the order S01, S02, ..., on the first run day of each week, as a third problem.
   No substitute if B102 has no qualifying copy on the day's devices: recorded "refused" (B102 has only two copies).
+  On the device records of 11-04 (afternoon), B102 qualifies on ibm_fez at (0,0) and nowhere on ibm_marrakesh (B87
+  would not either; B72 does at (0,4)): the SCALE problem is expected to run on fez only, refused on marrakesh.
 - **Fixed problem:** one of
   - FX-A: P4 chain, h 0.15, b = pi/4 - 0.3, t 12 (33 q, 24 CZ layers; answers sealed 11-04; read on both devices 11-04);
   - FX-B: P5 rule on B72, theta 0.8, t 5 (72 q, 15 CZ layers; sealed 11-05);
