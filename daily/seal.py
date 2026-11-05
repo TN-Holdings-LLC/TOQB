@@ -24,7 +24,8 @@ import numpy as np
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 from daily import pool as P  # noqa: E402
 
-SEALED_IDS = [e[0] for e in P.POOL] + ["FX-B"] + [e[0] for e in P.SCALE]
+REQUIRED_IDS = [e[0] for e in P.POOL] + ["FX-B"]
+SEALED_IDS = REQUIRED_IDS + [e[0] for e in P.SCALE]  # S01-S06 when computed (sealed on their own day otherwise)
 CIRCUIT_IDS = [e[0] for e in P.POOL + P.FIXED + P.SCALE]
 VALUE_LINE = re.compile(r"(\bM [+-]|M over them|\|<\.>\||^(D\d\d|FX-[AB]|S\d\d): )")
 
@@ -56,12 +57,12 @@ def seal(sealed, results, raws):
             if pid in merged:
                 raise RuntimeError(f"{pid} in two raw files")
             merged[pid] = r
-    missing = [p for p in SEALED_IDS if p not in merged]
+    missing = [p for p in REQUIRED_IDS if p not in merged]
     if missing:
         raise RuntimeError(f"no answer for {missing}")
     os.makedirs(sealed, exist_ok=True)
     lines, allrec = [], {}
-    for pid in SEALED_IDS:
+    for pid in [p for p in SEALED_IDS if p in merged]:
         rec = record(pid, merged[pid])
         allrec[pid] = rec
         text = canonical(rec)
