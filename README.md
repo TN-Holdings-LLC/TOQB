@@ -31,6 +31,10 @@ Numbers from this repository should be cited from these results, with their run.
 Every device test was declared (SHA-256 and CET time, in [`prereg/`](prereg/)) before its calibration was fetched.
 No mitigation, dynamical decoupling or twirling. Predictions that failed are reported as failed.
 
+**Reproduce without IBM:** `python reproduce.py` re-scores the psf-os device results of 2026-11-04 and later from
+their committed raw counts and compares with the committed scores (all 9 the same on 2026-11-05; versions in
+[`results/ENVIRONMENT.md`](results/ENVIRONMENT.md)). The daily record: [`results/daily/RECORD.md`](results/daily/RECORD.md).
+
 **Noise wall, stage 1 (2026-10-29), two devices.** The kicked-Ising ring (J = pi/4, h = 0.6; exact answer at any n)
 at n = 20 and 36, L = 24, 50, 100 steps (up to 3600 CZ per circuit). Probe: a weight-2 charge conserved by the circuit
 itself, read with four inputs that cancel readout and first-order relaxation; no calibration data used. Arms:
