@@ -70,6 +70,7 @@ def main():
     ap.add_argument("--theta", type=float, default=0.8)
     ap.add_argument("--shots", type=int, default=4000)
     ap.add_argument("--max-seconds", type=float, default=120)
+    ap.add_argument("--probe-t", type=int, default=None, help="probe depth (default: the deepest t, as on 11-07)")
     ap.add_argument("--dry-clifford-sentinel", action="store_true")
     a = ap.parse_args()
     for p in (a.out, a.answers_out):
@@ -89,7 +90,8 @@ def main():
     ts = [int(v) for v in a.ts.split(",")]
     runs = os.path.join(a.out, "runs")
     os.makedirs(runs)
-    cands = G.probe_records(dev, runs, L, M, N, max(ts), a.theta, k=a.k, shots=a.shots, excited=True, rc=rc)  # one shot count per job
+    cands = G.probe_records(dev, runs, L, M, N, a.probe_t or max(ts), a.theta, k=a.k, shots=a.shots, excited=True,
+                            rc=rc)  # one shot count per job
     arms, answers = {}, {}
     for c in cands:
         for t in ts:

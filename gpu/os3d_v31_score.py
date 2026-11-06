@@ -24,9 +24,21 @@ def main(run, answers, rule="relative"):
     from psf_os import user2d as U
     rep = json.load(open(os.path.join(run, "report.json")))
     job, runs = os.path.join(run, "job"), os.path.join(run, "runs")
-    ch = G.probe_choose(job, runs, rule=rule)
-    chosen = ch["chosen"] if ch["chosen"] is not None else 0
     cs = U.cards(job, runs, json.load(open(answers)))
+    if rule == "mirror":
+        # draft rule (2026-11-07, after the 11-07 run; to be declared and tested before use): candidates marked by the
+        # probes (relative line) are passed over; among the rest (all, if none is clean), the one whose own t = 1 arm
+        # has the highest mean mirror. Reads the probes and the arms' mirror check circuits, never an answer.
+        ch = G.probe_choose(job, runs, rule="relative")
+        t1 = min(rep["ts"])
+        for r in ch["candidates"]:
+            r["mirror_t1"] = cs[f"g3d{r['index']}_t{t1}"]["mirror_mean"]
+        clean = [r for r in ch["candidates"] if not r["low"]] or ch["candidates"]
+        best = max(clean, key=lambda r: (r["mirror_t1"], -r["index"]))
+        ch.update(rule="mirror", chosen=best["index"], passed_none=not any(not r["low"] for r in ch["candidates"]))
+    else:
+        ch = G.probe_choose(job, runs, rule=rule)
+    chosen = ch["chosen"] if ch["chosen"] is not None else 0
     arms = {}
     for tag, c in cs.items():
         if tag not in rep["arms"]:
@@ -52,7 +64,8 @@ def main(run, answers, rule="relative"):
     for r in ch["candidates"]:
         print(f"  candidate {r['index']} (r0 {r['r0']}, c0 {r['c0']}): |0> floor min {r.get('min_floor', float('nan')):.3f}"
               f"  |1> floor max {r.get('max_floor1', float('nan')):.3f}  X echo min {r.get('min_echo_x', float('nan')):.3f}"
-              f"  weakest {r['worst']:.3f}  marked: {r['low']}")
+              f"  weakest {r.get('worst', float('nan')):.3f}"
+              + (f"  mirror t1 {r['mirror_t1']:.3f}" if "mirror_t1" in r else "") + f"  marked: {r['low']}")
     for tag, r in sorted(arms.items(), key=lambda kv: (kv[1]["kind"], kv[1].get("candidate") or 0, kv[1]["t"])):
         mark = "JUDGED" if (r["kind"] == "2D" or r["candidate"] == chosen) else "beside"
         ret = "-" if r["retention"] is None else f"{r['retention']:.3f}"
