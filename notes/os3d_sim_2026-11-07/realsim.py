@@ -5,7 +5,12 @@ The 11-07 device run showed that waiting qubits relax: deep probes washed out, w
 
 Writes JOB/raw_counts.json and JOB/submission.json (local) so gpu/os3d_v31_score.py reads the run as a device run.
 
-usage: python realsim.py PSF_OS RUN_DIR [--shots 600] [--workers N] [--only NAME,...]
+Circuits on more than --max-qubits qubits (the 40-qubit sentinel) do not fit a statevector: they are skipped and
+written as a placeholder (marked in skipped.json), and a failure of one circuit no longer stops the others.
+--device GPU uses Aer's GPU build (qiskit-aer-gpu), one worker per GPU.
+
+usage: python realsim.py PSF_OS RUN_DIR [--shots 600] [--workers N] [--only NAME,...] [--max-qubits 30]
+                         [--device CPU|GPU]
 """
 import argparse
 import json
@@ -19,7 +24,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def _one(args):
-    k, qpy_bytes, shots, seed = args
+    k, qpy_bytes, shots, seed, max_q, device = args
     import io
     from qiskit import qpy
     from qiskit.transpiler import PassManager
@@ -38,19 +43,25 @@ def _one(args):
     t1s = [p.t1 for p in props]
     t2s = [min(p.t2, 2 * p.t1) for p in props]
     noisy = RelaxationNoisePass(t1s, t2s, dt=tgt.dt, op_types=[Delay])(sched)
-    touched = sorted({noisy.find_bit(q).index for ins in noisy.data if ins.operation.name not in ("barrier",)
+    # qubits the circuit itself uses (before padding: PadDelay puts delays on every idle device qubit)
+    touched = sorted({c.find_bit(q).index for ins in c.data if ins.operation.name not in ("barrier", "delay")
                       for q in ins.qubits})
+    if len(touched) > max_q:
+        return k, None, len(touched), "skipped: too many qubits for a statevector"
     m = {q: i for i, q in enumerate(touched)}
     from qiskit import QuantumCircuit
     cc = QuantumCircuit(len(touched), noisy.num_clbits)
     for ins in noisy.data:
-        if ins.operation.name == "barrier":
-            continue
+        if ins.operation.name == "barrier" or any(noisy.find_bit(q).index not in m for q in ins.qubits):
+            continue          # delays (and their relaxation) on qubits the circuit never uses
         cc.append(ins.operation, [m[noisy.find_bit(q).index] for q in ins.qubits],
                   [noisy.find_bit(b).index for b in ins.clbits])
     nm = S.remap_noise(NoiseModel.from_backend(be), touched)
     ro = S.readout_maps(NoiseModel.from_backend(be), touched)
-    sim = AerSimulator(method="statevector", noise_model=nm, seed_simulator=seed)
+    opts = dict(method="statevector", noise_model=nm, seed_simulator=seed)
+    if device == "GPU":
+        opts.update(device="GPU", batched_shots_gpu=True)
+    sim = AerSimulator(**opts)
     counts = sim.run(cc, shots=shots).result().get_counts(0)
     # readout asymmetry, per measured qubit (classical flips with the backend's p(1|0), p(0|1))
     meas = {}
@@ -73,7 +84,14 @@ def _one(args):
                     b[i] = "0"
             kk = "".join(b)
             out[kk] = out.get(kk, 0) + 1
-    return k, out, len(touched)
+    return k, out, len(touched), ""
+
+
+def _safe(args):
+    try:
+        return _one(args)
+    except Exception as e:      # one failed circuit must not discard the others
+        return args[0], None, -1, f"failed: {type(e).__name__}: {str(e)[:200]}"
 
 
 def main():
@@ -83,6 +101,8 @@ def main():
     ap.add_argument("--shots", type=int, default=600)
     ap.add_argument("--workers", type=int, default=os.cpu_count())
     ap.add_argument("--only", default=None)
+    ap.add_argument("--max-qubits", type=int, default=30)
+    ap.add_argument("--device", default="CPU", choices=["CPU", "GPU"])
     a = ap.parse_args()
     sys.path.insert(0, a.psf_os)
     import io
@@ -98,12 +118,19 @@ def main():
             continue
         b = io.BytesIO()
         qpy.dump(c, b)
-        tasks.append((k, b.getvalue(), a.shots, 1000 + k))
-    rows = {}
+        tasks.append((k, b.getvalue(), a.shots, 1000 + k, a.max_qubits, a.device))
+    rows, skipped = {}, {}
     with ProcessPoolExecutor(a.workers) as ex:
-        for k, counts, nq in ex.map(_one, tasks):
-            rows[k] = dict(pub=k, counts=counts)
-            print(f"{k:3} {names[k]:28} qubits {nq}", flush=True)
+        for k, counts, nq, note in ex.map(_safe, tasks):
+            if counts is None:
+                skipped[names[k]] = note
+            else:
+                rows[k] = dict(pub=k, counts=counts)
+            print(f"{k:3} {names[k]:28} qubits {nq} {note}", flush=True)
+    json.dump(skipped, open(os.path.join(job, "skipped.json"), "w"), indent=1)
+    failed = [n for n, v in skipped.items() if v.startswith("failed")]
+    if failed:
+        print("FAILED circuits:", failed)
     full = [rows.get(k, dict(pub=k, counts={"0" * circs[k].num_clbits: 1})) for k in range(len(circs))]
     json.dump(dict(job_id="realsim", submitted="-", local=True, backend="fake_fez"),
               open(os.path.join(job, "submission.json"), "w"))
