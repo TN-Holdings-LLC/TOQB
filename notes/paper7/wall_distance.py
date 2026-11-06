@@ -4,6 +4,11 @@ Inputs, read from committed records only:
   - the daily record's decay per CZ layer (gpu/daily_score.py decay_per_layer) from results/daily/*/*/run/scores.json;
   - the same quantity for the practice problems of 2026-11-04, computed by psf_os.report2d (the same definition:
     gamma = -ln(slope) / CZ layers of the compiled circuit, slope = sum(z a) / sum(a^2)), only rows with |M_exact| >= 0.1.
+Row rule for the fitted gamma (owner 2026-11-06, written here before it was computed): keep a row only if
+|M_exact| >= 0.3 and the compiled circuit has >= 10 CZ layers; group the kept rows by family: chain (P4: practice
+p4_*, FX-A and the daily F3 problems), P5 (practice p5_* and the daily F2 problems), P6's form (the daily F1 / F4
+problems, H03, P6). Tables and orders of magnitude use the kept rows; the unfiltered values (|M_exact| >= 0.1, any depth)
+stay beside them for comparison.
 Model (an assumption fitted to records, not a law): without correction the signal falls as R(L) = exp(-gamma L);
 for an allowed relative error eps, L_max = -ln(1 - eps) / gamma.
 Literature numbers are constants below, each with its source (checked 2026-11-06 at the workplace).
@@ -45,7 +50,7 @@ def gammas():
         for tag, r in sc["problems"].items():
             if r.get("decay_per_layer") is not None:
                 rows.append(dict(source=f"daily {date}", device=dev, problem=tag, gamma=r["decay_per_layer"],
-                                 retention=r.get("retention"), layers=r.get("cz_layers")))
+                                 retention=r.get("retention"), layers=r.get("cz_layers"), M_exact=r["M_exact"]))
     from psf_os import report2d as X
     for rel, af, dev in (("results/practice-2026-11-04/run", "results/practice-2026-11-04/circuits/answers.json",
                           "ibm_marrakesh"),
@@ -57,8 +62,37 @@ def gammas():
             r = c.get("retention", {})
             if r.get("decay_per_layer") is not None and abs(r["M_exact"]) >= 0.1:
                 rows.append(dict(source="practice 2026-11-04", device=dev, problem=tag, gamma=r["decay_per_layer"],
-                                 retention=r.get("retention"), layers=r.get("cz_layers")))
+                                 retention=r.get("retention"), layers=r.get("cz_layers"), M_exact=r["M_exact"]))
     return rows
+
+
+MIN_ABS_ANSWER, MIN_LAYERS = 0.3, 10
+
+
+def family(problem):
+    """chain / P5 / P6 form, from the problem's tag."""
+    if problem.startswith("p4_") or problem.startswith("FX-A"):
+        return "chain"
+    if problem.startswith("p5_"):
+        return "P5"
+    try:
+        from daily import pool as P
+        fam = P.entry(problem)[1]
+    except KeyError:
+        return "other"
+    return {"F3": "chain", "F2": "P5", "F1": "P6 form", "F4": "P6 form"}.get(fam, "other")
+
+
+def kept(row):
+    return abs(row["M_exact"]) >= MIN_ABS_ANSWER and (row["layers"] or 0) >= MIN_LAYERS
+
+
+def spread(gs):
+    gs = sorted(g for g in gs if g > 0)
+    if not gs:
+        return None
+    med = gs[len(gs) // 2] if len(gs) % 2 else 0.5 * (gs[len(gs) // 2 - 1] + gs[len(gs) // 2])
+    return dict(n=len(gs), smallest=gs[0], median=med, largest=gs[-1])
 
 
 def lmax(gamma, eps):
