@@ -37,8 +37,9 @@ how far the uncorrected wall is from what a chemistry calculation would need.
 | unfiltered (comparison) | 36 | 0.0001 | 0.0013 | 0.0182 |
 
 - The chain family has **no row** under the rule: its answers (M_exact 0.16-0.23 for the P4 chains run so far, FX-A
-  0.159) are all below 0.3. Its gamma (FX-A 0.007-0.013 on 11-05) is therefore not in the kept set; it would enter only
-  through a chain problem with a larger answer (the dual-unitary h = 0 ruler of task X has 1 on the cone).
+  0.159) are all below 0.3: on a chain most sites are near 0, so the mean is small even where the light-cone site is
+  large. Its gamma (FX-A 0.007-0.013 on 11-05) is therefore not in the kept set; a per-site rule (the light-cone site
+  alone) would be needed to bring it in, which is not the rule given.
 - P6's form has two rows (D02 on 11-05, both devices): too few for a spread; read as two values.
 - Two unfiltered rows had a negative gamma (P5 theta 1.0, t 6: slope above 1), which the rule removes.
 
@@ -48,8 +49,8 @@ how far the uncorrected wall is from what a chemistry calculation would need.
   less than 1; for P6's form (median 0.0045) about 23, 2 and 0.2.
 - Table 3: the FeMoco estimates would need, without correction, a gamma about 5.5 to 13.4 orders of magnitude below the
   kept one (about 5.5 to 9.9 orders for the 2021 THC estimates, depending on serial or parallel depth and on the kept
-  median or smallest gamma). The unfiltered gamma gives the same orders within 0.1-0.4: the conclusion does not hang
-  on the row rule.
+  median or smallest gamma). The unfiltered median gives the same orders within 0.1 (the unfiltered smallest gamma,
+  0.0001, would move the "smallest" column by about 0.6): the conclusion does not hang on the row rule.
 
 ## What this is not
 
