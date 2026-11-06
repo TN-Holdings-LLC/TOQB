@@ -134,7 +134,13 @@ def leakcheck(sealed, files):
     """[(file, value string)] of the sealed values (4 decimals, rounded or cut, sign ignored) found in the files."""
     import math
     vals = set()
-    for rec in json.load(open(os.path.join(sealed, "answers.json"))).values():
+    recs = []
+    for f in sorted(os.listdir(sealed)):  # answers.json and a later day's answers_<name>.json
+        if f == "answers.json" or (f.startswith("answers_") and f.endswith(".json")):
+            recs += list(json.load(open(os.path.join(sealed, f))).values())
+    if not recs:
+        raise RuntimeError(f"no answers*.json in {sealed}")
+    for rec in recs:
         for v in list(rec["values"].values()) + [rec.get("M")]:
             if v is None:
                 continue
