@@ -33,8 +33,9 @@ class Builder:
             raise RuntimeError("not enough heavy-hex rows")
         self.bcols = {h: {c: b for b, c in br[h] if c < L} for h in br}
         self.qc = QuantumCircuit(20 * R + 16)
-        self.rowlab = [(y, z) for y in range(M) for z in range(N)]  # heavy-hex row h holds lattice row rowlab[h]
-        self.col = list(range(L))  # col[i]: lattice column at heavy-hex column i (the same in every row)
+        # heavy-hex row h holds lattice row rowlab[h]; snake order in z so that half of the y-bonds start adjacent
+        self.rowlab = [(y, z if y % 2 == 0 else N - 1 - z) for y in range(M) for z in range(N)]
+        self.col = list(range(L))  # col[i]: lattice column at heavy-hex column i (rows of a pass move together)
         self.passes = 0
 
     def lab(self, h, i):
@@ -63,9 +64,10 @@ class Builder:
                         todo[h].discard(x)
             if all(not v for v in todo.values()) and r % 8 == 0:
                 break
+            moving = sorted({h for h in jobs} | {h + 1 for h in jobs})  # only the rows of this pass move
             for blk in range(0, L, 4):
                 for i in range(blk + r % 2, blk + 3, 2):
-                    for h in range(len(self.rowlab)):
+                    for h in moving:
                         self.qc.swap(self.lab(h, i), self.lab(h, i + 1))
                     self.col[i], self.col[i + 1] = self.col[i + 1], self.col[i]
             r += 1
