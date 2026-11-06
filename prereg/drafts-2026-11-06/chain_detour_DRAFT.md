@@ -42,3 +42,11 @@ copy of a fixed snake shape, without choosing a placement by any score.
 ## Limits
 
 Placement only. A winding chain uses more distinct couplers than a straight snake; its reading on a device is untested.
+
+## Owner's decision (2026-11-06 07:38 CET)
+
+- **Rule C adopted.** In the owner's words: holding to a rule when the placement can be made is ego; this time C is
+  **not counted as a search, on the ground of reproducibility** (no score, a fixed neighbour order, the first fit;
+  the same record gives the same chain, with its step count recorded).
+- Items 2 and 3 above (whether N = 91 is run, and to which experiments the rule applies, shape rule first or not) are
+  not decided by this; the earlier decision (task X: N = 51 on fez only) stands until the owner changes it.
