@@ -23,6 +23,7 @@ sys.path.insert(0, os.path.join(HERE, ".."))
 from daily import pool as P  # noqa: E402
 
 IDS = [e[0] for e in P.HARD]
+MAX_COMPILED_CONE = 26
 DEVICES = {"marrakesh_11-05": "results/daily/2026-11-05/ibm_marrakesh/dev",
            "fez_11-05": "results/daily/2026-11-05/ibm_fez/dev", "fake_FakeKingston": None}
 
@@ -61,17 +62,25 @@ def noiseless(scratch, answers, out, backend="cupy"):
         labels = sorted(m)
         for k, q in enumerate(labels):
             meas.measure(idx[m[q]], k)
+        cone = None
         if P.entry(pid)[2] in A.FULL:
             got = A.full({0: meas}, backend, "single")["values"][0]
             how = "compiled circuit, whole state"
         else:
-            got = A.cones(meas, backend, "single")["values"]
-            how = "compiled circuit, light cone of every qubit"
+            # the compiled RZZ (CZ with sx around it) is no longer diagonal, so the compiled cones are wider than the
+            # logical ones (up to 33 and more); comparing them all took hours on one H100, so only the qubits whose
+            # compiled cone has at most MAX_COMPILED_CONE qubits are compared
+            r = A.cones(meas, backend, "single", max_qubits=MAX_COMPILED_CONE)
+            got, cone = r["values"], r["cone"]
+            how = f"compiled circuit, light cone of each qubit up to {MAX_COMPILED_CONE}"
         sealed = {int(k): v for k, v in ans[pid]["values"].items()}
-        d = max(abs(got[idx[m[q]]] - sealed[q]) for q in labels)
-        rep[pid] = dict(device=ok[0], method=how, qubits=len(labels), cz=int(sum(1 for i in c.data if i.operation.name == "cz")),
-                        max_diff=float(d), ok=bool(d <= 1e-4))
-        print(f"noiseless {pid} ({ok[0]}): {how}, {len(labels)} qubits, max |compiled - answer| {d:.2e}", flush=True)
+        done = [q for q in labels if got[idx[m[q]]] is not None]
+        d = max(abs(got[idx[m[q]]] - sealed[q]) for q in done)
+        rep[pid] = dict(device=ok[0], method=how, qubits=len(labels), compared=len(done),
+                        compiled_cone_max=max(cone.values()) if cone else None,
+                        cz=int(sum(1 for i in c.data if i.operation.name == "cz")), max_diff=float(d), ok=bool(d <= 1e-4))
+        print(f"noiseless {pid} ({ok[0]}): {how}, {len(done)} of {len(labels)} qubits, "
+              f"max |compiled - answer| {d:.2e}", flush=True)
         del got
     json.dump(rep, open(out, "w"), indent=1)
     return rep
