@@ -1,0 +1,225 @@
+{
+ "note": "report only; not used by any placement, build or verdict",
+ "backend": "fake_fez",
+ "read": "2026-11-06T06:28:07.666869+00:00",
+ "fake": true,
+ "source": "properties",
+ "calibrated": "2025-02-26 15:16:25-05:00",
+ "arms": {
+  "ksent_n40_D24-fold_rule": {
+   "records": [
+    "ksent_n40_D24-fold_rule"
+   ],
+   "cz": {
+    "worst": 0.03325821922205768,
+    "at": [
+     63,
+     64
+    ],
+    "median": 0.0039504213684400935,
+    "count": 40,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.076904296875,
+    "at": [
+     67
+    ],
+    "median": 0.007568359375,
+    "count": 40,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d_t1": {
+   "records": [
+    "p2d_g3d_t1",
+    "p2d_g3d_t1_floor",
+    "p2d_g3d_t1_mirror"
+   ],
+   "cz": {
+    "worst": 0.010273846416775756,
+    "at": [
+     26,
+     27
+    ],
+    "median": 0.0034688434315277294,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.0458984375,
+    "at": [
+     41
+    ],
+    "median": 0.0076904296875,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d_t2": {
+   "records": [
+    "p2d_g3d_t2",
+    "p2d_g3d_t2_floor",
+    "p2d_g3d_t2_mirror"
+   ],
+   "cz": {
+    "worst": 0.010273846416775756,
+    "at": [
+     26,
+     27
+    ],
+    "median": 0.0034688434315277294,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.0458984375,
+    "at": [
+     41
+    ],
+    "median": 0.0076904296875,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d_t3": {
+   "records": [
+    "p2d_g3d_t3",
+    "p2d_g3d_t3_floor",
+    "p2d_g3d_t3_mirror"
+   ],
+   "cz": {
+    "worst": 0.010273846416775756,
+    "at": [
+     26,
+     27
+    ],
+    "median": 0.0034688434315277294,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.0458984375,
+    "at": [
+     41
+    ],
+    "median": 0.0076904296875,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_sabre_t1": {
+   "records": [
+    "p2d_sabre_t1",
+    "p2d_sabre_t1_floor",
+    "p2d_sabre_t1_mirror"
+   ],
+   "cz": {
+    "worst": 1,
+    "at": [
+     106,
+     107
+    ],
+    "median": 0.00334708856314625,
+    "count": 15,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.022705078125,
+    "at": [
+     69
+    ],
+    "median": 0.0079345703125,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_sabre_t2": {
+   "records": [
+    "p2d_sabre_t2",
+    "p2d_sabre_t2_floor",
+    "p2d_sabre_t2_mirror"
+   ],
+   "cz": {
+    "worst": 1,
+    "at": [
+     68,
+     69
+    ],
+    "median": 0.004099064570110583,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.022705078125,
+    "at": [
+     69
+    ],
+    "median": 0.006591796875,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_sabre_t3": {
+   "records": [
+    "p2d_sabre_t3",
+    "p2d_sabre_t3_floor",
+    "p2d_sabre_t3_mirror"
+   ],
+   "cz": {
+    "worst": 1,
+    "at": [
+     68,
+     69
+    ],
+    "median": 0.00381424512055617,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.076904296875,
+    "at": [
+     67
+    ],
+    "median": 0.0079345703125,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  }
+ }
+}

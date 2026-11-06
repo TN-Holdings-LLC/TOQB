@@ -112,3 +112,8 @@ trajectories. So under this model SABRE seed 0 reads t 3 better than v3, and the
 sampling: the FakeFez snapshot is an older public calibration, and the device on the day will differ. A possible
 reason (not tested): v3's worst read qubit has readout error 0.046 in the snapshot (qubit 41), SABRE's 0.023
 (`diag_fakefez_t1.log`); a per-site breakdown would show it.
+
+> **Correction, 2026-11-06 (workplace review 06o): BEATS above used the guesses <Z> = +1 / -1 (0.092 / 0.335 / 0.482).
+> The declared score (`practice_score.judge`) uses <Z> = 0 / +1: 0.092 / 0.184 / 0.124 at t 1 / 2 / 3. Every BEATS
+> verdict in the tables above is the same under both (the largest MSE there, 0.185 at t 1, fails both; 0.146 and
+> 0.092 at t 2 / 3 pass both).**
