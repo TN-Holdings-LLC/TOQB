@@ -8,6 +8,7 @@
   circuits  every problem's circuit with its measurements as RESULTS/circuits/<ID>.qpy and <ID>.qasm (OpenQASM 3).
 
 usage: python daily/seal.py seal SEALED_DIR RESULTS_DIR RAW.json [RAW.json ...]
+       python daily/seal.py seal-add SEALED_DIR RESULTS_DIR NAME RAW.json [RAW.json ...]   (a later day's problems)
        python daily/seal.py redact IN.txt OUT.txt
        python daily/seal.py circuits RESULTS_DIR
        python daily/seal.py leakcheck SEALED_DIR [FILE ...]   (no files: the files staged for the next commit)
@@ -79,6 +80,38 @@ def seal(sealed, results, raws):
     return lines
 
 
+def seal_add(sealed, results, name, raws):
+    """Problems sealed on a later day (S01-S06, H01-H03): SEALED/<ID>.json for each, SEALED/answers_<name>.json for
+    them together, and their lines appended to RESULTS/sha256.txt. The lines already there (the 11-05 seal and its
+    answers.json) are left as they are; a problem already in sha256.txt is refused."""
+    merged = {}
+    for f in raws:
+        for pid, r in json.load(open(f)).items():
+            if pid in merged:
+                raise RuntimeError(f"{pid} in two raw files")
+            merged[pid] = r
+    path = os.path.join(results, "sha256.txt")
+    old = open(path).read()
+    for pid in merged:
+        if pid not in SEALED_IDS or pid in REQUIRED_IDS:
+            raise RuntimeError(f"{pid}: not a problem sealed on a later day")
+        if f"  sealed/{pid}.json\n" in old:
+            raise RuntimeError(f"{pid} is sealed already")
+    os.makedirs(sealed, exist_ok=True)
+    lines, allrec = [], {}
+    for pid in [p for p in SEALED_IDS if p in merged]:
+        rec = record(pid, merged[pid])
+        allrec[pid] = rec
+        text = canonical(rec)
+        open(os.path.join(sealed, f"{pid}.json"), "w", newline="\n").write(text)
+        lines.append(f"{hashlib.sha256(text.encode()).hexdigest()}  sealed/{pid}.json")
+    text = canonical(allrec)
+    open(os.path.join(sealed, f"answers_{name}.json"), "w", newline="\n").write(text)
+    lines.append(f"{hashlib.sha256(text.encode()).hexdigest()}  sealed/answers_{name}.json")
+    open(path, "w", newline="\n").write(old + "\n".join(lines) + "\n")
+    return lines
+
+
 def redact(src, dst):
     keep = [ln for ln in open(src).read().splitlines() if not VALUE_LINE.search(ln)]
     open(dst, "w", newline="\n").write("\n".join(keep) + "\n")
@@ -101,7 +134,13 @@ def leakcheck(sealed, files):
     """[(file, value string)] of the sealed values (4 decimals, rounded or cut, sign ignored) found in the files."""
     import math
     vals = set()
-    for rec in json.load(open(os.path.join(sealed, "answers.json"))).values():
+    recs = []
+    for f in sorted(os.listdir(sealed)):  # answers.json and a later day's answers_<name>.json
+        if f == "answers.json" or (f.startswith("answers_") and f.endswith(".json")):
+            recs += list(json.load(open(os.path.join(sealed, f))).values())
+    if not recs:
+        raise RuntimeError(f"no answers*.json in {sealed}")
+    for rec in recs:
         for v in list(rec["values"].values()) + [rec.get("M")]:
             if v is None:
                 continue
@@ -123,6 +162,8 @@ if __name__ == "__main__":
     cmd = sys.argv[1]
     if cmd == "seal":
         print("\n".join(seal(sys.argv[2], sys.argv[3], sys.argv[4:])))
+    elif cmd == "seal-add":
+        print("\n".join(seal_add(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5:])))
     elif cmd == "redact":
         redact(sys.argv[2], sys.argv[3])
     elif cmd == "leakcheck":

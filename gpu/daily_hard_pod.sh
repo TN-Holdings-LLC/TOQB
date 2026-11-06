@@ -108,12 +108,14 @@ res, _ = A.solve(IDS, "cupy", "single", log=log)
 stage("answers end")
 for pid in IDS:
     s = A.summary(res[pid]["values"])
-    log(f"{pid}: {s['n']} qubits{' FAILED' if res[pid]['failed'] else ''}, largest cone {max(res[pid]['cone'].values())}, "
+    big = f"largest cone {max(res[pid]['cone'].values())}" if "cone" in res[pid] else "whole state"  # H03: no cones
+    log(f"{pid}: {s['n']} qubits{' FAILED' if res[pid]['failed'] else ''}, {big}, "
         f"M {s['M']:+.6f}, |<.>| {s['abs_min']:.4f}-{s['abs_max']:.4f}")
 checks["failed"] = [p for p in IDS if res[p]["failed"]]
 save()
 json.dump({p: dict(r, values={str(q): v for q, v in r["values"].items()},
-                   cone={str(q): c for q, c in r["cone"].items()}) for p, r in res.items()},
+                   **({"cone": {str(q): c for q, c in r["cone"].items()}} if "cone" in r else {}))
+           for p, r in res.items()},
           open(os.path.join(out, "answers_hard.json"), "w"))
 print("answers_hard.json sha256", hashlib.sha256(open(os.path.join(out, "answers_hard.json"), "rb").read()).hexdigest())
 PY

@@ -1,0 +1,32 @@
+{
+ "H01": {
+  "device": "fez_11-05",
+  "method": "compiled circuit, light cone of each qubit up to 26",
+  "qubits": 72,
+  "compared": 11,
+  "compiled_cone_max": 72,
+  "cz": 948,
+  "max_diff": 1.0196549417140766e-05,
+  "ok": true
+ },
+ "H02": {
+  "device": "fez_11-05",
+  "method": "compiled circuit, light cone of each qubit up to 26",
+  "qubits": 102,
+  "compared": 11,
+  "compiled_cone_max": 102,
+  "cz": 1356,
+  "max_diff": 1.0196549417140766e-05,
+  "ok": true
+ },
+ "H03": {
+  "device": "marrakesh_11-05",
+  "method": "compiled circuit, whole state",
+  "qubits": 32,
+  "compared": 32,
+  "compiled_cone_max": null,
+  "cz": 576,
+  "max_diff": 3.79034715617399e-05,
+  "ok": true
+ }
+}

@@ -1,0 +1,218 @@
+{
+ "marrakesh_11-05": {
+  "device": "ibm_marrakesh",
+  "problems": {
+   "H01": {
+    "returncode": 2,
+    "seconds_wall": 5.6,
+    "refused": "REFUSED: user: no copy of the circuit's pattern qualifies on ibm_marrakesh: no copy of the pattern qualifies: [{'drow': 0, 'dcol': 0, 'why': ['qubit 46 failed', 'qubit 82 failed']}, {'drow': 0, 'dcol': 4, 'why': ['qubit 46 failed', 'qubit 73 failed']}, {'drow': 2, 'dcol': 0, 'why': ['qubit 46 failed', 'qubit 82 failed', 'qubit 130 failed']}, {'drow': 2, 'dcol': 4, 'why': ['qubit 46 failed', 'qubit 73 failed', 'qubit 113 failed', 'qubit 119 failed', 'qubit 130 failed', 'coupler (113, 119) not working']}]"
+   },
+   "H02": {
+    "returncode": 2,
+    "seconds_wall": 5.5,
+    "refused": "REFUSED: user: no copy of the circuit's pattern qualifies on ibm_marrakesh: no copy of the pattern qualifies: [{'drow': 0, 'dcol': 0, 'why': ['qubit 46 failed', 'qubit 82 failed', 'qubit 130 failed']}, {'drow': 0, 'dcol': 4, 'why': ['qubit 46 failed', 'qubit 73 failed', 'qubit 113 failed', 'qubit 119 failed', 'qubit 130 failed', 'coupler (113, 119) not working']}]"
+   },
+   "H03": {
+    "returncode": 0,
+    "seconds_wall": 37.8,
+    "cz": 576,
+    "copy": {
+     "drow": 4,
+     "dcol": 0
+    },
+    "passed_over": 4,
+    "circuits": 7,
+    "qpu_seconds_model_job": 10.8,
+    "qpu_seconds_model_three": 6.35,
+    "checks": {
+     "user_measures": true,
+     "floor_cz": true,
+     "floor_diagonal": true,
+     "mirror_cz": true,
+     "mirror_measures": true
+    }
+   }
+  },
+  "copies": {
+   "P32": {
+    "copies": 6,
+    "qualify": 1
+   },
+   "B42": {
+    "copies": 6,
+    "qualify": 0
+   },
+   "B72": {
+    "copies": 4,
+    "qualify": 0
+   },
+   "B102": {
+    "copies": 2,
+    "qualify": 0
+   },
+   "C33": {
+    "copies": 4,
+    "qualify": 1
+   }
+  }
+ },
+ "fez_11-05": {
+  "device": "ibm_fez",
+  "problems": {
+   "H01": {
+    "returncode": 0,
+    "seconds_wall": 41.4,
+    "cz": 948,
+    "copy": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "passed_over": 0,
+    "circuits": 7,
+    "qpu_seconds_model_job": 10.8,
+    "qpu_seconds_model_three": 6.35,
+    "checks": {
+     "user_measures": true,
+     "floor_cz": true,
+     "floor_diagonal": true,
+     "mirror_cz": true,
+     "mirror_measures": true
+    }
+   },
+   "H02": {
+    "returncode": 0,
+    "seconds_wall": 31.4,
+    "cz": 1356,
+    "copy": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "passed_over": 0,
+    "circuits": 7,
+    "qpu_seconds_model_job": 10.8,
+    "qpu_seconds_model_three": 6.35,
+    "checks": {
+     "user_measures": true,
+     "floor_cz": true,
+     "floor_diagonal": true,
+     "mirror_cz": true,
+     "mirror_measures": true
+    }
+   },
+   "H03": {
+    "returncode": 0,
+    "seconds_wall": 19.7,
+    "cz": 576,
+    "copy": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "passed_over": 0,
+    "circuits": 7,
+    "qpu_seconds_model_job": 10.8,
+    "qpu_seconds_model_three": 6.35,
+    "checks": {
+     "user_measures": true,
+     "floor_cz": true,
+     "floor_diagonal": true,
+     "mirror_cz": true,
+     "mirror_measures": true
+    }
+   }
+  },
+  "copies": {
+   "P32": {
+    "copies": 6,
+    "qualify": 4
+   },
+   "B42": {
+    "copies": 6,
+    "qualify": 4
+   },
+   "B72": {
+    "copies": 4,
+    "qualify": 2
+   },
+   "B102": {
+    "copies": 2,
+    "qualify": 1
+   },
+   "C33": {
+    "copies": 4,
+    "qualify": 2
+   }
+  }
+ },
+ "fake_FakeKingston": {
+  "device": "fake_kingston",
+  "problems": {
+   "H01": {
+    "returncode": 0,
+    "seconds_wall": 29.4,
+    "cz": 948,
+    "copy": {
+     "drow": 0,
+     "dcol": 4
+    },
+    "passed_over": 1,
+    "circuits": 7,
+    "qpu_seconds_model_job": 10.8,
+    "qpu_seconds_model_three": 6.35,
+    "checks": {
+     "user_measures": true,
+     "floor_cz": true,
+     "floor_diagonal": true,
+     "mirror_cz": true,
+     "mirror_measures": true
+    }
+   },
+   "H02": {
+    "returncode": 2,
+    "seconds_wall": 3.4,
+    "refused": "REFUSED: user: no copy of the circuit's pattern qualifies on fake_kingston: no copy of the pattern qualifies: [{'drow': 0, 'dcol': 0, 'why': ['qubit 83 suspect', 'qubit 96 failed', 'qubit 103 suspect', 'qubit 120 suspect', 'qubit 121 suspect', 'qubit 130 suspect', 'qubit 131 failed', 'coupler (83, 96) not working', 'coupler (96, 103) not working', 'coupler (120, 121) not working', 'coupler (130, 131) not working']}, {'drow': 0, 'dcol': 4, 'why': ['qubit 112 failed', 'qubit 113 failed', 'qubit 130 suspect', 'qubit 131 failed', 'coupler (112, 113) not working', 'coupler (130, 131) not working']}]"
+   },
+   "H03": {
+    "returncode": 0,
+    "seconds_wall": 20.0,
+    "cz": 576,
+    "copy": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "passed_over": 0,
+    "circuits": 7,
+    "qpu_seconds_model_job": 10.8,
+    "qpu_seconds_model_three": 6.35,
+    "checks": {
+     "user_measures": true,
+     "floor_cz": true,
+     "floor_diagonal": true,
+     "mirror_cz": true,
+     "mirror_measures": true
+    }
+   }
+  },
+  "copies": {
+   "P32": {
+    "copies": 6,
+    "qualify": 3
+   },
+   "B42": {
+    "copies": 6,
+    "qualify": 3
+   },
+   "B72": {
+    "copies": 4,
+    "qualify": 1
+   },
+   "B102": {
+    "copies": 2,
+    "qualify": 0
+   },
+   "C33": {
+    "copies": 4,
+    "qualify": 2
+   }
+  }
+ }
+}

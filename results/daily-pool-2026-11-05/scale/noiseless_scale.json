@@ -1,0 +1,62 @@
+{
+ "S01": {
+  "device": "fez_11-05",
+  "method": "compiled circuit, light cone of each qubit up to 26",
+  "qubits": 102,
+  "compared": 102,
+  "compiled_cone_max": 13,
+  "cz": 452,
+  "max_diff": 5.823166481233599e-07,
+  "ok": true
+ },
+ "S02": {
+  "device": "fez_11-05",
+  "method": "compiled circuit, light cone of each qubit up to 26",
+  "qubits": 102,
+  "compared": 102,
+  "compiled_cone_max": 19,
+  "cz": 565,
+  "max_diff": 4.5350149849299193e-07,
+  "ok": true
+ },
+ "S03": {
+  "device": "fez_11-05",
+  "method": "compiled circuit, light cone of each qubit up to 26",
+  "qubits": 102,
+  "compared": 46,
+  "compiled_cone_max": 86,
+  "cz": 678,
+  "max_diff": 8.70700643917921e-06,
+  "ok": true
+ },
+ "S04": {
+  "device": "fez_11-05",
+  "method": "compiled circuit, light cone of each qubit up to 26",
+  "qubits": 102,
+  "compared": 79,
+  "compiled_cone_max": 31,
+  "cz": 678,
+  "max_diff": 1.1844458393528434e-06,
+  "ok": true
+ },
+ "S05": {
+  "device": "fez_11-05",
+  "method": "compiled circuit, light cone of each qubit up to 26",
+  "qubits": 102,
+  "compared": 79,
+  "compiled_cone_max": 31,
+  "cz": 678,
+  "max_diff": 2.234021696523314e-07,
+  "ok": true
+ },
+ "S06": {
+  "device": "fez_11-05",
+  "method": "compiled circuit, light cone of each qubit up to 26",
+  "qubits": 102,
+  "compared": 20,
+  "compiled_cone_max": 102,
+  "cz": 1130,
+  "max_diff": 1.0493751207873991e-05,
+  "ok": true
+ }
+}
