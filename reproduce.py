@@ -5,6 +5,11 @@ usage (from the TOQB root, with psf-os installed or on PYTHONPATH):
     python reproduce.py [--psf-os PATH_TO_PSF_OS_CHECKOUT] [NAME ...]
 
 Prints one line per result: SAME (every number equal to 1e-9), DIFFERENT (the first differing key), or FAILED.
+
+--gate-hash: also rebuild the circuits of the run2d results (practice and daily) from their committed device record and
+user circuits with the psf-os on the path, and compare psf_os.gatehash of every compiled circuit (user, floor, mirror,
+sentinel; the job's circuits.qpy) with the committed ones: GATES SAME / GATES DIFFERENT. The gate hash does not depend
+on Qiskit's QPY format (QPY bytes do).
 """
 import argparse
 import json
@@ -61,6 +66,39 @@ def first_difference(a, b, path=""):
     return None if a == b else f"{path}: {a!r} != {b!r}"
 
 
+# run2d results: (run folder, device record folder, user circuits folder)
+REBUILD = {
+    "practice-marrakesh-2026-11-04": ("results/practice-2026-11-04/run", "results/practice-2026-11-04/dev",
+                                      "results/practice-2026-11-04/circuits"),
+    "practice-fez-2026-11-04": ("results/practice-fez-2026-11-04/run", "results/practice-fez-2026-11-04/dev",
+                                "results/practice-fez-2026-11-04/circuits"),
+    "daily-2026-11-05-marrakesh": ("results/daily/2026-11-05/ibm_marrakesh/run",
+                                   "results/daily/2026-11-05/ibm_marrakesh/dev", "results/daily/2026-11-05/circuits"),
+    "daily-2026-11-05-fez": ("results/daily/2026-11-05/ibm_fez/run", "results/daily/2026-11-05/ibm_fez/dev",
+                             "results/daily/2026-11-05/circuits"),
+}
+
+
+def gate_check(name):
+    """Rebuild one run2d result and compare gate hashes; (ok, message)."""
+    from psf_os import device as Dv
+    from psf_os import gatehash as G
+    from psf_os import user2d as U
+    run, dev_dir, circ = (os.path.join(ROOT, p) for p in REBUILD[name])
+    rep = json.load(open(os.path.join(run, "report.json")))
+    man = json.load(open(os.path.join(run, "job", "manifest.json")))
+    items = [(t, U.load(os.path.join(circ, f"{t}.qpy"))) for t in rep["tags"]]
+    with tempfile.TemporaryDirectory() as t:
+        U.build_batch(Dv.Device.load(dev_dir), items, t, shots=man["shots"], max_seconds=10 ** 6)
+        old = G.qpy_hash(os.path.join(run, "job", "circuits.qpy"))
+        new = G.qpy_hash(os.path.join(t, "job", "circuits.qpy"))
+        per = sorted(f for f in os.listdir(os.path.join(run, "runs")) if f.endswith(".qpy"))
+        bad = [f for f in per if G.qpy_hash(os.path.join(run, "runs", f)) != G.qpy_hash(os.path.join(t, "runs", f))]
+    ok = old == new and not bad
+    return ok, (f"GATES SAME ({old['circuits']} circuits, {old['gate_sha256'][:12]})" if ok else
+                f"GATES DIFFERENT (job {old['gate_sha256'][:12]} vs {new['gate_sha256'][:12]}; records {bad})")
+
+
 def copy_result(src, parts, dst):
     for p in parts:
         s = os.path.join(ROOT, src, p)
@@ -73,6 +111,7 @@ def copy_result(src, parts, dst):
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--psf-os", default=None, help="a psf-os checkout to put first on PYTHONPATH")
+    ap.add_argument("--gate-hash", action="store_true", help="also rebuild the run2d results' circuits and compare gates")
     ap.add_argument("names", nargs="*")
     a = ap.parse_args()
     env = dict(os.environ)
@@ -95,6 +134,20 @@ def main():
             print(f"{name:32} " + ("SAME" if d is None else f"DIFFERENT at {d}"))
             bad += d is not None
     print(f"{len(names) - bad} of {len(names)} reproduced")
+    if a.gate_hash:
+        if a.psf_os:
+            sys.path.insert(0, a.psf_os)
+        gbad = 0
+        gnames = [n for n in names if n in REBUILD]
+        for name in gnames:
+            try:
+                ok, msg = gate_check(name)
+            except Exception as e:  # noqa: BLE001
+                ok, msg = False, f"FAILED: {e}"
+            print(f"{name:32} {msg}")
+            gbad += not ok
+        print(f"{len(gnames) - gbad} of {len(gnames)} rebuilt with the same gates")
+        bad += gbad
     return 1 if bad else 0
 
 
