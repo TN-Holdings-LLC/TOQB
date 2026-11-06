@@ -1,0 +1,22 @@
+# Exploratory (owner 2026-11-06 04:32 CET; not declared): what a "3D OS" would cost on heavy-hex
+
+Home started it while the workplace was paused; the workplace continues (handover `職場へ_2026-11-06h`).
+Script `os3d_study.py` (coupling graph of ibm_fez 2026-11-05 only; no calibration number), rows `os3d_rows.json`.
+Kicked Ising on a cubic lattice (P5 rules in 3D), t = 2, theta 0.8.
+
+| lattice | qubits | edges | ideal CZ | SABRE CZ (layers) | naive formula CZ (layers) | formula check |
+|---|---|---|---|---|---|---|
+| 2D 3x3 | 9 | 12 | 24 | 70 (41) | 264 (70) | 2e-16 |
+| 2D 4x4 | 16 | 24 | 48 | 170 (70) | 816 (128) | 2e-16 |
+| 3D 2x2x2 | 8 | 12 | 24 | 78 (49) | 216 (68) | 1e-16 |
+| 3D 3x3x2 | 18 | 33 | 66 | 291 (102) | 1050 (144) | 2e-16 |
+| 3D 3x3x3 | 27 | 54 | 108 | 570 (164) | 2322 (186) | (not run) |
+
+- Even the search (SABRE, level 3) needs 3-5 times the ideal CZ count for 3D (square 2D: about 3 times): heavy-hex
+  has degree 3 and no 4-cycles, so a cube or a square cell never sits on it without SWAPs.
+- The naive formula (odd-even transposition network on a chain, all pairs) is correct (noiseless check to 1e-16)
+  but costs 3-4 times SABRE in CZ; in CZ layers it is closer (1.1-1.8 times) because the network is parallel.
+- With the measured decay per CZ layer (0.001-0.005), 160-190 layers keep roughly 0.4-0.85 of the signal at t = 2:
+  readable only very shallow.
+- Not yet: a formula embedding that uses the structure (a brick-wall sublattice of heavy-hex for each layer and a
+  fixed SWAP pattern for the missing bonds and the layer couplings), which could approach SABRE without search.

@@ -1,0 +1,57 @@
+[
+ {
+  "name": "2D 3x3",
+  "n": 9,
+  "edges": 12,
+  "ideal_cz": 24,
+  "sabre_cz": 70,
+  "sabre_layers": 41,
+  "formula_cz": 264,
+  "formula_layers": 70,
+  "formula_check": 2.220446049250313e-16
+ },
+ {
+  "name": "2D 4x4",
+  "n": 16,
+  "edges": 24,
+  "ideal_cz": 48,
+  "sabre_cz": 170,
+  "sabre_layers": 70,
+  "formula_cz": 816,
+  "formula_layers": 128,
+  "formula_check": 2.220446049250313e-16
+ },
+ {
+  "name": "3D 2x2x2",
+  "n": 8,
+  "edges": 12,
+  "ideal_cz": 24,
+  "sabre_cz": 78,
+  "sabre_layers": 49,
+  "formula_cz": 216,
+  "formula_layers": 68,
+  "formula_check": 1.1102230246251565e-16
+ },
+ {
+  "name": "3D 3x3x2",
+  "n": 18,
+  "edges": 33,
+  "ideal_cz": 66,
+  "sabre_cz": 291,
+  "sabre_layers": 102,
+  "formula_cz": 1050,
+  "formula_layers": 144,
+  "formula_check": 1.6653345369377348e-16
+ },
+ {
+  "name": "3D 3x3x3",
+  "n": 27,
+  "edges": 54,
+  "ideal_cz": 108,
+  "sabre_cz": 570,
+  "sabre_layers": 164,
+  "formula_cz": 2322,
+  "formula_layers": 186,
+  "formula_check": null
+ }
+]
