@@ -1,0 +1,56 @@
+{
+ "D05": {
+  "t": 10,
+  "sites": 33,
+  "compared": 33,
+  "cone_max": 22,
+  "max_diff": 1.3664564794402256e-06,
+  "ok": true,
+  "seconds": 4.2
+ },
+ "D10": {
+  "t": 12,
+  "sites": 33,
+  "compared": 33,
+  "cone_max": 26,
+  "max_diff": 5.66088682985022e-07,
+  "ok": true,
+  "seconds": 2.0
+ },
+ "D15": {
+  "t": 14,
+  "sites": 33,
+  "compared": 33,
+  "cone_max": 30,
+  "max_diff": 4.4927871706290645e-06,
+  "ok": true,
+  "seconds": 24.4
+ },
+ "D20": {
+  "t": 16,
+  "sites": 33,
+  "compared": 33,
+  "cone_max": 33,
+  "max_diff": 7.920534993710593e-07,
+  "ok": true,
+  "seconds": 166.5
+ },
+ "D27": {
+  "t": 20,
+  "sites": 33,
+  "compared": 33,
+  "cone_max": 33,
+  "max_diff": 5.757312207421705e-06,
+  "ok": true,
+  "seconds": 705.8
+ },
+ "D32": {
+  "t": 24,
+  "sites": 33,
+  "compared": 33,
+  "cone_max": 33,
+  "max_diff": 5.283677994016855e-07,
+  "ok": true,
+  "seconds": 1488.7
+ }
+}
