@@ -20,3 +20,23 @@ Kicked Ising on a cubic lattice (P5 rules in 3D), t = 2, theta 0.8.
   readable only very shallow.
 - Not yet: a formula embedding that uses the structure (a brick-wall sublattice of heavy-hex for each layer and a
   fixed SWAP pattern for the missing bonds and the layer couplings), which could approach SABRE without search.
+
+## Structured formula embedding, first version (`rowpass.py`, home, 2026-11-06 ~05:00 CET)
+
+Grid rows on heavy-hex rows (horizontal bonds native); vertical bonds through the bridge qubit
+(SWAP, RZZ, SWAP = 7 CZ) while every row runs the same odd-even transposition rounds, ending on a full reversal or
+the identity. Fixed rules, no search. t = 2, theta 0.8; noiseless check against the lattice's own statevector.
+
+| lattice | ideal CZ | SABRE CZ (layers) | rowpass CZ (layers) | naive formula CZ (layers) | rowpass check |
+|---|---|---|---|---|---|
+| 2D 3x3 | 24 | 70 (41) | 228 (76) | 264 (70) | 3e-16 |
+| 2D 4x3 | 34 | - | 380 (120) | - | 1e-16 |
+| 2D 4x4 | 48 | 170 (70) | 528 (120) | 816 (128) | 2e-16 |
+
+- Correct, better than the naive network in CZ (0.65-0.86 of it), but still about 3 times SABRE in CZ and 1.7 times in
+  layers: with one bridge column per row pair inside a 4-column window, every column must travel to it, and the
+  row swaps dominate.
+- A 3D lattice adds z-bonds between grid rows M apart (several bridge hops each), so the gap to SABRE can only grow.
+- Next, if continued: block-local rounds (one bridge per 4 columns, wider lattices) to see whether the cost per site
+  stops growing with L. Home's view: on IBM's planar heavy-hex a 3D OS does not pay; keep it for devices with richer
+  connectivity.
