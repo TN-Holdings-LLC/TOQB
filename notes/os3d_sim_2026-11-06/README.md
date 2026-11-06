@@ -132,3 +132,13 @@ patch of the device's own lattice (16 edges), psf-os run2d.
 The third dimension costs 4.1 CZ per lattice edge against 1 (7.3 times the CZ for 1.75 times the edges), 2.6-2.8
 times the layers, and 6-10 points of retention at t 1-3 in this model. (A first run of this script had the 2D exact
 values in the wrong site order; corrected before any number was used.)
+
+## v3.1 and the in-job probe (2026-11-06 evening; psf-os 32e83d6, 711d150; TOQB db0b59c)
+
+- v3.1: every x-bond rides on the swap of its two columns (SWAP . RZZ(-pi/2) = Z Z, H(b), CX(b,a), CX(a,b), H(a), S S;
+  2 CX). 4x2x2 t 1-3: CZ 116/232/348 -> 108/216/324, layers 33/64/95 -> 28/55/82; 4x3x2 and 4x2x3 save 5 % CZ and
+  9-17 % layers; exact to 2e-15 (statevector) and by stabilizers at 24 sites.
+- Probe records from |0> and, new, from |1> (a fast-relaxing qubit reads +1 in the |0> floor and drifts up from -1
+  in the |1> floor; test with a planted relaxing qubit).
+- `gpu/os3d_v31_build.py`: one job with the probes of 4 candidates, every candidate's arm, the 2D patch and the
+  sentinel (57 circuits, 66.6 s on the 11-06 marrakesh record); `gpu/os3d_v31_score.py` judges the probe's choice.
