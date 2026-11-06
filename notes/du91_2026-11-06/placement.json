@@ -1,0 +1,977 @@
+[
+ {
+  "record": "2026-11-05 daily",
+  "device": "ibm_marrakesh",
+  "failed_qubits": [
+   46,
+   73,
+   82,
+   113,
+   119,
+   130
+  ],
+  "failed_couplers": [
+   [
+    113,
+    119
+   ]
+  ],
+  "widths": {
+   "51": {
+    "per_shape": {
+     "S1": {
+      "copies": 3,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": []
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": []
+     }
+    },
+    "chosen": null
+   },
+   "71": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": []
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": []
+     }
+    },
+    "chosen": null
+   },
+   "91": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S4": {
+      "copies": 1,
+      "qualifying": []
+     }
+    },
+    "chosen": null
+   }
+  }
+ },
+ {
+  "record": "2026-11-05 daily",
+  "device": "ibm_fez",
+  "failed_qubits": [
+   72
+  ],
+  "failed_couplers": [
+   [
+    32,
+    33
+   ]
+  ],
+  "widths": {
+   "51": {
+    "per_shape": {
+     "S1": {
+      "copies": 3,
+      "qualifying": [
+       [
+        4,
+        0
+       ]
+      ]
+     },
+     "S2": {
+      "copies": 2,
+      "qualifying": [
+       [
+        2,
+        0
+       ]
+      ]
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": [
+       [
+        0,
+        0
+       ],
+       [
+        2,
+        0
+       ]
+      ]
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": []
+     }
+    },
+    "chosen": {
+     "shape": "S1",
+     "drow": 4,
+     "dcol": 0
+    }
+   },
+   "71": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": [
+       [
+        0,
+        0
+       ],
+       [
+        2,
+        0
+       ]
+      ]
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": []
+     }
+    },
+    "chosen": {
+     "shape": "S3",
+     "drow": 0,
+     "dcol": 0
+    }
+   },
+   "91": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 2,
+      "qualifying": [
+       [
+        0,
+        0
+       ]
+      ]
+     },
+     "S4": {
+      "copies": 1,
+      "qualifying": []
+     }
+    },
+    "chosen": {
+     "shape": "S3",
+     "drow": 0,
+     "dcol": 0
+    }
+   }
+  }
+ },
+ {
+  "record": "2026-11-05 twirl",
+  "device": "ibm_marrakesh",
+  "failed_qubits": [
+   46,
+   73,
+   82,
+   113,
+   119,
+   130
+  ],
+  "failed_couplers": [
+   [
+    113,
+    119
+   ]
+  ],
+  "widths": {
+   "51": {
+    "per_shape": {
+     "S1": {
+      "copies": 3,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": []
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": []
+     }
+    },
+    "chosen": null
+   },
+   "71": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": []
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": []
+     }
+    },
+    "chosen": null
+   },
+   "91": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S4": {
+      "copies": 1,
+      "qualifying": []
+     }
+    },
+    "chosen": null
+   }
+  }
+ },
+ {
+  "record": "2026-11-05 twirl",
+  "device": "ibm_fez",
+  "failed_qubits": [
+   72
+  ],
+  "failed_couplers": [
+   [
+    32,
+    33
+   ]
+  ],
+  "widths": {
+   "51": {
+    "per_shape": {
+     "S1": {
+      "copies": 3,
+      "qualifying": [
+       [
+        4,
+        0
+       ]
+      ]
+     },
+     "S2": {
+      "copies": 2,
+      "qualifying": [
+       [
+        2,
+        0
+       ]
+      ]
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": [
+       [
+        0,
+        0
+       ],
+       [
+        2,
+        0
+       ]
+      ]
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": []
+     }
+    },
+    "chosen": {
+     "shape": "S1",
+     "drow": 4,
+     "dcol": 0
+    }
+   },
+   "71": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": [
+       [
+        0,
+        0
+       ],
+       [
+        2,
+        0
+       ]
+      ]
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": []
+     }
+    },
+    "chosen": {
+     "shape": "S3",
+     "drow": 0,
+     "dcol": 0
+    }
+   },
+   "91": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 2,
+      "qualifying": [
+       [
+        0,
+        0
+       ]
+      ]
+     },
+     "S4": {
+      "copies": 1,
+      "qualifying": []
+     }
+    },
+    "chosen": {
+     "shape": "S3",
+     "drow": 0,
+     "dcol": 0
+    }
+   }
+  }
+ },
+ {
+  "record": "2026-11-04 practice",
+  "device": "ibm_marrakesh",
+  "failed_qubits": [
+   82,
+   113,
+   119,
+   130
+  ],
+  "failed_couplers": [
+   [
+    82,
+    83
+   ],
+   [
+    113,
+    119
+   ]
+  ],
+  "widths": {
+   "51": {
+    "per_shape": {
+     "S1": {
+      "copies": 3,
+      "qualifying": [
+       [
+        0,
+        0
+       ]
+      ]
+     },
+     "S2": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": [
+       [
+        0,
+        4
+       ]
+      ]
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": [
+       [
+        0,
+        0
+       ]
+      ]
+     }
+    },
+    "chosen": {
+     "shape": "S1",
+     "drow": 0,
+     "dcol": 0
+    }
+   },
+   "71": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": []
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": []
+     }
+    },
+    "chosen": null
+   },
+   "91": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S4": {
+      "copies": 1,
+      "qualifying": []
+     }
+    },
+    "chosen": null
+   }
+  }
+ },
+ {
+  "record": "2026-11-04 practice",
+  "device": "ibm_fez",
+  "failed_qubits": [
+   72
+  ],
+  "failed_couplers": [
+   [
+    32,
+    33
+   ]
+  ],
+  "widths": {
+   "51": {
+    "per_shape": {
+     "S1": {
+      "copies": 3,
+      "qualifying": [
+       [
+        4,
+        0
+       ]
+      ]
+     },
+     "S2": {
+      "copies": 2,
+      "qualifying": [
+       [
+        2,
+        0
+       ]
+      ]
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": [
+       [
+        0,
+        0
+       ],
+       [
+        2,
+        0
+       ]
+      ]
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": []
+     }
+    },
+    "chosen": {
+     "shape": "S1",
+     "drow": 4,
+     "dcol": 0
+    }
+   },
+   "71": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": [
+       [
+        0,
+        0
+       ],
+       [
+        2,
+        0
+       ]
+      ]
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": []
+     }
+    },
+    "chosen": {
+     "shape": "S3",
+     "drow": 0,
+     "dcol": 0
+    }
+   },
+   "91": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 2,
+      "qualifying": [
+       [
+        0,
+        0
+       ]
+      ]
+     },
+     "S4": {
+      "copies": 1,
+      "qualifying": []
+     }
+    },
+    "chosen": {
+     "shape": "S3",
+     "drow": 0,
+     "dcol": 0
+    }
+   }
+  }
+ },
+ {
+  "record": "2026-11-04 p6",
+  "device": "ibm_fez",
+  "failed_qubits": [
+   72
+  ],
+  "failed_couplers": [
+   [
+    32,
+    33
+   ]
+  ],
+  "widths": {
+   "51": {
+    "per_shape": {
+     "S1": {
+      "copies": 3,
+      "qualifying": [
+       [
+        4,
+        0
+       ]
+      ]
+     },
+     "S2": {
+      "copies": 2,
+      "qualifying": [
+       [
+        2,
+        0
+       ]
+      ]
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": [
+       [
+        0,
+        0
+       ],
+       [
+        2,
+        0
+       ]
+      ]
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": []
+     }
+    },
+    "chosen": {
+     "shape": "S1",
+     "drow": 4,
+     "dcol": 0
+    }
+   },
+   "71": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": [
+       [
+        0,
+        0
+       ],
+       [
+        2,
+        0
+       ]
+      ]
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": []
+     }
+    },
+    "chosen": {
+     "shape": "S3",
+     "drow": 0,
+     "dcol": 0
+    }
+   },
+   "91": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 2,
+      "qualifying": [
+       [
+        0,
+        0
+       ]
+      ]
+     },
+     "S4": {
+      "copies": 1,
+      "qualifying": []
+     }
+    },
+    "chosen": {
+     "shape": "S3",
+     "drow": 0,
+     "dcol": 0
+    }
+   }
+  }
+ },
+ {
+  "record": "2026-11-04 p6",
+  "device": "ibm_marrakesh",
+  "failed_qubits": [
+   82,
+   113,
+   119,
+   130
+  ],
+  "failed_couplers": [
+   [
+    82,
+    83
+   ],
+   [
+    113,
+    119
+   ]
+  ],
+  "widths": {
+   "51": {
+    "per_shape": {
+     "S1": {
+      "copies": 3,
+      "qualifying": [
+       [
+        0,
+        0
+       ]
+      ]
+     },
+     "S2": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": [
+       [
+        0,
+        4
+       ]
+      ]
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": [
+       [
+        0,
+        0
+       ]
+      ]
+     }
+    },
+    "chosen": {
+     "shape": "S1",
+     "drow": 0,
+     "dcol": 0
+    }
+   },
+   "71": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": []
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": []
+     }
+    },
+    "chosen": null
+   },
+   "91": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S4": {
+      "copies": 1,
+      "qualifying": []
+     }
+    },
+    "chosen": null
+   }
+  }
+ },
+ {
+  "record": "2026-11-03 kim-e K",
+  "device": "ibm_kingston",
+  "failed_qubits": [
+   112,
+   113,
+   121,
+   146
+  ],
+  "failed_couplers": [
+   [
+    9,
+    10
+   ],
+   [
+    29,
+    38
+   ],
+   [
+    85,
+    86
+   ],
+   [
+    112,
+    113
+   ],
+   [
+    121,
+    122
+   ],
+   [
+    130,
+    131
+   ],
+   [
+    145,
+    146
+   ],
+   [
+    146,
+    147
+   ]
+  ],
+  "widths": {
+   "51": {
+    "per_shape": {
+     "S1": {
+      "copies": 3,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": []
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": []
+     }
+    },
+    "chosen": null
+   },
+   "71": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 4,
+      "qualifying": []
+     },
+     "S4": {
+      "copies": 2,
+      "qualifying": []
+     }
+    },
+    "chosen": null
+   },
+   "91": {
+    "per_shape": {
+     "S1": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S2": {
+      "copies": 1,
+      "qualifying": []
+     },
+     "S3": {
+      "copies": 2,
+      "qualifying": []
+     },
+     "S4": {
+      "copies": 1,
+      "qualifying": []
+     }
+    },
+    "chosen": null
+   }
+  }
+ }
+]
