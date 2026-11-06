@@ -31,6 +31,16 @@ def noise_for(act, faults=True):
     return nm
 
 
+def sim_for(nm, faults):
+    """REPLAY_DEVICE=GPU uses Aer's GPU build when it is installed (home RTX 4070); CPU otherwise."""
+    from qiskit_aer import AerSimulator
+    dev = os.environ.get("REPLAY_DEVICE", "CPU")
+    try:
+        return AerSimulator(method="statevector", noise_model=nm, fusion_enable=not faults, device=dev)
+    except Exception:  # noqa: BLE001
+        return AerSimulator(method="statevector", noise_model=nm, fusion_enable=not faults)
+
+
 def main():
     psf, run, answers, out = sys.argv[1:5]
     sys.path.insert(0, psf)
@@ -52,8 +62,8 @@ def main():
         for k, (c, nm_) in enumerate(zip(circs, names)):
             if nm_.startswith("probe"):
                 cc, act = Sm.compact(c)
-                r = AerSimulator(method="statevector", noise_model=noise_for(act, faults), fusion_enable=not faults).run(
-                    cc, shots=1000, seed_simulator=7 + k).result().get_counts(0)
+                r = sim_for(noise_for(act, faults), faults).run(
+                    cc, shots=400, seed_simulator=7 + k).result().get_counts(0)
                 # readout error as a classical flip per bit
                 rng = np.random.default_rng(k)
                 flipped = {}
@@ -74,7 +84,7 @@ def main():
                   open(os.path.join(tmp, "submission.json"), "w"))
         json.dump(dict(fetched="-", job_id="replay", status="DONE", rows=rows),
                   open(os.path.join(tmp, "raw_counts.json"), "w"))
-        ch = G.probe_choose(tmp, os.path.join(run, "runs"))
+        ch = G.probe_choose(tmp, os.path.join(run, "runs"), rule="best")
         chosen = ch["chosen"] if ch["chosen"] is not None else 0
         arms = {}
         for tag in [f"g3d0_t{t}" for t in rep["ts"]] + [f"g3d{chosen}_t{t}" for t in rep["ts"]] + \
@@ -91,8 +101,8 @@ def main():
             labels = rec["labels"]
             for lab in labels:
                 body.save_expectation_value(Pauli("Z"), [loc[int(mapping[str(lab)])]], label=f"z{lab}")
-            d = AerSimulator(method="statevector", noise_model=noise_for(act, faults), fusion_enable=not faults).run(
-                body, shots=300, seed_simulator=11).result().data()
+            d = sim_for(noise_for(act, faults), faults).run(
+                body, shots=120, seed_simulator=11).result().data()
             z = np.array([float(np.real(d[f"z{lab}"])) * (1 - 2 * pr) for lab in labels])
             ex = np.array([ans[tag][str(lab)] for lab in labels])
             arms[tag] = dict(mse=float(np.mean((z - ex) ** 2)), M=float(z.mean()), M_exact=float(ex.mean()),
@@ -100,8 +110,8 @@ def main():
         res["faults" if faults else "uniform"] = dict(chosen=ch["chosen"], probe=[{x: r[x] for x in (
             "index", "r0", "c0", "low") if x in r} | dict(min_floor=r.get("min_floor"), max_floor1=r.get("max_floor1"))
             for r in ch["candidates"]], arms=arms)
-        print("faults" if faults else "uniform", "chosen", ch["chosen"], "lines", round(ch["line0"], 3),
-              round(ch["line1"], 3), [(r["index"], round(r.get("min_floor", 0), 3), round(r.get("max_floor1", 0), 3),
+        print("faults" if faults else "uniform", "chosen", ch["chosen"], "lines", round(ch["line0"], 3), round(ch["line_x"] or 0, 3),
+              round(ch["line1"], 3), [(r["index"], round(r.get("min_floor", 0), 3), round(r.get("max_floor1", 0), 3), round(r.get("min_echo_x", 0), 3),
                                        r["low"]) for r in ch["candidates"]], flush=True)
         for tag, a in arms.items():
             print(f"   {tag:9} MSE {a['mse']:.4f}  M {a['M']:+.3f}/{a['M_exact']:+.3f}  retention "
