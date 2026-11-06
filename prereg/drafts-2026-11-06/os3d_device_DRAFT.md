@@ -54,9 +54,11 @@ mirror means, the sentinel as declared and beside the ledger.
   rounded t 1 values) is superseded: with the thresholds 0.8 / 1.25 the uniform t 1 values give HELPS.
 - The last row: SABRE's route crossed one coupler that the FakeFez snapshot has as dead but the record does not mark,
   and lost most of its signal. On a device the same can happen to either arm on a coupler that is bad but not marked
-  failed. **To decide (home / owner), not changed here:** whether to report beside each arm, from the day's
-  calibration, the worst CZ error and the worst readout error on the elements it uses (reported only; the placement
-  still reads no calibration number), so that a verdict decided by one bad element can be seen as such.
+  failed. **Decided (owner, 2026-11-06 06:28 CET: report it):** beside each arm, from the day's calibration, the
+  worst CZ error and the worst readout error on the elements it uses (with the medians), by `gpu/calib_beside.py`
+  at the IBM step right after the submit (VPN OFF; written to CALIB_BESIDE.json next to the run). Reported only:
+  psf-os still reads and stores no quality number, the placement and the verdicts do not change, and nothing from
+  the file is fed back into any build or score.
 - AGREES is unlikely for either arm (signal loss 5-8 % of M_exact gives -0.05 to -0.08); v3 at t 2 under FakeFez
   agreed by 0.004.
 - READS and BEATS: every arm in every cell without a dead coupler.
