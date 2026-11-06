@@ -67,8 +67,11 @@ It winds down and back up through the cells of rows 4-6 between the holes, which
 The dual-unitary circuit (`gpu/practice_circuits.p4`, J = b = pi/4, h = 0.1) on this chain, given to `psf-os run2d`
 with the marrakesh 11-05 record (offline, nothing submitted): accepted at the copy (0, 0); CZ 405 at t = 4 and 2,205 at
 t = 24, exactly (N - 1) / 2 + (N - 1) t = 45 + 90 t, so no SWAP was added. A noiseless MPS check of the 91-qubit
-compiled circuit did not finish on the 2 CPUs here (stopped after 10 minutes); the logical circuit is the same as
-du91's, only the labels differ, and every link is a coupler.
+compiled circuit did not finish on the 2 CPUs here (stopped after 10 minutes). **Done instead (06p item 3, by
+backward light cones, `lightcone_check.py`):** with the chain from `psf_os.chain.place` (the same chain, 1,665 steps),
+run2d's compiled circuits at t = 4 (CZ 405) and t = 8 (CZ 765) give, site by site, the closed form: site t
+0.922618835670 (t 4) and 0.851225515933 (t 8), every other site 0; worst deviation over the 91 sites 5.6e-15 and
+2.0e-14 (largest cone 10 and 18 qubits).
 
 ## What it does not settle
 
@@ -78,3 +81,10 @@ du91's, only the labels differ, and every link is a coupler.
   snake on the device.
 - For the dual-unitary problem itself, t <= 24 needs only sites 0..48, so N = 51 (the owner's choice) keeps the content;
   the gain is for problems that need the width.
+
+## Port to psf-os (06p item 1)
+
+`psf_os/chain.py` (psf-os, workplace): rule C as above, iterative, with the step count returned. On every record
+here, with grid3d's judgement (suspect=False), it gives the same chains and starts as `detour.chain_dfs`. Default:
+the entrance's judgement (suspect=True); see the draft's finding. Tests `tests/test_chain.py` (4): without holes the
+first start is the S1 snake; the same record gives the same chain and steps; suspect qubits follow run2d; refusals.

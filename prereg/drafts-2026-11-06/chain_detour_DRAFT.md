@@ -50,3 +50,42 @@ Placement only. A winding chain uses more distinct couplers than a straight snak
   the same record gives the same chain, with its step count recorded).
 - Items 2 and 3 above (whether N = 91 is run, and to which experiments the rule applies, shape rule first or not) are
   not decided by this; the earlier decision (task X: N = 51 on fez only) stands until the owner changes it.
+
+## Proposal for the order (workplace, 2026-11-06; home's 06p item 2; not fixed)
+
+1. **Shape rule first.** du91's shapes in the fixed order SHAPES, each with lattice2d's translation copies in their
+   fixed order; the first qualifying copy of the first qualifying shape (as today).
+2. **Rule C only if no shape qualifies.** `psf_os.chain.place(dev, N)` (psf-os, workplace port): the first start in
+   START_ORDER that reaches N sites, with the entrance's health judgement (`suspect=True`, the judgement of
+   lattice2d.check that run2d applies).
+3. **Otherwise REFUSED**, one line, as the daily record's amendment of 2026-11-06 says; nothing else is tried.
+
+Recorded per chain: which rule placed it (shape name and copy, or "C" with start, steps, budget and starts tried),
+the chain's labels, and the device record it was read from. The user circuit is then written on those labels and goes
+through run2d unchanged.
+
+Why shape first: every chain run so far keeps exactly the placement it had (fez 11-05: S1 at drow 4 for 51), so no
+earlier result changes meaning; C is only a way out where nothing qualified before. "C alone" is the other option:
+C's first start is S1 itself on a record without holes in rows 0-6, but where shapes qualify after a translation
+(fez 11-05) C picks other rows, so chains would move between days for the same device.
+
+On the records so far (`notes/chain_detour_2026-11-06/`, entrance judgement):
+
+| record | N 51 | N 71 | N 91 |
+|---|---|---|---|
+| fez 11-05, 11-04 | shape S1 | shape S3 | shape S3 |
+| marrakesh 11-05 | C | C | C (1,665 steps) |
+| marrakesh 11-04 | shape S1 | C | C |
+| kingston 11-03 | C | C | REFUSED (longest 87: every start exhausted) |
+
+Kingston 91 is placeable under grid3d's judgement (ends of failed couplers allowed), but run2d would refuse that chain;
+see the finding below.
+
+## Finding: the 2D and 3D placements judge "the ends of a failed coupler" differently
+
+lattice2d.check (2D, run2d) refuses a qubit at an end of a failed coupler ("suspect"); grid3d since 8b0b34f refuses
+only failed qubits, failed couplers and non-couplers, so a 3D placement may use a suspect qubit. The rule C port
+follows the entrance (suspect=True) so that its chains pass run2d; with suspect=False it is grid3d's judgement
+(instruction 06p asked for grid3d's; the default was changed for this reason and can be set back). The declared 3D
+test of tonight uses grid3d's judgement as declared; nothing there changes, but a suspect qubit in its arm A, if any,
+should be named in the night's README.
