@@ -137,7 +137,7 @@ def compact(c, n):
     return out
 
 
-def z_per_site(sim, c, n, trajectories, pr, backend_nm=None, method="statevector"):
+def z_per_site(sim, c, n, trajectories, pr, backend_nm=None, method="statevector", seed=11):
     """Mean over noise trajectories of the exact <Z> of each site (Aer statevector, one trajectory per shot).
     backend_nm (fakefez): remapped to the touched qubits; its readout errors applied per site exactly:
     <Z>_read = (1 - p10 - p01) <Z> + (p01 - p10), p10 = p(1|0), p01 = p(0|1)."""
@@ -149,7 +149,7 @@ def z_per_site(sim, c, n, trajectories, pr, backend_nm=None, method="statevector
     touched = touched_of(c)
     nm = remap_noise(backend_nm, touched)
     ro = readout_maps(backend_nm, touched)
-    d = AerSimulator(noise_model=nm, method=method, seed_simulator=11).run(cc, shots=trajectories).result().data()
+    d = AerSimulator(noise_model=nm, method=method, seed_simulator=seed).run(cc, shots=trajectories).result().data()
     site_q = {}
     for ins in c.data:
         if ins.operation.name == "measure":
@@ -181,6 +181,7 @@ def main():
     ap.add_argument("--ts", default="1,2,3")
     ap.add_argument("--method", default="statevector")
     ap.add_argument("--variants", default="v1,v2,v3,sabre", help="which of v1, v2, v3, sabre to run")
+    ap.add_argument("--sim-seed", type=int, default=11, help="Aer seed_simulator (trajectory noise only; the placement and SABRE's seed_transpiler = 0 do not change)")
     ap.add_argument("--mark-fakefez-dead", action="store_true",
                     help="add the FakeFez snapshot's dead elements (CZ error >= 0.5, readout error >= 0.5) to the "
                          "record's failed marks before placing both arms (rule fixed 2026-11-06 06:06 CET, before "
@@ -208,7 +209,7 @@ def main():
         nm = NoiseModel()
         nm.add_all_qubit_quantum_error(depolarizing_error(0.005, 2), ["cz"])
         nm.add_all_qubit_quantum_error(depolarizing_error(0.0002, 1), ["sx", "x"])
-    sim = AerSimulator(noise_model=nm, method=a.method, seed_simulator=11)
+    sim = AerSimulator(noise_model=nm, method=a.method, seed_simulator=a.sim_seed)
     rows = []
     for size in a.sizes.split(","):
         L, M, N = (int(v) for v in size.split("x"))
@@ -231,9 +232,9 @@ def main():
             for name, c in variants.items():
                 t0 = time.time()
                 z, nq = z_per_site(sim, c, n, a.trajectories, pr,
-                                   backend_nm=nm if a.model == "fakefez" else None, method=a.method)
+                                   backend_nm=nm if a.model == "fakefez" else None, method=a.method, seed=a.sim_seed)
                 r = score(z, ex)
-                r.update(size=size, t=t, variant=name, model=a.model, cz=Mi.cz_count(c),
+                r.update(size=size, t=t, variant=name, model=a.model, sim_seed=a.sim_seed, cz=Mi.cz_count(c),
                          cz_layers=c.depth(lambda i: len(i.qubits) == 2), qubits=nq, seconds=round(time.time() - t0, 1))
                 rows.append(r)
                 print(f"{size} t{t} {name:13} q {nq:3} cz {r['cz']:5} layers {r['cz_layers']:4}  M {r['M']:+.3f} / "

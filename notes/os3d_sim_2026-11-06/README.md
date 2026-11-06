@@ -87,7 +87,28 @@ the record's failed marks for both arms (`--mark-fakefez-dead`):
 | 3 | 348 (95), 0.818, 0.0073 | 441 (194), 0.842, 0.0058 | 1.27 HURTS |
 
 Reading: v3 reads at least as well as SABRE seed 0 in five of six model-and-depth cells (R 0.58-0.76) and worse in
-one (FakeFez marked, t 3, R 1.27, at the HURTS edge; the trajectory noise of MSE at 400 trajectories was not measured, so
-this cell may fall either side of 1.25). Neither arm AGREES except v3 at t 2 under FakeFez (by 0.004). Every arm
+one (FakeFez marked, t 3, R 1.27, at the HURTS edge; see the seed check below: the verdict does not move with the trajectory seed). Neither arm AGREES except v3 at t 2 under FakeFez (by 0.004). Every arm
 READS and BEATS once dead elements are marked. The unmarked FakeFez run shows the larger point for a device test: one
 bad coupler that the record does not mark can decide the comparison, for either arm.
+
+## Trajectory spread of the FakeFez t 3 cell (workplace, 2026-11-06 06:52 CET; home's 06m item 3)
+
+Rule written before the runs (`seeds_t3/run.sh`, 06:32 CET): FakeFez with the snapshot's dead couplers marked,
+4x2x2 t 3, v3 and SABRE seed 0, 400 trajectories, Aer seeds 1-5 (`--sim-seed`; 06c used 11); no seed dropped. Only
+the trajectory noise changes; the placements, the routing (`seed_transpiler = 0`) and the model are the same.
+
+| Aer seed | MSE v3 | MSE SABRE | R |
+|---|---|---|---|
+| 1 | 0.00737 | 0.00567 | 1.300 |
+| 2 | 0.00735 | 0.00571 | 1.287 |
+| 3 | 0.00739 | 0.00570 | 1.297 |
+| 4 | 0.00743 | 0.00571 | 1.301 |
+| 5 | 0.00739 | 0.00567 | 1.303 |
+| 11 (06c) | 0.00731 | 0.00575 | 1.270 |
+
+R 1.270-1.303 (mean 1.293, sd 0.012 over the six): HURTS in every seed. The trajectory noise is about 0.01 in R,
+small against the distance to 1.25; the MSE here is mostly the systematic loss per site, not the sampling of
+trajectories. So under this model SABRE seed 0 reads t 3 better than v3, and the open question is the model, not the
+sampling: the FakeFez snapshot is an older public calibration, and the device on the day will differ. A possible
+reason (not tested): v3's worst read qubit has readout error 0.046 in the snapshot (qubit 41), SABRE's 0.023
+(`diag_fakefez_t1.log`); a per-site breakdown would show it.

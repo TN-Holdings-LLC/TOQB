@@ -1,0 +1,42 @@
+[
+ {
+  "M": 0.2620139500997539,
+  "M_exact": 0.3209413768538161,
+  "retention": 0.8163919301034759,
+  "mse": 0.007426338230600011,
+  "msq": 0.12408161344667601,
+  "reads": true,
+  "agrees": false,
+  "mse_trivial": 0.4821988597390439,
+  "beats": true,
+  "size": "4x2x2",
+  "t": 3,
+  "variant": "v3 fold",
+  "model": "fakefez",
+  "sim_seed": 4,
+  "cz": 348,
+  "cz_layers": 95,
+  "qubits": 18,
+  "seconds": 156.3
+ },
+ {
+  "M": 0.2704491538450327,
+  "M_exact": 0.3209413768538161,
+  "retention": 0.8426746233104689,
+  "mse": 0.00570915713813323,
+  "msq": 0.12408161344667601,
+  "reads": true,
+  "agrees": false,
+  "mse_trivial": 0.4821988597390439,
+  "beats": true,
+  "size": "4x2x2",
+  "t": 3,
+  "variant": "SABRE",
+  "model": "fakefez",
+  "sim_seed": 4,
+  "cz": 441,
+  "cz_layers": 194,
+  "qubits": 16,
+  "seconds": 33.5
+ }
+]

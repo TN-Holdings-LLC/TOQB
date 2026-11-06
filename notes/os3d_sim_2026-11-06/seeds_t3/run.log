@@ -1,0 +1,15 @@
+marked from FakeFez: couplers [(27, 28), (31, 32), (32, 33), (68, 69), (80, 81), (106, 107), (139, 155)], qubits []
+4x2x2 t3 v3 fold       q  18 cz   348 layers   95  M +0.262 / +0.321  retention 0.817  mse 0.0074 (msq/2 0.0620)  reads True  agrees False
+4x2x2 t3 SABRE         q  16 cz   441 layers  194  M +0.271 / +0.321  retention 0.843  mse 0.0057 (msq/2 0.0620)  reads True  agrees False
+marked from FakeFez: couplers [(27, 28), (31, 32), (32, 33), (68, 69), (80, 81), (106, 107), (139, 155)], qubits []
+4x2x2 t3 v3 fold       q  18 cz   348 layers   95  M +0.262 / +0.321  retention 0.817  mse 0.0073 (msq/2 0.0620)  reads True  agrees False
+4x2x2 t3 SABRE         q  16 cz   441 layers  194  M +0.270 / +0.321  retention 0.842  mse 0.0057 (msq/2 0.0620)  reads True  agrees False
+marked from FakeFez: couplers [(27, 28), (31, 32), (32, 33), (68, 69), (80, 81), (106, 107), (139, 155)], qubits []
+4x2x2 t3 v3 fold       q  18 cz   348 layers   95  M +0.262 / +0.321  retention 0.817  mse 0.0074 (msq/2 0.0620)  reads True  agrees False
+4x2x2 t3 SABRE         q  16 cz   441 layers  194  M +0.270 / +0.321  retention 0.843  mse 0.0057 (msq/2 0.0620)  reads True  agrees False
+marked from FakeFez: couplers [(27, 28), (31, 32), (32, 33), (68, 69), (80, 81), (106, 107), (139, 155)], qubits []
+4x2x2 t3 v3 fold       q  18 cz   348 layers   95  M +0.262 / +0.321  retention 0.816  mse 0.0074 (msq/2 0.0620)  reads True  agrees False
+4x2x2 t3 SABRE         q  16 cz   441 layers  194  M +0.270 / +0.321  retention 0.843  mse 0.0057 (msq/2 0.0620)  reads True  agrees False
+marked from FakeFez: couplers [(27, 28), (31, 32), (32, 33), (68, 69), (80, 81), (106, 107), (139, 155)], qubits []
+4x2x2 t3 v3 fold       q  18 cz   348 layers   95  M +0.262 / +0.321  retention 0.817  mse 0.0074 (msq/2 0.0620)  reads True  agrees False
+4x2x2 t3 SABRE         q  16 cz   441 layers  194  M +0.271 / +0.321  retention 0.843  mse 0.0057 (msq/2 0.0620)  reads True  agrees False
