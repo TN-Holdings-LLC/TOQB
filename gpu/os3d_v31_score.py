@@ -7,7 +7,9 @@ Judged per t, for that 3D arm and for the 2D arm, against the exact answers: REA
 readings, every other candidate's scores (shown, never judged), the price of the dimension (3D / 2D CZ, layers,
 retention), the sentinel.
 
-usage: PYTHONPATH=<psf-os> python gpu/os3d_v31_score.py RUN_DIR ANSWERS.json     (writes RUN_DIR/scores.json)
+usage: PYTHONPATH=<psf-os> python gpu/os3d_v31_score.py RUN_DIR ANSWERS.json [relative|best]   (writes scores.json)
+The probe rule is fixed by the declaration: "relative" (first clean candidate) or "best" (owner's "white of white":
+the clean candidate whose weakest touched qubit reads best).
 """
 import json
 import os
@@ -17,12 +19,12 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from practice_score import judge  # noqa: E402
 
 
-def main(run, answers):
+def main(run, answers, rule="relative"):
     from psf_os import grid3d as G
     from psf_os import user2d as U
     rep = json.load(open(os.path.join(run, "report.json")))
     job, runs = os.path.join(run, "job"), os.path.join(run, "runs")
-    ch = G.probe_choose(job, runs)
+    ch = G.probe_choose(job, runs, rule=rule)
     chosen = ch["chosen"] if ch["chosen"] is not None else 0
     cs = U.cards(job, runs, json.load(open(answers)))
     arms = {}
@@ -59,4 +61,4 @@ def main(run, answers):
 
 
 if __name__ == "__main__":
-    main(*sys.argv[1:3])
+    main(*sys.argv[1:4])   # RUN_DIR ANSWERS [relative | best]
