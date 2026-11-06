@@ -132,7 +132,8 @@ def main():
     if failed:
         print("FAILED circuits:", failed)
     full = [rows.get(k, dict(pub=k, counts={"0" * circs[k].num_clbits: 1})) for k in range(len(circs))]
-    json.dump(dict(job_id="realsim", submitted="-", local=True, backend="fake_fez"),
+    # no "backend" key: psf-os refuses a result from another device; this is a simulation of the placed device
+    json.dump(dict(job_id="realsim", submitted="-", local=True, simulator="fake_fez"),
               open(os.path.join(job, "submission.json"), "w"))
     json.dump(dict(fetched="-", job_id="realsim", status="DONE", rows=full), open(os.path.join(job, "raw_counts.json"), "w"))
     print("== REALSIM FINISHED")
