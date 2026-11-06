@@ -21,14 +21,22 @@
   and mirror each.
 - One ring sentinel. 4000 shots. On the 11-06 marrakesh record: 57 circuits, 66.6 s by the model.
 
-## Rule and judged (`gpu/os3d_v31_score.py`)
+## Rule and judged (`gpu/os3d_v31_score.py RUN ANSWERS best`)
 
-- The judged 3D arm is candidate i for the first i whose probes read every touched qubit \|0> floor >= 0.8 and \|1>
-  floor <= -0.8. If none: candidate 0, marked "probe passed none". The choice reads no answer and no arm's error.
+- Choosing the place (owner 2026-11-06 15:21 / 15:32 CET: "white of white", "focus on choosing good places"): every
+  touched qubit of every candidate is read in the job's own probes (|0> floor and |1> floor at t = 3, bridges
+  included). A qubit is marked when it stands out from the job's own readings (|0> floor below median - max(5 x 1.4826
+  MAD, 0.05), |1> floor above median + the same). Among the candidates with no marked qubit, the judged one is the
+  candidate whose weakest touched qubit reads best (ties: the fixed order). If every candidate has a marked qubit, the
+  same ranking over all of them, marked "probe passed none". The choice reads only the probes, never an answer or an
+  arm's error.
 - Judged per t, for the chosen 3D arm and for the 2D arm: READS, AGREES, BEATS (gpu/practice_score.judge).
-- Beside (not judged): retention, normalised error, CZ and layers, floor and mirror, the probe readings of every
-  candidate, every other candidate's scores (all shown; a best pick after the fact would be visible as such), the price
-  of the dimension (3D / 2D: CZ, layers, retention), the sentinel, the calibration beside (report only).
+- Beside (not judged): retention, normalised error, CZ and layers (candidates at an even row offset use the 10-swap
+  schedule and cost more: 148 against 108 CZ per step), floor and mirror, the probe readings of every candidate, every
+  other candidate's scores (all shown; a best pick after the fact would be visible as such), the price of the dimension
+  (3D / 2D: CZ, layers, retention), the sentinel, the calibration beside (report only).
+- Caution stated in advance: ranking by a measurement favours a candidate that read well by chance; the effect on the
+  judged arm is small because the ranking uses only the probes, but it is not zero.
 
 ## Answers (sealed at declaration)
 
@@ -43,5 +51,5 @@ faults: see `notes/os3d_sim_2026-11-06/README.md` (filled in when the replay fin
 
 ## To fix before declaring (owner)
 
-- Threshold +-0.8, k = 4, probe depth t = 3.
+- k = 4 candidates (marrakesh 11-06 had 7 qualifying translations, fez 11-05 had 14), probe depth t = 3.
 - One device or the night's devices.
