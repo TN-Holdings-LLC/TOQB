@@ -34,8 +34,13 @@ sites) read the exact answer as well as, or better than, the same circuit routed
 
 1. **Build (offline).** Both arms and all depths into one job folder with `psf-os` on the day's record (no quality
    number read). Record names must keep arm and depth apart (e.g. `p2d_g3d_t1`, `p2d_sabre_t1`, each with `_floor`
-   and `_mirror`): `calib_beside.py` groups records by name with the role suffix removed. Note: `run3d` builds one arm
-   and one depth per folder (`p2d_g3d`); a builder for the combined job is still to be written.
+   and `_mirror`): `calib_beside.py` groups records by name with the role suffix removed. The combined job:
+   `python gpu/os3d_compare_build.py DEVICE_RECORD OUT ANSWERS_OUT` (home, 2026-11-06; psf-os grid3d.prepare and
+   write_records for A, SABRE seed 0 for B, the ring sentinel; acceptance as 2D for every arm; the exact answers only
+   in ANSWERS_OUT, its sha256 printed for the seal). Dry run on the fez record of 11-05: 22 circuits, 27.6 s by the
+   model, CZ 116 / 232 / 348 (A) and 136 / 269 / 456 (B); noiseless local run at the Clifford point: floor = mirror =
+   1 and sentinel CLEAN for all six arms; calib_beside reads the six arms apart (FakeFez: B's worst CZ 1.0 at
+   106-107 or 68-69, A's 0.010).
 2. **Seal.** Exact answers by `grid3d.exact`, sealed (hash committed before the submit); gate hashes of the job's
    circuits committed (`psf-os gatehash`).
 3. **Submit (home, IBM step, VPN OFF).** As the daily record.
