@@ -7,7 +7,7 @@ Judged per t, for that 3D arm and for the 2D arm, against the exact answers: REA
 readings, every other candidate's scores (shown, never judged), the price of the dimension (3D / 2D CZ, layers,
 retention), the sentinel.
 
-usage: PYTHONPATH=<psf-os> python gpu/os3d_v31_score.py RUN_DIR ANSWERS.json [relative|best]   (writes scores.json)
+usage: PYTHONPATH=<psf-os> python gpu/os3d_v31_score.py RUN_DIR ANSWERS.json [relative|best|mirror|gate]
 The probe rule is fixed by the declaration: "relative" (first clean candidate) or "best" (owner's "white of white":
 the clean candidate whose weakest touched qubit reads best).
 """
@@ -36,8 +36,44 @@ def main(run, answers, rule="relative"):
         clean = [r for r in ch["candidates"] if not r["low"]] or ch["candidates"]
         best = max(clean, key=lambda r: (r["mirror_t1"], -r["index"]))
         ch.update(rule="mirror", chosen=best["index"], passed_none=not any(not r["low"] for r in ch["candidates"]))
+    elif rule == "gate":
+        # draft rule (2026-11-07, owner: the test after choosing must work as a gate; to be declared and tested before
+        # use). Candidates in order of their own t = 1 mirror (the arm's gates and bridges in operation, run back and
+        # forth). The first one that passes the gate is judged: (a) no site of its t = 1 mirror below the job's mirror
+        # median - max(5 x 1.4826 MAD, 0.05) over all candidates' t = 1 mirror sites, (b) no qubit marked by the
+        # |1> floor (relaxation, which a mirror cannot see), (c) its mean t = 1 mirror within 0.1 of the best mean.
+        # If none passes: nothing 3D is judged ("no healthy place"). Never reads an answer.
+        import numpy as np
+        ch = G.probe_choose(job, runs, rule="relative")
+        t1 = min(rep["ts"])
+        msites = {}
+        for r in ch["candidates"]:
+            q = cs[f"g3d{r['index']}_t{t1}"]["qubits"]
+            msites[r["index"]] = [x["mirror"] for x in q]
+            r["mirror_t1"] = float(np.mean(msites[r["index"]]))
+        allm = np.array([v for vs in msites.values() for v in vs])
+        med = float(np.median(allm))
+        line_m = med - max(5 * 1.4826 * float(np.median(np.abs(allm - med))), 0.05)
+        top = max(r["mirror_t1"] for r in ch["candidates"])
+        chosen_r = None
+        for r in sorted(ch["candidates"], key=lambda r: (-r["mirror_t1"], r["index"])):
+            f1_marked = [q for q, v in r.get("floor1", {}).items() if ch["line1"] is not None and v > ch["line1"]]
+            r["gate"] = dict(mirror_low_sites=int(sum(v < line_m for v in msites[r["index"]])), floor1_marked=f1_marked,
+                             within_best=r["mirror_t1"] >= top - 0.1)
+            r["gate"]["pass"] = (r["gate"]["mirror_low_sites"] == 0 and not f1_marked and r["gate"]["within_best"])
+            if chosen_r is None and r["gate"]["pass"]:
+                chosen_r = r
+        ch.update(rule="gate", line_mirror=line_m, chosen=None if chosen_r is None else chosen_r["index"],
+                  passed_none=chosen_r is None)
     else:
         ch = G.probe_choose(job, runs, rule=rule)
+    if rule == "gate" and ch["chosen"] is None:
+        res = dict(device=rep["device"], probe=ch, chosen=None, verdict="no healthy place: nothing 3D judged")
+        json.dump(res, open(os.path.join(run, "scores.json"), "w"), indent=1, default=str)
+        print(res["verdict"])
+        for r in ch["candidates"]:
+            print(f"  candidate {r['index']}: mirror t1 {r['mirror_t1']:.3f}  gate {r['gate']}")
+        return res
     chosen = ch["chosen"] if ch["chosen"] is not None else 0
     arms = {}
     for tag, c in cs.items():
@@ -65,7 +101,8 @@ def main(run, answers, rule="relative"):
         print(f"  candidate {r['index']} (r0 {r['r0']}, c0 {r['c0']}): |0> floor min {r.get('min_floor', float('nan')):.3f}"
               f"  |1> floor max {r.get('max_floor1', float('nan')):.3f}  X echo min {r.get('min_echo_x', float('nan')):.3f}"
               f"  weakest {r.get('worst', float('nan')):.3f}"
-              + (f"  mirror t1 {r['mirror_t1']:.3f}" if "mirror_t1" in r else "") + f"  marked: {r['low']}")
+              + (f"  mirror t1 {r['mirror_t1']:.3f}" if "mirror_t1" in r else "") + f"  marked: {r['low']}"
+              + (f"  gate {'PASS' if r['gate']['pass'] else 'FAIL'} {r['gate']}" if "gate" in r else ""))
     for tag, r in sorted(arms.items(), key=lambda kv: (kv[1]["kind"], kv[1].get("candidate") or 0, kv[1]["t"])):
         mark = "JUDGED" if (r["kind"] == "2D" or r["candidate"] == chosen) else "beside"
         ret = "-" if r["retention"] is None else f"{r['retention']:.3f}"
