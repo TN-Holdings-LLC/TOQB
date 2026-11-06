@@ -50,7 +50,8 @@ def main(run, answers, rule="relative"):
           + ("  (passed none: candidate 0 judged)" if ch["chosen"] is None else ""))
     for r in ch["candidates"]:
         print(f"  candidate {r['index']} (r0 {r['r0']}, c0 {r['c0']}): |0> floor min {r.get('min_floor', float('nan')):.3f}"
-              f"  |1> floor max {r.get('max_floor1', float('nan')):.3f}  outside +-{ch['threshold']}: {r['low']}")
+              f"  |1> floor max {r.get('max_floor1', float('nan')):.3f}  X echo min {r.get('min_echo_x', float('nan')):.3f}"
+              f"  weakest {r['worst']:.3f}  marked: {r['low']}")
     for tag, r in sorted(arms.items(), key=lambda kv: (kv[1]["kind"], kv[1].get("candidate") or 0, kv[1]["t"])):
         mark = "JUDGED" if (r["kind"] == "2D" or r["candidate"] == chosen) else "beside"
         ret = "-" if r["retention"] is None else f"{r['retention']:.3f}"

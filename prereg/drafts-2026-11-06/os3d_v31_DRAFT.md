@@ -14,19 +14,21 @@
 
 ## Job (one device: the night's daily-record device; `gpu/os3d_v31_build.py`)
 
-- Probes: \|0> and \|1> floors at t = 3 of the first 4 qualifying fold translations (fixed order), every touched qubit.
+- Probes: \|0> and \|1> floors and the X-basis echo (owner 15:37 CET: test the bridges before using them; every
+  coupler driven twice in the X basis, so a CZ phase error shows) at t = 3 of the first 4 qualifying fold translations
+  (fixed order), every touched qubit.
 - 3D arms g3d<i>_t<t>: 4 x 2 x 2 kicked Ising (RZZ(-pi/2) on every edge, RX(0.8)), v3.1 at candidate i, t = 1, 2, 3,
   floor and mirror each.
 - 2D arms hex_t<t>: the 16-site patch (a hexagon of 12 and two tails of 2, 16 edges), the same step, t = 1, 2, 3, floor
   and mirror each.
-- One ring sentinel. 4000 shots. On the 11-06 marrakesh record: 57 circuits, 66.6 s by the model.
+- One ring sentinel. 4000 shots. On the 11-06 marrakesh record: 61 circuits, 71.1 s by the model.
 
 ## Rule and judged (`gpu/os3d_v31_score.py RUN ANSWERS best`)
 
 - Choosing the place (owner 2026-11-06 15:21 / 15:32 CET: "white of white", "focus on choosing good places"): every
-  touched qubit of every candidate is read in the job's own probes (|0> floor and |1> floor at t = 3, bridges
-  included). A qubit is marked when it stands out from the job's own readings (|0> floor below median - max(5 x 1.4826
-  MAD, 0.05), |1> floor above median + the same). Among the candidates with no marked qubit, the judged one is the
+  touched qubit of every candidate is read in the job's own probes (|0> floor, |1> floor and X echo at t = 3,
+  bridges included). A qubit is marked when it stands out from the job's own readings (|0> floor or X echo below
+  median - max(5 x 1.4826 MAD, 0.05), |1> floor above median + the same). Among the candidates with no marked qubit, the judged one is the
   candidate whose weakest touched qubit reads best (ties: the fixed order). If every candidate has a marked qubit, the
   same ranking over all of them, marked "probe passed none". The choice reads only the probes, never an answer or an
   arm's error.
