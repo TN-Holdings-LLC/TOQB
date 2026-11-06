@@ -13,23 +13,43 @@ how far the uncorrected wall is from what a chemistry calculation would need.
 ## Assumptions (all of them)
 
 1. Without correction the signal falls as R(L) = exp(-gamma L), L = CZ layers of the compiled circuit. This is a fit
-   to our records, not a law: gamma differs by problem family and device (daily record, 2026-11-05: D02 0.004-0.005,
-   FX-A 0.007-0.013), and the practice problems give values from about 0.0001 to 0.018 (36 rows with |M_exact| >= 0.1).
-   gamma here lumps readout and gate loss (it comes from the slope of measured on exact values).
-2. An allowed relative error eps gives L_max = -ln(1 - eps) / gamma.
-3. Chemical accuracy (1 kcal/mol = 1.594 mHa) as a relative error is taken against one sourced correlation energy, that
+   to our records, not a law; gamma lumps readout and gate loss (it comes from the slope of measured on exact values).
+2. **Rows used for gamma (owner 2026-11-06; rule written and committed, 2a7c421, before it was computed):** only rows
+   with |M_exact| >= 0.3 and at least 10 CZ layers, grouped by family. Small answers and shallow circuits make the
+   slope, and so gamma, unstable; that is why they are left out. The unfiltered values (|M_exact| >= 0.1, any depth)
+   are kept beside them for comparison.
+3. An allowed relative error eps gives L_max = -ln(1 - eps) / gamma.
+4. Chemical accuracy (1 kcal/mol = 1.594 mHa) as a relative error is taken against one sourced correlation energy, that
    of water (0.3706 Ha): eps = 4.3e-3. For larger molecules eps is smaller; FeMoco's correlation energy is not stated in
    the sources read, so no FeMoco-specific eps is given.
-4. A fault-tolerant resource estimate's non-Clifford gate count is turned into "layers" two ways: serial (one layer per
+5. A fault-tolerant resource estimate's non-Clifford gate count is turned into "layers" two ways: serial (one layer per
    gate) and fully parallel over its logical qubits (count / qubits). Both are crude; the true depth lies between, and
    logical gates are not physical CZ layers (each would be many physical layers): the comparison flatters the device.
 
-## What the tables say
+## gamma by family (kept rows; `out/wall_distance_tables.md`)
 
-- Table 1: at the median gamma (0.0013), eps = 0.1 allows about 80 CZ layers, eps = 0.01 about 8, eps = 0.001 less than 1.
-- Table 3: the FeMoco estimates (Lee et al. 2021, THC: 5.3e9 and 3.2e10 Toffoli gates; Reiher et al. 2017: 1.0e14 T
-  gates at 1 mHa, serial) would need, without correction, a gamma 5 to 13 orders of magnitude below the median measured
-  one (about 6 to 10 orders for the 2021 estimates, depending on serial or parallel depth).
+| family | rows | smallest | median | largest |
+|---|---|---|---|---|
+| chain (P4) | 0 | - | - | - |
+| P5 | 18 | 0.0005 | 0.0010 | 0.0020 |
+| P6's form | 2 | 0.0038 | 0.0045 | 0.0052 |
+| all kept | 20 | 0.0005 | 0.0011 | 0.0052 |
+| unfiltered (comparison) | 36 | 0.0001 | 0.0013 | 0.0182 |
+
+- The chain family has **no row** under the rule: its answers (M_exact 0.16-0.23 for the P4 chains run so far, FX-A
+  0.159) are all below 0.3. Its gamma (FX-A 0.007-0.013 on 11-05) is therefore not in the kept set; it would enter only
+  through a chain problem with a larger answer (the dual-unitary h = 0 ruler of task X has 1 on the cone).
+- P6's form has two rows (D02 on 11-05, both devices): too few for a spread; read as two values.
+- Two unfiltered rows had a negative gamma (P5 theta 1.0, t 6: slope above 1), which the rule removes.
+
+## What the tables say (kept rows)
+
+- Table 1: at the kept median gamma (0.0011), eps = 0.1 allows about 90 CZ layers, eps = 0.01 about 9, eps = 0.001
+  less than 1; for P6's form (median 0.0045) about 23, 2 and 0.2.
+- Table 3: the FeMoco estimates would need, without correction, a gamma about 5.5 to 13.4 orders of magnitude below the
+  kept one (about 5.5 to 9.9 orders for the 2021 THC estimates, depending on serial or parallel depth and on the kept
+  median or smallest gamma). The unfiltered gamma gives the same orders within 0.1-0.4: the conclusion does not hang
+  on the row rule.
 
 ## What this is not
 

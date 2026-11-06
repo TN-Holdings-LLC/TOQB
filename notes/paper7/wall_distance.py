@@ -101,11 +101,18 @@ def lmax(gamma, eps):
 
 def build(out_dir):
     rows = gammas()
-    gs = sorted(r["gamma"] for r in rows if r["gamma"] > 0)
-    gmin, gmed, gmax = gs[0], gs[len(gs) // 2] if len(gs) % 2 else 0.5 * (gs[len(gs) // 2 - 1] + gs[len(gs) // 2]), gs[-1]
+    for r in rows:
+        r["family"] = family(r["problem"])
+        r["kept"] = kept(r)
+    allg = spread(r["gamma"] for r in rows)                     # unfiltered (|M_exact| >= 0.1), for comparison
+    keep = [r for r in rows if r["kept"]]
+    kg = spread(r["gamma"] for r in keep)
+    fams = {f: spread(r["gamma"] for r in keep if r["family"] == f) for f in ("chain", "P5", "P6 form")}
     eps_list = (0.1, 0.01, 0.001)
-    t1 = [dict(gamma_kind=k, gamma=g, **{f"Lmax_eps_{e}": lmax(g, e) for e in eps_list})
-          for k, g in (("smallest", gmin), ("median", gmed), ("largest", gmax))]
+    lines1 = [("all kept, smallest", kg["smallest"]), ("all kept, median", kg["median"]), ("all kept, largest", kg["largest"])]
+    lines1 += [(f"{f}, median", v["median"]) for f, v in fams.items() if v]
+    lines1 += [("unfiltered, median (comparison)", allg["median"])]
+    t1 = [dict(gamma_kind=k, gamma=g, **{f"Lmax_eps_{e}": lmax(g, e) for e in eps_list}) for k, g in lines1]
     eps_chem_water = CHEM_ACC_HA / LIT["water_correlation_ha"][0]
     t3 = []
     for key in ("femoco_reiher_thc_toffoli", "femoco_li_thc_toffoli", "femoco_reiher2017_T_1mHa_serial"):
@@ -114,17 +121,28 @@ def build(out_dir):
                               ("fully parallel over the logical qubits (count / qubits)", count / LOGICAL_QUBITS[key])):
             need = -math.log(1 - eps_chem_water) / L
             t3.append(dict(estimate=key, depth=depth_kind, layers=L, gamma_needed=need,
-                           orders_from_median=math.log10(gmed / need), orders_from_smallest=math.log10(gmin / need)))
-    res = dict(rows=rows, gamma=dict(n=len(gs), smallest=gmin, median=gmed, largest=gmax), table1=t1,
+                           orders_from_kept_median=math.log10(kg["median"] / need),
+                           orders_from_kept_smallest=math.log10(kg["smallest"] / need),
+                           orders_from_unfiltered_median=math.log10(allg["median"] / need)))
+    res = dict(rule=dict(min_abs_answer=MIN_ABS_ANSWER, min_cz_layers=MIN_LAYERS), rows=rows,
+               gamma_kept=kg, gamma_by_family=fams, gamma_unfiltered=allg, table1=t1,
                chem=dict(chem_acc_ha=CHEM_ACC_HA, water_correlation_ha=LIT["water_correlation_ha"][0],
                          eps_water=eps_chem_water), table3=t3, literature={k: v[1] for k, v in LIT.items()})
     os.makedirs(out_dir, exist_ok=True)
     json.dump(res, open(os.path.join(out_dir, "wall_distance.json"), "w"), indent=1)
     md = ["# Distance to the wall: generated tables (ESTIMATE, not a measurement; notes/paper7/wall_distance.py)", "",
-          f"gamma per CZ layer from {len(gs)} record rows (daily and practice, |M_exact| >= 0.1): smallest {gmin:.4f}, "
-          f"median {gmed:.4f}, largest {gmax:.4f}.", "",
-          "## Table 1: L_max = -ln(1 - eps) / gamma (CZ layers without correction)", "",
-          "| gamma | value | eps 0.1 | eps 0.01 | eps 0.001 |", "|---|---|---|---|---|"]
+          f"Row rule (written before computing): |M_exact| >= {MIN_ABS_ANSWER} and >= {MIN_LAYERS} CZ layers. "
+          f"Kept {len(keep)} of {len(rows)} rows.", "",
+          "## gamma per CZ layer by family (kept rows)", "",
+          "| family | rows | smallest | median | largest |", "|---|---|---|---|---|"]
+    for f, v in fams.items():
+        md.append(f"| {f} | {v['n']} | {v['smallest']:.4f} | {v['median']:.4f} | {v['largest']:.4f} |" if v else
+                  f"| {f} | 0 | - | - | - |")
+    md.append(f"| all kept | {kg['n']} | {kg['smallest']:.4f} | {kg['median']:.4f} | {kg['largest']:.4f} |")
+    md.append(f"| unfiltered (abs(M_exact) >= 0.1, any depth; comparison) | {allg['n']} | {allg['smallest']:.4f} | "
+              f"{allg['median']:.4f} | {allg['largest']:.4f} |")
+    md += ["", "## Table 1: L_max = -ln(1 - eps) / gamma (CZ layers without correction)", "",
+           "| gamma | value | eps 0.1 | eps 0.01 | eps 0.001 |", "|---|---|---|---|---|"]
     for r in t1:
         md.append(f"| {r['gamma_kind']} | {r['gamma']:.4f} | {r['Lmax_eps_0.1']:.1f} | {r['Lmax_eps_0.01']:.2f} | "
                   f"{r['Lmax_eps_0.001']:.3f} |")
@@ -133,11 +151,17 @@ def build(out_dir):
            f"({LIT['water_correlation_ha'][1]}): eps = {eps_chem_water:.2e}. Larger molecules have larger correlation "
            "energies, so eps is smaller for them; FeMoco's correlation energy is not stated in the sources read.", "",
            "## Table 3: FeMoco estimates and the gamma they would need without correction (eps as in table 2)", "",
-           "| estimate | depth taken as | layers | gamma needed | orders below the median gamma | below the smallest |",
-           "|---|---|---|---|---|---|"]
+           "| estimate | depth taken as | layers | gamma needed | orders below the kept median | below the kept smallest | "
+           "below the unfiltered median |", "|---|---|---|---|---|---|---|"]
     for r in t3:
         md.append(f"| {r['estimate']} | {r['depth']} | {r['layers']:.2e} | {r['gamma_needed']:.1e} | "
-                  f"{r['orders_from_median']:.1f} | {r['orders_from_smallest']:.1f} |")
+                  f"{r['orders_from_kept_median']:.1f} | {r['orders_from_kept_smallest']:.1f} | "
+                  f"{r['orders_from_unfiltered_median']:.1f} |")
+    md += ["", "## Kept rows", "", "| source | device | problem | family | M_exact | CZ layers | gamma |",
+           "|---|---|---|---|---|---|---|"]
+    for r in keep:
+        md.append(f"| {r['source']} | {r['device']} | {r['problem']} | {r['family']} | {r['M_exact']:.3f} | {r['layers']} | "
+                  f"{r['gamma']:.5f} |")
     md += ["", "Sources: " + "; ".join(f"{k}: {v[1]}" for k, v in LIT.items())]
     open(os.path.join(out_dir, "wall_distance_tables.md"), "w").write("\n".join(md) + "\n")
     return res
@@ -145,4 +169,5 @@ def build(out_dir):
 
 if __name__ == "__main__":
     r = build(sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "notes", "paper7", "out"))
-    print(json.dumps(dict(gamma=r["gamma"], eps_water=r["chem"]["eps_water"]), indent=1))
+    print(json.dumps(dict(kept=r["gamma_kept"], by_family=r["gamma_by_family"], unfiltered=r["gamma_unfiltered"],
+                          eps_water=r["chem"]["eps_water"]), indent=1))

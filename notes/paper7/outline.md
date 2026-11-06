@@ -74,7 +74,7 @@ The counts behind this choice are small (tens of views per paper, repeat views p
    `results/p6-device-2026-11-04/README.md`, 735226d); B72 / B102 problems placeable on fez only on the 11-05 records.
 10. **Discussion: distance to the wall (an estimate, not a measurement).** `notes/paper7/wall_distance.md` (owner
     11-06: chemistry only through this number, no chemistry run on a device). With gamma fitted to our records, the
-    FeMoco resource estimates (Lee et al. 2021; Reiher et al. 2017) would need, uncorrected, a gamma 5-13 orders of
+    FeMoco resource estimates (Lee et al. 2021; Reiher et al. 2017) would need, uncorrected, a gamma 5.5-13.4 orders of
     magnitude smaller; error correction changes the conclusion entirely.
 11. **Conclusion.** What the record shows and does not; no advantage; no working correction yet.
 
