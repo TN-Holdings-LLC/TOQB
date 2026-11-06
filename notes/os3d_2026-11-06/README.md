@@ -60,3 +60,25 @@ on the identity (multiple of 8 rounds). Noiseless check: 8x2 and 4x3 within 3e-1
 - Since the measured loss is per CZ layer (the daily record's decay), depth may matter more than the CZ count; which
   one wins on a device is not known from this (CZ count also adds error). A device A/B would decide.
 - For a true 3D lattice the z-bonds still cost several bridge hops; not built.
+
+## Prototype `grid3d.py`: the whole 3D pipeline (home, 2026-11-06 ~05:40 CET)
+
+Every lattice row (y, z) on one heavy-hex row; x-bonds native; bonds between adjacent heavy-hex rows through the
+bridge in block-local passes; lattice rows that must bond but are apart are brought together by an odd-even sort
+of the rows' contents (exchange passes through the bridges). Fixed rules, no search. t = 2, theta 0.8.
+
+| lattice | ideal CZ | SABRE CZ (layers) | grid3d CZ (layers) | passes | check |
+|---|---|---|---|---|---|
+| 4x2x1 | 20 | 55 (32) | 232 (106) | 2 | 3e-16 |
+| 4x2x2 | 56 | 248 (109) | 1672 (398) | 8 | 2e-16 |
+| 4x3x2 | 92 | 477 (153) | 4264 (690) | 14 | (too large) |
+| 8x2x2 | 120 | 568 (190) | 3360 (408) | 8 | (too large) |
+| 4x2x3 | 92 | 451 (130) | 4192 (717) | 14 | (too large) |
+
+- The pipeline works end to end and is correct where it can be checked (4x2x2, 19 qubits: 2e-16).
+- It is not competitive: 6-9 times SABRE's CZ and 3.6-5.5 times its layers. Every pass moves every row (to keep one
+  column order for the native x-bonds), and every exchange of two rows costs 9 CZ per site.
+- Possible savings (not built): per-row column orders (only the rows of a job move), fusing an exchange with the
+  bond that follows it, an interleave that needs fewer exchanges. Even halving the cost leaves it 3-4 times SABRE.
+- Home's conclusion: a 3D OS on IBM's planar heavy-hex does not pay with fixed rules; the 2D block-local embedding
+  (`blockpass.py`) is the one result worth a device test.
