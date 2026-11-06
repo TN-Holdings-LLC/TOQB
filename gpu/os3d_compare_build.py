@@ -48,6 +48,9 @@ def main():
     ap.add_argument("--theta", type=float, default=0.8)
     ap.add_argument("--shots", type=int, default=4000)
     ap.add_argument("--max-seconds", type=float, default=60)
+    ap.add_argument("--choice", default=None,
+                    help="CHOICE.json of gpu/os3d_probe.py: arm A takes the probe's translation; if it passed over "
+                         "any, arm A0 (g3d0_t<t>, the first translation as before) is added")
     ap.add_argument("--dry-clifford-sentinel", action="store_true",
                     help="offline dry runs only: the Clifford echo sentinel, so the local simulator can run the job")
     a = ap.parse_args()
@@ -67,8 +70,18 @@ def main():
     rc = RuleCompiler(dev)
     ts = [int(v) for v in a.ts.split(",")]
     preps = {}
+    avoid = []
+    if a.choice:
+        ch = json.load(open(a.choice))
+        if ch["chosen"] is None:
+            raise SystemExit("STOP: the probe passed no candidate (record it; run without --choice as declared)")
+        avoid = [tuple(v) for v in ch["avoid"]]
     for t in ts:  # everything is prepared and accepted before anything is written
-        preps[f"g3d_t{t}"] = ("A v3 fold", G.prepare(dev, L, M, N, t, a.theta, layout="fold", rc=rc))
+        preps[f"g3d_t{t}"] = ("A v3 fold" + (" (probe)" if a.choice else ""),
+                              G.prepare(dev, L, M, N, t, a.theta, layout="fold", rc=rc, avoid=avoid))
+        if avoid:
+            preps[f"g3d0_t{t}"] = ("A0 v3 fold, first translation", G.prepare(dev, L, M, N, t, a.theta, layout="fold",
+                                                                               rc=rc))
         cu, phys = sabre(dev, rc, G.logical(L, M, N, t, a.theta))
         cf, cmir = U.floor_of(cu), G.mirror_of_compiled(rc, cu, phys)
         preps[f"sabre_t{t}"] = ("B SABRE seed 0", dict(
