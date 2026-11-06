@@ -117,3 +117,18 @@ reason (not tested): v3's worst read qubit has readout error 0.046 in the snapsh
 > The declared score (`practice_score.judge`) uses <Z> = 0 / +1: 0.092 / 0.184 / 0.124 at t 1 / 2 / 3. Every BEATS
 > verdict in the tables above is the same under both (the largest MSE there, 0.185 at t 1, fails both; 0.146 and
 > 0.092 at t 2 / 3 pass both).**
+
+## The price of the third dimension (simulator, owner 13:52 CET; `dim_cost.py`, `dim_cost_uniform.json`)
+
+16 sites, the same step, uniform model, marrakesh record of 11-06. 3D: 4x2x2 (28 edges), v3 fold. 2D: a 16-site
+patch of the device's own lattice (16 edges), psf-os run2d.
+
+| t | 3D CZ (layers) | 2D CZ (layers) | 3D retention | 2D retention | 3D MSE / msq | 2D MSE / msq |
+|---|---|---|---|---|---|---|
+| 1 | 116 (33) | 16 (12) | 0.903 | 0.959 | 0.0048 / 0.485 | 0.0009 / 0.485 |
+| 2 | 232 (64) | 32 (24) | 0.879 | 0.940 | 0.0033 / 0.184 | 0.0018 / 0.464 |
+| 3 | 348 (95) | 48 (36) | 0.826 | 0.922 | 0.0056 / 0.124 | 0.0023 / 0.340 |
+
+The third dimension costs 4.1 CZ per lattice edge against 1 (7.3 times the CZ for 1.75 times the edges), 2.6-2.8
+times the layers, and 6-10 points of retention at t 1-3 in this model. (A first run of this script had the 2D exact
+values in the wrong site order; corrected before any number was used.)
