@@ -11,3 +11,7 @@ The commit order (hashes 12164be < these values) shows the answers were fixed be
 - D01-D32 and FX-B: exact (state vector; light cones <= 33 qubits), K1-K4 passed (see `../checks.json`).
 - FX-A: sealed on 11-04 (`results/bank-2026-11-04/pod/du_bank/answers.json`, h 0.15, b = pi/4 - 0.3, t 12).
 - S01-S06: not computed yet (next day).
+- H01-H03 (hard problems, task W, 2026-11-06): `H01.json`, `H02.json`, `H03.json`, `answers_hard.json`, unchanged
+  from the seal: their four lines were appended to `../sha256.txt` in 89af41e (the 34 lines of 11-05 unchanged), and
+  the files match them (`sha256sum -c` at this release). Order: hashes 89af41e < these values. Exact (H01, H02 light
+  cones <= 31 qubits; H03 the whole 2^32 state), K1-K3 passed (`../hard/checks.json`).
