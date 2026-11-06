@@ -1,0 +1,398 @@
+{
+ "rows": [
+  {
+   "source": "daily 2026-11-05",
+   "device": "ibm_fez",
+   "problem": "D02",
+   "gamma": 0.005246646226071062,
+   "retention": 0.815516996869407,
+   "layers": 40
+  },
+  {
+   "source": "daily 2026-11-05",
+   "device": "ibm_fez",
+   "problem": "FX-A",
+   "gamma": 0.012986519449464147,
+   "retention": 0.7318172516738926,
+   "layers": 25
+  },
+  {
+   "source": "daily 2026-11-05",
+   "device": "ibm_marrakesh",
+   "problem": "D02",
+   "gamma": 0.0037735784485361176,
+   "retention": 0.8600197297462563,
+   "layers": 40
+  },
+  {
+   "source": "daily 2026-11-05",
+   "device": "ibm_marrakesh",
+   "problem": "FX-A",
+   "gamma": 0.0070490515010873675,
+   "retention": 0.8462322842409806,
+   "layers": 25
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_marrakesh",
+   "problem": "p4_b0.485_t02",
+   "gamma": 0.004599289248514995,
+   "retention": 0.9784410322248427,
+   "layers": 5
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_marrakesh",
+   "problem": "p4_b0.485_t04",
+   "gamma": 0.00557432145909003,
+   "retention": 0.9724249344828085,
+   "layers": 9
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_marrakesh",
+   "problem": "p4_b0.485_t08",
+   "gamma": 0.0075555048291483145,
+   "retention": 0.8873378151874076,
+   "layers": 17
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_marrakesh",
+   "problem": "p4_b0.485_t12",
+   "gamma": 0.00596655592604638,
+   "retention": 0.8621683229721763,
+   "layers": 25
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_marrakesh",
+   "problem": "p4_b0.485_t16",
+   "gamma": 0.007552015350412625,
+   "retention": 0.799488118169659,
+   "layers": 33
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_marrakesh",
+   "problem": "p5_tx0.4_t2",
+   "gamma": 0.0012567030452652445,
+   "retention": 0.9504418772049954,
+   "layers": 41
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_marrakesh",
+   "problem": "p5_tx0.4_t4",
+   "gamma": 0.0013877376549352946,
+   "retention": 0.9329681568322089,
+   "layers": 50
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_marrakesh",
+   "problem": "p5_tx0.4_t6",
+   "gamma": 0.0012383140836314795,
+   "retention": 0.9333362188820861,
+   "layers": 56
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_marrakesh",
+   "problem": "p5_tx0.4_t8",
+   "gamma": 0.0013065278325451015,
+   "retention": 0.9220973337374224,
+   "layers": 62
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_marrakesh",
+   "problem": "p5_tx0.8_t2",
+   "gamma": 0.0010528338823837687,
+   "retention": 0.9629144412710908,
+   "layers": 41
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_marrakesh",
+   "problem": "p5_tx0.8_t4",
+   "gamma": 0.0013241343191968652,
+   "retention": 0.9405382570824177,
+   "layers": 50
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_marrakesh",
+   "problem": "p5_tx0.8_t6",
+   "gamma": 0.0008957823250690284,
+   "retention": 0.9512641406502056,
+   "layers": 56
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_marrakesh",
+   "problem": "p5_tx0.8_t8",
+   "gamma": 0.0020370946979428564,
+   "retention": 0.8929018960753576,
+   "layers": 62
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_marrakesh",
+   "problem": "p5_tx1.0_t2",
+   "gamma": 0.000822752374036832,
+   "retention": 0.9772132832224775,
+   "layers": 41
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_marrakesh",
+   "problem": "p5_tx1.0_t4",
+   "gamma": 0.0009327657260880435,
+   "retention": 0.9981744246022339,
+   "layers": 50
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_marrakesh",
+   "problem": "p5_tx1.0_t6",
+   "gamma": -0.0005516212337722096,
+   "retention": 1.0539942149951886,
+   "layers": 56
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_marrakesh",
+   "problem": "p5_tx1.0_t8",
+   "gamma": 0.0016432698158248369,
+   "retention": 0.9762467261729825,
+   "layers": 62
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_fez",
+   "problem": "p4_b0.485_t02",
+   "gamma": 0.018204334106585354,
+   "retention": 0.9173403652195713,
+   "layers": 5
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_fez",
+   "problem": "p4_b0.485_t04",
+   "gamma": 0.01569025742193308,
+   "retention": 0.8815151839736859,
+   "layers": 9
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_fez",
+   "problem": "p4_b0.485_t08",
+   "gamma": 0.016270118145747598,
+   "retention": 0.7852766259475382,
+   "layers": 17
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_fez",
+   "problem": "p4_b0.485_t12",
+   "gamma": 0.013100336822516103,
+   "retention": 0.7400238344935504,
+   "layers": 25
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_fez",
+   "problem": "p4_b0.485_t16",
+   "gamma": 0.017047341246120104,
+   "retention": 0.6116265116483344,
+   "layers": 33
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_fez",
+   "problem": "p5_tx0.4_t2",
+   "gamma": 0.000982365864963313,
+   "retention": 0.9556218917875225,
+   "layers": 45
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_fez",
+   "problem": "p5_tx0.4_t4",
+   "gamma": 0.001304072459000925,
+   "retention": 0.9356714837887533,
+   "layers": 51
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_fez",
+   "problem": "p5_tx0.4_t6",
+   "gamma": 0.0012279523895884802,
+   "retention": 0.9327573728807921,
+   "layers": 57
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_fez",
+   "problem": "p5_tx0.4_t8",
+   "gamma": 0.0010207620543790904,
+   "retention": 0.9378092925288759,
+   "layers": 63
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_fez",
+   "problem": "p5_tx0.8_t2",
+   "gamma": 0.0007987886172628311,
+   "retention": 0.9649514653862891,
+   "layers": 45
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_fez",
+   "problem": "p5_tx0.8_t4",
+   "gamma": 0.0008896075093629899,
+   "retention": 0.958334054899899,
+   "layers": 51
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_fez",
+   "problem": "p5_tx0.8_t6",
+   "gamma": 0.0005775670950279488,
+   "retention": 0.972966939055794,
+   "layers": 57
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_fez",
+   "problem": "p5_tx0.8_t8",
+   "gamma": 0.000951859997698139,
+   "retention": 0.9612136059592262,
+   "layers": 63
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_fez",
+   "problem": "p5_tx1.0_t2",
+   "gamma": 0.0005188608991815061,
+   "retention": 0.9799150192771645,
+   "layers": 45
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_fez",
+   "problem": "p5_tx1.0_t4",
+   "gamma": 0.0001402895906947735,
+   "retention": 1.0252007983432947,
+   "layers": 51
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_fez",
+   "problem": "p5_tx1.0_t6",
+   "gamma": -0.0004887883933351123,
+   "retention": 1.0959451245595084,
+   "layers": 57
+  },
+  {
+   "source": "practice 2026-11-04",
+   "device": "ibm_fez",
+   "problem": "p5_tx1.0_t8",
+   "gamma": 0.0011290153680173953,
+   "retention": 1.0721040352293838,
+   "layers": 63
+  }
+ ],
+ "gamma": {
+  "n": 36,
+  "smallest": 0.0001402895906947735,
+  "median": 0.0013153310758709834,
+  "largest": 0.018204334106585354
+ },
+ "table1": [
+  {
+   "gamma_kind": "smallest",
+   "gamma": 0.0001402895906947735,
+   "Lmax_eps_0.1": 751.0216198937952,
+   "Lmax_eps_0.01": 71.63992569746571,
+   "Lmax_eps_0.001": 7.131679040680302
+  },
+  {
+   "gamma_kind": "median",
+   "gamma": 0.0013153310758709834,
+   "Lmax_eps_0.1": 80.10189798645095,
+   "Lmax_eps_0.01": 7.640917209263332,
+   "Lmax_eps_0.001": 0.7606452488937243
+  },
+  {
+   "gamma_kind": "largest",
+   "gamma": 0.018204334106585354,
+   "Lmax_eps_0.1": 5.787661061423416,
+   "Lmax_eps_0.01": 0.5520847834728422,
+   "Lmax_eps_0.001": 0.0549594578810552
+  }
+ ],
+ "chem": {
+  "chem_acc_ha": 0.0015936013717720609,
+  "water_correlation_ha": 0.3706,
+  "eps_water": 0.004300057668030386
+ },
+ "table3": [
+  {
+   "estimate": "femoco_reiher_thc_toffoli",
+   "depth": "serial (every non-Clifford gate one layer)",
+   "layers": 5300000000.0,
+   "gamma_needed": 8.130810387120679e-13,
+   "orders_from_median": 9.208901247522759,
+   "orders_from_smallest": 8.236891614829798
+  },
+  {
+   "estimate": "femoco_reiher_thc_toffoli",
+   "depth": "fully parallel over the logical qubits (count / qubits)",
+   "layers": 2474323.0625583567,
+   "gamma_needed": 1.7416195849212495e-09,
+   "orders_from_median": 5.878081781026921,
+   "orders_from_smallest": 4.906072148333961
+  },
+  {
+   "estimate": "femoco_li_thc_toffoli",
+   "depth": "serial (every non-Clifford gate one layer)",
+   "layers": 32000000000.0,
+   "gamma_needed": 1.3466654703668624e-13,
+   "orders_from_median": 9.989775356241875,
+   "orders_from_smallest": 9.017765723548916
+  },
+  {
+   "estimate": "femoco_li_thc_toffoli",
+   "depth": "fully parallel over the logical qubits (count / qubits)",
+   "layers": 14571948.998178506,
+   "gamma_needed": 2.95727737292563e-10,
+   "orders_from_median": 6.648143020463821,
+   "orders_from_smallest": 5.676133387770861
+  },
+  {
+   "estimate": "femoco_reiher2017_T_1mHa_serial",
+   "depth": "serial (every non-Clifford gate one layer)",
+   "layers": 100000000000000.0,
+   "gamma_needed": 4.30932950517396e-17,
+   "orders_from_median": 13.484625377921969,
+   "orders_from_smallest": 12.51261574522901
+  },
+  {
+   "estimate": "femoco_reiher2017_T_1mHa_serial",
+   "depth": "fully parallel over the logical qubits (count / qubits)",
+   "layers": 900900900900.9009,
+   "gamma_needed": 4.7833557507430956e-15,
+   "orders_from_median": 11.439302399135311,
+   "orders_from_smallest": 10.467292766442352
+  }
+ ],
+ "literature": {
+  "water_correlation_ha": "total correlation energy of H2O, CBS extrapolation: 'Complete basis set correlation energies. IV. The total correlation energy of the water molecule', J. Chem. Phys. 83, 5129 (1985)",
+  "femoco_reiher_thc_toffoli": "Lee et al., PRX Quantum 2, 030305 (2021), THC, Reiher et al. FeMoco Hamiltonian; 2,142 logical qubits; chemical accuracy taken there as 1.6 mHa",
+  "femoco_li_thc_toffoli": "Lee et al., PRX Quantum 2, 030305 (2021), THC, Li et al. FeMoco Hamiltonian (CAS(113e,76o), J. Chem. Phys. 150, 024302 (2019)); 2,196 logical qubits",
+  "femoco_reiher2017_T_1mHa_serial": "Reiher et al., PNAS 114, 7555 (2017), Table 1, structure 1, 1 mHa, serial: 1.0e14 T gates, 111 logical qubits"
+ }
+}
