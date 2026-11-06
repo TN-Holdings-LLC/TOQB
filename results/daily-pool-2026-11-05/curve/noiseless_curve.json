@@ -1,0 +1,114 @@
+{
+ "Y003": {
+  "built": {
+   "method": "built circuit, whole state",
+   "compared": 32,
+   "max_diff": 0.0
+  },
+  "compiled": {
+   "device": "marrakesh_11-05",
+   "method": "compiled circuit, whole state",
+   "compared": 32,
+   "qubits": 32,
+   "max_diff": 1.9646875102141692e-05
+  }
+ },
+ "Y013": {
+  "built": {
+   "method": "built circuit, whole state",
+   "compared": 32,
+   "max_diff": 0.0
+  },
+  "compiled": {
+   "device": "marrakesh_11-05",
+   "method": "compiled circuit, whole state",
+   "compared": 32,
+   "qubits": 32,
+   "max_diff": 2.0466532803853354e-05
+  }
+ },
+ "Y024": {
+  "built": {
+   "method": "built circuit, light cones",
+   "compared": 72,
+   "max_diff": 0.0
+  },
+  "compiled": {
+   "device": "fez_11-05",
+   "method": "compiled circuit, light cones up to 26",
+   "compared": 72,
+   "qubits": 72,
+   "max_diff": 5.823166481233599e-07
+  }
+ },
+ "Y035": {
+  "built": {
+   "method": "built circuit, light cones",
+   "compared": 72,
+   "max_diff": 0.0
+  },
+  "compiled": {
+   "device": "fez_11-05",
+   "method": "compiled circuit, light cones up to 26",
+   "compared": 72,
+   "qubits": 72,
+   "max_diff": 9.776868094557578e-07
+  }
+ },
+ "Y063": {
+  "built": {
+   "method": "built circuit, whole state",
+   "compared": 32,
+   "max_diff": 0.0
+  },
+  "compiled": {
+   "device": "marrakesh_11-05",
+   "method": "compiled circuit, whole state",
+   "compared": 32,
+   "qubits": 32,
+   "max_diff": 1.6661632830317075e-05
+  }
+ },
+ "Y072": {
+  "built": {
+   "method": "built circuit, whole state",
+   "compared": 32,
+   "max_diff": 0.0
+  },
+  "compiled": {
+   "device": "marrakesh_11-05",
+   "method": "compiled circuit, whole state",
+   "compared": 32,
+   "qubits": 32,
+   "max_diff": 2.1786753777508494e-05
+  }
+ },
+ "Y044": {
+  "built": {
+   "method": "built circuit, whole state",
+   "compared": 32,
+   "max_diff": 0.0
+  },
+  "compiled": {
+   "device": "marrakesh_11-05",
+   "method": "compiled circuit, whole state",
+   "compared": 32,
+   "qubits": 32,
+   "max_diff": 2.1973810542363914e-05
+  }
+ },
+ "Y053": {
+  "built": {
+   "method": "built circuit, whole state",
+   "compared": 32,
+   "max_diff": 0.0
+  },
+  "compiled": {
+   "device": "marrakesh_11-05",
+   "method": "compiled circuit, whole state",
+   "compared": 32,
+   "qubits": 32,
+   "max_diff": 2.6980927094966134e-05
+  }
+ }
+}

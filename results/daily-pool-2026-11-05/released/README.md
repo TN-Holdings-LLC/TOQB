@@ -19,3 +19,7 @@ The commit order (hashes 12164be < these values) shows the answers were fixed be
   seal: their seven lines were appended to `../sha256.txt` in 4f8a568 (every earlier line unchanged) and the files
   match them (`sha256sum -c` at this release). Order: hashes 4f8a568 < these values. Exact (light cones <= 31
   qubits), K1-K3 passed (`../scale/checks.json`).
+- Y001-Y078 (curveball grid, task Y, 2026-11-06): `Y001.json`-`Y078.json`, `answers_curve.json`, unchanged from the
+  seal: their 79 lines were appended to `../sha256.txt` in 6c30dd8 (every earlier line unchanged) and the files match
+  them (`sha256sum -c` at this release). Order: grid and rules 90152ed < hashes 6c30dd8 < these values < the
+  selection. Exact (P32 whole 2^32 state; B72 light cones <= 19 qubits), K1-K3 passed (`../curve/checks.json`).

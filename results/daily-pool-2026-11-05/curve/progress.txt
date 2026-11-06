@@ -1,0 +1,113 @@
+== K1 begin 2026-11-06 02:44:01 CET (0 s since the last stage)
+K1 F1 P32 theta_x 0.6, theta_zz 1 t 1-3: max |GPU - CPU| 4.71e-06
+K1 F1 P32 theta_x 0.7, theta_zz 1 t 1-3: max |GPU - CPU| 1.44e-06
+K1 F1 P32 theta_x 0.8, theta_zz 1 t 1-3: max |GPU - CPU| 1.54e-06
+K1 F1 P32 theta_x 0.9, theta_zz 1 t 1-3: max |GPU - CPU| 2.40e-06
+K1 F1 P32 theta_x 1, theta_zz 1 t 1-3: max |GPU - CPU| 4.29e-08
+K1 F1 P32 theta_x 1.1, theta_zz 1 t 1-3: max |GPU - CPU| 6.00e-07
+K1 F1 P32 theta_x 1.2, theta_zz 1 t 1-3: max |GPU - CPU| 7.35e-07
+K1 F1 P32 theta_x 1.3, theta_zz 1 t 1-3: max |GPU - CPU| 6.32e-07
+K1 F1 P32 theta_x 1.4, theta_zz 1 t 1-3: max |GPU - CPU| 8.02e-07
+K1 F1 P32 theta_x 1.5, theta_zz 1 t 1-3: max |GPU - CPU| 6.53e-07
+K1 F2 B72 theta 0.5 t 1-3: max |GPU - CPU| 3.57e-07
+K1 F2 B72 theta 0.6 t 1-3: max |GPU - CPU| 3.16e-07
+K1 F2 B72 theta 0.7 t 1-3: max |GPU - CPU| 1.61e-07
+K1 F2 B72 theta 0.8 t 1-3: max |GPU - CPU| 3.07e-07
+K1 F2 B72 theta 0.9 t 1-3: max |GPU - CPU| 2.68e-07
+K1 F2 B72 theta 1 t 1-3: max |GPU - CPU| 1.54e-07
+K1 F2 B72 theta 1.1 t 1-3: max |GPU - CPU| 1.11e-07
+K1 F2 B72 theta 1.2 t 1-3: max |GPU - CPU| 8.48e-08
+K1 F2 B72 theta 1.3 t 1-3: max |GPU - CPU| 9.39e-08
+K1 F2 B72 theta 1.4 t 1-3: max |GPU - CPU| 1.02e-07
+K1 F2 B72 theta 1.5 t 1-3: max |GPU - CPU| 6.24e-08
+K1 F4 P32 theta0 0.3, delta 0.3, theta_zz 1 t 1-3: max |GPU - CPU| 3.89e-06
+K1 F4 P32 theta0 0.3, delta 0.5, theta_zz 1 t 1-3: max |GPU - CPU| 2.03e-07
+K1 F4 P32 theta0 0.3, delta 0.7, theta_zz 1 t 1-3: max |GPU - CPU| 1.83e-06
+K1 F4 P32 theta0 0.5, delta 0.3, theta_zz 1 t 1-3: max |GPU - CPU| 3.54e-07
+K1 F4 P32 theta0 0.5, delta 0.5, theta_zz 1 t 1-3: max |GPU - CPU| 7.33e-07
+K1 F4 P32 theta0 0.5, delta 0.7, theta_zz 1 t 1-3: max |GPU - CPU| 3.28e-06
+K1 F4 P32 theta0 0.7, delta 0.3, theta_zz 1 t 1-3: max |GPU - CPU| 8.32e-07
+K1 F4 P32 theta0 0.7, delta 0.5, theta_zz 1 t 1-3: max |GPU - CPU| 2.72e-06
+K1 F4 P32 theta0 0.7, delta 0.7, theta_zz 1 t 1-3: max |GPU - CPU| 1.78e-06
+K1 F4 P32 theta0 0.4, delta 0.9, theta_zz 1 t 1-3: max |GPU - CPU| 1.46e-06
+K1 F4 P32 theta0 0.4, delta 1.2, theta_zz 1 t 1-3: max |GPU - CPU| 2.09e-06
+K1 F4 P32 theta0 0.4, delta 1.5, theta_zz 1 t 1-3: max |GPU - CPU| 4.90e-06
+K1 F4 P32 theta0 0.8, delta 0.9, theta_zz 1 t 1-3: max |GPU - CPU| 2.03e-06
+K1 F4 P32 theta0 0.8, delta 1.2, theta_zz 1 t 1-3: max |GPU - CPU| 3.99e-06
+K1 F4 P32 theta0 0.8, delta 1.5, theta_zz 1 t 1-3: max |GPU - CPU| 7.16e-07
+K1 F4 P32 theta0 1.2, delta 0.9, theta_zz 1 t 1-3: max |GPU - CPU| 3.16e-06
+K1 F4 P32 theta0 1.2, delta 1.2, theta_zz 1 t 1-3: max |GPU - CPU| 1.47e-06
+K1 F4 P32 theta0 1.2, delta 1.5, theta_zz 1 t 1-3: max |GPU - CPU| 3.60e-06
+== K2 begin 2026-11-06 02:47:58 CET (237 s since the last stage)
+K2 Y042 cones [19, 19, 19, 19, 19]: max |single - double| 1.24e-09
+K2 Y020 whole state t 6: max |single - double| 3.94e-07
+== K3 begin 2026-11-06 02:48:44 CET (46 s since the last stage)
+K3 F1 theta_x 0, P32, t 6: max |GPU - known| 9.59e-07
+K3 F4 theta0 0 delta 0, P32, t 5: max |GPU - known| 7.08e-07
+K3 F2 theta 0, B72, t 5: max |GPU - known| 2.38e-07
+K3 F4 Clifford (theta0 = delta = pi/2), P32, t 5: max |GPU - known| 2.38e-07
+K3 F2 Clifford, B72, t 5: max |GPU - known| 0.00e+00
+== answers begin 2026-11-06 02:49:23 CET (39 s since the last stage)
+F1 P32 theta_x 0.6, theta_zz 1: Y001 Y011
+F1 P32 theta_x 0.7, theta_zz 1: Y002 Y012
+F1 P32 theta_x 0.8, theta_zz 1: Y003 Y013
+F1 P32 theta_x 0.9, theta_zz 1: Y004 Y014
+F1 P32 theta_x 1, theta_zz 1: Y005 Y015
+F1 P32 theta_x 1.1, theta_zz 1: Y006 Y016
+F1 P32 theta_x 1.2, theta_zz 1: Y007 Y017
+F1 P32 theta_x 1.3, theta_zz 1: Y008 Y018
+F1 P32 theta_x 1.4, theta_zz 1: Y009 Y019
+F1 P32 theta_x 1.5, theta_zz 1: Y010 Y020
+F2 B72 theta 0.5: Y021 Y032
+ Y021 t 4
+ Y032 t 5
+F2 B72 theta 0.6: Y022 Y033
+ Y022 t 4
+ Y033 t 5
+F2 B72 theta 0.7: Y023 Y034
+ Y023 t 4
+ Y034 t 5
+F2 B72 theta 0.8: Y024 Y035
+ Y024 t 4
+ Y035 t 5
+F2 B72 theta 0.9: Y025 Y036
+ Y025 t 4
+ Y036 t 5
+F2 B72 theta 1: Y026 Y037
+ Y026 t 4
+ Y037 t 5
+F2 B72 theta 1.1: Y027 Y038
+ Y027 t 4
+ Y038 t 5
+F2 B72 theta 1.2: Y028 Y039
+ Y028 t 4
+ Y039 t 5
+F2 B72 theta 1.3: Y029 Y040
+ Y029 t 4
+ Y040 t 5
+F2 B72 theta 1.4: Y030 Y041
+ Y030 t 4
+ Y041 t 5
+F2 B72 theta 1.5: Y031 Y042
+ Y031 t 4
+ Y042 t 5
+F4 P32 theta0 0.3, delta 0.3, theta_zz 1: Y043 Y052
+F4 P32 theta0 0.3, delta 0.5, theta_zz 1: Y044 Y053
+F4 P32 theta0 0.3, delta 0.7, theta_zz 1: Y045 Y054
+F4 P32 theta0 0.5, delta 0.3, theta_zz 1: Y046 Y055
+F4 P32 theta0 0.5, delta 0.5, theta_zz 1: Y047 Y056
+F4 P32 theta0 0.5, delta 0.7, theta_zz 1: Y048 Y057
+F4 P32 theta0 0.7, delta 0.3, theta_zz 1: Y049 Y058
+F4 P32 theta0 0.7, delta 0.5, theta_zz 1: Y050 Y059
+F4 P32 theta0 0.7, delta 0.7, theta_zz 1: Y051 Y060
+F4 P32 theta0 0.4, delta 0.9, theta_zz 1: Y061 Y070
+F4 P32 theta0 0.4, delta 1.2, theta_zz 1: Y062 Y071
+F4 P32 theta0 0.4, delta 1.5, theta_zz 1: Y063 Y072
+F4 P32 theta0 0.8, delta 0.9, theta_zz 1: Y064 Y073
+F4 P32 theta0 0.8, delta 1.2, theta_zz 1: Y065 Y074
+F4 P32 theta0 0.8, delta 1.5, theta_zz 1: Y066 Y075
+F4 P32 theta0 1.2, delta 0.9, theta_zz 1: Y067 Y076
+F4 P32 theta0 1.2, delta 1.2, theta_zz 1: Y068 Y077
+F4 P32 theta0 1.2, delta 1.5, theta_zz 1: Y069 Y078
+== answers end 2026-11-06 02:55:18 CET (355 s since the last stage)
+answers_curve.json sha256 0f3051f3655316c0a73ed3794a9431233179192dcb40f7f7279d18b5bb8e6e42
