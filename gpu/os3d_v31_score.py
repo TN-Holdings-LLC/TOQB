@@ -44,10 +44,11 @@ def main(run, answers, rule="relative"):
         price[f"t{t}"] = dict(cz_ratio=a3["cz"] / a2["cz"] if a2["cz"] else None,
                               retention_3d=a3["retention"], retention_2d=a2["retention"])
     res = dict(device=rep["device"], sentinel=next(iter(cs.values()))["sentinel"], probe=ch,
-               chosen=chosen, probe_passed_none=ch["chosen"] is None, judged=judged, arms=arms, price=price)
+               chosen=chosen, probe_passed_none=ch.get("passed_none", ch["chosen"] is None), judged=judged, arms=arms,
+               price=price)
     json.dump(res, open(os.path.join(run, "scores.json"), "w"), indent=1)
-    print(f"{res['device']}  sentinel {res['sentinel']}  probe chose candidate {ch['chosen']}"
-          + ("  (passed none: candidate 0 judged)" if ch["chosen"] is None else ""))
+    print(f"{res['device']}  sentinel {res['sentinel']}  probe chose candidate {chosen}"
+          + ("  (probe passed none)" if res["probe_passed_none"] else ""))
     for r in ch["candidates"]:
         print(f"  candidate {r['index']} (r0 {r['r0']}, c0 {r['c0']}): |0> floor min {r.get('min_floor', float('nan')):.3f}"
               f"  |1> floor max {r.get('max_floor1', float('nan')):.3f}  X echo min {r.get('min_echo_x', float('nan')):.3f}"
