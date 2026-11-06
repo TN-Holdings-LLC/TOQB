@@ -1,0 +1,94 @@
+{
+ "K1": [
+  {
+   "family": "F1",
+   "patch": "B72",
+   "params": "theta_x 0.53, theta_zz 1",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 6.927265494560686e-07,
+   "ok": true
+  },
+  {
+   "family": "F1",
+   "patch": "B102",
+   "params": "theta_x 0.53, theta_zz 1",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 6.927265494560686e-07,
+   "ok": true
+  },
+  {
+   "family": "F1",
+   "patch": "P32",
+   "params": "theta_x 0.53, theta_zz 1",
+   "ts": [
+    1,
+    2,
+    3
+   ],
+   "max_diff": 2.5675972501471023e-06,
+   "ok": true
+  }
+ ],
+ "K2": [
+  {
+   "what": "H01 five largest cones",
+   "cones": [
+    29,
+    30,
+    30,
+    31,
+    31
+   ],
+   "max_diff": 2.5895048142432486e-06,
+   "ok": true
+  },
+  {
+   "what": "H02 five largest cones",
+   "cones": [
+    30,
+    31,
+    31,
+    31,
+    31
+   ],
+   "max_diff": 2.5895048142432486e-06,
+   "ok": true
+  },
+  {
+   "what": "H03 whole state t 9",
+   "max_diff": 7.437083909156428e-06,
+   "ok": true
+  }
+ ],
+ "K3": [
+  {
+   "what": "F1 theta_x 0, B102, t 6",
+   "max_diff": 8.65230610713752e-07,
+   "ok": true
+  },
+  {
+   "what": "F1 theta_x 0, P32, t 9",
+   "max_diff": 1.7683717672412058e-06,
+   "ok": true
+  },
+  {
+   "what": "F1 Clifford, B102, t 6",
+   "max_diff": 2.7755575615628914e-17,
+   "ok": true
+  },
+  {
+   "what": "F1 Clifford, P32, t 9",
+   "max_diff": 2.7755575615628914e-17,
+   "ok": true
+  }
+ ],
+ "failed": []
+}

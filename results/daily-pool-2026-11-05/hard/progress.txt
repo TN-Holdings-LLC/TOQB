@@ -1,0 +1,21 @@
+== K1 begin 2026-11-06 00:58:15 CET (0 s since the last stage)
+K1 F1 B72 theta_x 0.53, theta_zz 1 t 1-3: max |GPU - CPU| 6.93e-07
+K1 F1 B102 theta_x 0.53, theta_zz 1 t 1-3: max |GPU - CPU| 6.93e-07
+K1 F1 P32 theta_x 0.53, theta_zz 1 t 1-3: max |GPU - CPU| 2.57e-06
+== K2 begin 2026-11-06 00:58:27 CET (13 s since the last stage)
+K2 H01 cones [29, 30, 30, 31, 31]: max |single - double| 2.59e-06
+K2 H02 cones [30, 31, 31, 31, 31]: max |single - double| 2.59e-06
+K2 H03 whole state t 9: max |single - double| 7.44e-06
+== K3 begin 2026-11-06 01:00:27 CET (120 s since the last stage)
+K3 F1 theta_x 0, B102, t 6: max |GPU - known| 8.65e-07
+K3 F1 theta_x 0, P32, t 9: max |GPU - known| 1.77e-06
+K3 F1 Clifford, B102, t 6: max |GPU - known| 2.78e-17
+K3 F1 Clifford, P32, t 9: max |GPU - known| 2.78e-17
+== answers begin 2026-11-06 01:01:47 CET (79 s since the last stage)
+F1 B72 theta_x 0.53, theta_zz 1: H01
+ H01 t 6
+F1 B102 theta_x 0.53, theta_zz 1: H02
+ H02 t 6
+F1 P32 theta_x 0.53, theta_zz 1: H03
+== answers end 2026-11-06 01:02:36 CET (49 s since the last stage)
+answers_hard.json sha256 a7d4a48dea99afdfd76a14dc41830b08bd5b7b20e367d4064b063427b0c02b15

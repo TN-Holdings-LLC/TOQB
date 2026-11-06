@@ -1,0 +1,13 @@
+toqb fafcb70 gpu/daily_hard_pod.sh: H03 (whole state) has no cone
+psf-os a766073 README: how to reproduce (re-score from committed co
+pool 90b71d1c344c470535205a92b422e35663243c877184e2bb43f281bf2a30ebde  daily/pool.py
+script bfddcbcd2abb2228cf111d87a95958399062dbb4b3081398d8ffb026c573217a  gpu/daily_answers.py
+NVIDIA H100 80GB HBM3, 81559 MiB
+tests 16 passed in 4.42s
+start 2026-11-06 00:58:14 CET
+K1 begin 2026-11-06 00:58:15 CET (0 s since the last stage)
+K2 begin 2026-11-06 00:58:27 CET (13 s since the last stage)
+K3 begin 2026-11-06 01:00:27 CET (120 s since the last stage)
+answers begin 2026-11-06 01:01:47 CET (79 s since the last stage)
+answers end 2026-11-06 01:02:36 CET (49 s since the last stage)
+end 2026-11-06 01:02:37 CET
