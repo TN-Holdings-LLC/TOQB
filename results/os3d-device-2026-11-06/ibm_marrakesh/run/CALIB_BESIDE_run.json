@@ -1,0 +1,225 @@
+{
+ "note": "report only; not used by any placement, build or verdict",
+ "backend": "ibm_marrakesh",
+ "read": "2026-11-06T10:19:34.379210+00:00",
+ "fake": false,
+ "source": "properties of job dbmqhed8ft8s738vd70g (at its start)",
+ "calibrated": "2026-11-06 11:06:28+01:00",
+ "arms": {
+  "ksent_n40_D24-fold_rule": {
+   "records": [
+    "ksent_n40_D24-fold_rule"
+   ],
+   "cz": {
+    "worst": 0.05197431961934254,
+    "at": [
+     48,
+     49
+    ],
+    "median": 0.0025083641225509545,
+    "count": 40,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.39453125,
+    "at": [
+     31
+    ],
+    "median": 0.014892578125,
+    "count": 40,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d_t1": {
+   "records": [
+    "p2d_g3d_t1",
+    "p2d_g3d_t1_floor",
+    "p2d_g3d_t1_mirror"
+   ],
+   "cz": {
+    "worst": 0.05197431961934254,
+    "at": [
+     48,
+     49
+    ],
+    "median": 0.0031100298711460306,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.39453125,
+    "at": [
+     31
+    ],
+    "median": 0.01708984375,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d_t2": {
+   "records": [
+    "p2d_g3d_t2",
+    "p2d_g3d_t2_floor",
+    "p2d_g3d_t2_mirror"
+   ],
+   "cz": {
+    "worst": 0.05197431961934254,
+    "at": [
+     48,
+     49
+    ],
+    "median": 0.0031100298711460306,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.39453125,
+    "at": [
+     31
+    ],
+    "median": 0.01708984375,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d_t3": {
+   "records": [
+    "p2d_g3d_t3",
+    "p2d_g3d_t3_floor",
+    "p2d_g3d_t3_mirror"
+   ],
+   "cz": {
+    "worst": 0.05197431961934254,
+    "at": [
+     48,
+     49
+    ],
+    "median": 0.0031100298711460306,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.39453125,
+    "at": [
+     31
+    ],
+    "median": 0.01708984375,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_sabre_t1": {
+   "records": [
+    "p2d_sabre_t1",
+    "p2d_sabre_t1_floor",
+    "p2d_sabre_t1_mirror"
+   ],
+   "cz": {
+    "worst": 0.007368767648608554,
+    "at": [
+     106,
+     107
+    ],
+    "median": 0.0025493593917078894,
+    "count": 15,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.3798828125,
+    "at": [
+     86
+    ],
+    "median": 0.0263671875,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_sabre_t2": {
+   "records": [
+    "p2d_sabre_t2",
+    "p2d_sabre_t2_floor",
+    "p2d_sabre_t2_mirror"
+   ],
+   "cz": {
+    "worst": 0.008249928943359769,
+    "at": [
+     107,
+     108
+    ],
+    "median": 0.0030335341507915503,
+    "count": 19,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.3798828125,
+    "at": [
+     86
+    ],
+    "median": 0.015869140625,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_sabre_t3": {
+   "records": [
+    "p2d_sabre_t3",
+    "p2d_sabre_t3_floor",
+    "p2d_sabre_t3_mirror"
+   ],
+   "cz": {
+    "worst": 0.008249928943359769,
+    "at": [
+     107,
+     108
+    ],
+    "median": 0.002849598109743029,
+    "count": 15,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.3798828125,
+    "at": [
+     86
+    ],
+    "median": 0.01953125,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  }
+ }
+}
