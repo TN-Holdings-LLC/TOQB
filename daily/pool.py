@@ -95,12 +95,47 @@ HARD = [
     ("H02", "F1", "B102", dict(theta_x=0.53, theta_zz=1.0), 6, 36, "G3"),
     ("H03", "F1", "P32", dict(theta_x=0.53, theta_zz=1.0), 9, 54, "G4"),
 ]
+# Task Y (owner 2026-11-06: "curveball" problems): a grid fixed and committed before any answer is computed; the
+# problems are then chosen from the answers alone by the rules of daily/curveball.py (never from a device result).
+#   Y-F1 (P6's form, P32): theta_x 0.6-1.5 step 0.1, theta_zz 1.0, t 5 and 6: aim M_exact near 0.5.
+#   Y-F2 (P5's rule, B72): theta 0.5-1.5 step 0.1, t 4 and 5: aim M_exact near 0.5.
+#   Y-F4s (F4, P32): theta_x of qubit q = theta0 + delta * row(q) (row(q) = q // 20 minus the patch's top row; a
+#        bridge belongs to the row above), theta0 in {0.3, 0.5, 0.7}, delta in {0.3, 0.5, 0.7}, t 4 and 5: aim a large
+#        per-qubit spread.
+#   Y-F4m (F4, P32): theta0 in {0.4, 0.8, 1.2}, delta in {0.9, 1.2, 1.5}, t 3 and 4: aim mixed signs.
+def _curve():
+    out = []
+    k = 0
+    def add(fam, pa, par, t, tag):
+        nonlocal k
+        k += 1
+        layers = 3 * t * 2
+        out.append((f"Y{k:03d}", fam, pa, par, t, layers, grade(layers), tag))
+    for t in (5, 6):
+        for i in range(10):
+            add("F1", "P32", dict(theta_x=round(0.6 + 0.1 * i, 10), theta_zz=1.0), t, "Y-F1")
+    for t in (4, 5):
+        for i in range(11):
+            th = round(0.5 + 0.1 * i, 10)
+            k += 1
+            out.append((f"Y{k:03d}", "F2", "B72", dict(theta=th), t, 3 * t, grade(3 * t), "Y-F2"))
+    for t in (4, 5):
+        for th0 in (0.3, 0.5, 0.7):
+            for d in (0.3, 0.5, 0.7):
+                add("F4", "P32", dict(theta0=th0, delta=d, theta_zz=1.0), t, "Y-F4s")
+    for t in (3, 4):
+        for th0 in (0.4, 0.8, 1.2):
+            for d in (0.9, 1.2, 1.5):
+                add("F4", "P32", dict(theta0=th0, delta=d, theta_zz=1.0), t, "Y-F4m")
+    return out
+
+
 FXA_SEALED = ("results/bank-2026-11-04/pod/du_bank/answers.json", "h0.15_b0.485398")
-READOUT = {"F1": "Z", "F2": "Z", "F3": "X"}
+READOUT = {"F1": "Z", "F2": "Z", "F3": "X", "F4": "Z"}
 
 
 def entry(pid):
-    for e in POOL + FIXED + SCALE + HARD:
+    for e in POOL + FIXED + SCALE + HARD + globals().get("CURVE", []):
         if e[0] == pid:
             return e
     raise KeyError(pid)
@@ -180,6 +215,23 @@ def f2(t, theta, qubits, edges):
     return qc
 
 
+def f4(t, theta0, delta, theta_zz, qubits, edges, theta_z=THETA_Z):
+    """F1 with a position-dependent kick: theta_x of qubit q = theta0 + delta * (q // 20 - top row), fixed by formula."""
+    from qiskit import QuantumCircuit
+    qs, es = sorted(qubits), sorted(tuple(sorted(e)) for e in edges)
+    top = min(q // 20 for q in qs)
+    qc = QuantumCircuit(max(qs) + 1, len(qs))
+    for _ in range(t):
+        for q in qs:
+            qc.rx(theta0 + delta * (q // 20 - top), q)
+            qc.rz(theta_z, q)
+        for a, c in es:
+            qc.rzz(theta_zz, a, c)
+    for k, q in enumerate(qs):
+        qc.measure(q, k)
+    return qc
+
+
 def circuit(family, patch_name, params, t, chain=None):
     """The user's circuit with its final measurements. `chain` (F3 only) replaces the chain's labels (the checks use
     shorter chains)."""
@@ -190,6 +242,8 @@ def circuit(family, patch_name, params, t, chain=None):
         return f1(t, params["theta_x"], params["theta_zz"], qs, es)
     if family == "F2":
         return f2(t, params["theta"], qs, es)
+    if family == "F4":
+        return f4(t, params["theta0"], params["delta"], params["theta_zz"], qs, es)
     raise KeyError(family)
 
 
@@ -199,7 +253,7 @@ def problem_circuit(pid):
 
 
 def cz_layers(family, params, t):
-    if family == "F1":
+    if family in ("F1", "F4"):
         return 3 * t * (1 if abs(abs(params["theta_zz"]) - np.pi / 2) < 1e-12 else 2)
     if family == "F2":
         return 3 * t
@@ -228,3 +282,8 @@ def params_text(params):
         else:
             out.append(f"{k} {v:g}")
     return ", ".join(out)
+
+
+CURVE_FULL = _curve()  # (ID, family, patch, params, t, CZ layers, grade, rule group)
+CURVE = [e[:7] for e in CURVE_FULL]
+CURVE_GROUP = {e[0]: e[7] for e in CURVE_FULL}

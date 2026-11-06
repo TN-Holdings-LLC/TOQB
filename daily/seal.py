@@ -30,7 +30,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."
 from daily import pool as P  # noqa: E402
 
 REQUIRED_IDS = [e[0] for e in P.POOL] + ["FX-B"]
-SEALED_IDS = REQUIRED_IDS + [e[0] for e in P.SCALE + P.HARD]  # S01-S06, H01-H03 when computed (sealed on their own day otherwise)
+SEALED_IDS = REQUIRED_IDS + [e[0] for e in P.SCALE + P.HARD + P.CURVE]  # S01-S06, H01-H03 when computed (sealed on their own day otherwise)
 CIRCUIT_IDS = [e[0] for e in P.POOL + P.FIXED + P.SCALE + P.HARD]
 VALUE_LINE = re.compile(r"(\bM [+-]|M over them|\|<\.>\||^(D\d\d|FX-[AB]|S\d\d|H\d\d): )")
 
