@@ -1,0 +1,233 @@
+{
+ "device": "ibm_marrakesh",
+ "lattice": [
+  4,
+  2,
+  2
+ ],
+ "theta": 0.8,
+ "ts": [
+  1,
+  2,
+  3
+ ],
+ "shots": 4000,
+ "circuits": 22,
+ "qpu_seconds_model": 27.6,
+ "gate_hash": {
+  "circuits": 22,
+  "gate_sha256": "83ca137c287897246826911959871a399a271759b7979639eb895a5b228abd1b"
+ },
+ "answers_sha256": "6b2d068c7dfb4bf62b4d7bc2df2a42b5a013e2520c8b2acc009d7c982e05a816",
+ "arms": {
+  "g3d_t1": {
+   "arm": "A v3 fold",
+   "cz": 116,
+   "cz_layers": 33,
+   "qubits_used": 18,
+   "mapping": {
+    "0": 31,
+    "1": 32,
+    "2": 51,
+    "3": 52,
+    "4": 30,
+    "5": 33,
+    "6": 50,
+    "7": 53,
+    "8": 29,
+    "9": 34,
+    "10": 49,
+    "11": 54,
+    "12": 28,
+    "13": 35,
+    "14": 48,
+    "15": 55
+   },
+   "checks": {
+    "user_measures": true,
+    "floor_cz": true,
+    "floor_diagonal": true,
+    "mirror_cz": true,
+    "mirror_measures": true
+   },
+   "t": 1,
+   "passes": 1,
+   "layout": "fold",
+   "r0": 1,
+   "c0": 8
+  },
+  "sabre_t1": {
+   "arm": "B SABRE seed 0",
+   "cz": 142,
+   "cz_layers": 64,
+   "qubits_used": 16,
+   "mapping": {
+    "0": 65,
+    "1": 85,
+    "2": 106,
+    "3": 87,
+    "4": 77,
+    "5": 97,
+    "6": 86,
+    "7": 88,
+    "8": 107,
+    "9": 91,
+    "10": 90,
+    "11": 89,
+    "12": 70,
+    "13": 78,
+    "14": 68,
+    "15": 69
+   },
+   "checks": {
+    "user_measures": true,
+    "floor_cz": true,
+    "floor_diagonal": true,
+    "mirror_cz": true,
+    "mirror_measures": true
+   },
+   "t": 1,
+   "sabre_seed": 0
+  },
+  "g3d_t2": {
+   "arm": "A v3 fold",
+   "cz": 232,
+   "cz_layers": 64,
+   "qubits_used": 18,
+   "mapping": {
+    "0": 28,
+    "1": 35,
+    "2": 48,
+    "3": 55,
+    "4": 29,
+    "5": 34,
+    "6": 49,
+    "7": 54,
+    "8": 30,
+    "9": 33,
+    "10": 50,
+    "11": 53,
+    "12": 31,
+    "13": 32,
+    "14": 51,
+    "15": 52
+   },
+   "checks": {
+    "user_measures": true,
+    "floor_cz": true,
+    "floor_diagonal": true,
+    "mirror_cz": true,
+    "mirror_measures": true
+   },
+   "t": 2,
+   "passes": 2,
+   "layout": "fold",
+   "r0": 1,
+   "c0": 8
+  },
+  "sabre_t2": {
+   "arm": "B SABRE seed 0",
+   "cz": 275,
+   "cz_layers": 106,
+   "qubits_used": 19,
+   "mapping": {
+    "0": 67,
+    "1": 66,
+    "2": 64,
+    "3": 65,
+    "4": 83,
+    "5": 84,
+    "6": 77,
+    "7": 85,
+    "8": 88,
+    "9": 86,
+    "10": 108,
+    "11": 97,
+    "12": 87,
+    "13": 107,
+    "14": 105,
+    "15": 106
+   },
+   "checks": {
+    "user_measures": true,
+    "floor_cz": true,
+    "floor_diagonal": true,
+    "mirror_cz": true,
+    "mirror_measures": true
+   },
+   "t": 2,
+   "sabre_seed": 0
+  },
+  "g3d_t3": {
+   "arm": "A v3 fold",
+   "cz": 348,
+   "cz_layers": 95,
+   "qubits_used": 18,
+   "mapping": {
+    "0": 31,
+    "1": 32,
+    "2": 51,
+    "3": 52,
+    "4": 30,
+    "5": 33,
+    "6": 50,
+    "7": 53,
+    "8": 29,
+    "9": 34,
+    "10": 49,
+    "11": 54,
+    "12": 28,
+    "13": 35,
+    "14": 48,
+    "15": 55
+   },
+   "checks": {
+    "user_measures": true,
+    "floor_cz": true,
+    "floor_diagonal": true,
+    "mirror_cz": true,
+    "mirror_measures": true
+   },
+   "t": 3,
+   "passes": 3,
+   "layout": "fold",
+   "r0": 1,
+   "c0": 8
+  },
+  "sabre_t3": {
+   "arm": "B SABRE seed 0",
+   "cz": 417,
+   "cz_layers": 168,
+   "qubits_used": 16,
+   "mapping": {
+    "0": 78,
+    "1": 89,
+    "2": 86,
+    "3": 87,
+    "4": 88,
+    "5": 97,
+    "6": 108,
+    "7": 107,
+    "8": 124,
+    "9": 117,
+    "10": 104,
+    "11": 125,
+    "12": 103,
+    "13": 126,
+    "14": 106,
+    "15": 105
+   },
+   "checks": {
+    "user_measures": true,
+    "floor_cz": true,
+    "floor_diagonal": true,
+    "mirror_cz": true,
+    "mirror_measures": true
+   },
+   "t": 3,
+   "sabre_seed": 0
+  }
+ },
+ "job": "results/os3d-device-2026-11-06/ibm_marrakesh/run/job",
+ "runs": "results/os3d-device-2026-11-06/ibm_marrakesh/run/runs"
+}

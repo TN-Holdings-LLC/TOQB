@@ -1,0 +1,1016 @@
+{
+ "written": "2026-11-06T11:13:43+01:00",
+ "device": {
+  "name": "ibm_marrakesh",
+  "num_qubits": 156,
+  "couplers": [
+   [
+    0,
+    1
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    3,
+    4
+   ],
+   [
+    3,
+    16
+   ],
+   [
+    4,
+    5
+   ],
+   [
+    5,
+    6
+   ],
+   [
+    6,
+    7
+   ],
+   [
+    7,
+    8
+   ],
+   [
+    7,
+    17
+   ],
+   [
+    8,
+    9
+   ],
+   [
+    9,
+    10
+   ],
+   [
+    10,
+    11
+   ],
+   [
+    11,
+    12
+   ],
+   [
+    11,
+    18
+   ],
+   [
+    12,
+    13
+   ],
+   [
+    13,
+    14
+   ],
+   [
+    14,
+    15
+   ],
+   [
+    15,
+    19
+   ],
+   [
+    16,
+    23
+   ],
+   [
+    17,
+    27
+   ],
+   [
+    18,
+    31
+   ],
+   [
+    19,
+    35
+   ],
+   [
+    20,
+    21
+   ],
+   [
+    21,
+    22
+   ],
+   [
+    21,
+    36
+   ],
+   [
+    22,
+    23
+   ],
+   [
+    23,
+    24
+   ],
+   [
+    24,
+    25
+   ],
+   [
+    25,
+    26
+   ],
+   [
+    25,
+    37
+   ],
+   [
+    26,
+    27
+   ],
+   [
+    27,
+    28
+   ],
+   [
+    28,
+    29
+   ],
+   [
+    29,
+    30
+   ],
+   [
+    29,
+    38
+   ],
+   [
+    30,
+    31
+   ],
+   [
+    31,
+    32
+   ],
+   [
+    32,
+    33
+   ],
+   [
+    33,
+    34
+   ],
+   [
+    33,
+    39
+   ],
+   [
+    34,
+    35
+   ],
+   [
+    36,
+    41
+   ],
+   [
+    37,
+    45
+   ],
+   [
+    38,
+    49
+   ],
+   [
+    39,
+    53
+   ],
+   [
+    40,
+    41
+   ],
+   [
+    41,
+    42
+   ],
+   [
+    42,
+    43
+   ],
+   [
+    43,
+    44
+   ],
+   [
+    43,
+    56
+   ],
+   [
+    44,
+    45
+   ],
+   [
+    45,
+    46
+   ],
+   [
+    46,
+    47
+   ],
+   [
+    47,
+    48
+   ],
+   [
+    47,
+    57
+   ],
+   [
+    48,
+    49
+   ],
+   [
+    49,
+    50
+   ],
+   [
+    50,
+    51
+   ],
+   [
+    51,
+    52
+   ],
+   [
+    51,
+    58
+   ],
+   [
+    52,
+    53
+   ],
+   [
+    53,
+    54
+   ],
+   [
+    54,
+    55
+   ],
+   [
+    55,
+    59
+   ],
+   [
+    56,
+    63
+   ],
+   [
+    57,
+    67
+   ],
+   [
+    58,
+    71
+   ],
+   [
+    59,
+    75
+   ],
+   [
+    60,
+    61
+   ],
+   [
+    61,
+    62
+   ],
+   [
+    61,
+    76
+   ],
+   [
+    62,
+    63
+   ],
+   [
+    63,
+    64
+   ],
+   [
+    64,
+    65
+   ],
+   [
+    65,
+    66
+   ],
+   [
+    65,
+    77
+   ],
+   [
+    66,
+    67
+   ],
+   [
+    67,
+    68
+   ],
+   [
+    68,
+    69
+   ],
+   [
+    69,
+    70
+   ],
+   [
+    69,
+    78
+   ],
+   [
+    70,
+    71
+   ],
+   [
+    71,
+    72
+   ],
+   [
+    72,
+    73
+   ],
+   [
+    73,
+    74
+   ],
+   [
+    73,
+    79
+   ],
+   [
+    74,
+    75
+   ],
+   [
+    76,
+    81
+   ],
+   [
+    77,
+    85
+   ],
+   [
+    78,
+    89
+   ],
+   [
+    79,
+    93
+   ],
+   [
+    80,
+    81
+   ],
+   [
+    81,
+    82
+   ],
+   [
+    82,
+    83
+   ],
+   [
+    83,
+    84
+   ],
+   [
+    83,
+    96
+   ],
+   [
+    84,
+    85
+   ],
+   [
+    85,
+    86
+   ],
+   [
+    86,
+    87
+   ],
+   [
+    87,
+    88
+   ],
+   [
+    87,
+    97
+   ],
+   [
+    88,
+    89
+   ],
+   [
+    89,
+    90
+   ],
+   [
+    90,
+    91
+   ],
+   [
+    91,
+    92
+   ],
+   [
+    91,
+    98
+   ],
+   [
+    92,
+    93
+   ],
+   [
+    93,
+    94
+   ],
+   [
+    94,
+    95
+   ],
+   [
+    95,
+    99
+   ],
+   [
+    96,
+    103
+   ],
+   [
+    97,
+    107
+   ],
+   [
+    98,
+    111
+   ],
+   [
+    99,
+    115
+   ],
+   [
+    100,
+    101
+   ],
+   [
+    101,
+    102
+   ],
+   [
+    101,
+    116
+   ],
+   [
+    102,
+    103
+   ],
+   [
+    103,
+    104
+   ],
+   [
+    104,
+    105
+   ],
+   [
+    105,
+    106
+   ],
+   [
+    105,
+    117
+   ],
+   [
+    106,
+    107
+   ],
+   [
+    107,
+    108
+   ],
+   [
+    108,
+    109
+   ],
+   [
+    109,
+    110
+   ],
+   [
+    109,
+    118
+   ],
+   [
+    110,
+    111
+   ],
+   [
+    111,
+    112
+   ],
+   [
+    112,
+    113
+   ],
+   [
+    113,
+    114
+   ],
+   [
+    113,
+    119
+   ],
+   [
+    114,
+    115
+   ],
+   [
+    116,
+    121
+   ],
+   [
+    117,
+    125
+   ],
+   [
+    118,
+    129
+   ],
+   [
+    119,
+    133
+   ],
+   [
+    120,
+    121
+   ],
+   [
+    121,
+    122
+   ],
+   [
+    122,
+    123
+   ],
+   [
+    123,
+    124
+   ],
+   [
+    123,
+    136
+   ],
+   [
+    124,
+    125
+   ],
+   [
+    125,
+    126
+   ],
+   [
+    126,
+    127
+   ],
+   [
+    127,
+    128
+   ],
+   [
+    127,
+    137
+   ],
+   [
+    128,
+    129
+   ],
+   [
+    129,
+    130
+   ],
+   [
+    130,
+    131
+   ],
+   [
+    131,
+    132
+   ],
+   [
+    131,
+    138
+   ],
+   [
+    132,
+    133
+   ],
+   [
+    133,
+    134
+   ],
+   [
+    134,
+    135
+   ],
+   [
+    135,
+    139
+   ],
+   [
+    136,
+    143
+   ],
+   [
+    137,
+    147
+   ],
+   [
+    138,
+    151
+   ],
+   [
+    139,
+    155
+   ],
+   [
+    140,
+    141
+   ],
+   [
+    141,
+    142
+   ],
+   [
+    142,
+    143
+   ],
+   [
+    143,
+    144
+   ],
+   [
+    144,
+    145
+   ],
+   [
+    145,
+    146
+   ],
+   [
+    146,
+    147
+   ],
+   [
+    147,
+    148
+   ],
+   [
+    148,
+    149
+   ],
+   [
+    149,
+    150
+   ],
+   [
+    150,
+    151
+   ],
+   [
+    151,
+    152
+   ],
+   [
+    152,
+    153
+   ],
+   [
+    153,
+    154
+   ],
+   [
+    154,
+    155
+   ]
+  ],
+  "failed_couplers": [
+   [
+    113,
+    119
+   ]
+  ],
+  "failed_qubits": [
+   46,
+   73,
+   82,
+   113,
+   119,
+   130
+  ],
+  "fake": false,
+  "fetched": "2026-11-06T11:12:15+01:00",
+  "masked": [],
+  "source": {
+   "fetched": "2026-11-06T10:12:15+00:00 (2026-11-06 11:12:15 CET)",
+   "calibration_time": "2026-11-06 10:35:28+01:00"
+  }
+ },
+ "fetch": {
+  "backend": "ibm_marrakesh",
+  "fake": false
+ },
+ "cells": [
+  {
+   "cell": 0,
+   "name": "ksent_n40_D24-fold_rule",
+   "run_sha256": "ece3988672935643b6e9f044970d872a8b8245ef25ddbabcf016cf25d1267404",
+   "qpy_sha256": "b51f464f8fffd48e19111a55c41c04eeebed06624a05976ea5a0fb557dabe0d7",
+   "points": 4,
+   "role": "sentinel"
+  },
+  {
+   "cell": 1,
+   "name": "p2d_g3d_t1",
+   "run_sha256": "3d96cc9846550b14fcc8b7946d8b31f9d909401acd214f77447089f03231cc96",
+   "qpy_sha256": "6fe582905855cc0872716b7300006ba52c7a29970b1600a7ae865363872b13b9",
+   "points": 1,
+   "role": "user"
+  },
+  {
+   "cell": 2,
+   "name": "p2d_g3d_t1_floor",
+   "run_sha256": "5843aaae3990205699f56b38e03b2a33d88dfb6dba43f44b9459896352dd1eb9",
+   "qpy_sha256": "c932ce57cd3f7ca733c921f3bc9d8db6494990da3248b78dcaecc409d3d1a98d",
+   "points": 1,
+   "role": "floor"
+  },
+  {
+   "cell": 3,
+   "name": "p2d_g3d_t1_mirror",
+   "run_sha256": "7a4cc85159329e4b1631dcd2d0e785532b3f10ac88b73d284ad184c6cfa4fd0f",
+   "qpy_sha256": "60707b07188a85575e74b2c92d610b46b5ff7094d7a3a7f265ddf3b6da3207a4",
+   "points": 1,
+   "role": "mirror"
+  },
+  {
+   "cell": 4,
+   "name": "p2d_g3d_t2",
+   "run_sha256": "bcace8befc24bc22f73cd4429d23f531780d4241da53102719741956f1421eb0",
+   "qpy_sha256": "8285a2c17526023d17ad1b916385be2003c8d0510930cfdd42dfece8ab68bad0",
+   "points": 1,
+   "role": "user"
+  },
+  {
+   "cell": 5,
+   "name": "p2d_g3d_t2_floor",
+   "run_sha256": "0acd916997adb4cf1f172a35e0ae9230ce6380b4b3000dc6d194572a42bfdabf",
+   "qpy_sha256": "f59054bcef1d9b6241b8901b2ee52deea8cac57c54c587a8b11fc2a0938481c8",
+   "points": 1,
+   "role": "floor"
+  },
+  {
+   "cell": 6,
+   "name": "p2d_g3d_t2_mirror",
+   "run_sha256": "599f8f0fd7477c8c7dbaa848a0dd4d3698b68cbd0370d580c2c27a2ec5096e10",
+   "qpy_sha256": "45e1b1e5a634062c423197ade24437df6695b3bfb7490daf9a93e4ec0bfa8c42",
+   "points": 1,
+   "role": "mirror"
+  },
+  {
+   "cell": 7,
+   "name": "p2d_g3d_t3",
+   "run_sha256": "cc9f7c91204a6cfbec6e3e014f5d85a843276e6c1220f77653fda62e96cca002",
+   "qpy_sha256": "a1a5c004034fc72c2bbcc1dd22de6be4c93a4e61a5360be4d287293a23d4a303",
+   "points": 1,
+   "role": "user"
+  },
+  {
+   "cell": 8,
+   "name": "p2d_g3d_t3_floor",
+   "run_sha256": "07d60b09c231b94726b582182dc20badf43b495b54c0522925034733b925cdfa",
+   "qpy_sha256": "0e875fa2d4bb23b07c5c5771298ad3f4c5a55ad9a4c6db39d9a656629f2f223a",
+   "points": 1,
+   "role": "floor"
+  },
+  {
+   "cell": 9,
+   "name": "p2d_g3d_t3_mirror",
+   "run_sha256": "ef69b19e8a69708003e4e25402fc8589e6ef6f48cf672c2fa8130c5a026f187c",
+   "qpy_sha256": "b14808c88374561177b7a3d5c963224e6f1c8a7b462b78857de9882b3e6d50ef",
+   "points": 1,
+   "role": "mirror"
+  },
+  {
+   "cell": 10,
+   "name": "p2d_sabre_t1",
+   "run_sha256": "9eca941eb67f8aae276e552bedb9d98b96545fe388fb2aff06f8cf45e46a8faf",
+   "qpy_sha256": "055fc48ddd4036e07ef45fb94c86515ce1ad86ebc8c20337841b7657b167d7f6",
+   "points": 1,
+   "role": "user"
+  },
+  {
+   "cell": 11,
+   "name": "p2d_sabre_t1_floor",
+   "run_sha256": "34d714c6fba1de8769138c738a6354b7c9f62153a159c490e3a0e90bf53d5a60",
+   "qpy_sha256": "c7bbf906f9e7e4416e98e79b1e2e443273325d1afa01189c1765305aa9f96771",
+   "points": 1,
+   "role": "floor"
+  },
+  {
+   "cell": 12,
+   "name": "p2d_sabre_t1_mirror",
+   "run_sha256": "d22e814d5ed2e7a8a4b0bda41967a14a679100f39b5f903ff8988378b1956d18",
+   "qpy_sha256": "cafebf66512c36ffe7a3640b6b2191a0eb235127a1210ee2fab978a5cee846d0",
+   "points": 1,
+   "role": "mirror"
+  },
+  {
+   "cell": 13,
+   "name": "p2d_sabre_t2",
+   "run_sha256": "b16efe2698e3285acf0a12d1fe2e72052385c2fd5e850c50e9c37cd596c91cfc",
+   "qpy_sha256": "5a9b49a0ac91a176f6146c4debe1a95c52c99fca05275024020584ba841129f6",
+   "points": 1,
+   "role": "user"
+  },
+  {
+   "cell": 14,
+   "name": "p2d_sabre_t2_floor",
+   "run_sha256": "131b2067fc6d4316e361086d6aea9c540d08e75a5f123bb63fd968a12fb1c95e",
+   "qpy_sha256": "0a6e02fa8d39a8ba82098cd6f077862b2a8dc3d5a8e554b72c788c61bd1bfd65",
+   "points": 1,
+   "role": "floor"
+  },
+  {
+   "cell": 15,
+   "name": "p2d_sabre_t2_mirror",
+   "run_sha256": "02590dac4995a84caf06aeb50bf4066890f1fbd7ca75209ba917270e657e38e6",
+   "qpy_sha256": "b2b038adaca336a32d7cdcc6ea57da2ee8282655ad33e11f4b7bb6acc3c8e7b4",
+   "points": 1,
+   "role": "mirror"
+  },
+  {
+   "cell": 16,
+   "name": "p2d_sabre_t3",
+   "run_sha256": "b2b985def2591e0e9991617c716ae0cc5cc2c32e9481ccf35aaf12be3c57d9c3",
+   "qpy_sha256": "dbf3897ba64a5a587f6234204b4dd4319b2f953a71ff64f65cf8b9ac0a380743",
+   "points": 1,
+   "role": "user"
+  },
+  {
+   "cell": 17,
+   "name": "p2d_sabre_t3_floor",
+   "run_sha256": "b16866ec12d763156e5ec29c8349f8804adac478222926ed0951cba0690f63f3",
+   "qpy_sha256": "a6c6136e90bb1338c0ad2f03ee1f48cdde0a312dc97788c1ec47c06738d2fa05",
+   "points": 1,
+   "role": "floor"
+  },
+  {
+   "cell": 18,
+   "name": "p2d_sabre_t3_mirror",
+   "run_sha256": "e98ec1199cb7835e62d728a07a1900d03a828f93d81a3cde5de4c623a6acf172",
+   "qpy_sha256": "5ab923c6cd9ed6ffc77f8037d3d3df0820bc576fe89c0e0b87d6461240f7b7db",
+   "points": 1,
+   "role": "mirror"
+  }
+ ],
+ "pubs": [
+  {
+   "cell": 0,
+   "point": 0
+  },
+  {
+   "cell": 0,
+   "point": 1
+  },
+  {
+   "cell": 0,
+   "point": 2
+  },
+  {
+   "cell": 0,
+   "point": 3
+  },
+  {
+   "cell": 1,
+   "point": 0
+  },
+  {
+   "cell": 2,
+   "point": 0
+  },
+  {
+   "cell": 3,
+   "point": 0
+  },
+  {
+   "cell": 4,
+   "point": 0
+  },
+  {
+   "cell": 5,
+   "point": 0
+  },
+  {
+   "cell": 6,
+   "point": 0
+  },
+  {
+   "cell": 7,
+   "point": 0
+  },
+  {
+   "cell": 8,
+   "point": 0
+  },
+  {
+   "cell": 9,
+   "point": 0
+  },
+  {
+   "cell": 10,
+   "point": 0
+  },
+  {
+   "cell": 11,
+   "point": 0
+  },
+  {
+   "cell": 12,
+   "point": 0
+  },
+  {
+   "cell": 13,
+   "point": 0
+  },
+  {
+   "cell": 14,
+   "point": 0
+  },
+  {
+   "cell": 15,
+   "point": 0
+  },
+  {
+   "cell": 16,
+   "point": 0
+  },
+  {
+   "cell": 17,
+   "point": 0
+  },
+  {
+   "cell": 18,
+   "point": 0
+  }
+ ],
+ "shots": 4000,
+ "circuits_sha256": "389ff744f0d9786cbc912e09e164852d70092e3774f5e228283ab740dc6bdb6d",
+ "qpy_sha256": "389ff744f0d9786cbc912e09e164852d70092e3774f5e228283ab740dc6bdb6d",
+ "qpu_seconds_model": 27.6,
+ "stay": true,
+ "roles": {
+  "ksent_n40_D24-fold_rule": "sentinel",
+  "p2d_g3d_t1": "user",
+  "p2d_g3d_t1_floor": "floor",
+  "p2d_g3d_t1_mirror": "mirror",
+  "p2d_g3d_t2": "user",
+  "p2d_g3d_t2_floor": "floor",
+  "p2d_g3d_t2_mirror": "mirror",
+  "p2d_g3d_t3": "user",
+  "p2d_g3d_t3_floor": "floor",
+  "p2d_g3d_t3_mirror": "mirror",
+  "p2d_sabre_t1": "user",
+  "p2d_sabre_t1_floor": "floor",
+  "p2d_sabre_t1_mirror": "mirror",
+  "p2d_sabre_t2": "user",
+  "p2d_sabre_t2_floor": "floor",
+  "p2d_sabre_t2_mirror": "mirror",
+  "p2d_sabre_t3": "user",
+  "p2d_sabre_t3_floor": "floor",
+  "p2d_sabre_t3_mirror": "mirror"
+ },
+ "user_pubs": [
+  4,
+  7,
+  10,
+  13,
+  16,
+  19
+ ]
+}
