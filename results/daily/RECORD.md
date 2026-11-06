@@ -9,6 +9,8 @@ device is a line, failures included.
 | 2026-11-05 | ibm_marrakesh | D02 | yes | READS | DIFFERS | BEATS | -0.111 | 0.0162 / 0.0482 | 0.954 | CLEAN | dbm5hgd8mdtc73d7bang |
 | 2026-11-05 | ibm_fez | FX-A (fixed) | yes | READS | AGREES | BEATS | -0.043 | 0.0033 / 0.0264 | 0.968 | DEAD | dbm5hid8ft8s738u88g0 |
 | 2026-11-05 | ibm_fez | D02 | yes | READS | DIFFERS | BEATS | -0.147 | 0.0354 / 0.0482 | 0.969 | DEAD | dbm5hid8ft8s738u88g0 |
+| 2026-11-06 | ibm_marrakesh | FX-A (fixed) | yes (alone) | READS | AGREES | BEATS | -0.008 | 0.0016 / 0.0264 | 0.977 | DEAD | dbmqhbu74qds73dsrde0 |
+| 2026-11-06 | ibm_marrakesh | D03 | REFUSED | - | - | - | - | - | - | - | (failed qubits 46, 73, 82 hit every copy; amendment 2026-11-06: FX-A run alone) |
 
 FX-A before the record (the same circuit as the practice test's p4_b0.485_t12, 2026-11-04 13:32 / 13:57 CET):
 marrakesh -0.022, fez -0.041.
@@ -24,3 +26,4 @@ decay per CZ layer = -ln(slope) / (CZ layers of the compiled circuit).
 | 2026-11-05 | ibm_marrakesh | D02 | 0.860 | 0.860 | 0.0162 -> 0.0036 | 40 | 0.0038 |
 | 2026-11-05 | ibm_fez | FX-A | 0.732 | 0.723 | 0.0033 -> 0.0013 | 25 | 0.0130 |
 | 2026-11-05 | ibm_fez | D02 | 0.816 | 0.811 | 0.0354 -> 0.0125 | 40 | 0.0052 |
+| 2026-11-06 | ibm_marrakesh | FX-A | 0.949 | 0.957 | 0.0016 -> 0.0016 | 25 | 0.0017 |

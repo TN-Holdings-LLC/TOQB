@@ -1,0 +1,36 @@
+{
+ "sentinel": "DEAD",
+ "problems": {
+  "user": {
+   "beats": "BEATS",
+   "trivial_guess_mse": 0.02638359907661984,
+   "n": 33,
+   "M": 0.15066666666666664,
+   "M_exact": 0.15877866971732527,
+   "diff": -0.008112003050658623,
+   "two_se": 0.005433499465086773,
+   "mse": 0.0016072344916107865,
+   "mean_square_answer": 0.02638359907661984,
+   "reads": "READS",
+   "agrees": "AGREES",
+   "floor_mean": 0.9768333333333334,
+   "mirror_mean": 0.23224242424242422,
+   "mirror_flags": [],
+   "worst": [
+    29,
+    4,
+    27,
+    24,
+    1
+   ],
+   "within_2se": 0.6666666666666666,
+   "guessable": false,
+   "retention": 0.9489099948683254,
+   "norm_error": 0.05109000513167465,
+   "slope": 0.9574152869374004,
+   "mse_after_scale": 0.0015593889484261264,
+   "cz_layers": 25,
+   "decay_per_layer": 0.0017407214005498298
+  }
+ }
+}
