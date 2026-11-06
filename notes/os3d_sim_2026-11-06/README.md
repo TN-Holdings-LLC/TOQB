@@ -142,3 +142,19 @@ values in the wrong site order; corrected before any number was used.)
   in the |1> floor; test with a planted relaxing qubit).
 - `gpu/os3d_v31_build.py`: one job with the probes of 4 candidates, every candidate's arm, the 2D patch and the
   sentinel (57 circuits, 66.6 s on the 11-06 marrakesh record); `gpu/os3d_v31_score.py` judges the probe's choice.
+
+## Replay of the 11-06 faults (run on the home PC by the VS Code Claude, WSL CPU, 15:46-16:15 CET; `replay_home_2026-11-06/`)
+
+Job: the v3.1 job built on the 11-06 marrakesh record (4 candidates with |0> floor, |1> floor and X echo probes;
+TOQB 5475828, psf-os 55167cf). Fault model stated in `replay_1106.py` (resembles 11-06, not read from a calibration):
+uniform depolarizing everywhere; q29 amplitude damping 0.04 per 1-qubit gate; coupler 48-49 depolarizing 0.05.
+Probe rule "best" (owner's "white of white").
+
+| | chosen | candidate 0 (touches q29, q38, q49) | chosen arm MSE t1 / t2 / t3 | candidate 0 MSE t1 / t2 / t3 |
+|---|---|---|---|---|
+| no faults | 0 | nothing marked | 0.0037 / 0.0020 / 0.0041 (retention 0.92 / 0.91 / 0.86) | (the same arm) |
+| faults | **2** | **q29 and q49 marked** (|1> floor max -0.10 at q29, |0> floor min 0.54) | **0.0037 / 0.0020 / 0.0041** (retention 0.92 / 0.91 / 0.86) | 0.0085 / 0.0080 / 0.0138 (retention 0.88 / 0.85 / 0.80) |
+
+The probes marked exactly the two qubits that decided the device run of 11-06 and moved the arm to a candidate that
+reads as on a clean device: 2.3 / 4.0 / 3.4 times lower MSE than staying at candidate 0. The 2D patch in the same
+job: MSE 0.0007 / 0.0014 / 0.0024. Simulator only; the fault model is ours.
