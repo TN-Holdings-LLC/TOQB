@@ -51,5 +51,5 @@ faults: see `notes/os3d_sim_2026-11-06/README.md` (filled in when the replay fin
 
 ## To fix before declaring (owner)
 
-- k = 4 candidates (marrakesh 11-06 had 7 qualifying translations, fez 11-05 had 14), probe depth t = 3.
+- k = 4 candidates: fixed by the owner (2026-11-06 15:34 CET; marrakesh 11-06 had 7 qualifying translations, fez 11-05 had 14). Probe depth t = 3.
 - One device or the night's devices.
