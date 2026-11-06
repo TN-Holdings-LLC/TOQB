@@ -1,0 +1,16 @@
+v3 fold t1: 18 qubits, 116 CZ on 18 pairs, sum of FakeFez CZ errors 0.487, mean readout error of read qubits 0.0124
+   pair [26, 27] x4: FakeFez CZ error 0.0103
+   pair [20, 21] x4: FakeFez CZ error 0.0082
+   pair [21, 36] x8: FakeFez CZ error 0.0075
+   pair [41, 42] x7: FakeFez CZ error 0.0063
+   site 10 on qubit 41: FakeFez readout error 0.0459
+   site 2 on qubit 43: FakeFez readout error 0.0327
+   site 7 on qubit 45: FakeFez readout error 0.0200
+SABRE t1: 16 qubits, 136 CZ on 15 pairs, sum of FakeFez CZ errors 12.471, mean readout error of read qubits 0.0100
+   pair [106, 107] x12: FakeFez CZ error 1.0000
+   pair [105, 117] x3: FakeFez CZ error 0.0192
+   pair [69, 78] x4: FakeFez CZ error 0.0064
+   pair [87, 97] x17: FakeFez CZ error 0.0047
+   site 2 on qubit 69: FakeFez readout error 0.0227
+   site 3 on qubit 78: FakeFez readout error 0.0227
+   site 9 on qubit 87: FakeFez readout error 0.0188

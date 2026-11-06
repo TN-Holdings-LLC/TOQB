@@ -1,0 +1,16 @@
+1. FOLD_SCHEDULES
+   schedule 0 start (0, 1, 2, 3): every value visits [1, 2, 3], 6 swaps, ends (3, 2, 1, 0), reversed True
+   schedule 0 start (3, 2, 1, 0): every value visits [1, 2, 3], 6 swaps, ends (0, 1, 2, 3), reversed True
+   schedule 1 start (0, 1, 2, 3): every value visits [0, 1, 2], 6 swaps, ends (3, 2, 1, 0), reversed True
+   schedule 1 start (3, 2, 1, 0): every value visits [0, 1, 2], 6 swaps, ends (0, 1, 2, 3), reversed True
+   schedule 2 start (0, 1, 2, 3): every value visits [0, 1, 2, 3], 10 swaps, ends (3, 2, 1, 0), reversed True
+   schedule 2 start (3, 2, 1, 0): every value visits [0, 1, 2, 3], 10 swaps, ends (0, 1, 2, 3), reversed True
+2./3. placement on ibm_fez
+   4x2x2 t1: {'layout': 'fold', 'r0': 1, 'c0': 0}, passes 1, two-qubit pairs 18, not couplers []
+   4x2x2 t2: {'layout': 'fold', 'r0': 1, 'c0': 0}, passes 2, two-qubit pairs 18, not couplers []
+   4x2x2 t3: {'layout': 'fold', 'r0': 1, 'c0': 0}, passes 3, two-qubit pairs 18, not couplers []
+   4x3x2 t1: {'layout': 'fold', 'r0': 0, 'c0': 0}, passes 1, two-qubit pairs 29, not couplers []
+   4x2x3 t2: {'layout': 'fold', 'r0': 0, 'c0': 0}, passes 2, two-qubit pairs 28, not couplers []
+   4x3x3 t2: {'layout': 'fold', 'r0': 0, 'c0': 0}, passes 2, two-qubit pairs 45, not couplers []
+   4x6x2 t2: {'layout': 'fold', 'r0': 0, 'c0': 0}, passes 2, two-qubit pairs 62, not couplers []
+   4x3x4 t2: {'layout': 'fold', 'r0': 4, 'c0': 0}, passes 2, two-qubit pairs 61, not couplers []

@@ -44,3 +44,50 @@ exact <Z>; `uniform_4x2x2_t1.log`)
 | SABRE | 136 | 0.89 | 0.007 | yes | no |
 
 t = 2, 3 and the FakeFez model were not run yet (2 CPUs here).
+
+## Noise, t = 1-3 and the FakeFez model (workplace, 2026-11-06 06:20 CET; home's 06l item 1; not declared, not a device result)
+
+400 trajectories each; `sim3d.py` with the FakeFez remap fix (`review_06l.md`, finding 1). R = MSE(v3) / MSE(SABRE),
+read with the draft's thresholds (HELPS <= 0.8, HURTS >= 1.25). SABRE: seed 0 only. BEATS: MSE below the better of
+all 0 / all 1 (0.092, 0.335, 0.482 at t 1, 2, 3). M_exact 0.697, 0.425, 0.321. Idle errors are in neither model.
+
+Uniform model (`uniform_4x2x2_t1_v3sabre.log`, `uniform_4x2x2_t23.log`):
+
+| t | arm | CZ (layers) | retention | MSE | READS | AGREES | BEATS | R |
+|---|---|---|---|---|---|---|---|---|
+| 1 | v3 fold | 116 (33) | 0.903 | 0.0048 | yes | no (-0.068) | yes | 0.72 HELPS |
+| 1 | SABRE | 136 (73) | 0.886 | 0.0067 | yes | no (-0.079) | yes | |
+| 2 | v1 | 1168 (316) | 0.526 | 0.0435 | yes | no | yes | |
+| 2 | v2 rows | 656 (165) | 0.630 | 0.0269 | yes | no | yes | |
+| 2 | v3 fold | 232 (64) | 0.879 | 0.0033 | yes | no (-0.051) | yes | 0.76 HELPS |
+| 2 | SABRE | 269 (107) | 0.851 | 0.0044 | yes | no (-0.063) | yes | |
+| 3 | v1 | 1752 (474) | 0.375 | 0.0567 | yes | no | yes | |
+| 3 | v2 rows | 984 (247) | 0.477 | 0.0406 | yes | no | yes | |
+| 3 | v3 fold | 348 (95) | 0.826 | 0.0056 | yes | no (-0.056) | yes | 0.75 HELPS |
+| 3 | SABRE | 456 (158) | 0.789 | 0.0075 | yes | no (-0.068) | yes | |
+
+FakeFez model, placement on the 11-05 record as it is (`fakefez_4x2x2_t123_v3sabre.log`):
+
+| t | v3 fold: retention, MSE | SABRE: retention, MSE | R |
+|---|---|---|---|
+| 1 | 0.909, 0.0043 | 0.577, 0.1852 (BEATS no) | 0.02 |
+| 2 | 0.892, 0.0030 (AGREES yes, -0.046) | 0.278, 0.1464 (READS no) | 0.02 |
+| 3 | 0.818, 0.0073 | 0.316, 0.0924 (READS no) | 0.08 |
+
+**This SABRE collapse is a model mismatch, not a property of SABRE** (`diag_fakefez.py`, `diag_fakefez_t1.log`):
+SABRE's route uses coupler 106-107 twelve times; the FakeFez snapshot (an older public calibration) has CZ error 1.0
+there, while the 11-05 record does not mark it failed. v3's worst coupler in the snapshot is 0.010. Rule then fixed
+(06:06 CET, before the run): add the snapshot's dead elements (CZ or readout error >= 0.5: 7 couplers, no qubit) to
+the record's failed marks for both arms (`--mark-fakefez-dead`):
+
+| t | v3 fold: CZ (layers), retention, MSE | SABRE: CZ (layers), retention, MSE | R |
+|---|---|---|---|
+| 1 | 116 (33), 0.909, 0.0043 | 139 (56), 0.892, 0.0074 | 0.58 HELPS |
+| 2 | 232 (64), 0.892, 0.0030 (AGREES yes) | 269 (109), 0.859, 0.0052 | 0.59 HELPS |
+| 3 | 348 (95), 0.818, 0.0073 | 441 (194), 0.842, 0.0058 | 1.27 HURTS |
+
+Reading: v3 reads at least as well as SABRE seed 0 in five of six model-and-depth cells (R 0.58-0.76) and worse in
+one (FakeFez marked, t 3, R 1.27, at the HURTS edge; the trajectory noise of MSE at 400 trajectories was not measured, so
+this cell may fall either side of 1.25). Neither arm AGREES except v3 at t 2 under FakeFez (by 0.004). Every arm
+READS and BEATS once dead elements are marked. The unmarked FakeFez run shows the larger point for a device test: one
+bad coupler that the record does not mark can decide the comparison, for either arm.

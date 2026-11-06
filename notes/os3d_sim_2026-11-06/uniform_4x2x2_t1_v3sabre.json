@@ -1,0 +1,40 @@
+[
+ {
+  "M": 0.6291326901658341,
+  "M_exact": 0.6967067093471662,
+  "retention": 0.9030093749999181,
+  "mse": 0.004816325242742104,
+  "msq": 0.4854002388493567,
+  "reads": true,
+  "agrees": false,
+  "mse_trivial": 0.09198682015502437,
+  "beats": true,
+  "size": "4x2x2",
+  "t": 1,
+  "variant": "v3 fold",
+  "model": "uniform",
+  "cz": 116,
+  "cz_layers": 33,
+  "qubits": 18,
+  "seconds": 48.2
+ },
+ {
+  "M": 0.6173060937748661,
+  "M_exact": 0.6967067093471662,
+  "retention": 0.8860343750002053,
+  "mse": 0.006700825837637776,
+  "msq": 0.4854002388493567,
+  "reads": true,
+  "agrees": false,
+  "mse_trivial": 0.09198682015502437,
+  "beats": true,
+  "size": "4x2x2",
+  "t": 1,
+  "variant": "SABRE",
+  "model": "uniform",
+  "cz": 136,
+  "cz_layers": 73,
+  "qubits": 16,
+  "seconds": 12.2
+ }
+]

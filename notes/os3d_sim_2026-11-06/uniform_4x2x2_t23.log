@@ -1,0 +1,8 @@
+4x2x2 t2 v1 (521ac5b)  q  19 cz  1168 layers  316  M +0.223 / +0.425  retention 0.526  mse 0.0435 (msq/2 0.0921)  reads True  agrees False
+4x2x2 t2 v2 rows       q  19 cz   656 layers  165  M +0.268 / +0.425  retention 0.63  mse 0.0269 (msq/2 0.0921)  reads True  agrees False
+4x2x2 t2 v3 fold       q  18 cz   232 layers   64  M +0.374 / +0.425  retention 0.879  mse 0.0033 (msq/2 0.0921)  reads True  agrees False
+4x2x2 t2 SABRE         q  17 cz   269 layers  107  M +0.362 / +0.425  retention 0.851  mse 0.0044 (msq/2 0.0921)  reads True  agrees False
+4x2x2 t3 v1 (521ac5b)  q  19 cz  1752 layers  474  M +0.120 / +0.321  retention 0.375  mse 0.0567 (msq/2 0.0620)  reads True  agrees False
+4x2x2 t3 v2 rows       q  19 cz   984 layers  247  M +0.153 / +0.321  retention 0.477  mse 0.0406 (msq/2 0.0620)  reads True  agrees False
+4x2x2 t3 v3 fold       q  18 cz   348 layers   95  M +0.265 / +0.321  retention 0.826  mse 0.0056 (msq/2 0.0620)  reads True  agrees False
+4x2x2 t3 SABRE         q  18 cz   456 layers  158  M +0.253 / +0.321  retention 0.789  mse 0.0075 (msq/2 0.0620)  reads True  agrees False

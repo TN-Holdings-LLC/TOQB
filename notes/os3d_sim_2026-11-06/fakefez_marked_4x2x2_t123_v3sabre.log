@@ -1,0 +1,7 @@
+marked from FakeFez: couplers [(27, 28), (31, 32), (32, 33), (68, 69), (80, 81), (106, 107), (139, 155)], qubits []
+4x2x2 t1 v3 fold       q  18 cz   116 layers   33  M +0.634 / +0.697  retention 0.909  mse 0.0043 (msq/2 0.2427)  reads True  agrees False
+4x2x2 t1 SABRE         q  16 cz   139 layers   56  M +0.621 / +0.697  retention 0.892  mse 0.0074 (msq/2 0.2427)  reads True  agrees False
+4x2x2 t2 v3 fold       q  18 cz   232 layers   64  M +0.379 / +0.425  retention 0.892  mse 0.0030 (msq/2 0.0921)  reads True  agrees True
+4x2x2 t2 SABRE         q  16 cz   269 layers  109  M +0.365 / +0.425  retention 0.859  mse 0.0052 (msq/2 0.0921)  reads True  agrees False
+4x2x2 t3 v3 fold       q  18 cz   348 layers   95  M +0.263 / +0.321  retention 0.818  mse 0.0073 (msq/2 0.0620)  reads True  agrees False
+4x2x2 t3 SABRE         q  16 cz   441 layers  194  M +0.270 / +0.321  retention 0.842  mse 0.0058 (msq/2 0.0620)  reads True  agrees False

@@ -38,6 +38,15 @@ def noise(model, p2=0.005, p1=0.0002, pr=0.015):
     return nm
 
 
+def fakefez_dead(limit=0.5):
+    """The FakeFez snapshot's dead elements: couplers with CZ error >= limit, qubits with readout error >= limit."""
+    from qiskit_ibm_runtime.fake_provider import FakeFez
+    tg = FakeFez().target
+    dead_c = {tuple(sorted(k)) for k, v in tg["cz"].items() if v is not None and v.error is not None and v.error >= limit}
+    dead_q = {k[0] for k, v in tg["measure"].items() if v is not None and v.error is not None and v.error >= limit}
+    return dead_c, dead_q
+
+
 def compile_grid(dev, rc, qc, placed, n, exact_rzz):
     from qiskit import QuantumCircuit
     from psf_os import user2d as U
@@ -68,6 +77,44 @@ def compile_sabre(dev, logical, seed=0):
                      optimization_level=1, routing_method="none", layout_method="trivial", seed_transpiler=seed)
 
 
+def remap_noise(nm, touched):
+    """The backend noise model restricted to the touched physical qubits and renumbered as compact() renumbers them
+    (workplace fix, 2026-11-06: compact() renumbers qubits 0..k-1, so a per-qubit backend model must follow, or the
+    errors of physical qubits 0..k-1, and no CZ error on pairs that are not couplers there, would be applied)."""
+    from qiskit_aer.noise import NoiseModel
+    m = {q: i for i, q in enumerate(touched)}
+    d = nm.to_dict()
+    keep = []
+    for e in d["errors"]:
+        gq = e.get("gate_qubits")
+        if not gq:
+            keep.append(e)
+            continue
+        new = [tuple(m[q] for q in g) for g in gq if all(q in m for q in g)]
+        if new:
+            e = dict(e, gate_qubits=new)
+            keep.append(e)
+    d["errors"] = [e for e in keep if e["type"] != "roerror"]
+    return NoiseModel.from_dict(d)
+
+
+def readout_maps(nm, touched):
+    """{compact index: (p(1|0), p(0|1))} from the backend model's readout errors."""
+    out = {}
+    m = {q: i for i, q in enumerate(touched)}
+    for e in nm.to_dict()["errors"]:
+        if e["type"] == "roerror":
+            for g in e["gate_qubits"]:
+                if len(g) == 1 and g[0] in m:
+                    P = e["probabilities"]
+                    out[m[g[0]]] = (float(P[0][1]), float(P[1][0]))
+    return out
+
+
+def touched_of(c):
+    return sorted({c.find_bit(q).index for ins in c.data if ins.operation.name not in ("barrier",) for q in ins.qubits})
+
+
 def compact(c, n):
     """The compiled circuit on its touched qubits only, measurements replaced by saved <Z> of each site
     (clbit s = site s). Returns the circuit; the readout error is applied afterwards as the factor (1 - 2 pr)."""
@@ -90,19 +137,37 @@ def compact(c, n):
     return out
 
 
-def z_per_site(sim, c, n, trajectories, pr):
-    """Mean over noise trajectories of the exact <Z> of each site (Aer statevector, one trajectory per shot)."""
+def z_per_site(sim, c, n, trajectories, pr, backend_nm=None, method="statevector"):
+    """Mean over noise trajectories of the exact <Z> of each site (Aer statevector, one trajectory per shot).
+    backend_nm (fakefez): remapped to the touched qubits; its readout errors applied per site exactly:
+    <Z>_read = (1 - p10 - p01) <Z> + (p01 - p10), p10 = p(1|0), p01 = p(0|1)."""
     cc = compact(c, n)
-    d = sim.run(cc, shots=trajectories).result().data()
-    return np.array([float(np.real(d[f"z{s}"])) for s in range(n)]) * (1 - 2 * pr), cc.num_qubits
+    if backend_nm is None:
+        d = sim.run(cc, shots=trajectories).result().data()
+        return np.array([float(np.real(d[f"z{s}"])) for s in range(n)]) * (1 - 2 * pr), cc.num_qubits
+    from qiskit_aer import AerSimulator
+    touched = touched_of(c)
+    nm = remap_noise(backend_nm, touched)
+    ro = readout_maps(backend_nm, touched)
+    d = AerSimulator(noise_model=nm, method=method, seed_simulator=11).run(cc, shots=trajectories).result().data()
+    site_q = {}
+    for ins in c.data:
+        if ins.operation.name == "measure":
+            site_q[c.find_bit(ins.clbits[0]).index] = touched.index(c.find_bit(ins.qubits[0]).index)
+    z = np.array([float(np.real(d[f"z{s}"])) for s in range(n)])
+    for s in range(n):
+        p10, p01 = ro.get(site_q[s], (0.0, 0.0))
+        z[s] = (1 - p10 - p01) * z[s] + (p01 - p10)
+    return z, cc.num_qubits
 
 
 def score(z, ex):
     ex = np.array(ex)
     M, Mx = float(z.mean()), float(ex.mean())
     mse, msq = float(np.mean((z - ex) ** 2)), float(np.mean(ex ** 2))
+    trivial = min(float(np.mean((1 - ex) ** 2)), float(np.mean((-1 - ex) ** 2)))  # all 0 (Z = +1) or all 1
     return dict(M=M, M_exact=Mx, retention=M / Mx if abs(Mx) >= 0.1 else None, mse=mse, msq=msq,
-                reads=mse <= msq / 2, agrees=abs(M - Mx) <= 0.05)
+                reads=mse <= msq / 2, agrees=abs(M - Mx) <= 0.05, mse_trivial=trivial, beats=mse < trivial)
 
 
 def main():
@@ -115,7 +180,13 @@ def main():
     ap.add_argument("--sizes", default="4x2x2")
     ap.add_argument("--ts", default="1,2,3")
     ap.add_argument("--method", default="statevector")
+    ap.add_argument("--variants", default="v1,v2,v3,sabre", help="which of v1, v2, v3, sabre to run")
+    ap.add_argument("--mark-fakefez-dead", action="store_true",
+                    help="add the FakeFez snapshot's dead elements (CZ error >= 0.5, readout error >= 0.5) to the "
+                         "record's failed marks before placing both arms (rule fixed 2026-11-06 06:06 CET, before "
+                         "this run)")
     a = ap.parse_args()
+    want = set(a.variants.split(","))
     sys.path.insert(0, a.psf_os)
     from qiskit_aer import AerSimulator
     from psf_os import device as Dv
@@ -123,6 +194,11 @@ def main():
     from psf_os import mirror2d as Mi
     from psf_os.compile import RuleCompiler
     dev = Dv.Device.load(a.device)
+    if a.mark_fakefez_dead:
+        dead_c, dead_q = fakefez_dead()
+        dev.failed_couplers = [list(e) for e in sorted({tuple(sorted(e)) for e in dev.failed_couplers} | dead_c)]
+        dev.failed_qubits = sorted(set(dev.failed_qubits) | dead_q)
+        print(f"marked from FakeFez: couplers {sorted(dead_c)}, qubits {sorted(dead_q)}", flush=True)
     rc = RuleCompiler(dev)
     G1 = load_v1()
     nm = noise(a.model)
@@ -141,17 +217,21 @@ def main():
             ex = G2.exact(L, M, N, t, 0.8)
             ex = [ex[str(s)] for s in range(n)]
             variants = {}
-            qc, placed, used, _ = G1.physical(dev, L, M, N, t, 0.8)
-            variants["v1 (521ac5b)"] = compile_grid(dev, rc, qc, placed, n, False)
-            qc, placed, used, _ = G2.physical(dev, L, M, N, t, 0.8, layout="rows")
-            variants["v2 rows"] = compile_grid(dev, rc, qc, placed, n, True)
-            if L == 4:
+            if "v1" in want:
+                qc, placed, used, _ = G1.physical(dev, L, M, N, t, 0.8)
+                variants["v1 (521ac5b)"] = compile_grid(dev, rc, qc, placed, n, False)
+            if "v2" in want:
+                qc, placed, used, _ = G2.physical(dev, L, M, N, t, 0.8, layout="rows")
+                variants["v2 rows"] = compile_grid(dev, rc, qc, placed, n, True)
+            if L == 4 and "v3" in want:
                 qc, placed, used, _ = G2.physical(dev, L, M, N, t, 0.8, layout="fold")
                 variants["v3 fold"] = compile_grid(dev, rc, qc, placed, n, True)
-            variants["SABRE"] = compile_sabre(dev, G2.logical(L, M, N, t, 0.8))
+            if "sabre" in want:
+                variants["SABRE"] = compile_sabre(dev, G2.logical(L, M, N, t, 0.8))
             for name, c in variants.items():
                 t0 = time.time()
-                z, nq = z_per_site(sim, c, n, a.trajectories, pr)
+                z, nq = z_per_site(sim, c, n, a.trajectories, pr,
+                                   backend_nm=nm if a.model == "fakefez" else None, method=a.method)
                 r = score(z, ex)
                 r.update(size=size, t=t, variant=name, model=a.model, cz=Mi.cz_count(c),
                          cz_layers=c.depth(lambda i: len(i.qubits) == 2), qubits=nq, seconds=round(time.time() - t0, 1))
