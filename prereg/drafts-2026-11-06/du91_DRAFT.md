@@ -1,3 +1,5 @@
+> **Superseded for running by `du51_DRAFT.md` (owner, 2026-11-06 01:37 CET: N = 51 only; 71 and 91 set aside). Kept as the record of the placement and cost checks.**
+
 # DRAFT (not declared; workplace, 2026-11-06; task X): IBM's dual-unitary chain experiment at its widths (51, 71, 91), raw, through the user entrance
 
 Status: draft for home and the owner. Nothing is fixed. Code: `daily/du91.py` (chains, circuits, answers),
