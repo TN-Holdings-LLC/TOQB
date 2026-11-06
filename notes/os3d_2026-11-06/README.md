@@ -40,3 +40,23 @@ the identity. Fixed rules, no search. t = 2, theta 0.8; noiseless check against 
 - Next, if continued: block-local rounds (one bridge per 4 columns, wider lattices) to see whether the cost per site
   stops growing with L. Home's view: on IBM's planar heavy-hex a 3D OS does not pay; keep it for devices with richer
   connectivity.
+
+## Block-local variant (`blockpass.py`): constant depth per step
+
+Rounds inside each block of 4 columns (every block holds a bridge column for both kinds of row pair); a step ends
+on the identity (multiple of 8 rounds). Noiseless check: 8x2 and 4x3 within 3e-16. t = 2, theta 0.8.
+
+| lattice | ideal CZ | SABRE CZ (layers) | blockpass CZ (layers) | CZ ratio |
+|---|---|---|---|---|
+| 2D 4x3 | 34 | 101 (42) | 380 (120) | 3.76 |
+| 2D 8x3 | 74 | 268 (96) | 772 (128) | 2.88 |
+| 2D 12x3 | 114 | 476 (131) | 1164 (136) | 2.45 |
+| 2D 16x3 | 154 | 723 (226) | 1556 (144) | 2.15 |
+| 2D 8x4 | 104 | 504 (164) | 1072 (128) | 2.13 |
+
+- The formula keeps the CZ layers per step constant (about 64) as the lattice widens; SABRE's layers grow
+  (96 -> 226 from 8x3 to 16x3). From 12x3 on the formula is as shallow or shallower than SABRE (16x3: 144 against
+  226 layers; 8x4: 128 against 164), while using about twice as many CZ.
+- Since the measured loss is per CZ layer (the daily record's decay), depth may matter more than the CZ count; which
+  one wins on a device is not known from this (CZ count also adds error). A device A/B would decide.
+- For a true 3D lattice the z-bonds still cost several bridge hops; not built.
