@@ -7,6 +7,7 @@ usage: python mps_dry.py JOB_DIR [TMAX] [WORKERS]
 """
 import json
 import os
+import re
 import sys
 
 from qiskit import QuantumCircuit, qpy
@@ -42,7 +43,8 @@ def main(job, tmax=8, workers=8):
     rows = {k: dict(pub=k, counts={"0" * c.num_clbits: 1}) for k, c in enumerate(circs)}
     tasks = []
     for k, (c, n) in enumerate(zip(circs, names)):
-        deep = n.startswith("p2d_du51") and int(n.split("_t")[1][:2]) > tmax
+        mt = re.match(r"p2d_du\d+_h\d+_t(\d+)", n)     # any N (du51_, du71_): the first prefix test missed du71
+        deep = mt is not None and int(mt.group(1)) > tmax
         if deep or n.startswith("ksent"):      # placeholder: deeper points and the ring sentinel are not checked
             continue
         b = io.BytesIO()
