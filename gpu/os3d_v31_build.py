@@ -21,7 +21,7 @@ import tempfile
 
 import numpy as np
 
-L, M, N = 4, 2, 2
+L, M, N = 4, 2, 2        # default lattice; --lattice M,N changes M and N (L = 4: the folded layout)
 HEX = [3, 4, 5, 6, 7, 17, 27, 26, 25, 24, 23, 16]   # row 0 cols 3-7, bridge 17, row 1 cols 7-3, bridge 16
 TAILS = [(7, 8), (8, 9), (27, 28), (28, 29)]
 
@@ -72,7 +72,17 @@ def main():
     ap.add_argument("--max-seconds", type=float, default=120)
     ap.add_argument("--probe-t", type=int, default=None, help="probe depth (default: the deepest t, as on 11-07)")
     ap.add_argument("--dry-clifford-sentinel", action="store_true")
+    ap.add_argument("--lattice", default="2,2", help="M,N of the 4 x M x N lattice (2026-11-07: 6,3 = 72 sites)")
+    ap.add_argument("--exact3d", default=None, help="exact 3D answers by light cone (gpu/os3d_lightcone.py) for "
+                                                    "lattices over 24 sites")
     a = ap.parse_args()
+    global M, N
+    M, N = (int(v) for v in a.lattice.split(","))
+    exact3d = None
+    if L * M * N > 24:
+        if not a.exact3d:
+            raise SystemExit("STOP: over 24 sites the exact answers come from --exact3d (gpu/os3d_lightcone.py)")
+        exact3d = json.load(open(a.exact3d))
     for p in (a.out, a.answers_out):
         if os.path.exists(p):
             raise SystemExit(f"STOP: {p} exists")
@@ -103,7 +113,7 @@ def main():
             arms[tag] = dict(kind="3D", candidate=c["index"], t=t, cz=pr["cz"], cz_layers=pr["cz_layers"],
                              r0=c["r0"], c0=c["c0"], fold_version=pr["where"]["fold_version"],
                              mapping={str(s): q for s, q in enumerate(pr["phys"])})
-            answers[tag] = G.exact(L, M, N, t, a.theta)
+            answers[tag] = G.exact(L, M, N, t, a.theta) if exact3d is None else exact3d[f"t{t}"]
     with tempfile.TemporaryDirectory() as d:
         items = []
         for t in ts:
@@ -131,7 +141,7 @@ def main():
         json.dump(answers, f, indent=1, sort_keys=True)
     ans_sha = hashlib.sha256(open(a.answers_out, "rb").read()).hexdigest()
     gh = GH.qpy_hash(os.path.join(a.out, "job", "circuits.qpy"))
-    rep = dict(device=dev.name, ts=ts, theta=a.theta, shots=a.shots,
+    rep = dict(device=dev.name, lattice=[L, M, N], ts=ts, theta=a.theta, shots=a.shots,
                candidates=[{x: c[x] for x in ("index", "r0", "c0", "used")} for c in cands], arms=arms,
                circuits=len(man["pubs"]), qpu_seconds_model=man["qpu_seconds_model"], gate_hash=gh,
                answers_sha256=ans_sha, job=os.path.join(a.out, "job"), runs=runs)
