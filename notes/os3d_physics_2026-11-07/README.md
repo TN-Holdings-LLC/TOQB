@@ -22,3 +22,8 @@
 - Compiled by psf-os's RuleCompiler: 176 CZ in 49 layers per step (Ising v3.1: 108 in 28), t = 2: 348 CZ, 95 layers.
 - The draft's dt = 0.25 leaves almost no signal: exact Neel order m_s = 0.104 at t = 1, -0.007 at t = 2. By dt
   (t = 1-4): 0.05: 0.932 0.757 0.530 0.308; 0.08: 0.831 0.487 0.162 -0.068; 0.10: 0.746 0.314 -0.007 -0.192.
+- Owner 22:51 JST: dt = 0.05. `gpu/heis3d_build.py` (every fitting fold translation up to k = 4, t = 1-4, floor and
+  mirror, ring sentinel) and `gpu/heis3d_score.py` (rule top; READS, AGREES on m_s within 0.05, retention). Try-build
+  on kingston's record of 14:35 CET: 4 places, 52 circuits, 61.0 s by the model, CZ 176 / 348 / 520 / 692, exact m_s
+  0.932 / 0.757 / 0.530 / 0.308. The whole job run noiselessly (`noiseless.py`): every arm READS and AGREES,
+  retention 0.97-1.05 (shot noise). Noise estimate: `heis_sim_kit_2026-11-07.zip` on a POD (realsim, FakeFez noise).
