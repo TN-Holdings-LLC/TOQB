@@ -11,3 +11,14 @@
 - Try-builds on kingston's record of 11:14 CET: 4 x 4 x 3, 5 places, 181 circuits, 205 s by the model; 4 x 2 x 2,
   4 places, t = 1-6, 286 circuits, 322 s.
 - Not checked: noise at 4 x 4 x 3 (56 qubits, beyond the statevector simulator).
+
+# Part B (3D Heisenberg on the folded layout), first checks (2026-11-07 night)
+
+- `gpu/heis3d.py`: the folded layout v3.1 unchanged except the bond gate U = exp(-i dt (XX + YY + delta ZZ)) (one
+  two-qubit block, at most 3 CZ by the analytic KAK; SWAP . U on the swaps that carry an x-bond; y-bonds by moving
+  the qubit onto the empty bridge and back), Neel start, every bond logged as a site pair.
+- Placed against logical (kingston record of 14:35 CET, 4 x 2 x 2, 18 qubits, statevector): t = 1 and 2, every site
+  <Z> equal to the logged Trotter product to 1e-16, every bridge back in |0> to 4e-15.
+- Compiled by psf-os's RuleCompiler: 176 CZ in 49 layers per step (Ising v3.1: 108 in 28), t = 2: 348 CZ, 95 layers.
+- The draft's dt = 0.25 leaves almost no signal: exact Neel order m_s = 0.104 at t = 1, -0.007 at t = 2. By dt
+  (t = 1-4): 0.05: 0.932 0.757 0.530 0.308; 0.08: 0.831 0.487 0.162 -0.068; 0.10: 0.746 0.314 -0.007 -0.192.
