@@ -1,0 +1,74 @@
+{
+ "kind": "psfos",
+ "psfos_role": "floor",
+ "psfos_job": {
+  "kind": "user2d_floor"
+ },
+ "arm": "patch:copy",
+ "version": "psf-os rule compiler (TOQB fold:rule at 8d44f05, map-free Target)",
+ "device": "ibm_fez",
+ "masked": [],
+ "labels": [
+  24,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  37,
+  38,
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51
+ ],
+ "mapping": {
+  "24": 24,
+  "25": 25,
+  "26": 26,
+  "27": 27,
+  "28": 28,
+  "29": 29,
+  "30": 30,
+  "31": 31,
+  "37": 37,
+  "38": 38,
+  "44": 44,
+  "45": 45,
+  "46": 46,
+  "47": 47,
+  "48": 48,
+  "49": 49,
+  "50": 50,
+  "51": 51
+ },
+ "points": [
+  {
+   "input": "f",
+   "setting": "z"
+  }
+ ],
+ "valid": true,
+ "shots": 4000,
+ "export": {
+  "qpy": "probe1_1.qpy",
+  "circuits": 1,
+  "sha256": "66cbabc5b9912abccfa8c8a5265894e4439b0e24b795ae1b948287a4a32ce24a"
+ },
+ "tag": "probe1_1",
+ "probe": {
+  "layout": "fold",
+  "r0": 1,
+  "c0": 4,
+  "fold_version": "v3.1",
+  "t": 1,
+  "index": 1,
+  "start": 1
+ }
+}

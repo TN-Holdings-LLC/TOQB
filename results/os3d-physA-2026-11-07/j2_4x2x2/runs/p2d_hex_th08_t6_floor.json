@@ -1,0 +1,62 @@
+{
+ "kind": "psfos",
+ "psfos_role": "floor",
+ "psfos_job": {
+  "kind": "user2d_floor"
+ },
+ "arm": "patch:copy",
+ "version": "psf-os rule compiler (TOQB fold:rule at 8d44f05, map-free Target)",
+ "device": "ibm_fez",
+ "masked": [],
+ "labels": [
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  16,
+  17,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29
+ ],
+ "mapping": {
+  "3": 3,
+  "4": 4,
+  "5": 5,
+  "6": 6,
+  "7": 7,
+  "8": 8,
+  "9": 9,
+  "16": 16,
+  "17": 17,
+  "23": 23,
+  "24": 24,
+  "25": 25,
+  "26": 26,
+  "27": 27,
+  "28": 28,
+  "29": 29
+ },
+ "points": [
+  {
+   "input": "f",
+   "setting": "z"
+  }
+ ],
+ "valid": true,
+ "shots": 4000,
+ "export": {
+  "qpy": "p2d_hex_th08_t6_floor.qpy",
+  "circuits": 1,
+  "sha256": "ee7f20097483b3dcc2ea3a432955563fb6698b6c41bafaeb4165daed560cdc76"
+ },
+ "cz": 96,
+ "tag": "hex_th08_t6"
+}
