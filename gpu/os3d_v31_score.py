@@ -19,6 +19,30 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from practice_score import judge  # noqa: E402
 
 
+def _tag(rep, head, th, t):
+    """Arm tag: g3d<i>_t<t> / hex_t<t>, or with a theta sweep (rep["thetas"], 2026-11-07 draft A) ..._th<10 theta>_t<t>."""
+    if len(rep.get("thetas") or [rep.get("theta")]) > 1:
+        return f"{head}_th{int(round(th * 10)):02d}_t{t}"
+    return f"{head}_t{t}"
+
+
+def _classes(card, lattice):
+    """Bulk (all six neighbours) against surface sites of a 3D arm: mean <Z> and mean exact per class (draft A)."""
+    import itertools
+    import numpy as np
+    Lx, My, Nz = lattice
+    sites = list(itertools.product(range(Lx), range(My), range(Nz)))
+    bulk = {str(i) for i, (x, y, z) in enumerate(sites)
+            if 0 < x < Lx - 1 and 0 < y < My - 1 and 0 < z < Nz - 1}
+    out = {}
+    for name, sel in (("bulk", lambda q: q in bulk), ("surface", lambda q: q not in bulk)):
+        qs = [x for x in card["qubits"] if sel(str(x["q"]))]
+        if qs:
+            m, e = float(np.mean([x["z"] for x in qs])), float(np.mean([x["exact"] for x in qs]))
+            out[name] = dict(sites=len(qs), M=m, M_exact=e, diff=m - e, retention=m / e if abs(e) >= 0.1 else None)
+    return out
+
+
 def main(run, answers, rule="relative"):
     from psf_os import grid3d as G
     from psf_os import user2d as U
@@ -32,7 +56,7 @@ def main(run, answers, rule="relative"):
         ch = G.probe_choose(job, runs, rule="relative")
         t1 = min(rep["ts"])
         for r in ch["candidates"]:
-            r["mirror_t1"] = cs[f"g3d{r['index']}_t{t1}"]["mirror_mean"]
+            r["mirror_t1"] = cs[_tag(rep, f"g3d{r['index']}", rep["theta"], t1)]["mirror_mean"]
         clean = [r for r in ch["candidates"] if not r["low"]] or ch["candidates"]
         best = max(clean, key=lambda r: (r["mirror_t1"], -r["index"]))
         ch.update(rule="mirror", chosen=best["index"], passed_none=not any(not r["low"] for r in ch["candidates"]))
@@ -56,7 +80,7 @@ def main(run, answers, rule="relative"):
         t1 = min(rep["ts"])
         msites = {}
         for r in ch["candidates"]:
-            q = cs[f"g3d{r['index']}_t{t1}"]["qubits"]
+            q = cs[_tag(rep, f"g3d{r['index']}", rep["theta"], t1)]["qubits"]
             msites[r["index"]] = [x["mirror"] for x in q]
             r["mirror_t1"] = float(np.mean(msites[r["index"]]))
         allm = np.array([v for vs in msites.values() for v in vs])
@@ -100,16 +124,20 @@ def main(run, answers, rule="relative"):
         r = judge(c)
         r["retention"] = r["M"] / r["M_exact"] if abs(r["M_exact"]) >= 0.1 else None
         r["norm_error"] = abs(r["diff"]) / abs(r["M_exact"]) if r["M_exact"] else None
-        r.update({k: rep["arms"][tag].get(k) for k in ("kind", "candidate", "t", "cz", "cz_layers")})
+        r.update({k: rep["arms"][tag].get(k) for k in ("kind", "candidate", "t", "theta", "cz", "cz_layers")})
+        if r["kind"] == "3D" and rep.get("lattice"):
+            r["classes"] = _classes(c, rep["lattice"])
         arms[tag] = r
     judged, price = {}, {}
-    for t in rep["ts"]:
-        a2 = arms[f"hex_t{t}"]
-        judged[f"t{t}"] = {"2D": {k: a2[k] for k in ("reads", "agrees", "beats")}}
-        if chosen is not None:
-            a3 = arms[f"g3d{chosen}_t{t}"]
-            judged[f"t{t}"]["3D"] = {k: a3[k] for k in ("reads", "agrees", "beats")}
-            price[f"t{t}"] = dict(cz_ratio=a3["cz"] / a2["cz"] if a2["cz"] else None,
+    for th in (rep.get("thetas") or [rep["theta"]]):
+        for t in rep["ts"]:
+            key = _tag(rep, "", th, t).lstrip("_")
+            a2 = arms[_tag(rep, "hex", th, t)]
+            judged[key] = {"2D": {k: a2[k] for k in ("reads", "agrees", "beats")}}
+            if chosen is not None:
+                a3 = arms[_tag(rep, f"g3d{chosen}", th, t)]
+                judged[key]["3D"] = {k: a3[k] for k in ("reads", "agrees", "beats")}
+                price[key] = dict(cz_ratio=a3["cz"] / a2["cz"] if a2["cz"] else None,
                                   retention_3d=a3["retention"], retention_2d=a2["retention"])
     res = dict(device=rep["device"], sentinel=next(iter(cs.values()))["sentinel"], probe=ch,
                chosen=chosen, probe_passed_none=ch.get("passed_none", ch["chosen"] is None), judged=judged, arms=arms,
@@ -127,12 +155,15 @@ def main(run, answers, rule="relative"):
               f"  weakest {r.get('worst', float('nan')):.3f}"
               + (f"  mirror t1 {r['mirror_t1']:.3f}" if "mirror_t1" in r else "") + f"  marked: {r['low']}"
               + (f"  gate {'PASS' if r['gate']['pass'] else 'FAIL'} {r['gate']}" if "gate" in r else ""))
-    for tag, r in sorted(arms.items(), key=lambda kv: (kv[1]["kind"], kv[1].get("candidate") or 0, kv[1]["t"])):
+    for tag, r in sorted(arms.items(), key=lambda kv: (kv[1]["kind"], kv[1].get("candidate") or 0,
+                                                       kv[1].get("theta") or 0, kv[1]["t"])):
         mark = "JUDGED" if (r["kind"] == "2D" or (chosen is not None and r["candidate"] == chosen)) else "beside"
         ret = "-" if r["retention"] is None else f"{r['retention']:.3f}"
         print(f"{tag:9} {mark:6} {r['reads']:13} {r['agrees']:8} {r['beats']:13} M {r['M']:+.3f} exact "
               f"{r['M_exact']:+.3f} MSE {r['mse']:.4f}/{r['trivial_guess_mse']:.4f} retention {ret} CZ {r['cz']}"
-              f" floor {r['floor_mean']:.3f} mirror {r['mirror_mean']:.3f}")
+              f" floor {r['floor_mean']:.3f} mirror {r['mirror_mean']:.3f}"
+              + "".join(f"  {k} {v['M']:+.3f}/{v['M_exact']:+.3f} ({v['sites']})" for k, v in r.get("classes", {}).items()
+                        if k == "bulk"))
     return res
 
 

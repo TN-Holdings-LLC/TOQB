@@ -68,13 +68,16 @@ def main():
     ap.add_argument("--k", type=int, default=4)
     ap.add_argument("--ts", default="1,2,3")
     ap.add_argument("--theta", type=float, default=0.8)
+    ap.add_argument("--thetas", default=None, help="several RX angles (2026-11-07 draft A): arms g3d<i>_th<10 theta>_t<t>"
+                                                   " and hex_th<10 theta>_t<t>; probes at --theta")
     ap.add_argument("--shots", type=int, default=4000)
     ap.add_argument("--max-seconds", type=float, default=120)
     ap.add_argument("--probe-t", type=int, default=None, help="probe depth (default: the deepest t, as on 11-07)")
     ap.add_argument("--dry-clifford-sentinel", action="store_true")
     ap.add_argument("--lattice", default="2,2", help="M,N of the 4 x M x N lattice (2026-11-07: 6,3 = 72 sites)")
     ap.add_argument("--exact3d", default=None, help="exact 3D answers by light cone (gpu/os3d_lightcone.py) for "
-                                                    "lattices over 24 sites")
+                                                    "lattices over 24 sites; with --thetas a pattern with {th} "
+                                                    "(10 theta, two digits)")
     a = ap.parse_args()
     global M, N
     M, N = (int(v) for v in a.lattice.split(","))
@@ -82,7 +85,7 @@ def main():
     if L * M * N > 24:
         if not a.exact3d:
             raise SystemExit("STOP: over 24 sites the exact answers come from --exact3d (gpu/os3d_lightcone.py)")
-        exact3d = json.load(open(a.exact3d))
+        exact3d = a.exact3d
     for p in (a.out, a.answers_out):
         if os.path.exists(p):
             raise SystemExit(f"STOP: {p} exists")
@@ -98,39 +101,49 @@ def main():
     dev = Dv.Device.load(a.device)
     rc = RuleCompiler(dev)
     ts = [int(v) for v in a.ts.split(",")]
+    thetas = [float(v) for v in a.thetas.split(",")] if a.thetas else [a.theta]
+
+    def th_tag(th):
+        return "" if not a.thetas else f"th{int(round(th * 10)):02d}_"
+
+    def exact_3d(t, th):
+        if exact3d is None:
+            return G.exact(L, M, N, t, th)
+        return json.load(open(exact3d.format(th=f"{int(round(th * 10)):02d}")))[f"t{t}"]
     runs = os.path.join(a.out, "runs")
     os.makedirs(runs)
     cands = G.probe_records(dev, runs, L, M, N, a.probe_t or max(ts), a.theta, k=a.k, shots=a.shots, excited=True,
                             rc=rc)  # one shot count per job
     arms, answers = {}, {}
     for c in cands:
-        for t in ts:
-            pr = G.prepare(dev, L, M, N, t, a.theta, layout="fold", rc=rc, avoid=[tuple(v) for v in c["avoid"]])
+        for th, t in [(th, t) for th in thetas for t in ts]:
+            pr = G.prepare(dev, L, M, N, t, th, layout="fold", rc=rc, avoid=[tuple(v) for v in c["avoid"]])
             assert (pr["where"]["r0"], pr["where"]["c0"]) == (c["r0"], c["c0"])
-            tag = f"g3d{c['index']}_t{t}"
+            tag = f"g3d{c['index']}_{th_tag(th)}t{t}"
             G.write_records(dev, runs, tag, pr, a.shots, L, M, N, extra=dict(grid3d=pr["grid3d"],
                                                                              compare_arm=f"3D candidate {c['index']}"))
-            arms[tag] = dict(kind="3D", candidate=c["index"], t=t, cz=pr["cz"], cz_layers=pr["cz_layers"],
+            arms[tag] = dict(kind="3D", candidate=c["index"], t=t, theta=th, cz=pr["cz"], cz_layers=pr["cz_layers"],
                              r0=c["r0"], c0=c["c0"], fold_version=pr["where"]["fold_version"],
                              mapping={str(s): q for s, q in enumerate(pr["phys"])})
-            answers[tag] = G.exact(L, M, N, t, a.theta) if exact3d is None else exact3d[f"t{t}"]
+            answers[tag] = exact_3d(t, th)
     with tempfile.TemporaryDirectory() as d:
         items = []
-        for t in ts:
-            f = os.path.join(d, f"hex_t{t}.qpy")
+        for th, t in [(th, t) for th in thetas for t in ts]:
+            f = os.path.join(d, f"hex_{th_tag(th)}t{t}.qpy")
             with open(f, "wb") as fh:
-                qpy.dump(hex_circuit(t, a.theta), fh)
-            items.append((f"hex_t{t}", U.load(f)))
+                qpy.dump(hex_circuit(t, th), fh)
+            items.append((f"hex_{th_tag(th)}t{t}", U.load(f)))
         U.build_batch(dev, items, os.path.join(d, "b"), shots=a.shots, max_seconds=10 ** 6)
         rep2 = json.load(open(os.path.join(d, "b", "report.json")))
         for f in os.listdir(os.path.join(d, "b", "runs")):
             if f.startswith("p2d_hex_t"):
                 shutil.copy(os.path.join(d, "b", "runs", f), os.path.join(runs, f))
-    for t in ts:
-        rec = json.load(open(os.path.join(runs, f"p2d_hex_t{t}.json")))
-        arms[f"hex_t{t}"] = dict(kind="2D", t=t, cz=rec.get("cz"), mapping=rec["mapping"],
-                                 copy=rep2.get("items", {}).get(f"hex_t{t}", {}).get("copy"))
-        answers[f"hex_t{t}"] = hex_exact(t, a.theta)
+    for th, t in [(th, t) for th in thetas for t in ts]:
+        ht = f"hex_{th_tag(th)}t{t}"
+        rec = json.load(open(os.path.join(runs, f"p2d_{ht}.json")))
+        arms[ht] = dict(kind="2D", t=t, theta=th, cz=rec.get("cz"), mapping=rec["mapping"],
+                        copy=rep2.get("items", {}).get(ht, {}).get("copy"))
+        answers[ht] = hex_exact(t, th)
     ring = 40
     mq = measured_qubits(rc.compile(C.model_circuit(list(np.zeros(C.n_model_angles(ring, 1))), ring, 1)))
     sentinel.build(dev, runs, [int(mq[j]) for j in range(ring)], a.shots, rc,
@@ -141,7 +154,7 @@ def main():
         json.dump(answers, f, indent=1, sort_keys=True)
     ans_sha = hashlib.sha256(open(a.answers_out, "rb").read()).hexdigest()
     gh = GH.qpy_hash(os.path.join(a.out, "job", "circuits.qpy"))
-    rep = dict(device=dev.name, lattice=[L, M, N], ts=ts, theta=a.theta, shots=a.shots,
+    rep = dict(device=dev.name, lattice=[L, M, N], ts=ts, theta=a.theta, thetas=thetas, shots=a.shots,
                candidates=[{x: c[x] for x in ("index", "r0", "c0", "used")} for c in cands], arms=arms,
                circuits=len(man["pubs"]), qpu_seconds_model=man["qpu_seconds_model"], gate_hash=gh,
                answers_sha256=ans_sha, job=os.path.join(a.out, "job"), runs=runs)
