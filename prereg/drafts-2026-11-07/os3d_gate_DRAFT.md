@@ -1,0 +1,63 @@
+# DRAFT (not declared): the 3D prototype v3.1 on a device with the pre-run gate, the 2D patch beside
+(owner 2026-11-07 11:18 JST: "進めて"; to be fixed as a declared file before the fetch of the night it runs)
+
+Changes from `prereg/os3d_v31_2026-11-07.md` (owner 11-07: the test right before the run, after choosing, must work):
+the probes at t = 1 (not t = 3), the place ranked by each candidate's own t = 1 mirror, and a gate that can refuse:
+if no candidate passes it, no 3D arm is judged. Everything else as there. No search arm.
+
+## Why (11-07 fez, post hoc; `results/os3d-v31-2026-11-07/README.md`)
+
+The t = 3 probes were washed out on every candidate (|1> floor about -0.65, X echo about 0.3), the declared fallback
+judged a candidate anyway (the worst one), and the probes test idle qubits, not the bridges in operation. The arms' own
+t = 1 mirror ordered the candidates as their errors (0.84 > 0.80 > 0.71 = 0.71).
+
+## Code
+
+psf-os 55167cf; TOQB at the declaring commit: `gpu/os3d_v31_build.py` with `--probe-t 1`, `gpu/os3d_v31_score.py`
+rule "gate" (added in 420beab), `gpu/practice_score.py` (judge), `gpu/calib_beside.py` (report only).
+
+## Device and job
+
+As in `os3d_v31_2026-11-07.md` (the night's daily-record device with the fewest pending jobs; one job, 4000 shots; k = 4
+qualifying fold translations in the fixed order; every candidate's 3D arm g3d<i>_t<t> with floor and mirror, t = 1, 2,
+3; the 2D patch hex_t<t>; one ring sentinel), except that the three probes (|0> floor, |1> floor, X echo) are at t = 1.
+
+## Choosing the place: the gate (`gpu/os3d_v31_score.py OUT ANSWERS_OUT gate`)
+
+1. Order: the candidates by the mean of their own t = 1 mirror over the sites, highest first (ties: the fixed order).
+2. Gate, for each in that order; the first that passes is the judged 3D arm:
+   (a) no site of its t = 1 mirror below line_m = median - max(5 x 1.4826 MAD, 0.05), median and MAD over every
+       candidate's t = 1 mirror sites in the job;
+   (b) no touched qubit whose t = 1 |1> floor stands above the job's line (median + max(5 x 1.4826 MAD, 0.05) over
+       every candidate's |1> floor readings; relaxation, which a mirror cannot see);
+   (c) its mean t = 1 mirror within 0.1 of the highest candidate's.
+3. If none passes: "no healthy place", no 3D arm is judged; the 2D arm is still judged. No fallback.
+
+The choice reads only probes and mirrors (check circuits of the same placement), never an answer or an arm's error.
+
+## Judged, beside, answers, procedure
+
+As in `os3d_v31_2026-11-07.md`: READS, AGREES, BEATS per t for the judged 3D arm (if any) and the 2D arm; every
+candidate's scores and gate readings beside; the same sealed answer hashes (they depend only on t and the lattice):
+k = 4 0bce0dab5066cfba1bdc783c0cd447f47173b7b1a35909b4ea428e5e0fa3356b; k = 3
+70ba44e369797d2aa35513a1673dcce1f8bfd738cba8a7755099c7174b228780; k = 2
+080c2cf52234993d3b77dbaf30d13cf9cf0eef9500872e726e3802fe119a0ef3; k = 1
+3e30778b8d4537dffc86b8f244cc495dfbae6006bc0e4cc1693b07ca2af341e6.
+
+## Pre-run confirmation (simulator; `notes/os3d_sim_2026-11-07/CHECK_README.md`)
+
+Device-like simulator (relaxation on the waiting qubits), 600 shots, the 11-07 fez job and its t = 1 rebuild:
+
+| noise | candidates' error (MSE sum t 1-3) | gate passed | gate judged |
+|---|---|---|---|
+| FakeFez snapshot (three couplers failed) | 0.014 / 0.430 / 0.187 / 0.204 | 0 | 0 (the smallest error) |
+| fez calibration at the 11-07 run | 0.026 / 0.061 / 0.042 / 0.022 | 0, 3 | 3 (the smallest error) |
+
+## Limits (stated in advance)
+
+- The |1> floor at t = 1 on a device is not yet seen: if it marks healthy candidates as the t = 3 one did, the gate
+  refuses them and the night judges no 3D arm (a refusal, recorded as such, not a failure of the arm).
+- Condition (c) is a fixed margin; on the calibration simulation candidate 2 missed it by 0.004.
+- The simulator did not reproduce why candidate 0 was the worst on the device (simulated retention 0.88-0.90, device
+  0.83-0.78); the gate relies on the device's own mirror at run time, not on a calibration.
+- One device, one night, one 16-site lattice; all answers classically computable; no advantage is claimed.
