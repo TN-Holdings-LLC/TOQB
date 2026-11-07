@@ -1,0 +1,15 @@
+{
+ "job_id": "dbn9p2s4148s7390ik2g",
+ "submitted": "2026-11-07T03:35:36+00:00 (2026-11-07 04:35:36 CET)",
+ "local": false,
+ "backend": "ibm_kingston",
+ "stay": true,
+ "calibration_at_submit": "2026-11-07 04:19:09+01:00",
+ "options": "dynamical decoupling off, twirling off (gates and measure); SamplerV2 applies no other error mitigation",
+ "sampler_options": {
+  "dynamical_decoupling.enable": false,
+  "twirling.enable_gates": false,
+  "twirling.enable_measure": false
+ },
+ "psfos": "psf_os.ibm"
+}
