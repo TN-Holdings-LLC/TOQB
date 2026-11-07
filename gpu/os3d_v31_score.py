@@ -36,7 +36,7 @@ def main(run, answers, rule="relative"):
         clean = [r for r in ch["candidates"] if not r["low"]] or ch["candidates"]
         best = max(clean, key=lambda r: (r["mirror_t1"], -r["index"]))
         ch.update(rule="mirror", chosen=best["index"], passed_none=not any(not r["low"] for r in ch["candidates"]))
-    elif rule in ("gate", "gate2"):
+    elif rule in ("gate", "gate2", "top"):
         # draft rule (2026-11-07, owner: the test after choosing must work as a gate; to be declared and tested before
         # use). Candidates in order of their own t = 1 mirror (the arm's gates and bridges in operation, run back and
         # forth). The first one that passes the gate is judged: (a) no site of its t = 1 mirror below the job's mirror
@@ -48,6 +48,9 @@ def main(run, answers, rule="relative"):
         # sites below line_m cost sum(median - value) / (number of sites) of the place's mean mirror; (b') the qubits
         # whose |1> floor stands above the line cost sum(value - median of all |1> floors) / (number of probed qubits).
         # A place passes when each cost is at most 0.025 (half the AGREES tolerance 0.05) and (c) holds.
+        # "top" (owner 2026-11-07 12:28 JST: "外して", remove the stop): the candidate with the highest own t = 1 mirror
+        # is always judged; the declared gate's checks (a), (b), (c) are computed for every candidate and reported
+        # beside as a flag ("healthy" or "weak elements"), never used to refuse.
         import numpy as np
         ch = G.probe_choose(job, runs, rule="relative")
         t1 = min(rep["ts"])
@@ -67,7 +70,7 @@ def main(run, answers, rule="relative"):
             f1_marked = [q for q, v in r.get("floor1", {}).items() if ch["line1"] is not None and v > ch["line1"]]
             r["gate"] = dict(mirror_low_sites=int(sum(v < line_m for v in msites[r["index"]])), floor1_marked=f1_marked,
                              within_best=r["mirror_t1"] >= top - 0.1)
-            if rule == "gate":
+            if rule in ("gate", "top"):
                 r["gate"]["pass"] = (r["gate"]["mirror_low_sites"] == 0 and not f1_marked and r["gate"]["within_best"])
             else:
                 ms = msites[r["index"]]
@@ -78,13 +81,18 @@ def main(run, answers, rule="relative"):
                 r["gate"]["pass"] = cost_m <= 0.025 and cost_1 <= 0.025 and r["gate"]["within_best"]
             if chosen_r is None and r["gate"]["pass"]:
                 chosen_r = r
-        ch.update(rule=rule, line_mirror=line_m, chosen=None if chosen_r is None else chosen_r["index"],
-                  passed_none=chosen_r is None)
+        if rule == "top":
+            first = sorted(ch["candidates"], key=lambda r: (-r["mirror_t1"], r["index"]))[0]
+            ch.update(rule=rule, line_mirror=line_m, chosen=first["index"], passed_none=chosen_r is None,
+                      flag="healthy" if first["gate"]["pass"] else "weak elements")
+        else:
+            ch.update(rule=rule, line_mirror=line_m, chosen=None if chosen_r is None else chosen_r["index"],
+                      passed_none=chosen_r is None)
     else:
         ch = G.probe_choose(job, runs, rule=rule)
     # rule "gate" (declared 2026-11-07): no candidate passed -> no 3D arm judged; the 2D arm and every 3D arm beside
     # are still scored (the early return of the draft printed only the refusal; reporting fix, choice unchanged)
-    chosen = ch["chosen"] if (ch["chosen"] is not None or rule in ("gate", "gate2")) else 0
+    chosen = ch["chosen"] if (ch["chosen"] is not None or rule in ("gate", "gate2", "top")) else 0
     arms = {}
     for tag, c in cs.items():
         if tag not in rep["arms"]:
@@ -109,6 +117,8 @@ def main(run, answers, rule="relative"):
     json.dump(res, open(os.path.join(run, "scores.json"), "w"), indent=1)
     if chosen is None:
         print("no healthy place: nothing 3D judged (the 2D arm judged; every 3D arm beside)")
+    if rule == "top":
+        print(f"judged the top place by its own t1 mirror; gate flag: {ch['flag']}")
     print(f"{res['device']}  sentinel {res['sentinel']}  probe chose candidate {chosen}"
           + ("  (probe passed none)" if res["probe_passed_none"] else ""))
     for r in ch["candidates"]:
