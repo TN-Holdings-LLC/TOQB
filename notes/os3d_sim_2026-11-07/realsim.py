@@ -24,7 +24,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def _one(args):
-    k, qpy_bytes, shots, seed, max_q, device = args
+    k, qpy_bytes, shots, seed, max_q, device, threads = args
     import io
     from qiskit import qpy
     from qiskit.transpiler import PassManager
@@ -58,7 +58,8 @@ def _one(args):
                   [noisy.find_bit(b).index for b in ins.clbits])
     nm = S.remap_noise(NoiseModel.from_backend(be), touched)
     ro = S.readout_maps(NoiseModel.from_backend(be), touched)
-    opts = dict(method="statevector", noise_model=nm, seed_simulator=seed)
+    # threads per process: with many worker processes, Aer's own threads would fight over the same cores
+    opts = dict(method="statevector", noise_model=nm, seed_simulator=seed, max_parallel_threads=threads)
     if device == "GPU":
         opts.update(device="GPU", batched_shots_gpu=True)
     sim = AerSimulator(**opts)
@@ -103,6 +104,7 @@ def main():
     ap.add_argument("--only", default=None)
     ap.add_argument("--max-qubits", type=int, default=30)
     ap.add_argument("--device", default="CPU", choices=["CPU", "GPU"])
+    ap.add_argument("--threads", type=int, default=1, help="Aer threads per worker process (0 = all cores)")
     a = ap.parse_args()
     sys.path.insert(0, a.psf_os)
     import io
@@ -118,7 +120,7 @@ def main():
             continue
         b = io.BytesIO()
         qpy.dump(c, b)
-        tasks.append((k, b.getvalue(), a.shots, 1000 + k, a.max_qubits, a.device))
+        tasks.append((k, b.getvalue(), a.shots, 1000 + k, a.max_qubits, a.device, a.threads))
     rows, skipped = {}, {}
     with ProcessPoolExecutor(a.workers) as ex:
         for k, counts, nq, note in ex.map(_safe, tasks):
