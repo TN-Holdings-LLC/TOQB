@@ -1,4 +1,4 @@
-"""Score the N = 51 dual-unitary run (prereg/drafts-2026-11-06/du51_DRAFT.md section 4, the 2026-11-03 judgements),
+"""Score the N = 51 (or 71, from build.json) dual-unitary run (prereg/drafts-2026-11-06/du51_DRAFT.md section 4, the 2026-11-03 judgements),
 written before the run. Reads both jobs through the user entrance's answer cards (psf_os.user2d.cards).
 
   1. READS: over the 24 on-cone points (site t of the chain), the mean squared error of <X_t> against the exact
@@ -33,8 +33,9 @@ def main(out, answers_file, ts_only=None):
     """ts_only: the dry check's subset of depths (the declared run uses every depth)."""
     T_STEPS = tuple(ts_only) if ts_only else X.T_STEPS
     answers = json.load(open(answers_file))
-    shape = json.load(open(os.path.join(out, "build.json")))["shape"]
-    site = X.snake(51, next(s for s in X.SHAPES if s[0] == shape))   # site k of the chain -> the user's label
+    b = json.load(open(os.path.join(out, "build.json")))
+    n = b.get("n", 51)
+    site = X.snake(n, next(s for s in X.SHAPES if s[0] == b["shape"]))   # site k of the chain -> the user's label
     pts, sent, cz = {}, {}, {}
     for j in JOBS:
         jd, runs = os.path.join(out, j, "job"), os.path.join(out, j, "runs")

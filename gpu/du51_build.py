@@ -7,7 +7,9 @@ t in {4, 8, 12, 16, 20, 24}; psf_os.user2d.build_batch places each one by transl
 floor and mirror and one ring sentinel per job. Two jobs back to back: A = h {0, 0.05}, B = h {0.1, 0.15}.
 Answers (closed form, psf_os.dual.exact): {tag: {label: <X>}} written to ANSWERS_OUT, to be sealed by hash.
 
-usage: PYTHONPATH=<psf-os>:<TOQB> python gpu/du51_build.py DEV_DIR OUT_DIR ANSWERS_OUT [--dry-clifford-sentinel]
+--n 71 (2026-11-07 19:25 JST, owner "71"): the same at N = 71 (tags du71_...).
+
+usage: PYTHONPATH=<psf-os>:<TOQB> python gpu/du51_build.py DEV_DIR OUT_DIR ANSWERS_OUT [--n 51] [--dry-clifford-sentinel]
 """
 import hashlib
 import json
@@ -24,11 +26,14 @@ JOBS = {"A": (0.0, 0.05), "B": (0.1, 0.15)}
 
 
 def tag(h, t):
-    return f"du51_h{int(round(h * 100)):02d}_t{t:02d}"
+    return f"du{N}_h{int(round(h * 100)):02d}_t{t:02d}"
 
 
 def main():
+    global N
     dev_dir, out, ans_out = sys.argv[1:4]
+    if "--n" in sys.argv:
+        N = int(sys.argv[sys.argv.index("--n") + 1])
     spec = dict(kind="echo_clifford", D=24) if "--dry-clifford-sentinel" in sys.argv else None
     for p in (out, ans_out):
         if os.path.exists(p):
@@ -50,7 +55,7 @@ def main():
                                    max_seconds=60)
     with open(ans_out, "w") as f:
         json.dump(answers, f, indent=1, sort_keys=True)
-    log = dict(device=dev.name, shape=pl["shape"], copy=dict(drow=pl["drow"], dcol=pl["dcol"]), chain=pl["chain"],
+    log = dict(device=dev.name, n=N, shape=pl["shape"], copy=dict(drow=pl["drow"], dcol=pl["dcol"]), chain=pl["chain"],
                passed_over=pl["passed_over"],
                jobs={k: dict(circuits=r["circuits"], qpu_seconds_model=r["qpu_seconds_model"],
                              cz={t: v["cz"] for t, v in r["items"].items()},
