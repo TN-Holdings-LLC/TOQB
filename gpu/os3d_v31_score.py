@@ -67,14 +67,9 @@ def main(run, answers, rule="relative"):
                   passed_none=chosen_r is None)
     else:
         ch = G.probe_choose(job, runs, rule=rule)
-    if rule == "gate" and ch["chosen"] is None:
-        res = dict(device=rep["device"], probe=ch, chosen=None, verdict="no healthy place: nothing 3D judged")
-        json.dump(res, open(os.path.join(run, "scores.json"), "w"), indent=1, default=str)
-        print(res["verdict"])
-        for r in ch["candidates"]:
-            print(f"  candidate {r['index']}: mirror t1 {r['mirror_t1']:.3f}  gate {r['gate']}")
-        return res
-    chosen = ch["chosen"] if ch["chosen"] is not None else 0
+    # rule "gate" (declared 2026-11-07): no candidate passed -> no 3D arm judged; the 2D arm and every 3D arm beside
+    # are still scored (the early return of the draft printed only the refusal; reporting fix, choice unchanged)
+    chosen = ch["chosen"] if (ch["chosen"] is not None or rule == "gate") else 0
     arms = {}
     for tag, c in cs.items():
         if tag not in rep["arms"]:
@@ -86,15 +81,19 @@ def main(run, answers, rule="relative"):
         arms[tag] = r
     judged, price = {}, {}
     for t in rep["ts"]:
-        a3, a2 = arms[f"g3d{chosen}_t{t}"], arms[f"hex_t{t}"]
-        judged[f"t{t}"] = {"3D": {k: a3[k] for k in ("reads", "agrees", "beats")},
-                           "2D": {k: a2[k] for k in ("reads", "agrees", "beats")}}
-        price[f"t{t}"] = dict(cz_ratio=a3["cz"] / a2["cz"] if a2["cz"] else None,
-                              retention_3d=a3["retention"], retention_2d=a2["retention"])
+        a2 = arms[f"hex_t{t}"]
+        judged[f"t{t}"] = {"2D": {k: a2[k] for k in ("reads", "agrees", "beats")}}
+        if chosen is not None:
+            a3 = arms[f"g3d{chosen}_t{t}"]
+            judged[f"t{t}"]["3D"] = {k: a3[k] for k in ("reads", "agrees", "beats")}
+            price[f"t{t}"] = dict(cz_ratio=a3["cz"] / a2["cz"] if a2["cz"] else None,
+                                  retention_3d=a3["retention"], retention_2d=a2["retention"])
     res = dict(device=rep["device"], sentinel=next(iter(cs.values()))["sentinel"], probe=ch,
                chosen=chosen, probe_passed_none=ch.get("passed_none", ch["chosen"] is None), judged=judged, arms=arms,
                price=price)
     json.dump(res, open(os.path.join(run, "scores.json"), "w"), indent=1)
+    if chosen is None:
+        print("no healthy place: nothing 3D judged (the 2D arm judged; every 3D arm beside)")
     print(f"{res['device']}  sentinel {res['sentinel']}  probe chose candidate {chosen}"
           + ("  (probe passed none)" if res["probe_passed_none"] else ""))
     for r in ch["candidates"]:
@@ -104,7 +103,7 @@ def main(run, answers, rule="relative"):
               + (f"  mirror t1 {r['mirror_t1']:.3f}" if "mirror_t1" in r else "") + f"  marked: {r['low']}"
               + (f"  gate {'PASS' if r['gate']['pass'] else 'FAIL'} {r['gate']}" if "gate" in r else ""))
     for tag, r in sorted(arms.items(), key=lambda kv: (kv[1]["kind"], kv[1].get("candidate") or 0, kv[1]["t"])):
-        mark = "JUDGED" if (r["kind"] == "2D" or r["candidate"] == chosen) else "beside"
+        mark = "JUDGED" if (r["kind"] == "2D" or (chosen is not None and r["candidate"] == chosen)) else "beside"
         ret = "-" if r["retention"] is None else f"{r['retention']:.3f}"
         print(f"{tag:9} {mark:6} {r['reads']:13} {r['agrees']:8} {r['beats']:13} M {r['M']:+.3f} exact "
               f"{r['M_exact']:+.3f} MSE {r['mse']:.4f}/{r['trivial_guess_mse']:.4f} retention {ret} CZ {r['cz']}"
