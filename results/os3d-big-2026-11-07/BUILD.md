@@ -21,7 +21,7 @@ before this record (reporting only: the choice, the lines and the verdicts are c
 
 Gate: **no healthy place, no 3D arm judged.** Candidate 1 (mirror t1 0.730) and candidate 0 (0.716): each had 6 sites
 below the job's mirror line and |1> floor marks (0: q3, 5, 11, 27, 63, 103; 1: q27, 63, 103, 126). The two
-translations overlap (rows 0-4 and 1-5) and share q27, q63, q103. Sentinel DEAD (fez, every day since 11-04).
+translations overlap (heavy-hex rows 0-5 and 1-6; 72 of their 87 qubits shared), both holding q27, q63, q103. Sentinel DEAD (fez, every day since 11-04).
 
 | t | 2D patch (judged) |
 |---|---|
