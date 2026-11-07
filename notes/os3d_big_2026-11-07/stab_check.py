@@ -1,7 +1,7 @@
 """Pre-run check of the 4 x 6 x 3 folded placement (2026-11-07; no device, no noise): at theta = pi/2 the job is
 Clifford, so every stabilizer of the lattice state must hold on the placed sites and every bridge must be back in |0>,
 for each candidate translation of a device record and t = 1, 2, 3. Same test as psf-os tests/test_grid3d.py
-(test_placed_state_equals_the_lattice_state_clifford), at the size of the 2026-11-07 big run.
+(test_placed_state_equals_the_lattice_state_clifford), at the sizes of the 2026-11-07 runs (4 x 6 x 3, 4 x 4 x 3).
 
 usage: python stab_check.py PSF_OS DEVICE_RECORD M N
 """
