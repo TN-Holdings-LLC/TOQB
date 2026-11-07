@@ -1,0 +1,852 @@
+{
+ "note": "report only; not used by any placement, build or verdict",
+ "backend": "ibm_marrakesh",
+ "read": "2026-11-07T02:30:50.513263+00:00",
+ "fake": false,
+ "source": "properties of job dbn8ploou4as73b42g2g (at its start)",
+ "calibrated": "2026-11-07 03:03:25+01:00",
+ "arms": {
+  "ksent_n40_D24-fold_rule": {
+   "records": [
+    "ksent_n40_D24-fold_rule"
+   ],
+   "cz": {
+    "worst": 0.0764513541713388,
+    "at": [
+     19,
+     35
+    ],
+    "median": 0.0024205520086514054,
+    "count": 40,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.2890625,
+    "at": [
+     31
+    ],
+    "median": 0.023681640625,
+    "count": 40,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d0_t1": {
+   "records": [
+    "p2d_g3d0_t1",
+    "p2d_g3d0_t1_floor",
+    "p2d_g3d0_t1_mirror"
+   ],
+   "cz": {
+    "worst": 0.01924445558392221,
+    "at": [
+     28,
+     29
+    ],
+    "median": 0.002373178996612116,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.2890625,
+    "at": [
+     31
+    ],
+    "median": 0.031005859375,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d0_t2": {
+   "records": [
+    "p2d_g3d0_t2",
+    "p2d_g3d0_t2_floor",
+    "p2d_g3d0_t2_mirror"
+   ],
+   "cz": {
+    "worst": 0.01924445558392221,
+    "at": [
+     28,
+     29
+    ],
+    "median": 0.002373178996612116,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.2890625,
+    "at": [
+     31
+    ],
+    "median": 0.031005859375,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d0_t3": {
+   "records": [
+    "p2d_g3d0_t3",
+    "p2d_g3d0_t3_floor",
+    "p2d_g3d0_t3_mirror"
+   ],
+   "cz": {
+    "worst": 0.01924445558392221,
+    "at": [
+     28,
+     29
+    ],
+    "median": 0.002373178996612116,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.2890625,
+    "at": [
+     31
+    ],
+    "median": 0.031005859375,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d1_t1": {
+   "records": [
+    "p2d_g3d1_t1",
+    "p2d_g3d1_t1_floor",
+    "p2d_g3d1_t1_mirror"
+   ],
+   "cz": {
+    "worst": 0.010485590296826164,
+    "at": [
+     68,
+     69
+    ],
+    "median": 0.002551743942705298,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.16796875,
+    "at": [
+     68
+    ],
+    "median": 0.02392578125,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d1_t2": {
+   "records": [
+    "p2d_g3d1_t2",
+    "p2d_g3d1_t2_floor",
+    "p2d_g3d1_t2_mirror"
+   ],
+   "cz": {
+    "worst": 0.010485590296826164,
+    "at": [
+     68,
+     69
+    ],
+    "median": 0.002551743942705298,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.16796875,
+    "at": [
+     68
+    ],
+    "median": 0.02392578125,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d1_t3": {
+   "records": [
+    "p2d_g3d1_t3",
+    "p2d_g3d1_t3_floor",
+    "p2d_g3d1_t3_mirror"
+   ],
+   "cz": {
+    "worst": 0.010485590296826164,
+    "at": [
+     68,
+     69
+    ],
+    "median": 0.002551743942705298,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.16796875,
+    "at": [
+     68
+    ],
+    "median": 0.02392578125,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d2_t1": {
+   "records": [
+    "p2d_g3d2_t1",
+    "p2d_g3d2_t1_floor",
+    "p2d_g3d2_t1_mirror"
+   ],
+   "cz": {
+    "worst": 0.012587140536226532,
+    "at": [
+     101,
+     116
+    ],
+    "median": 0.0023268179621829116,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.05224609375,
+    "at": [
+     101
+    ],
+    "median": 0.016845703125,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d2_t2": {
+   "records": [
+    "p2d_g3d2_t2",
+    "p2d_g3d2_t2_floor",
+    "p2d_g3d2_t2_mirror"
+   ],
+   "cz": {
+    "worst": 0.012587140536226532,
+    "at": [
+     101,
+     116
+    ],
+    "median": 0.0023268179621829116,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.05224609375,
+    "at": [
+     101
+    ],
+    "median": 0.016845703125,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d2_t3": {
+   "records": [
+    "p2d_g3d2_t3",
+    "p2d_g3d2_t3_floor",
+    "p2d_g3d2_t3_mirror"
+   ],
+   "cz": {
+    "worst": 0.012587140536226532,
+    "at": [
+     101,
+     116
+    ],
+    "median": 0.0023268179621829116,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.05224609375,
+    "at": [
+     101
+    ],
+    "median": 0.016845703125,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d3_t1": {
+   "records": [
+    "p2d_g3d3_t1",
+    "p2d_g3d3_t1_floor",
+    "p2d_g3d3_t1_mirror"
+   ],
+   "cz": {
+    "worst": 0.011284061940841139,
+    "at": [
+     25,
+     26
+    ],
+    "median": 0.0022214224965424884,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.08740234375,
+    "at": [
+     26
+    ],
+    "median": 0.014404296875,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d3_t2": {
+   "records": [
+    "p2d_g3d3_t2",
+    "p2d_g3d3_t2_floor",
+    "p2d_g3d3_t2_mirror"
+   ],
+   "cz": {
+    "worst": 0.011284061940841139,
+    "at": [
+     25,
+     26
+    ],
+    "median": 0.0022214224965424884,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.08740234375,
+    "at": [
+     26
+    ],
+    "median": 0.014404296875,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_g3d3_t3": {
+   "records": [
+    "p2d_g3d3_t3",
+    "p2d_g3d3_t3_floor",
+    "p2d_g3d3_t3_mirror"
+   ],
+   "cz": {
+    "worst": 0.011284061940841139,
+    "at": [
+     25,
+     26
+    ],
+    "median": 0.0022214224965424884,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.08740234375,
+    "at": [
+     26
+    ],
+    "median": 0.014404296875,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_hex_t1": {
+   "records": [
+    "p2d_hex_t1",
+    "p2d_hex_t1_floor",
+    "p2d_hex_t1_mirror"
+   ],
+   "cz": {
+    "worst": 0.01924445558392221,
+    "at": [
+     28,
+     29
+    ],
+    "median": 0.0027346002100430006,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.2275390625,
+    "at": [
+     29
+    ],
+    "median": 0.023681640625,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_hex_t2": {
+   "records": [
+    "p2d_hex_t2",
+    "p2d_hex_t2_floor",
+    "p2d_hex_t2_mirror"
+   ],
+   "cz": {
+    "worst": 0.01924445558392221,
+    "at": [
+     28,
+     29
+    ],
+    "median": 0.0027346002100430006,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.2275390625,
+    "at": [
+     29
+    ],
+    "median": 0.023681640625,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "p2d_hex_t3": {
+   "records": [
+    "p2d_hex_t3",
+    "p2d_hex_t3_floor",
+    "p2d_hex_t3_mirror"
+   ],
+   "cz": {
+    "worst": 0.01924445558392221,
+    "at": [
+     28,
+     29
+    ],
+    "median": 0.0027346002100430006,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.2275390625,
+    "at": [
+     29
+    ],
+    "median": 0.023681640625,
+    "count": 16,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "probe1_0": {
+   "records": [
+    "probe1_0"
+   ],
+   "cz": {
+    "worst": 0.01924445558392221,
+    "at": [
+     28,
+     29
+    ],
+    "median": 0.002373178996612116,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.2890625,
+    "at": [
+     31
+    ],
+    "median": 0.031005859375,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "probe1_1": {
+   "records": [
+    "probe1_1"
+   ],
+   "cz": {
+    "worst": 0.010485590296826164,
+    "at": [
+     68,
+     69
+    ],
+    "median": 0.002551743942705298,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.16796875,
+    "at": [
+     68
+    ],
+    "median": 0.02001953125,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "probe1_2": {
+   "records": [
+    "probe1_2"
+   ],
+   "cz": {
+    "worst": 0.012587140536226532,
+    "at": [
+     101,
+     116
+    ],
+    "median": 0.0023268179621829116,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.05224609375,
+    "at": [
+     101
+    ],
+    "median": 0.018798828125,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "probe1_3": {
+   "records": [
+    "probe1_3"
+   ],
+   "cz": {
+    "worst": 0.011284061940841139,
+    "at": [
+     25,
+     26
+    ],
+    "median": 0.0022214224965424884,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.08740234375,
+    "at": [
+     26
+    ],
+    "median": 0.014404296875,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "probe_0": {
+   "records": [
+    "probe_0"
+   ],
+   "cz": {
+    "worst": 0.01924445558392221,
+    "at": [
+     28,
+     29
+    ],
+    "median": 0.002373178996612116,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.2890625,
+    "at": [
+     31
+    ],
+    "median": 0.031005859375,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "probe_1": {
+   "records": [
+    "probe_1"
+   ],
+   "cz": {
+    "worst": 0.010485590296826164,
+    "at": [
+     68,
+     69
+    ],
+    "median": 0.002551743942705298,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.16796875,
+    "at": [
+     68
+    ],
+    "median": 0.02001953125,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "probe_2": {
+   "records": [
+    "probe_2"
+   ],
+   "cz": {
+    "worst": 0.012587140536226532,
+    "at": [
+     101,
+     116
+    ],
+    "median": 0.0023268179621829116,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.05224609375,
+    "at": [
+     101
+    ],
+    "median": 0.018798828125,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "probe_3": {
+   "records": [
+    "probe_3"
+   ],
+   "cz": {
+    "worst": 0.011284061940841139,
+    "at": [
+     25,
+     26
+    ],
+    "median": 0.0022214224965424884,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.08740234375,
+    "at": [
+     26
+    ],
+    "median": 0.014404296875,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "probex_0": {
+   "records": [
+    "probex_0"
+   ],
+   "cz": {
+    "worst": 0.01924445558392221,
+    "at": [
+     28,
+     29
+    ],
+    "median": 0.002373178996612116,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.2890625,
+    "at": [
+     31
+    ],
+    "median": 0.031005859375,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "probex_1": {
+   "records": [
+    "probex_1"
+   ],
+   "cz": {
+    "worst": 0.010485590296826164,
+    "at": [
+     68,
+     69
+    ],
+    "median": 0.002551743942705298,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.16796875,
+    "at": [
+     68
+    ],
+    "median": 0.02001953125,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "probex_2": {
+   "records": [
+    "probex_2"
+   ],
+   "cz": {
+    "worst": 0.012587140536226532,
+    "at": [
+     101,
+     116
+    ],
+    "median": 0.0023268179621829116,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.05224609375,
+    "at": [
+     101
+    ],
+    "median": 0.018798828125,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  },
+  "probex_3": {
+   "records": [
+    "probex_3"
+   ],
+   "cz": {
+    "worst": 0.011284061940841139,
+    "at": [
+     25,
+     26
+    ],
+    "median": 0.0022214224965424884,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "readout": {
+    "worst": 0.08740234375,
+    "at": [
+     26
+    ],
+    "median": 0.014404296875,
+    "count": 18,
+    "missing": 0,
+    "missing_at": [],
+    "non_operational": []
+   },
+   "other_2q": []
+  }
+ }
+}
