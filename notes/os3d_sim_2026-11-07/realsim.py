@@ -44,10 +44,23 @@ def _one(args):
         # durations for the schedule stay FakeFez's
         from qiskit_ibm_runtime.models import BackendProperties
         pd = json.load(open(props_file))
-        # Aer reads each qubit's frequency even at temperature 0, where it has no effect; Heron records omit it
-        for ql in pd["qubits"]:
-            if not any(x["name"] == "frequency" for x in ql):
+        # Aer reads each qubit's frequency even at temperature 0, where it has no effect; Heron records omit it.
+        # Aer also reads T1 and T2 of every qubit, used or not; a failed qubit may lack them (fez 11-07: q72 has no
+        # T2). Filled in memory only (the file is not changed): T2 = T1, and the median when T1 is missing too.
+        def val(ql, n):
+            return next((x["value"] for x in ql if x["name"] == n), None)
+        med = {n: float(np.median([v for v in (val(ql, n) for ql in pd["qubits"]) if v is not None])) for n in ("T1", "T2")}
+        unit = {n: next(x["unit"] for ql in pd["qubits"] for x in ql if x["name"] == n) for n in ("T1", "T2")}
+        filled = []
+        for q, ql in enumerate(pd["qubits"]):
+            if val(ql, "frequency") is None:
                 ql.append(dict(name="frequency", value=5.0, unit="GHz", date=pd["last_update_date"]))
+            if val(ql, "T1") is None:
+                ql.append(dict(name="T1", value=med["T1"], unit=unit["T1"], date=pd["last_update_date"]))
+                filled.append((q, "T1"))
+            if val(ql, "T2") is None:
+                ql.append(dict(name="T2", value=val(ql, "T1"), unit=unit["T1"], date=pd["last_update_date"]))
+                filled.append((q, "T2"))
         bp = BackendProperties.from_dict(pd)
         t1s = [bp.t1(q) for q in range(len(bp.qubits))]
         t2s = [min(bp.t2(q), 2 * bp.t1(q)) for q in range(len(bp.qubits))]
