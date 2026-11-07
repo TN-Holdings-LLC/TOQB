@@ -1,0 +1,20 @@
+=== ibm_kingston
+sentinels {'A': 'DEAD', 'B': 'DEAD'} | MSE 0.0 mean square exact 0.8293 READS
+rate h 0.05: k 0.9939 +- 0.0005  cos2h 0.9950  AGREES  (t [4, 8])
+rate h 0.1: k 0.9799 +- 0.0010  cos2h 0.9801  AGREES  (t [4, 8])
+rate h 0.15: k 0.9557 +- 0.0015  cos2h 0.9553  AGREES  (t [4, 8])
+readable depth {'0.0': 8, '0.05': 8, '0.1': 8, '0.15': 8}
+h 0.0: on +1.000 +1.000 | exact 1.000 1.000 | off max 0.034 0.068
+h 0.05: on +0.975 +0.954 | exact 0.980 0.961 | off max 0.028 0.042
+h 0.1: on +0.921 +0.852 | exact 0.923 0.851 | off max 0.034 0.068
+h 0.15: on +0.838 +0.692 | exact 0.833 0.694 | off max 0.031 0.042
+=== ibm_fez
+sentinels {'A': 'DEAD', 'B': 'DEAD'} | MSE 0.0 mean square exact 0.8293 READS
+rate h 0.05: k 0.9939 +- 0.0005  cos2h 0.9950  AGREES  (t [4, 8])
+rate h 0.1: k 0.9799 +- 0.0010  cos2h 0.9801  AGREES  (t [4, 8])
+rate h 0.15: k 0.9557 +- 0.0015  cos2h 0.9553  AGREES  (t [4, 8])
+readable depth {'0.0': 8, '0.05': 8, '0.1': 8, '0.15': 8}
+h 0.0: on +1.000 +1.000 | exact 1.000 1.000 | off max 0.034 0.068
+h 0.05: on +0.975 +0.954 | exact 0.980 0.961 | off max 0.028 0.042
+h 0.1: on +0.921 +0.852 | exact 0.923 0.851 | off max 0.034 0.068
+h 0.15: on +0.838 +0.692 | exact 0.833 0.694 | off max 0.031 0.042
