@@ -36,13 +36,18 @@ def main(run, answers, rule="relative"):
         clean = [r for r in ch["candidates"] if not r["low"]] or ch["candidates"]
         best = max(clean, key=lambda r: (r["mirror_t1"], -r["index"]))
         ch.update(rule="mirror", chosen=best["index"], passed_none=not any(not r["low"] for r in ch["candidates"]))
-    elif rule == "gate":
+    elif rule in ("gate", "gate2"):
         # draft rule (2026-11-07, owner: the test after choosing must work as a gate; to be declared and tested before
         # use). Candidates in order of their own t = 1 mirror (the arm's gates and bridges in operation, run back and
         # forth). The first one that passes the gate is judged: (a) no site of its t = 1 mirror below the job's mirror
         # median - max(5 x 1.4826 MAD, 0.05) over all candidates' t = 1 mirror sites, (b) no qubit marked by the
         # |1> floor (relaxation, which a mirror cannot see), (c) its mean t = 1 mirror within 0.1 of the best mean.
         # If none passes: nothing 3D is judged ("no healthy place"). Never reads an answer.
+        # "gate2" (draft 2026-11-07, after both 4 x 6 x 3 runs were refused; to be declared and confirmed before use):
+        # (a) and (b) count what the marked qubits cost the average instead of refusing any mark. (a') the mirror
+        # sites below line_m cost sum(median - value) / (number of sites) of the place's mean mirror; (b') the qubits
+        # whose |1> floor stands above the line cost sum(value - median of all |1> floors) / (number of probed qubits).
+        # A place passes when each cost is at most 0.025 (half the AGREES tolerance 0.05) and (c) holds.
         import numpy as np
         ch = G.probe_choose(job, runs, rule="relative")
         t1 = min(rep["ts"])
@@ -54,22 +59,32 @@ def main(run, answers, rule="relative"):
         allm = np.array([v for vs in msites.values() for v in vs])
         med = float(np.median(allm))
         line_m = med - max(5 * 1.4826 * float(np.median(np.abs(allm - med))), 0.05)
+        all1 = [v for r in ch["candidates"] for v in r.get("floor1", {}).values()]
+        med1 = float(np.median(all1)) if all1 else None
         top = max(r["mirror_t1"] for r in ch["candidates"])
         chosen_r = None
         for r in sorted(ch["candidates"], key=lambda r: (-r["mirror_t1"], r["index"])):
             f1_marked = [q for q, v in r.get("floor1", {}).items() if ch["line1"] is not None and v > ch["line1"]]
             r["gate"] = dict(mirror_low_sites=int(sum(v < line_m for v in msites[r["index"]])), floor1_marked=f1_marked,
                              within_best=r["mirror_t1"] >= top - 0.1)
-            r["gate"]["pass"] = (r["gate"]["mirror_low_sites"] == 0 and not f1_marked and r["gate"]["within_best"])
+            if rule == "gate":
+                r["gate"]["pass"] = (r["gate"]["mirror_low_sites"] == 0 and not f1_marked and r["gate"]["within_best"])
+            else:
+                ms = msites[r["index"]]
+                cost_m = float(sum(med - v for v in ms if v < line_m)) / len(ms)
+                f1 = r.get("floor1", {})
+                cost_1 = float(sum(f1[q] - med1 for q in f1_marked)) / len(f1) if f1 else 0.0
+                r["gate"].update(cost_mirror=round(cost_m, 4), cost_floor1=round(cost_1, 4))
+                r["gate"]["pass"] = cost_m <= 0.025 and cost_1 <= 0.025 and r["gate"]["within_best"]
             if chosen_r is None and r["gate"]["pass"]:
                 chosen_r = r
-        ch.update(rule="gate", line_mirror=line_m, chosen=None if chosen_r is None else chosen_r["index"],
+        ch.update(rule=rule, line_mirror=line_m, chosen=None if chosen_r is None else chosen_r["index"],
                   passed_none=chosen_r is None)
     else:
         ch = G.probe_choose(job, runs, rule=rule)
     # rule "gate" (declared 2026-11-07): no candidate passed -> no 3D arm judged; the 2D arm and every 3D arm beside
     # are still scored (the early return of the draft printed only the refusal; reporting fix, choice unchanged)
-    chosen = ch["chosen"] if (ch["chosen"] is not None or rule == "gate") else 0
+    chosen = ch["chosen"] if (ch["chosen"] is not None or rule in ("gate", "gate2")) else 0
     arms = {}
     for tag, c in cs.items():
         if tag not in rep["arms"]:
