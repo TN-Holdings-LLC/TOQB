@@ -10,7 +10,7 @@ written as a placeholder (marked in skipped.json), and a failure of one circuit 
 --device GPU uses Aer's GPU build (qiskit-aer-gpu), one worker per GPU.
 
 usage: python realsim.py PSF_OS RUN_DIR [--shots 600] [--workers N] [--only NAME,...] [--max-qubits 30]
-                         [--device CPU|GPU]
+                         [--device CPU|GPU] [--threads 1] [--props PROPS.json]
 """
 import argparse
 import json
@@ -24,7 +24,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def _one(args):
-    k, qpy_bytes, shots, seed, max_q, device, threads = args
+    k, qpy_bytes, shots, seed, max_q, device, threads, props_file = args
     import io
     from qiskit import qpy
     from qiskit.transpiler import PassManager
@@ -39,9 +39,24 @@ def _one(args):
     be = FakeFez()
     tgt = be.target
     sched = PassManager([ALAPScheduleAnalysis(target=tgt), PadDelay(target=tgt)]).run(c)
-    props = [tgt.qubit_properties[q] for q in range(tgt.num_qubits)]
-    t1s = [p.t1 for p in props]
-    t2s = [min(p.t2, 2 * p.t1) for p in props]
+    if props_file:
+        # a real calibration (BackendProperties saved by fetch_props): gate errors, readout, T1/T2 from it; the gate
+        # durations for the schedule stay FakeFez's
+        from qiskit_ibm_runtime.models import BackendProperties
+        pd = json.load(open(props_file))
+        # Aer reads each qubit's frequency even at temperature 0, where it has no effect; Heron records omit it
+        for ql in pd["qubits"]:
+            if not any(x["name"] == "frequency" for x in ql):
+                ql.append(dict(name="frequency", value=5.0, unit="GHz", date=pd["last_update_date"]))
+        bp = BackendProperties.from_dict(pd)
+        t1s = [bp.t1(q) for q in range(len(bp.qubits))]
+        t2s = [min(bp.t2(q), 2 * bp.t1(q)) for q in range(len(bp.qubits))]
+        base = NoiseModel.from_backend_properties(bp, dt=tgt.dt)
+    else:
+        props = [tgt.qubit_properties[q] for q in range(tgt.num_qubits)]
+        t1s = [p.t1 for p in props]
+        t2s = [min(p.t2, 2 * p.t1) for p in props]
+        base = NoiseModel.from_backend(be)
     noisy = RelaxationNoisePass(t1s, t2s, dt=tgt.dt, op_types=[Delay])(sched)
     # qubits the circuit itself uses (before padding: PadDelay puts delays on every idle device qubit)
     touched = sorted({c.find_bit(q).index for ins in c.data if ins.operation.name not in ("barrier", "delay")
@@ -56,8 +71,8 @@ def _one(args):
             continue          # delays (and their relaxation) on qubits the circuit never uses
         cc.append(ins.operation, [m[noisy.find_bit(q).index] for q in ins.qubits],
                   [noisy.find_bit(b).index for b in ins.clbits])
-    nm = S.remap_noise(NoiseModel.from_backend(be), touched)
-    ro = S.readout_maps(NoiseModel.from_backend(be), touched)
+    nm = S.remap_noise(base, touched)
+    ro = S.readout_maps(base, touched)
     # threads per process: with many worker processes, Aer's own threads would fight over the same cores
     opts = dict(method="statevector", noise_model=nm, seed_simulator=seed, max_parallel_threads=threads)
     if device == "GPU":
@@ -105,6 +120,7 @@ def main():
     ap.add_argument("--max-qubits", type=int, default=30)
     ap.add_argument("--device", default="CPU", choices=["CPU", "GPU"])
     ap.add_argument("--threads", type=int, default=1, help="Aer threads per worker process (0 = all cores)")
+    ap.add_argument("--props", default=None, help="BackendProperties JSON (fetch_props) instead of FakeFez's noise")
     a = ap.parse_args()
     sys.path.insert(0, a.psf_os)
     import io
@@ -120,7 +136,8 @@ def main():
             continue
         b = io.BytesIO()
         qpy.dump(c, b)
-        tasks.append((k, b.getvalue(), a.shots, 1000 + k, a.max_qubits, a.device, a.threads))
+        tasks.append((k, b.getvalue(), a.shots, 1000 + k, a.max_qubits, a.device, a.threads,
+                      os.path.abspath(a.props) if a.props else None))
     rows, skipped = {}, {}
     with ProcessPoolExecutor(a.workers) as ex:
         for k, counts, nq, note in ex.map(_safe, tasks):
@@ -135,7 +152,8 @@ def main():
         print("FAILED circuits:", failed)
     full = [rows.get(k, dict(pub=k, counts={"0" * circs[k].num_clbits: 1})) for k in range(len(circs))]
     # no "backend" key: psf-os refuses a result from another device; this is a simulation of the placed device
-    json.dump(dict(job_id="realsim", submitted="-", local=True, simulator="fake_fez"),
+    json.dump(dict(job_id="realsim", submitted="-", local=True, simulator="fake_fez",
+                   noise=os.path.basename(a.props) if a.props else "FakeFez"),
               open(os.path.join(job, "submission.json"), "w"))
     json.dump(dict(fetched="-", job_id="realsim", status="DONE", rows=full), open(os.path.join(job, "raw_counts.json"), "w"))
     print("== REALSIM FINISHED")
