@@ -1,0 +1,20 @@
+candidate 0: r0 1 c0 0
+candidate 1: r0 1 c0 4
+candidate 2: r0 3 c0 0
+candidate 3: r0 3 c0 4
+g3d0_t1   3D CZ 108 layers 28
+g3d0_t2   3D CZ 216 layers 55
+g3d0_t3   3D CZ 324 layers 82
+g3d1_t1   3D CZ 108 layers 28
+g3d1_t2   3D CZ 216 layers 55
+g3d1_t3   3D CZ 324 layers 82
+g3d2_t1   3D CZ 108 layers 28
+g3d2_t2   3D CZ 216 layers 55
+g3d2_t3   3D CZ 324 layers 82
+g3d3_t1   3D CZ 108 layers 28
+g3d3_t2   3D CZ 216 layers 55
+g3d3_t3   3D CZ 324 layers 82
+hex_t1    2D CZ 16
+hex_t2    2D CZ 32
+hex_t3    2D CZ 48
+circuits 61  model 71.1 s  gates b9f99907b8ee  answers sha256 0bce0dab5066cfba1bdc783c0cd447f47173b7b1a35909b4ea428e5e0fa3356b

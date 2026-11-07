@@ -1,0 +1,126 @@
+=== run_t3 best
+ibm_fez  sentinel DEAD  probe chose candidate 3
+  candidate 0 (r0 1, c0 0): |0> floor min 0.567  |1> floor max -0.483  X echo min 0.277  weakest 0.277  marked: []
+  candidate 1 (r0 1, c0 4): |0> floor min 0.013  |1> floor max -0.007  X echo min 0.037  weakest 0.007  marked: [27, 28]
+  candidate 2 (r0 3, c0 0): |0> floor min 0.317  |1> floor max -0.250  X echo min 0.077  weakest 0.077  marked: []
+  candidate 3 (r0 3, c0 4): |0> floor min 0.543  |1> floor max -0.487  X echo min 0.350  weakest 0.350  marked: []
+hex_t1    JUDGED READS         DIFFERS  BEATS         M +0.645 exact +0.697 MSE 0.0051/0.0920 retention 0.925 CZ 16 floor 0.931 mirror 0.892
+hex_t2    JUDGED READS         DIFFERS  BEATS         M +0.615 exact +0.673 MSE 0.0117/0.1188 retention 0.914 CZ 32 floor 0.904 mirror 0.814
+hex_t3    JUDGED READS         DIFFERS  BEATS         M +0.498 exact +0.573 MSE 0.0116/0.1931 retention 0.869 CZ 48 floor 0.885 mirror 0.723
+g3d0_t1   beside READS         DIFFERS  BEATS         M +0.614 exact +0.697 MSE 0.0103/0.0920 retention 0.881 CZ 108 floor 0.897 mirror 0.786
+g3d0_t2   beside READS         AGREES   BEATS         M +0.384 exact +0.425 MSE 0.0059/0.1841 retention 0.903 CZ 216 floor 0.852 mirror 0.573
+g3d0_t3   beside READS         AGREES   BEATS         M +0.287 exact +0.321 MSE 0.0099/0.1241 retention 0.895 CZ 324 floor 0.817 mirror 0.328
+g3d1_t1   beside READS         DIFFERS  BEATS         M +0.576 exact +0.697 MSE 0.0211/0.0920 retention 0.827 CZ 108 floor 0.862 mirror 0.700
+g3d1_t2   beside READS         DIFFERS  BEATS         M +0.344 exact +0.425 MSE 0.0170/0.1841 retention 0.809 CZ 216 floor 0.805 mirror 0.412
+g3d1_t3   beside READS         DIFFERS  BEATS         M +0.241 exact +0.321 MSE 0.0225/0.1241 retention 0.751 CZ 324 floor 0.773 mirror 0.223
+g3d2_t1   beside READS         DIFFERS  BEATS         M +0.586 exact +0.697 MSE 0.0195/0.0920 retention 0.841 CZ 108 floor 0.853 mirror 0.750
+g3d2_t2   beside READS         DIFFERS  BEATS         M +0.368 exact +0.425 MSE 0.0077/0.1841 retention 0.866 CZ 216 floor 0.810 mirror 0.494
+g3d2_t3   beside READS         DIFFERS  BEATS         M +0.252 exact +0.321 MSE 0.0147/0.1241 retention 0.786 CZ 324 floor 0.762 mirror 0.271
+g3d3_t1   JUDGED READS         DIFFERS  BEATS         M +0.629 exact +0.697 MSE 0.0103/0.0920 retention 0.903 CZ 108 floor 0.920 mirror 0.854
+g3d3_t2   JUDGED READS         AGREES   BEATS         M +0.396 exact +0.425 MSE 0.0060/0.1841 retention 0.932 CZ 216 floor 0.898 mirror 0.636
+g3d3_t3   JUDGED READS         AGREES   BEATS         M +0.286 exact +0.321 MSE 0.0061/0.1241 retention 0.890 CZ 324 floor 0.862 mirror 0.390
+=== run_t3 mirror
+ibm_fez  sentinel DEAD  probe chose candidate 3
+  candidate 0 (r0 1, c0 0): |0> floor min 0.567  |1> floor max -0.483  X echo min 0.277  weakest 0.277  mirror t1 0.786  marked: []
+  candidate 1 (r0 1, c0 4): |0> floor min 0.013  |1> floor max -0.007  X echo min 0.037  weakest 0.007  mirror t1 0.700  marked: [27, 28]
+  candidate 2 (r0 3, c0 0): |0> floor min 0.317  |1> floor max -0.250  X echo min 0.077  weakest 0.077  mirror t1 0.750  marked: []
+  candidate 3 (r0 3, c0 4): |0> floor min 0.543  |1> floor max -0.487  X echo min 0.350  weakest 0.350  mirror t1 0.854  marked: []
+hex_t1    JUDGED READS         DIFFERS  BEATS         M +0.645 exact +0.697 MSE 0.0051/0.0920 retention 0.925 CZ 16 floor 0.931 mirror 0.892
+hex_t2    JUDGED READS         DIFFERS  BEATS         M +0.615 exact +0.673 MSE 0.0117/0.1188 retention 0.914 CZ 32 floor 0.904 mirror 0.814
+hex_t3    JUDGED READS         DIFFERS  BEATS         M +0.498 exact +0.573 MSE 0.0116/0.1931 retention 0.869 CZ 48 floor 0.885 mirror 0.723
+g3d0_t1   beside READS         DIFFERS  BEATS         M +0.614 exact +0.697 MSE 0.0103/0.0920 retention 0.881 CZ 108 floor 0.897 mirror 0.786
+g3d0_t2   beside READS         AGREES   BEATS         M +0.384 exact +0.425 MSE 0.0059/0.1841 retention 0.903 CZ 216 floor 0.852 mirror 0.573
+g3d0_t3   beside READS         AGREES   BEATS         M +0.287 exact +0.321 MSE 0.0099/0.1241 retention 0.895 CZ 324 floor 0.817 mirror 0.328
+g3d1_t1   beside READS         DIFFERS  BEATS         M +0.576 exact +0.697 MSE 0.0211/0.0920 retention 0.827 CZ 108 floor 0.862 mirror 0.700
+g3d1_t2   beside READS         DIFFERS  BEATS         M +0.344 exact +0.425 MSE 0.0170/0.1841 retention 0.809 CZ 216 floor 0.805 mirror 0.412
+g3d1_t3   beside READS         DIFFERS  BEATS         M +0.241 exact +0.321 MSE 0.0225/0.1241 retention 0.751 CZ 324 floor 0.773 mirror 0.223
+g3d2_t1   beside READS         DIFFERS  BEATS         M +0.586 exact +0.697 MSE 0.0195/0.0920 retention 0.841 CZ 108 floor 0.853 mirror 0.750
+g3d2_t2   beside READS         DIFFERS  BEATS         M +0.368 exact +0.425 MSE 0.0077/0.1841 retention 0.866 CZ 216 floor 0.810 mirror 0.494
+g3d2_t3   beside READS         DIFFERS  BEATS         M +0.252 exact +0.321 MSE 0.0147/0.1241 retention 0.786 CZ 324 floor 0.762 mirror 0.271
+g3d3_t1   JUDGED READS         DIFFERS  BEATS         M +0.629 exact +0.697 MSE 0.0103/0.0920 retention 0.903 CZ 108 floor 0.920 mirror 0.854
+g3d3_t2   JUDGED READS         AGREES   BEATS         M +0.396 exact +0.425 MSE 0.0060/0.1841 retention 0.932 CZ 216 floor 0.898 mirror 0.636
+g3d3_t3   JUDGED READS         AGREES   BEATS         M +0.286 exact +0.321 MSE 0.0061/0.1241 retention 0.890 CZ 324 floor 0.862 mirror 0.390
+=== run_t3 gate
+ibm_fez  sentinel DEAD  probe chose candidate 3
+  candidate 0 (r0 1, c0 0): |0> floor min 0.567  |1> floor max -0.483  X echo min 0.277  weakest 0.277  mirror t1 0.786  marked: []  gate PASS {'mirror_low_sites': 0, 'floor1_marked': [], 'within_best': True, 'pass': True}
+  candidate 1 (r0 1, c0 4): |0> floor min 0.013  |1> floor max -0.007  X echo min 0.037  weakest 0.007  mirror t1 0.700  marked: [27, 28]  gate FAIL {'mirror_low_sites': 0, 'floor1_marked': [27, 28], 'within_best': False, 'pass': False}
+  candidate 2 (r0 3, c0 0): |0> floor min 0.317  |1> floor max -0.250  X echo min 0.077  weakest 0.077  mirror t1 0.750  marked: []  gate FAIL {'mirror_low_sites': 0, 'floor1_marked': [], 'within_best': False, 'pass': False}
+  candidate 3 (r0 3, c0 4): |0> floor min 0.543  |1> floor max -0.487  X echo min 0.350  weakest 0.350  mirror t1 0.854  marked: []  gate PASS {'mirror_low_sites': 0, 'floor1_marked': [], 'within_best': True, 'pass': True}
+hex_t1    JUDGED READS         DIFFERS  BEATS         M +0.645 exact +0.697 MSE 0.0051/0.0920 retention 0.925 CZ 16 floor 0.931 mirror 0.892
+hex_t2    JUDGED READS         DIFFERS  BEATS         M +0.615 exact +0.673 MSE 0.0117/0.1188 retention 0.914 CZ 32 floor 0.904 mirror 0.814
+hex_t3    JUDGED READS         DIFFERS  BEATS         M +0.498 exact +0.573 MSE 0.0116/0.1931 retention 0.869 CZ 48 floor 0.885 mirror 0.723
+g3d0_t1   beside READS         DIFFERS  BEATS         M +0.614 exact +0.697 MSE 0.0103/0.0920 retention 0.881 CZ 108 floor 0.897 mirror 0.786
+g3d0_t2   beside READS         AGREES   BEATS         M +0.384 exact +0.425 MSE 0.0059/0.1841 retention 0.903 CZ 216 floor 0.852 mirror 0.573
+g3d0_t3   beside READS         AGREES   BEATS         M +0.287 exact +0.321 MSE 0.0099/0.1241 retention 0.895 CZ 324 floor 0.817 mirror 0.328
+g3d1_t1   beside READS         DIFFERS  BEATS         M +0.576 exact +0.697 MSE 0.0211/0.0920 retention 0.827 CZ 108 floor 0.862 mirror 0.700
+g3d1_t2   beside READS         DIFFERS  BEATS         M +0.344 exact +0.425 MSE 0.0170/0.1841 retention 0.809 CZ 216 floor 0.805 mirror 0.412
+g3d1_t3   beside READS         DIFFERS  BEATS         M +0.241 exact +0.321 MSE 0.0225/0.1241 retention 0.751 CZ 324 floor 0.773 mirror 0.223
+g3d2_t1   beside READS         DIFFERS  BEATS         M +0.586 exact +0.697 MSE 0.0195/0.0920 retention 0.841 CZ 108 floor 0.853 mirror 0.750
+g3d2_t2   beside READS         DIFFERS  BEATS         M +0.368 exact +0.425 MSE 0.0077/0.1841 retention 0.866 CZ 216 floor 0.810 mirror 0.494
+g3d2_t3   beside READS         DIFFERS  BEATS         M +0.252 exact +0.321 MSE 0.0147/0.1241 retention 0.786 CZ 324 floor 0.762 mirror 0.271
+g3d3_t1   JUDGED READS         DIFFERS  BEATS         M +0.629 exact +0.697 MSE 0.0103/0.0920 retention 0.903 CZ 108 floor 0.920 mirror 0.854
+g3d3_t2   JUDGED READS         AGREES   BEATS         M +0.396 exact +0.425 MSE 0.0060/0.1841 retention 0.932 CZ 216 floor 0.898 mirror 0.636
+g3d3_t3   JUDGED READS         AGREES   BEATS         M +0.286 exact +0.321 MSE 0.0061/0.1241 retention 0.890 CZ 324 floor 0.862 mirror 0.390
+=== run_t1 best
+ibm_fez  sentinel DEAD  probe chose candidate 0
+  candidate 0 (r0 1, c0 0): |0> floor min 0.717  |1> floor max -0.663  X echo min 0.610  weakest 0.610  marked: []
+  candidate 1 (r0 1, c0 4): |0> floor min 0.400  |1> floor max -0.337  X echo min 0.107  weakest 0.107  marked: [27, 28]
+  candidate 2 (r0 3, c0 0): |0> floor min 0.523  |1> floor max -0.520  X echo min 0.453  weakest 0.453  marked: [83]
+  candidate 3 (r0 3, c0 4): |0> floor min 0.617  |1> floor max -0.610  X echo min 0.563  weakest 0.563  marked: []
+hex_t1    JUDGED READS         DIFFERS  BEATS         M +0.645 exact +0.697 MSE 0.0051/0.0920 retention 0.925 CZ 16 floor 0.931 mirror 0.892
+hex_t2    JUDGED READS         DIFFERS  BEATS         M +0.615 exact +0.673 MSE 0.0117/0.1188 retention 0.914 CZ 32 floor 0.904 mirror 0.814
+hex_t3    JUDGED READS         DIFFERS  BEATS         M +0.498 exact +0.573 MSE 0.0116/0.1931 retention 0.869 CZ 48 floor 0.885 mirror 0.723
+g3d0_t1   JUDGED READS         DIFFERS  BEATS         M +0.614 exact +0.697 MSE 0.0103/0.0920 retention 0.881 CZ 108 floor 0.897 mirror 0.786
+g3d0_t2   JUDGED READS         AGREES   BEATS         M +0.384 exact +0.425 MSE 0.0059/0.1841 retention 0.903 CZ 216 floor 0.852 mirror 0.573
+g3d0_t3   JUDGED READS         AGREES   BEATS         M +0.287 exact +0.321 MSE 0.0099/0.1241 retention 0.895 CZ 324 floor 0.817 mirror 0.328
+g3d1_t1   beside READS         DIFFERS  BEATS         M +0.576 exact +0.697 MSE 0.0211/0.0920 retention 0.827 CZ 108 floor 0.862 mirror 0.700
+g3d1_t2   beside READS         DIFFERS  BEATS         M +0.344 exact +0.425 MSE 0.0170/0.1841 retention 0.809 CZ 216 floor 0.805 mirror 0.412
+g3d1_t3   beside READS         DIFFERS  BEATS         M +0.241 exact +0.321 MSE 0.0225/0.1241 retention 0.751 CZ 324 floor 0.773 mirror 0.223
+g3d2_t1   beside READS         DIFFERS  BEATS         M +0.586 exact +0.697 MSE 0.0195/0.0920 retention 0.841 CZ 108 floor 0.853 mirror 0.750
+g3d2_t2   beside READS         DIFFERS  BEATS         M +0.368 exact +0.425 MSE 0.0077/0.1841 retention 0.866 CZ 216 floor 0.810 mirror 0.494
+g3d2_t3   beside READS         DIFFERS  BEATS         M +0.252 exact +0.321 MSE 0.0147/0.1241 retention 0.786 CZ 324 floor 0.762 mirror 0.271
+g3d3_t1   beside READS         DIFFERS  BEATS         M +0.629 exact +0.697 MSE 0.0103/0.0920 retention 0.903 CZ 108 floor 0.920 mirror 0.854
+g3d3_t2   beside READS         AGREES   BEATS         M +0.396 exact +0.425 MSE 0.0060/0.1841 retention 0.932 CZ 216 floor 0.898 mirror 0.636
+g3d3_t3   beside READS         AGREES   BEATS         M +0.286 exact +0.321 MSE 0.0061/0.1241 retention 0.890 CZ 324 floor 0.862 mirror 0.390
+=== run_t1 mirror
+ibm_fez  sentinel DEAD  probe chose candidate 3
+  candidate 0 (r0 1, c0 0): |0> floor min 0.717  |1> floor max -0.663  X echo min 0.610  weakest 0.610  mirror t1 0.786  marked: []
+  candidate 1 (r0 1, c0 4): |0> floor min 0.400  |1> floor max -0.337  X echo min 0.107  weakest 0.107  mirror t1 0.700  marked: [27, 28]
+  candidate 2 (r0 3, c0 0): |0> floor min 0.523  |1> floor max -0.520  X echo min 0.453  weakest 0.453  mirror t1 0.750  marked: [83]
+  candidate 3 (r0 3, c0 4): |0> floor min 0.617  |1> floor max -0.610  X echo min 0.563  weakest 0.563  mirror t1 0.854  marked: []
+hex_t1    JUDGED READS         DIFFERS  BEATS         M +0.645 exact +0.697 MSE 0.0051/0.0920 retention 0.925 CZ 16 floor 0.931 mirror 0.892
+hex_t2    JUDGED READS         DIFFERS  BEATS         M +0.615 exact +0.673 MSE 0.0117/0.1188 retention 0.914 CZ 32 floor 0.904 mirror 0.814
+hex_t3    JUDGED READS         DIFFERS  BEATS         M +0.498 exact +0.573 MSE 0.0116/0.1931 retention 0.869 CZ 48 floor 0.885 mirror 0.723
+g3d0_t1   beside READS         DIFFERS  BEATS         M +0.614 exact +0.697 MSE 0.0103/0.0920 retention 0.881 CZ 108 floor 0.897 mirror 0.786
+g3d0_t2   beside READS         AGREES   BEATS         M +0.384 exact +0.425 MSE 0.0059/0.1841 retention 0.903 CZ 216 floor 0.852 mirror 0.573
+g3d0_t3   beside READS         AGREES   BEATS         M +0.287 exact +0.321 MSE 0.0099/0.1241 retention 0.895 CZ 324 floor 0.817 mirror 0.328
+g3d1_t1   beside READS         DIFFERS  BEATS         M +0.576 exact +0.697 MSE 0.0211/0.0920 retention 0.827 CZ 108 floor 0.862 mirror 0.700
+g3d1_t2   beside READS         DIFFERS  BEATS         M +0.344 exact +0.425 MSE 0.0170/0.1841 retention 0.809 CZ 216 floor 0.805 mirror 0.412
+g3d1_t3   beside READS         DIFFERS  BEATS         M +0.241 exact +0.321 MSE 0.0225/0.1241 retention 0.751 CZ 324 floor 0.773 mirror 0.223
+g3d2_t1   beside READS         DIFFERS  BEATS         M +0.586 exact +0.697 MSE 0.0195/0.0920 retention 0.841 CZ 108 floor 0.853 mirror 0.750
+g3d2_t2   beside READS         DIFFERS  BEATS         M +0.368 exact +0.425 MSE 0.0077/0.1841 retention 0.866 CZ 216 floor 0.810 mirror 0.494
+g3d2_t3   beside READS         DIFFERS  BEATS         M +0.252 exact +0.321 MSE 0.0147/0.1241 retention 0.786 CZ 324 floor 0.762 mirror 0.271
+g3d3_t1   JUDGED READS         DIFFERS  BEATS         M +0.629 exact +0.697 MSE 0.0103/0.0920 retention 0.903 CZ 108 floor 0.920 mirror 0.854
+g3d3_t2   JUDGED READS         AGREES   BEATS         M +0.396 exact +0.425 MSE 0.0060/0.1841 retention 0.932 CZ 216 floor 0.898 mirror 0.636
+g3d3_t3   JUDGED READS         AGREES   BEATS         M +0.286 exact +0.321 MSE 0.0061/0.1241 retention 0.890 CZ 324 floor 0.862 mirror 0.390
+=== run_t1 gate
+ibm_fez  sentinel DEAD  probe chose candidate 3
+  candidate 0 (r0 1, c0 0): |0> floor min 0.717  |1> floor max -0.663  X echo min 0.610  weakest 0.610  mirror t1 0.786  marked: []  gate PASS {'mirror_low_sites': 0, 'floor1_marked': [], 'within_best': True, 'pass': True}
+  candidate 1 (r0 1, c0 4): |0> floor min 0.400  |1> floor max -0.337  X echo min 0.107  weakest 0.107  mirror t1 0.700  marked: [27, 28]  gate FAIL {'mirror_low_sites': 0, 'floor1_marked': [27, 28], 'within_best': False, 'pass': False}
+  candidate 2 (r0 3, c0 0): |0> floor min 0.523  |1> floor max -0.520  X echo min 0.453  weakest 0.453  mirror t1 0.750  marked: [83]  gate FAIL {'mirror_low_sites': 0, 'floor1_marked': [], 'within_best': False, 'pass': False}
+  candidate 3 (r0 3, c0 4): |0> floor min 0.617  |1> floor max -0.610  X echo min 0.563  weakest 0.563  mirror t1 0.854  marked: []  gate PASS {'mirror_low_sites': 0, 'floor1_marked': [], 'within_best': True, 'pass': True}
+hex_t1    JUDGED READS         DIFFERS  BEATS         M +0.645 exact +0.697 MSE 0.0051/0.0920 retention 0.925 CZ 16 floor 0.931 mirror 0.892
+hex_t2    JUDGED READS         DIFFERS  BEATS         M +0.615 exact +0.673 MSE 0.0117/0.1188 retention 0.914 CZ 32 floor 0.904 mirror 0.814
+hex_t3    JUDGED READS         DIFFERS  BEATS         M +0.498 exact +0.573 MSE 0.0116/0.1931 retention 0.869 CZ 48 floor 0.885 mirror 0.723
+g3d0_t1   beside READS         DIFFERS  BEATS         M +0.614 exact +0.697 MSE 0.0103/0.0920 retention 0.881 CZ 108 floor 0.897 mirror 0.786
+g3d0_t2   beside READS         AGREES   BEATS         M +0.384 exact +0.425 MSE 0.0059/0.1841 retention 0.903 CZ 216 floor 0.852 mirror 0.573
+g3d0_t3   beside READS         AGREES   BEATS         M +0.287 exact +0.321 MSE 0.0099/0.1241 retention 0.895 CZ 324 floor 0.817 mirror 0.328
+g3d1_t1   beside READS         DIFFERS  BEATS         M +0.576 exact +0.697 MSE 0.0211/0.0920 retention 0.827 CZ 108 floor 0.862 mirror 0.700
+g3d1_t2   beside READS         DIFFERS  BEATS         M +0.344 exact +0.425 MSE 0.0170/0.1841 retention 0.809 CZ 216 floor 0.805 mirror 0.412
+g3d1_t3   beside READS         DIFFERS  BEATS         M +0.241 exact +0.321 MSE 0.0225/0.1241 retention 0.751 CZ 324 floor 0.773 mirror 0.223
+g3d2_t1   beside READS         DIFFERS  BEATS         M +0.586 exact +0.697 MSE 0.0195/0.0920 retention 0.841 CZ 108 floor 0.853 mirror 0.750
+g3d2_t2   beside READS         DIFFERS  BEATS         M +0.368 exact +0.425 MSE 0.0077/0.1841 retention 0.866 CZ 216 floor 0.810 mirror 0.494
+g3d2_t3   beside READS         DIFFERS  BEATS         M +0.252 exact +0.321 MSE 0.0147/0.1241 retention 0.786 CZ 324 floor 0.762 mirror 0.271
+g3d3_t1   JUDGED READS         DIFFERS  BEATS         M +0.629 exact +0.697 MSE 0.0103/0.0920 retention 0.903 CZ 108 floor 0.920 mirror 0.854
+g3d3_t2   JUDGED READS         AGREES   BEATS         M +0.396 exact +0.425 MSE 0.0060/0.1841 retention 0.932 CZ 216 floor 0.898 mirror 0.636
+g3d3_t3   JUDGED READS         AGREES   BEATS         M +0.286 exact +0.321 MSE 0.0061/0.1241 retention 0.890 CZ 324 floor 0.862 mirror 0.390
