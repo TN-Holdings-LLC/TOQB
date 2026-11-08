@@ -1,0 +1,14 @@
+== CZ per arm (RuleCompiler + rzz_exact); per step = difference t2 - t1
+ibm_fez 4x2x2: line t1-4 [60, 120, 180, 240] (step 60; r0 0 c0 1 bridges [[2, 6]] empty swaps/line 0) | fold v3.1 108/216 (step 108) | fold v3.2 92/184 (step 92) | floor/mirror accept: {'user_measures': True, 'floor_cz': True, 'floor_diagonal': True, 'mirror_cz': True, 'mirror_measures': True}
+ibm_fez 4x3x2: line t1-4 [126, 252, 378, 504] (step 126; r0 0 c0 0 bridges [[3, 7], [1, 5]] empty swaps/line 2) | fold v3.1 234/468 (step 234) | fold v3.2 222/444 (step 222) | floor/mirror accept: {'user_measures': True, 'floor_cz': True, 'floor_diagonal': True, 'mirror_cz': True, 'mirror_measures': True}
+ibm_kingston 4x2x2: line t1-4 [60, 120, 180, 240] (step 60; r0 0 c0 1 bridges [[2, 6]] empty swaps/line 0) | fold v3.1 108/216 (step 108) | fold v3.2 92/184 (step 92) | floor/mirror accept: {'user_measures': True, 'floor_cz': True, 'floor_diagonal': True, 'mirror_cz': True, 'mirror_measures': True}
+ibm_kingston 4x3x2: line t1-4 [126, 252, 378, 504] (step 126; r0 0 c0 0 bridges [[3, 7], [1, 5]] empty swaps/line 2) | fold v3.1 234/468 (step 234) | fold v3.2 222/444 (step 222) | floor/mirror accept: {'user_measures': True, 'floor_cz': True, 'floor_diagonal': True, 'mirror_cz': True, 'mirror_measures': True}
+ibm_marrakesh 4x2x2: line t1-4 [60, 120, 180, 240] (step 60; r0 0 c0 1 bridges [[2, 6]] empty swaps/line 0) | fold v3.1 108/216 (step 108) | fold v3.2 92/184 (step 92) | floor/mirror accept: {'user_measures': True, 'floor_cz': True, 'floor_diagonal': True, 'mirror_cz': True, 'mirror_measures': True}
+ibm_marrakesh 4x3x2: line t1-4 [126, 252, 378, 504] (step 126; r0 0 c0 7 bridges [[0, 4], [2, 6]] empty swaps/line 2) | fold v3.1 234/468 (step 234) | fold v3.2 222/444 (step 222) | floor/mirror accept: {'user_measures': True, 'floor_cz': True, 'floor_diagonal': True, 'mirror_cz': True, 'mirror_measures': True}
+== noiseless check on ibm_fez (theta 0.6)
+4x2x2 t 1: qubits 18  max|placed - exact| 3.9e-14  bridges back to |0>: 3.8e-14
+4x2x2 t 2: qubits 18  max|placed - exact| 4.0e-15  bridges back to |0>: -4.4e-16
+4x2x2 t 3: qubits 18  max|placed - exact| 3.6e-15  bridges back to |0>: 3.1e-15
+4x2x2 t 4: qubits 18  max|placed - exact| 2.4e-15  bridges back to |0>: 8.8e-15
+4x3x2 t 1: qubits 28  max|placed - exact| 7.3e-12  bridges back to |0>: 6.1e-12
+4x3x2 t 2: qubits 28  max|placed - exact| 4.5e-14  bridges back to |0>: 2.7e-14
