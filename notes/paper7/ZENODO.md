@@ -1,4 +1,6 @@
-# Paper 7, version 1: Zenodo record (to be filled in by the owner at upload)
+# Paper 7, version 1: Zenodo record
+
+Published by the owner on 2026-11-08: **doi:10.5281/zenodo.24046673** (https://doi.org/10.5281/zenodo.24046673).
 
 - File: `notes/paper7/paper7_v1.pdf` (built from `notes/paper7/paper7.tex` at the commit that adds this file).
 - Title: Exact answers, no map, no mitigation: user-written circuits through a placement-only OS on IBM Heron r2 devices
