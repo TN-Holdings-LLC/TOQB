@@ -10,7 +10,9 @@ Every candidate is reported beside; the sentinel as recorded.
 A job built with several layouts at the same places (--both or --variants, 2026-11-08): the judged candidate is the
 one whose t = 1 arms (one per layout) have the highest mean mirror; every layout is judged there, and the retention of
 each new layout (carry, line) minus that of the old one is reported per t (a number, not a verdict), with the shot
-bound 2 sqrt(2) / (sqrt(shots) |m_s exact (old)|) beside it.
+bound 2 sqrt(2) / (sqrt(shots) |m_s exact (old)|) beside it. From 2026-11-08 the normalised per-site error
+(MSE / mean square of the exact values) of both layouts is printed as well (notes/reporting/layout_comparison_metric.md:
+the main measure of later declarations).
 
 usage: PYTHONPATH=<psf-os>:<TOQB>/gpu python gpu/heis3d_score.py OUT ANSWERS.json   (writes OUT/scores.json)
 """
@@ -65,7 +67,9 @@ def main(out, answers_file):
                         continue
                     bound = 2 * np.sqrt(2) / (np.sqrt(rep["shots"]) * abs(v["old"]["m_s_exact"]))
                     d = v[w]["retention"] - v["old"]["retention"]
+                    nm = {k: v[k]["mse"] / v[k]["mean_square_exact"] for k in ("old", w)}
                     cmp[f"c{c}_t{t}_{w}"] = dict(candidate=c, t=t, variant=w, judged=c == chosen, bound=float(bound),
+                                                 nmse_old=nm["old"], nmse_new=nm[w], nmse_new_minus_old=nm[w] - nm["old"],
                                                  resolved=bool(abs(d) > bound), retention_old=v["old"]["retention"],
                                                  retention_new=v[w]["retention"], new_minus_old=d,
                                                  cz_old=v["old"]["cz"], cz_new=v[w]["cz"])
@@ -85,7 +89,8 @@ def main(out, answers_file):
     for k, v in res.get("comparison", {}).items():
         print(f"{k:12} {'JUDGED' if v['judged'] else 'beside':6} retention old {v['retention_old']:.3f} (CZ {v['cz_old']})"
               f"  {v['variant']} {v['retention_new']:.3f} (CZ {v['cz_new']})  {v['variant']} - old {v['new_minus_old']:+.3f}"
-              f" ({'resolved' if v['resolved'] else 'within the shot bound'} {v['bound']:.3f})")
+              f" ({'resolved' if v['resolved'] else 'within the shot bound'} {v['bound']:.3f})"
+              f"  nMSE {v['nmse_old']:.3f} -> {v['nmse_new']:.3f}")
     for w, mean in res.get("comparison_mean_over_places", {}).items():
         print(f"mean over places, {w} - old:", {t: round(m, 3) for t, m in mean.items()})
     return res
