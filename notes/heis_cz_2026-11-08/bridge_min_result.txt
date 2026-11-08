@@ -1,0 +1,5 @@
+dt 0.3: sanity, pattern ab ab bq bq bq ab ab -> 1.2e-09
+k = 5 CZ: best infidelity 8.7e-02  pattern bq ab bq ab ab
+k = 6 CZ: best infidelity 4.5e-02  pattern ab ab bq ab bq ab
+
+[exited with code 0]
