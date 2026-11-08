@@ -59,6 +59,10 @@
 | 2026-11-05 | ibm_fez | FX-A | AGREES | BEATS | -0.043 | 0.732 | 0.268 | 0.0130 | dbm5hid8ft8s738u88g0 |
 | 2026-11-05 | ibm_marrakesh | D02 | DIFFERS | BEATS | -0.111 | 0.860 | 0.140 | 0.0038 | dbm5hgd8mdtc73d7bang |
 | 2026-11-05 | ibm_marrakesh | FX-A | AGREES | BEATS | -0.024 | 0.846 | 0.154 | 0.0070 | dbm5hgd8mdtc73d7bang |
+| 2026-11-06 | ibm_marrakesh | D03 | REFUSED | - | - | - | - | - | not run (no copy qualifies) |
+| 2026-11-06 | ibm_marrakesh | FX-A | AGREES | BEATS | -0.008 | 0.949 | 0.051 | 0.0017 | dbmqhbu74qds73dsrde0 |
+| 2026-11-07 | ibm_fez | D04 | AGREES | BEATS | +0.010 | 1.022 | 0.022 | -0.0005 | dbn5ludt7fqc73aivq60 |
+| 2026-11-07 | ibm_fez | FX-A | AGREES | BEATS | -0.038 | 0.763 | 0.237 | 0.0121 | dbn5ludt7fqc73aivq60 |
 
 *The declared criterion is an absolute difference; the same relative loss gives a larger difference when the exact answer is larger. R and the normalised error show the loss relative to the answer.*
 
@@ -70,6 +74,8 @@
 | 2026-11-04 (practice) | ibm_fez | -0.041 | 0.740 | AGREES | dblin89kbkrc73cnpcbg |
 | 2026-11-05 | ibm_fez | -0.043 | 0.732 | AGREES | dbm5hid8ft8s738u88g0 |
 | 2026-11-05 | ibm_marrakesh | -0.024 | 0.846 | AGREES | dbm5hgd8mdtc73d7bang |
+| 2026-11-06 | ibm_marrakesh | -0.008 | 0.949 | AGREES | dbmqhbu74qds73dsrde0 |
+| 2026-11-07 | ibm_fez | -0.038 | 0.763 | AGREES | dbn5ludt7fqc73aivq60 |
 
 *The declared criterion is an absolute difference; the same relative loss gives a larger difference when the exact answer is larger. R and the normalised error show the loss relative to the answer.*
 

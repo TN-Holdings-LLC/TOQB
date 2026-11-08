@@ -136,8 +136,11 @@ def tex_table(head, rows, caption):
     esc = lambda s: str(s).replace("_", r"\_").replace("%", r"\%")
     cols = "l" * len(head)
     body = "\n".join(" & ".join(esc(c) for c in r) + r" \\" for r in rows)
-    return (f"\\begin{{table}}[t]\\centering\\small\n\\caption{{{esc(caption)}}}\n\\begin{{tabular}}{{{cols}}}\\toprule\n"
-            + " & ".join(esc(h) for h in head) + r" \\ \midrule" + "\n" + body + "\n\\bottomrule\\end{tabular}\n\\end{table}")
+    # scaled down to the text width when wider (needs graphicx); never scaled up
+    return (f"\\begin{{table}}[htbp]\\centering\\small\n\\caption{{{esc(caption)}}}\n"
+            f"\\resizebox{{\\ifdim\\width>\\textwidth\\textwidth\\else\\width\\fi}}{{!}}{{\\begin{{tabular}}{{{cols}}}\\toprule\n"
+            + " & ".join(esc(h) for h in head) + r" \\ \midrule" + "\n" + body
+            + "\n\\bottomrule\\end{tabular}}\n\\end{table}")
 
 
 def build(out_dir):
