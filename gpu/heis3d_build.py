@@ -11,6 +11,9 @@ usage: PYTHONPATH=<psf-os>:<TOQB>/gpu python gpu/heis3d_build.py DEV OUT ANSWERS
 per step at 4 x 2 x 2. Not declared for a device run yet.
 --both (2026-11-08, owner "進めて"): each candidate twice in the same job, the declared layout of 2026-11-07 (tags
 h3d<i>_t<t>, variant "old") and the carried one (tags h3c<i>_t<t>, variant "carry"), at the same place and depths.
+--variants old,carry,line (2026-11-08, owner "合体させて良いとこどりで改良して"): any of the declared layout ("old",
+h3d), the carried fold ("carry", h3c) and the line layout with the step-boundary merge ("line", h3l;
+gpu/heis3d.py physical_line, 4 x 2 x 2 only), each at every candidate place and depth in the same job.
 """
 import argparse
 import hashlib
@@ -39,6 +42,7 @@ def main():
     ap.add_argument("--dry-clifford-sentinel", action="store_true")
     ap.add_argument("--carry", action="store_true")
     ap.add_argument("--both", action="store_true")
+    ap.add_argument("--variants", default=None, help="comma list of old, carry, line")
     a = ap.parse_args()
     M, N = (int(v) for v in a.lattice.split(","))
     if L * M * N > 24:
@@ -74,10 +78,21 @@ def main():
     if not cands:
         raise SystemExit(f"NOT RUN: no fold translation fits on {dev.name}")
     arms, answers = {}, {}
-    variants = [("h3d", False, "old"), ("h3c", True, "carry")] if a.both else [("h3d", a.carry, "carry" if a.carry else "old")]
+    table = {"old": ("h3d", False, "old"), "carry": ("h3c", True, "carry"), "line": ("h3l", "line", "line")}
+    if a.variants:
+        variants = [table[v] for v in a.variants.split(",")]
+    elif a.both:
+        variants = [table["old"], table["carry"]]
+    else:
+        variants = [("h3d", a.carry, "carry" if a.carry else "old")]
+    if any(v[1] == "line" for v in variants) and (M, N) != (2, 2):
+        raise SystemExit("STOP: the line layout is written for 4 x 2 x 2 only")
     for c, (head, carry, vname) in ((c, v) for c in cands for v in variants):
         for t in ts:
-            qc, placed, used, log, where = H.physical(dev, M, N, t, a.dt, a.delta, avoid=c["avoid"], carry=carry)
+            if carry == "line":
+                qc, placed, used, log, where = H.physical_line(dev, t, a.dt, a.delta, avoid=c["avoid"])
+            else:
+                qc, placed, used, log, where = H.physical(dev, M, N, t, a.dt, a.delta, avoid=c["avoid"], carry=carry)
             assert (where["r0"], where["c0"]) == (c["r0"], c["c0"])
             n = L * M * N
             phys = [placed[s] for s in range(n)]
@@ -107,7 +122,7 @@ def main():
     ans_sha = hashlib.sha256(open(a.answers_out, "rb").read()).hexdigest()
     gh = GH.qpy_hash(os.path.join(a.out, "job", "circuits.qpy"))
     rep = dict(device=dev.name, model="heisenberg", lattice=[L, M, N], dt=a.dt, delta=a.delta, ts=ts, shots=a.shots,
-               carry=a.carry, both=a.both,
+               carry=a.carry, both=a.both, variants=[v[2] for v in variants],
                candidates=[{x: c[x] for x in ("index", "r0", "c0", "layout", "used")} for c in cands], arms=arms,
                circuits=len(man["pubs"]), qpu_seconds_model=man["qpu_seconds_model"], gate_hash=gh,
                answers_sha256=ans_sha, job=os.path.join(a.out, "job"), runs=runs)

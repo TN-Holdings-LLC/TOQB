@@ -224,3 +224,155 @@ def placed_check(qc, placed, used, L, M, N, log, dt, delta=1.0):
     others = set(used) - set(placed.values())
     bridge_err = max((1 - z[u] for u in others), default=0.0)
     return site_err, bridge_err
+
+
+# ---------------------------------------------------------------------------------------------------------------
+# The line layout for 4 x 2 x 2 (2026-11-08; VS Claude's schedules, notes/heis_cz_2026-11-08, joined here with the
+# carry idea and a merge at step boundaries). Lattice row y of both blocks z = 0, 1 shares one heavy-hex row
+# (columns c0 .. c0 + 7): the eight sites (x, z) are interleaved along the line, and every bond inside the line (x- and
+# z-bonds) rides on a swap as SWAP . U or is taken in place as U, so no swap is empty. The two lines (y = 0, 1) run the
+# same schedule; a site at a bridge position takes its y-bond through the bridge (move onto the empty bridge, U, move
+# back). Even steps run the schedule reversed (U is symmetric, so a reversed SWAP . U is again SWAP . U).
+# Merge at step boundaries: when a y-bond's move back is followed by the next y-bond of the same bridge with no line
+# operation on that position in between, the two moves cancel and the two U(dt) on the same pair are one U(2 dt)
+# (exact: the same pair, U(dt)^2 = U(2 dt)); the log keeps both bonds, so the exact answer is unchanged.
+# ---------------------------------------------------------------------------------------------------------------
+
+_NAMES = ["0", "1", "2", "3", "0'", "1'", "2'", "3'"]   # x + 4 z (a prime marks block z = 1)
+LINE_SCHEDULES = {
+    # bridge line positions: (start arrangement, operations (kind, line position e: acts on e, e + 1))
+    (1, 5): (["0'", "1", "0", "1'", "2'", "3", "2", "3'"],
+             "SWAP.U(3,2)@5 ; SWAP.U(3,3')@6 ; U(1',2')@3 ; SWAP.U(2',2)@4 ; SWAP.U(2',3')@5 ; SWAP.U(1,0)@1 ; "
+             "SWAP.U(1,1')@2 ; U(1,2)@3 ; SWAP.U(0',0)@0 ; SWAP.U(0',1')@1"),
+    (3, 7): (["0'", "1", "2'", "0", "1'", "2", "3", "3'"],
+             "U(2,3)@5 ; SWAP.U(3,3')@6 ; SWAP(2',0)@2 ; SWAP.U(2',1')@3 ; SWAP.U(2',2)@4 ; U(2',3')@5 ; "
+             "SWAP.U(1,0)@1 ; SWAP.U(1,1')@2 ; SWAP.U(1,2)@3 ; SWAP.U(0',0)@0 ; SWAP.U(0',1')@1 ; SWAP(0',2)@2"),
+}
+
+
+def _parse_ops(text):
+    import re
+    out = []
+    for o in text.split(";"):
+        m = re.match(r"\s*(U|SWAP\.U|SWAP)\((\S+?),(\S+?)\)@(\d)", o)
+        out.append((m.group(1), int(m.group(4))))
+    return out
+
+
+def _line_build(A, B, bridge, br, t, dt, delta, merge=True):
+    """The 4 x 2 x 2 circuit on line labels A[0..7] (y = 0), B[0..7] (y = 1) and bridges {line position: label}.
+    Returns (abstract operation list, start arrangement, end arrangement, log of site pairs)."""
+    start_names, ops_text = LINE_SCHEDULES[tuple(br)]
+    ops = _parse_ops(ops_text)
+    idx = {s: i for i, s in enumerate(G.sites(4, 2, 2))}
+    site = lambda name, y: idx[(name % 4, y, name // 4)]
+    arr = [_NAMES.index(v) for v in start_names]
+    start = list(arr)
+    seq, log = [], []
+    for step in range(t):
+        steps_ops = ops if step % 2 == 0 else list(reversed(ops))
+        ydone = set()
+
+        def ybonds():
+            for p in br:
+                if arr[p] not in ydone:
+                    seq.append(("y", p))
+                    log.append((site(arr[p], 0), site(arr[p], 1)))
+                    ydone.add(arr[p])
+        ybonds()
+        for kind, e in steps_ops:
+            for y in (0, 1):
+                s1, s2 = site(arr[e], y), site(arr[e + 1], y)
+                if kind != "SWAP":
+                    log.append((s1, s2))
+            seq.append((kind, e))
+            if kind != "U":
+                arr[e], arr[e + 1] = arr[e + 1], arr[e]
+            ybonds()
+        if len(ydone) != 8:
+            raise RuntimeError("a site missed its y-bond")
+    # merge: consecutive y-bonds of one bridge with no line operation on that position in between
+    out = []
+    for op in seq:
+        if merge and op[0] == "y":
+            p = op[1]
+            j = len(out) - 1
+            while j >= 0 and not (out[j][0] in ("y", "yy") and out[j][1] == p) and \
+                    not (out[j][0] in ("U", "SWAP.U", "SWAP") and out[j][1] in (p - 1, p)):
+                j -= 1
+            if j >= 0 and out[j][0] in ("y", "yy") and out[j][1] == p:
+                out[j] = ("yy", p, (out[j][2] if out[j][0] == "yy" else 1) + 1)
+                continue
+        out.append(op if op[0] != "y" else ("y", op[1]))
+    return out, start, arr, log
+
+
+def _line_circuit(out, start, A, B, bridge, n_qubits, dt, delta):
+    from qiskit import QuantumCircuit
+    from qiskit.circuit.library import UnitaryGate
+    idx = {s: i for i, s in enumerate(G.sites(4, 2, 2))}
+    qc = QuantumCircuit(n_qubits)
+    for y, line in ((0, A), (1, B)):
+        for p in range(8):
+            x, z = start[p] % 4, start[p] // 4
+            if (x + y + z) % 2 == 1:
+                qc.x(line[p])
+    U = UnitaryGate(bond_unitary(dt, delta), label="heis")
+    SU = UnitaryGate(SWAP @ bond_unitary(dt, delta), label="swap_heis")
+    for op in out:
+        kind, e = op[0], op[1]
+        if kind in ("y", "yy"):
+            k = 1 if kind == "y" else op[2]
+            a, b, q = A[e], bridge[e], B[e]
+            Uk = U if k == 1 else UnitaryGate(bond_unitary(k * dt, delta), label=f"heis_x{k}")
+            qc.cx(a, b)
+            qc.cx(b, a)
+            qc.append(Uk, [b, q])
+            qc.cx(b, a)
+            qc.cx(a, b)
+        else:
+            for line in (A, B):
+                if kind == "SWAP":
+                    qc.swap(line[e], line[e + 1])
+                else:
+                    qc.append(U if kind == "U" else SU, [line[e], line[e + 1]])
+    return qc
+
+
+def physical_line(dev, t, dt, delta=1.0, avoid=(), merge=True):
+    """4 x 2 x 2 on the line layout: the first translation (r0, c0) in psf-os's fold order whose two rows, eight
+    columns and two bridges (at line positions 1, 5 or 3, 7) touch no failed element. Same return as `physical`."""
+    avoid = {tuple(a) for a in avoid}
+    adj = {}
+    for a, b in dev.couplers:
+        adj.setdefault(a, set()).add(b)
+        adj.setdefault(b, set()).add(a)
+    bad, badc = set(dev.failed_qubits), {frozenset(c) for c in dev.failed_couplers}
+    cpl = {frozenset(c) for c in dev.couplers}
+    first = None
+    idx = {s: i for i, s in enumerate(G.sites(4, 2, 2))}
+    for r0, c0 in dict.fromkeys((r, c) for _, r, c in G.fold_offsets(2, 2)):
+        if (r0, c0) in avoid:
+            continue
+        if r0 + 2 > 8 or c0 + 8 > 16:
+            continue
+        bl = {c - c0: b for b, c in G.bridges(adj, r0, 2).get(0, []) if 0 <= c - c0 < 8}
+        br = tuple(sorted(bl))
+        if br not in LINE_SCHEDULES:
+            first = first or f"bridges at line positions {br}"
+            continue
+        A = [20 * r0 + c0 + p for p in range(8)]
+        B = [20 * (r0 + 1) + c0 + p for p in range(8)]
+        out, start, end, log = _line_build(A, B, bl, br, t, dt, delta, merge=merge)
+        qc = _line_circuit(out, start, A, B, bl, 20 * (r0 + 2) + 16, dt, delta)
+        used = sorted({qc.find_bit(q).index for ins in qc.data for q in ins.qubits})
+        pairs = {frozenset(qc.find_bit(q).index for q in ins.qubits) for ins in qc.data if len(ins.qubits) == 2}
+        if qc.num_qubits > dev.num_qubits or pairs - cpl or bad & set(used) or badc & pairs:
+            first = first or "touches a failed element or a non-coupler"
+            continue
+        placed = {}
+        for y, line in ((0, A), (1, B)):
+            for p in range(8):
+                placed[idx[(end[p] % 4, y, end[p] // 4)]] = line[p]
+        return qc, placed, used, log, dict(layout="line", r0=r0, c0=c0, bridges=list(br), merged=merge)
+    raise G.Refused(f"no translation of the line layout fits on {dev.name}; first reason: {first}")

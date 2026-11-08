@@ -7,9 +7,10 @@ highest mirror mean is judged at every t. Per judged arm:
   retention m_s / m_s exact (when |m_s exact| >= 0.1).
 Every candidate is reported beside; the sentinel as recorded.
 
-A job built with --both (old and carried layout at the same places, 2026-11-08): the judged candidate is the one whose
-two t = 1 arms have the highest mean mirror; both variants are judged there, and the retention of the carried arm
-minus that of the old arm is reported per t (a number, not a verdict).
+A job built with several layouts at the same places (--both or --variants, 2026-11-08): the judged candidate is the
+one whose t = 1 arms (one per layout) have the highest mean mirror; every layout is judged there, and the retention of
+each new layout (carry, line) minus that of the old one is reported per t (a number, not a verdict), with the shot
+bound 2 sqrt(2) / (sqrt(shots) |m_s exact (old)|) beside it.
 
 usage: PYTHONPATH=<psf-os>:<TOQB>/gpu python gpu/heis3d_score.py OUT ANSWERS.json   (writes OUT/scores.json)
 """
@@ -54,20 +55,24 @@ def main(out, answers_file):
     res = dict(device=rep["device"], rule="top", chosen=chosen, arms=arms,
                sentinel=next(iter(arms.values()))["sentinel"])
     variants = sorted({a["variant"] for a in arms.values()})
-    if len(variants) > 1:
+    if len(variants) > 1 and "old" in variants:
         cmp = {}
-        for c in sorted(m1):
-            for t in rep["ts"]:
-                v = {a["variant"]: a for a in arms.values() if a["candidate"] == c and a["t"] == t}
-                if v["old"]["retention"] is not None and v["carry"]["retention"] is not None:
+        for w in [v for v in ("carry", "line") if v in variants]:
+            for c in sorted(m1):
+                for t in rep["ts"]:
+                    v = {a["variant"]: a for a in arms.values() if a["candidate"] == c and a["t"] == t}
+                    if v["old"]["retention"] is None or v[w]["retention"] is None:
+                        continue
                     bound = 2 * np.sqrt(2) / (np.sqrt(rep["shots"]) * abs(v["old"]["m_s_exact"]))
-                    d = v["carry"]["retention"] - v["old"]["retention"]
-                    cmp[f"c{c}_t{t}"] = dict(candidate=c, t=t, judged=c == chosen, bound=float(bound),
-                                             resolved=bool(abs(d) > bound),
-                                             retention_old=v["old"]["retention"], retention_carry=v["carry"]["retention"],
-                                             carry_minus_old=v["carry"]["retention"] - v["old"]["retention"],
-                                             cz_old=v["old"]["cz"], cz_carry=v["carry"]["cz"])
+                    d = v[w]["retention"] - v["old"]["retention"]
+                    cmp[f"c{c}_t{t}_{w}"] = dict(candidate=c, t=t, variant=w, judged=c == chosen, bound=float(bound),
+                                                 resolved=bool(abs(d) > bound), retention_old=v["old"]["retention"],
+                                                 retention_new=v[w]["retention"], new_minus_old=d,
+                                                 cz_old=v["old"]["cz"], cz_new=v[w]["cz"])
         res["comparison"] = cmp
+        res["comparison_mean_over_places"] = {
+            w: {t: float(np.mean([x["new_minus_old"] for x in cmp.values() if x["t"] == t and x["variant"] == w]))
+                for t in rep["ts"]} for w in sorted({x["variant"] for x in cmp.values()})}
     json.dump(res, open(os.path.join(out, "scores.json"), "w"), indent=1)
     print(f"{rep['device']}  sentinel {res['sentinel']}  judged candidate {chosen} (own t{t1} mirror "
           f"{top['mirror_mean']:.3f})")
@@ -78,14 +83,11 @@ def main(out, answers_file):
               f"retention {ret}  MSE {a['mse']:.4f}/{a['mean_square_exact']:.4f}  CZ {a['cz']}  "
               f"floor {a['floor_mean']:.3f} mirror {a['mirror_mean']:.3f}")
     for k, v in res.get("comparison", {}).items():
-        print(f"{k:7} {'JUDGED' if v['judged'] else 'beside':6} retention old {v['retention_old']:.3f} (CZ {v['cz_old']})"
-              f"  carry {v['retention_carry']:.3f} (CZ {v['cz_carry']})  carry - old {v['carry_minus_old']:+.3f}"
+        print(f"{k:12} {'JUDGED' if v['judged'] else 'beside':6} retention old {v['retention_old']:.3f} (CZ {v['cz_old']})"
+              f"  {v['variant']} {v['retention_new']:.3f} (CZ {v['cz_new']})  {v['variant']} - old {v['new_minus_old']:+.3f}"
               f" ({'resolved' if v['resolved'] else 'within the shot bound'} {v['bound']:.3f})")
-    if res.get("comparison"):
-        mean = {t: float(np.mean([v["carry_minus_old"] for v in res["comparison"].values() if v["t"] == t]))
-                for t in rep["ts"]}
-        res["comparison_mean_over_places"] = mean
-        print("mean over places, carry - old:", {t: round(m, 3) for t, m in mean.items()})
+    for w, mean in res.get("comparison_mean_over_places", {}).items():
+        print(f"mean over places, {w} - old:", {t: round(m, 3) for t, m in mean.items()})
     return res
 
 
