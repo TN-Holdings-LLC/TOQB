@@ -341,7 +341,8 @@ def _merge_line(out):
     return ops
 
 
-def _line_circuit(out, start, A, B, bridge, n_qubits, dt, delta):
+def _line_circuit(out, start, A, B, bridge, n_qubits, dt, delta, flips=None):
+    """flips: lattice sites flipped at the start (None: the Neel state, x + y + z odd)."""
     from qiskit import QuantumCircuit
     from qiskit.circuit.library import UnitaryGate
     idx = {s: i for i, s in enumerate(G.sites(4, 2, 2))}
@@ -349,7 +350,7 @@ def _line_circuit(out, start, A, B, bridge, n_qubits, dt, delta):
     for y, line in ((0, A), (1, B)):
         for p in range(8):
             x, z = start[p] % 4, start[p] // 4
-            if (x + y + z) % 2 == 1:
+            if (flips is None and (x + y + z) % 2 == 1) or (flips is not None and idx[(x, y, z)] in flips):
                 qc.x(line[p])
     U = UnitaryGate(bond_unitary(dt, delta), label="heis")
     SU = UnitaryGate(SWAP @ bond_unitary(dt, delta), label="swap_heis")
@@ -384,7 +385,7 @@ def _line_circuit(out, start, A, B, bridge, n_qubits, dt, delta):
     return qc
 
 
-def physical_line(dev, t, dt, delta=1.0, avoid=(), merge=True):
+def physical_line(dev, t, dt, delta=1.0, avoid=(), merge=True, flips=None):
     """4 x 2 x 2 on the line layout: the first translation (r0, c0) in psf-os's fold order whose two rows, eight
     columns and two bridges (at line positions 1, 5 or 3, 7) touch no failed element. Same return as `physical`."""
     avoid = {tuple(a) for a in avoid}
@@ -409,7 +410,7 @@ def physical_line(dev, t, dt, delta=1.0, avoid=(), merge=True):
         A = [20 * r0 + c0 + p for p in range(8)]
         B = [20 * (r0 + 1) + c0 + p for p in range(8)]
         out, start, end, log = _line_build(A, B, bl, br, t, dt, delta, merge=merge)
-        qc = _line_circuit(out, start, A, B, bl, 20 * (r0 + 2) + 16, dt, delta)
+        qc = _line_circuit(out, start, A, B, bl, 20 * (r0 + 2) + 16, dt, delta, flips=flips)
         used = sorted({qc.find_bit(q).index for ins in qc.data for q in ins.qubits})
         pairs = {frozenset(qc.find_bit(q).index for q in ins.qubits) for ins in qc.data if len(ins.qubits) == 2}
         if qc.num_qubits > dev.num_qubits or pairs - cpl or bad & set(used) or badc & pairs:
@@ -421,3 +422,20 @@ def physical_line(dev, t, dt, delta=1.0, avoid=(), merge=True):
                 placed[idx[(end[p] % 4, y, end[p] // 4)]] = line[p]
         return qc, placed, used, log, dict(layout="line", r0=r0, c0=c0, bridges=list(br), merged=merge)
     raise G.Refused(f"no translation of the line layout fits on {dev.name}; first reason: {first}")
+
+
+def exact_from_log_flips(L, M, N, log, dt, delta=1.0, flips=()):
+    """{str(site): exact <Z>} of the logged Trotter product from the state with the given sites flipped (others |0>)."""
+    from qiskit import QuantumCircuit
+    from qiskit.circuit.library import UnitaryGate
+    from qiskit.quantum_info import Statevector
+    n = L * M * N
+    qc = QuantumCircuit(n)
+    for s in flips:
+        qc.x(s)
+    U = UnitaryGate(bond_unitary(dt, delta))
+    for a, b in log:
+        qc.append(U, [a, b])
+    p = Statevector(qc).probabilities()
+    idx = np.arange(len(p))
+    return {str(s): float(np.sum(p * (1 - 2 * ((idx >> s) & 1)))) for s in range(n)}
