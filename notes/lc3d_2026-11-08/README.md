@@ -17,3 +17,8 @@ being followed; beyond d = 1 the front is not readable even after subtracting th
 correction, outside the no-mitigation rule), and this simulator is optimistic for Heisenberg circuits (11-07). A
 domain-wall start was checked exactly as well: at dt 0.05, t <= 6 the profile changes by 0.02-0.3, smaller than the
 uniform loss of signal (retention 0.7-0.8). Draft kept in `prereg/drafts-2026-11-08/lc3d_DRAFT.md`; not run.
+
+## Decision
+
+Owner 2026-11-08 22:47 JST: the light cone stops here (not run on a device). Recorded as a finding: on 4 x 2 x 2
+XXX at dt 0.05, the spread of one excitation is not readable raw against the noise of the device class used.
