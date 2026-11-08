@@ -22,3 +22,8 @@ uniform loss of signal (retention 0.7-0.8). Draft kept in `prereg/drafts-2026-11
 
 Owner 2026-11-08 22:47 JST: the light cone stops here (not run on a device). Recorded as a finding: on 4 x 2 x 2
 XXX at dt 0.05, the spread of one excitation is not readable raw against the noise of the device class used.
+
+Decision (owner 2026-11-08 22:49 JST "光円錐はここでやめる、で進めて"): the light-cone test stops here. Recorded result:
+on 4 x 2 x 2 XXX at dt 0.05, the spread of one excitation (and of a domain wall) cannot be followed raw against the
+noise of the present devices, by the simulator's estimate (which is optimistic for Heisenberg circuits); no device
+time was used. A circuit light cone at larger steps was considered and not taken.
