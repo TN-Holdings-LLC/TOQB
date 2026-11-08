@@ -9,6 +9,8 @@ usage: PYTHONPATH=<psf-os>:<TOQB>/gpu python gpu/heis3d_build.py DEV OUT ANSWERS
 
 --carry (2026-11-08): the x-bonds ride on the swaps of their columns (gpu/heis3d.py FoldHeis, carry); 24 CZ fewer
 per step at 4 x 2 x 2. Not declared for a device run yet.
+--both (2026-11-08, owner "進めて"): each candidate twice in the same job, the declared layout of 2026-11-07 (tags
+h3d<i>_t<t>, variant "old") and the carried one (tags h3c<i>_t<t>, variant "carry"), at the same place and depths.
 """
 import argparse
 import hashlib
@@ -36,6 +38,7 @@ def main():
     ap.add_argument("--max-seconds", type=float, default=300)
     ap.add_argument("--dry-clifford-sentinel", action="store_true")
     ap.add_argument("--carry", action="store_true")
+    ap.add_argument("--both", action="store_true")
     a = ap.parse_args()
     M, N = (int(v) for v in a.lattice.split(","))
     if L * M * N > 24:
@@ -61,7 +64,8 @@ def main():
     cands, avoid = [], []
     while len(cands) < a.k:
         try:
-            qc, placed, used, log, where = H.physical(dev, M, N, 1, a.dt, a.delta, avoid=avoid, carry=a.carry)
+            qc, placed, used, log, where = H.physical(dev, M, N, 1, a.dt, a.delta, avoid=avoid,
+                                                      carry=a.carry and not a.both)
         except G.Refused:
             break
         cands.append(dict(index=len(cands), r0=where["r0"], c0=where["c0"], layout=where["layout"], used=used,
@@ -70,9 +74,10 @@ def main():
     if not cands:
         raise SystemExit(f"NOT RUN: no fold translation fits on {dev.name}")
     arms, answers = {}, {}
-    for c in cands:
+    variants = [("h3d", False, "old"), ("h3c", True, "carry")] if a.both else [("h3d", a.carry, "carry" if a.carry else "old")]
+    for c, (head, carry, vname) in ((c, v) for c in cands for v in variants):
         for t in ts:
-            qc, placed, used, log, where = H.physical(dev, M, N, t, a.dt, a.delta, avoid=c["avoid"], carry=a.carry)
+            qc, placed, used, log, where = H.physical(dev, M, N, t, a.dt, a.delta, avoid=c["avoid"], carry=carry)
             assert (where["r0"], where["c0"]) == (c["r0"], c["c0"])
             n = L * M * N
             phys = [placed[s] for s in range(n)]
@@ -83,11 +88,11 @@ def main():
             cm = G.mirror_of_compiled(rc, cu, phys)
             G.accept(cu, cf, cm, phys)
             prep = dict(cu=cu, cf=cf, cm=cm, cz=Mi.cz_count(cu), phys=phys)
-            tag = f"h3d{c['index']}_t{t}"
+            tag = f"{head}{c['index']}_t{t}"
             G.write_records(dev, runs, tag, prep, a.shots, L, M, N,
-                            extra=dict(heis3d=dict(dt=a.dt, delta=a.delta, t=t, **where),
-                                       compare_arm=f"3D Heisenberg candidate {c['index']}"))
-            arms[tag] = dict(kind="3D", candidate=c["index"], t=t, cz=prep["cz"],
+                            extra=dict(heis3d=dict(dt=a.dt, delta=a.delta, t=t, variant=vname, **where),
+                                       compare_arm=f"3D Heisenberg candidate {c['index']} ({vname})"))
+            arms[tag] = dict(kind="3D", candidate=c["index"], t=t, variant=vname, cz=prep["cz"],
                              cz_layers=cu.depth(lambda i: len(i.qubits) == 2), r0=c["r0"], c0=c["c0"],
                              mapping={str(s): q for s, q in enumerate(phys)}, bonds=len(log))
             answers[tag] = H.exact_from_log(L, M, N, log, a.dt, a.delta)
@@ -102,7 +107,7 @@ def main():
     ans_sha = hashlib.sha256(open(a.answers_out, "rb").read()).hexdigest()
     gh = GH.qpy_hash(os.path.join(a.out, "job", "circuits.qpy"))
     rep = dict(device=dev.name, model="heisenberg", lattice=[L, M, N], dt=a.dt, delta=a.delta, ts=ts, shots=a.shots,
-               carry=a.carry,
+               carry=a.carry, both=a.both,
                candidates=[{x: c[x] for x in ("index", "r0", "c0", "layout", "used")} for c in cands], arms=arms,
                circuits=len(man["pubs"]), qpu_seconds_model=man["qpu_seconds_model"], gate_hash=gh,
                answers_sha256=ans_sha, job=os.path.join(a.out, "job"), runs=runs)
