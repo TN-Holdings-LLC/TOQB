@@ -192,6 +192,34 @@ We do not claim IBM's depth (their circuits reach 4\,095 two-qubit gates at $N =
 mitigation, or any ranking. IBM's unmitigated points are shown only as plotted symbols in their figures, so we do not
 copy them as numbers.
 
+\section{Local failure regions}\label{sec:regions}
+Several outcomes in this record were set by a few bad places on the device, not by the size of the problem.
+\begin{itemize}
+\item \emph{Refusals.} D03 (72 qubits) was refused on marrakesh on 6 November because failed qubits 46, 73 and 82 lay
+in every copy of its patch. On 7 November no chain shape avoided marrakesh's failed qubits (46, 73, 82, 113, 119,
+130 in every copy), so the 71-site chain went to kingston, where the 51- and 71-site chains were placed on rows 0--4
+clear of kingston's failed elements (qubits 112, 113, 121, 146 and five couplers). The 91-site chain fitted on
+neither record.
+\item \emph{Moving away from a region.} On 4 November the floor and mirror of a 2D job on fez flagged qubits 27 and
+28 (floor) and 17 and 26 (mirror). A rule declared that morning moved the same problem to a copy without these four
+qubits: the error fell from 0.0285 to 0.0140 (ratio 0.49), far beyond the shot and run-to-run spreads
+(\texttt{results/repair-2026-11-04/README.md}). The move changed 28 of 35 qubits, so the test shows that leaving the
+region helped, not that those four qubits alone carried the error. The same qubits 27 and 28 were the worst of the
+P6 patch on fez that day, and the post-hoc rule R dropped exactly them.
+\item \emph{The sentinel reports its own ring.} The ring sentinel on fez was DEAD on every day from 4 to 7 November,
+while chains and patches placed elsewhere on fez READ and mostly AGREED in the same jobs (practice, FX-A, D04). On
+marrakesh it was CLEAN on 5 November and DEAD on 6 November. A DEAD sentinel marks a bad stretch on the ring's path;
+it is not a verdict on the device as a whole.
+\item \emph{Earlier, in one dimension} (31 October, kingston, \texttt{results/clean-depth-2026-10-31}): rings of
+40 and 72 sites had read shorter depths than the 20-site ring the day before (13.0--16.0 and 14.6--16.0 layers
+against 21.9--22.3). After three couplers on their paths were masked, the 40-site ring reached the 20-site ring's
+depth (24.2--24.6 against 23.9--24.7 layers), while the 72-site ring stayed shorter (20.4--20.8; judged ``mixed'');
+post hoc, its weakest stretch was four neighbouring qubits. For $n = 40$ the apparent dependence on size was local;
+for $n = 72$ only in part.
+\end{itemize}
+A comparison of sizes or devices on raw values therefore says as much about where the problem sat as about how
+large it was. We report the copy and the failed elements of every run for that reason.
+
 \section{Verdict and retention}\label{sec:retention}
 Every table here prints the declared verdict first and, beside it on every row, the retention $R = M/M_\mathrm{exact}$
 and the normalised error $|M - M_\mathrm{exact}|/|M_\mathrm{exact}|$ (not given when $|M_\mathrm{exact}| < 0.1$). No
@@ -261,7 +289,9 @@ relative error $\varepsilon$ allows $L_\mathrm{max} = -\ln(1-\varepsilon)/\gamma
 FeMoco (Reiher et al.\ 2017; Lee et al.\ 2021) would need, run uncorrected, a $\gamma$ 5.5 to 13.4 orders of
 magnitude smaller than ours, depending on the estimate and on how parallel the circuit is taken to be. Error
 correction changes this conclusion entirely; the estimate only says how far raw runs of the kind reported here are
-from that regime.
+from that regime. The records also suggest that local, device-specific failure regions can dominate apparent scaling
+behaviour (section~\ref{sec:regions}): a single $\gamma$ per device hides where on the device the loss sits, so the
+estimate above is an average over good and bad places, not a property of the size of a problem.
 
 \section{Conclusion}
 A user's circuit, placed without a map and run without mitigation, gives answers that can be compared with exact
