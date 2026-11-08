@@ -1,0 +1,167 @@
+== 1. mirror 1, mirror 2, D = m2 - m1 (mean <Z> over the measured qubits; SE in brackets)
+eps 0       p2d_h3d0_t1_mirror       CZ  352  m1 0.698 (0.013)  m2 0.689 (0.016)  D -0.009 (0.020)  within 2SE   [traj 160, frames 16 x 10]
+eps 0       p2d_h3d0_t2_mirror       CZ  696  m1 0.445 (0.014)  m2 0.447 (0.018)  D +0.002 (0.022)  within 2SE   [traj 160, frames 16 x 10]
+eps 0       p2d_h3d0_t3_mirror       CZ 1040  m1 0.245 (0.012)  m2 0.255 (0.012)  D +0.010 (0.017)  within 2SE   [traj 160, frames 16 x 10]
+eps 0       p2d_h3d0_t4_mirror       CZ 1384  m1 0.129 (0.010)  m2 0.133 (0.009)  D +0.004 (0.014)  within 2SE   [traj 160, frames 16 x 10]
+eps 0       p2d_g3d3_th04_t1_mirror  CZ  216  m1 0.877 (0.008)  m2 0.866 (0.007)  D -0.012 (0.011)  within 2SE   [traj 160, frames 16 x 10]
+eps 0       p2d_g3d3_th04_t3_mirror  CZ  648  m1 0.593 (0.014)  m2 0.591 (0.015)  D -0.002 (0.021)  within 2SE   [traj 160, frames 16 x 10]
+eps 0       p2d_g3d3_th04_t6_mirror  CZ 1296  m1 0.335 (0.012)  m2 0.310 (0.012)  D -0.025 (0.018)  within 2SE   [traj 160, frames 16 x 10]
+eps 0       p2d_g3d3_th06_t1_mirror  CZ  216  m1 0.873 (0.009)  m2 0.857 (0.009)  D -0.015 (0.013)  within 2SE   [traj 160, frames 16 x 10]
+eps 0       p2d_g3d3_th06_t3_mirror  CZ  648  m1 0.495 (0.015)  m2 0.489 (0.015)  D -0.006 (0.022)  within 2SE   [traj 160, frames 16 x 10]
+eps 0       p2d_g3d3_th06_t6_mirror  CZ 1296  m1 0.194 (0.008)  m2 0.177 (0.007)  D -0.017 (0.011)  within 2SE   [traj 160, frames 16 x 10]
+eps 0       p2d_g3d3_th08_t1_mirror  CZ  216  m1 0.855 (0.009)  m2 0.849 (0.007)  D -0.006 (0.011)  within 2SE   [traj 160, frames 16 x 10]
+eps 0       p2d_g3d3_th08_t3_mirror  CZ  648  m1 0.420 (0.016)  m2 0.405 (0.019)  D -0.015 (0.025)  within 2SE   [traj 160, frames 16 x 10]
+eps 0       p2d_g3d3_th08_t6_mirror  CZ 1296  m1 0.090 (0.005)  m2 0.078 (0.006)  D -0.012 (0.008)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.01    p2d_h3d0_t1_mirror       CZ  352  m1 0.696 (0.013)  m2 0.687 (0.016)  D -0.009 (0.020)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.01    p2d_h3d0_t2_mirror       CZ  696  m1 0.441 (0.014)  m2 0.445 (0.016)  D +0.003 (0.021)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.01    p2d_h3d0_t3_mirror       CZ 1040  m1 0.242 (0.012)  m2 0.253 (0.011)  D +0.011 (0.017)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.01    p2d_h3d0_t4_mirror       CZ 1384  m1 0.130 (0.010)  m2 0.133 (0.009)  D +0.003 (0.014)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.01    p2d_g3d3_th04_t1_mirror  CZ  216  m1 0.877 (0.008)  m2 0.865 (0.007)  D -0.012 (0.011)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.01    p2d_g3d3_th04_t3_mirror  CZ  648  m1 0.592 (0.014)  m2 0.589 (0.015)  D -0.003 (0.021)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.01    p2d_g3d3_th04_t6_mirror  CZ 1296  m1 0.332 (0.012)  m2 0.308 (0.012)  D -0.025 (0.017)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.01    p2d_g3d3_th06_t1_mirror  CZ  216  m1 0.872 (0.009)  m2 0.857 (0.009)  D -0.015 (0.013)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.01    p2d_g3d3_th06_t3_mirror  CZ  648  m1 0.492 (0.015)  m2 0.486 (0.015)  D -0.006 (0.022)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.01    p2d_g3d3_th06_t6_mirror  CZ 1296  m1 0.192 (0.008)  m2 0.176 (0.007)  D -0.016 (0.011)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.01    p2d_g3d3_th08_t1_mirror  CZ  216  m1 0.854 (0.008)  m2 0.848 (0.007)  D -0.006 (0.011)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.01    p2d_g3d3_th08_t3_mirror  CZ  648  m1 0.415 (0.016)  m2 0.404 (0.019)  D -0.011 (0.025)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.01    p2d_g3d3_th08_t6_mirror  CZ 1296  m1 0.089 (0.005)  m2 0.078 (0.005)  D -0.011 (0.008)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.02    p2d_h3d0_t1_mirror       CZ  352  m1 0.690 (0.012)  m2 0.685 (0.016)  D -0.005 (0.020)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.02    p2d_h3d0_t2_mirror       CZ  696  m1 0.430 (0.013)  m2 0.443 (0.017)  D +0.013 (0.021)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.02    p2d_h3d0_t3_mirror       CZ 1040  m1 0.226 (0.011)  m2 0.248 (0.011)  D +0.022 (0.016)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.02    p2d_h3d0_t4_mirror       CZ 1384  m1 0.118 (0.009)  m2 0.129 (0.010)  D +0.011 (0.013)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.02    p2d_g3d3_th04_t1_mirror  CZ  216  m1 0.877 (0.008)  m2 0.864 (0.007)  D -0.014 (0.011)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.02    p2d_g3d3_th04_t3_mirror  CZ  648  m1 0.587 (0.014)  m2 0.584 (0.015)  D -0.003 (0.021)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.02    p2d_g3d3_th04_t6_mirror  CZ 1296  m1 0.320 (0.011)  m2 0.302 (0.012)  D -0.018 (0.016)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.02    p2d_g3d3_th06_t1_mirror  CZ  216  m1 0.873 (0.009)  m2 0.856 (0.009)  D -0.016 (0.013)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.02    p2d_g3d3_th06_t3_mirror  CZ  648  m1 0.485 (0.015)  m2 0.481 (0.015)  D -0.004 (0.021)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.02    p2d_g3d3_th06_t6_mirror  CZ 1296  m1 0.187 (0.007)  m2 0.174 (0.007)  D -0.013 (0.010)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.02    p2d_g3d3_th08_t1_mirror  CZ  216  m1 0.854 (0.008)  m2 0.846 (0.007)  D -0.008 (0.011)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.02    p2d_g3d3_th08_t3_mirror  CZ  648  m1 0.405 (0.016)  m2 0.401 (0.019)  D -0.005 (0.025)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.02    p2d_g3d3_th08_t6_mirror  CZ 1296  m1 0.087 (0.005)  m2 0.076 (0.005)  D -0.011 (0.007)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.04    p2d_h3d0_t1_mirror       CZ  352  m1 0.663 (0.012)  m2 0.675 (0.015)  D +0.012 (0.019)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.04    p2d_h3d0_t2_mirror       CZ  696  m1 0.378 (0.012)  m2 0.431 (0.016)  D +0.053 (0.020)  > 2SE   [traj 160, frames 16 x 10]
+eps 0.04    p2d_h3d0_t3_mirror       CZ 1040  m1 0.170 (0.009)  m2 0.237 (0.011)  D +0.067 (0.014)  > 2SE   [traj 160, frames 16 x 10]
+eps 0.04    p2d_h3d0_t4_mirror       CZ 1384  m1 0.075 (0.008)  m2 0.125 (0.009)  D +0.050 (0.012)  > 2SE   [traj 160, frames 16 x 10]
+eps 0.04    p2d_g3d3_th04_t1_mirror  CZ  216  m1 0.877 (0.008)  m2 0.858 (0.007)  D -0.020 (0.011)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.04    p2d_g3d3_th04_t3_mirror  CZ  648  m1 0.568 (0.013)  m2 0.568 (0.014)  D +0.000 (0.019)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.04    p2d_g3d3_th04_t6_mirror  CZ 1296  m1 0.294 (0.009)  m2 0.289 (0.011)  D -0.005 (0.014)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.04    p2d_g3d3_th06_t1_mirror  CZ  216  m1 0.872 (0.009)  m2 0.852 (0.009)  D -0.020 (0.013)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.04    p2d_g3d3_th06_t3_mirror  CZ  648  m1 0.459 (0.013)  m2 0.470 (0.015)  D +0.011 (0.020)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.04    p2d_g3d3_th06_t6_mirror  CZ 1296  m1 0.171 (0.006)  m2 0.162 (0.007)  D -0.009 (0.009)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.04    p2d_g3d3_th08_t1_mirror  CZ  216  m1 0.854 (0.009)  m2 0.840 (0.007)  D -0.014 (0.011)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.04    p2d_g3d3_th08_t3_mirror  CZ  648  m1 0.372 (0.014)  m2 0.381 (0.019)  D +0.009 (0.023)  within 2SE   [traj 160, frames 16 x 10]
+eps 0.04    p2d_g3d3_th08_t6_mirror  CZ 1296  m1 0.081 (0.004)  m2 0.072 (0.005)  D -0.010 (0.006)  within 2SE   [traj 160, frames 16 x 10]
+sx dx 0.01  p2d_h3d0_t1_mirror       CZ  352  m1 0.698 (0.013)  m2 0.690 (0.016)  D -0.008 (0.020)  within 2SE   [traj 160, frames 16 x 10]
+sx dx 0.01  p2d_h3d0_t2_mirror       CZ  696  m1 0.444 (0.014)  m2 0.445 (0.017)  D +0.001 (0.022)  within 2SE   [traj 160, frames 16 x 10]
+sx dx 0.01  p2d_h3d0_t3_mirror       CZ 1040  m1 0.249 (0.013)  m2 0.251 (0.012)  D +0.002 (0.017)  within 2SE   [traj 160, frames 16 x 10]
+sx dx 0.01  p2d_h3d0_t4_mirror       CZ 1384  m1 0.127 (0.010)  m2 0.132 (0.010)  D +0.005 (0.014)  within 2SE   [traj 160, frames 16 x 10]
+sx dx 0.01  p2d_g3d3_th04_t1_mirror  CZ  216  m1 0.878 (0.008)  m2 0.864 (0.007)  D -0.013 (0.011)  within 2SE   [traj 160, frames 16 x 10]
+sx dx 0.01  p2d_g3d3_th04_t3_mirror  CZ  648  m1 0.588 (0.014)  m2 0.584 (0.015)  D -0.004 (0.021)  within 2SE   [traj 160, frames 16 x 10]
+sx dx 0.01  p2d_g3d3_th04_t6_mirror  CZ 1296  m1 0.326 (0.012)  m2 0.303 (0.013)  D -0.022 (0.018)  within 2SE   [traj 160, frames 16 x 10]
+sx dx 0.01  p2d_g3d3_th06_t1_mirror  CZ  216  m1 0.873 (0.009)  m2 0.857 (0.009)  D -0.016 (0.013)  within 2SE   [traj 160, frames 16 x 10]
+sx dx 0.01  p2d_g3d3_th06_t3_mirror  CZ  648  m1 0.491 (0.016)  m2 0.481 (0.015)  D -0.010 (0.022)  within 2SE   [traj 160, frames 16 x 10]
+sx dx 0.01  p2d_g3d3_th06_t6_mirror  CZ 1296  m1 0.190 (0.008)  m2 0.174 (0.007)  D -0.016 (0.011)  within 2SE   [traj 160, frames 16 x 10]
+sx dx 0.01  p2d_g3d3_th08_t1_mirror  CZ  216  m1 0.854 (0.009)  m2 0.848 (0.007)  D -0.007 (0.011)  within 2SE   [traj 160, frames 16 x 10]
+sx dx 0.01  p2d_g3d3_th08_t3_mirror  CZ  648  m1 0.415 (0.016)  m2 0.402 (0.020)  D -0.013 (0.026)  within 2SE   [traj 160, frames 16 x 10]
+sx dx 0.01  p2d_g3d3_th08_t6_mirror  CZ 1296  m1 0.086 (0.005)  m2 0.074 (0.005)  D -0.012 (0.007)  within 2SE   [traj 160, frames 16 x 10]
+
+== 2. eps = 0: is D within 2 SE of 0?
+p2d_h3d0_t1_mirror       D -0.0087 +- 0.0203  (-0.4 SE)
+p2d_h3d0_t2_mirror       D +0.0018 +- 0.0223  (+0.1 SE)
+p2d_h3d0_t3_mirror       D +0.0099 +- 0.0169  (+0.6 SE)
+p2d_h3d0_t4_mirror       D +0.0042 +- 0.0139  (+0.3 SE)
+p2d_g3d3_th04_t1_mirror  D -0.0115 +- 0.0110  (-1.0 SE)
+p2d_g3d3_th04_t3_mirror  D -0.0020 +- 0.0209  (-0.1 SE)
+p2d_g3d3_th04_t6_mirror  D -0.0251 +- 0.0175  (-1.4 SE)
+p2d_g3d3_th06_t1_mirror  D -0.0153 +- 0.0127  (-1.2 SE)
+p2d_g3d3_th06_t3_mirror  D -0.0062 +- 0.0215  (-0.3 SE)
+p2d_g3d3_th06_t6_mirror  D -0.0174 +- 0.0110  (-1.6 SE)
+p2d_g3d3_th08_t1_mirror  D -0.0064 +- 0.0108  (-0.6 SE)
+p2d_g3d3_th08_t3_mirror  D -0.0147 +- 0.0252  (-0.6 SE)
+p2d_g3d3_th08_t6_mirror  D -0.0122 +- 0.0078  (-1.6 SE)
+
+== 3. growth of D with eps and depth; compare with (n eps)^2 and n eps^2 (n = CZ of the mirror circuit)
+p2d_h3d0_t1_mirror (CZ 352):
+    eps 0.01: D -0.009, D-D0 -0.000, /(n eps)^2 -0.000, /(n eps^2) -0.00; 1-m1 0.304, 1-m2 0.313
+    eps 0.02: D -0.005, D-D0 +0.004, /(n eps)^2 0.000, /(n eps^2) 0.03; 1-m1 0.310, 1-m2 0.315
+    eps 0.04: D +0.012, D-D0 +0.021, /(n eps)^2 0.000, /(n eps^2) 0.04; 1-m1 0.337, 1-m2 0.325
+p2d_h3d0_t2_mirror (CZ 696):
+    eps 0.01: D +0.003, D-D0 +0.002, /(n eps)^2 0.000, /(n eps^2) 0.02; 1-m1 0.559, 1-m2 0.555
+    eps 0.02: D +0.013, D-D0 +0.011, /(n eps)^2 0.000, /(n eps^2) 0.04; 1-m1 0.570, 1-m2 0.557
+    eps 0.04: D +0.053, D-D0 +0.051, /(n eps)^2 0.000, /(n eps^2) 0.05; 1-m1 0.622, 1-m2 0.569
+p2d_h3d0_t3_mirror (CZ 1040):
+    eps 0.01: D +0.011, D-D0 +0.001, /(n eps)^2 0.000, /(n eps^2) 0.01; 1-m1 0.758, 1-m2 0.747
+    eps 0.02: D +0.022, D-D0 +0.012, /(n eps)^2 0.000, /(n eps^2) 0.03; 1-m1 0.774, 1-m2 0.752
+    eps 0.04: D +0.067, D-D0 +0.058, /(n eps)^2 0.000, /(n eps^2) 0.03; 1-m1 0.830, 1-m2 0.763
+p2d_h3d0_t4_mirror (CZ 1384):
+    eps 0.01: D +0.003, D-D0 -0.001, /(n eps)^2 -0.000, /(n eps^2) -0.01; 1-m1 0.870, 1-m2 0.867
+    eps 0.02: D +0.011, D-D0 +0.007, /(n eps)^2 0.000, /(n eps^2) 0.01; 1-m1 0.882, 1-m2 0.871
+    eps 0.04: D +0.050, D-D0 +0.046, /(n eps)^2 0.000, /(n eps^2) 0.02; 1-m1 0.925, 1-m2 0.875
+p2d_g3d3_th04_t1_mirror (CZ 216):
+    eps 0.01: D -0.012, D-D0 -0.001, /(n eps)^2 -0.000, /(n eps^2) -0.02; 1-m1 0.123, 1-m2 0.135
+    eps 0.02: D -0.014, D-D0 -0.002, /(n eps)^2 -0.000, /(n eps^2) -0.02; 1-m1 0.123, 1-m2 0.136
+    eps 0.04: D -0.020, D-D0 -0.008, /(n eps)^2 -0.000, /(n eps^2) -0.02; 1-m1 0.123, 1-m2 0.142
+p2d_g3d3_th04_t3_mirror (CZ 648):
+    eps 0.01: D -0.003, D-D0 -0.001, /(n eps)^2 -0.000, /(n eps^2) -0.02; 1-m1 0.408, 1-m2 0.411
+    eps 0.02: D -0.003, D-D0 -0.001, /(n eps)^2 -0.000, /(n eps^2) -0.00; 1-m1 0.413, 1-m2 0.416
+    eps 0.04: D +0.000, D-D0 +0.002, /(n eps)^2 0.000, /(n eps^2) 0.00; 1-m1 0.432, 1-m2 0.432
+p2d_g3d3_th04_t6_mirror (CZ 1296):
+    eps 0.01: D -0.025, D-D0 +0.000, /(n eps)^2 0.000, /(n eps^2) 0.00; 1-m1 0.668, 1-m2 0.692
+    eps 0.02: D -0.018, D-D0 +0.007, /(n eps)^2 0.000, /(n eps^2) 0.01; 1-m1 0.680, 1-m2 0.698
+    eps 0.04: D -0.005, D-D0 +0.020, /(n eps)^2 0.000, /(n eps^2) 0.01; 1-m1 0.706, 1-m2 0.711
+p2d_g3d3_th06_t1_mirror (CZ 216):
+    eps 0.01: D -0.015, D-D0 -0.000, /(n eps)^2 -0.000, /(n eps^2) -0.01; 1-m1 0.128, 1-m2 0.143
+    eps 0.02: D -0.016, D-D0 -0.001, /(n eps)^2 -0.000, /(n eps^2) -0.01; 1-m1 0.127, 1-m2 0.144
+    eps 0.04: D -0.020, D-D0 -0.005, /(n eps)^2 -0.000, /(n eps^2) -0.01; 1-m1 0.128, 1-m2 0.148
+p2d_g3d3_th06_t3_mirror (CZ 648):
+    eps 0.01: D -0.006, D-D0 +0.000, /(n eps)^2 0.000, /(n eps^2) 0.01; 1-m1 0.508, 1-m2 0.514
+    eps 0.02: D -0.004, D-D0 +0.003, /(n eps)^2 0.000, /(n eps^2) 0.01; 1-m1 0.515, 1-m2 0.519
+    eps 0.04: D +0.011, D-D0 +0.017, /(n eps)^2 0.000, /(n eps^2) 0.02; 1-m1 0.541, 1-m2 0.530
+p2d_g3d3_th06_t6_mirror (CZ 1296):
+    eps 0.01: D -0.016, D-D0 +0.001, /(n eps)^2 0.000, /(n eps^2) 0.01; 1-m1 0.808, 1-m2 0.824
+    eps 0.02: D -0.013, D-D0 +0.004, /(n eps)^2 0.000, /(n eps^2) 0.01; 1-m1 0.813, 1-m2 0.826
+    eps 0.04: D -0.009, D-D0 +0.008, /(n eps)^2 0.000, /(n eps^2) 0.00; 1-m1 0.829, 1-m2 0.838
+p2d_g3d3_th08_t1_mirror (CZ 216):
+    eps 0.01: D -0.006, D-D0 +0.000, /(n eps)^2 0.000, /(n eps^2) 0.01; 1-m1 0.146, 1-m2 0.152
+    eps 0.02: D -0.008, D-D0 -0.002, /(n eps)^2 -0.000, /(n eps^2) -0.02; 1-m1 0.146, 1-m2 0.154
+    eps 0.04: D -0.014, D-D0 -0.007, /(n eps)^2 -0.000, /(n eps^2) -0.02; 1-m1 0.146, 1-m2 0.160
+p2d_g3d3_th08_t3_mirror (CZ 648):
+    eps 0.01: D -0.011, D-D0 +0.004, /(n eps)^2 0.000, /(n eps^2) 0.05; 1-m1 0.585, 1-m2 0.596
+    eps 0.02: D -0.005, D-D0 +0.010, /(n eps)^2 0.000, /(n eps^2) 0.04; 1-m1 0.595, 1-m2 0.599
+    eps 0.04: D +0.009, D-D0 +0.024, /(n eps)^2 0.000, /(n eps^2) 0.02; 1-m1 0.628, 1-m2 0.619
+p2d_g3d3_th08_t6_mirror (CZ 1296):
+    eps 0.01: D -0.011, D-D0 +0.001, /(n eps)^2 0.000, /(n eps^2) 0.01; 1-m1 0.911, 1-m2 0.922
+    eps 0.02: D -0.011, D-D0 +0.001, /(n eps)^2 0.000, /(n eps^2) 0.00; 1-m1 0.913, 1-m2 0.924
+    eps 0.04: D -0.010, D-D0 +0.002, /(n eps)^2 0.000, /(n eps^2) 0.00; 1-m1 0.919, 1-m2 0.928
+
+== 5. forward retention (relative to eps = 0) against D
+p2d_h3d0_t1          eps 0.01: forward 0.996, D-D0 -0.000 | eps 0.02: forward 0.990, D-D0 +0.004 | eps 0.04: forward 0.971, D-D0 +0.021
+p2d_h3d0_t2          eps 0.01: forward 0.983, D-D0 +0.002 | eps 0.02: forward 0.961, D-D0 +0.011 | eps 0.04: forward 0.898, D-D0 +0.051
+p2d_h3d0_t3          eps 0.01: forward 0.967, D-D0 +0.001 | eps 0.02: forward 0.917, D-D0 +0.012 | eps 0.04: forward 0.799, D-D0 +0.058
+p2d_h3d0_t4          eps 0.01: forward 0.932, D-D0 -0.001 | eps 0.02: forward 0.857, D-D0 +0.007 | eps 0.04: forward 0.670, D-D0 +0.046
+p2d_g3d3_th04_t1     eps 0.01: forward 1.000, D-D0 -0.001 | eps 0.02: forward 1.000, D-D0 -0.002 | eps 0.04: forward 1.000, D-D0 -0.008
+p2d_g3d3_th04_t3     eps 0.01: forward 1.006, D-D0 -0.001 | eps 0.02: forward 1.012, D-D0 -0.001 | eps 0.04: forward 1.026, D-D0 +0.002
+p2d_g3d3_th04_t6     eps 0.01: forward 1.013, D-D0 +0.000 | eps 0.02: forward 1.035, D-D0 +0.007 | eps 0.04: forward 1.101, D-D0 +0.020
+p2d_g3d3_th06_t1     eps 0.01: forward 1.000, D-D0 -0.000 | eps 0.02: forward 1.000, D-D0 -0.001 | eps 0.04: forward 1.000, D-D0 -0.005
+p2d_g3d3_th06_t3     eps 0.01: forward 1.008, D-D0 +0.000 | eps 0.02: forward 1.016, D-D0 +0.003 | eps 0.04: forward 1.033, D-D0 +0.017
+p2d_g3d3_th06_t6     eps 0.01: forward 1.014, D-D0 +0.001 | eps 0.02: forward 1.033, D-D0 +0.004 | eps 0.04: forward 1.075, D-D0 +0.008
+p2d_g3d3_th08_t1     eps 0.01: forward 1.000, D-D0 +0.000 | eps 0.02: forward 1.000, D-D0 -0.002 | eps 0.04: forward 0.999, D-D0 -0.007
+p2d_g3d3_th08_t3     eps 0.01: forward 1.008, D-D0 +0.004 | eps 0.02: forward 1.017, D-D0 +0.010 | eps 0.04: forward 1.043, D-D0 +0.024
+p2d_g3d3_th08_t6     eps 0.01: forward 1.009, D-D0 +0.001 | eps 0.02: forward 1.019, D-D0 +0.001 | eps 0.04: forward 1.044, D-D0 +0.002
+
+== 6. device cost to resolve D at eps = 0.02 (2 SE), shot noise per circuit v = (1 - m^2)/16 (sites independent,
+   an assumption), frame spread from the simulation; mirror 2 added for every arm with S shots split over F frames
+p2d_h3d0_t1_mirror       |D| 0.005  frame spread sd 0.036  F 16: not reachable  F 32: not reachable  F 64: not reachable
+p2d_h3d0_t2_mirror       |D| 0.013  frame spread sd 0.041  F 16: not reachable  F 32: not reachable  F 64: S 7,546
+p2d_h3d0_t3_mirror       |D| 0.022  frame spread sd 0.000  F 16: S 989  F 32: S 989  F 64: S 989
+p2d_h3d0_t4_mirror       |D| 0.011  frame spread sd 0.000  F 16: S 3,982  F 32: S 3,982  F 64: S 3,982
+p2d_g3d3_th04_t1_mirror  |D| 0.014  frame spread sd 0.000  F 16: S 662  F 32: S 662  F 64: S 662
+p2d_g3d3_th04_t3_mirror  |D| 0.003  frame spread sd 0.014  F 16: not reachable  F 32: not reachable  F 64: not reachable
+p2d_g3d3_th04_t6_mirror  |D| 0.018  frame spread sd 0.000  F 16: S 1,383  F 32: S 1,383  F 64: S 1,383
+p2d_g3d3_th06_t1_mirror  |D| 0.016  frame spread sd 0.000  F 16: S 479  F 32: S 479  F 64: S 479
+p2d_g3d3_th06_t3_mirror  |D| 0.004  frame spread sd 0.003  F 16: S 35,401  F 32: S 32,096  F 64: S 30,664
+p2d_g3d3_th06_t6_mirror  |D| 0.013  frame spread sd 0.000  F 16: S 2,882  F 32: S 2,882  F 64: S 2,882
+p2d_g3d3_th08_t1_mirror  |D| 0.008  frame spread sd 0.000  F 16: S 2,008  F 32: S 2,008  F 64: S 2,008
+p2d_g3d3_th08_t3_mirror  |D| 0.005  frame spread sd 0.041  F 16: not reachable  F 32: not reachable  F 64: not reachable
+p2d_g3d3_th08_t6_mirror  |D| 0.011  frame spread sd 0.003  F 16: S 4,372  F 32: S 4,320  F 64: S 4,294
+   heisE today: 148 circuits, 168 s (48 arms x user/floor/mirror + 4 sentinel, 4000 shots each). Adding one mirror 2 per arm at 4000 shots: about 1 + 48/148 = 1.32 x the device time (time taken as proportional to shots).

@@ -1,0 +1,6 @@
+p2d_h3d0_t1_mirror: frame 1: max |twirled - plain| = 8.9e-16  (plain mean 1.0000)
+p2d_h3d0_t1_mirror: frame 2: max |twirled - plain| = 8.9e-16  (plain mean 1.0000)
+p2d_h3d0_t1_mirror: frame 3: max |twirled - plain| = 1.9e-15  (plain mean 1.0000)
+p2d_h3d0_t1: frame 1: max |twirled - plain| = 3.3e-16  (plain mean -0.0000)
+p2d_h3d0_t1: frame 2: max |twirled - plain| = 4.4e-16  (plain mean -0.0000)
+p2d_h3d0_t1: frame 3: max |twirled - plain| = 6.7e-16  (plain mean -0.0000)
