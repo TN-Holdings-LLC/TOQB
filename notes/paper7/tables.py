@@ -72,11 +72,23 @@ def daily_rows():
         job, backend = job_of(rel)
         for name, p in sc["problems"].items():
             R, ne = retention(p["M"], p["M_exact"])
+            if name == "user" and len(sc["problems"]) == 1:
+                # psf-os run2d's single-circuit form tags its one circuit "user"; on 2026-11-06 it was FX-A run
+                # alone (results/daily/2026-11-06/README.md, answers_by_tag.json = {"user": answers["FX-A"]})
+                name = "FX-A"
             rows.append(dict(date=date, device=backend, job=job, problem=name, n=p["n"], reads=p["reads"],
                              agrees=p["agrees"], beats=p["beats"], M=p["M"], M_exact=p["M_exact"], diff=p["diff"],
                              R=R, norm_error=ne, guessable=p.get("guessable"), cz_layers=p.get("cz_layers"),
                              decay_per_layer=p.get("decay_per_layer"), floor=p.get("floor_mean"),
                              sentinel=sc.get("sentinel")))
+    # refusals are rows too ("no row is dropped"): <date>/<device>/<problem>_REFUSED_*.txt
+    for txt in sorted(glob.glob(os.path.join(ROOT, "results", "daily", "*", "*", "*_REFUSED_*.txt"))):
+        rel = os.path.relpath(txt, ROOT).split(os.sep)
+        rows.append(dict(date=rel[2], device=rel[3], job=None, problem=rel[4].split("_REFUSED")[0], n=None,
+                         reads="REFUSED", agrees="REFUSED", beats="-", M=None, M_exact=None, diff=None, R=None,
+                         norm_error=None, guessable=None, cz_layers=None, decay_per_layer=None, floor=None,
+                         sentinel=None))
+    rows.sort(key=lambda r: (r["date"], r["device"], r["problem"]))
     return rows
 
 
@@ -141,7 +153,9 @@ def build(out_dir):
     T.append(("(b) Daily record (declared; raw, no correction)", head_b,
               [[r["date"], r["device"], r["problem"], r["agrees"], r["beats"], fmt(r["diff"], signed=True), fmt(r["R"]),
                 fmt(r["norm_error"]), fmt(r["decay_per_layer"], 4) if r["decay_per_layer"] is not None else "-",
-                r["job"]] for r in daily]))
+                r["job"]] if r["agrees"] != "REFUSED" else
+               [r["date"], r["device"], r["problem"], "REFUSED", "-", "-", "-", "-", "-", "not run (no copy qualifies)"]
+               for r in daily]))
     T.append(("(c) FX-A day to day (the same circuit as practice p4_b0.485_t12)", ["date", "device", "M - M_exact", "R",
               "AGREES", "job"],
               [[r["date"], r["device"], fmt(r["diff"], signed=True), fmt(r["R"]), r["agrees"], r["job"]] for r in fxa]))

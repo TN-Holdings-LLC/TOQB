@@ -41,6 +41,18 @@ RESULTS = {
                                    "ibm_marrakesh/run/scores.json"),
     "daily-2026-11-05-fez": ("results/daily/2026-11-05", ["ibm_fez", "answers.json"],
                              ["gpu/daily_score.py", "{T}/ibm_fez/run", "{T}/answers.json"], "ibm_fez/run/scores.json"),
+    # added 2026-11-08 for paper 7 (the 11-06 run is FX-A alone, scored with its answers_by_tag.json)
+    "daily-2026-11-06-marrakesh": ("results/daily/2026-11-06", ["ibm_marrakesh"],
+                                   ["gpu/daily_score.py", "{T}/ibm_marrakesh/run", "{T}/ibm_marrakesh/answers_by_tag.json"],
+                                   "ibm_marrakesh/run/scores.json"),
+    "daily-2026-11-07-fez": ("results/daily/2026-11-07", ["ibm_fez", "answers.json"],
+                             ["gpu/daily_score.py", "{T}/ibm_fez/run", "{T}/answers.json"], "ibm_fez/run/scores.json"),
+    "du51-kingston-2026-11-07": ("results/du51-2026-11-07", ["ibm_kingston", "answers"],
+                                 ["gpu/du51_score.py", "{T}/ibm_kingston/run", "{T}/answers/answers.json"],
+                                 "ibm_kingston/run/scores.json"),
+    "du71-kingston-2026-11-07": ("results/du71-2026-11-07", ["ibm_kingston", "answers"],
+                                 ["gpu/du51_score.py", "{T}/ibm_kingston/run", "{T}/answers/answers.json"],
+                                 "ibm_kingston/run/scores.json"),
 }
 
 
@@ -99,11 +111,21 @@ def gate_check(name):
                 f"GATES DIFFERENT (job {old['gate_sha256'][:12]} vs {new['gate_sha256'][:12]}; records {bad})")
 
 
+def _ignore(folder, names):
+    """Leave out the committed scores, and raw_counts.json where the committed raw_counts.json.gz is beside it (older
+    records commit the .gz only; the plain file there is a local, untracked copy). Records from 2026-11-06 on commit
+    raw_counts.json itself, which is then the input."""
+    out = {"scores.json"} & set(names)
+    if "raw_counts.json.gz" in names:
+        out.add("raw_counts.json")
+    return out
+
+
 def copy_result(src, parts, dst):
     for p in parts:
         s = os.path.join(ROOT, src, p)
         if os.path.isdir(s):
-            shutil.copytree(s, os.path.join(dst, p), ignore=shutil.ignore_patterns("scores.json", "raw_counts.json"))
+            shutil.copytree(s, os.path.join(dst, p), ignore=_ignore)
         else:
             shutil.copy(s, os.path.join(dst, p))
 
