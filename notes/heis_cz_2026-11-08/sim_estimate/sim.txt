@@ -1,0 +1,13 @@
+  4 p2d_h3c0_t1                  qubits 18 expect
+  7 p2d_h3c0_t2                  qubits 18 expect
+ 10 p2d_h3c0_t3                  qubits 18 expect
+ 13 p2d_h3c0_t4                  qubits 18 expect
+ 52 p2d_h3d0_t1                  qubits 18 expect
+ 55 p2d_h3d0_t2                  qubits 18 expect
+ 58 p2d_h3d0_t3                  qubits 18 expect
+ 61 p2d_h3d0_t4                  qubits 18 expect
+100 p2d_h3l0_t1                  qubits 18 expect
+103 p2d_h3l0_t2                  qubits 18 expect
+106 p2d_h3l0_t3                  qubits 18 expect
+109 p2d_h3l0_t4                  qubits 18 expect
+== REALSIM FINISHED (expect)
