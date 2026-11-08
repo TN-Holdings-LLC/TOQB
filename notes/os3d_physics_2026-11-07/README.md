@@ -27,3 +27,18 @@
   on kingston's record of 14:35 CET: 4 places, 52 circuits, 61.0 s by the model, CZ 176 / 348 / 520 / 692, exact m_s
   0.932 / 0.757 / 0.530 / 0.308. The whole job run noiselessly (`noiseless.py`): every arm READS and AGREES,
   retention 0.97-1.05 (shot noise). Noise estimate: `heis_sim_kit_2026-11-07.zip` on a POD (realsim, FakeFez noise).
+
+## 2026-11-08: x-bonds carried on swaps (`--carry`; not declared for a device run)
+
+The 6-swap fold schedules are reduced words of the reversal of the four columns: every pair of columns is swapped
+exactly once per step, so every x-bond can ride on its swap. The declared layout took an x-bond at the first round
+boundary where its columns were adjacent, and the later swap of the same pair went plain. With carry (an x-bond waits
+when a later round of the step swaps its columns), per row and step 3 plain swaps instead of 5.
+
+4 x 2 x 2 Heisenberg on the ibm_fez record of 2026-11-07 15:58 CET, compiled: CZ 176/348/520/692 -> 152/300/448/596
+(t = 1-4), CZ layers 49/95/141/187 -> 46/89/132/175. Placed against logical (full statevector, 18 qubits): sites
+to 7e-16, bridges back in |0>. The whole job run noiselessly: every arm READS and AGREES. The order of bonds changes,
+so the exact answers change slightly (m_s at t = 4 0.3086 instead of 0.3078).
+
+The same happens in psf-os's Ising fold layout (not changed): one step before compiling, 4 x 2 x 2 108 -> 92 CZ,
+4 x 4 x 3 488 -> 464 (there the 10-swap schedule is not a reduced word, so fewer swaps carry).

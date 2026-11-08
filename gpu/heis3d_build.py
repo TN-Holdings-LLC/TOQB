@@ -5,7 +5,10 @@ t = 1 mirror (rule "top", `gpu/heis3d_score.py`). Exact answers: the logged Trot
 bonds is the layout's), full statevector (4 x 2 x 2 = 16 sites).
 
 usage: PYTHONPATH=<psf-os>:<TOQB>/gpu python gpu/heis3d_build.py DEV OUT ANSWERS_OUT [--dt 0.05] [--delta 1]
-       [--ts 1,2,3,4] [--k 4] [--lattice 2,2] [--shots 4000] [--max-seconds 300] [--dry-clifford-sentinel]
+       [--ts 1,2,3,4] [--k 4] [--lattice 2,2] [--shots 4000] [--max-seconds 300] [--dry-clifford-sentinel] [--carry]
+
+--carry (2026-11-08): the x-bonds ride on the swaps of their columns (gpu/heis3d.py FoldHeis, carry); 24 CZ fewer
+per step at 4 x 2 x 2. Not declared for a device run yet.
 """
 import argparse
 import hashlib
@@ -32,6 +35,7 @@ def main():
     ap.add_argument("--shots", type=int, default=4000)
     ap.add_argument("--max-seconds", type=float, default=300)
     ap.add_argument("--dry-clifford-sentinel", action="store_true")
+    ap.add_argument("--carry", action="store_true")
     a = ap.parse_args()
     M, N = (int(v) for v in a.lattice.split(","))
     if L * M * N > 24:
@@ -57,7 +61,7 @@ def main():
     cands, avoid = [], []
     while len(cands) < a.k:
         try:
-            qc, placed, used, log, where = H.physical(dev, M, N, 1, a.dt, a.delta, avoid=avoid)
+            qc, placed, used, log, where = H.physical(dev, M, N, 1, a.dt, a.delta, avoid=avoid, carry=a.carry)
         except G.Refused:
             break
         cands.append(dict(index=len(cands), r0=where["r0"], c0=where["c0"], layout=where["layout"], used=used,
@@ -68,7 +72,7 @@ def main():
     arms, answers = {}, {}
     for c in cands:
         for t in ts:
-            qc, placed, used, log, where = H.physical(dev, M, N, t, a.dt, a.delta, avoid=c["avoid"])
+            qc, placed, used, log, where = H.physical(dev, M, N, t, a.dt, a.delta, avoid=c["avoid"], carry=a.carry)
             assert (where["r0"], where["c0"]) == (c["r0"], c["c0"])
             n = L * M * N
             phys = [placed[s] for s in range(n)]
@@ -98,6 +102,7 @@ def main():
     ans_sha = hashlib.sha256(open(a.answers_out, "rb").read()).hexdigest()
     gh = GH.qpy_hash(os.path.join(a.out, "job", "circuits.qpy"))
     rep = dict(device=dev.name, model="heisenberg", lattice=[L, M, N], dt=a.dt, delta=a.delta, ts=ts, shots=a.shots,
+               carry=a.carry,
                candidates=[{x: c[x] for x in ("index", "r0", "c0", "layout", "used")} for c in cands], arms=arms,
                circuits=len(man["pubs"]), qpu_seconds_model=man["qpu_seconds_model"], gate_hash=gh,
                answers_sha256=ans_sha, job=os.path.join(a.out, "job"), runs=runs)

@@ -9,8 +9,14 @@ Circuits on more than --max-qubits qubits (the 40-qubit sentinel) do not fit a s
 written as a placeholder (marked in skipped.json), and a failure of one circuit no longer stops the others.
 --device GPU uses Aer's GPU build (qiskit-aer-gpu), one worker per GPU.
 
+--expect N (2026-11-08): instead of sampling, N noise trajectories, each giving the exact <Z> of every measured qubit
+(Aer save_expectation_value, averaged over the trajectories), the readout asymmetry applied in closed form:
+<Z>_read = (1 - p10 - p01) <Z> + (p01 - p10). The spread between trajectories is far smaller than the +-1 of a shot,
+so tens of trajectories give the precision of thousands of shots. Writes RUN_DIR/expect.json {name: {clbit: <Z>}}
+and leaves the job folder alone (it is not a device-shaped result).
+
 usage: python realsim.py PSF_OS RUN_DIR [--shots 600] [--workers N] [--only NAME,...] [--max-qubits 30]
-                         [--device CPU|GPU] [--threads 1] [--props PROPS.json]
+                         [--device CPU|GPU] [--threads 1] [--props PROPS.json] [--expect N]
 """
 import argparse
 import json
@@ -24,7 +30,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def _one(args):
-    k, qpy_bytes, shots, seed, max_q, device, threads, props_file = args
+    k, qpy_bytes, shots, seed, max_q, device, threads, props_file = args[:8]
+    expect = args[8] if len(args) > 8 else 0
     import io
     from qiskit import qpy
     from qiskit.transpiler import PassManager
@@ -91,6 +98,24 @@ def _one(args):
     if device == "GPU":
         opts.update(device="GPU", batched_shots_gpu=True)
     sim = AerSimulator(**opts)
+    if expect:
+        # measurements replaced by saved <Z> of each measured qubit (one trajectory per shot, averaged)
+        from qiskit.quantum_info import Pauli
+        ce = QuantumCircuit(cc.num_qubits)
+        meas = {}
+        for ins in cc.data:
+            if ins.operation.name == "measure":
+                meas[cc.find_bit(ins.clbits[0]).index] = cc.find_bit(ins.qubits[0]).index
+            else:
+                ce.append(ins.operation, [cc.find_bit(q).index for q in ins.qubits])
+        for cl, q in sorted(meas.items()):
+            ce.save_expectation_value(Pauli("Z"), [q], label=f"z{cl}")
+        d = sim.run(ce, shots=expect).result().data()
+        z = {}
+        for cl, q in meas.items():
+            p10, p01 = ro.get(q, (0.0, 0.0))
+            z[str(cl)] = (1 - p10 - p01) * float(np.real(d[f"z{cl}"])) + (p01 - p10)
+        return k, z, len(touched), "expect"
     counts = sim.run(cc, shots=shots).result().get_counts(0)
     # readout asymmetry, per measured qubit (classical flips with the backend's p(1|0), p(0|1))
     meas = {}
@@ -134,6 +159,7 @@ def main():
     ap.add_argument("--device", default="CPU", choices=["CPU", "GPU"])
     ap.add_argument("--threads", type=int, default=1, help="Aer threads per worker process (0 = all cores)")
     ap.add_argument("--props", default=None, help="BackendProperties JSON (fetch_props) instead of FakeFez's noise")
+    ap.add_argument("--expect", type=int, default=0, help="N trajectories of exact <Z> instead of sampling")
     a = ap.parse_args()
     sys.path.insert(0, a.psf_os)
     import io
@@ -150,8 +176,21 @@ def main():
         b = io.BytesIO()
         qpy.dump(c, b)
         tasks.append((k, b.getvalue(), a.shots, 1000 + k, a.max_qubits, a.device, a.threads,
-                      os.path.abspath(a.props) if a.props else None))
+                      os.path.abspath(a.props) if a.props else None, a.expect))
     rows, skipped = {}, {}
+    if a.expect:
+        res = {}
+        with ProcessPoolExecutor(a.workers) as ex:
+            for k, z, nq, note in ex.map(_safe, tasks):
+                if z is None:
+                    skipped[names[k]] = note
+                else:
+                    res[names[k]] = z
+                print(f"{k:3} {names[k]:28} qubits {nq} {note}", flush=True)
+        json.dump(dict(trajectories=a.expect, noise=os.path.basename(a.props) if a.props else "FakeFez", z=res,
+                       skipped=skipped), open(os.path.join(a.run, "expect.json"), "w"), indent=1)
+        print("== REALSIM FINISHED (expect)")
+        return
     with ProcessPoolExecutor(a.workers) as ex:
         for k, counts, nq, note in ex.map(_safe, tasks):
             if counts is None:

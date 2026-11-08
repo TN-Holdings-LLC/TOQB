@@ -36,21 +36,30 @@ def neel_sites(L, M, N):
 
 
 class FoldHeis(G._Fold):
-    def __init__(self, M, N, adj, r0, c0, dt, delta=1.0, merge=True):
+    """carry (2026-11-08, not yet declared for a device run): an x-bond is not applied at a round boundary when a
+    later round of the same step swaps its two columns; it rides on that swap as SWAP . U (3 CZ, the cost of the
+    plain swap alone). The fixed schedules of 6 swaps are reduced words of the reversal of the four columns, so every
+    pair of columns is swapped exactly once per step and all three x-bonds of a row ride on swaps: per row and step
+    3 plain swaps instead of 5 (4 x 2 x 2: 152 CZ per step instead of 176). Without carry the layout is the declared
+    one of 2026-11-07 (the x-bonds are taken at the first boundary where their columns are adjacent)."""
+
+    def __init__(self, M, N, adj, r0, c0, dt, delta=1.0, merge=True, carry=False):
         super().__init__(M, N, adj, r0, c0, merge=merge)
+        self.carry = carry
         from qiskit.circuit.library import UnitaryGate
         self.U = UnitaryGate(bond_unitary(dt, delta), label="heis")
         self.SU = UnitaryGate(SWAP @ bond_unitary(dt, delta), label="swap_heis")
         self.log = []   # bonds in order, as layout keys (kind, y, z, x); converted to sites by `bond_sites`
 
-    def _bonds(self, todo, with_x=True):
+    def _bonds(self, todo, with_x=True, later=frozenset()):
+        """later: column pairs (min, max) that a later round of this step swaps (their x-bond waits for the swap)."""
         M, N = self.M, self.N
         for y in range(M):
             for z in range(N):
                 for i in range(3 if with_x else 0):
                     x, w = self.col[i], self.col[i + 1]
                     key = ("x", y, z, min(x, w))
-                    if abs(x - w) == 1 and key in todo:
+                    if abs(x - w) == 1 and key in todo and (min(x, w), max(x, w)) not in later:
                         self.qc.append(self.U, [self.lab(y, z, i), self.lab(y, z, i + 1)])
                         self.log.append(key)
                         todo.discard(key)
@@ -83,7 +92,8 @@ class FoldHeis(G._Fold):
         moving = any(k[0] != "x" for k in todo)
         self._bonds(todo, with_x=not (self.merge and moving))
         if moving:
-            for rnd in self.schedule():
+            sched = list(self.schedule())
+            for r, rnd in enumerate(sched):
                 for z in range(N):
                     for i in rnd:
                         x, w = self.col[i], self.col[i + 1]
@@ -98,10 +108,23 @@ class FoldHeis(G._Fold):
                                 self.qc.swap(a, b)
                 for i in rnd:
                     self.col[i], self.col[i + 1] = self.col[i + 1], self.col[i]
-                self._bonds(todo)
+                self._bonds(todo, later=self._later(sched[r + 1:]) if self.carry else frozenset())
             self.passes += 1
         if todo:
             raise RuntimeError(f"bonds left over: {sorted(todo)[:4]}")
+
+
+def _later_pairs(col, rounds):
+    """Column pairs (min, max) swapped by the given rounds, starting from the arrangement col."""
+    c, out = list(col), set()
+    for rnd in rounds:
+        for i in rnd:
+            out.add((min(c[i], c[i + 1]), max(c[i], c[i + 1])))
+            c[i], c[i + 1] = c[i + 1], c[i]
+    return frozenset(out)
+
+
+FoldHeis._later = lambda self, rounds: _later_pairs(self.col, rounds)
 
 
 def bond_sites(key, L, M, N, swapped):
@@ -116,7 +139,7 @@ def bond_sites(key, L, M, N, swapped):
     return idx[a], idx[b]
 
 
-def physical(dev, M, N, t, dt, delta=1.0, avoid=(), merge=True):
+def physical(dev, M, N, t, dt, delta=1.0, avoid=(), merge=True, carry=False):
     """The placed Heisenberg circuit (Neel state, t steps), the site -> label map at the end, the labels used, the
     bond log as site pairs and where it was placed. The first fold translation in psf-os's fixed order that touches
     no failed element (as psf_os.grid3d.physical); Refused if none."""
@@ -134,7 +157,7 @@ def physical(dev, M, N, t, dt, delta=1.0, avoid=(), merge=True):
         if (r0, c0) in avoid:
             continue
         try:
-            B = FoldHeis(N if swapped else M, M if swapped else N, adj, r0, c0, dt, delta, merge=merge)
+            B = FoldHeis(N if swapped else M, M if swapped else N, adj, r0, c0, dt, delta, merge=merge, carry=carry)
         except G.Refused as e:
             first = first or str(e)
             continue
