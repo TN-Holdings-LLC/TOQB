@@ -1,0 +1,5 @@
+fez calibration 2026-11-06 23:22 CET: median CZ error 2.59e-03 over 350 couplers
+t 1: blocks in place 12 (angles 0.10-0.10), riding 16 (angle 1.47), CX moves 32 | CZ form: 116 CZ, budget 0.300 exp(-) 0.741 | fractional F1 0.300 (0.741)  F2 0.205 (0.815)  F3 0.191 (0.826)
+t 2: blocks in place 20 (angles 0.10-0.20), riding 32 (angle 1.47), CX moves 56 | CZ form: 212 CZ, budget 0.548 exp(-) 0.578 | fractional F1 0.548 (0.578)  F2 0.389 (0.678)  F3 0.346 (0.707)
+t 3: blocks in place 28 (angles 0.10-0.20), riding 48 (angle 1.47), CX moves 80 | CZ form: 308 CZ, budget 0.796 exp(-) 0.451 | fractional F1 0.796 (0.451)  F2 0.573 (0.564)  F3 0.502 (0.606)
+t 4: blocks in place 36 (angles 0.10-0.20), riding 64 (angle 1.47), CX moves 104 | CZ form: 404 CZ, budget 1.044 exp(-) 0.352 | fractional F1 1.044 (0.352)  F2 0.757 (0.469)  F3 0.657 (0.519)

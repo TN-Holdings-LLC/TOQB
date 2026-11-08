@@ -233,7 +233,7 @@ def placed_check(qc, placed, used, L, M, N, log, dt, delta=1.0):
 # z-bonds) rides on a swap as SWAP . U or is taken in place as U, so no swap is empty. The two lines (y = 0, 1) run the
 # same schedule; a site at a bridge position takes its y-bond through the bridge (move onto the empty bridge, U, move
 # back). Even steps run the schedule reversed (U is symmetric, so a reversed SWAP . U is again SWAP . U).
-# Merge at step boundaries: when a y-bond's move back is followed by the next y-bond of the same bridge with no line
+# Merge at step boundaries (with rule A, below, for the line operations): when a y-bond's move back is followed by the next y-bond of the same bridge with no line
 # operation on that position in between, the two moves cancel and the two U(dt) on the same pair are one U(2 dt)
 # (exact: the same pair, U(dt)^2 = U(2 dt)); the log keeps both bonds, so the exact answer is unchanged.
 # ---------------------------------------------------------------------------------------------------------------
@@ -304,7 +304,41 @@ def _line_build(A, B, bridge, br, t, dt, delta, merge=True):
                 out[j] = ("yy", p, (out[j][2] if out[j][0] == "yy" else 1) + 1)
                 continue
         out.append(op if op[0] != "y" else ("y", op[1]))
+    if merge:
+        out = _merge_line(out)
     return out, start, arr, log
+
+
+def _merge_line(out):
+    """Rule A (VS Claude, 2026-11-08, notes/kaizen_2026-11-08/A): every line operation is ("L", e, k, s), U(k dt) on
+    line positions e, e + 1 of both lines, then a swap when s. When the next operation touching position e or e + 1 (a
+    line operation on e - 1, e, e + 1, or a y-bond at a bridge on e or e + 1) is again a line operation on the same e,
+    the two are one: (L, e, k1, s1) (L, e, k2, s2) -> (L, e, k1 + k2, s1 xor s2). Exact: the same two sites, everything
+    between acts on other qubits, U(k1 dt) U(k2 dt) = U((k1 + k2) dt) and SWAP commutes with U; (L, e, 0, 0) is dropped.
+    Fixed rewrite, repeated until nothing changes; the bond log keeps every bond."""
+    conv = {"U": (1, 0), "SWAP.U": (1, 1), "SWAP": (0, 1)}
+    ops = [("L", op[1]) + conv[op[0]] if op[0] in conv else op for op in out]
+
+    def touches(op, e):
+        return op[1] in (e - 1, e, e + 1) if op[0] == "L" else op[1] in (e, e + 1)
+    changed = True
+    while changed:
+        changed = False
+        for i, op in enumerate(ops):
+            if op[0] != "L":
+                continue
+            e = op[1]
+            j = next((j for j in range(i + 1, len(ops)) if touches(ops[j], e)), None)
+            if j is not None and ops[j][0] == "L" and ops[j][1] == e:
+                k, sw = op[2] + ops[j][2], op[3] ^ ops[j][3]
+                del ops[j]
+                if k == 0 and sw == 0:
+                    del ops[i]
+                else:
+                    ops[i] = ("L", e, k, sw)
+                changed = True
+                break
+    return ops
 
 
 def _line_circuit(out, start, A, B, bridge, n_qubits, dt, delta):
@@ -330,6 +364,17 @@ def _line_circuit(out, start, A, B, bridge, n_qubits, dt, delta):
             qc.append(Uk, [b, q])
             qc.cx(b, a)
             qc.cx(a, b)
+        elif kind == "L":
+            _, _, k, sw = op
+            for line in (A, B):
+                if k == 0:
+                    qc.swap(line[e], line[e + 1])
+                elif k == 1:
+                    qc.append(SU if sw else U, [line[e], line[e + 1]])
+                else:
+                    m = bond_unitary(k * dt, delta)
+                    qc.append(UnitaryGate(SWAP @ m if sw else m, label=f"heis_x{k}" + ("_swap" if sw else "")),
+                              [line[e], line[e + 1]])
         else:
             for line in (A, B):
                 if kind == "SWAP":

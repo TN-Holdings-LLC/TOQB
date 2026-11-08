@@ -1,0 +1,20 @@
+== (1) mirror / floor: mean <Z> over the measured qubits (ideal 1)
+p2d_h3d0_t1_mirror         sim 0.698 +- 0.013  device 0.528  sim/device 1.321
+p2d_h3d0_t2_mirror         sim 0.445 +- 0.014  device 0.273  sim/device 1.628
+p2d_h3d0_t3_mirror         sim 0.245 +- 0.012  device 0.119  sim/device 2.049
+p2d_h3d0_t4_mirror         sim 0.129 +- 0.010  device 0.039  sim/device 3.330
+p2d_h3d0_t1_floor          sim 0.898 +- 0.007  device 0.948  sim/device 0.948
+p2d_g3d3_th06_t1_mirror    sim 0.876 +- 0.008  device 0.838  sim/device 1.045
+p2d_g3d3_th06_t2_mirror    sim 0.716 +- 0.014  device 0.717  sim/device 1.000
+p2d_g3d3_th06_t3_mirror    sim 0.525 +- 0.015  device 0.533  sim/device 0.984
+p2d_g3d3_th06_t4_mirror    sim 0.350 +- 0.013  device 0.391  sim/device 0.896
+p2d_g3d3_th06_t5_mirror    sim 0.288 +- 0.011  device 0.277  sim/device 1.038
+p2d_g3d3_th06_t6_mirror    sim 0.194 +- 0.008  device 0.206  sim/device 0.941
+p2d_g3d3_th06_t1_floor     sim 0.937 +- 0.006  device 0.976  sim/device 0.959
+== (2) forward: retention ratio sim / device per probe
+base    heisB   h3d0_t1:1.152  h3d0_t2:1.176  h3d0_t3:1.278  h3d0_t4:1.198   mean 1.201
+base    isingA  g3d3_th06_t1:1.024  g3d3_th06_t2:1.010  g3d3_th06_t3:1.004  g3d3_th06_t4:0.980  g3d3_th06_t5:0.946  g3d3_th06_t6:0.944   mean 0.985
+t2half  heisB   h3d0_t1:1.135  h3d0_t2:1.119  h3d0_t3:1.281  h3d0_t4:1.308   mean 1.210
+t2half  isingA  g3d3_th06_t1:1.027  g3d3_th06_t2:1.035  g3d3_th06_t3:1.039  g3d3_th06_t4:1.052  g3d3_th06_t5:0.969  g3d3_th06_t6:0.958   mean 1.013
+czzz    heisB   h3d0_t1:0.868  h3d0_t2:0.761  h3d0_t3:0.746  h3d0_t4:0.629   mean 0.751
+czzz    isingA  g3d3_th06_t1:0.997  g3d3_th06_t2:0.982  g3d3_th06_t3:0.915  g3d3_th06_t4:0.857  g3d3_th06_t5:0.845  g3d3_th06_t6:0.808   mean 0.901

@@ -1,0 +1,10 @@
+p2d_h3d0_t1            qubits 18  cz  176  sx  403  x   6  rz  401  duration   7.19 us  idle share 0.50  sx per cz 2.29
+p2d_h3d0_t2            qubits 18  cz  348  sx  792  x   6  rz  783  duration  12.40 us  idle share 0.54  sx per cz 2.28
+p2d_h3d0_t3            qubits 18  cz  520  sx 1181  x   6  rz 1165  duration  17.60 us  idle share 0.56  sx per cz 2.27
+p2d_h3d0_t4            qubits 18  cz  692  sx 1570  x   6  rz 1547  duration  22.81 us  idle share 0.56  sx per cz 2.27
+p2d_g3d3_th06_t1       qubits 18  cz  108  sx  192  x   0  rz  161  duration   4.54 us  idle share 0.42  sx per cz 1.78
+p2d_g3d3_th06_t2       qubits 18  cz  216  sx  376  x   0  rz  284  duration   7.40 us  idle share 0.47  sx per cz 1.74
+p2d_g3d3_th06_t3       qubits 18  cz  324  sx  560  x   0  rz  407  duration  10.27 us  idle share 0.50  sx per cz 1.73
+p2d_g3d3_th06_t4       qubits 18  cz  432  sx  744  x   0  rz  530  duration  13.14 us  idle share 0.51  sx per cz 1.72
+p2d_g3d3_th06_t5       qubits 18  cz  540  sx  928  x   0  rz  653  duration  16.01 us  idle share 0.52  sx per cz 1.72
+p2d_g3d3_th06_t6       qubits 18  cz  648  sx 1112  x   0  rz  776  duration  18.88 us  idle share 0.53  sx per cz 1.72

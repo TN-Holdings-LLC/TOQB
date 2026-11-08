@@ -1,0 +1,18 @@
+Ising fold (psf-os grid3d.prepare, RuleCompiler + rzz_exact, fez), theta 0.6:
+4x2x2: v3.1: t1 108 t2 216 (step 108) | v3.2: t1 92 t2 184 (step 92)
+4x3x2: v3.1: t1 234 t2 468 (step 234) | v3.2: t1 222 t2 444 (step 222)
+4x2x3: v3.1: t1 226 t2 452 (step 226) | v3.2: t1 214 t2 428 (step 214)
+4x2x4: v3.1: t1 304 t2 608 (step 304) | v3.2: t1 288 t2 576 (step 288)
+4x4x3: v3.1: t1 488 t2 976 (step 488) | v3.2: t1 464 t2 928 (step 464)
+4x6x3: v3.1: t1 750 t2 1500 (step 750) | v3.2: t1 714 t2 1428 (step 714)
+Heisenberg fold (heis3d.physical, RuleCompiler, fez), dt 0.05:
+4x2x2: old: t1 176 t2 348 (step 172) | carry: t1 152 t2 300 (step 148)
+4x3x2: old: t1 346 t2 688 (step 342) | carry: t1 328 t2 652 (step 324)
+4x2x3: old: t1 330 t2 656 (step 326) | carry: t1 312 t2 620 (step 308)
+Ising line 4x2x2 (bridges 1,5), RuleCompiler + rzz_exact, theta 0.6:
+t 1: CZ 60  max|placed - exact| 4.3e-15 ; t 2: CZ 120 7.5e-15 ; t 3: CZ 180 1.2e-14 ; t 4: CZ 240 1.6e-14 (bridges back to |0>)
+Ising cheapest line search (ising_line.py, bridges 1,5): no complete schedule at cost <= 15 CZ per line (search stopped by
+memory while expanding cost 15); the Heisenberg schedule gives 18 per line, so the optimum is 16, 17 or 18.
+4xMx2 line schedule (two bridge sets {1,5}, {3,7}): found with 2 empty swaps per line (DFS, random starts; E = 0, 1 not
+found in 3000 tries, not a proof). Combinatorial check OK. Per step by op count (no boundary merge):
+4x3x2: Heisenberg 220, Ising 126 ; 4x4x2: Heisenberg 312, Ising 176

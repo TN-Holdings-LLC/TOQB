@@ -1,0 +1,8 @@
+device ibm_fez (record 2026-11-07 15:58 CET)
+pair-level diff at t2 (level 1 vs level 3): (A3,A4) 12 -> 9, (B3,B4) 12 -> 9; nothing else differs
+t 1: line (bc38d2c) 116  + rule A 116  | level3 on bc38d2c 116, level3 on rule A 116 | merged blocks 0  placed-exact 4.4e-16  bridge -3.8e-15
+t 2: line (bc38d2c) 218  + rule A 212  | level3 on bc38d2c 212, level3 on rule A 212 | merged blocks 1  placed-exact 1.3e-15  bridge -4.7e-15
+t 3: line (bc38d2c) 320  + rule A 308  | level3 on bc38d2c 308, level3 on rule A 308 | merged blocks 2  placed-exact 1.8e-15  bridge -6.4e-15
+t 4: line (bc38d2c) 422  + rule A 404  | level3 on bc38d2c 404, level3 on rule A 404 | merged blocks 3  placed-exact 1.7e-15  bridge -8.0e-15
+t 5: line (bc38d2c) 524  + rule A 500  | level3 on bc38d2c 500, level3 on rule A 500 | merged blocks 4  placed-exact 1.1e-15  bridge -9.3e-15
+t 6: line (bc38d2c) 626  + rule A 596  | level3 on bc38d2c 596, level3 on rule A 596 | merged blocks 5  placed-exact 2.5e-16  bridge -1.1e-14

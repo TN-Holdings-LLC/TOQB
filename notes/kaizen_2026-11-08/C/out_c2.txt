@@ -1,0 +1,19 @@
+== 4xMx2 (M>=3): line 8, two bridge sets 1,5 and 3,7, E=0
+N 2 n 8 bonds 10 sets 2 E 0 tries 3000 maxnodes 300000
+NOT FOUND
+== 4xMx2: E=1
+N 2 n 8 bonds 10 sets 2 E 1 tries 3000 maxnodes 300000
+NOT FOUND
+== 4xMx2: E=2
+N 2 n 8 bonds 10 sets 2 E 2 tries 3000 maxnodes 500000
+FOUND try 1918 nodes 182 ops 12
+start: 2.0 3.1 1.1 2.1 3.0 0.0 1.0 0.1
+ops: SU@2 SU@1 SU@0 SU@5 SU@6 SW@3 SU@2 SU@1 SU@4 SU@5 SW@2 SU@3
+== 4x2x3: line 12, bridges 1,5,9, E=0
+N 3 n 12 bonds 17 sets 1 E 0 tries 2000 maxnodes 2000000
+NOT FOUND
+== 4x2x3: bridges 3,7,11, E=0
+N 3 n 12 bonds 17 sets 1 E 0 tries 2000 maxnodes 2000000
+NOT FOUND
+
+[exited with code 0]
