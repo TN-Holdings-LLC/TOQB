@@ -1,0 +1,10 @@
+kingston place 0: t1 mirror old 0.647 line 0.699 -> pick line | t1 +0.029 (+5.2s) +  t2 +0.044 (+5.5s) +  t3 +0.000 (+0.0s) ~  t4 -0.000 (-0.0s) ~
+kingston place 1: t1 mirror old 0.671 line 0.721 -> pick line | t1 +0.022 (+3.9s) +  t2 +0.056 (+6.7s) +  t3 +0.050 (+4.0s) +  t4 -0.051 (-2.3s) -
+kingston place 2: t1 mirror old 0.612 line 0.741 -> pick line | t1 +0.057 (+11.2s) +  t2 +0.109 (+13.5s) +  t3 +0.144 (+11.6s) +  t4 +0.109 (+4.7s) +
+kingston place 3: t1 mirror old 0.533 line 0.649 -> pick line | t1 +0.080 (+14.6s) +  t2 +0.057 (+7.3s) +  t3 +0.096 (+8.1s) +  t4 +0.001 (+0.1s) ~
+kingston: picks right 12, wrong 1, unresolved 3
+marrakesh place 0: t1 mirror old 0.596 line 0.686 -> pick line | t1 +0.038 (+7.1s) +  t2 +0.062 (+8.0s) +  t3 -0.016 (-1.4s) ~  t4 +0.009 (+0.4s) ~
+marrakesh place 1: t1 mirror old 0.606 line 0.705 -> pick line | t1 +0.039 (+8.0s) +  t2 +0.079 (+10.5s) +  t3 +0.096 (+8.1s) +  t4 +0.077 (+3.5s) +
+marrakesh place 2: t1 mirror old 0.601 line 0.669 -> pick line | t1 +0.037 (+7.1s) +  t2 +0.057 (+7.3s) +  t3 +0.094 (+7.9s) +  t4 +0.111 (+5.2s) +
+marrakesh place 3: t1 mirror old 0.487 line 0.511 -> pick line | t1 +0.012 (+2.1s) +  t2 +0.070 (+9.0s) +  t3 -0.053 (-4.5s) -  t4 -0.037 (-1.8s) ~
+marrakesh: picks right 12, wrong 1, unresolved 3

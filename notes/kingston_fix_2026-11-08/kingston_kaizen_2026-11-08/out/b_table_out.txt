@@ -1,0 +1,17 @@
+﻿arm         CZ    ret mirror  floor
+place 0 t 1: old 176 ret 0.795 mir 0.647 fl 0.988 | carry 152 ret 0.806 mir 0.676 fl 0.987 | line 116 ret 0.824 mir 0.699 fl 0.988
+place 0 t 2: old 348 ret 0.675 mir 0.393 fl 0.986 | carry 300 ret 0.698 mir 0.417 fl 0.987 | line 212 ret 0.719 mir 0.474 fl 0.988
+place 0 t 3: old 520 ret 0.580 mir 0.196 fl 0.986 | carry 448 ret 0.568 mir 0.211 fl 0.985 | line 308 ret 0.580 mir 0.285 fl 0.986
+place 0 t 4: old 692 ret 0.492 mir 0.099 fl 0.985 | carry 596 ret 0.506 mir 0.103 fl 0.988 | line 404 ret 0.492 mir 0.157 fl 0.986
+place 1 t 1: old 176 ret 0.801 mir 0.671 fl 0.987 | carry 152 ret 0.806 mir 0.689 fl 0.987 | line 116 ret 0.822 mir 0.721 fl 0.987
+place 1 t 2: old 348 ret 0.659 mir 0.399 fl 0.987 | carry 300 ret 0.670 mir 0.421 fl 0.986 | line 212 ret 0.715 mir 0.510 fl 0.986
+place 1 t 3: old 520 ret 0.554 mir 0.206 fl 0.986 | carry 448 ret 0.560 mir 0.236 fl 0.987 | line 308 ret 0.604 mir 0.310 fl 0.988
+place 1 t 4: old 692 ret 0.475 mir 0.087 fl 0.986 | carry 596 ret 0.481 mir 0.107 fl 0.985 | line 404 ret 0.423 mir 0.170 fl 0.987
+place 2 t 1: old 176 ret 0.790 mir 0.612 fl 0.977 | carry 152 ret 0.825 mir 0.670 fl 0.979 | line 116 ret 0.848 mir 0.741 fl 0.977
+place 2 t 2: old 348 ret 0.640 mir 0.336 fl 0.977 | carry 300 ret 0.711 mir 0.357 fl 0.976 | line 212 ret 0.750 mir 0.564 fl 0.979
+place 2 t 3: old 520 ret 0.496 mir 0.087 fl 0.977 | carry 448 ret 0.599 mir 0.120 fl 0.977 | line 308 ret 0.640 mir 0.369 fl 0.977
+place 2 t 4: old 692 ret 0.384 mir 0.008 fl 0.976 | carry 596 ret 0.508 mir 0.022 fl 0.977 | line 404 ret 0.494 mir 0.223 fl 0.977
+place 3 t 1: old 176 ret 0.708 mir 0.533 fl 0.981 | carry 152 ret 0.750 mir 0.561 fl 0.982 | line 116 ret 0.788 mir 0.649 fl 0.982
+place 3 t 2: old 348 ret 0.587 mir 0.316 fl 0.982 | carry 300 ret 0.610 mir 0.352 fl 0.981 | line 212 ret 0.644 mir 0.464 fl 0.982
+place 3 t 3: old 520 ret 0.495 mir 0.195 fl 0.981 | carry 448 ret 0.523 mir 0.202 fl 0.978 | line 308 ret 0.590 mir 0.320 fl 0.981
+place 3 t 4: old 692 ret 0.499 mir 0.109 fl 0.981 | carry 596 ret 0.512 mir 0.107 fl 0.979 | line 404 ret 0.500 mir 0.221 fl 0.981

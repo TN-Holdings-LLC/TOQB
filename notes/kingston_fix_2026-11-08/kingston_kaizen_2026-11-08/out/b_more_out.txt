@@ -1,0 +1,18 @@
+﻿== (a) MSE over sites and m_s (measured / exact)
+place 0 t 3: old: mse 0.0630 m_s 0.308/0.530 | carry: mse 0.0685 m_s 0.302/0.531 | line: mse 0.0597 m_s 0.307/0.530
+place 0 t 4: old: mse 0.0413 m_s 0.152/0.308 | carry: mse 0.0436 m_s 0.156/0.309 | line: mse 0.0382 m_s 0.149/0.304
+place 1 t 3: old: mse 0.0706 m_s 0.294/0.530 | carry: mse 0.0672 m_s 0.298/0.531 | line: mse 0.0524 m_s 0.320/0.530
+place 1 t 4: old: mse 0.0449 m_s 0.146/0.308 | carry: mse 0.0405 m_s 0.149/0.309 | line: mse 0.0425 m_s 0.129/0.304
+place 2 t 3: old: mse 0.0855 m_s 0.263/0.530 | carry: mse 0.0608 m_s 0.318/0.531 | line: mse 0.0426 m_s 0.339/0.530
+place 2 t 4: old: mse 0.0454 m_s 0.118/0.308 | carry: mse 0.0353 m_s 0.157/0.309 | line: mse 0.0368 m_s 0.150/0.304
+place 3 t 3: old: mse 0.1036 m_s 0.262/0.530 | carry: mse 0.0980 m_s 0.277/0.531 | line: mse 0.0654 m_s 0.312/0.530
+place 3 t 4: old: mse 0.0373 m_s 0.154/0.308 | carry: mse 0.0382 m_s 0.158/0.309 | line: mse 0.0414 m_s 0.152/0.304
+== (b) CZ per coupler, t = 4 (compiled user circuits), top 8 couplers by line CZ; per-qubit floor / mirror
+place 1: couplers used old 18, line 18; max per coupler old 64, line 52
+   (25, 37):52/52  (29, 38):52/64  (37, 45):39/48  (38, 49):39/48  (25, 26):24/24  (45, 46):24/24  (29, 30):24/24  (49, 50):24/24   (line/old)
+   old: lowest mirror qubits (site: floor, mirror) 4: 1.00,-0.13  12: 0.98,-0.02  9: 0.98,-0.00  1: 0.95,0.01
+   line: lowest mirror qubits (site: floor, mirror) 2: 0.99,-0.12  4: 0.99,0.01  1: 0.99,0.08  3: 0.99,0.09
+place 2: couplers used old 18, line 18; max per coupler old 64, line 52
+   (29, 38):52/52  (33, 39):52/64  (38, 49):39/48  (39, 53):39/48  (29, 30):24/24  (49, 50):24/24  (33, 34):24/24  (53, 54):24/24   (line/old)
+   old: lowest mirror qubits (site: floor, mirror) 6: 0.98,-0.23  3: 0.98,-0.22  14: 0.98,-0.21  10: 0.99,-0.19
+   line: lowest mirror qubits (site: floor, mirror) 7: 0.98,-0.01  15: 0.98,0.01  14: 0.95,0.07  4: 0.97,0.08
