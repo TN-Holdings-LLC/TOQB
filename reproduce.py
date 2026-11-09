@@ -21,7 +21,9 @@ import tempfile
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
-# name: (result folder, folders to copy, scorer command with {T} = the copy's root, scores file in the copy)
+# name: (result folder, folders to copy, scorer command with {T} = the copy's root, scores file in the copy[, rev])
+# rev (optional): the commit whose gpu/ scorer made the committed scores.json, where the scorer has gained keys since
+# (it is taken from `git archive rev gpu` into the temporary folder; needs the git history).
 RESULTS = {
     "p6-fez-2026-11-04": ("results/p6-device-2026-11-04", ["V"], ["gpu/p6_score.py", "{T}"], "scores.json"),
     "p6-marrakesh-2026-11-04": ("results/p6-marrakesh-2026-11-04", ["V"], ["gpu/p6_score.py", "{T}"], "scores.json"),
@@ -53,6 +55,30 @@ RESULTS = {
     "du71-kingston-2026-11-07": ("results/du71-2026-11-07", ["ibm_kingston", "answers"],
                                  ["gpu/du51_score.py", "{T}/ibm_kingston/run", "{T}/answers/answers.json"],
                                  "ibm_kingston/run/scores.json"),
+    # added 2026-11-10 at the workplace for paper 8 (handover 11-09 item 3); same rule: the declared scorer, unchanged
+    "physA-4x4x3-fez-2026-11-07": ("results/os3d-physA-2026-11-07", ["j1_4x4x3", "answers"],
+                                   ["gpu/os3d_v31_score.py", "{T}/j1_4x4x3", "{T}/answers/answers_4x4x3.json", "top"],
+                                   "j1_4x4x3/scores.json"),
+    "physA-4x2x2-fez-2026-11-07": ("results/os3d-physA-2026-11-07", ["j2_4x2x2", "answers"],
+                                   ["gpu/os3d_v31_score.py", "{T}/j2_4x2x2", "{T}/answers/answers_4x2x2.json", "top"],
+                                   "j2_4x2x2/scores.json"),
+    "heisB-fez-2026-11-08": ("results/os3d-heisB-2026-11-08", ["fez", "answers"],
+                             ["gpu/heis3d_score.py", "{T}/fez", "{T}/answers/heis_answers_fez.json"], "fez/scores.json", "9eaf26c"),
+    "heisE-marrakesh-2026-11-08": ("results/os3d-heisE-2026-11-08", ["marrakesh", "answers"],
+                                   ["gpu/heis3d_score.py", "{T}/marrakesh", "{T}/answers/heis_answers_E_marrakesh.json"],
+                                   "marrakesh/scores.json", "bc38d2c"),
+    "heisE-kingston-2026-11-08": ("results/os3d-heisE-kingston-2026-11-08", ["kingston", "answers"],
+                                  ["gpu/heis3d_score.py", "{T}/kingston", "{T}/answers/heis_answers_Ek.json"],
+                                  "kingston/scores.json", "bc38d2c"),
+    "du91-marrakesh-2026-11-09": ("results/du91-2026-11-09", ["ibm_marrakesh", "answers"],
+                                  ["gpu/du51_score.py", "{T}/ibm_marrakesh/run", "{T}/answers/du91_answers_marrakesh.json"],
+                                  "ibm_marrakesh/run/scores.json"),
+    "schw-marrakesh-2026-11-09": ("results/schw-2026-11-09", ["ibm_marrakesh", "answers"],
+                                  ["gpu/schw_score.py", "{T}/ibm_marrakesh", "{T}/answers/schw_answers_marrakesh.json"],
+                                  "ibm_marrakesh/scores.json"),
+    "lc3d-marrakesh-2026-11-09": ("results/lc3d-2026-11-09", ["ibm_marrakesh", "answers"],
+                                  ["gpu/lc3d_score.py", "{T}/ibm_marrakesh", "{T}/answers/lc_answers_marrakesh.json"],
+                                  "ibm_marrakesh/scores.json"),
 }
 
 
@@ -141,9 +167,14 @@ def main():
     names = a.names or list(RESULTS)
     bad = 0
     for name in names:
-        src, parts, cmd, scores = RESULTS[name]
+        src, parts, cmd, scores, *rev = RESULTS[name]
         with tempfile.TemporaryDirectory() as t:
             copy_result(src, parts, t)
+            if rev:  # the scorer as it was when the committed scores were made
+                arc = subprocess.run(["git", "archive", rev[0], "gpu"], cwd=ROOT, capture_output=True, check=True)
+                subprocess.run(["tar", "-x", "-C", t], input=arc.stdout, check=True)
+                os.rename(os.path.join(t, "gpu"), os.path.join(t, "_gpu_at_rev"))
+                cmd = [os.path.join(t, "_gpu_at_rev", cmd[0][len("gpu/"):])] + cmd[1:]
             run = subprocess.run([sys.executable] + [c.replace("{T}", t) for c in cmd], cwd=ROOT, env=env,
                                  capture_output=True, text=True)
             if run.returncode != 0:
