@@ -1,0 +1,290 @@
+{
+ "ibm_fez/N6_M1_s1": {
+  "n": 6,
+  "steps": 1,
+  "cz": 45,
+  "cz_layers": 18,
+  "mse_noisy": 0.007116241641551213,
+  "mse_vacuum_guess": 0.04021567138279864,
+  "ratio": 0.17695195422237878
+ },
+ "ibm_fez/N6_M1_s2": {
+  "n": 6,
+  "steps": 2,
+  "cz": 90,
+  "cz_layers": 36,
+  "mse_noisy": 0.0028722452829044675,
+  "mse_vacuum_guess": 0.42876512214011453,
+  "ratio": 0.006698878091035253
+ },
+ "ibm_fez/N6_M1_s3": {
+  "n": 6,
+  "steps": 3,
+  "cz": 135,
+  "cz_layers": 54,
+  "mse_noisy": 0.0024769853361521622,
+  "mse_vacuum_guess": 0.9177085821039944,
+  "ratio": 0.002699097932018109
+ },
+ "ibm_fez/N6_M1_s4": {
+  "n": 6,
+  "steps": 4,
+  "cz": 180,
+  "cz_layers": 72,
+  "mse_noisy": 0.0029421818890268173,
+  "mse_vacuum_guess": 0.9433894540093943,
+  "ratio": 0.0031187351909888095
+ },
+ "ibm_fez/N6_M1_s5": {
+  "n": 6,
+  "steps": 5,
+  "cz": 225,
+  "cz_layers": 90,
+  "mse_noisy": 0.038361009076453526,
+  "mse_vacuum_guess": 0.4579416056459598,
+  "ratio": 0.08376834208445101
+ },
+ "ibm_fez/N6_M1_s6": {
+  "n": 6,
+  "steps": 6,
+  "cz": 270,
+  "cz_layers": 108,
+  "mse_noisy": 0.15403392790505877,
+  "mse_vacuum_guess": 0.14239032761290743,
+  "ratio": 1.081772410298857
+ },
+ "ibm_fez/N6_M1_s7": {
+  "n": 6,
+  "steps": 7,
+  "cz": 315,
+  "cz_layers": 126,
+  "mse_noisy": 0.23866197936720587,
+  "mse_vacuum_guess": 0.06803340436429478,
+  "ratio": 3.5080117127353425
+ },
+ "ibm_fez/N6_M1_s8": {
+  "n": 6,
+  "steps": 8,
+  "cz": 360,
+  "cz_layers": 144,
+  "mse_noisy": 0.18993076442088372,
+  "mse_vacuum_guess": 0.16141956590246018,
+  "ratio": 1.1766278973619084
+ },
+ "ibm_fez/N8_M1_s1": {
+  "n": 8,
+  "steps": 1,
+  "cz": 84,
+  "cz_layers": 24,
+  "mse_noisy": 0.011174442705841097,
+  "mse_vacuum_guess": 0.04336937666148295,
+  "ratio": 0.2576574432476292
+ },
+ "ibm_fez/N8_M1_s2": {
+  "n": 8,
+  "steps": 2,
+  "cz": 168,
+  "cz_layers": 48,
+  "mse_noisy": 0.0034364141820401855,
+  "mse_vacuum_guess": 0.4553189703056826,
+  "ratio": 0.007547267753270015
+ },
+ "ibm_fez/N8_M1_s3": {
+  "n": 8,
+  "steps": 3,
+  "cz": 252,
+  "cz_layers": 72,
+  "mse_noisy": 0.004552896191300776,
+  "mse_vacuum_guess": 0.9526934823045523,
+  "ratio": 0.004778972750277858
+ },
+ "ibm_fez/N8_M1_s4": {
+  "n": 8,
+  "steps": 4,
+  "cz": 336,
+  "cz_layers": 96,
+  "mse_noisy": 0.0036740991316055733,
+  "mse_vacuum_guess": 0.9533357739491309,
+  "ratio": 0.0038539402716273393
+ },
+ "ibm_fez/N8_M1_s5": {
+  "n": 8,
+  "steps": 5,
+  "cz": 420,
+  "cz_layers": 120,
+  "mse_noisy": 0.06699615828446329,
+  "mse_vacuum_guess": 0.44299411630468355,
+  "ratio": 0.15123487156742396
+ },
+ "ibm_fez/N8_M1_s6": {
+  "n": 8,
+  "steps": 6,
+  "cz": 504,
+  "cz_layers": 144,
+  "mse_noisy": 0.24725792036194738,
+  "mse_vacuum_guess": 0.14276295342495954,
+  "ratio": 1.7319473605028317
+ },
+ "ibm_fez/N8_M1_s7": {
+  "n": 8,
+  "steps": 7,
+  "cz": 588,
+  "cz_layers": 168,
+  "mse_noisy": 0.35608497746714995,
+  "mse_vacuum_guess": 0.0771346246090685,
+  "ratio": 4.616409028654118
+ },
+ "ibm_fez/N8_M1_s8": {
+  "n": 8,
+  "steps": 8,
+  "cz": 672,
+  "cz_layers": 192,
+  "mse_noisy": 0.2519007317618542,
+  "mse_vacuum_guess": 0.1852128599090917,
+  "ratio": 1.360060699270531
+ },
+ "ibm_fez/N10_M1_s1": {
+  "n": 10,
+  "steps": 1,
+  "cz": 135,
+  "cz_layers": 30,
+  "mse_noisy": 0.01598453538697241,
+  "mse_vacuum_guess": 0.04526159982869176,
+  "ratio": 0.35315886860984663
+ },
+ "ibm_fez/N10_M1_s2": {
+  "n": 10,
+  "steps": 2,
+  "cz": 270,
+  "cz_layers": 60,
+  "mse_noisy": 0.003961552747039419,
+  "mse_vacuum_guess": 0.4712512792050201,
+  "ratio": 0.008406455158535341
+ },
+ "ibm_fez/N10_M1_s3": {
+  "n": 10,
+  "steps": 3,
+  "cz": 405,
+  "cz_layers": 90,
+  "mse_noisy": 0.007330383580575192,
+  "mse_vacuum_guess": 0.9736844224248881,
+  "ratio": 0.007528500417331749
+ },
+ "ibm_fez/N10_M1_s4": {
+  "n": 10,
+  "steps": 4,
+  "cz": 540,
+  "cz_layers": 120,
+  "mse_noisy": 0.004236464087797109,
+  "mse_vacuum_guess": 0.9592623159562379,
+  "ratio": 0.004416377061131607
+ },
+ "ibm_fez/N10_M1_s5": {
+  "n": 10,
+  "steps": 5,
+  "cz": 675,
+  "cz_layers": 150,
+  "mse_noisy": 0.08958629946450887,
+  "mse_vacuum_guess": 0.43369709774368187,
+  "ratio": 0.20656421251279625
+ },
+ "ibm_fez/N10_M1_s6": {
+  "n": 10,
+  "steps": 6,
+  "cz": 810,
+  "cz_layers": 180,
+  "mse_noisy": 0.3129949003119329,
+  "mse_vacuum_guess": 0.14175727466911042,
+  "ratio": 2.207963584532258
+ },
+ "ibm_fez/N10_M1_s7": {
+  "n": 10,
+  "steps": 7,
+  "cz": 945,
+  "cz_layers": 210,
+  "mse_noisy": 0.42623562100648404,
+  "mse_vacuum_guess": 0.0822958126922274,
+  "ratio": 5.179311158886469
+ },
+ "ibm_fez/N10_M1_s8": {
+  "n": 10,
+  "steps": 8,
+  "cz": 1080,
+  "cz_layers": 240,
+  "mse_noisy": 0.27743873863095375,
+  "mse_vacuum_guess": 0.2046329504236033,
+  "ratio": 1.355787218317665
+ },
+ "ibm_fez/N12_M1_s1": {
+  "n": 12,
+  "steps": 1,
+  "cz": 198,
+  "cz_layers": 36,
+  "mse_noisy": 0.02146860583681641,
+  "mse_vacuum_guess": 0.04652308194016371,
+  "ratio": 0.46146138522010527
+ },
+ "ibm_fez/N12_M1_s2": {
+  "n": 12,
+  "steps": 2,
+  "cz": 396,
+  "cz_layers": 72,
+  "mse_noisy": 0.004557879000239827,
+  "mse_vacuum_guess": 0.48187281847124286,
+  "ratio": 0.009458676284542975
+ },
+ "ibm_fez/N12_M1_s3": {
+  "n": 12,
+  "steps": 3,
+  "cz": 594,
+  "cz_layers": 108,
+  "mse_noisy": 0.00992734506374571,
+  "mse_vacuum_guess": 0.9876783825051111,
+  "ratio": 0.010051192007023944
+ },
+ "ibm_fez/N12_M1_s4": {
+  "n": 12,
+  "steps": 4,
+  "cz": 792,
+  "cz_layers": 144,
+  "mse_noisy": 0.004733194650596916,
+  "mse_vacuum_guess": 0.9632133439609745,
+  "ratio": 0.004913962914106686
+ },
+ "ibm_fez/N12_M1_s5": {
+  "n": 12,
+  "steps": 5,
+  "cz": 990,
+  "cz_layers": 180,
+  "mse_noisy": 0.10419696393321883,
+  "mse_vacuum_guess": 0.42749673332839516,
+  "ratio": 0.24373745062790134
+ },
+ "ibm_fez/N12_M1_s6": {
+  "n": 12,
+  "steps": 6,
+  "cz": 1188,
+  "cz_layers": 216,
+  "mse_noisy": 0.3507929861310019,
+  "mse_vacuum_guess": 0.1410574829610978,
+  "ratio": 2.4868796661269434
+ },
+ "ibm_fez/N12_M1_s7": {
+  "n": 12,
+  "steps": 7,
+  "cz": 1386,
+  "cz_layers": 252,
+  "mse_noisy": 0.46027448281262656,
+  "mse_vacuum_guess": 0.08565742511486579,
+  "ratio": 5.37343356043452
+ },
+ "ibm_fez/N12_M1_s8": {
+  "n": 12,
+  "steps": 8,
+  "cz": 1584,
+  "cz_layers": 288,
+  "mse_noisy": 0.28385024747002036,
+  "mse_vacuum_guess": 0.21790114485235448,
+  "ratio": 1.3026560629699844
+ }
+}
