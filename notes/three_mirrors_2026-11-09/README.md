@@ -22,7 +22,8 @@ assumption, noise-free; `line_fez1108.log`, `fold_fez1108.log`)
 | line, t 2 | 240 / 144 / 96 | -0.012 +- 0.012 (-1.0 SE) | -0.031 +- 0.012 (-2.6 SE) | **-0.106 +- 0.011 (-9.7 SE)** |
 | fold, t 1 | 216 / 168 / 48 | +0.011 +- 0.011 (+1.0 SE) | -0.017 +- 0.011 | **-0.061 +- 0.011 (-5.7 SE)** |
 
-- **C1 (gate-local noise only, |delta| <= 2 SE): met** in all three (within 1.0 SE). But the trajectory SE (0.008-0.012)
+- **C1 (gate-local noise only, |delta| <= 2 SE): met** in all three (within 1.0 SE) at 300 trajectories. **Superseded
+  by the POD run below: at 2000 trajectories C1 holds at t 1 only.** But the trajectory SE (0.008-0.012)
   is not small enough to show that the gate-local delta is zero rather than about +-0.01; the POD run (2000
   trajectories) is for that.
 - **C2 (zeta 0.02 gives delta < 0 beyond 2 SE): met** in all three, growing with depth (line: -0.022 at t 1, -0.106 at
@@ -49,3 +50,41 @@ assumption, noise-free; `line_fez1108.log`, `fold_fez1108.log`)
 - Heisenberg (TOQB `gpu/heis3d.py`) is not in psf-os; the simulator's Heisenberg gap (15-28 %) is where delta would
   matter most. A three-mirror run of the Heisenberg circuits needs their compiled form split the same way.
 - A device test needs a declaration (owner).
+
+## POD run (VS Claude, 2026-11-09 02:40-05:32 CET; `pod/`; 4 CPU pods x 16 cores, $4.56; scripts unchanged, a venv
+because the image refused pip; split by layout and t, seeds by chunk index, so the rows equal one run; merged file
+checked against the four parts here: 32 rows, 0 differences)
+
+Line and fold, 4x2x2, theta 0.6, t 1-4, zeta 0 / 0.005 / 0.01 / 0.02, 2000 trajectories. delta (SE units):
+
+| layout | zeta 0 (gate-local only) t 1 / 2 / 3 / 4 | excess over zeta 0 at zeta 0.02, t 1 / 2 / 3 / 4 |
+|---|---|---|
+| line | -0.001 (-0.3) / -0.020 (-4.3) / -0.069 (-11.5) / -0.131 (-19.2) | -0.020 (-4.8) / -0.087 / -0.121 / -0.106 |
+| fold | +0.004 (+1.0) / -0.025 (-4.1) / -0.077 (-11.1) / -0.116 (-16.9) | -0.053 (-9.1) / -0.133 / -0.082 / +0.079 |
+
+At zeta 0.01, the excess is -0.003 (-0.8 SE) for line t 1 and -0.017 (-2.9 SE) for fold t 1.
+
+### Verdict by the criteria fixed at 01:39 CET
+
+- **C1: met at t 1 only** (line -0.3 SE, fold +1.0 SE); **not met at t 2-4** (-4.1 to -19.2 SE). With gate-local noise
+  alone the product rule fails more and more with depth: an error in one part is spread by the other part's
+  entangling gates in the front mirror, which the side mirrors, run apart, never do. So at t >= 2 a negative delta
+  does not by itself mean crosstalk or idle errors; reading it would need a baseline from a noise model, and fitting
+  that model to the device is not allowed (owner's rules). The 300-trajectory prototype could not see this
+  (SE 0.012).
+- **C2: met** (zeta 0.02 below 2 SE everywhere; also as an excess over zeta 0 except fold t 4, where F and L have
+  fallen to 0.17 / 0.22 and delta saturates).
+- **C3: met at t 1 only**, for a large ZZ: the zeta 0.02 excess (line 0.020, fold 0.053) needs about 200 / 35 shots per
+  added circuit (time x 1.05 / x 1.01); a zeta 0.01 excess is out of reach for line t 1 (the front mirror's own 4000
+  shots are too noisy) and needs about 320 shots for fold t 1.
+
+### What remains usable
+
+The three mirrors work as an interaction check **at t = 1 only**, where gate-local noise leaves delta at zero
+(|delta| <= 0.004). That is the depth at which rule "top" already runs its own probes, so the three mirrors would sit
+there as one more own check (report beside, or the place choice, if the owner decides), sensitive to a static ZZ of
+about 0.02 rad per CZ layer (fold: about 0.01). The device's real ZZ is not known here (no calibration number is read).
+For t >= 2 the design as fixed does not separate "interaction" from "error spreading"; a different split (e.g. by time
+segments rather than by part) would be a new design, not tried.
+
+Time note for later estimates: circuits with zeta > 0 took 8-12 times longer than zeta 0 (the ZZ unitaries per layer).

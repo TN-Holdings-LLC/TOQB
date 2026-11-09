@@ -1,0 +1,9 @@
+line t1 zeta 0.0    CZ F  120 L   72 Rt   48  F 0.9115 L 0.9272 Rt 0.9545 R 0.9700  delta -0.0009 +- 0.0030 (-0.3 SE)
+line t1 zeta 0.005  CZ F  120 L   72 Rt   48  F 0.9108 L 0.9246 Rt 0.9553 R 0.9700  delta +0.0002 +- 0.0030 (+0.1 SE)
+line t1 zeta 0.01   CZ F  120 L   72 Rt   48  F 0.9027 L 0.9208 Rt 0.9553 R 0.9700  delta -0.0042 +- 0.0029 (-1.4 SE)
+line t1 zeta 0.02   CZ F  120 L   72 Rt   48  F 0.8713 L 0.9058 Rt 0.9553 R 0.9700  delta -0.0208 +- 0.0029 (-7.3 SE)
+line t4 zeta 0.0    CZ F  480 L  288 Rt  192  F 0.5705 L 0.7367 Rt 0.9230 R 0.9700  delta -0.1306 +- 0.0068 (-19.2 SE)
+line t4 zeta 0.005  CZ F  480 L  288 Rt  192  F 0.5636 L 0.7319 Rt 0.9200 R 0.9700  delta -0.1306 +- 0.0066 (-19.7 SE)
+line t4 zeta 0.01   CZ F  480 L  288 Rt  192  F 0.5117 L 0.7112 Rt 0.9200 R 0.9700  delta -0.1628 +- 0.0061 (-26.7 SE)
+line t4 zeta 0.02   CZ F  480 L  288 Rt  192  F 0.3671 L 0.6365 Rt 0.9200 R 0.9700  delta -0.2367 +- 0.0047 (-50.6 SE)
+520 tasks, 16 processes, 4428 s
