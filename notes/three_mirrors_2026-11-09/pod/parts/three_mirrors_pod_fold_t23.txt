@@ -1,0 +1,9 @@
+fold t2 zeta 0.0    CZ F  432 L  336 Rt   96  F 0.7001 L 0.7465 Rt 0.9421 R 0.9700  delta -0.0249 +- 0.0061 (-4.1 SE)
+fold t2 zeta 0.005  CZ F  432 L  336 Rt   96  F 0.6762 L 0.7388 Rt 0.9430 R 0.9700  delta -0.0421 +- 0.0059 (-7.2 SE)
+fold t2 zeta 0.01   CZ F  432 L  336 Rt   96  F 0.6201 L 0.7196 Rt 0.9430 R 0.9700  delta -0.0795 +- 0.0054 (-14.7 SE)
+fold t2 zeta 0.02   CZ F  432 L  336 Rt   96  F 0.4708 L 0.6464 Rt 0.9430 R 0.9700  delta -0.1576 +- 0.0043 (-36.7 SE)
+fold t3 zeta 0.0    CZ F  648 L  504 Rt  144  F 0.5127 L 0.6148 Rt 0.9308 R 0.9700  delta -0.0772 +- 0.0070 (-11.1 SE)
+fold t3 zeta 0.005  CZ F  648 L  504 Rt  144  F 0.4698 L 0.6082 Rt 0.9308 R 0.9700  delta -0.1138 +- 0.0063 (-18.1 SE)
+fold t3 zeta 0.01   CZ F  648 L  504 Rt  144  F 0.3772 L 0.5630 Rt 0.9308 R 0.9700  delta -0.1631 +- 0.0051 (-31.8 SE)
+fold t3 zeta 0.02   CZ F  648 L  504 Rt  144  F 0.2474 L 0.4241 Rt 0.9308 R 0.9700  delta -0.1596 +- 0.0033 (-48.5 SE)
+520 tasks, 16 processes, 9849 s
