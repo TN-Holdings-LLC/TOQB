@@ -1,0 +1,5264 @@
+{
+ "ibm_fez/N6_M1_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 0.0,
+  "dir": "run2d\\ibm_fez\\N6_M1_s1_ibm_fez",
+  "cz": 45,
+  "cz_ideal": 45,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 18,
+  "depth": 76,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M1_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 75.2,
+  "cz": 90,
+  "cz_ideal": 90,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 36,
+  "depth": 150,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M1_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 76.5,
+  "cz": 135,
+  "cz_ideal": 135,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 54,
+  "depth": 224,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M1_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 78.0,
+  "cz": 270,
+  "cz_ideal": 270,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 108,
+  "depth": 446,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M1_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 78.0,
+  "cz": 180,
+  "cz_ideal": 180,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 72,
+  "depth": 298,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M1_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 79.5,
+  "cz": 225,
+  "cz_ideal": 225,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 90,
+  "depth": 372,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M1_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 86.7,
+  "cz": 315,
+  "cz_ideal": 315,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 126,
+  "depth": 520,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M2_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 73.8,
+  "cz": 45,
+  "cz_ideal": 45,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 18,
+  "depth": 76,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M2_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 74.5,
+  "cz": 135,
+  "cz_ideal": 135,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 54,
+  "depth": 224,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M1_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 77.5,
+  "cz": 360,
+  "cz_ideal": 360,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 144,
+  "depth": 594,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M2_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 75.5,
+  "cz": 90,
+  "cz_ideal": 90,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 36,
+  "depth": 150,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M2_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 75.4,
+  "cz": 180,
+  "cz_ideal": 180,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 72,
+  "depth": 298,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M2_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 68.9,
+  "cz": 225,
+  "cz_ideal": 225,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 90,
+  "depth": 372,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M2_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 83.0,
+  "cz": 270,
+  "cz_ideal": 270,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 108,
+  "depth": 446,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M2_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 81.8,
+  "cz": 360,
+  "cz_ideal": 360,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 144,
+  "depth": 594,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M2_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 82.0,
+  "cz": 315,
+  "cz_ideal": 315,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 126,
+  "depth": 520,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M3_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 81.2,
+  "cz": 45,
+  "cz_ideal": 45,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 18,
+  "depth": 76,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M3_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 80.0,
+  "cz": 90,
+  "cz_ideal": 90,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 36,
+  "depth": 150,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M3_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 73.8,
+  "cz": 135,
+  "cz_ideal": 135,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 54,
+  "depth": 224,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M3_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 74.8,
+  "dir": "run2d\\ibm_fez\\N6_M3_s4_ibm_fez_r2",
+  "cz": 180,
+  "cz_ideal": 180,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 72,
+  "depth": 298,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M3_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 74.0,
+  "dir": "run2d\\ibm_fez\\N6_M3_s7_ibm_fez_r2",
+  "cz": 315,
+  "cz_ideal": 315,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 126,
+  "depth": 520,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M3_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 74.6,
+  "dir": "run2d\\ibm_fez\\N6_M3_s6_ibm_fez_r2",
+  "cz": 270,
+  "cz_ideal": 270,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 108,
+  "depth": 446,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M3_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 74.7,
+  "dir": "run2d\\ibm_fez\\N6_M3_s5_ibm_fez_r2",
+  "cz": 225,
+  "cz_ideal": 225,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 90,
+  "depth": 372,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N6_M3_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 76.3,
+  "dir": "run2d\\ibm_fez\\N6_M3_s8_ibm_fez_r2",
+  "cz": 360,
+  "cz_ideal": 360,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 144,
+  "depth": 594,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M1_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 77.6,
+  "dir": "run2d\\ibm_fez\\N8_M1_s3_ibm_fez",
+  "cz": 252,
+  "cz_ideal": 252,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 72,
+  "depth": 296,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M1_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 77.9,
+  "dir": "run2d\\ibm_fez\\N8_M1_s1_ibm_fez_r2",
+  "cz": 84,
+  "cz_ideal": 84,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 24,
+  "depth": 100,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M1_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 78.2,
+  "dir": "run2d\\ibm_fez\\N8_M1_s2_ibm_fez",
+  "cz": 168,
+  "cz_ideal": 168,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 48,
+  "depth": 198,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M1_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 73.9,
+  "dir": "run2d\\ibm_fez\\N8_M1_s4_ibm_fez",
+  "cz": 336,
+  "cz_ideal": 336,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 96,
+  "depth": 394,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M1_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 75.2,
+  "dir": "run2d\\ibm_fez\\N8_M1_s6_ibm_fez",
+  "cz": 504,
+  "cz_ideal": 504,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 144,
+  "depth": 590,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M1_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 75.1,
+  "dir": "run2d\\ibm_fez\\N8_M1_s7_ibm_fez",
+  "cz": 588,
+  "cz_ideal": 588,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 168,
+  "depth": 688,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M1_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 76.0,
+  "dir": "run2d\\ibm_fez\\N8_M1_s5_ibm_fez",
+  "cz": 420,
+  "cz_ideal": 420,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 120,
+  "depth": 492,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M1_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 78.0,
+  "dir": "run2d\\ibm_fez\\N8_M1_s8_ibm_fez",
+  "cz": 672,
+  "cz_ideal": 672,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 192,
+  "depth": 786,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M2_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 81.7,
+  "dir": "run2d\\ibm_fez\\N8_M2_s2_ibm_fez",
+  "cz": 168,
+  "cz_ideal": 168,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 48,
+  "depth": 198,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M2_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 82.1,
+  "dir": "run2d\\ibm_fez\\N8_M2_s1_ibm_fez",
+  "cz": 84,
+  "cz_ideal": 84,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 24,
+  "depth": 100,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M2_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 81.8,
+  "dir": "run2d\\ibm_fez\\N8_M2_s3_ibm_fez",
+  "cz": 252,
+  "cz_ideal": 252,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 72,
+  "depth": 296,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M2_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 38.8,
+  "dir": "run2d\\ibm_fez\\N8_M2_s5_ibm_fez",
+  "cz": 420,
+  "cz_ideal": 420,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 120,
+  "depth": 492,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M2_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 38.8,
+  "dir": "run2d\\ibm_fez\\N8_M2_s7_ibm_fez",
+  "cz": 588,
+  "cz_ideal": 588,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 168,
+  "depth": 688,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M2_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 84.6,
+  "dir": "run2d\\ibm_fez\\N8_M2_s4_ibm_fez",
+  "cz": 336,
+  "cz_ideal": 336,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 96,
+  "depth": 394,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M2_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 86.1,
+  "dir": "run2d\\ibm_fez\\N8_M2_s6_ibm_fez",
+  "cz": 504,
+  "cz_ideal": 504,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 144,
+  "depth": 590,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M3_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 81.0,
+  "dir": "run2d\\ibm_fez\\N8_M3_s1_ibm_fez",
+  "cz": 84,
+  "cz_ideal": 84,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 24,
+  "depth": 100,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M2_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 82.1,
+  "dir": "run2d\\ibm_fez\\N8_M2_s8_ibm_fez",
+  "cz": 672,
+  "cz_ideal": 672,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 192,
+  "depth": 786,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M3_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 80.2,
+  "dir": "run2d\\ibm_fez\\N8_M3_s2_ibm_fez",
+  "cz": 168,
+  "cz_ideal": 168,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 48,
+  "depth": 198,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M3_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 78.2,
+  "dir": "run2d\\ibm_fez\\N8_M3_s3_ibm_fez",
+  "cz": 252,
+  "cz_ideal": 252,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 72,
+  "depth": 296,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M3_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 77.9,
+  "dir": "run2d\\ibm_fez\\N8_M3_s4_ibm_fez",
+  "cz": 336,
+  "cz_ideal": 336,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 96,
+  "depth": 394,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M3_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 78.4,
+  "dir": "run2d\\ibm_fez\\N8_M3_s5_ibm_fez",
+  "cz": 420,
+  "cz_ideal": 420,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 120,
+  "depth": 492,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M3_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 77.7,
+  "dir": "run2d\\ibm_fez\\N8_M3_s6_ibm_fez",
+  "cz": 504,
+  "cz_ideal": 504,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 144,
+  "depth": 590,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M3_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 78.0,
+  "dir": "run2d\\ibm_fez\\N8_M3_s7_ibm_fez",
+  "cz": 588,
+  "cz_ideal": 588,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 168,
+  "depth": 688,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N8_M3_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 76.4,
+  "dir": "run2d\\ibm_fez\\N8_M3_s8_ibm_fez",
+  "cz": 672,
+  "cz_ideal": 672,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 192,
+  "depth": 786,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M1_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 75.0,
+  "dir": "run2d\\ibm_fez\\N10_M1_s1_ibm_fez",
+  "cz": 135,
+  "cz_ideal": 135,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 30,
+  "depth": 124,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M1_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 63.5,
+  "dir": "run2d\\ibm_fez\\N10_M1_s2_ibm_fez",
+  "cz": 270,
+  "cz_ideal": 270,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 60,
+  "depth": 246,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M1_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 61.4,
+  "dir": "run2d\\ibm_fez\\N10_M1_s3_ibm_fez",
+  "cz": 405,
+  "cz_ideal": 405,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 90,
+  "depth": 368,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M1_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 58.9,
+  "dir": "run2d\\ibm_fez\\N10_M1_s4_ibm_fez",
+  "cz": 540,
+  "cz_ideal": 540,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 120,
+  "depth": 490,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M1_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 59.9,
+  "dir": "run2d\\ibm_fez\\N10_M1_s5_ibm_fez",
+  "cz": 675,
+  "cz_ideal": 675,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 150,
+  "depth": 612,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M1_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 59.0,
+  "dir": "run2d\\ibm_fez\\N10_M1_s6_ibm_fez",
+  "cz": 810,
+  "cz_ideal": 810,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 180,
+  "depth": 734,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M1_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 59.6,
+  "dir": "run2d\\ibm_fez\\N10_M1_s7_ibm_fez",
+  "cz": 945,
+  "cz_ideal": 945,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 210,
+  "depth": 856,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M1_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 60.0,
+  "dir": "run2d\\ibm_fez\\N10_M1_s8_ibm_fez",
+  "cz": 1080,
+  "cz_ideal": 1080,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 240,
+  "depth": 978,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M2_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 59.4,
+  "dir": "run2d\\ibm_fez\\N10_M2_s1_ibm_fez",
+  "cz": 135,
+  "cz_ideal": 135,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 30,
+  "depth": 124,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M2_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 37.7,
+  "dir": "run2d\\ibm_fez\\N10_M2_s3_ibm_fez",
+  "cz": 405,
+  "cz_ideal": 405,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 90,
+  "depth": 368,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M2_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 63.4,
+  "dir": "run2d\\ibm_fez\\N10_M2_s2_ibm_fez",
+  "cz": 270,
+  "cz_ideal": 270,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 60,
+  "depth": 246,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M2_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 70.6,
+  "dir": "run2d\\ibm_fez\\N10_M2_s4_ibm_fez",
+  "cz": 540,
+  "cz_ideal": 540,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 120,
+  "depth": 490,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M2_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 71.0,
+  "dir": "run2d\\ibm_fez\\N10_M2_s5_ibm_fez",
+  "cz": 675,
+  "cz_ideal": 675,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 150,
+  "depth": 612,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M2_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 72.0,
+  "dir": "run2d\\ibm_fez\\N10_M2_s6_ibm_fez",
+  "cz": 810,
+  "cz_ideal": 810,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 180,
+  "depth": 734,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M2_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 76.5,
+  "dir": "run2d\\ibm_fez\\N10_M2_s7_ibm_fez",
+  "cz": 945,
+  "cz_ideal": 945,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 210,
+  "depth": 856,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M3_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 66.2,
+  "dir": "run2d\\ibm_fez\\N10_M3_s1_ibm_fez",
+  "cz": 135,
+  "cz_ideal": 135,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 30,
+  "depth": 124,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M2_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 67.2,
+  "dir": "run2d\\ibm_fez\\N10_M2_s8_ibm_fez",
+  "cz": 1080,
+  "cz_ideal": 1080,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 240,
+  "depth": 978,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M3_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 67.3,
+  "dir": "run2d\\ibm_fez\\N10_M3_s2_ibm_fez",
+  "cz": 270,
+  "cz_ideal": 270,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 60,
+  "depth": 246,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M3_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 60.8,
+  "dir": "run2d\\ibm_fez\\N10_M3_s3_ibm_fez",
+  "cz": 405,
+  "cz_ideal": 405,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 90,
+  "depth": 368,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M3_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 72.4,
+  "dir": "run2d\\ibm_fez\\N10_M3_s4_ibm_fez",
+  "cz": 540,
+  "cz_ideal": 540,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 120,
+  "depth": 490,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M3_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 74.1,
+  "dir": "run2d\\ibm_fez\\N10_M3_s5_ibm_fez",
+  "cz": 675,
+  "cz_ideal": 675,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 150,
+  "depth": 612,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M3_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 73.0,
+  "dir": "run2d\\ibm_fez\\N10_M3_s6_ibm_fez",
+  "cz": 810,
+  "cz_ideal": 810,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 180,
+  "depth": 734,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M3_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 82.3,
+  "dir": "run2d\\ibm_fez\\N10_M3_s7_ibm_fez",
+  "cz": 945,
+  "cz_ideal": 945,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 210,
+  "depth": 856,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N10_M3_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 78.1,
+  "dir": "run2d\\ibm_fez\\N10_M3_s8_ibm_fez",
+  "cz": 1080,
+  "cz_ideal": 1080,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 240,
+  "depth": 978,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M1_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 76.6,
+  "dir": "run2d\\ibm_fez\\N12_M1_s1_ibm_fez",
+  "cz": 198,
+  "cz_ideal": 198,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 36,
+  "depth": 148,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M1_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 76.8,
+  "dir": "run2d\\ibm_fez\\N12_M1_s2_ibm_fez",
+  "cz": 396,
+  "cz_ideal": 396,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 72,
+  "depth": 294,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M1_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 82.8,
+  "dir": "run2d\\ibm_fez\\N12_M1_s3_ibm_fez",
+  "cz": 594,
+  "cz_ideal": 594,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 108,
+  "depth": 440,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M1_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 92.5,
+  "dir": "run2d\\ibm_fez\\N12_M1_s4_ibm_fez",
+  "cz": 792,
+  "cz_ideal": 792,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 144,
+  "depth": 586,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M1_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 92.8,
+  "dir": "run2d\\ibm_fez\\N12_M1_s5_ibm_fez",
+  "cz": 990,
+  "cz_ideal": 990,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 180,
+  "depth": 732,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M1_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 98.4,
+  "dir": "run2d\\ibm_fez\\N12_M1_s6_ibm_fez",
+  "cz": 1188,
+  "cz_ideal": 1188,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 216,
+  "depth": 878,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M1_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 111.7,
+  "dir": "run2d\\ibm_fez\\N12_M1_s7_ibm_fez",
+  "cz": 1386,
+  "cz_ideal": 1386,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 252,
+  "depth": 1024,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M2_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 135.9,
+  "dir": "run2d\\ibm_fez\\N12_M2_s1_ibm_fez",
+  "cz": 198,
+  "cz_ideal": 198,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 36,
+  "depth": 148,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M1_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 140.5,
+  "dir": "run2d\\ibm_fez\\N12_M1_s8_ibm_fez",
+  "cz": 1584,
+  "cz_ideal": 1584,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 288,
+  "depth": 1170,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M2_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 137.9,
+  "dir": "run2d\\ibm_fez\\N12_M2_s2_ibm_fez",
+  "cz": 396,
+  "cz_ideal": 396,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 72,
+  "depth": 294,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M2_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 150.8,
+  "dir": "run2d\\ibm_fez\\N12_M2_s3_ibm_fez",
+  "cz": 594,
+  "cz_ideal": 594,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 108,
+  "depth": 440,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M2_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 134.6,
+  "dir": "run2d\\ibm_fez\\N12_M2_s4_ibm_fez",
+  "cz": 792,
+  "cz_ideal": 792,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 144,
+  "depth": 586,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M2_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 146.0,
+  "dir": "run2d\\ibm_fez\\N12_M2_s5_ibm_fez",
+  "cz": 990,
+  "cz_ideal": 990,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 180,
+  "depth": 732,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M2_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 145.8,
+  "dir": "run2d\\ibm_fez\\N12_M2_s6_ibm_fez",
+  "cz": 1188,
+  "cz_ideal": 1188,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 216,
+  "depth": 878,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M2_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 163.1,
+  "dir": "run2d\\ibm_fez\\N12_M2_s7_ibm_fez",
+  "cz": 1386,
+  "cz_ideal": 1386,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 252,
+  "depth": 1024,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M3_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 110.6,
+  "dir": "run2d\\ibm_fez\\N12_M3_s2_ibm_fez",
+  "cz": 396,
+  "cz_ideal": 396,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 72,
+  "depth": 294,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M3_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 119.1,
+  "dir": "run2d\\ibm_fez\\N12_M3_s1_ibm_fez",
+  "cz": 198,
+  "cz_ideal": 198,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 36,
+  "depth": 148,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M2_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 152.3,
+  "dir": "run2d\\ibm_fez\\N12_M2_s8_ibm_fez",
+  "cz": 1584,
+  "cz_ideal": 1584,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 288,
+  "depth": 1170,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M3_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 120.0,
+  "dir": "run2d\\ibm_fez\\N12_M3_s3_ibm_fez",
+  "cz": 594,
+  "cz_ideal": 594,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 108,
+  "depth": 440,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M3_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 111.6,
+  "dir": "run2d\\ibm_fez\\N12_M3_s5_ibm_fez",
+  "cz": 990,
+  "cz_ideal": 990,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 180,
+  "depth": 732,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M3_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 117.0,
+  "dir": "run2d\\ibm_fez\\N12_M3_s6_ibm_fez",
+  "cz": 1188,
+  "cz_ideal": 1188,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 216,
+  "depth": 878,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M3_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 144.4,
+  "dir": "run2d\\ibm_fez\\N12_M3_s4_ibm_fez",
+  "cz": 792,
+  "cz_ideal": 792,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 144,
+  "depth": 586,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M3_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 113.5,
+  "dir": "run2d\\ibm_fez\\N12_M3_s7_ibm_fez",
+  "cz": 1386,
+  "cz_ideal": 1386,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 252,
+  "depth": 1024,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_fez/N12_M3_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 105.1,
+  "dir": "run2d\\ibm_fez\\N12_M3_s8_ibm_fez",
+  "cz": 1584,
+  "cz_ideal": 1584,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 288,
+  "depth": 1170,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N6_M1_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 0.0,
+  "dir": "run2d\\ibm_kingston\\N6_M1_s1_ibm_kingston",
+  "cz": 45,
+  "cz_ideal": 45,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 18,
+  "depth": 76,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N6_M1_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 71.4,
+  "dir": "run2d\\ibm_kingston\\N6_M1_s4_ibm_kingston",
+  "cz": 180,
+  "cz_ideal": 180,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 72,
+  "depth": 298,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N6_M1_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 71.6,
+  "dir": "run2d\\ibm_kingston\\N6_M1_s2_ibm_kingston",
+  "cz": 90,
+  "cz_ideal": 90,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 36,
+  "depth": 150,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N6_M1_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 75.4,
+  "dir": "run2d\\ibm_kingston\\N6_M1_s3_ibm_kingston",
+  "cz": 135,
+  "cz_ideal": 135,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 54,
+  "depth": 224,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N6_M1_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 72.2,
+  "dir": "run2d\\ibm_kingston\\N6_M1_s6_ibm_kingston",
+  "cz": 270,
+  "cz_ideal": 270,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 108,
+  "depth": 446,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N6_M1_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 76.7,
+  "dir": "run2d\\ibm_kingston\\N6_M1_s5_ibm_kingston",
+  "cz": 225,
+  "cz_ideal": 225,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 90,
+  "depth": 372,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N6_M1_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 78.7,
+  "dir": "run2d\\ibm_kingston\\N6_M1_s7_ibm_kingston",
+  "cz": 315,
+  "cz_ideal": 315,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 126,
+  "depth": 520,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N6_M1_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 77.1,
+  "dir": "run2d\\ibm_kingston\\N6_M1_s8_ibm_kingston",
+  "cz": 360,
+  "cz_ideal": 360,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 144,
+  "depth": 594,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N8_M1_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 76.5,
+  "dir": "run2d\\ibm_kingston\\N8_M1_s1_ibm_kingston",
+  "cz": 84,
+  "cz_ideal": 84,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 24,
+  "depth": 100,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N8_M1_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 72.9,
+  "dir": "run2d\\ibm_kingston\\N8_M1_s2_ibm_kingston",
+  "cz": 168,
+  "cz_ideal": 168,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 48,
+  "depth": 198,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N8_M1_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 73.9,
+  "dir": "run2d\\ibm_kingston\\N8_M1_s3_ibm_kingston",
+  "cz": 252,
+  "cz_ideal": 252,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 72,
+  "depth": 296,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N8_M1_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 76.5,
+  "dir": "run2d\\ibm_kingston\\N8_M1_s4_ibm_kingston",
+  "cz": 336,
+  "cz_ideal": 336,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 96,
+  "depth": 394,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N8_M1_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 79.1,
+  "dir": "run2d\\ibm_kingston\\N8_M1_s5_ibm_kingston",
+  "cz": 420,
+  "cz_ideal": 420,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 120,
+  "depth": 492,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N8_M1_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 83.9,
+  "dir": "run2d\\ibm_kingston\\N8_M1_s6_ibm_kingston",
+  "cz": 504,
+  "cz_ideal": 504,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 144,
+  "depth": 590,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N8_M1_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 84.8,
+  "dir": "run2d\\ibm_kingston\\N8_M1_s7_ibm_kingston",
+  "cz": 588,
+  "cz_ideal": 588,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 168,
+  "depth": 688,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N8_M1_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 85.5,
+  "dir": "run2d\\ibm_kingston\\N8_M1_s8_ibm_kingston",
+  "cz": 672,
+  "cz_ideal": 672,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 192,
+  "depth": 786,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N10_M1_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 80.2,
+  "dir": "run2d\\ibm_kingston\\N10_M1_s1_ibm_kingston",
+  "cz": 135,
+  "cz_ideal": 135,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 30,
+  "depth": 124,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N10_M1_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 80.2,
+  "dir": "run2d\\ibm_kingston\\N10_M1_s2_ibm_kingston",
+  "cz": 270,
+  "cz_ideal": 270,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 60,
+  "depth": 246,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N10_M1_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 81.3,
+  "dir": "run2d\\ibm_kingston\\N10_M1_s3_ibm_kingston",
+  "cz": 405,
+  "cz_ideal": 405,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 90,
+  "depth": 368,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N10_M1_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 75.1,
+  "dir": "run2d\\ibm_kingston\\N10_M1_s4_ibm_kingston",
+  "cz": 540,
+  "cz_ideal": 540,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 120,
+  "depth": 490,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N10_M1_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 78.0,
+  "dir": "run2d\\ibm_kingston\\N10_M1_s5_ibm_kingston",
+  "cz": 675,
+  "cz_ideal": 675,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 150,
+  "depth": 612,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N10_M1_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 78.5,
+  "dir": "run2d\\ibm_kingston\\N10_M1_s6_ibm_kingston",
+  "cz": 810,
+  "cz_ideal": 810,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 180,
+  "depth": 734,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N10_M1_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 67.5,
+  "dir": "run2d\\ibm_kingston\\N10_M1_s7_ibm_kingston",
+  "cz": 945,
+  "cz_ideal": 945,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 210,
+  "depth": 856,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N10_M1_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 65.2,
+  "dir": "run2d\\ibm_kingston\\N10_M1_s8_ibm_kingston",
+  "cz": 1080,
+  "cz_ideal": 1080,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 240,
+  "depth": 978,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N12_M1_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 61.9,
+  "dir": "run2d\\ibm_kingston\\N12_M1_s1_ibm_kingston",
+  "cz": 198,
+  "cz_ideal": 198,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 36,
+  "depth": 148,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N12_M1_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 57.4,
+  "dir": "run2d\\ibm_kingston\\N12_M1_s2_ibm_kingston",
+  "cz": 396,
+  "cz_ideal": 396,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 72,
+  "depth": 294,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N12_M1_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 58.7,
+  "dir": "run2d\\ibm_kingston\\N12_M1_s3_ibm_kingston",
+  "cz": 594,
+  "cz_ideal": 594,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 108,
+  "depth": 440,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N12_M1_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 60.2,
+  "dir": "run2d\\ibm_kingston\\N12_M1_s4_ibm_kingston",
+  "cz": 792,
+  "cz_ideal": 792,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 144,
+  "depth": 586,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N12_M1_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 65.1,
+  "dir": "run2d\\ibm_kingston\\N12_M1_s5_ibm_kingston",
+  "cz": 990,
+  "cz_ideal": 990,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 180,
+  "depth": 732,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N12_M1_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 65.2,
+  "dir": "run2d\\ibm_kingston\\N12_M1_s6_ibm_kingston",
+  "cz": 1188,
+  "cz_ideal": 1188,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 216,
+  "depth": 878,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N6_M1_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 0.0,
+  "dir": "run2d\\ibm_marrakesh\\N6_M1_s1_ibm_marrakesh",
+  "cz": 45,
+  "cz_ideal": 45,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 18,
+  "depth": 76,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N12_M1_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 69.1,
+  "dir": "run2d\\ibm_kingston\\N12_M1_s7_ibm_kingston",
+  "cz": 1386,
+  "cz_ideal": 1386,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 252,
+  "depth": 1024,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_kingston/N12_M1_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 72.3,
+  "dir": "run2d\\ibm_kingston\\N12_M1_s8_ibm_kingston",
+  "cz": 1584,
+  "cz_ideal": 1584,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 288,
+  "depth": 1170,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N6_M1_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 75.6,
+  "dir": "run2d\\ibm_marrakesh\\N6_M1_s2_ibm_marrakesh",
+  "cz": 90,
+  "cz_ideal": 90,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 36,
+  "depth": 150,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N6_M1_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 73.7,
+  "dir": "run2d\\ibm_marrakesh\\N6_M1_s3_ibm_marrakesh",
+  "cz": 135,
+  "cz_ideal": 135,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 54,
+  "depth": 224,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N6_M1_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 61.7,
+  "dir": "run2d\\ibm_marrakesh\\N6_M1_s4_ibm_marrakesh",
+  "cz": 180,
+  "cz_ideal": 180,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 72,
+  "depth": 298,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N6_M1_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 60.9,
+  "dir": "run2d\\ibm_marrakesh\\N6_M1_s5_ibm_marrakesh",
+  "cz": 225,
+  "cz_ideal": 225,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 90,
+  "depth": 372,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N6_M1_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 59.3,
+  "dir": "run2d\\ibm_marrakesh\\N6_M1_s6_ibm_marrakesh",
+  "cz": 270,
+  "cz_ideal": 270,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 108,
+  "depth": 446,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N6_M1_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 80.8,
+  "dir": "run2d\\ibm_marrakesh\\N6_M1_s7_ibm_marrakesh",
+  "cz": 315,
+  "cz_ideal": 315,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 126,
+  "depth": 520,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N6_M1_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "returncode": 0,
+  "seconds": 81.6,
+  "dir": "run2d\\ibm_marrakesh\\N6_M1_s8_ibm_marrakesh",
+  "cz": 360,
+  "cz_ideal": 360,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 144,
+  "depth": 594,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N8_M1_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 80.8,
+  "dir": "run2d\\ibm_marrakesh\\N8_M1_s1_ibm_marrakesh",
+  "cz": 84,
+  "cz_ideal": 84,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 24,
+  "depth": 100,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N8_M1_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 79.4,
+  "dir": "run2d\\ibm_marrakesh\\N8_M1_s2_ibm_marrakesh",
+  "cz": 168,
+  "cz_ideal": 168,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 48,
+  "depth": 198,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N8_M1_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 81.7,
+  "dir": "run2d\\ibm_marrakesh\\N8_M1_s3_ibm_marrakesh",
+  "cz": 252,
+  "cz_ideal": 252,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 72,
+  "depth": 296,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N8_M1_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 84.5,
+  "dir": "run2d\\ibm_marrakesh\\N8_M1_s4_ibm_marrakesh",
+  "cz": 336,
+  "cz_ideal": 336,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 96,
+  "depth": 394,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N8_M1_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 107.6,
+  "dir": "run2d\\ibm_marrakesh\\N8_M1_s5_ibm_marrakesh",
+  "cz": 420,
+  "cz_ideal": 420,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 120,
+  "depth": 492,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N8_M1_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 112.6,
+  "dir": "run2d\\ibm_marrakesh\\N8_M1_s6_ibm_marrakesh",
+  "cz": 504,
+  "cz_ideal": 504,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 144,
+  "depth": 590,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N8_M1_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 112.6,
+  "dir": "run2d\\ibm_marrakesh\\N8_M1_s7_ibm_marrakesh",
+  "cz": 588,
+  "cz_ideal": 588,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 168,
+  "depth": 688,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N8_M1_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "returncode": 0,
+  "seconds": 146.1,
+  "dir": "run2d\\ibm_marrakesh\\N8_M1_s8_ibm_marrakesh",
+  "cz": 672,
+  "cz_ideal": 672,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 192,
+  "depth": 786,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N10_M1_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 147.1,
+  "dir": "run2d\\ibm_marrakesh\\N10_M1_s1_ibm_marrakesh",
+  "cz": 135,
+  "cz_ideal": 135,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 30,
+  "depth": 124,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N10_M1_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 147.8,
+  "dir": "run2d\\ibm_marrakesh\\N10_M1_s2_ibm_marrakesh",
+  "cz": 270,
+  "cz_ideal": 270,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 60,
+  "depth": 246,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N10_M1_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 133.9,
+  "dir": "run2d\\ibm_marrakesh\\N10_M1_s3_ibm_marrakesh",
+  "cz": 405,
+  "cz_ideal": 405,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 90,
+  "depth": 368,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N10_M1_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 151.4,
+  "dir": "run2d\\ibm_marrakesh\\N10_M1_s4_ibm_marrakesh",
+  "cz": 540,
+  "cz_ideal": 540,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 120,
+  "depth": 490,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N10_M1_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 147.5,
+  "dir": "run2d\\ibm_marrakesh\\N10_M1_s5_ibm_marrakesh",
+  "cz": 675,
+  "cz_ideal": 675,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 150,
+  "depth": 612,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N10_M1_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 145.4,
+  "dir": "run2d\\ibm_marrakesh\\N10_M1_s6_ibm_marrakesh",
+  "cz": 810,
+  "cz_ideal": 810,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 180,
+  "depth": 734,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N10_M1_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 124.8,
+  "dir": "run2d\\ibm_marrakesh\\N10_M1_s7_ibm_marrakesh",
+  "cz": 945,
+  "cz_ideal": 945,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 210,
+  "depth": 856,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N10_M1_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "returncode": 0,
+  "seconds": 123.5,
+  "dir": "run2d\\ibm_marrakesh\\N10_M1_s8_ibm_marrakesh",
+  "cz": 1080,
+  "cz_ideal": 1080,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 240,
+  "depth": 978,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N12_M1_s1": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 107.9,
+  "dir": "run2d\\ibm_marrakesh\\N12_M1_s1_ibm_marrakesh",
+  "cz": 198,
+  "cz_ideal": 198,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 36,
+  "depth": 148,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N12_M1_s3": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 111.1,
+  "dir": "run2d\\ibm_marrakesh\\N12_M1_s3_ibm_marrakesh",
+  "cz": 594,
+  "cz_ideal": 594,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 108,
+  "depth": 440,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N12_M1_s2": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 120.0,
+  "dir": "run2d\\ibm_marrakesh\\N12_M1_s2_ibm_marrakesh",
+  "cz": 396,
+  "cz_ideal": 396,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 72,
+  "depth": 294,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N12_M1_s4": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 127.1,
+  "dir": "run2d\\ibm_marrakesh\\N12_M1_s4_ibm_marrakesh",
+  "cz": 792,
+  "cz_ideal": 792,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 144,
+  "depth": 586,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N12_M1_s6": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 177.1,
+  "dir": "run2d\\ibm_marrakesh\\N12_M1_s6_ibm_marrakesh",
+  "cz": 1188,
+  "cz_ideal": 1188,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 216,
+  "depth": 878,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N12_M1_s5": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 185.1,
+  "dir": "run2d\\ibm_marrakesh\\N12_M1_s5_ibm_marrakesh",
+  "cz": 990,
+  "cz_ideal": 990,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 180,
+  "depth": 732,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N12_M1_s7": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 117.9,
+  "dir": "run2d\\ibm_marrakesh\\N12_M1_s7_ibm_marrakesh",
+  "cz": 1386,
+  "cz_ideal": 1386,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 252,
+  "depth": 1024,
+  "qpu_seconds_model": 10.8
+ },
+ "ibm_marrakesh/N12_M1_s8": {
+  "rule": "shape S1",
+  "chain": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "returncode": 0,
+  "seconds": 56.3,
+  "dir": "run2d\\ibm_marrakesh\\N12_M1_s8_ibm_marrakesh",
+  "cz": 1584,
+  "cz_ideal": 1584,
+  "copy": {
+   "drow": 0,
+   "dcol": 0
+  },
+  "checks": {
+   "user_measures": true,
+   "floor_cz": true,
+   "floor_diagonal": true,
+   "mirror_cz": true,
+   "mirror_measures": true
+  },
+  "cz_layers": 288,
+  "depth": 1170,
+  "qpu_seconds_model": 10.8
+ }
+}

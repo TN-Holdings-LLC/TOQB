@@ -1,0 +1,645 @@
+{
+ "agree": {
+  "ibm_fez/N10_M1_s1": {
+   "max_diff": 4.107825191113079e-14,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M1_s2": {
+   "max_diff": 5.306866057708248e-14,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M1_s3": {
+   "max_diff": 4.346523141407488e-14,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M1_s4": {
+   "max_diff": 5.012656956182582e-14,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M1_s5": {
+   "max_diff": 9.664491429361988e-14,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M1_s6": {
+   "max_diff": 1.900701818158268e-13,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M1_s7": {
+   "max_diff": 2.274846977456946e-13,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M1_s8": {
+   "max_diff": 2.6278978992877455e-13,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M2_s1": {
+   "max_diff": 3.2862601528904634e-14,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M2_s2": {
+   "max_diff": 4.796163466380676e-14,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M2_s3": {
+   "max_diff": 3.758104938356155e-14,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M2_s4": {
+   "max_diff": 9.059419880941277e-14,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M2_s5": {
+   "max_diff": 8.47655279301307e-14,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M2_s6": {
+   "max_diff": 8.759659664292485e-14,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M2_s7": {
+   "max_diff": 1.574296248918472e-13,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M2_s8": {
+   "max_diff": 1.673106098110111e-13,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M3_s1": {
+   "max_diff": 3.452793606584237e-14,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M3_s2": {
+   "max_diff": 4.9182879990894435e-14,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M3_s3": {
+   "max_diff": 4.218847493575595e-14,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M3_s4": {
+   "max_diff": 4.807265696626928e-14,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M3_s5": {
+   "max_diff": 8.060219158778636e-14,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M3_s6": {
+   "max_diff": 1.6586731987899839e-13,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M3_s7": {
+   "max_diff": 2.3081536681957004e-13,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N10_M3_s8": {
+   "max_diff": 2.815525590449397e-13,
+   "qubits_touched": 10
+  },
+  "ibm_fez/N12_M1_s1": {
+   "max_diff": 5.5067062021407764e-14,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M1_s2": {
+   "max_diff": 7.605027718682322e-14,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M1_s3": {
+   "max_diff": 6.350475700855895e-14,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M1_s4": {
+   "max_diff": 7.355227538141662e-14,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M1_s5": {
+   "max_diff": 1.3883338922937583e-13,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M1_s6": {
+   "max_diff": 2.774447338538266e-13,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M1_s7": {
+   "max_diff": 3.3073543903583413e-13,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M1_s8": {
+   "max_diff": 3.79363207514416e-13,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M2_s1": {
+   "max_diff": 5.3179682879545e-14,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M2_s2": {
+   "max_diff": 7.105427357601002e-14,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M2_s3": {
+   "max_diff": 5.523359547510154e-14,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M2_s4": {
+   "max_diff": 1.3589129821411916e-13,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M2_s5": {
+   "max_diff": 1.2512213487525514e-13,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M2_s6": {
+   "max_diff": 1.2928547121759948e-13,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M2_s7": {
+   "max_diff": 2.3092638912203256e-13,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M2_s8": {
+   "max_diff": 2.4713564528155985e-13,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M3_s1": {
+   "max_diff": 5.3179682879545e-14,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M3_s2": {
+   "max_diff": 7.349676423018536e-14,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M3_s3": {
+   "max_diff": 6.072919944699606e-14,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M3_s4": {
+   "max_diff": 7.005507285384738e-14,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M3_s5": {
+   "max_diff": 1.174060848541103e-13,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M3_s6": {
+   "max_diff": 2.4491519923230953e-13,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M3_s7": {
+   "max_diff": 3.3784086639343514e-13,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N12_M3_s8": {
+   "max_diff": 4.157785227221211e-13,
+   "qubits_touched": 12
+  },
+  "ibm_fez/N6_M1_s1": {
+   "max_diff": 1.199040866595169e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M1_s2": {
+   "max_diff": 1.6986412276764895e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M1_s3": {
+   "max_diff": 1.4377388168895777e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M1_s4": {
+   "max_diff": 1.6708856520608606e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M1_s5": {
+   "max_diff": 3.197442310920451e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M1_s6": {
+   "max_diff": 6.228351168147128e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M1_s7": {
+   "max_diff": 7.460698725481052e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M1_s8": {
+   "max_diff": 8.926193117986259e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M2_s1": {
+   "max_diff": 1.27675647831893e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M2_s2": {
+   "max_diff": 1.8096635301390052e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M2_s3": {
+   "max_diff": 1.4099832412739488e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M2_s4": {
+   "max_diff": 3.352873534367973e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M2_s5": {
+   "max_diff": 3.11972669919669e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M2_s6": {
+   "max_diff": 2.836619827917275e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M2_s7": {
+   "max_diff": 4.85722573273506e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M2_s8": {
+   "max_diff": 4.8627768478581856e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M3_s1": {
+   "max_diff": 1.2545520178264269e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M3_s2": {
+   "max_diff": 1.865174681370263e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M3_s3": {
+   "max_diff": 1.587618925213974e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M3_s4": {
+   "max_diff": 1.992850329202156e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M3_s5": {
+   "max_diff": 3.1308289294429414e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M3_s6": {
+   "max_diff": 5.6621374255882984e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M3_s7": {
+   "max_diff": 8.060219158778636e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N6_M3_s8": {
+   "max_diff": 9.803269307440132e-14,
+   "qubits_touched": 6
+  },
+  "ibm_fez/N8_M1_s1": {
+   "max_diff": 2.531308496145357e-14,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M1_s2": {
+   "max_diff": 3.5638159090467525e-14,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M1_s3": {
+   "max_diff": 2.8255175976710234e-14,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M1_s4": {
+   "max_diff": 3.186340080674199e-14,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M1_s5": {
+   "max_diff": 6.022959908591474e-14,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M1_s6": {
+   "max_diff": 1.2034817586936697e-13,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M1_s7": {
+   "max_diff": 1.4366285938649526e-13,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M1_s8": {
+   "max_diff": 1.6409096303959814e-13,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M2_s1": {
+   "max_diff": 2.3092638912203256e-14,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M2_s2": {
+   "max_diff": 2.886579864025407e-14,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M2_s3": {
+   "max_diff": 2.3592239273284576e-14,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M2_s4": {
+   "max_diff": 5.839773109528323e-14,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M2_s5": {
+   "max_diff": 5.345723863570129e-14,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M2_s6": {
+   "max_diff": 5.5788706987414116e-14,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M2_s7": {
+   "max_diff": 9.936496070395151e-14,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M2_s8": {
+   "max_diff": 1.0691447727140257e-13,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M3_s1": {
+   "max_diff": 2.098321516541546e-14,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M3_s2": {
+   "max_diff": 3.275157922644212e-14,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M3_s3": {
+   "max_diff": 2.6756374893466273e-14,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M3_s4": {
+   "max_diff": 3.058664432842306e-14,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M3_s5": {
+   "max_diff": 5.234701561107613e-14,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M3_s6": {
+   "max_diff": 1.0691447727140257e-13,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M3_s7": {
+   "max_diff": 1.4854784069484595e-13,
+   "qubits_touched": 8
+  },
+  "ibm_fez/N8_M3_s8": {
+   "max_diff": 1.7996715229173788e-13,
+   "qubits_touched": 8
+  },
+  "ibm_kingston/N10_M1_s1": {
+   "max_diff": 4.107825191113079e-14,
+   "qubits_touched": 10
+  },
+  "ibm_kingston/N10_M1_s2": {
+   "max_diff": 5.306866057708248e-14,
+   "qubits_touched": 10
+  },
+  "ibm_kingston/N10_M1_s3": {
+   "max_diff": 4.346523141407488e-14,
+   "qubits_touched": 10
+  },
+  "ibm_kingston/N10_M1_s4": {
+   "max_diff": 5.012656956182582e-14,
+   "qubits_touched": 10
+  },
+  "ibm_kingston/N10_M1_s5": {
+   "max_diff": 9.664491429361988e-14,
+   "qubits_touched": 10
+  },
+  "ibm_kingston/N10_M1_s6": {
+   "max_diff": 1.900701818158268e-13,
+   "qubits_touched": 10
+  },
+  "ibm_kingston/N10_M1_s7": {
+   "max_diff": 2.274846977456946e-13,
+   "qubits_touched": 10
+  },
+  "ibm_kingston/N10_M1_s8": {
+   "max_diff": 2.6278978992877455e-13,
+   "qubits_touched": 10
+  },
+  "ibm_kingston/N12_M1_s1": {
+   "max_diff": 5.5067062021407764e-14,
+   "qubits_touched": 12
+  },
+  "ibm_kingston/N12_M1_s2": {
+   "max_diff": 7.605027718682322e-14,
+   "qubits_touched": 12
+  },
+  "ibm_kingston/N12_M1_s3": {
+   "max_diff": 6.350475700855895e-14,
+   "qubits_touched": 12
+  },
+  "ibm_kingston/N12_M1_s4": {
+   "max_diff": 7.355227538141662e-14,
+   "qubits_touched": 12
+  },
+  "ibm_kingston/N12_M1_s5": {
+   "max_diff": 1.3883338922937583e-13,
+   "qubits_touched": 12
+  },
+  "ibm_kingston/N12_M1_s6": {
+   "max_diff": 2.774447338538266e-13,
+   "qubits_touched": 12
+  },
+  "ibm_kingston/N12_M1_s7": {
+   "max_diff": 3.3073543903583413e-13,
+   "qubits_touched": 12
+  },
+  "ibm_kingston/N12_M1_s8": {
+   "max_diff": 3.79363207514416e-13,
+   "qubits_touched": 12
+  },
+  "ibm_kingston/N6_M1_s1": {
+   "max_diff": 1.199040866595169e-14,
+   "qubits_touched": 6
+  },
+  "ibm_kingston/N6_M1_s2": {
+   "max_diff": 1.6986412276764895e-14,
+   "qubits_touched": 6
+  },
+  "ibm_kingston/N6_M1_s3": {
+   "max_diff": 1.4377388168895777e-14,
+   "qubits_touched": 6
+  },
+  "ibm_kingston/N6_M1_s4": {
+   "max_diff": 1.6708856520608606e-14,
+   "qubits_touched": 6
+  },
+  "ibm_kingston/N6_M1_s5": {
+   "max_diff": 3.197442310920451e-14,
+   "qubits_touched": 6
+  },
+  "ibm_kingston/N6_M1_s6": {
+   "max_diff": 6.228351168147128e-14,
+   "qubits_touched": 6
+  },
+  "ibm_kingston/N6_M1_s7": {
+   "max_diff": 7.460698725481052e-14,
+   "qubits_touched": 6
+  },
+  "ibm_kingston/N6_M1_s8": {
+   "max_diff": 8.926193117986259e-14,
+   "qubits_touched": 6
+  },
+  "ibm_kingston/N8_M1_s1": {
+   "max_diff": 2.531308496145357e-14,
+   "qubits_touched": 8
+  },
+  "ibm_kingston/N8_M1_s2": {
+   "max_diff": 3.5638159090467525e-14,
+   "qubits_touched": 8
+  },
+  "ibm_kingston/N8_M1_s3": {
+   "max_diff": 2.8255175976710234e-14,
+   "qubits_touched": 8
+  },
+  "ibm_kingston/N8_M1_s4": {
+   "max_diff": 3.186340080674199e-14,
+   "qubits_touched": 8
+  },
+  "ibm_kingston/N8_M1_s5": {
+   "max_diff": 6.022959908591474e-14,
+   "qubits_touched": 8
+  },
+  "ibm_kingston/N8_M1_s6": {
+   "max_diff": 1.2034817586936697e-13,
+   "qubits_touched": 8
+  },
+  "ibm_kingston/N8_M1_s7": {
+   "max_diff": 1.4366285938649526e-13,
+   "qubits_touched": 8
+  },
+  "ibm_kingston/N8_M1_s8": {
+   "max_diff": 1.6409096303959814e-13,
+   "qubits_touched": 8
+  },
+  "ibm_marrakesh/N10_M1_s1": {
+   "max_diff": 4.107825191113079e-14,
+   "qubits_touched": 10
+  },
+  "ibm_marrakesh/N10_M1_s2": {
+   "max_diff": 5.306866057708248e-14,
+   "qubits_touched": 10
+  },
+  "ibm_marrakesh/N10_M1_s3": {
+   "max_diff": 4.346523141407488e-14,
+   "qubits_touched": 10
+  },
+  "ibm_marrakesh/N10_M1_s4": {
+   "max_diff": 5.012656956182582e-14,
+   "qubits_touched": 10
+  },
+  "ibm_marrakesh/N10_M1_s5": {
+   "max_diff": 9.664491429361988e-14,
+   "qubits_touched": 10
+  },
+  "ibm_marrakesh/N10_M1_s6": {
+   "max_diff": 1.900701818158268e-13,
+   "qubits_touched": 10
+  },
+  "ibm_marrakesh/N10_M1_s7": {
+   "max_diff": 2.274846977456946e-13,
+   "qubits_touched": 10
+  },
+  "ibm_marrakesh/N10_M1_s8": {
+   "max_diff": 2.6278978992877455e-13,
+   "qubits_touched": 10
+  },
+  "ibm_marrakesh/N12_M1_s1": {
+   "max_diff": 5.5067062021407764e-14,
+   "qubits_touched": 12
+  },
+  "ibm_marrakesh/N12_M1_s2": {
+   "max_diff": 7.605027718682322e-14,
+   "qubits_touched": 12
+  },
+  "ibm_marrakesh/N12_M1_s3": {
+   "max_diff": 6.350475700855895e-14,
+   "qubits_touched": 12
+  },
+  "ibm_marrakesh/N12_M1_s4": {
+   "max_diff": 7.355227538141662e-14,
+   "qubits_touched": 12
+  },
+  "ibm_marrakesh/N12_M1_s5": {
+   "max_diff": 1.3883338922937583e-13,
+   "qubits_touched": 12
+  },
+  "ibm_marrakesh/N12_M1_s6": {
+   "max_diff": 2.774447338538266e-13,
+   "qubits_touched": 12
+  },
+  "ibm_marrakesh/N12_M1_s7": {
+   "max_diff": 3.3073543903583413e-13,
+   "qubits_touched": 12
+  },
+  "ibm_marrakesh/N12_M1_s8": {
+   "max_diff": 3.79363207514416e-13,
+   "qubits_touched": 12
+  },
+  "ibm_marrakesh/N6_M1_s1": {
+   "max_diff": 1.199040866595169e-14,
+   "qubits_touched": 6
+  },
+  "ibm_marrakesh/N6_M1_s2": {
+   "max_diff": 1.6986412276764895e-14,
+   "qubits_touched": 6
+  },
+  "ibm_marrakesh/N6_M1_s3": {
+   "max_diff": 1.4377388168895777e-14,
+   "qubits_touched": 6
+  },
+  "ibm_marrakesh/N6_M1_s4": {
+   "max_diff": 1.6708856520608606e-14,
+   "qubits_touched": 6
+  },
+  "ibm_marrakesh/N6_M1_s5": {
+   "max_diff": 3.197442310920451e-14,
+   "qubits_touched": 6
+  },
+  "ibm_marrakesh/N6_M1_s6": {
+   "max_diff": 6.228351168147128e-14,
+   "qubits_touched": 6
+  },
+  "ibm_marrakesh/N6_M1_s7": {
+   "max_diff": 7.460698725481052e-14,
+   "qubits_touched": 6
+  },
+  "ibm_marrakesh/N6_M1_s8": {
+   "max_diff": 8.926193117986259e-14,
+   "qubits_touched": 6
+  },
+  "ibm_marrakesh/N8_M1_s1": {
+   "max_diff": 2.531308496145357e-14,
+   "qubits_touched": 8
+  },
+  "ibm_marrakesh/N8_M1_s2": {
+   "max_diff": 3.5638159090467525e-14,
+   "qubits_touched": 8
+  },
+  "ibm_marrakesh/N8_M1_s3": {
+   "max_diff": 2.8255175976710234e-14,
+   "qubits_touched": 8
+  },
+  "ibm_marrakesh/N8_M1_s4": {
+   "max_diff": 3.186340080674199e-14,
+   "qubits_touched": 8
+  },
+  "ibm_marrakesh/N8_M1_s5": {
+   "max_diff": 6.022959908591474e-14,
+   "qubits_touched": 8
+  },
+  "ibm_marrakesh/N8_M1_s6": {
+   "max_diff": 1.2034817586936697e-13,
+   "qubits_touched": 8
+  },
+  "ibm_marrakesh/N8_M1_s7": {
+   "max_diff": 1.4366285938649526e-13,
+   "qubits_touched": 8
+  },
+  "ibm_marrakesh/N8_M1_s8": {
+   "max_diff": 1.6409096303959814e-13,
+   "qubits_touched": 8
+  }
+ },
+ "max_over_all": 4.157785227221211e-13
+}
