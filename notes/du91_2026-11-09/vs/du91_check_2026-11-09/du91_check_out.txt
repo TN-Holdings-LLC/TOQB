@@ -1,0 +1,51 @@
+chain rebuilt: 91 qubits, site 0 = qubit 0, site 24 = qubit 28; h=0 on-cone sums [np.float64(4.5935), np.float64(0.2535)]
+
+== on-cone values <X_t> (site t) with shot SE
+h 0.00: t4 +0.895+-0.007  t8 +0.882+-0.007  t12 +0.779+-0.010  t16 +0.710+-0.011  t20 +0.675+-0.012  t24 +0.651+-0.012
+h 0.05: t4 +0.861+-0.008  t8 +0.859+-0.008  t12 +0.791+-0.010  t16 +0.672+-0.012  t20 +0.543+-0.013  t24 +0.587+-0.013
+h 0.10: t4 +0.813+-0.009  t8 +0.763+-0.010  t12 +0.686+-0.012  t16 +0.500+-0.014  t20 +0.459+-0.014  t24 +0.408+-0.014
+h 0.15: t4 +0.713+-0.011  t8 +0.635+-0.012  t12 +0.504+-0.014  t16 +0.373+-0.015  t20 +0.284+-0.015  t24 +0.224+-0.015
+
+== decay rate k (WLS on ln R through the origin) against cos 2h
+h 0.05: k 0.9956 ± 0.0006  cos2h 0.9950  k - cos2h +0.0006 (+1.0 SE)  fit chi2 38.1 / dof 5  t used [4, 8, 12, 16, 20, 24]
+h 0.10: k 0.9821 ± 0.0008  cos2h 0.9801  k - cos2h +0.0020 (+2.6 SE)  fit chi2 26.2 / dof 5  t used [4, 8, 12, 16, 20, 24]
+h 0.15: k 0.9590 ± 0.0011  cos2h 0.9553  k - cos2h +0.0037 (+3.3 SE)  fit chi2 18.6 / dof 5  t used [4, 8, 12, 16, 20, 24]
+bias: all three above cos 2h: True; combined (k - cos2h)/SE: mean +2.29, sum/sqrt(3) +3.97  (the three share the h = 0 ruler, so they are not independent)
+
+== off-light-cone check: |<X>| of every measured qubit other than site t (ideal 0 outside the cone)
+h 0.00 t  4: mean 0.0486  median 0.0248  max 0.586 at q85 (next q83 0.491, q29 0.270)  shot SE ~0.0158
+h 0.00 t  8: mean 0.0433  median 0.0195  max 0.586 at q85 (next q83 0.472, q29 0.279)  shot SE ~0.0158
+h 0.00 t 12: mean 0.0450  median 0.0245  max 0.587 at q85 (next q83 0.472, q29 0.255)  shot SE ~0.0158
+h 0.00 t 16: mean 0.0415  median 0.0190  max 0.571 at q85 (next q83 0.467, q29 0.249)  shot SE ~0.0158
+h 0.00 t 20: mean 0.0446  median 0.0238  max 0.581 at q85 (next q83 0.482, q29 0.263)  shot SE ~0.0158
+h 0.00 t 24: mean 0.0458  median 0.0248  max 0.599 at q85 (next q83 0.496, q29 0.289)  shot SE ~0.0158
+h 0.05 t  4: mean 0.0464  median 0.0222  max 0.607 at q85 (next q83 0.474, q29 0.249)  shot SE ~0.0158
+h 0.05 t  8: mean 0.0490  median 0.0295  max 0.595 at q85 (next q83 0.500, q29 0.264)  shot SE ~0.0158
+h 0.05 t 12: mean 0.0482  median 0.0283  max 0.593 at q85 (next q83 0.500, q29 0.283)  shot SE ~0.0158
+h 0.05 t 16: mean 0.0435  median 0.0222  max 0.573 at q85 (next q83 0.487, q29 0.272)  shot SE ~0.0158
+h 0.05 t 20: mean 0.0419  median 0.0200  max 0.591 at q85 (next q83 0.481, q29 0.243)  shot SE ~0.0158
+h 0.05 t 24: mean 0.0417  median 0.0198  max 0.565 at q85 (next q83 0.474, q29 0.269)  shot SE ~0.0158
+h 0.10 t  4: mean 0.0445  median 0.0222  max 0.627 at q85 (next q83 0.388, q143 0.214)  shot SE ~0.0158
+h 0.10 t  8: mean 0.0477  median 0.0265  max 0.623 at q85 (next q83 0.434, q34 0.183)  shot SE ~0.0158
+h 0.10 t 12: mean 0.0446  median 0.0260  max 0.610 at q85 (next q83 0.412, q143 0.183)  shot SE ~0.0158
+h 0.10 t 16: mean 0.0400  median 0.0165  max 0.601 at q85 (next q83 0.416, q34 0.211)  shot SE ~0.0158
+h 0.10 t 20: mean 0.0408  median 0.0215  max 0.612 at q85 (next q83 0.412, q29 0.196)  shot SE ~0.0158
+h 0.10 t 24: mean 0.0366  median 0.0158  max 0.586 at q85 (next q83 0.395, q29 0.201)  shot SE ~0.0158
+h 0.15 t  4: mean 0.0443  median 0.0267  max 0.592 at q85 (next q83 0.419, q102 0.177)  shot SE ~0.0158
+h 0.15 t  8: mean 0.0421  median 0.0217  max 0.596 at q85 (next q83 0.426, q29 0.189)  shot SE ~0.0158
+h 0.15 t 12: mean 0.0401  median 0.0192  max 0.592 at q85 (next q83 0.418, q143 0.199)  shot SE ~0.0158
+h 0.15 t 16: mean 0.0373  median 0.0170  max 0.597 at q85 (next q83 0.440, q34 0.186)  shot SE ~0.0158
+h 0.15 t 20: mean 0.0407  median 0.0198  max 0.595 at q85 (next q83 0.395, q29 0.181)  shot SE ~0.0158
+h 0.15 t 24: mean 0.0345  median 0.0150  max 0.602 at q85 (next q83 0.410, q34 0.186)  shot SE ~0.0158
+all points: mean 0.0430, median 0.0220; fraction above 3 shot-SE (0.047): 0.169
+qubits with the largest mean off-cone |<X>| over the 24 points: q85 (chain site 65) 0.594, q83 (chain site 67) 0.448, q29 (chain site 23) 0.219, q34 (chain site 18) 0.176, q23 (chain site 29) 0.165, q143 (chain site 77) 0.161
+without the two largest: mean 0.0322, max 0.289
+
+== which job holds which h; decay-rate SE scaled by sqrt(chi2/dof) (fit scatter above shot noise)
+h 0.00: job du91_A
+h 0.05: job du91_A
+h 0.10: job du91_B
+h 0.15: job du91_B
+h 0.05: k 0.9956, SE 0.0006 x 2.76 = 0.0017; k - cos2h +0.0006 = +0.4 scaled SE
+h 0.10: k 0.9821, SE 0.0008 x 2.29 = 0.0018; k - cos2h +0.0020 = +1.1 scaled SE
+h 0.15: k 0.9590, SE 0.0011 x 1.93 = 0.0021; k - cos2h +0.0037 = +1.7 scaled SE
