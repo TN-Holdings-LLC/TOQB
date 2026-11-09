@@ -9,7 +9,12 @@ Answers (closed form, psf_os.dual.exact): {tag: {label: <X>}} written to ANSWERS
 
 --n 71 (2026-11-07 19:25 JST, owner "71"): the same at N = 71 (tags du71_...).
 
-usage: PYTHONPATH=<psf-os>:<TOQB> python gpu/du51_build.py DEV_DIR OUT_DIR ANSWERS_OUT [--n 51] [--dry-clifford-sentinel]
+--rule-c (2026-11-09, owner "両方": N = 91): shape rule first; only if no shape qualifies, the chain of
+psf_os.chain.place (rule C, owner 2026-11-06: fixed-order walk round holes, first fit, entrance health judgement);
+the user circuit is written on that chain's labels. build.json records the rule ("C", start, steps, starts tried).
+
+usage: PYTHONPATH=<psf-os>:<TOQB> python gpu/du51_build.py DEV_DIR OUT_DIR ANSWERS_OUT [--n 51] [--rule-c]
+       [--dry-clifford-sentinel]
 """
 import hashlib
 import json
@@ -40,22 +45,34 @@ def main():
             raise SystemExit(f"STOP: {p} exists")
     dev = Dv.Device.load(dev_dir)
     pl = X.place(dev, N)
-    if pl["shape"] is None:
+    rulec = None
+    if pl["shape"] is None and "--rule-c" in sys.argv:
+        from psf_os import chain as CH
+        try:
+            rulec = CH.place(dev, N)
+        except CH.Refused as e:
+            raise SystemExit(f"NOT RUN: no shape qualifies and rule C refuses on {dev.name}: {e}")
+        labels = list(rulec["chain"])
+        pl = dict(shape="C", drow=0, dcol=0, chain=labels, passed_over=pl["passed_over"])
+    elif pl["shape"] is None:
         raise SystemExit(f"NOT RUN: no shape qualifies on {dev.name}: {pl['passed_over']}")
-    shape = next(s for s in X.SHAPES if s[0] == pl["shape"])
-    labels = X.snake(N, shape)
+    else:
+        shape = next(s for s in X.SHAPES if s[0] == pl["shape"])
+        labels = X.snake(N, shape)
     answers, reps = {}, {}
     for name, hs in JOBS.items():
         items = []
         for h in hs:
             for t in X.T_STEPS:
-                items.append((tag(h, t), X.circuit(N, h, t, shape)))
+                items.append((tag(h, t), X.PC.p4(t, X.PI4, chain=labels, h=h)))
                 answers[tag(h, t)] = {str(q): v for q, v in zip(labels, X.exact(N, t, h))}
         reps[name] = U.build_batch(dev, items, os.path.join(out, name), shots=4000, sentinel_spec=spec,
                                    max_seconds=60)
     with open(ans_out, "w") as f:
         json.dump(answers, f, indent=1, sort_keys=True)
     log = dict(device=dev.name, n=N, shape=pl["shape"], copy=dict(drow=pl["drow"], dcol=pl["dcol"]), chain=pl["chain"],
+               user_chain=labels, rule_c={k: rulec[k] for k in ("start", "steps", "starts_tried", "budget", "suspect")}
+               if rulec else None,
                passed_over=pl["passed_over"],
                jobs={k: dict(circuits=r["circuits"], qpu_seconds_model=r["qpu_seconds_model"],
                              cz={t: v["cz"] for t, v in r["items"].items()},

@@ -35,7 +35,10 @@ def main(out, answers_file, ts_only=None):
     answers = json.load(open(answers_file))
     b = json.load(open(os.path.join(out, "build.json")))
     n = b.get("n", 51)
-    site = X.snake(n, next(s for s in X.SHAPES if s[0] == b["shape"]))   # site k of the chain -> the user's label
+    if b["shape"] == "C":
+        site = b["user_chain"]                                            # rule C: the chain's own labels
+    else:
+        site = X.snake(n, next(s for s in X.SHAPES if s[0] == b["shape"]))   # site k of the chain -> the user's label
     pts, sent, cz = {}, {}, {}
     for j in JOBS:
         jd, runs = os.path.join(out, j, "job"), os.path.join(out, j, "runs")
