@@ -1,0 +1,6 @@
+daily                          ibm_fez        failed q 1 c 1  shape S3  C start [1, 0, 0] steps 100
+du51-2026-11-07                ibm_kingston   failed q 4 c 5  shape None  C start [1, 0, 0] steps 108
+os3d-gate-2026-11-07           ibm_marrakesh  failed q 6 c 1  shape None  C start [1, 0, 0] steps 1665
+os3d-heisE-2026-11-08          ibm_fez        failed q 2 c 1  shape None  C start [1, 0, 0] steps 155
+os3d-heisE-2026-11-08          ibm_kingston   failed q 4 c 5  shape None  C start [1, 0, 0] steps 108
+os3d-heisE-2026-11-08          ibm_marrakesh  failed q 6 c 1  shape None  C start [1, 0, 0] steps 1665

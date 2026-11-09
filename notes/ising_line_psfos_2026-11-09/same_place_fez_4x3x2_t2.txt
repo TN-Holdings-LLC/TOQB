@@ -1,0 +1,3 @@
+ibm_fez 4x3x2 t2 fold v3.1             r0 0 c0 0  CZ  468 layers   64 qubits 28 shared with fold 28  accept True  max|placed - exact| 3.4e-07
+ibm_fez 4x3x2 t2 line at fold's place  r0 0 c0 0  CZ  252 layers   60 qubits 28 shared with fold 28  accept True  max|placed - exact| 7.5e-07
+ibm_fez 4x3x2 t2 line own place        r0 0 c0 0  CZ  252 layers   60 qubits 28 shared with fold 28  accept True  max|placed - exact| 7.5e-07

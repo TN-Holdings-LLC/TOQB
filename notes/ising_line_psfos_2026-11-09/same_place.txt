@@ -1,0 +1,45 @@
+ibm_fez 4x2x2 t1 fold v3.1             r0 1 c0 0  CZ  108 layers   28 qubits 18 shared with fold 18  accept True  max|placed - exact| 1.2e-15
+ibm_fez 4x2x2 t1 line at fold's place  r0 1 c0 0  CZ   60 layers   18 qubits 18 shared with fold 18  accept True  max|placed - exact| 4.3e-15
+ibm_fez 4x2x2 t1 line own place        r0 0 c0 1  CZ   60 layers   18 qubits 18 shared with fold  7  accept True  max|placed - exact| 4.4e-15
+ibm_fez 4x2x2 t2 fold v3.1             r0 1 c0 0  CZ  216 layers   55 qubits 18 shared with fold 18  accept True  max|placed - exact| 1.9e-15
+ibm_fez 4x2x2 t2 line at fold's place  r0 1 c0 0  CZ  120 layers   36 qubits 18 shared with fold 18  accept True  max|placed - exact| 7.5e-15
+ibm_fez 4x2x2 t2 line own place        r0 0 c0 1  CZ  120 layers   36 qubits 18 shared with fold  7  accept True  max|placed - exact| 7.5e-15
+ibm_fez 4x2x2 t3 fold v3.1             r0 1 c0 0  CZ  324 layers   82 qubits 18 shared with fold 18  accept True  max|placed - exact| 3.2e-15
+ibm_fez 4x2x2 t3 line at fold's place  r0 1 c0 0  CZ  180 layers   54 qubits 18 shared with fold 18  accept True  max|placed - exact| 1.2e-14
+ibm_fez 4x2x2 t3 line own place        r0 0 c0 1  CZ  180 layers   54 qubits 18 shared with fold  7  accept True  max|placed - exact| 1.2e-14
+ibm_fez 4x2x2 t4 fold v3.1             r0 1 c0 0  CZ  432 layers  109 qubits 18 shared with fold 18  accept True  max|placed - exact| 4.2e-15
+ibm_fez 4x2x2 t4 line at fold's place  r0 1 c0 0  CZ  240 layers   72 qubits 18 shared with fold 18  accept True  max|placed - exact| 1.6e-14
+ibm_fez 4x2x2 t4 line own place        r0 0 c0 1  CZ  240 layers   72 qubits 18 shared with fold  7  accept True  max|placed - exact| 1.6e-14
+ibm_fez 4x3x2 t1 fold v3.1             r0 0 c0 0  CZ  234 layers   33 qubits 28 shared with fold 28  accept True  max|placed - exact| 2.2e-15
+ibm_fez 4x3x2 t1 line at fold's place  r0 0 c0 0  CZ  126 layers   30 qubits 28 shared with fold 28  accept True  max|placed - exact| 3.4e-15
+ibm_fez 4x3x2 t1 line own place        r0 0 c0 0  CZ  126 layers   30 qubits 28 shared with fold 28  accept True  max|placed - exact| 3.4e-15
+ibm_kingston 4x2x2 t1 fold v3.1             r0 1 c0 0  CZ  108 layers   28 qubits 18 shared with fold 18  accept True  max|placed - exact| 1.2e-15
+ibm_kingston 4x2x2 t1 line at fold's place  r0 1 c0 0  CZ   60 layers   18 qubits 18 shared with fold 18  accept True  max|placed - exact| 4.3e-15
+ibm_kingston 4x2x2 t1 line own place        r0 0 c0 1  CZ   60 layers   18 qubits 18 shared with fold  7  accept True  max|placed - exact| 4.4e-15
+ibm_kingston 4x2x2 t2 fold v3.1             r0 1 c0 0  CZ  216 layers   55 qubits 18 shared with fold 18  accept True  max|placed - exact| 1.9e-15
+ibm_kingston 4x2x2 t2 line at fold's place  r0 1 c0 0  CZ  120 layers   36 qubits 18 shared with fold 18  accept True  max|placed - exact| 7.5e-15
+ibm_kingston 4x2x2 t2 line own place        r0 0 c0 1  CZ  120 layers   36 qubits 18 shared with fold  7  accept True  max|placed - exact| 7.5e-15
+ibm_kingston 4x2x2 t3 fold v3.1             r0 1 c0 0  CZ  324 layers   82 qubits 18 shared with fold 18  accept True  max|placed - exact| 3.2e-15
+ibm_kingston 4x2x2 t3 line at fold's place  r0 1 c0 0  CZ  180 layers   54 qubits 18 shared with fold 18  accept True  max|placed - exact| 1.2e-14
+ibm_kingston 4x2x2 t3 line own place        r0 0 c0 1  CZ  180 layers   54 qubits 18 shared with fold  7  accept True  max|placed - exact| 1.2e-14
+ibm_kingston 4x2x2 t4 fold v3.1             r0 1 c0 0  CZ  432 layers  109 qubits 18 shared with fold 18  accept True  max|placed - exact| 4.2e-15
+ibm_kingston 4x2x2 t4 line at fold's place  r0 1 c0 0  CZ  240 layers   72 qubits 18 shared with fold 18  accept True  max|placed - exact| 1.6e-14
+ibm_kingston 4x2x2 t4 line own place        r0 0 c0 1  CZ  240 layers   72 qubits 18 shared with fold  7  accept True  max|placed - exact| 1.6e-14
+ibm_kingston 4x3x2 t1 fold v3.1             r0 0 c0 0  CZ  234 layers   33 qubits 28 shared with fold 28  accept True  max|placed - exact| 2.2e-15
+ibm_kingston 4x3x2 t1 line at fold's place  r0 0 c0 0  CZ  126 layers   30 qubits 28 shared with fold 28  accept True  max|placed - exact| 3.4e-15
+ibm_kingston 4x3x2 t1 line own place        r0 0 c0 0  CZ  126 layers   30 qubits 28 shared with fold 28  accept True  max|placed - exact| 3.4e-15
+ibm_marrakesh 4x2x2 t1 fold v3.1             r0 1 c0 8  CZ  108 layers   28 qubits 18 shared with fold 18  accept True  max|placed - exact| 1.2e-15
+ibm_marrakesh 4x2x2 t1 line at fold's place  r0 1 c0 8  CZ   60 layers   18 qubits 18 shared with fold 18  accept True  max|placed - exact| 4.3e-15
+ibm_marrakesh 4x2x2 t1 line own place        r0 0 c0 1  CZ   60 layers   18 qubits 18 shared with fold  1  accept True  max|placed - exact| 4.4e-15
+ibm_marrakesh 4x2x2 t2 fold v3.1             r0 1 c0 8  CZ  216 layers   55 qubits 18 shared with fold 18  accept True  max|placed - exact| 1.9e-15
+ibm_marrakesh 4x2x2 t2 line at fold's place  r0 1 c0 8  CZ  120 layers   36 qubits 18 shared with fold 18  accept True  max|placed - exact| 7.5e-15
+ibm_marrakesh 4x2x2 t2 line own place        r0 0 c0 1  CZ  120 layers   36 qubits 18 shared with fold  1  accept True  max|placed - exact| 7.5e-15
+ibm_marrakesh 4x2x2 t3 fold v3.1             r0 1 c0 8  CZ  324 layers   82 qubits 18 shared with fold 18  accept True  max|placed - exact| 3.2e-15
+ibm_marrakesh 4x2x2 t3 line at fold's place  r0 1 c0 8  CZ  180 layers   54 qubits 18 shared with fold 18  accept True  max|placed - exact| 1.2e-14
+ibm_marrakesh 4x2x2 t3 line own place        r0 0 c0 1  CZ  180 layers   54 qubits 18 shared with fold  1  accept True  max|placed - exact| 1.2e-14
+ibm_marrakesh 4x2x2 t4 fold v3.1             r0 1 c0 8  CZ  432 layers  109 qubits 18 shared with fold 18  accept True  max|placed - exact| 4.2e-15
+ibm_marrakesh 4x2x2 t4 line at fold's place  r0 1 c0 8  CZ  240 layers   72 qubits 18 shared with fold 18  accept True  max|placed - exact| 1.6e-14
+ibm_marrakesh 4x2x2 t4 line own place        r0 0 c0 1  CZ  240 layers   72 qubits 18 shared with fold  1  accept True  max|placed - exact| 1.6e-14
+ibm_marrakesh 4x3x2 t1 fold v3.1             r0 0 c0 8  CZ  234 layers   33 qubits 28 shared with fold 28  accept True  max|placed - exact| 2.2e-15
+ibm_marrakesh 4x3x2 t1 line at fold's place  r0 0 c0 8  CZ  126 layers   30 qubits 28 shared with fold 28  accept True  max|placed - exact| 3.4e-15
+ibm_marrakesh 4x3x2 t1 line own place        r0 0 c0 7  CZ  126 layers   30 qubits 28 shared with fold 24  accept True  max|placed - exact| 3.6e-15
