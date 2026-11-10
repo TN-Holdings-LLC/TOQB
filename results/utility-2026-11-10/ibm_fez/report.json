@@ -1,0 +1,95 @@
+{
+ "device": "ibm_fez",
+ "embeddings": 2,
+ "observables": {
+  "z106_t4": {
+   "embedding": 0,
+   "cone_qubits": 17,
+   "cz_per_circuit": 564,
+   "circuits": 17,
+   "measured": {
+    "0": 103
+   },
+   "mirror_cz": 1128
+  },
+  "w10_t5": {
+   "embedding": 0,
+   "cone_qubits": 37,
+   "cz_per_circuit": 705,
+   "circuits": 17,
+   "measured": {
+    "0": 7,
+    "1": 6,
+    "2": 3,
+    "3": 2,
+    "4": 16,
+    "5": 25,
+    "6": 24,
+    "7": 23,
+    "8": 22,
+    "9": 21
+   },
+   "mirror_cz": 1410
+  },
+  "w17_t5": {
+   "embedding": 1,
+   "cone_qubits": 68,
+   "cz_per_circuit": 690,
+   "circuits": 17,
+   "measured": {
+    "0": 61,
+    "1": 62,
+    "2": 64,
+    "3": 65,
+    "4": 66,
+    "5": 76,
+    "6": 81,
+    "7": 82,
+    "8": 83,
+    "9": 87,
+    "10": 88,
+    "11": 97,
+    "12": 101,
+    "13": 105,
+    "14": 106,
+    "15": 116,
+    "16": 117
+   },
+   "mirror_cz": 1380
+  },
+  "w17b_t5x": {
+   "embedding": 1,
+   "cone_qubits": 68,
+   "cz_per_circuit": 690,
+   "circuits": 17,
+   "measured": {
+    "0": 61,
+    "1": 62,
+    "2": 64,
+    "3": 65,
+    "4": 66,
+    "5": 76,
+    "6": 81,
+    "7": 82,
+    "8": 83,
+    "9": 87,
+    "10": 88,
+    "11": 97,
+    "12": 101,
+    "13": 105,
+    "14": 106,
+    "15": 116,
+    "16": 117
+   },
+   "mirror_cz": 1380
+  }
+ },
+ "circuits": 80,
+ "qpu_seconds_model": 92.3,
+ "gate_hash": {
+  "circuits": 80,
+  "gate_sha256": "562beab45826102104875989ce423e46bf0e84e14e3395e197144988c7bf6ac5"
+ },
+ "answers_sha256": "92a989dfcf7b445a7043ee01fb76b97b20a0721b2c5f596ef20aa2f6cf2b0c9d",
+ "shots": 4000
+}

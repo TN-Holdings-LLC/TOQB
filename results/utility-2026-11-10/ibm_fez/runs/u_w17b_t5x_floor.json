@@ -1,0 +1,59 @@
+{
+ "kind": "qclf",
+ "psfos_role": "floor",
+ "points": [
+  {
+   "input": "k08",
+   "setting": "w17b_t5x"
+  }
+ ],
+ "shots": 4000,
+ "valid": true,
+ "export": {
+  "qpy": "u_w17b_t5x_floor.qpy",
+  "circuits": 1,
+  "sha256": "5bf86f5a1762de302d4368fd75556fc7e4877aeb510cbbef1dbc1ad7c938ac37"
+ },
+ "observable": "w17b_t5x",
+ "embedding": 1,
+ "eagle_support": [
+  37,
+  38,
+  40,
+  41,
+  42,
+  52,
+  56,
+  57,
+  58,
+  62,
+  63,
+  72,
+  75,
+  79,
+  80,
+  90,
+  91
+ ],
+ "measured_qubits": {
+  "0": 61,
+  "1": 62,
+  "2": 64,
+  "3": 65,
+  "4": 66,
+  "5": 76,
+  "6": 81,
+  "7": 82,
+  "8": 83,
+  "9": 87,
+  "10": 88,
+  "11": 97,
+  "12": 101,
+  "13": 105,
+  "14": 106,
+  "15": 116,
+  "16": 117
+ },
+ "t": 5,
+ "extra_rx": true
+}

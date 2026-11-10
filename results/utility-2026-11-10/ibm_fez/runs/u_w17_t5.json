@@ -1,0 +1,123 @@
+{
+ "kind": "qclf",
+ "psfos_role": "user",
+ "points": [
+  {
+   "input": "k00",
+   "setting": "w17_t5"
+  },
+  {
+   "input": "k01",
+   "setting": "w17_t5"
+  },
+  {
+   "input": "k02",
+   "setting": "w17_t5"
+  },
+  {
+   "input": "k03",
+   "setting": "w17_t5"
+  },
+  {
+   "input": "k04",
+   "setting": "w17_t5"
+  },
+  {
+   "input": "k05",
+   "setting": "w17_t5"
+  },
+  {
+   "input": "k06",
+   "setting": "w17_t5"
+  },
+  {
+   "input": "k07",
+   "setting": "w17_t5"
+  },
+  {
+   "input": "k08",
+   "setting": "w17_t5"
+  },
+  {
+   "input": "k09",
+   "setting": "w17_t5"
+  },
+  {
+   "input": "k10",
+   "setting": "w17_t5"
+  },
+  {
+   "input": "k11",
+   "setting": "w17_t5"
+  },
+  {
+   "input": "k12",
+   "setting": "w17_t5"
+  },
+  {
+   "input": "k13",
+   "setting": "w17_t5"
+  },
+  {
+   "input": "k14",
+   "setting": "w17_t5"
+  },
+  {
+   "input": "k15",
+   "setting": "w17_t5"
+  },
+  {
+   "input": "k16",
+   "setting": "w17_t5"
+  }
+ ],
+ "shots": 4000,
+ "valid": true,
+ "export": {
+  "qpy": "u_w17_t5.qpy",
+  "circuits": 17,
+  "sha256": "eab8996b3cc60bd149099251e850709b3cbe4d8337bfdfacf058822ca92b02d7"
+ },
+ "observable": "w17_t5",
+ "embedding": 1,
+ "eagle_support": [
+  37,
+  38,
+  40,
+  41,
+  42,
+  52,
+  56,
+  57,
+  58,
+  62,
+  63,
+  72,
+  75,
+  79,
+  80,
+  90,
+  91
+ ],
+ "measured_qubits": {
+  "0": 61,
+  "1": 62,
+  "2": 64,
+  "3": 65,
+  "4": 66,
+  "5": 76,
+  "6": 81,
+  "7": 82,
+  "8": 83,
+  "9": 87,
+  "10": 88,
+  "11": 97,
+  "12": 101,
+  "13": 105,
+  "14": 106,
+  "15": 116,
+  "16": 117
+ },
+ "t": 5,
+ "extra_rx": false
+}

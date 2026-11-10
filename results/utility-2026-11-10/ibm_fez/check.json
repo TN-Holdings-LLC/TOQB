@@ -1,0 +1,50 @@
+{
+ "points": {
+  "z106_t4_k00_clifford": {
+   "z": 1.0,
+   "exact": 0.999999999999968,
+   "ok": true
+  },
+  "z106_t4_k16_clifford": {
+   "z": 0.07,
+   "exact": 3.566827076226481e-16,
+   "ok": true
+  },
+  "z106_t4_cone": {
+   "cone": 17,
+   "worst": 1.1501910535116622e-13,
+   "ok": true
+  },
+  "w10_t5_k00_clifford": {
+   "z": 0.03,
+   "exact": 0.0,
+   "ok": true
+  },
+  "w10_t5_k16_clifford": {
+   "z": 1.0,
+   "exact": 1.0,
+   "ok": true
+  },
+  "w17_t5_k00_clifford": {
+   "z": -0.01,
+   "exact": 0.0,
+   "ok": true
+  },
+  "w17_t5_k16_clifford": {
+   "z": -1.0,
+   "exact": -0.9999999999999981,
+   "ok": true
+  },
+  "w17b_t5x_k00_clifford": {
+   "z": 0.0,
+   "exact": 0.0,
+   "ok": true
+  },
+  "w17b_t5x_k16_clifford": {
+   "z": -1.0,
+   "exact": -0.9999999999999998,
+   "ok": true
+  }
+ },
+ "ok": true
+}
