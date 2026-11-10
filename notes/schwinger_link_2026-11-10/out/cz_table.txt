@@ -1,0 +1,8 @@
+| N | qubits (link) | CZ per step (link) | CZ per qubit per step (link) | qubits (swap network) | CZ per step (swap network) | CZ per qubit per step (swap network) |
+|---|---|---|---|---|---|---|
+| 6 | 11 | 40 | 3.64 | 6 | 45 | 8 |
+| 8 | 15 | 56 | 3.73 | 8 | 84 | 10 |
+| 10 | 19 | 72 | 3.79 | 10 | 135 | 14 |
+| 12 | 23 | 88 | 3.83 | 12 | 198 | 16 |
+| 14 | 27 | 104 | 3.85 | 14 | 273 | 20 |
+| 16 | 31 | 120 | 3.87 | 16 | 360 | 22 |
