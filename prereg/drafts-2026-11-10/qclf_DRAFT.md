@@ -3,8 +3,9 @@
 Home, 2026-11-10. From the workplace's blueprint of 2026-11-10 and the owner's decisions of 2026-11-10 (09:56 and
 10:09 JST): arm B is SABRE; the bands are reported beside, not judged; 210 s per job accepted, shots and points as
 10-30; arm A fold:rule as 10-30; new seeds so that the labels can be sealed; psf-os's own checks in the job.
-Inventory of 10-30: `notes/qclf_2026-11-10/stageA.md`. Nothing here is fixed until the owner's go; the depth L and
-the answers' hash are filled in when fixed.
+Inventory of 10-30: `notes/qclf_2026-11-10/stageA.md`. The owner's decisions of 10:54 JST settle the open points
+(L by the median, the stop rule, one task for the series). Still to fill in before fixing: the L* measurement and
+its result, L, and the answers' hash.
 
 ## Question
 
@@ -18,15 +19,15 @@ map). On 10-30 kingston this pair gave 0.810 against 0.750 at S = 250 (p 0.067, 
 - Features <X_q>, <Y_q>, <Z_q> (60, three circuits per input); least squares with intercept, sign.
 - Inputs x uniform in [-1, 1]^20, public seed 20261110, pool 520; teacher w from a secret seed (written only in the
   sealed answers); centred labels; margin cut 0.25 sd; 128 train, 200 test; no redraw.
-- One task for the whole series. The answers (seed, w, features, all labels) are sealed by sha256 at fixing; each
+- One task for the whole series (owner, 2026-11-10 10:54 JST: inputs and teacher seed fixed for the series). The answers (seed, w, features, all labels) are sealed by sha256 at fixing; each
   run is scored locally with them and its verdict committed; the answers are released after the last run's verdict.
 
 ## Depth L
 
 By 10-30's formula, L = a b ln(a / b) / (2 (a - b)) with a = L*(fold:rule), b = L*(SABRE), rounded, from a new L*
 measurement (declared separately; VS Claude is building it, 10-29's P1 shortened: n = 20, the two arms, L 24 / 50 /
-100). **Open for the owner:** which device's L* sets L if they differ (proposal: the median over the devices
-measured), and L is then fixed for the whole series.
+100). **Owner, 2026-11-10 10:54 JST (02:54 CET):** L is the median over the devices measured of each device's
+formula L (rounded), and it is fixed for the whole series.
 
 Why: with 10-30's L = 19, if L* has doubled since, the predicted S = 250 gap falls from 0.062 to 0.023 (home's
 computation by the declared model, `notes/qclf_2026-11-10`), below one test-set SE.
@@ -45,8 +46,8 @@ computation by the declared model, `notes/qclf_2026-11-10`), below one test-set 
 ## Devices and days
 
 The daily record's rule (right before the fetch: pending jobs of ibm_marrakesh, ibm_fez, ibm_kingston; at most 10
-pending, else the fewest). One job per device-day. The series is at least 3 devices x 2 days (6 jobs). **Open:** the
-exact stop rule (proposal: the first 6 device-days that pass rule G, at most one per device per day).
+pending, else the fewest). **Owner, 2026-11-10 10:54 JST:** the series is the first 6 jobs that pass rule G, at most
+one per device per day. A job that is not run for any reason (rule G, the noiseless check) does not count.
 
 ## Verdicts per job (gpu/qclf_score.py)
 
