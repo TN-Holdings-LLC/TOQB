@@ -1,0 +1,121 @@
+### examples/cards/heisenberg_4x2x2_heisE_line_kingston_c0_t4.json
+{
+ "name": "heisE line candidate 0 (r0 1, c0 0) t 4 on ibm_kingston",
+ "sites": 16,
+ "edges": 28,
+ "terms": 84,
+ "groups": {
+  "b4_6": 3,
+  "b12_14": 3,
+  "b8_12": 3,
+  "b10_14": 3,
+  "b8_10": 3,
+  "b12_13": 3,
+  "b14_15": 3,
+  "b5_9": 3,
+  "b7_11": 3,
+  "b8_9": 3,
+  "b10_11": 3,
+  "b9_11": 3,
+  "b9_13": 3,
+  "b11_15": 3,
+  "b13_15": 3,
+  "b0_4": 3,
+  "b2_6": 3,
+  "b0_2": 3,
+  "b4_5": 3,
+  "b6_7": 3,
+  "b4_8": 3,
+  "b6_10": 3,
+  "b0_1": 3,
+  "b2_3": 3,
+  "b1_3": 3,
+  "b1_5": 3,
+  "b3_7": 3,
+  "b5_7": 3
+ },
+ "dt": 0.05,
+ "steps": 4,
+ "orders": 4,
+ "initial": "bits",
+ "observables": 16,
+exit 0
+### examples/cards/heisenberg_4x2x2_textbook.json
+{
+ "name": "Heisenberg XXX 4x2x2, dt 0.05, t 1, Neel, textbook order",
+ "sites": 16,
+ "edges": 28,
+ "terms": 84,
+ "groups": {
+  "ax0p0": 24,
+  "ax1p0": 24,
+  "ax2p0": 24,
+  "ax0p1": 12
+ },
+ "dt": 0.05,
+ "steps": 1,
+ "orders": 1,
+ "initial": "bits",
+ "observables": 16,
+ "settings": [
+  "ZZZZZZZZZZZZZZZZ"
+ ],
+ "conserved": []
+}
+exit 0
+### examples/cards/kicked_ising_4x2x2.json
+{
+ "name": "kicked Ising 4x2x2, theta 0.6, t 1",
+ "sites": 16,
+ "edges": 28,
+ "terms": 44,
+ "groups": {
+  "zz": 28,
+  "x": 16
+ },
+ "dt": 1.0,
+ "steps": 1,
+ "orders": 1,
+ "initial": "bits",
+ "observables": 16,
+ "settings": [
+  "ZZZZZZZZZZZZZZZZ"
+ ],
+ "conserved": []
+}
+exit 0
+### examples/cards/refused_example.json
+REFUSED
+  - size: 32 sites; exact answers by statevector only up to 28
+  - hamiltonian term 2: ZZ on sites [0, 3] is not on an edge of the lattice
+  - hamiltonian term 3: coefficient '0.2+0.1j' is not a real number (H must be Hermitian)
+  - group 'zz': terms ZZ[0, 8] and X[0] do not commute (a group's terms must commute)
+  - time.order: unknown group(s) ['y']
+  - initial: bits must be a string of 32 characters 0/1 (character i = site i)
+exit 0
+### examples/cards/schwinger_N6_M1.json
+{
+ "name": "Schwinger N 6, M1, dt 0.25, 2 step(s)",
+ "sites": 6,
+ "edges": 15,
+ "terms": 26,
+ "groups": {
+  "z": 6,
+  "layer1": 8,
+  "layer2": 1,
+  "layer3": 2,
+  "layer4": 1,
+  "layer5": 2,
+  "layer6": 6
+ },
+ "dt": 0.25,
+ "steps": 2,
+ "orders": 2,
+ "initial": "bits",
+ "observables": 6,
+ "settings": [
+  "ZZZZZZ"
+ ],
+ "conserved": []
+}
+exit 0

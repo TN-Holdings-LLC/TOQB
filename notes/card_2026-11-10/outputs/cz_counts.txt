@@ -1,0 +1,3 @@
+kicked Ising 4x2x2, 1 step: card CZ 28 (28 edges, one CZ each at -pi/4)
+Heisenberg 4x2x2, 1 step: card CZ 168 (28 bonds x 3 terms x 2 CZ; heis3d's bond block is at most 3 CZ by KAK)
+Schwinger N 6, 1 step: card CZ 40 ; schwinger.trotter CX 45 (swap network, 3 CX per pair, routing included)

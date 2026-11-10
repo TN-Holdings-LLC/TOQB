@@ -1,0 +1,2 @@
+21-site chain, 2 steps, 23 observables: max |aer - statevector| 1.8e-13; aer 2.7 s, statevector 65.3 s
+check: [{'name': 'total Z', 'terms': 21, 'comm_H': 0.0, 'kept_by_every_group': False, 'groups_not_keeping': ['xx', 'yy']}]

@@ -1,0 +1,64 @@
+== A kicked Ising 4x2x2, theta 0.6 (psf_os.grid3d.exact)
+t 1: 16 sites, max |card - grid3d| 1.4e-13  MATCH
+t 2: 16 sites, max |card - grid3d| 1.0e-14  MATCH
+t 3: 16 sites, max |card - grid3d| 7.5e-15  MATCH
+t 4: 16 sites, max |card - grid3d| 3.1e-15  MATCH
+== B1 Heisenberg XXX 4x2x2, dt 0.05, Neel, textbook order (heis3d.exact_from_log of the same bond order)
+t 1: 28 bonds, 6 groups, max |card - heis3d| 6.7e-14  MATCH
+t 2: 56 bonds, 6 groups, max |card - heis3d| 1.1e-13  MATCH
+t 3: 84 bonds, 6 groups, max |card - heis3d| 1.2e-13  MATCH
+t 4: 112 bonds, 6 groups, max |card - heis3d| 9.4e-14  MATCH
+== B2 heisE layouts on the 11-08 ibm_kingston record (ibm_kingston), dt 0.05: per-step orders from the bond logs; against heis3d.exact_from_log and the released table heis_answers_Ek.json
+h3d0_t1 (old, r0 1, c0 0): 28 bonds, 1 distinct step order(s); card - heis3d 6.5e-14, card - table 6.5e-14  MATCH; with one order (step 1's) for every step 6.5e-14
+h3d0_t2 (old, r0 1, c0 0): 56 bonds, 2 distinct step order(s); card - heis3d 1.1e-13, card - table 1.1e-13  MATCH; with one order (step 1's) for every step 1.2e-02
+h3d0_t3 (old, r0 1, c0 0): 84 bonds, 2 distinct step order(s); card - heis3d 1.2e-13, card - table 1.2e-13  MATCH; with one order (step 1's) for every step 8.8e-03
+h3d0_t4 (old, r0 1, c0 0): 112 bonds, 2 distinct step order(s); card - heis3d 9.5e-14, card - table 9.5e-14  MATCH; with one order (step 1's) for every step 1.3e-02
+h3c0_t1 (carry, r0 1, c0 0): 28 bonds, 1 distinct step order(s); card - heis3d 6.6e-14, card - table 6.6e-14  MATCH; with one order (step 1's) for every step 6.6e-14
+h3c0_t2 (carry, r0 1, c0 0): 56 bonds, 2 distinct step order(s); card - heis3d 1.1e-13, card - table 1.1e-13  MATCH; with one order (step 1's) for every step 1.2e-02
+h3c0_t3 (carry, r0 1, c0 0): 84 bonds, 2 distinct step order(s); card - heis3d 1.2e-13, card - table 1.2e-13  MATCH; with one order (step 1's) for every step 1.2e-02
+h3c0_t4 (carry, r0 1, c0 0): 112 bonds, 2 distinct step order(s); card - heis3d 9.8e-14, card - table 9.8e-14  MATCH; with one order (step 1's) for every step 2.2e-02
+h3l0_t1 (line, r0 1, c0 0): 28 bonds, 1 distinct step order(s); card - heis3d 6.5e-14, card - table 6.5e-14  MATCH; with one order (step 1's) for every step 6.5e-14
+h3l0_t2 (line, r0 1, c0 0): 56 bonds, 2 distinct step order(s); card - heis3d 1.1e-13, card - table 1.1e-13  MATCH; with one order (step 1's) for every step 1.4e-02
+h3l0_t3 (line, r0 1, c0 0): 84 bonds, 2 distinct step order(s); card - heis3d 1.2e-13, card - table 1.2e-13  MATCH; with one order (step 1's) for every step 1.8e-02
+h3l0_t4 (line, r0 1, c0 0): 112 bonds, 2 distinct step order(s); card - heis3d 9.5e-14, card - table 9.5e-14  MATCH; with one order (step 1's) for every step 2.0e-02
+h3d1_t1 (old, r0 1, c0 4): 28 bonds, 1 distinct step order(s); card - heis3d 6.5e-14, card - table 6.5e-14  MATCH; with one order (step 1's) for every step 6.5e-14
+h3d1_t2 (old, r0 1, c0 4): 56 bonds, 2 distinct step order(s); card - heis3d 1.1e-13, card - table 1.1e-13  MATCH; with one order (step 1's) for every step 1.2e-02
+h3d1_t3 (old, r0 1, c0 4): 84 bonds, 2 distinct step order(s); card - heis3d 1.2e-13, card - table 1.2e-13  MATCH; with one order (step 1's) for every step 8.8e-03
+h3d1_t4 (old, r0 1, c0 4): 112 bonds, 2 distinct step order(s); card - heis3d 9.5e-14, card - table 9.5e-14  MATCH; with one order (step 1's) for every step 1.3e-02
+h3c1_t1 (carry, r0 1, c0 4): 28 bonds, 1 distinct step order(s); card - heis3d 6.6e-14, card - table 6.6e-14  MATCH; with one order (step 1's) for every step 6.6e-14
+h3c1_t2 (carry, r0 1, c0 4): 56 bonds, 2 distinct step order(s); card - heis3d 1.1e-13, card - table 1.1e-13  MATCH; with one order (step 1's) for every step 1.2e-02
+h3c1_t3 (carry, r0 1, c0 4): 84 bonds, 2 distinct step order(s); card - heis3d 1.2e-13, card - table 1.2e-13  MATCH; with one order (step 1's) for every step 1.2e-02
+h3c1_t4 (carry, r0 1, c0 4): 112 bonds, 2 distinct step order(s); card - heis3d 9.8e-14, card - table 9.8e-14  MATCH; with one order (step 1's) for every step 2.2e-02
+h3l1_t1 (line, r0 1, c0 4): 28 bonds, 1 distinct step order(s); card - heis3d 6.5e-14, card - table 6.5e-14  MATCH; with one order (step 1's) for every step 6.5e-14
+h3l1_t2 (line, r0 1, c0 4): 56 bonds, 2 distinct step order(s); card - heis3d 1.1e-13, card - table 1.1e-13  MATCH; with one order (step 1's) for every step 1.4e-02
+h3l1_t3 (line, r0 1, c0 4): 84 bonds, 2 distinct step order(s); card - heis3d 1.2e-13, card - table 1.2e-13  MATCH; with one order (step 1's) for every step 1.8e-02
+h3l1_t4 (line, r0 1, c0 4): 112 bonds, 2 distinct step order(s); card - heis3d 9.5e-14, card - table 9.5e-14  MATCH; with one order (step 1's) for every step 2.0e-02
+h3d2_t1 (old, r0 1, c0 8): 28 bonds, 1 distinct step order(s); card - heis3d 6.5e-14, card - table 6.5e-14  MATCH; with one order (step 1's) for every step 6.5e-14
+h3d2_t2 (old, r0 1, c0 8): 56 bonds, 2 distinct step order(s); card - heis3d 1.1e-13, card - table 1.1e-13  MATCH; with one order (step 1's) for every step 1.2e-02
+h3d2_t3 (old, r0 1, c0 8): 84 bonds, 2 distinct step order(s); card - heis3d 1.2e-13, card - table 1.2e-13  MATCH; with one order (step 1's) for every step 8.8e-03
+h3d2_t4 (old, r0 1, c0 8): 112 bonds, 2 distinct step order(s); card - heis3d 9.5e-14, card - table 9.5e-14  MATCH; with one order (step 1's) for every step 1.3e-02
+h3c2_t1 (carry, r0 1, c0 8): 28 bonds, 1 distinct step order(s); card - heis3d 6.6e-14, card - table 6.6e-14  MATCH; with one order (step 1's) for every step 6.6e-14
+h3c2_t2 (carry, r0 1, c0 8): 56 bonds, 2 distinct step order(s); card - heis3d 1.1e-13, card - table 1.1e-13  MATCH; with one order (step 1's) for every step 1.2e-02
+h3c2_t3 (carry, r0 1, c0 8): 84 bonds, 2 distinct step order(s); card - heis3d 1.2e-13, card - table 1.2e-13  MATCH; with one order (step 1's) for every step 1.2e-02
+h3c2_t4 (carry, r0 1, c0 8): 112 bonds, 2 distinct step order(s); card - heis3d 9.8e-14, card - table 9.8e-14  MATCH; with one order (step 1's) for every step 2.2e-02
+h3l2_t1 (line, r0 1, c0 8): 28 bonds, 1 distinct step order(s); card - heis3d 6.5e-14, card - table 6.5e-14  MATCH; with one order (step 1's) for every step 6.5e-14
+h3l2_t2 (line, r0 1, c0 8): 56 bonds, 2 distinct step order(s); card - heis3d 1.1e-13, card - table 1.1e-13  MATCH; with one order (step 1's) for every step 1.4e-02
+h3l2_t3 (line, r0 1, c0 8): 84 bonds, 2 distinct step order(s); card - heis3d 1.2e-13, card - table 1.2e-13  MATCH; with one order (step 1's) for every step 1.8e-02
+h3l2_t4 (line, r0 1, c0 8): 112 bonds, 2 distinct step order(s); card - heis3d 9.5e-14, card - table 9.5e-14  MATCH; with one order (step 1's) for every step 2.0e-02
+h3d3_t1 (old, r0 3, c0 0): 28 bonds, 1 distinct step order(s); card - heis3d 6.5e-14, card - table 6.5e-14  MATCH; with one order (step 1's) for every step 6.5e-14
+h3d3_t2 (old, r0 3, c0 0): 56 bonds, 2 distinct step order(s); card - heis3d 1.1e-13, card - table 1.1e-13  MATCH; with one order (step 1's) for every step 1.2e-02
+h3d3_t3 (old, r0 3, c0 0): 84 bonds, 2 distinct step order(s); card - heis3d 1.2e-13, card - table 1.2e-13  MATCH; with one order (step 1's) for every step 8.8e-03
+h3d3_t4 (old, r0 3, c0 0): 112 bonds, 2 distinct step order(s); card - heis3d 9.5e-14, card - table 9.5e-14  MATCH; with one order (step 1's) for every step 1.3e-02
+h3c3_t1 (carry, r0 3, c0 0): 28 bonds, 1 distinct step order(s); card - heis3d 6.6e-14, card - table 6.6e-14  MATCH; with one order (step 1's) for every step 6.6e-14
+h3c3_t2 (carry, r0 3, c0 0): 56 bonds, 2 distinct step order(s); card - heis3d 1.1e-13, card - table 1.1e-13  MATCH; with one order (step 1's) for every step 1.2e-02
+h3c3_t3 (carry, r0 3, c0 0): 84 bonds, 2 distinct step order(s); card - heis3d 1.2e-13, card - table 1.2e-13  MATCH; with one order (step 1's) for every step 1.2e-02
+h3c3_t4 (carry, r0 3, c0 0): 112 bonds, 2 distinct step order(s); card - heis3d 9.8e-14, card - table 9.8e-14  MATCH; with one order (step 1's) for every step 2.2e-02
+h3l3_t1 (line, r0 3, c0 0): 28 bonds, 1 distinct step order(s); card - heis3d 6.5e-14, card - table 6.5e-14  MATCH; with one order (step 1's) for every step 6.5e-14
+h3l3_t2 (line, r0 3, c0 0): 56 bonds, 2 distinct step order(s); card - heis3d 1.1e-13, card - table 1.1e-13  MATCH; with one order (step 1's) for every step 1.4e-02
+h3l3_t3 (line, r0 3, c0 0): 84 bonds, 2 distinct step order(s); card - heis3d 1.2e-13, card - table 1.2e-13  MATCH; with one order (step 1's) for every step 1.8e-02
+h3l3_t4 (line, r0 3, c0 0): 112 bonds, 2 distinct step order(s); card - heis3d 9.5e-14, card - table 9.5e-14  MATCH; with one order (step 1's) for every step 2.0e-02
+B2: distinct step orders per layout over t 1-4: {'old': [1, 2], 'carry': [1, 2], 'line': [1, 2]}; one order for every step: worst 2.2e-02
+== C Schwinger N 6, M1, dt 0.25 (schwinger.z_sites of schwinger.trotter's circuit)
+steps 1: 26 terms, groups {'z': 6, 'layer1': 8, 'layer2': 1, 'layer3': 2, 'layer4': 1, 'layer5': 2, 'layer6': 6}; max |card - schwinger| 1.7e-14  MATCH; with one order for every step 1.7e-14
+steps 2: 26 terms, groups {'z': 6, 'layer1': 8, 'layer2': 1, 'layer3': 2, 'layer4': 1, 'layer5': 2, 'layer6': 6}; max |card - schwinger| 2.3e-14  MATCH; with one order for every step 5.4e-02
+== ACCEPTANCE: A MATCH (worst 1.4e-13), B MATCH (worst 1.2e-13), C MATCH (worst 2.3e-14); tolerance 1e-10

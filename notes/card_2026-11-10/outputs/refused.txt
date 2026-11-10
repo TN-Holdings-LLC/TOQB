@@ -1,0 +1,13 @@
+### python -m psf_os.card check examples/cards/refused_example.json
+REFUSED
+  - size: 32 sites; exact answers by statevector only up to 28
+  - hamiltonian term 2: ZZ on sites [0, 3] is not on an edge of the lattice
+  - hamiltonian term 3: coefficient '0.2+0.1j' is not a real number (H must be Hermitian)
+  - group 'zz': terms ZZ[0, 8] and X[0] do not commute (a group's terms must commute)
+  - time.order: unknown group(s) ['y']
+  - initial: bits must be a string of 32 characters 0/1 (character i = site i)
+(exit 2)
+### python -m psf_os.card check examples/cards/refused_conserved.json
+REFUSED
+  - conserved 'total X': does not commute with H (largest coefficient of [H, Q] 2)
+(exit 2)
