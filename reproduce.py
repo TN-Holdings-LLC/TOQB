@@ -79,6 +79,13 @@ RESULTS = {
     "lc3d-marrakesh-2026-11-09": ("results/lc3d-2026-11-09", ["ibm_marrakesh", "answers"],
                                   ["gpu/lc3d_score.py", "{T}/ibm_marrakesh", "{T}/answers/lc_answers_marrakesh.json"],
                                   "ibm_marrakesh/scores.json"),
+    # added 2026-11-10 for paper 8: the N = 91 second run (ruler in every job) and the Ising line against fold
+    "du91r-fez-2026-11-10": ("results/night-2026-11-10/du91r", ["ibm_fez", "answers"],
+                             ["gpu/du91r_score.py", "{T}/ibm_fez", "{T}/answers/du91r_fez.json"],
+                             "ibm_fez/scores.json"),
+    "isingL-fez-2026-11-10": ("results/night-2026-11-10/isingL", ["ibm_fez", "answers"],
+                              ["gpu/isingL_score.py", "{T}/ibm_fez", "{T}/answers/isingL_fez.json"],
+                              "ibm_fez/scores.json"),
 }
 
 
