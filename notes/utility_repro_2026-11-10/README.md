@@ -48,3 +48,16 @@ some device-days; Z_62 at 20 steps is not (its cone is the whole device), unless
   stabilizer method at any depth.
 - Raw expectation: a weight-10 product loses signal roughly as the product of ten single-site retentions, so it is
   the hardest raw test; the shots needed follow from the mirrors.
+
+## Exact answers, measured cost (home, 2026-11-10 afternoon)
+
+`gpu/utility_exact.py`: (1) exact Pauli propagation (no truncation), checked against statevectors on cones up to
+12 qubits (4e-15); it reaches weight-10 at 3 steps (152k terms) but runs out of memory at 4. (2) Exact tensor-network
+contraction (quimb, cotengra) of the circuit on the observable's ball, the observable as a dense operator on its
+qubits: equal to the propagation to 1.7e-14 where both run. Measured on this 2-CPU container:
+- Z_106 at 4 steps (17-qubit ball), 17 values of theta_h: 4 s in all.
+- weight-10 at 5 steps (37-qubit ball), 17 values: 38 s in all; at theta_h = pi/2 it gives +1 to 8 digits (the
+  Clifford point the paper verifies), at theta_h = 0 it gives 0.
+- weight-17 (68-qubit ball): the dense operator does not fit (16 GiB); the one-network form (`tn_value_product`,
+  untested) did not finish within 10 min here. A pod with more memory, with a hard time cap, if weight-17 is wanted.
+The values are not written here: they are sealed with a declaration before any run.
