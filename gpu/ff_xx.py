@@ -66,7 +66,19 @@ _GATE = {}
 def xxyy(qc, theta, a, b):
     """exp(-i theta (XX + YY) / 2) on (a, b) with two CZ: Qiskit's XXPlusYYGate(2 theta), decomposed once per theta
     into cz / rz / sx / x (KAK: one Weyl coordinate is zero, so two CZ suffice); checked against the matrix in
-    `check`."""
+    `check`. At theta = pi/2 (the Clifford point: the ruler, every <Z_i> = +-1) a Clifford-only form is used, so the
+    compiled circuit can be checked at full size by the stabilizer method: Sdg Sdg, H(a), CX(a,b), CX(b,a), H(b),
+    each CX as H CZ H (two CZ)."""
+    if abs(theta - np.pi / 2) < 1e-12:
+        qc.sdg(a)
+        qc.sdg(b)
+        qc.h(a)
+        for c, t in ((a, b), (b, a)):
+            qc.h(t)
+            qc.cz(c, t)
+            qc.h(t)
+        qc.h(b)
+        return
     if theta not in _GATE:
         from qiskit import QuantumCircuit, transpile
         from qiskit.circuit.library import XXPlusYYGate
@@ -96,12 +108,12 @@ def gate_error(theta):
 
 def check():
     from qiskit.quantum_info import Statevector
-    worst_gate = max(gate_error(t) for t in (0.1, 0.37, 0.785, 1.3))
+    worst_gate = max(gate_error(t) for t in (0.1, 0.37, 0.785, 1.3, np.pi / 2))
     print(f"two-qubit gate against exp(-i theta (XX+YY)/2): worst {worst_gate:.2e}")
     worst = 0.0
     for N in (4, 7, 10, 14):
         for steps in (1, 3, 6):
-            for theta in (0.2, 0.6):
+            for theta in (0.2, 0.6, np.pi / 2):
                 qc = circuit(N, steps, theta, measure=False)
                 sv = Statevector(qc)
                 z_sv = np.array([1 - 2 * sv.probabilities([q])[1] for q in range(N)])
