@@ -1,0 +1,3 @@
+# Never convert line endings: the builders check sha256 of committed JSON and QPY files (VS Claude, 2026-11-10:
+# a Windows clone with automatic conversion changed the hashes and stopped the builders).
+* -text
