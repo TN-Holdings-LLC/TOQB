@@ -1,0 +1,393 @@
+{
+ "device": "ibm_fez",
+ "n": 91,
+ "ruler_every_job": true,
+ "shape": "C",
+ "copy": {
+  "drow": 0,
+  "dcol": 0
+ },
+ "chain": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  18,
+  31,
+  30,
+  29,
+  28,
+  27,
+  26,
+  25,
+  24,
+  23,
+  22,
+  21,
+  36,
+  41,
+  42,
+  43,
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51,
+  52,
+  53,
+  54,
+  55,
+  59,
+  75,
+  74,
+  73,
+  79,
+  93,
+  94,
+  95,
+  99,
+  115,
+  114,
+  113,
+  112,
+  111,
+  110,
+  109,
+  108,
+  107,
+  106,
+  105,
+  104,
+  103,
+  102,
+  101,
+  116,
+  121,
+  122,
+  123,
+  136,
+  143,
+  144,
+  145,
+  146,
+  147,
+  137,
+  127,
+  128,
+  129,
+  130,
+  131,
+  132,
+  133,
+  134,
+  135,
+  139,
+  155,
+  154,
+  153,
+  152,
+  151,
+  150
+ ],
+ "user_chain": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  18,
+  31,
+  30,
+  29,
+  28,
+  27,
+  26,
+  25,
+  24,
+  23,
+  22,
+  21,
+  36,
+  41,
+  42,
+  43,
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51,
+  52,
+  53,
+  54,
+  55,
+  59,
+  75,
+  74,
+  73,
+  79,
+  93,
+  94,
+  95,
+  99,
+  115,
+  114,
+  113,
+  112,
+  111,
+  110,
+  109,
+  108,
+  107,
+  106,
+  105,
+  104,
+  103,
+  102,
+  101,
+  116,
+  121,
+  122,
+  123,
+  136,
+  143,
+  144,
+  145,
+  146,
+  147,
+  137,
+  127,
+  128,
+  129,
+  130,
+  131,
+  132,
+  133,
+  134,
+  135,
+  139,
+  155,
+  154,
+  153,
+  152,
+  151,
+  150
+ ],
+ "rule_c": {
+  "start": [
+   1,
+   0,
+   0
+  ],
+  "steps": 153,
+  "starts_tried": 1,
+  "budget": 200000,
+  "suspect": true
+ },
+ "passed_over": [
+  {
+   "shape": "S1",
+   "why": "no copy of the pattern qualifies: [{'drow': 0, 'dcol': 0, 'why': ['qubit 32 suspect', 'qubit 33 suspect', 'qubit 72 failed', 'coupler (32, 33) not working']}, {'drow': 2, 'dcol': 0, 'why': ['qubit 72 failed', 'qubit 148 failed', 'qubit 149 failed']}]"
+  },
+  {
+   "shape": "S2",
+   "why": "no copy of the pattern qualifies: [{'drow': 0, 'dcol': 0, 'why': ['qubit 72 failed', 'qubit 148 failed', 'qubit 149 failed']}]"
+  },
+  {
+   "shape": "S3",
+   "why": "no copy of the pattern qualifies: [{'drow': 0, 'dcol': 0, 'why': ['qubit 148 failed', 'qubit 149 failed']}, {'drow': 0, 'dcol': 4, 'why': ['qubit 32 suspect', 'qubit 33 suspect', 'qubit 72 failed', 'qubit 149 failed', 'coupler (32, 33) not working']}]"
+  },
+  {
+   "shape": "S4",
+   "why": "no copy of the pattern qualifies: [{'drow': 0, 'dcol': 0, 'why': ['qubit 32 suspect', 'qubit 33 suspect', 'qubit 72 failed', 'coupler (32, 33) not working']}]"
+  }
+ ],
+ "jobs": {
+  "A": {
+   "circuits": 58,
+   "qpu_seconds_model": 67.7,
+   "cz": {
+    "du91_h00_t04": 405,
+    "du91_h00_t08": 765,
+    "du91_h00_t12": 1125,
+    "du91_h00_t16": 1485,
+    "du91_h00_t20": 1845,
+    "du91_h00_t24": 2205,
+    "du91_h05_t04": 405,
+    "du91_h05_t08": 765,
+    "du91_h05_t12": 1125,
+    "du91_h05_t16": 1485,
+    "du91_h05_t20": 1845,
+    "du91_h05_t24": 2205,
+    "du91_h10_t04": 405,
+    "du91_h10_t08": 765,
+    "du91_h10_t12": 1125,
+    "du91_h10_t16": 1485,
+    "du91_h10_t20": 1845,
+    "du91_h10_t24": 2205
+   },
+   "copies": {
+    "du91_h00_t04": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h00_t08": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h00_t12": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h00_t16": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h00_t20": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h00_t24": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h05_t04": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h05_t08": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h05_t12": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h05_t16": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h05_t20": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h05_t24": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h10_t04": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h10_t08": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h10_t12": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h10_t16": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h10_t20": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h10_t24": {
+     "drow": 0,
+     "dcol": 0
+    }
+   }
+  },
+  "B": {
+   "circuits": 40,
+   "qpu_seconds_model": 47.6,
+   "cz": {
+    "du91b_h00_t04": 405,
+    "du91b_h00_t08": 765,
+    "du91b_h00_t12": 1125,
+    "du91b_h00_t16": 1485,
+    "du91b_h00_t20": 1845,
+    "du91b_h00_t24": 2205,
+    "du91_h15_t04": 405,
+    "du91_h15_t08": 765,
+    "du91_h15_t12": 1125,
+    "du91_h15_t16": 1485,
+    "du91_h15_t20": 1845,
+    "du91_h15_t24": 2205
+   },
+   "copies": {
+    "du91b_h00_t04": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91b_h00_t08": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91b_h00_t12": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91b_h00_t16": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91b_h00_t20": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91b_h00_t24": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h15_t04": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h15_t08": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h15_t12": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h15_t16": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h15_t20": {
+     "drow": 0,
+     "dcol": 0
+    },
+    "du91_h15_t24": {
+     "drow": 0,
+     "dcol": 0
+    }
+   }
+  }
+ }
+}

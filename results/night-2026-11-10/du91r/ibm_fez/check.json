@@ -1,0 +1,162 @@
+{
+ "points": {
+  "A/du91_h00_t04": {
+   "cone_labels": [
+    4
+   ],
+   "cone_z": [
+    1.0
+   ],
+   "cone_exact": [
+    1.0
+   ],
+   "off_max_dev": 0.12,
+   "ok": true
+  },
+  "A/du91_h00_t08": {
+   "cone_labels": [
+    8
+   ],
+   "cone_z": [
+    1.0
+   ],
+   "cone_exact": [
+    1.0
+   ],
+   "off_max_dev": 0.12,
+   "ok": true
+  },
+  "A/du91_h00_t12": {
+   "cone_labels": [
+    18
+   ],
+   "cone_z": [
+    1.0
+   ],
+   "cone_exact": [
+    1.0
+   ],
+   "off_max_dev": 0.12,
+   "ok": true
+  },
+  "A/du91_h00_t16": {
+   "cone_labels": [
+    28
+   ],
+   "cone_z": [
+    1.0
+   ],
+   "cone_exact": [
+    1.0
+   ],
+   "off_max_dev": 0.13,
+   "ok": true
+  },
+  "A/du91_h00_t20": {
+   "cone_labels": [
+    24
+   ],
+   "cone_z": [
+    1.0
+   ],
+   "cone_exact": [
+    1.0
+   ],
+   "off_max_dev": 0.12,
+   "ok": true
+  },
+  "A/du91_h00_t24": {
+   "cone_labels": [
+    36
+   ],
+   "cone_z": [
+    1.0
+   ],
+   "cone_exact": [
+    1.0
+   ],
+   "off_max_dev": 0.13,
+   "ok": true
+  },
+  "B/du91b_h00_t04": {
+   "cone_labels": [
+    4
+   ],
+   "cone_z": [
+    1.0
+   ],
+   "cone_exact": [
+    1.0
+   ],
+   "off_max_dev": 0.12,
+   "ok": true
+  },
+  "B/du91b_h00_t08": {
+   "cone_labels": [
+    8
+   ],
+   "cone_z": [
+    1.0
+   ],
+   "cone_exact": [
+    1.0
+   ],
+   "off_max_dev": 0.12,
+   "ok": true
+  },
+  "B/du91b_h00_t12": {
+   "cone_labels": [
+    18
+   ],
+   "cone_z": [
+    1.0
+   ],
+   "cone_exact": [
+    1.0
+   ],
+   "off_max_dev": 0.12,
+   "ok": true
+  },
+  "B/du91b_h00_t16": {
+   "cone_labels": [
+    28
+   ],
+   "cone_z": [
+    1.0
+   ],
+   "cone_exact": [
+    1.0
+   ],
+   "off_max_dev": 0.13,
+   "ok": true
+  },
+  "B/du91b_h00_t20": {
+   "cone_labels": [
+    24
+   ],
+   "cone_z": [
+    1.0
+   ],
+   "cone_exact": [
+    1.0
+   ],
+   "off_max_dev": 0.12,
+   "ok": true
+  },
+  "B/du91b_h00_t24": {
+   "cone_labels": [
+    36
+   ],
+   "cone_z": [
+    1.0
+   ],
+   "cone_exact": [
+    1.0
+   ],
+   "off_max_dev": 0.13,
+   "ok": true
+  }
+ },
+ "ok": true,
+ "shots": 400
+}
