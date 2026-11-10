@@ -1,0 +1,86 @@
+=== POD: go_il.sh (noiseless.py), log as written on the pod
+Tue Nov 10 01:25:27 CET 2026
+qiskit 2.6.2 aer 0.18.2 numpy 2.5.4
+32
+256000000000
+4203d356289839511f5340f4fbadb6885c9eec9bb466d780dbb2bf8fa9c4c5c0  IL/job/circuits.qpy
+== NOISELESS FINISHED (148 circuits)
+EXIT 0
+Tue Nov 10 01:47:40 CET 2026
+
+=== PC: PYTHONPATH=<psf-os 0fb4512>;<TOQB eb833c8>/gpu python gpu/isingL_score.py IL IL_answers.json (full output)
+ibm_kingston  sentinel DEAD  theta 0.6
+4x2x2: judged candidate 0 (mean t1 mirror 1.000)
+  c0_t1  JUDGED nMSE fold 0.0002 (CZ 108)  line 0.0002 (CZ 60)  line - fold +0.0000 (within the shot noise 0.0002)  retention 1.002 / 1.002
+  c0_t2  JUDGED nMSE fold 0.0005 (CZ 216)  line 0.0006 (CZ 120)  line - fold +0.0001 (within the shot noise 0.0007)  retention 1.002 / 1.000
+  c0_t3  JUDGED nMSE fold 0.0010 (CZ 324)  line 0.0002 (CZ 180)  line - fold -0.0008 (within the shot noise 0.0009)  retention 1.003 / 0.994
+  c0_t4  JUDGED nMSE fold 0.0002 (CZ 432)  line 0.0005 (CZ 240)  line - fold +0.0002 (within the shot noise 0.0007)  retention 1.000 / 1.009
+  c1_t1  beside nMSE fold 0.0001 (CZ 108)  line 0.0002 (CZ 60)  line - fold +0.0000 (within the shot noise 0.0002)  retention 0.999 / 1.002
+  c1_t2  beside nMSE fold 0.0003 (CZ 216)  line 0.0003 (CZ 120)  line - fold +0.0000 (within the shot noise 0.0005)  retention 0.992 / 0.999
+  c1_t3  beside nMSE fold 0.0008 (CZ 324)  line 0.0009 (CZ 180)  line - fold +0.0002 (within the shot noise 0.0011)  retention 0.991 / 1.006
+  c1_t4  beside nMSE fold 0.0007 (CZ 432)  line 0.0007 (CZ 240)  line - fold -0.0000 (within the shot noise 0.0010)  retention 1.003 / 1.001
+  c2_t1  beside nMSE fold 0.0001 (CZ 108)  line 0.0001 (CZ 60)  line - fold -0.0001 (within the shot noise 0.0001)  retention 1.000 / 1.003
+  c2_t2  beside nMSE fold 0.0004 (CZ 216)  line 0.0004 (CZ 120)  line - fold -0.0000 (within the shot noise 0.0006)  retention 1.002 / 0.997
+  c2_t3  beside nMSE fold 0.0007 (CZ 324)  line 0.0002 (CZ 180)  line - fold -0.0004 (within the shot noise 0.0008)  retention 1.001 / 0.995
+  c2_t4  beside nMSE fold 0.0007 (CZ 432)  line 0.0006 (CZ 240)  line - fold -0.0000 (within the shot noise 0.0010)  retention 1.005 / 1.010
+  c3_t1  beside nMSE fold 0.0001 (CZ 108)  line 0.0001 (CZ 60)  line - fold -0.0000 (within the shot noise 0.0001)  retention 0.998 / 0.997
+  c3_t2  beside nMSE fold 0.0002 (CZ 216)  line 0.0004 (CZ 120)  line - fold +0.0001 (within the shot noise 0.0005)  retention 1.001 / 0.999
+  c3_t3  beside nMSE fold 0.0004 (CZ 324)  line 0.0006 (CZ 180)  line - fold +0.0002 (within the shot noise 0.0008)  retention 0.995 / 1.017
+  c3_t4  beside nMSE fold 0.0007 (CZ 432)  line 0.0007 (CZ 240)  line - fold -0.0001 (within the shot noise 0.0010)  retention 1.004 / 1.000
+4x3x2: judged candidate 0 (mean t1 mirror 1.000)
+  c0_t1  JUDGED nMSE fold 0.0002 (CZ 234)  line 0.0001 (CZ 126)  line - fold -0.0001 (within the shot noise 0.0001)  retention 0.999 / 1.004
+  c0_t2  JUDGED nMSE fold 0.0003 (CZ 468)  line 0.0002 (CZ 252)  line - fold -0.0000 (within the shot noise 0.0004)  retention 1.000 / 0.995
+  c0_t3  JUDGED nMSE fold 0.0005 (CZ 702)  line 0.0007 (CZ 378)  line - fold +0.0002 (within the shot noise 0.0007)  retention 0.995 / 1.003
+  c0_t4  JUDGED nMSE fold 0.0006 (CZ 936)  line 0.0004 (CZ 504)  line - fold -0.0003 (within the shot noise 0.0007)  retention 1.002 / 1.001
+  c1_t1  beside nMSE fold 0.0001 (CZ 234)  line 0.0002 (CZ 126)  line - fold +0.0000 (within the shot noise 0.0002)  retention 0.995 / 0.999
+  c1_t2  beside nMSE fold 0.0003 (CZ 468)  line 0.0004 (CZ 252)  line - fold +0.0001 (within the shot noise 0.0005)  retention 0.998 / 1.005
+  c1_t3  beside nMSE fold 0.0005 (CZ 702)  line 0.0004 (CZ 378)  line - fold -0.0001 (within the shot noise 0.0007)  retention 1.003 / 0.995
+  c1_t4  beside nMSE fold 0.0007 (CZ 936)  line 0.0006 (CZ 504)  line - fold -0.0001 (within the shot noise 0.0008)  retention 0.997 / 0.993
+  q22f0_t1   READS         AGREES  M +0.827 exact +0.825  floor 1.000 mirror 1.000
+  q22f0_t2   READS         AGREES  M +0.608 exact +0.607  floor 1.000 mirror 1.000
+  q22f0_t3   READS         AGREES  M +0.514 exact +0.513  floor 1.000 mirror 1.000
+  q22f0_t4   READS         AGREES  M +0.448 exact +0.448  floor 1.000 mirror 1.000
+  q22f1_t1   READS         AGREES  M +0.825 exact +0.825  floor 1.000 mirror 1.000
+  q22f1_t2   READS         AGREES  M +0.602 exact +0.607  floor 1.000 mirror 1.000
+  q22f1_t3   READS         AGREES  M +0.508 exact +0.513  floor 1.000 mirror 1.000
+  q22f1_t4   READS         AGREES  M +0.450 exact +0.448  floor 1.000 mirror 1.000
+  q22f2_t1   READS         AGREES  M +0.826 exact +0.825  floor 1.000 mirror 1.000
+  q22f2_t2   READS         AGREES  M +0.609 exact +0.607  floor 1.000 mirror 1.000
+  q22f2_t3   READS         AGREES  M +0.513 exact +0.513  floor 1.000 mirror 1.000
+  q22f2_t4   READS         AGREES  M +0.450 exact +0.448  floor 1.000 mirror 1.000
+  q22f3_t1   READS         AGREES  M +0.823 exact +0.825  floor 1.000 mirror 1.000
+  q22f3_t2   READS         AGREES  M +0.608 exact +0.607  floor 1.000 mirror 1.000
+  q22f3_t3   READS         AGREES  M +0.510 exact +0.513  floor 1.000 mirror 1.000
+  q22f3_t4   READS         AGREES  M +0.450 exact +0.448  floor 1.000 mirror 1.000
+  q22l0_t1   READS         AGREES  M +0.827 exact +0.825  floor 1.000 mirror 1.000
+  q22l0_t2   READS         AGREES  M +0.607 exact +0.607  floor 1.000 mirror 1.000
+  q22l0_t3   READS         AGREES  M +0.509 exact +0.513  floor 1.000 mirror 1.000
+  q22l0_t4   READS         AGREES  M +0.452 exact +0.448  floor 1.000 mirror 1.000
+  q22l1_t1   READS         AGREES  M +0.827 exact +0.825  floor 1.000 mirror 1.000
+  q22l1_t2   READS         AGREES  M +0.607 exact +0.607  floor 1.000 mirror 1.000
+  q22l1_t3   READS         AGREES  M +0.516 exact +0.513  floor 1.000 mirror 1.000
+  q22l1_t4   READS         AGREES  M +0.449 exact +0.448  floor 1.000 mirror 1.000
+  q22l2_t1   READS         AGREES  M +0.828 exact +0.825  floor 1.000 mirror 1.000
+  q22l2_t2   READS         AGREES  M +0.606 exact +0.607  floor 1.000 mirror 1.000
+  q22l2_t3   READS         AGREES  M +0.510 exact +0.513  floor 1.000 mirror 1.000
+  q22l2_t4   READS         AGREES  M +0.453 exact +0.448  floor 1.000 mirror 1.000
+  q22l3_t1   READS         AGREES  M +0.823 exact +0.825  floor 1.000 mirror 1.000
+  q22l3_t2   READS         AGREES  M +0.607 exact +0.607  floor 1.000 mirror 1.000
+  q22l3_t3   READS         AGREES  M +0.521 exact +0.513  floor 1.000 mirror 1.000
+  q22l3_t4   READS         AGREES  M +0.448 exact +0.448  floor 1.000 mirror 1.000
+  q32f0_t1   READS         AGREES  M +0.824 exact +0.825  floor 1.000 mirror 1.000
+  q32f0_t2   READS         AGREES  M +0.607 exact +0.607  floor 1.000 mirror 1.000
+  q32f0_t3   READS         AGREES  M +0.497 exact +0.500  floor 1.000 mirror 1.000
+  q32f0_t4   READS         AGREES  M +0.413 exact +0.412  floor 1.000 mirror 1.000
+  q32f1_t1   READS         AGREES  M +0.821 exact +0.825  floor 1.000 mirror 1.000
+  q32f1_t2   READS         AGREES  M +0.606 exact +0.607  floor 1.000 mirror 1.000
+  q32f1_t3   READS         AGREES  M +0.501 exact +0.500  floor 1.000 mirror 1.000
+  q32f1_t4   READS         AGREES  M +0.410 exact +0.412  floor 1.000 mirror 1.000
+  q32l0_t1   READS         AGREES  M +0.829 exact +0.825  floor 1.000 mirror 1.000
+  q32l0_t2   READS         AGREES  M +0.604 exact +0.607  floor 1.000 mirror 1.000
+  q32l0_t3   READS         AGREES  M +0.501 exact +0.500  floor 1.000 mirror 1.000
+  q32l0_t4   READS         AGREES  M +0.412 exact +0.412  floor 1.000 mirror 1.000
+  q32l1_t1   READS         AGREES  M +0.825 exact +0.825  floor 1.000 mirror 1.000
+  q32l1_t2   READS         AGREES  M +0.610 exact +0.607  floor 1.000 mirror 1.000
+  q32l1_t3   READS         AGREES  M +0.498 exact +0.500  floor 1.000 mirror 1.000
+  q32l1_t4   READS         AGREES  M +0.409 exact +0.412  floor 1.000 mirror 1.000
