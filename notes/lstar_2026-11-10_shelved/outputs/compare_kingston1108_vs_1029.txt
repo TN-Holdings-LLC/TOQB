@@ -1,0 +1,7 @@
+kcharge_n20_L24_h0.6-fold_rule                 q2 480 vs 480 SAME | measured map SAME | active 20 vs 20 | qpy sha256 differs | us 0.0 vs 7.332 | version new 'toqb fold 2026-10-30.1 (hole schedule on a formula-placed he' old 'toqb fold 2026-10-26.1 (hole schedule on a formula-placed he'
+kcharge_n20_L50_h0.6-fold_rule                 q2 1000 vs 1000 SAME | measured map SAME | active 20 vs 20 | qpy sha256 differs | us 0.0 vs 12.844 | version new 'toqb fold 2026-10-30.1 (hole schedule on a formula-placed he' old 'toqb fold 2026-10-26.1 (hole schedule on a formula-placed he'
+kcharge_n20_L100_h0.6-fold_rule                q2 2000 vs 2000 SAME | measured map SAME | active 20 vs 20 | qpy sha256 differs | us 0.0 vs 23.444 | version new 'toqb fold 2026-10-30.1 (hole schedule on a formula-placed he' old 'toqb fold 2026-10-26.1 (hole schedule on a formula-placed he'
+kcharge_n20_L24_h0.6-qiskit_2_blind_template   q2 480 vs 480 SAME | measured map SAME | active 20 vs 20 | qpy sha256 differs | us 0.0 vs 37.668 | version new '2.5.2' old '2.5.2'
+kcharge_n20_L50_h0.6-qiskit_2_blind_template   q2 1000 vs 1000 SAME | measured map SAME | active 20 vs 20 | qpy sha256 differs | us 0.0 vs 76.044 | version new '2.5.2' old '2.5.2'
+kcharge_n20_L100_h0.6-qiskit_2_blind_template  q2 2000 vs 2000 SAME | measured map SAME | active 20 vs 20 | qpy sha256 differs | us 0.0 vs 149.844 | version new '2.5.2' old '2.5.2'
+ALL q2 and measured maps SAME

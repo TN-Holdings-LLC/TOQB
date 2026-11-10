@@ -1,0 +1,11 @@
+charge check n 20: PASS (max diff 1.1e-15, dim 2)
+device fake:FakeKingston (fake:FakeKingston); target sha256 dc68c9833de8b7fd6e812aed22dd68ae00dfeaef3efb121c5c0ecdc54fba4d26
+kcharge_n20_L24_h0.6-fold_rule: 16 circuits (12 + 4 references), 480 two-qubit gates, 7.43 us; measured [3, 4, 5, 6, 7, 17, 27, 26, 25, 37, 45, 44, 43, 42, 41, 36, 21, 22, 23, 16]; valid True
+kcharge_n20_L50_h0.6-fold_rule: 16 circuits (12 + 4 references), 1000 two-qubit gates, 12.94 us; measured [3, 4, 5, 6, 7, 17, 27, 26, 25, 37, 45, 44, 43, 42, 41, 36, 21, 22, 23, 16]; valid True
+kcharge_n20_L100_h0.6-fold_rule: 16 circuits (12 + 4 references), 2000 two-qubit gates, 23.54 us; measured [3, 4, 5, 6, 7, 17, 27, 26, 25, 37, 45, 44, 43, 42, 41, 36, 21, 22, 23, 16]; valid True
+kcharge_n20_L24_h0.6-qiskit_2_blind_template: 16 circuits (12 + 4 references), 480 two-qubit gates, 37.77 us; measured [7, 17, 27, 28, 29, 30, 31, 32, 33, 34, 35, 19, 15, 14, 13, 12, 11, 10, 9, 8]; valid True
+kcharge_n20_L50_h0.6-qiskit_2_blind_template: 16 circuits (12 + 4 references), 1000 two-qubit gates, 76.14 us; measured [7, 8, 9, 10, 11, 12, 13, 14, 15, 19, 35, 34, 33, 32, 31, 30, 29, 28, 27, 17]; valid True
+kcharge_n20_L100_h0.6-qiskit_2_blind_template: 16 circuits (12 + 4 references), 2000 two-qubit gates, 149.94 us; measured [8, 7, 17, 27, 28, 29, 30, 31, 32, 33, 34, 35, 19, 15, 14, 13, 12, 11, 10, 9]; valid True
+time model: 96 circuits x 1000 shots -> 32.4 s (0.036 s/circuit + 0.00027 s/shot + 3 s)
+6 cells, 96 circuits x 1000 shots: predicted QPU time 32.4 s (limit 60.0 s)
+2026-11-10T01:24:14+00:00 (2026-11-10 02:24:14 CET) manifest written before any submission: <work> sha256 61e33a63d8879ab9136eab06440060b3551d5109cc2194543297a520fd7ba832

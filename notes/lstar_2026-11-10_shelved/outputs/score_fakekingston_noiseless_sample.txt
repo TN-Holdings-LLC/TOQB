@@ -1,0 +1,9 @@
+kcharge_n20_L24_h0.6-fold_rule               rho4 1.0012 +- 0.0092 | 480 two-qubit gates, 7.432 us
+kcharge_n20_L50_h0.6-fold_rule               rho4 0.9908 +- 0.0093 | 1000 two-qubit gates, 12.944 us
+kcharge_n20_L100_h0.6-fold_rule              rho4 1.0188 +- 0.0099 | 2000 two-qubit gates, 23.544 us
+kcharge_n20_L24_h0.6-qiskit_2_blind_template rho4 1.0181 +- 0.0091 | 480 two-qubit gates, 37.768 us
+kcharge_n20_L50_h0.6-qiskit_2_blind_template rho4 0.9957 +- 0.0095 | 1000 two-qubit gates, 76.144 us
+kcharge_n20_L100_h0.6-qiskit_2_blind_template rho4 1.0070 +- 0.0098 | 2000 two-qubit gates, 149.944 us
+L* fold:rule n 20: 1000000.0 +- 85318709.3 (fit over L = [24, 50, 100])
+L* qiskit:2:blind:template n 20: 1000000.0 +- 85059948.8 (fit over L = [24, 50, 100])
+Delta L qiskit:2:blind:template n 20: L* 1000000.0, Delta L +0.0 +- 120476043.5, kappa 1.00 +- 120.48 | gates 1.00, duration 6.01

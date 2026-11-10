@@ -1,0 +1,28 @@
+kcharge_n20_L24_h0.6-fold_rule               rho4 0.6296 +- 0.0091 | 480 two-qubit gates, 8.132 us
+kcharge_n20_L50_h0.6-fold_rule               rho4 0.4262 +- 0.0087 | 1000 two-qubit gates, 13.956 us
+kcharge_n20_L100_h0.6-fold_rule              rho4 0.1736 +- 0.0082 | 2000 two-qubit gates, 25.156 us
+kcharge_n20_L24_h0.6-fold_zipcyc             rho4 0.2037 +- 0.0084 | 1104 two-qubit gates, 16.388 us
+kcharge_n20_L50_h0.6-fold_zipcyc             rho4 0.0386 +- 0.0080 | 2300 two-qubit gates, 31.156 us
+kcharge_n20_L100_h0.6-fold_zipcyc            rho4 0.0122 +- 0.0082 | 4600 two-qubit gates, 59.556 us
+kcharge_n20_L24_h0.6-qiskit_2_blind_template rho4 0.3957 +- 0.0086 | 480 two-qubit gates, 38.276 us
+kcharge_n20_L50_h0.6-qiskit_2_blind_template rho4 0.1563 +- 0.0082 | 1000 two-qubit gates, 76.756 us
+kcharge_n20_L100_h0.6-qiskit_2_blind_template rho4 0.0270 +- 0.0081 | 2000 two-qubit gates, 150.756 us
+kcharge_n36_L24_h0.6-fold_rule               rho4 0.6457 +- 0.0068 | 864 two-qubit gates, 8.324 us
+kcharge_n36_L50_h0.6-fold_rule               rho4 0.4126 +- 0.0065 | 1800 two-qubit gates, 14.356 us
+kcharge_n36_L100_h0.6-fold_rule              rho4 0.1784 +- 0.0063 | 3600 two-qubit gates, 25.956 us
+kcharge_n36_L24_h0.6-fold_zipcyc             rho4 0.2170 +- 0.0064 | 2064 two-qubit gates, 16.676 us
+kcharge_n36_L50_h0.6-fold_zipcyc             rho4 0.0421 +- 0.0061 | 4300 two-qubit gates, 31.756 us
+kcharge_n36_L100_h0.6-fold_zipcyc            rho4 -0.0013 +- 0.0061 | 8600 two-qubit gates, 60.756 us
+kcharge_n36_L24_h0.6-qiskit_2_blind_template rho4 0.2173 +- 0.0062 | 864 two-qubit gates, 65.06 us
+kcharge_n36_L50_h0.6-qiskit_2_blind_template rho4 0.0401 +- 0.0060 | 1800 two-qubit gates, 132.556 us
+kcharge_n36_L100_h0.6-qiskit_2_blind_template rho4 0.0011 +- 0.0060 | 3600 two-qubit gates, 262.356 us
+L* fold:rule n 20: 56.5 +- 0.9 (fit over L = [24, 50, 100])
+L* fold:rule n 36: 56.6 +- 0.7 (fit over L = [24, 50, 100])
+L* fold:zipcyc n 20: 15.1 +- 0.4 (fit over L = [24, 50, 100])
+L* fold:zipcyc n 36: 15.7 +- 0.3 (fit over L = [24, 50, 100])
+L* qiskit:2:blind:template n 20: 26.4 +- 0.5 (fit over L = [24, 50, 100])
+L* qiskit:2:blind:template n 36: 15.7 +- 0.3 (fit over L = [24, 50, 100])
+Delta L fold:zipcyc n 20: L* 15.1, Delta L +41.3 +- 1.0, kappa 3.73 +- 0.11 | gates 2.30, duration 2.27
+Delta L fold:zipcyc n 36: L* 15.7, Delta L +40.9 +- 0.7, kappa 3.60 +- 0.08 | gates 2.39, duration 2.25
+Delta L qiskit:2:blind:template n 20: L* 26.4, Delta L +30.1 +- 1.0, kappa 2.14 +- 0.05 | gates 1.00, duration 5.63
+Delta L qiskit:2:blind:template n 36: L* 15.7, Delta L +40.9 +- 0.7, kappa 3.61 +- 0.08 | gates 1.00, duration 9.46

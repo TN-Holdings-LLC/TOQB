@@ -1,0 +1,7 @@
+kcharge_n20_L100_h0.6-fold_rule                exact rho4 1.000000000000  |rho - 1| 9.7e-14  max |Q - Q_exact| over inputs 1.9e-12
+kcharge_n20_L100_h0.6-qiskit_2_blind_template  exact rho4 1.000000000000  |rho - 1| 9.6e-14  max |Q - Q_exact| over inputs 1.9e-12
+kcharge_n20_L24_h0.6-fold_rule                 exact rho4 1.000000000000  |rho - 1| 2.4e-14  max |Q - Q_exact| over inputs 4.9e-13
+kcharge_n20_L24_h0.6-qiskit_2_blind_template   exact rho4 1.000000000000  |rho - 1| 2.4e-14  max |Q - Q_exact| over inputs 5.4e-13
+kcharge_n20_L50_h0.6-fold_rule                 exact rho4 1.000000000000  |rho - 1| 4.7e-14  max |Q - Q_exact| over inputs 9.6e-13
+kcharge_n20_L50_h0.6-qiskit_2_blind_template   exact rho4 1.000000000000  |rho - 1| 4.7e-14  max |Q - Q_exact| over inputs 9.7e-13
+== NOISELESS EXACT: largest |rho - 1| or |Q - Q_exact| 1.9e-12
