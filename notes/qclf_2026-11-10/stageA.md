@@ -70,3 +70,10 @@ Q3b rule vs Qiskit: p 0.18 / 0.067 (not judged). The stand-in (pod) had put Q3a 
    added; how the ring is placed by psf-os rules (fold rule and zipcyc as psf-os layouts) is to be checked in stage B.
 6. **Readout order.** The sealed answers are labels of test points, not per-qubit values, so per-label sealing is not
    needed; the feature-to-logical-qubit map must be recorded per arm (stage B).
+
+## Rehearsal before fixing (home, 2026-11-10)
+
+The series task (`results/qclf-series/task/task.json`, answers sealed 74d7332a...) built on the fez record of 11-04
+(test record only, not a run): 994 circuits, 105.9 s by the model, rule G PASS, build 181 s; gpu/qclf_check.py on
+all 984 circuits (Aer statevector on the active qubits): worst |<Z> - f0| 1.1e-13, floors and mirrors all zero,
+PASS, 1472 s on 2 CPUs.
