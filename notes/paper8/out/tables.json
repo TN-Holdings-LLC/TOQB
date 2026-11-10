@@ -2046,5 +2046,59 @@
    "bound": 0.01930377391249853,
    "resolved": true
   }
+ ],
+ "Table 10": [
+  {
+   "observable": "Z_106, 4 steps (Fig. 2)",
+   "embedding": 0,
+   "cz": 564,
+   "reads": "READS",
+   "mse": 0.02066245748153713,
+   "msq": 0.41454109155079544,
+   "agrees": 7,
+   "z_pi2": 0.135,
+   "e_pi2": 3.566827076226481e-16,
+   "floor": 0.991,
+   "mirror": 0.504
+  },
+  {
+   "observable": "weight-10, 5 steps (Fig. 3)",
+   "embedding": 0,
+   "cz": 705,
+   "reads": "READS",
+   "mse": 0.02257959194006122,
+   "msq": 0.16722235132018284,
+   "agrees": 11,
+   "z_pi2": 0.6095,
+   "e_pi2": 1.0,
+   "floor": 0.8515,
+   "mirror": 0.122
+  },
+  {
+   "observable": "weight-17, 5 steps (Fig. 3)",
+   "embedding": 1,
+   "cz": 690,
+   "reads": "DOES NOT READ",
+   "mse": 0.10910220491979811,
+   "msq": 0.13484739336647392,
+   "agrees": 12,
+   "z_pi2": -0.09,
+   "e_pi2": -0.9999999999999981,
+   "floor": 0.31,
+   "mirror": -0.0035
+  },
+  {
+   "observable": "Fig. 4a product, 5 steps + R_X",
+   "embedding": 1,
+   "cz": 690,
+   "reads": "DOES NOT READ",
+   "mse": 0.10230668140939717,
+   "msq": 0.1200211420167486,
+   "agrees": 12,
+   "z_pi2": -0.0745,
+   "e_pi2": -0.9999999999999998,
+   "floor": 0.3055,
+   "mirror": -0.009
+  }
  ]
 }

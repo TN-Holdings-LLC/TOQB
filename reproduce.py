@@ -86,6 +86,9 @@ RESULTS = {
     "isingL-fez-2026-11-10": ("results/night-2026-11-10/isingL", ["ibm_fez", "answers"],
                               ["gpu/isingL_score.py", "{T}/ibm_fez", "{T}/answers/isingL_fez.json"],
                               "ibm_fez/scores.json"),
+    "utility-fez-2026-11-10": ("results/utility-2026-11-10", ["ibm_fez", "answers"],
+                               ["gpu/utility_score.py", "{T}/ibm_fez", "{T}/answers/answers_ibm_fez.json"],
+                               "ibm_fez/scores.json"),
 }
 
 
