@@ -1,0 +1,35 @@
+t 1: line worse at sim 7/24, device 12/24 sites; corr(sim excess, device excess) over sites +0.12; top-3 excess sites device [np.int64(13), np.int64(15), np.int64(11)] sim [np.int64(14), np.int64(6), np.int64(20)]
+   site: sim sq err fold/line | device sq err fold/line
+   13: 0.009/0.000 | 0.027/0.215
+   14: 0.001/0.030 | 0.003/0.010
+   15: 0.008/0.000 | 0.055/0.108
+t 2: line worse at sim 8/24, device 14/24 sites; corr(sim excess, device excess) over sites -0.41; top-3 excess sites device [np.int64(15), np.int64(13), np.int64(14)] sim [np.int64(23), np.int64(17), np.int64(22)]
+   site: sim sq err fold/line | device sq err fold/line
+   13: 0.008/0.014 | 0.003/0.201
+   14: 0.029/0.000 | 0.004/0.052
+   15: 0.120/0.000 | 0.079/0.695
+t 3: line worse at sim 8/24, device 15/24 sites; corr(sim excess, device excess) over sites +0.01; top-3 excess sites device [np.int64(15), np.int64(14), np.int64(13)] sim [np.int64(23), np.int64(5), np.int64(21)]
+   site: sim sq err fold/line | device sq err fold/line
+   13: 0.005/0.009 | 0.003/0.054
+   14: 0.072/0.018 | 0.015/0.275
+   15: 0.043/0.007 | 0.131/0.478
+t 4: line worse at sim 6/24, device 11/24 sites; corr(sim excess, device excess) over sites -0.01; top-3 excess sites device [np.int64(14), np.int64(15), np.int64(21)] sim [np.int64(21), np.int64(23), np.int64(5)]
+   site: sim sq err fold/line | device sq err fold/line
+   13: 0.001/0.004 | 0.018/0.003
+   14: 0.130/0.064 | 0.038/0.330
+   15: 0.137/0.108 | 0.157/0.312
+FakeFez snapshot (2025-02-26 15:16:25-05:00):
+  q3: T1 220 us, T2 216 us, readout 0.0159
+  q16: T1 156 us, T2 115 us, readout 0.0129
+  q17: T1 180 us, T2 100 us, readout 0.0054
+  q20: T1 218 us, T2 115 us, readout 0.0051
+  q23: T1 175 us, T2 123 us, readout 0.0024
+  q24: T1 70 us, T2 94 us, readout 0.0078
+  q36: T1 153 us, T2 118 us, readout 0.0032
+  q37: T1 222 us, T2 188 us, readout 0.0090
+  cz (3, 16): error 0.0042
+  cz (16, 23): error 0.0037
+  cz (7, 17): error 0.0043
+  cz (17, 27): error 0.0144
+  cz (21, 36): error 0.0075
+  cz (25, 37): error 0.0023

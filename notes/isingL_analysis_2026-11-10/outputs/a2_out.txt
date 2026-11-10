@@ -1,0 +1,35 @@
+﻿place 0 t 1: mean sq err fold 0.0226 line 0.0244; line worse at 12/24 sites; top 3 sites carry 602% of the excess
+place 0 t 2: mean sq err fold 0.0178 line 0.0467; line worse at 14/24 sites; top 3 sites carry 124% of the excess
+   site: |err| fold (phys, floor, mirror) | |err| line (phys, floor, mirror)   [sorted by line excess]
+   15: 0.282 (q25, 0.98, +0.35) | 0.834 (q23, 1.00, +0.14)
+   13: 0.053 (q5, 1.00, +0.52) | 0.448 (q3, 0.96, +0.22)
+   14: 0.063 (q22, 0.99, +0.67) | 0.228 (q20, 0.99, +0.29)
+   11: 0.021 (q46, 0.99, +0.55) | 0.178 (q42, 1.00, +0.53)
+    4: 0.126 (q40, 0.99, +0.66) | 0.172 (q45, 0.99, +0.66)
+    8: 0.028 (q21, 0.95, +0.55) | 0.109 (q26, 1.00, +0.57)
+   12: 0.030 (q2, 1.00, +0.51) | 0.079 (q0, 0.98, +0.37)
+    2: 0.031 (q20, 0.99, +0.55) | 0.076 (q25, 0.98, +0.52)
+place 0 t 3: mean sq err fold 0.0321 line 0.0563; line worse at 15/24 sites; top 3 sites carry 113% of the excess
+   site: |err| fold (phys, floor, mirror) | |err| line (phys, floor, mirror)   [sorted by line excess]
+   15: 0.362 (q26, 0.99, +0.16) | 0.691 (q20, 0.99, +0.03)
+   14: 0.123 (q21, 0.94, +0.43) | 0.525 (q24, 0.99, +0.45)
+   13: 0.053 (q6, 1.00, +0.28) | 0.232 (q0, 0.99, +0.12)
+   18: 0.163 (q0, 0.99, +0.22) | 0.256 (q1, 0.94, +0.47)
+    8: 0.151 (q22, 0.99, +0.39) | 0.205 (q23, 0.99, -0.10)
+   12: 0.074 (q1, 0.95, +0.32) | 0.150 (q4, 1.00, +0.55)
+   17: 0.045 (q46, 0.99, +0.39) | 0.133 (q40, 0.98, +0.48)
+   21: 0.078 (q27, 0.99, +0.18) | 0.144 (q22, 0.99, +0.37)
+place 0 t 4: mean sq err fold 0.0542 line 0.0658; line worse at 11/24 sites; top 3 sites carry 178% of the excess
+   site: |err| fold (phys, floor, mirror) | |err| line (phys, floor, mirror)   [sorted by line excess]
+   14: 0.195 (q22, 0.99, +0.31) | 0.575 (q20, 0.99, -0.03)
+   15: 0.396 (q25, 0.98, +0.15) | 0.559 (q23, 0.99, +0.07)
+   21: 0.033 (q24, 0.99, +0.11) | 0.231 (q21, 0.87, +0.23)
+   17: 0.125 (q45, 0.98, +0.28) | 0.216 (q43, 0.89, +0.31)
+    8: 0.203 (q21, 0.90, +0.29) | 0.259 (q26, 0.99, +0.19)
+    5: 0.267 (q47, 0.97, +0.27) | 0.308 (q47, 0.98, +0.30)
+    7: 0.114 (q6, 1.00, +0.23) | 0.169 (q2, 1.00, +0.24)
+    3: 0.003 (q27, 1.00, +0.14) | 0.118 (q27, 1.00, +0.19)
+place 1 t 1: mean sq err fold 0.0228 line 0.0439; line worse at 13/24 sites; top 3 sites carry 101% of the excess
+place 1 t 2: mean sq err fold 0.0162 line 0.0439; line worse at 11/24 sites; top 3 sites carry 79% of the excess
+place 1 t 3: mean sq err fold 0.0403 line 0.0847; line worse at 17/24 sites; top 3 sites carry 86% of the excess
+place 1 t 4: mean sq err fold 0.0716 line 0.1036; line worse at 15/24 sites; top 3 sites carry 85% of the excess

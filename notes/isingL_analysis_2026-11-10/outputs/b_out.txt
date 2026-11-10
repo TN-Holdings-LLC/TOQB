@@ -1,0 +1,4 @@
+﻿first-visit: where (0, 0) CZ t4 504 layers 120 bridge CZ {16: 72, 17: 24, 36: 48, 37: 48} accept True
+balanced: where (0, 0) CZ t4 504 layers 120 bridge CZ {16: 72, 17: 24, 36: 48, 37: 48} accept True
+balanced 4x3x2 t 1: max|placed - exact| 7.3e-12
+balanced 4x3x2 t 2: max|placed - exact| 4.5e-14
