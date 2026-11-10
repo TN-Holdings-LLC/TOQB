@@ -1,0 +1,34 @@
+N 6: reachable from the vacuum 13 configurations (kept 26); every reachable one has particles = 2 x non-zero links (only neighbouring pairs, no separated pair): True
+N 6: full model reachable from the vacuum 20 configurations
+   t 0.5: truncated M1 - M3 max |dZ| 1.4e-15; full M1 - M3 0.001
+   t 1.0: truncated M1 - M3 max |dZ| 2.8e-15; full M1 - M3 0.049
+   t 1.5: truncated M1 - M3 max |dZ| 2.6e-15; full M1 - M3 0.067
+   t 2.0: truncated M1 - M3 max |dZ| 5.2e-15; full M1 - M3 0.078
+N 6: nu(t), full exact / truncated exact
+| t | M1 full | M1 trunc | M2 full | M2 trunc | M3 full | M3 trunc |
+|---|---|---|---|---|---|---|
+| 0.25 | 0.097 | 0.097 | 0.098 | 0.098 | 0.097 | 0.097 |
+| 0.50 | 0.307 | 0.308 | 0.328 | 0.329 | 0.307 | 0.308 |
+| 0.75 | 0.462 | 0.472 | 0.542 | 0.555 | 0.465 | 0.472 |
+| 1.00 | 0.454 | 0.475 | 0.622 | 0.661 | 0.467 | 0.475 |
+| 1.25 | 0.317 | 0.330 | 0.557 | 0.615 | 0.341 | 0.330 |
+| 1.50 | 0.174 | 0.150 | 0.429 | 0.467 | 0.190 | 0.150 |
+| 1.75 | 0.127 | 0.072 | 0.333 | 0.307 | 0.115 | 0.072 |
+| 2.00 | 0.190 | 0.148 | 0.315 | 0.225 | 0.164 | 0.148 |
+N 8: reachable from the vacuum 34 configurations (kept 68); every reachable one has particles = 2 x non-zero links (only neighbouring pairs, no separated pair): True
+N 8: full model reachable from the vacuum 70 configurations
+   t 0.5: truncated M1 - M3 max |dZ| 1.0e-15; full M1 - M3 0.001
+   t 1.0: truncated M1 - M3 max |dZ| 2.7e-15; full M1 - M3 0.048
+   t 1.5: truncated M1 - M3 max |dZ| 6.2e-15; full M1 - M3 0.073
+   t 2.0: truncated M1 - M3 max |dZ| 2.7e-15; full M1 - M3 0.092
+N 8: nu(t), full exact / truncated exact
+| t | M1 full | M1 trunc | M2 full | M2 trunc | M3 full | M3 trunc |
+|---|---|---|---|---|---|---|
+| 0.25 | 0.101 | 0.101 | 0.103 | 0.103 | 0.101 | 0.101 |
+| 0.50 | 0.319 | 0.321 | 0.341 | 0.343 | 0.319 | 0.321 |
+| 0.75 | 0.474 | 0.486 | 0.557 | 0.572 | 0.478 | 0.486 |
+| 1.00 | 0.457 | 0.482 | 0.628 | 0.674 | 0.473 | 0.482 |
+| 1.25 | 0.313 | 0.326 | 0.552 | 0.619 | 0.341 | 0.326 |
+| 1.50 | 0.172 | 0.141 | 0.421 | 0.459 | 0.189 | 0.141 |
+| 1.75 | 0.133 | 0.069 | 0.330 | 0.292 | 0.118 | 0.069 |
+| 2.00 | 0.204 | 0.162 | 0.316 | 0.211 | 0.176 | 0.162 |
