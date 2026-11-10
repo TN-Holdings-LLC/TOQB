@@ -13,8 +13,11 @@ Answers (closed form, psf_os.dual.exact): {tag: {label: <X>}} written to ANSWERS
 psf_os.chain.place (rule C, owner 2026-11-06: fixed-order walk round holes, first fit, entrance health judgement);
 the user circuit is written on that chain's labels. build.json records the rule ("C", start, steps, starts tried).
 
+--ruler-every-job (2026-11-10, owner 13:16 JST, the N = 91 rerun): the ruler h = 0 in both jobs, A = h {0, 0.05, 0.1},
+B = h {0, 0.15}; B's ruler is tagged du<N>b_h00_t.. so that every tag is distinct; job A's time cap 70 s.
+
 usage: PYTHONPATH=<psf-os>:<TOQB> python gpu/du51_build.py DEV_DIR OUT_DIR ANSWERS_OUT [--n 51] [--rule-c]
-       [--dry-clifford-sentinel]
+       [--ruler-every-job] [--dry-clifford-sentinel]
 """
 import hashlib
 import json
@@ -30,8 +33,13 @@ N = 51
 JOBS = {"A": (0.0, 0.05), "B": (0.1, 0.15)}
 
 
-def tag(h, t):
-    return f"du{N}_h{int(round(h * 100)):02d}_t{t:02d}"
+JOBS_RULER = {"A": (0.0, 0.05, 0.1), "B": (0.0, 0.15)}
+
+
+def tag(h, t, job=None):
+    """du<N>_h<100h>_t<t>; with --ruler-every-job, job B's ruler copy is du<N>b_h00_t<t>."""
+    head = f"du{N}b" if (job == "B" and h == 0.0) else f"du{N}"
+    return f"{head}_h{int(round(h * 100)):02d}_t{t:02d}"
 
 
 def main():
@@ -60,17 +68,19 @@ def main():
         shape = next(s for s in X.SHAPES if s[0] == pl["shape"])
         labels = X.snake(N, shape)
     answers, reps = {}, {}
-    for name, hs in JOBS.items():
+    ruler = "--ruler-every-job" in sys.argv
+    for name, hs in (JOBS_RULER if ruler else JOBS).items():
         items = []
         for h in hs:
             for t in X.T_STEPS:
-                items.append((tag(h, t), X.PC.p4(t, X.PI4, chain=labels, h=h)))
-                answers[tag(h, t)] = {str(q): v for q, v in zip(labels, X.exact(N, t, h))}
+                tg = tag(h, t, name if ruler else None)
+                items.append((tg, X.PC.p4(t, X.PI4, chain=labels, h=h)))
+                answers[tg] = {str(q): v for q, v in zip(labels, X.exact(N, t, h))}
         reps[name] = U.build_batch(dev, items, os.path.join(out, name), shots=4000, sentinel_spec=spec,
-                                   max_seconds=60)
+                                   max_seconds=70 if (ruler and name == "A") else 60)
     with open(ans_out, "w") as f:
         json.dump(answers, f, indent=1, sort_keys=True)
-    log = dict(device=dev.name, n=N, shape=pl["shape"], copy=dict(drow=pl["drow"], dcol=pl["dcol"]), chain=pl["chain"],
+    log = dict(device=dev.name, n=N, ruler_every_job=ruler, shape=pl["shape"], copy=dict(drow=pl["drow"], dcol=pl["dcol"]), chain=pl["chain"],
                user_chain=labels, rule_c={k: rulec[k] for k in ("start", "steps", "starts_tried", "budget", "suspect")}
                if rulec else None,
                passed_over=pl["passed_over"],
