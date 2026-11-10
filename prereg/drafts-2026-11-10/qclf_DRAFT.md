@@ -34,7 +34,7 @@ kingston the same arm on the 10-30 task gave 0.810 at S = 250 against a ceiling 
   (checked: the same circuits as from a full Target, `notes/qclf_2026-11-10/failmark_target_check.md`).
 - fold:rule; rule G: one measured map, no failed element; else that job is NOT RUN.
 - 984 circuits (point-major, basis-minor), 250 shots; floor and mirror of point 0's three circuits; one ring
-  sentinel; 994 circuits, about 104 s by the time model.
+  sentinel; 994 circuits, 105.9 s by the time model.
 - Before each run: gpu/qclf_check.py on every circuit (each <Z> equals its noiseless feature to 1e-9; floors and
   mirrors read all zeros). FAIL means NOT RUN.
 
