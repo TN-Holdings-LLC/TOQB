@@ -1,0 +1,53 @@
+{
+ "kind": "qclf",
+ "psfos_role": "mirror",
+ "points": [
+  {
+   "input": "p0",
+   "setting": "X"
+  },
+  {
+   "input": "p0",
+   "setting": "Y"
+  },
+  {
+   "input": "p0",
+   "setting": "Z"
+  }
+ ],
+ "shots": 250,
+ "valid": true,
+ "export": {
+  "qpy": "q_a_rule_mirror.qpy",
+  "circuits": 3,
+  "sha256": "a72d7583a4889b0b86f3e63174e376c0c00d8735ea69f9ae01e0942cc4912081"
+ },
+ "arm": "fold:rule",
+ "task": {
+  "n": 20,
+  "layers": 19,
+  "enc": 1.5707963267948966
+ },
+ "measured_qubits": {
+  "0": 3,
+  "1": 4,
+  "2": 5,
+  "3": 6,
+  "4": 7,
+  "5": 17,
+  "6": 27,
+  "7": 26,
+  "8": 25,
+  "9": 37,
+  "10": 45,
+  "11": 44,
+  "12": 43,
+  "13": 42,
+  "14": 41,
+  "15": 36,
+  "16": 21,
+  "17": 22,
+  "18": 23,
+  "19": 16
+ }
+}

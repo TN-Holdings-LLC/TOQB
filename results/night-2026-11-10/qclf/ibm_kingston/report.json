@@ -1,0 +1,52 @@
+{
+ "device": "ibm_kingston",
+ "task_sha256": "eb4b41a8c78ef6933133433f235f67a201a594eb05023ac6f464fca2351dcae1",
+ "answers_sha256": "74d7332a048994da5e53714e4cbf8294740b8d1ed34869741a1bd140b11bc21f",
+ "n": 20,
+ "L": 19,
+ "shots": 250,
+ "points_override": null,
+ "arms": {
+  "fold:rule": {
+   "tag": "a_rule",
+   "circuits": 984,
+   "cz_per_circuit": 380,
+   "measured_qubits": {
+    "0": 3,
+    "1": 4,
+    "2": 5,
+    "3": 6,
+    "4": 7,
+    "5": 17,
+    "6": 27,
+    "7": 26,
+    "8": 25,
+    "9": 37,
+    "10": 45,
+    "11": 44,
+    "12": 43,
+    "13": 42,
+    "14": 41,
+    "15": 36,
+    "16": 21,
+    "17": 22,
+    "18": 23,
+    "19": 16
+   },
+   "rule_G": "PASS",
+   "controls": {
+    "floor_diagonal": true,
+    "floor_cz": true,
+    "mirror_cz": true,
+    "mirror_measures": true,
+    "mirror_native": true
+   }
+  }
+ },
+ "circuits": 994,
+ "qpu_seconds_model": 105.9,
+ "gate_hash": {
+  "circuits": 994,
+  "gate_sha256": "a2f3f3b375603ff4f5a777f7dcfd56632ee2d892474a2f2495725e2c35177295"
+ }
+}
