@@ -1,12 +1,11 @@
-"""Build one device job of the paper 3 follow-up classifier (owner 2026-11-10): arm A fold:rule, arm B Qiskit level 2
-seed 0 blind (SABRE layout and routing, no map: toqb.task_loop 'qiskit:2:blind:template', as 10-30), each compiled
-from the day's psf-os device record (geometry and failed marks only: toqb.devices 'psfos:'), on the task of
-gpu/qclf_task.py. Per arm: (128 + 200) x 3 circuits (point-major, basis-minor, as 10-30) and psf-os's own checks on
-point 0's three circuits (floor: the compiled circuit without its non-diagonal single-qubit gates; mirror: the
-compiled body, its inverse, the same measurement); one ring sentinel per job (psf-os). Rule G as 10-30: one measured
-map per arm, no failed element; else STOP (nothing written).
+"""Build one device job of the paper 3 follow-up classifier (owner 2026-11-10; 11:05 JST: the OS alone, the fold:rule
+arm only, no Qiskit arm), compiled from the day's psf-os device record (geometry and failed marks only:
+toqb.devices 'psfos:'), on the task of gpu/qclf_task.py. (128 + 200) x 3 circuits (point-major, basis-minor, as
+10-30) and psf-os's own checks on point 0's three circuits (floor: the compiled circuit without its non-diagonal
+single-qubit gates; mirror: the compiled body, its inverse, the same measurement); one ring sentinel per job
+(psf-os). Rule G as 10-30: one measured map, no failed element; else STOP (nothing written).
 
-usage: PYTHONPATH=<psf-os>:<TOQB> python gpu/qclf_build.py DEV_DIR TASK_DIR OUT [--shots 250] [--max-seconds 240]
+usage: PYTHONPATH=<psf-os>:<TOQB> python gpu/qclf_build.py DEV_DIR TASK_DIR OUT [--shots 250] [--max-seconds 150]
        [--points K (tests only)] [--dry-clifford-sentinel]
 """
 import argparse
@@ -20,7 +19,7 @@ import numpy as np
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 from toqb import qelm as Q  # noqa: E402
 
-ARMS = (("fold:rule", "a_rule"), ("qiskit:2:blind:template", "b_sabre"))
+ARMS = (("fold:rule", "a_rule"),)  # owner 2026-11-10 11:05 JST: the OS alone, no Qiskit arm (QPU and compute kept)
 
 
 def sha256(path):
@@ -66,7 +65,7 @@ def main():
     ap.add_argument("task_dir")
     ap.add_argument("out")
     ap.add_argument("--shots", type=int, default=Q.SHOTS)
-    ap.add_argument("--max-seconds", type=float, default=240)
+    ap.add_argument("--max-seconds", type=float, default=150)
     ap.add_argument("--points", type=int, default=None, help="tests only: the first K training and K test points")
     ap.add_argument("--dry-clifford-sentinel", action="store_true")
     a = ap.parse_args()

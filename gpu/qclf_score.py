@@ -1,19 +1,18 @@
-"""Score a classifier job (gpu/qclf_build.py) against the sealed answers (gpu/qclf_task.py); written before any run,
-to be fixed with the declaration. 10-30's classifier and subsampling unchanged (toqb.qelm: features 1 - 2 k1 / S,
-least squares with intercept on the 128 training points, sign on the 200 test points; S = 16 ... 250 drawn from the
-250-shot counts without replacement, seeds as 10-30).
+"""Score a classifier job (gpu/qclf_build.py, the fold:rule arm alone: owner 2026-11-10 11:05 JST) against the sealed
+answers (gpu/qclf_task.py); written before any run, to be fixed with the declaration. 10-30's classifier and
+subsampling unchanged (toqb.qelm: features 1 - 2 k1 / S, least squares with intercept on the 128 training points,
+sign on the 200 test points; S = 16 ... 250 drawn from the 250-shot counts without replacement, seeds as 10-30).
 
 Judged (per job):
-  A  rule (fold:rule) more accurate than SABRE (qiskit:2:blind:template): one-sided McNemar on the 200 test points at
-     S = 64 and S = 250, Holm over the two at 0.05 -> "RESOLVED" (rule more accurate) / "NOT RESOLVED".
-  M  the signed margin: mean over the test points of y * z (z the least-squares output at S = 250), per arm; the
-     difference rule - SABRE with its paired standard error (sd of the per-point difference / sqrt(200)).
-Beside, never judged: accuracy at every S; baselines (majority class, the noiseless ceiling); per arm the median lambda per basis (affine fit of device to noiseless features on the training points),
-the share of test points answered +1, floor and mirror means (P(0) over the measured bits), the sentinel; the band
-from given L* values (reference only, owner 2026-11-10), with --lstar.
+  A  READS if the S = 250 test accuracy is above the majority-class guess: one-sided exact binomial test of the
+     number correct against p0 = the majority share of the 200 test labels, at 0.05; else DOES NOT READ.
+  M  the signed margin: mean over the test points of y * z (z the least-squares output at S = 250), with its SE
+     (sd / sqrt(200)).
+Beside, never judged: accuracy at every S; the noiseless ceiling; the reach (acc - 0.5) / (ceiling - 0.5) at S = 250;
+the median lambda per basis (affine fit of device to noiseless features on the training points); the share of test
+points answered +1; floor and mirror P(0) over the measured bits; the sentinel.
 
-usage: PYTHONPATH=<psf-os>:<TOQB> python gpu/qclf_score.py OUT ANSWERS.json [--lstar rule=A,sabre=B]
-       (writes OUT/scores.json)
+usage: PYTHONPATH=<psf-os>:<TOQB> python gpu/qclf_score.py OUT ANSWERS.json   (writes OUT/scores.json)
 """
 import argparse
 import json
@@ -25,8 +24,6 @@ import numpy as np
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 from toqb import qelm as Q  # noqa: E402
-
-RULE, SABRE = "fold:rule", "qiskit:2:blind:template"
 
 
 def k1_of(cc, n, points):
@@ -54,21 +51,10 @@ def p0_mean(cc, n):
     return 1 - ones / tot
 
 
-def holm_two(pa, pb):
-    ps = sorted([(pa, 0), (pb, 1)])
-    rej = [False, False]
-    if ps[0][0] <= 0.025:
-        rej[ps[0][1]] = True
-        if ps[1][0] <= 0.05:
-            rej[ps[1][1]] = True
-    return rej
-
-
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("out")
     ap.add_argument("answers")
-    ap.add_argument("--lstar", default=None, help="reference band only: rule=L*,sabre=L*")
     a = ap.parse_args()
     from scipy.stats import binomtest
     from psf_os import job as J
@@ -86,11 +72,10 @@ def main():
     F0tr, F0te = F0[:ntr], F0[ntr:]
     jd, runs = os.path.join(a.out, "job"), os.path.join(a.out, "runs")
     cells = J.read(jd, runs)
-    res = dict(device=rep["device"], L=L, answers_sha256=rep["answers_sha256"], arms={},
-               baselines=dict(majority=float(max(np.mean(yte == 1), np.mean(yte == -1))),
-                              ceiling=Q.accuracy(Q.ols_predict(Q.ols_fit(F0tr, ytr), F0te), yte)),
-               sentinel=sentinel.verdict(jd, runs)["status"])
-    corr, marg = {}, {}
+    majority = float(max(np.mean(yte == 1), np.mean(yte == -1)))
+    ceiling = Q.accuracy(Q.ols_predict(Q.ols_fit(F0tr, ytr), F0te), yte)
+    res = dict(device=rep["device"], L=L, answers_sha256=rep["answers_sha256"], majority=majority, ceiling=ceiling,
+               sentinel=sentinel.verdict(jd, runs)["status"], arms={})
     for arm, r in rep["arms"].items():
         tag = r["tag"]
         rec, cc = cells[f"q_{tag}"]
@@ -104,48 +89,28 @@ def main():
             FdS = Q.device_features(kS, S, n)
             z = Q.ols_predict(Q.ols_fit(FdS[:ntr], ytr), FdS[ntr:])
             ar["acc"][S] = Q.accuracy(z, yte)
-            corr.setdefault(S, {})[arm] = Q.correct(z, yte)
             if S == S0:
-                marg[arm] = yte * z
+                ok = Q.correct(z, yte)
+                m = yte * z
                 ar["share_plus"] = float(np.mean(np.sign(z) == 1))
-        ar["margin"] = float(np.mean(marg[arm]))
+        k = int(ok.sum())
+        p = float(binomtest(k, len(ok), majority, alternative="greater").pvalue)
+        ar["A"] = dict(correct=k, of=len(ok), p0=majority, p=p, verdict="READS" if p <= 0.05 else "DOES NOT READ")
+        ar["M"] = dict(margin=float(np.mean(m)), se=float(np.std(m, ddof=1) / math.sqrt(len(m))))
+        ar["reach"] = (ar["acc"][S0] - 0.5) / (ceiling - 0.5) if ceiling > 0.5 else None
         ar["floor_p0"] = p0_mean(cells[f"q_{tag}_floor"][1], n)
         ar["mirror_p0"] = p0_mean(cells[f"q_{tag}_mirror"][1], n)
         res["arms"][arm] = ar
-
-    def one_sided(x, y):
-        b, c = int(np.sum((x == 1) & (y == 0))), int(np.sum((x == 0) & (y == 1)))
-        return b, c, (1.0 if b + c == 0 else float(binomtest(b, b + c, 0.5, alternative="greater").pvalue))
-    t = {S: one_sided(corr[S][RULE], corr[S][SABRE]) for S in (64, 250)}
-    rej = holm_two(t[64][2], t[250][2])
-    res["A"] = dict(S64=t[64], S250=t[250], holm=rej, verdict="RESOLVED" if any(rej) else "NOT RESOLVED")
-    d = marg[RULE] - marg[SABRE]
-    res["M"] = dict(rule=float(np.mean(marg[RULE])), sabre=float(np.mean(marg[SABRE])), diff=float(np.mean(d)),
-                    se=float(np.std(d, ddof=1) / math.sqrt(len(d))))
-    if a.lstar:
-        ls = dict(kv.split("=") for kv in a.lstar.split(","))
-        m = F0.shape[1]
-        res["band_reference"] = {}
-        for arm, key in ((RULE, "rule"), (SABRE, "sabre")):
-            lam = math.exp(-L / float(ls[key]))
-            res["band_reference"][arm] = dict(lstar=float(ls[key]), lam=lam, S250=Q.predicted_band(
-                F0tr, F0te, ytr, yte, np.zeros(m), np.full(m, lam), 250, seed=11))
     json.dump(res, open(os.path.join(a.out, "scores.json"), "w"), indent=1, default=str)
-    b = res["baselines"]
-    print(f"{res['device']}  L {L}  sentinel {res['sentinel']}  majority {b['majority']:.3f}  ceiling {b['ceiling']:.3f}")
+    print(f"{res['device']}  L {L}  sentinel {res['sentinel']}  majority {majority:.3f}  ceiling {ceiling:.3f}")
     for arm, ar in res["arms"].items():
-        print(f"{arm:26} CZ {ar['cz_per_circuit']}  lambda (X, Y, Z) {', '.join(f'{v:.3f}' for v in ar['lambda_median'])}"
-              f"  acc " + ", ".join(f"S{S} {v:.3f}" for S, v in ar["acc"].items()) +
-              f"  margin {ar['margin']:+.3f}  share(+1) {ar['share_plus']:.3f}  floor {ar['floor_p0']:.3f}  "
-              f"mirror {ar['mirror_p0']:.3f}")
-    x = res["A"]
-    print(f"A (rule more accurate than SABRE): S64 {x['S64'][0]}/{x['S64'][1]} p {x['S64'][2]:.3g}; S250 "
-          f"{x['S250'][0]}/{x['S250'][1]} p {x['S250'][2]:.3g}; Holm {x['holm']}: {x['verdict']}")
-    print(f"M (signed margin): rule {res['M']['rule']:+.4f}  SABRE {res['M']['sabre']:+.4f}  rule - SABRE "
-          f"{res['M']['diff']:+.4f} (SE {res['M']['se']:.4f})")
-    for arm, v in res.get("band_reference", {}).items():
-        print(f"  band (reference only) {arm}: L* {v['lstar']} lambda {v['lam']:.3f} S250 {v['S250'][0]:.3f} "
-              f"[{v['S250'][1]:.3f}, {v['S250'][2]:.3f}]")
+        A, M = ar["A"], ar["M"]
+        reach = f"{ar['reach']:.3f}" if ar["reach"] is not None else "-"
+        print(f"{arm}: CZ {ar['cz_per_circuit']}  A {A['correct']}/{A['of']} against p0 {A['p0']:.3f}: p {A['p']:.3g} "
+              f"{A['verdict']}  M margin {M['margin']:+.4f} (SE {M['se']:.4f})")
+        print("  beside: acc " + ", ".join(f"S{S} {v:.3f}" for S, v in ar["acc"].items()) +
+              f"; reach {reach}; lambda (X, Y, Z) {', '.join(f'{v:.3f}' for v in ar['lambda_median'])}; share(+1) "
+              f"{ar['share_plus']:.3f}; floor {ar['floor_p0']:.3f}; mirror {ar['mirror_p0']:.3f}")
 
 
 if __name__ == "__main__":
