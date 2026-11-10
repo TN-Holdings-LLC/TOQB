@@ -1,4 +1,5 @@
-# WIP (2026-11-10): network() and arrays() checked (index structure; array_contract optimize="auto" equals tn_value 0.948050221931 on Z106 t3); the reusable tree from find_tree fails in tree.contract / array_contract(optimize=tree) with "tuple index out of range" (open, for home VS Claude).
+# 2026-11-10: the reusable-tree failure ("tuple index out of range" in tree.contract) is worked around by contracting
+# with the tree's path (value()); see value() for the check.
 """Exact utility-experiment observables by one reusable tensor-network contraction (home, 2026-11-10; for the pod run
 of the weight-17 observables; prototype, not declared).
 
@@ -115,8 +116,18 @@ def find_tree(inputs, output, size, max_time):
     return opt.search(inputs, output, size)
 
 
-def value(tree, slots, theta):
-    return complex(tree.contract(arrays(slots, theta)))
+def value(tree, slots, theta, inputs=None, output=(), size=None):
+    """Contract with the searched tree's path. Fix (home VS Claude, 2026-11-10): tree.contract(arrays) and
+    array_contract(optimize=tree) stop in cotengra 0.8.3 with "tuple index out of range" inside tensordot on this
+    network, while the same tree's path (tree.get_path(), a list of pairs) passed to array_contract gives the exact
+    value (6e-15 against utility_exact.tn_value on Z106 t3). The path does not depend on theta: taken once, reused."""
+    import cotengra as ctg
+    if not hasattr(tree, "_path_cache"):
+        tree._path_cache = tree.get_path()
+    inputs = inputs if inputs is not None else [tuple(ix) for ix in tree.inputs]
+    size = size if size is not None else tree.size_dict
+    return complex(ctg.array_contract(arrays(slots, theta), inputs, output, size_dict=size,
+                                      optimize=tree._path_cache))
 
 
 def check():
@@ -125,9 +136,11 @@ def check():
     for obs, t, ex in (({106: "Z"}, 3, False), ({13: "X", 9: "Y", 8: "Z"}, 2, True), (UE.W10, 2, False),
                        (UE.W10, 3, False), (UE.W10, 5, False)):
         inputs, output, size, slots, nq = network(obs, t, ex, edges)
-        tree = find_tree(inputs, output, size, 10)
+        # a 10 s search leaves the weight-10 / 5-step tree at width 30 (17 GB, out of memory on a 16 GB PC); 60 s
+        # gives width 26 (1 GB, 5 s per value) (home VS Claude, 2026-11-10)
+        tree = find_tree(inputs, output, size, 60 if nq > 30 else 10)
         for th in (0.3, 0.9, math.pi / 2):
-            a = value(tree, slots, th).real
+            a = value(tree, slots, th, inputs, output, size).real
             b = UE.tn_value(obs, edges, th, t, ex)[0] if len(obs) <= 12 else None
             worst = max(worst, abs(a - b))
     print(f"reusable network against utility_exact.tn_value (incl. weight-10 at 5 steps): worst {worst:.2e}")
@@ -159,7 +172,7 @@ def main():
         f.write(json.dumps(dict(obs=name, kind="tree", width=w, log10_cost=c)) + "\n")
         for k in ks:
             t1 = time.time()
-            v = value(tree, slots, k * math.pi / 32)
+            v = value(tree, slots, k * math.pi / 32, inputs, output, size)
             f.write(json.dumps(dict(obs=name, k=k, theta=k * math.pi / 32, re=v.real, im=v.imag,
                                     seconds=round(time.time() - t1, 1))) + "\n")
             f.flush()
