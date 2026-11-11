@@ -1,0 +1,3 @@
+{"obs": "z106_t8", "kind": "tree", "cone": 43, "tensors": 795, "slices": 2, "width": 26.0, "log10_cost": 10.02, "target": 27, "search_s": 312}
+{"obs": "w10_t6", "kind": "tree", "cone": 42, "tensors": 792, "slices": 4, "width": 27.0, "log10_cost": 10.51, "target": 27, "search_s": 427}
+{"obs": "z62_t8", "kind": "tree", "cone": 65, "tensors": 1071, "slices": 4096, "width": 27.0, "log10_cost": 13.02, "target": 27, "search_s": 414}

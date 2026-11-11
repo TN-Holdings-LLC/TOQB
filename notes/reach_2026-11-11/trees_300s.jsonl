@@ -1,0 +1,4 @@
+{"obs": "w10", "t": 7, "extra_rx": false, "cone": 49, "tensors": 1008, "width": 30.0, "log10_cost": 11.23, "search_s": 306}
+{"obs": "z106", "t": 10, "extra_rx": false, "cone": 57, "tensors": 1271, "width": 38.0, "log10_cost": 14.22, "search_s": 302}
+{"obs": "z62", "t": 10, "extra_rx": false, "cone": 92, "tensors": 1847, "width": 52.0, "log10_cost": 17.56, "search_s": 309}
+{"obs": "w17", "t": 6, "extra_rx": false, "cone": 82, "tensors": 1513, "width": 35.0, "log10_cost": 12.94, "search_s": 307}
