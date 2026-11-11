@@ -1,0 +1,38 @@
+qiskit 2.6.1 aer 0.18.2 quimb 1.16.0 numpy 2.5.4
+vCPU used 16 (nproc shows 16)
+               total        used        free      shared  buff/cache   available
+Mem:             377          21         155           0         203         355
+Wed Nov 11 02:36:28 CET 2026
+== smoke L 8 steps 4
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+{"L": 8, "qubits": 16, "steps": 4, "Jt": 1.0, "method": "quimb", "chi": 256, "seconds": 68.6, "peak_rss_gb": 0.43, "max_bond": 203, "error_estimate": 6.157430121334073e-11, "check_sum_z": -1.4495071809506044e-12, "check_sz": 8.337219803422613e-13, "cx_transpiled": 400, "max_diff_to": {}}
+{"L": 8, "qubits": 16, "steps": 4, "Jt": 1.0, "method": "aer", "chi": null, "seconds": 2.4, "peak_rss_gb": 0.12, "max_bond": 253, "error_estimate": null, "check_sum_z": 1.000891591829145e-10, "check_sz": -2.9083957464592913e-12, "cx_transpiled": 400, "max_diff_to": {"L8_s4_quimb256": 2.4110086510598094e-08}}
+== 02:37:40 L 30 steps 4 quimb chi 256
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P3_report.jsonl: No such file or directory
+{"L": 30, "qubits": 60, "steps": 4, "Jt": 1.0, "method": "quimb", "chi": 256, "seconds": 1027.0, "peak_rss_gb": 0.42, "max_bond": 214, "error_estimate": 7.552516390063602e-10, "check_sum_z": -1.1336709349052398e-11, "check_sz": -4.1733283495659634e-13, "cx_transpiled": 1632, "max_diff_to": {}}
+== 02:54:47 L 30 steps 4 quimb chi 512
+{"L": 30, "qubits": 60, "steps": 4, "Jt": 1.0, "method": "quimb", "chi": 512, "seconds": 939.0, "peak_rss_gb": 0.42, "max_bond": 214, "error_estimate": 7.552516390063602e-10, "check_sum_z": -1.1336709349052398e-11, "check_sz": -4.1733283495659634e-13, "cx_transpiled": 1632, "max_diff_to": {"L30_s4_quimb256": 0.0}}
+== 03:10:27 L 30 steps 4 quimb chi 1024
+{"L": 30, "qubits": 60, "steps": 4, "Jt": 1.0, "method": "quimb", "chi": 1024, "seconds": 1084.1, "peak_rss_gb": 0.42, "max_bond": 214, "error_estimate": 7.552516390063602e-10, "check_sum_z": -1.1336709349052398e-11, "check_sz": -4.1733283495659634e-13, "cx_transpiled": 1632, "max_diff_to": {"L30_s4_quimb256": 0.0, "L30_s4_quimb512": 0.0}}
+== 03:28:31 L 30 steps 4 quimb chi 2048
+{"L": 30, "qubits": 60, "steps": 4, "Jt": 1.0, "method": "quimb", "chi": 2048, "seconds": 794.8, "peak_rss_gb": 0.41, "max_bond": 214, "error_estimate": 7.552516390063602e-10, "check_sum_z": -1.1336709349052398e-11, "check_sz": -4.1733283495659634e-13, "cx_transpiled": 1632, "max_diff_to": {"L30_s4_quimb256": 0.0, "L30_s4_quimb512": 0.0, "L30_s4_quimb1024": 0.0}}
+== 03:41:47 L 30 steps 4 aer
+{"L": 30, "qubits": 60, "steps": 4, "Jt": 1.0, "method": "aer", "chi": null, "seconds": 138.9, "peak_rss_gb": 0.33, "max_bond": 333, "error_estimate": null, "check_sum_z": 4.8890780313115556e-11, "check_sz": 3.137956561261035e-10, "cx_transpiled": 1632, "max_diff_to": {"L30_s4_quimb256": 2.475597868367707e-08, "L30_s4_quimb512": 2.475597868367707e-08, "L30_s4_quimb1024": 2.475597868367707e-08, "L30_s4_quimb2048": 2.475597868367707e-08}}
+== 03:44:06 L 30 steps 6 quimb chi 256

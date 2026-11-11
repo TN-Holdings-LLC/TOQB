@@ -1,0 +1,186 @@
+02:36:28 cases_done 0 running:       0  0.0  6228 python3 hub_cost.py 8 4 quimb 256 P3_smoke_report.jsonl P3_smoke_values.npz
+02:37:28 cases_done 0 running:      60 1229 437096 python3 hub_cost.py 8 4 quimb 256 P3_smoke_report.jsonl P3_smoke_values.npz
+02:38:28 cases_done 0 running:      48 1485 276352 python3 hub_cost.py 30 4 quimb 256 P3_report.jsonl P3_values.npz
+02:39:28 cases_done 0 running:     108 1497 299020 python3 hub_cost.py 30 4 quimb 256 P3_report.jsonl P3_values.npz
+02:40:28 cases_done 0 running:     168 1497 318924 python3 hub_cost.py 30 4 quimb 256 P3_report.jsonl P3_values.npz
+02:41:28 cases_done 0 running:     228 1497 337072 python3 hub_cost.py 30 4 quimb 256 P3_report.jsonl P3_values.npz
+02:42:28 cases_done 0 running:     288 1500 341700 python3 hub_cost.py 30 4 quimb 256 P3_report.jsonl P3_values.npz
+02:43:28 cases_done 0 running:     348 1504 347636 python3 hub_cost.py 30 4 quimb 256 P3_report.jsonl P3_values.npz
+02:44:28 cases_done 0 running:     408 1508 366332 python3 hub_cost.py 30 4 quimb 256 P3_report.jsonl P3_values.npz
+02:45:28 cases_done 0 running:     468 1509 413596 python3 hub_cost.py 30 4 quimb 256 P3_report.jsonl P3_values.npz
+02:46:28 cases_done 0 running:     528 1510 388244 python3 hub_cost.py 30 4 quimb 256 P3_report.jsonl P3_values.npz
+02:47:28 cases_done 0 running:     588 1509 408548 python3 hub_cost.py 30 4 quimb 256 P3_report.jsonl P3_values.npz
+02:48:28 cases_done 0 running:     648 1509 407284 python3 hub_cost.py 30 4 quimb 256 P3_report.jsonl P3_values.npz
+02:49:28 cases_done 0 running:     708 1509 403476 python3 hub_cost.py 30 4 quimb 256 P3_report.jsonl P3_values.npz
+02:50:28 cases_done 0 running:     768 1509 366220 python3 hub_cost.py 30 4 quimb 256 P3_report.jsonl P3_values.npz
+02:51:28 cases_done 0 running:     828 1507 383176 python3 hub_cost.py 30 4 quimb 256 P3_report.jsonl P3_values.npz
+02:52:28 cases_done 0 running:     888 1506 378112 python3 hub_cost.py 30 4 quimb 256 P3_report.jsonl P3_values.npz
+02:53:28 cases_done 0 running:     948 1505 378112 python3 hub_cost.py 30 4 quimb 256 P3_report.jsonl P3_values.npz
+02:54:28 cases_done 0 running:    1008 1505 366240 python3 hub_cost.py 30 4 quimb 256 P3_report.jsonl P3_values.npz
+02:55:28 cases_done 1 running:      41 1495 285432 python3 hub_cost.py 30 4 quimb 512 P3_report.jsonl P3_values.npz
+02:56:28 cases_done 1 running:     101 1509 309688 python3 hub_cost.py 30 4 quimb 512 P3_report.jsonl P3_values.npz
+02:57:28 cases_done 1 running:     161 1511 324080 python3 hub_cost.py 30 4 quimb 512 P3_report.jsonl P3_values.npz
+02:58:28 cases_done 1 running:     221 1512 350528 python3 hub_cost.py 30 4 quimb 512 P3_report.jsonl P3_values.npz
+02:59:28 cases_done 1 running:     281 1512 359640 python3 hub_cost.py 30 4 quimb 512 P3_report.jsonl P3_values.npz
+03:00:28 cases_done 1 running:     341 1513 365124 python3 hub_cost.py 30 4 quimb 512 P3_report.jsonl P3_values.npz
+03:01:28 cases_done 1 running:     401 1513 374856 python3 hub_cost.py 30 4 quimb 512 P3_report.jsonl P3_values.npz
+03:02:28 cases_done 1 running:     461 1511 374860 python3 hub_cost.py 30 4 quimb 512 P3_report.jsonl P3_values.npz
+03:03:28 cases_done 1 running:     521 1510 404052 python3 hub_cost.py 30 4 quimb 512 P3_report.jsonl P3_values.npz
+03:04:28 cases_done 1 running:     581 1509 407868 python3 hub_cost.py 30 4 quimb 512 P3_report.jsonl P3_values.npz
+03:05:28 cases_done 1 running:     641 1509 404060 python3 hub_cost.py 30 4 quimb 512 P3_report.jsonl P3_values.npz
+03:06:28 cases_done 1 running:     701 1509 382496 python3 hub_cost.py 30 4 quimb 512 P3_report.jsonl P3_values.npz
+03:07:29 cases_done 1 running:     761 1509 383776 python3 hub_cost.py 30 4 quimb 512 P3_report.jsonl P3_values.npz
+03:08:29 cases_done 1 running:     821 1507 378720 python3 hub_cost.py 30 4 quimb 512 P3_report.jsonl P3_values.npz
+03:09:29 cases_done 1 running:     881 1506 378720 python3 hub_cost.py 30 4 quimb 512 P3_report.jsonl P3_values.npz
+03:10:29 cases_done 2 running:       1  990 267068 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:11:29 cases_done 2 running:      61 1496 298648 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:12:29 cases_done 2 running:     122 1509 334752 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:13:29 cases_done 2 running:     182 1512 345908 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:14:29 cases_done 2 running:     242 1512 352040 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:15:29 cases_done 2 running:     302 1511 361272 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:16:29 cases_done 2 running:     362 1510 373488 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:17:29 cases_done 2 running:     422 1507 404404 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:18:29 cases_done 2 running:     482 1505 370164 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:19:29 cases_done 2 running:     542 1504 378236 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:20:29 cases_done 2 running:     602 1504 376056 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:21:29 cases_done 2 running:     662 1504 370188 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:22:29 cases_done 2 running:     722 1502 377328 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:23:29 cases_done 2 running:     782 1502 370192 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:24:29 cases_done 2 running:     842 1502 387724 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:25:29 cases_done 2 running:     902 1501 387736 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:26:29 cases_done 2 running:     962 1501 372612 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:27:29 cases_done 2 running:    1022 1500 373544 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:28:29 cases_done 2 running:    1082 1500 370216 python3 hub_cost.py 30 4 quimb 1024 P3_report.jsonl P3_values.npz
+03:29:29 cases_done 3 running:      57 1509 308640 python3 hub_cost.py 30 4 quimb 2048 P3_report.jsonl P3_values.npz
+03:30:29 cases_done 3 running:     117 1518 338664 python3 hub_cost.py 30 4 quimb 2048 P3_report.jsonl P3_values.npz
+03:31:29 cases_done 3 running:     177 1517 344008 python3 hub_cost.py 30 4 quimb 2048 P3_report.jsonl P3_values.npz
+03:32:29 cases_done 3 running:     237 1516 358732 python3 hub_cost.py 30 4 quimb 2048 P3_report.jsonl P3_values.npz
+03:33:29 cases_done 3 running:     297 1515 369104 python3 hub_cost.py 30 4 quimb 2048 P3_report.jsonl P3_values.npz
+03:34:29 cases_done 3 running:     357 1513 371360 python3 hub_cost.py 30 4 quimb 2048 P3_report.jsonl P3_values.npz
+03:35:29 cases_done 3 running:     417 1512 385432 python3 hub_cost.py 30 4 quimb 2048 P3_report.jsonl P3_values.npz
+03:36:29 cases_done 3 running:     477 1510 371368 python3 hub_cost.py 30 4 quimb 2048 P3_report.jsonl P3_values.npz
+03:37:29 cases_done 3 running:     537 1510 391452 python3 hub_cost.py 30 4 quimb 2048 P3_report.jsonl P3_values.npz
+03:38:29 cases_done 3 running:     597 1510 371388 python3 hub_cost.py 30 4 quimb 2048 P3_report.jsonl P3_values.npz
+03:39:29 cases_done 3 running:     657 1509 391456 python3 hub_cost.py 30 4 quimb 2048 P3_report.jsonl P3_values.npz
+03:40:29 cases_done 3 running:     718 1510 386736 python3 hub_cost.py 30 4 quimb 2048 P3_report.jsonl P3_values.npz
+03:41:29 cases_done 3 running:     778 1510 371408 python3 hub_cost.py 30 4 quimb 2048 P3_report.jsonl P3_values.npz
+03:42:29 cases_done 4 running:      42  101 210152 python3 hub_cost.py 30 4 aer P3_report.jsonl P3_values.npz --threads 16
+03:43:29 cases_done 4 running:     102  100 265220 python3 hub_cost.py 30 4 aer P3_report.jsonl P3_values.npz --threads 16
+03:44:29 cases_done 5 running:      23 1465 284380 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+03:45:29 cases_done 5 running:      83 1497 312068 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+03:46:29 cases_done 5 running:     143 1510 359644 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+03:47:29 cases_done 5 running:     203 1520 400088 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+restart c1 03:48:03
+03:48:06 rows_with_seconds 5 running:       0  309 253432 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+03:49:06 rows_with_seconds 5 running:      60 1519 345020 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+03:50:06 rows_with_seconds 5 running:     120 1511 375088 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+03:51:06 rows_with_seconds 5 running:     180 1513 378656 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+03:52:06 rows_with_seconds 5 running:     240 1513 406964 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+03:53:06 rows_with_seconds 5 running:     300 1515 427192 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+03:54:06 rows_with_seconds 5 running:     360 1517 448008 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+03:55:06 rows_with_seconds 5 running:     420 1516 456364 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+03:56:06 rows_with_seconds 5 running:     480 1516 476928 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+03:57:06 rows_with_seconds 5 running:     540 1517 489176 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+03:58:06 rows_with_seconds 5 running:     600 1517 506132 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+03:59:06 run_pod.sh ended
+restart threads 04:02:00
+04:02:03 rows_with_seconds 5 running:       0  100 246672 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+04:03:03 rows_with_seconds 5 running:      60  100 477376 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+04:04:03 rows_with_seconds 5 running:     120 99.9 560768 python3 hub_cost.py 30 6 quimb 256 P3_report.jsonl P3_values.npz
+04:05:03 rows_with_seconds 6 running:      55  100 614740 python3 hub_cost.py 30 6 quimb 512 P3_report.jsonl P3_values.npz
+04:06:03 rows_with_seconds 6 running:     115  100 787092 python3 hub_cost.py 30 6 quimb 512 P3_report.jsonl P3_values.npz
+04:07:03 rows_with_seconds 6 running:     175 99.9 1189380 python3 hub_cost.py 30 6 quimb 512 P3_report.jsonl P3_values.npz
+04:08:03 rows_with_seconds 6 running:     235 99.9 1189508 python3 hub_cost.py 30 6 quimb 512 P3_report.jsonl P3_values.npz
+04:09:03 rows_with_seconds 6 running:     295 99.9 1059188 python3 hub_cost.py 30 6 quimb 512 P3_report.jsonl P3_values.npz
+04:10:03 rows_with_seconds 6 running:     355 99.9 985764 python3 hub_cost.py 30 6 quimb 512 P3_report.jsonl P3_values.npz
+04:11:03 rows_with_seconds 6 running:     415 99.9 985768 python3 hub_cost.py 30 6 quimb 512 P3_report.jsonl P3_values.npz
+04:12:03 rows_with_seconds 6 running:     475 99.9 1189540 python3 hub_cost.py 30 6 quimb 512 P3_report.jsonl P3_values.npz
+04:13:03 rows_with_seconds 7 running:      49 1205 696932 python3 hub_cost.py 30 6 quimb 1024 P3_report.jsonl P3_values.npz
+04:14:03 rows_with_seconds 7 running:     109 1183 986204 python3 hub_cost.py 30 6 quimb 1024 P3_report.jsonl P3_values.npz
+04:15:03 rows_with_seconds 7 running:     169 1193 1387016 python3 hub_cost.py 30 6 quimb 1024 P3_report.jsonl P3_values.npz
+04:16:03 rows_with_seconds 7 running:     229 1218 1212572 python3 hub_cost.py 30 6 quimb 1024 P3_report.jsonl P3_values.npz
+04:17:03 rows_with_seconds 7 running:     289 1187 1407876 python3 hub_cost.py 30 6 quimb 1024 P3_report.jsonl P3_values.npz
+04:18:03 rows_with_seconds 8 running:      59 1217 711720 python3 hub_cost.py 30 6 quimb 2048 P3_report.jsonl P3_values.npz
+04:19:03 rows_with_seconds 8 running:     119 1194 1147576 python3 hub_cost.py 30 6 quimb 2048 P3_report.jsonl P3_values.npz
+04:20:03 rows_with_seconds 8 running:     179 1226 1206580 python3 hub_cost.py 30 6 quimb 2048 P3_report.jsonl P3_values.npz
+04:21:03 rows_with_seconds 8 running:     239 1227 1427464 python3 hub_cost.py 30 6 quimb 2048 P3_report.jsonl P3_values.npz
+04:22:03 rows_with_seconds 9 running:      26  102 201200 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:23:03 rows_with_seconds 9 running:      86  100 378884 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:24:03 rows_with_seconds 9 running:     146  100 356132 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:25:03 rows_with_seconds 9 running:     206  100 338832 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:26:03 rows_with_seconds 9 running:     266  100 412740 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:27:03 rows_with_seconds 9 running:     326  100 494432 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:28:03 rows_with_seconds 9 running:     386  100 602748 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:29:03 rows_with_seconds 9 running:     446  100 569088 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:30:03 rows_with_seconds 9 running:     506  100 808992 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:31:03 rows_with_seconds 9 running:     566  100 808728 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:32:03 rows_with_seconds 9 running:     626  100 889540 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:33:03 rows_with_seconds 9 running:     686  100 643324 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:34:03 rows_with_seconds 9 running:     746  100 708772 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:35:03 rows_with_seconds 9 running:     806  100 708772 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:36:03 rows_with_seconds 9 running:     866  100 706968 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:37:03 rows_with_seconds 9 running:     926  100 706968 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:38:03 rows_with_seconds 9 running:     986  100 844636 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:39:03 rows_with_seconds 9 running:    1046  100 927680 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:40:03 rows_with_seconds 9 running:    1106  100 924692 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:41:03 rows_with_seconds 9 running:    1166  100 846596 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:42:03 rows_with_seconds 9 running:    1226  100 842328 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:43:03 rows_with_seconds 9 running:    1286  100 910036 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:44:03 rows_with_seconds 9 running:    1346  100 940968 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:45:03 rows_with_seconds 9 running:    1406  100 972184 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:46:03 rows_with_seconds 9 running:    1466  100 1024816 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:47:03 rows_with_seconds 9 running:    1526  100 1199188 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:48:03 rows_with_seconds 9 running:    1586  100 1307204 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:49:03 rows_with_seconds 9 running:    1646  100 1049264 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:50:03 rows_with_seconds 9 running:    1706  100 1049264 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:51:03 rows_with_seconds 9 running:    1766  100 1049264 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:52:03 rows_with_seconds 9 running:    1826  100 1178632 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:53:03 rows_with_seconds 9 running:    1886  100 1049264 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:54:03 rows_with_seconds 9 running:    1946  100 1185052 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:55:03 rows_with_seconds 9 running:    2006  100 1214620 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:56:03 rows_with_seconds 9 running:    2066  100 1214620 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:57:03 rows_with_seconds 9 running:    2126  100 1059856 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:58:03 rows_with_seconds 9 running:    2186  100 1059856 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+04:59:03 rows_with_seconds 9 running:    2246  100 1108008 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:00:03 rows_with_seconds 9 running:    2306  100 1317032 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:01:04 rows_with_seconds 9 running:    2366  100 1077164 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:02:04 rows_with_seconds 9 running:    2426  100 1252672 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:03:04 rows_with_seconds 9 running:    2486  100 1266064 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:04:04 rows_with_seconds 9 running:    2546  100 1101260 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:05:04 rows_with_seconds 9 running:    2606  100 1101260 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:06:04 rows_with_seconds 9 running:    2666  100 1077164 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:07:04 rows_with_seconds 9 running:    2726  100 1297076 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:08:04 rows_with_seconds 9 running:    2786  100 1215964 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:09:04 rows_with_seconds 9 running:    2846  100 1340472 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:10:04 rows_with_seconds 9 running:    2906  100 1475152 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:11:04 rows_with_seconds 9 running:    2966  100 1505116 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:12:04 rows_with_seconds 9 running:    3027  100 1182036 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:13:04 rows_with_seconds 9 running:    3087  100 1182036 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:14:04 rows_with_seconds 9 running:    3147  100 1328492 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:15:04 rows_with_seconds 9 running:    3207  100 1389440 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:16:04 rows_with_seconds 9 running:    3267  100 1527244 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:17:04 rows_with_seconds 9 running:    3327  100 1486116 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:18:04 rows_with_seconds 9 running:    3387  100 1486116 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:19:04 rows_with_seconds 9 running:    3447  100 1331352 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:20:04 rows_with_seconds 9 running:    3507  100 1331352 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:21:04 rows_with_seconds 9 running:    3567  100 1361424 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:22:04 rows_with_seconds 9 running:    3627  100 1347856 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:23:04 rows_with_seconds 9 running:    3687  100 1457424 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:24:04 rows_with_seconds 9 running:    3747  100 1591308 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:25:04 rows_with_seconds 9 running:    3807  100 1595240 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:26:04 rows_with_seconds 9 running:    3867  100 1358908 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:27:04 rows_with_seconds 9 running:    3927  100 1359052 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:28:04 rows_with_seconds 9 running:    3987  100 1502720 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:29:04 rows_with_seconds 9 running:    4047  100 1532024 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:30:04 rows_with_seconds 9 running:    4107  100 1443276 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:31:04 rows_with_seconds 9 running:    4167  100 1528596 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:32:04 rows_with_seconds 9 running:    4227  100 1587236 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:33:04 rows_with_seconds 9 running:    4287  100 1517476 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:34:04 rows_with_seconds 9 running:    4347  100 1535576 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:35:04 rows_with_seconds 9 running:    4407  100 1744344 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:36:04 rows_with_seconds 9 running:    4467  100 1739208 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:37:04 rows_with_seconds 9 running:    4527  100 1731676 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:38:04 rows_with_seconds 9 running:    4587  100 1797296 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:39:04 rows_with_seconds 9 running:    4647  100 1474016 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:40:04 rows_with_seconds 9 running:    4707  100 1474016 python3 hub_cost.py 30 6 aer P3_report.jsonl P3_values.npz --threads 16
+05:41:04 run_pod.sh ended

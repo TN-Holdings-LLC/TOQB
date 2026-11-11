@@ -1,0 +1,11 @@
+qiskit 2.6.1 aer 0.18.2 quimb 1.16.0
+16
+               total        used        free      shared  buff/cache   available
+Mem:             377          22         155           0         202         354
+threads: 16 (nproc 16)
+Wed Nov 11 03:48:05 CET 2026
+L 30 steps 4 quimb 256: already done
+L 30 steps 4 quimb 512: already done
+L 30 steps 4 quimb 1024: already done
+L 30 steps 4 quimb 2048: already done
+L 30 steps 4 aer: already done

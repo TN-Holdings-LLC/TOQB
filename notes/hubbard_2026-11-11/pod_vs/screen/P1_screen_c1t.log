@@ -1,0 +1,29 @@
+qiskit 2.6.1 aer 0.18.2 quimb 1.16.0
+16
+               total        used        free      shared  buff/cache   available
+Mem:             755          44         419           0         296         710
+threads: 16 (nproc 16)
+Wed Nov 11 04:00:31 CET 2026
+L 20 steps 4 quimb 256: already done
+L 20 steps 4 quimb 512: already done
+L 20 steps 4 quimb 1024: already done
+L 20 steps 4 quimb 2048: already done
+L 20 steps 4 aer: already done
+L 20 steps 6 quimb 256: already done
+L 20 steps 6 quimb 512: already done
+quimb threads 8 for chi 1024
+{"L": 20, "qubits": 40, "steps": 6, "Jt": 1.5, "method": "quimb", "chi": 1024, "seconds": 85.6, "peak_rss_gb": 0.99, "max_bond": 610, "error_estimate": 7.687304126591243e-10, "check_sum_z": -5.4802273830034665e-12, "check_sz": 1.822153539166038e-12, "cx_transpiled": 1608, "max_diff_to": {"L20_s6_quimb256": 2.4372179385778736e-08, "L20_s6_quimb512": 2.072331195535071e-11}}
+quimb threads 8 for chi 2048
+{"L": 20, "qubits": 40, "steps": 6, "Jt": 1.5, "method": "quimb", "chi": 2048, "seconds": 86.2, "peak_rss_gb": 0.97, "max_bond": 610, "error_estimate": 7.687304126591243e-10, "check_sum_z": -5.4802273830034665e-12, "check_sz": 1.822153539166038e-12, "cx_transpiled": 1608, "max_diff_to": {"L20_s6_quimb256": 2.4372179385778736e-08, "L20_s6_quimb512": 2.072331195535071e-11, "L20_s6_quimb1024": 0.0}}
+{"L": 20, "qubits": 40, "steps": 6, "Jt": 1.5, "method": "aer", "chi": null, "seconds": 2829.4, "peak_rss_gb": 1.27, "max_bond": 969, "error_estimate": null, "check_sum_z": 3.0423297214809963e-10, "check_sz": -5.374589662210383e-12, "cx_transpiled": 1608, "max_diff_to": {"L20_s6_quimb256": 7.15620720181942e-08, "L20_s6_quimb512": 7.760577133697488e-08, "L20_s6_quimb1024": 7.761790285498726e-08, "L20_s6_quimb2048": 7.761790285498726e-08}}
+quimb threads 1 for chi 256
+{"L": 20, "qubits": 40, "steps": 8, "Jt": 2.0, "method": "quimb", "chi": 256, "seconds": 74.6, "peak_rss_gb": 0.45, "max_bond": 256, "error_estimate": 0.00017972033495083917, "check_sum_z": -2.2264115754344616e-06, "check_sz": 6.099817629334758e-07, "cx_transpiled": 2144, "max_diff_to": {}}
+quimb threads 1 for chi 512
+{"L": 20, "qubits": 40, "steps": 8, "Jt": 2.0, "method": "quimb", "chi": 512, "seconds": 330.4, "peak_rss_gb": 0.91, "max_bond": 512, "error_estimate": 1.6198677520451454e-06, "check_sum_z": -4.399621150730226e-08, "check_sz": -8.993148947755714e-09, "cx_transpiled": 2144, "max_diff_to": {"L20_s8_quimb256": 2.0580313052076527e-05}}
+quimb threads 8 for chi 1024
+{"L": 20, "qubits": 40, "steps": 8, "Jt": 2.0, "method": "quimb", "chi": 1024, "seconds": 582.3, "peak_rss_gb": 2.39, "max_bond": 1024, "error_estimate": 5.67799207651376e-09, "check_sum_z": 1.6577683670249144e-11, "check_sz": -3.5268454823267348e-12, "cx_transpiled": 2144, "max_diff_to": {"L20_s8_quimb256": 2.0774054140582088e-05, "L20_s8_quimb512": 2.083341049119447e-07}}
+quimb threads 8 for chi 2048
+{"L": 20, "qubits": 40, "steps": 8, "Jt": 2.0, "method": "quimb", "chi": 2048, "seconds": 983.4, "peak_rss_gb": 4.06, "max_bond": 1722, "error_estimate": 1.079250022684164e-09, "check_sum_z": -1.7378876115969888e-12, "check_sz": 2.0482504581309513e-12, "cx_transpiled": 2144, "max_diff_to": {"L20_s8_quimb256": 2.0774647701227167e-05, "L20_s8_quimb512": 2.0889967050630176e-07, "L20_s8_quimb1024": 5.935606450790942e-10}}
+Wed Nov 11 06:51:31 CET 2026
+74a29ce6c6b1fbaa5df70a47baf7cdb155eaf0ff79fcafe26224f89e4f2be51b  P1_values.npz
+=== DONE. The POD is still running and billing: delete it now. ===
