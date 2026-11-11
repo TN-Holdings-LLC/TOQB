@@ -26,13 +26,15 @@ One judged unit: one observable, size and step count, as each test declared it.
 | verdict | the declared words copied from scores.json (READS / DOES NOT READ, AGREES / DIFFERS, BEATS, rate verdicts, readable depth, AGREES count) |
 | common | `mse / mean_square_answer` or `mse / mean_square_exact` from scores (0.5 is the READS line). du: computed from the points of that h (`on`, `exact`) |
 | mirror, floor | `mirror_mean` / `floor_mean` (du at the deepest t; utility `mirror` / `floor`; lc3d `mirror_flip`) |
-| cone | utility only: `cone_qubits` in report.json |
+| cone | utility only: `cone_qubits` in report.json, and the CZ inside the light cone from `gpu/utility_tn_diag.network_diag` |
 
 ## Checks (fixed before building)
 
 1. Every one of the 24 results has rows: 24 of 24 (207 units).
 2. Every verdict word in the table is read again from its scores.json at its key path: 555 lookups, 0 mismatches.
 3. The CZ count matches `notes/paper8/out/tables.json` on the same row (Tables 1, 2, 3, 6, 8, 9): 75 pairs, 0 mismatches.
+4. Every row that DOES NOT READ is in figure (a): 4 rows, 4 points. Before utility's qubits were filled it was 2.
+5. Light-cone qubits from network_diag against report.json: 4 rows, 0 mismatches.
 
 ## Left empty (not in the records the script reads)
 
@@ -40,9 +42,13 @@ One judged unit: one observable, size and step count, as each test declared it.
   unit. Reading the circuit files would give the count, but they are not opened here.
 - **corr: common.** scores.json has no mean square of the exact values. **lc3d: common.** Its rows are per-distance
   AGREES, with no MSE.
-- **utility: qubits, CZ/qubit, cone CZ.** CZ (564 / 705 / 690) counts the whole circuit: Eagle's graph embedded, with
-  gates on failed elements outside the cone left out. The circuit's qubit count and the CZ inside the cone are not in
-  scores or report.json.
+- **utility (filled on 2026-11-11, after a home check):**
+  - qubits = 127, the nodes of Eagle's graph (`utility_exact.eagle_edges`), for the whole circuit. CZ (564 / 705 / 690)
+    is the whole circuit, with the gates on failed elements left out (they are outside the light cone).
+  - Cone CZ = the R_ZZ inside the light cone, 36 / 131 / 253 / 253. It is half of the `"zzd"` slots of
+    `gpu/utility_tn_diag.network_diag` (once on the ket side, once on the bra side). It is computed from the circuit
+    definition; no circuit file is opened.
+  - The light-cone qubits of network_diag equal report.json `cone_qubits` (17 / 37 / 68 / 68).
 
 ## Cautions
 
@@ -67,6 +73,14 @@ One judged unit: one observable, size and step count, as each test declared it.
 In boundary.md, values below 0.1 are in exponent form. In boundary.json, floats are strings in exponent form with 4
 significant digits. Either way, no number with 4 decimals appears (seal.py leakcheck matches those).
 
-## Figure
+## Figures
 
-`boundary.png`, if matplotlib is present: CZ/qubit against common, with READS and DOES NOT READ marked differently.
+- `boundary_a_whole.png`: CZ / qubits for the whole circuit against common, every row that has both.
+- `boundary_b_cone.png`: the 4 IBM 2023 rows only, CZ inside the light cone against common. In (a), the whole circuit
+  has 127 qubits and puts these rows low. What matters for a local observable is the cone, so (b) shows it.
+- In both, READS is a circle and DOES NOT READ a cross; the dotted line is 0.5.
+
+## Per-qubit count
+
+CZ / qubits is the definition here. `notes/hubbard_2026-11-11/README.md` first used 2 x CZ / qubits (CZ taken part in
+per qubit). It now has a correction with both counts.

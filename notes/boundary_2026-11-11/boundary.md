@@ -7,6 +7,8 @@ Verdicts are the ones declared before each run, copied from each scores.json. 'c
 1. Results with rows: 24 of 24 in reproduce.py RESULTS (207 judged units).
 2. Verdict words read again from each scores.json at their key paths: 555 looked up, 0 mismatches.
 3. CZ against notes/paper8/out/tables.json (Tables 1, 2, 3, 6, 8, 9): 75 pairs, 0 mismatches.
+4. Rows that DO NOT READ: 4; in figure (a): 4.
+5. Light-cone qubits from network_diag against report.json cone_qubits: 4 rows, 0 mismatches.
 
 ## Table
 
@@ -215,10 +217,10 @@ Verdicts are the ones declared before each run, copied from each scores.json. 'c
 | isingL-fez-2026-11-10 | q32l0_t2 (place 0, line) | 28 | 252 | 9 | 60 | READS, DIFFERS | 0.125 | 0.553 | 0.976 |  |
 | isingL-fez-2026-11-10 | q32l0_t3 (place 0, line) | 28 | 378 | 13.5 | 90 | READS, DIFFERS | 0.188 | 0.342 | 0.975 |  |
 | isingL-fez-2026-11-10 | q32l0_t4 (place 0, line) | 28 | 504 | 18 | 120 | READS, DIFFERS | 0.248 | 0.237 | 0.974 |  |
-| utility-fez-2026-11-10 | z106_t4 |  | 564 |  |  | READS, AGREES 7 of 17 | 4.98e-02 | 0.504 | 0.991 | 17 /  |
-| utility-fez-2026-11-10 | w10_t5 |  | 705 |  |  | READS, AGREES 11 of 17 | 0.135 | 0.122 | 0.852 | 37 /  |
-| utility-fez-2026-11-10 | w17_t5 |  | 690 |  |  | DOES NOT READ, AGREES 12 of 17 | 0.809 | -3.50e-03 | 0.31 | 68 /  |
-| utility-fez-2026-11-10 | w17b_t5x |  | 690 |  |  | DOES NOT READ, AGREES 12 of 17 | 0.852 | -9.00e-03 | 0.305 | 68 /  |
+| utility-fez-2026-11-10 | z106_t4 | 127 | 564 | 4.44 |  | READS, AGREES 7 of 17 | 4.98e-02 | 0.504 | 0.991 | 17 / 36 |
+| utility-fez-2026-11-10 | w10_t5 | 127 | 705 | 5.55 |  | READS, AGREES 11 of 17 | 0.135 | 0.122 | 0.852 | 37 / 131 |
+| utility-fez-2026-11-10 | w17_t5 | 127 | 690 | 5.43 |  | DOES NOT READ, AGREES 12 of 17 | 0.809 | -3.50e-03 | 0.31 | 68 / 253 |
+| utility-fez-2026-11-10 | w17b_t5x | 127 | 690 | 5.43 |  | DOES NOT READ, AGREES 12 of 17 | 0.852 | -9.00e-03 | 0.305 | 68 / 253 |
 
 ## Notes per result
 
@@ -245,7 +247,7 @@ Verdicts are the ones declared before each run, copied from each scores.json. 'c
 - practice-fez-2026-11-04: results/practice-fez-2026-11-04/run/scores.json
 - practice-marrakesh-2026-11-04: results/practice-2026-11-04/run/scores.json
 - schw-marrakesh-2026-11-09: results/schw-2026-11-09/ibm_marrakesh/scores.json
-- utility-fez-2026-11-10: results/utility-2026-11-10/ibm_fez/scores.json. CZ = cz in scores (= report cz_per_circuit, the whole circuit: Eagle's graph embedded, gates on failed elements outside the cone left out); the circuit's qubit count and the CZ inside the light cone are not in scores/report, so qubits, CZ/qubit and cone CZ are empty
+- utility-fez-2026-11-10: results/utility-2026-11-10/ibm_fez/scores.json. qubits = the nodes of Eagle's graph (utility_exact.eagle_edges), the whole circuit; CZ = cz in scores (= report cz_per_circuit), whole circuit, with the gates on failed elements left out (they are outside the light cone); cone CZ = R_ZZ inside the light cone from gpu/utility_tn_diag.network_diag (half its 'zzd' slots), cone qubits from report.json (network_diag gives the same)
 
 ## Planned (not in the table)
 
