@@ -1,0 +1,36 @@
+qiskit 2.6.1 aer 0.18.2 quimb 1.16.0 numpy 2.5.4
+vCPU used 16 (nproc shows 16)
+               total        used        free      shared  buff/cache   available
+Mem:             755          42         425           0         293         712
+Wed Nov 11 02:33:58 CET 2026
+== smoke L 8 steps 4
+run_pod2.sh: line 15: P1_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P1_report.jsonl: No such file or directory
+{"L": 8, "qubits": 16, "steps": 4, "Jt": 1.0, "method": "quimb", "chi": 256, "seconds": 85.5, "peak_rss_gb": 0.42, "max_bond": 203, "error_estimate": 6.157430121334073e-11, "check_sum_z": -1.4495071809506044e-12, "check_sz": 8.337219803422613e-13, "cx_transpiled": 400, "max_diff_to": {}}
+{"L": 8, "qubits": 16, "steps": 4, "Jt": 1.0, "method": "aer", "chi": null, "seconds": 2.4, "peak_rss_gb": 0.12, "max_bond": 253, "error_estimate": null, "check_sum_z": 7.248690536698632e-11, "check_sz": -7.006140112508774e-11, "cx_transpiled": 400, "max_diff_to": {"L8_s4_quimb256": 2.412420738173715e-08}}
+== 02:35:27 L 20 steps 4 quimb chi 256
+run_pod2.sh: line 15: P1_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P1_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P1_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P1_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P1_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P1_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P1_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P1_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P1_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P1_report.jsonl: No such file or directory
+run_pod2.sh: line 15: P1_report.jsonl: No such file or directory
+{"L": 20, "qubits": 40, "steps": 4, "Jt": 1.0, "method": "quimb", "chi": 256, "seconds": 686.6, "peak_rss_gb": 0.36, "max_bond": 214, "error_estimate": 4.3992631759692813e-10, "check_sum_z": -6.614264691506833e-12, "check_sz": 1.8640644583456378e-13, "cx_transpiled": 1072, "max_diff_to": {}}
+== 02:46:54 L 20 steps 4 quimb chi 512
+{"L": 20, "qubits": 40, "steps": 4, "Jt": 1.0, "method": "quimb", "chi": 512, "seconds": 587.0, "peak_rss_gb": 0.36, "max_bond": 214, "error_estimate": 4.3992631759692813e-10, "check_sum_z": -6.614264691506833e-12, "check_sz": 1.8640644583456378e-13, "cx_transpiled": 1072, "max_diff_to": {"L20_s4_quimb256": 0.0}}
+== 02:56:42 L 20 steps 4 quimb chi 1024
+{"L": 20, "qubits": 40, "steps": 4, "Jt": 1.0, "method": "quimb", "chi": 1024, "seconds": 433.7, "peak_rss_gb": 0.36, "max_bond": 214, "error_estimate": 4.3992631759692813e-10, "check_sum_z": -6.614264691506833e-12, "check_sz": 1.8640644583456378e-13, "cx_transpiled": 1072, "max_diff_to": {"L20_s4_quimb256": 0.0, "L20_s4_quimb512": 0.0}}
+== 03:03:56 L 20 steps 4 quimb chi 2048
+{"L": 20, "qubits": 40, "steps": 4, "Jt": 1.0, "method": "quimb", "chi": 2048, "seconds": 480.4, "peak_rss_gb": 0.36, "max_bond": 214, "error_estimate": 4.3992631759692813e-10, "check_sum_z": -6.614264691506833e-12, "check_sz": 1.8640644583456378e-13, "cx_transpiled": 1072, "max_diff_to": {"L20_s4_quimb256": 0.0, "L20_s4_quimb512": 0.0, "L20_s4_quimb1024": 0.0}}
+== 03:11:57 L 20 steps 4 aer
+{"L": 20, "qubits": 40, "steps": 4, "Jt": 1.0, "method": "aer", "chi": null, "seconds": 71.3, "peak_rss_gb": 0.25, "max_bond": 333, "error_estimate": null, "check_sum_z": 1.5643897288697417e-10, "check_sz": 5.754019483106276e-11, "cx_transpiled": 1072, "max_diff_to": {"L20_s4_quimb256": 2.4761186462329832e-08, "L20_s4_quimb512": 2.4761186462329832e-08, "L20_s4_quimb1024": 2.4761186462329832e-08, "L20_s4_quimb2048": 2.4761186462329832e-08}}
+== 03:13:09 L 20 steps 6 quimb chi 256
+{"L": 20, "qubits": 40, "steps": 6, "Jt": 1.5, "method": "quimb", "chi": 256, "seconds": 991.6, "peak_rss_gb": 0.46, "max_bond": 256, "error_estimate": 2.581669196199954e-07, "check_sum_z": -4.799177333314475e-09, "check_sz": -3.122839542513134e-09, "cx_transpiled": 1608, "max_diff_to": {}}
+== 03:29:41 L 20 steps 6 quimb chi 512
+{"L": 20, "qubits": 40, "steps": 6, "Jt": 1.5, "method": "quimb", "chi": 512, "seconds": 945.4, "peak_rss_gb": 0.87, "max_bond": 512, "error_estimate": 9.854321803004495e-10, "check_sum_z": -4.638678330337598e-12, "check_sz": 6.598055435347305e-13, "cx_transpiled": 1608, "max_diff_to": {"L20_s6_quimb256": 2.4351658578503077e-08}}
+== 03:45:27 L 20 steps 6 quimb chi 1024
