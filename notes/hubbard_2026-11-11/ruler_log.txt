@@ -1,0 +1,5 @@
+U = 0 ruler against statevector, L 2-5, steps 1-4: worst 1.8e-15
+U = 4, L 3-5, steps 1/3/5: per-site charge check |Z_up + Z_dn| worst 3.3e-16
+L 20 (40 qubits): CZ / CZ layers per step U=0 (152, 10), U=4 (192, 12); ruler at 8 steps in 0.01 s
+L 30 (60 qubits): CZ / CZ layers per step U=0 (232, 10), U=4 (292, 12); ruler at 8 steps in 0.03 s
+L 45 (90 qubits): CZ / CZ layers per step U=0 (352, 10), U=4 (442, 12); ruler at 8 steps in 0.14 s
