@@ -84,3 +84,20 @@ classical check reaches.
 3. Observable and verdicts (section 6), and whether the ruler enters a verdict or stays beside (paper 8 kept it
    beside).
 4. Paper 8 first: A1 and A2 of `notes/paper8/review_workplace_2026-11-11.md`.
+
+## Related work to cite and position against (home, 2026-11-11 06:15 CET; abstracts read, full texts not)
+
+- Phasecraft + Google Quantum AI, arXiv:2510.26845: 2D Fermi-Hubbard dynamics on Willow, up to 6x6 (72 qubits),
+  second-order Trotter up to 3 steps; post-selection on fermion number, TFLO (training on the U = 0 free-fermion
+  circuit), shot reweighting (MESR), GPR smoothing, twirling, DD; checks by statevector (4x4), FLO at U = 0, Majorana
+  propagation, TDVP chi 2048. Closest to part B. Their U = 0 circuit is used to correct; ours is kept beside, never to
+  correct, and our sizes stay inside the classical check.
+- Phasecraft + Quantinuum, arXiv:2510.26300: 2D Fermi-Hubbard on H2 (56 qubits, 7x4 torus, pi flux), 4 second-order
+  steps; twirling, TFLO, GPR; claims beyond exact classical simulation (TDVP, Majorana propagation compared).
+- Google Quantum AI, arXiv:2010.07965: 1D Fermi-Hubbard, 8 sites on 16 qubits; post-selection on particle number,
+  averaging over 16 qubit assignments, Floquet calibration, spin echoes, rescaling by a damping model.
+- Part A: Tindall, Fishman, Stoudenmire, Sels, PRX Quantum (2024), arXiv:2306.14887 (tensor-network simulation of the
+  Eagle kicked Ising experiment). Also to check and cite: Begusic and Chan (Pauli-path simulation of the same
+  experiment), Anand et al. (Berkeley, classical benchmarking of ZNE beyond exact verification).
+- Analog Fermi-Hubbard simulators (fermionic atoms in optical lattices, e.g. Greiner at Harvard, Bloch at MPQ) for the
+  introduction only; to check before citing. Schwinger (Martinez et al. 2016, CERN QTI) is out of paper 9.
