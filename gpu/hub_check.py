@@ -5,7 +5,8 @@ Aer's matrix-product-state method (no truncation) for steps <= --mps-steps. Its 
 (by chain label) within 1e-6 (MPS) / 1e-9 (statevector); its mirror must read all zeros; the floor is diagonal on
 |0...0> (checked by the builder). Also printed: CZ count and CZ depth of the two arms of every step (must be equal).
 Prints differences only, never answer values.
-usage: PYTHONPATH=<psf-os>:<TOQB> python gpu/hub_check.py OUT ANSWERS.json [--mps-steps 2]   (writes OUT/check.json)
+usage: PYTHONPATH=<psf-os>:<TOQB> python gpu/hub_check.py OUT ANSWERS.json [--mps-steps 2] [--only TAG ...]
+       (writes OUT/check.json)
 """
 import argparse
 import ast
@@ -58,12 +59,15 @@ def main():
     ap.add_argument("out")
     ap.add_argument("answers")
     ap.add_argument("--mps-steps", type=int, default=2)
+    ap.add_argument("--only", nargs="*", default=None, help="tags to check (default: all)")
     a = ap.parse_args()
     b = json.load(open(os.path.join(a.out, "build.json")))
     ans = json.load(open(a.answers))
     runs = os.path.join(a.out, "runs")
     res, ok = {}, True
     for tag in sorted(b["cz"]):
+        if a.only and tag not in a.only:
+            continue
         L, s = int(tag.split("_")[0][1:]), int(tag.split("_")[1][1:])
         rec = json.load(open(os.path.join(runs, f"p2d_{tag}.json")))
         m = rec["mapping"] if isinstance(rec["mapping"], dict) else ast.literal_eval(rec["mapping"])
@@ -87,8 +91,8 @@ def main():
               (f"; {r['method']} against the answers worst {r['worst']:.1e}, mirror {r['mirror_worst']:.1e} "
                f"{'PASS' if r['ok'] else 'FAIL'}" if "ok" in r else "; not simulated (deeper than --mps-steps)"),
               flush=True)
-    for tag in res:
-        if tag.endswith("_U4"):
+    for tag in list(res):
+        if tag.endswith("_U4") and tag[:-2] + "U0" in res:
             t0 = tag[:-2] + "U0"
             same = res[tag]["cz"] == res[t0]["cz"] and res[tag]["cz_depth"] == res[t0]["cz_depth"]
             ok &= same

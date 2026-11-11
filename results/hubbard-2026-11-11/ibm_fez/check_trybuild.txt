@@ -1,0 +1,19 @@
+L20_s2_U0: CZ 384 depth 24; matrix_product_state against the answers worst 5.8e-11, mirror 1.2e-13 PASS
+L20_s2_U4: CZ 384 depth 24; matrix_product_state against the answers worst 9.4e-11, mirror 1.7e-14 PASS
+L20_s4_U0: CZ 768 depth 48; matrix_product_state against the answers worst 9.3e-11, mirror 8.9e-13 PASS
+L20_s4_U4: CZ 768 depth 48; matrix_product_state against the answers worst 2.3e-08, mirror 1.0e-12 PASS
+L20_s6_U0: CZ 1152 depth 72; not simulated (deeper than --mps-steps)
+L20_s6_U4: CZ 1152 depth 72; not simulated (deeper than --mps-steps)
+L30_s2_U0: CZ 584 depth 24; matrix_product_state against the answers worst 5.8e-11, mirror 2.1e-13 PASS
+L30_s2_U4: CZ 584 depth 24; matrix_product_state against the answers worst 9.4e-11, mirror 2.7e-14 PASS
+L30_s4_U0: CZ 1168 depth 48; matrix_product_state against the answers worst 9.2e-11, mirror 1.6e-12 PASS
+L30_s4_U4: CZ 1168 depth 48; matrix_product_state against the answers worst 2.3e-08, mirror 1.9e-12 PASS
+L30_s6_U0: CZ 1752 depth 72; not simulated (deeper than --mps-steps)
+L30_s6_U4: CZ 1752 depth 72; not simulated (deeper than --mps-steps)
+L20_s2: arms CZ 384 / 384, depth 24 / 24 EQUAL
+L20_s4: arms CZ 768 / 768, depth 48 / 48 EQUAL
+L20_s6: arms CZ 1152 / 1152, depth 72 / 72 EQUAL
+L30_s2: arms CZ 584 / 584, depth 24 / 24 EQUAL
+L30_s4: arms CZ 1168 / 1168, depth 48 / 48 EQUAL
+L30_s6: arms CZ 1752 / 1752, depth 72 / 72 EQUAL
+ALL PASS
