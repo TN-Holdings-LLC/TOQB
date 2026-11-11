@@ -1,0 +1,13 @@
+L45_s2_U0: CZ 884 depth 24; matrix_product_state against the answers worst 8.0e-11, mirror 3.4e-13 PASS
+L45_s2_U4: CZ 884 depth 24; matrix_product_state against the answers worst 9.2e-11, mirror 2.4e-14 PASS
+L45_s4_U0: CZ 1768 depth 48; quimb chi 1024 (bond 195, error estimate 4.4e-10) against the answers worst 2.7e-09, mirror 1.4e-11 PASS
+L45_s4_U4: CZ 1768 depth 48; quimb chi 1024 (bond 217, error estimate 4.6e-10) against the answers worst 2.0e-14, mirror 0.0e+00 PASS
+L60_s2_U0: CZ 1184 depth 24; matrix_product_state against the answers worst 5.8e-11, mirror 4.7e-13 PASS
+L60_s2_U4: CZ 1184 depth 24; matrix_product_state against the answers worst 9.4e-11, mirror 5.8e-14 PASS
+L60_s4_U0: CZ 2368 depth 48; quimb chi 1024 (bond 195, error estimate 6.1e-10) against the answers worst 2.8e-09, mirror 1.4e-11 PASS
+L60_s4_U4: CZ 2368 depth 48; quimb chi 1024 (bond 217, error estimate 6.4e-10) against the answers worst 2.0e-14, mirror 0.0e+00 PASS
+L45_s2: arms CZ 884 / 884, depth 24 / 24 EQUAL
+L45_s4: arms CZ 1768 / 1768, depth 48 / 48 EQUAL
+L60_s2: arms CZ 1184 / 1184, depth 24 / 24 EQUAL
+L60_s4: arms CZ 2368 / 2368, depth 48 / 48 EQUAL
+ALL PASS
