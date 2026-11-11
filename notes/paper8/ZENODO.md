@@ -1,4 +1,8 @@
-# Paper 8, version 1: Zenodo record (to be filled with the DOI after the owner publishes)
+# Paper 8, version 1: Zenodo record
+
+Published by the owner on 2026-11-11: **doi:10.5281/zenodo.24136512** (https://doi.org/10.5281/zenodo.24136512).
+Uploaded file name: `TN-Holdings_Paper8_v1_Readable-Quantum-Dynamics-Without-Error-Mitigation.pdf` (same bytes as
+`notes/paper8/paper8_v1.pdf`).
 
 - File: `notes/paper8/paper8_v1.pdf` (built from `notes/paper8/paper8.tex` at the commit that adds this file; release
   candidate of 2026-11-11 with the workplace read-through applied).
@@ -13,4 +17,4 @@
   b17d45a) and https://github.com/TN-Holdings-LLC/psf-os (commit 41ed030); continues doi:10.5281/zenodo.24046673
   (paper 7).
 - Licence: as papers 1-7.
-- DOI: (after publication)
+- DOI: 10.5281/zenodo.24136512
