@@ -17,4 +17,6 @@ Uploaded file name: `TN-Holdings_Paper8_v1_Readable-Quantum-Dynamics-Without-Err
   b17d45a) and https://github.com/TN-Holdings-LLC/psf-os (commit 41ed030); continues doi:10.5281/zenodo.24046673
   (paper 7).
 - Licence: as papers 1-7.
-- DOI: 10.5281/zenodo.24136512
+- DOI: 10.5281/zenodo.24136512 (version 1.0); all versions: 10.5281/zenodo.24136511
+- Title corrected on Zenodo by the owner (22:14 JST): the first upload carried the file-name form; metadata edit only,
+  same DOI and file.
