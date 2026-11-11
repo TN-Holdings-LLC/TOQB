@@ -1,0 +1,8 @@
+z106_t4 all 17 k by the 17-qubit cone: worst 1.2e-13 PASS
+z106_t5 all 17 k by the 25-qubit cone: worst 3.5e-12 PASS
+z106_t6: cone 31 qubits; k (5, 11) by quimb on the compiled job circuit: worst 2.9e-11 PASS
+z106_t7: cone 38 qubits; k (5, 11) by quimb on the compiled job circuit: worst 4.3e-11 PASS
+z106_t8: cone 43 qubits; k (5, 11) by quimb on the compiled job circuit: worst 7.0e-12 PASS
+w10_t5: cone 37 qubits; k (5, 11) by quimb on the compiled job circuit: worst 6.0e-13 PASS
+w10_t6: cone 42 qubits; k (5, 11) by quimb on the compiled job circuit: worst 3.6e-13 PASS
+ALL PASS

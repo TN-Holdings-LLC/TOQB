@@ -31,6 +31,9 @@ import utility_exact as UE  # noqa: E402
 W17B = {q: ("X" if c == "X" else ("Z" if c == "Y" else "Y")) for q, c in UE.W17.items()}
 OBS = {"z106_t4": ({106: "Z"}, 4, False), "w10_t5": (UE.W10, 5, False), "w17_t5": (UE.W17, 5, False),
        "w17b_t5x": (W17B, 5, True)}
+# Deeper steps (home, 2026-11-11, depth scan; exact values by gpu/reach_tn.py, sealed): same observables, more steps.
+OBS.update({f"z106_t{t}": ({106: "Z"}, t, False) for t in (5, 6, 7, 8)})
+OBS.update({"w10_t6": (UE.W10, 6, False), "w10_t7": (UE.W10, 7, False)})
 
 
 def network(obs, t, extra_rx, edges):
