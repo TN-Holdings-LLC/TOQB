@@ -27,6 +27,28 @@ CZ per step = 10 L - 8; CZ layers per step = 12 for every L; CZ participations p
   N 8, 5 steps, 105 per qubit, 120 layers: DOES NOT READ for 2 of 3 parameter sets.
 - So Hubbard 4-6 steps (38-58 per qubit, 48-72 layers) sits inside what has been read; 8 steps (77, 96) at the edge.
 
+**Correction (workplace, 2026-11-11, boundary task): two per-qubit counts.** The original text above is kept as written.
+Every "per qubit" in it is the number of CZ that one qubit takes part in, 2 x CZ / qubits, because each CZ acts on two
+qubits. `hub_count.py` prints `cz*2/(2*L)`. The boundary table (`notes/boundary_2026-11-11`) uses CZ / qubits. That
+definition is the one to use. The same comparison in it:
+
+| | CZ / qubits | 2 x CZ / qubits (the text above) | CZ layers |
+|---|---|---|---|
+| du51 / du71 / du91, t 24 | 24.0 / 24.2 / 24.2 | 48.0 / 48.3 / 48.5 | 49 |
+| Schwinger N 6, 5 steps (READS) | 37.5 | 75 | 90 |
+| Schwinger N 8, 5 steps (DOES NOT READ, 2 of 3) | 52.5 | 105 | 120 |
+| Hubbard L 20 / L 30, 4 steps | 19.2 / 19.5 | 38.4 / 38.9 | 48 |
+| Hubbard L 20 / L 30, 6 steps | 28.8 / 29.2 | 57.6 / 58.4 | 72 |
+| Hubbard L 20 / L 30, 8 steps | 38.4 / 38.9 | 76.8 / 77.9 | 96 |
+
+- The table "Cost on a line" above also gives 2 x CZ / qubits in its "per qubit" column, and so does "about 9.6 per
+  step" in the line above it. Its CZ count and CZ layers are not affected.
+- **The conclusion still holds** with one definition, because both sides change by the same factor of 2:
+  - Hubbard 4-6 steps (19-29 CZ / qubits) lies below Schwinger N 6 at 5 steps (37.5, READS).
+  - Hubbard 8 steps (38-39) lies just above that and below Schwinger N 8 (52.5, DOES NOT READ for 2 of 3).
+  - It is still "inside" and "at the edge" by this side-by-side reading. One device, one day per record.
+- The 2D section below uses CZ / qubits.
+
 ## Classical side
 
 - Exact diagonalisation, half filling, Sz = 0 subspace (16 bytes per amplitude): L 16 2.7 GB, L 18 38 GB, L 20 546 GB,

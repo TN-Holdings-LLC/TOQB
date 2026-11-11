@@ -5,7 +5,8 @@ records (the 24 results in reproduce.py RESULTS; papers 7, 8, 9). No numbers are
 One row = one judged unit (one observable, size and step count; dual-unitary chains per h; IBM 2023 per observable).
 
 usage (from the TOQB root):  python notes/boundary_2026-11-11/boundary.py
-writes notes/boundary_2026-11-11/boundary.md, boundary.json (and boundary.png if matplotlib is present)
+writes notes/boundary_2026-11-11/boundary.md, boundary.json (and, with matplotlib, boundary_a_whole.png and
+boundary_b_cone.png; needs rustworkx for the light-cone count)
 """
 import importlib.util
 import json
@@ -193,18 +194,45 @@ def r_lc(name, res, s, sp):
     return out
 
 
+def utility_cone():
+    """{observable: (qubits of Eagle's graph, light-cone qubits, CZ inside the light cone)} from the circuit
+    definition (gpu/utility_tn_diag.network_diag on utility_exact.eagle_edges; no circuit file, no answers opened).
+    Each R_ZZ of the circuit is one CZ on the device (Clifford angle); network_diag writes it once on the ket and once
+    on the bra side ("zzd"), so the CZ inside the cone is half the "zzd" slots."""
+    import sys
+    sys.path.insert(0, os.path.join(ROOT, "gpu"))
+    import utility_exact as UE
+    import utility_tn as T
+    import utility_tn_diag as D
+    edges = UE.eagle_edges()
+    n = len({q for e in edges for q in e})
+    out = {}
+    for ob in ("z106_t4", "w10_t5", "w17_t5", "w17b_t5x"):
+        obs, t, ex = T.OBS[ob]
+        slots, nq = D.network_diag(obs, t, ex, edges)[3:5]
+        z = sum(1 for sl in slots if sl[0] == "zzd")
+        assert z % 2 == 0
+        out[ob] = (n, nq, z // 2)
+    return out
+
+
 def r_util(name, res, s, sp):
     rep = load(os.path.join(os.path.dirname(sp), "report.json"))
+    cone = utility_cone()
     out = []
     for ob, o in s["observables"].items():
         r = rep["observables"][ob]
-        out.append(row(name, ob, None, o["cz"], f"{o['reads']}, AGREES {o['agrees']} of {len(o['points'])}",
-                       [["observables", ob, "reads"], ["observables", ob, "agrees"]],
-                       common=ratio(o["mse"], o["mean_square_exact"]), mirror=o.get("mirror"), floor=o.get("floor"),
-                       cone_q=r.get("cone_qubits"), src=sp,
-                       note="CZ = cz in scores (= report cz_per_circuit, the whole circuit: Eagle's graph embedded, gates on "
-                            "failed elements outside the cone left out); the circuit's qubit count and the CZ inside the "
-                            "light cone are not in scores/report, so qubits, CZ/qubit and cone CZ are empty"))
+        n, nq, ccz = cone[ob]
+        x = row(name, ob, n, o["cz"], f"{o['reads']}, AGREES {o['agrees']} of {len(o['points'])}",
+                [["observables", ob, "reads"], ["observables", ob, "agrees"]],
+                common=ratio(o["mse"], o["mean_square_exact"]), mirror=o.get("mirror"), floor=o.get("floor"),
+                cone_q=r.get("cone_qubits"), cone_cz=ccz, src=sp,
+                note="qubits = the nodes of Eagle's graph (utility_exact.eagle_edges), the whole circuit; CZ = cz in "
+                     "scores (= report cz_per_circuit), whole circuit, with the gates on failed elements left out (they "
+                     "are outside the light cone); cone CZ = R_ZZ inside the light cone from gpu/utility_tn_diag."
+                     "network_diag (half its 'zzd' slots), cone qubits from report.json (network_diag gives the same)")
+        x["cone_qubits_by_network"] = nq
+        out.append(x)
     return out
 
 
@@ -300,12 +328,19 @@ def main():
     bad = check_verdicts(rows)
     pairs = check_paper8(rows)
     mism = [p for p in pairs if p[2] != p[3]]
+    notread = [r for r in rows if "DOES NOT READ" in r["verdict"]]
+    plotted = [r for r in notread if r["cz_per_qubit"] and r["common"] is not None]
+    cone_rows = [r for r in rows if r.get("cone_qubits_by_network") is not None]
+    cone_bad = [(r["unit"], r["cone_qubits"], r["cone_qubits_by_network"]) for r in cone_rows
+                if r["cone_qubits"] != r["cone_qubits_by_network"]]
 
     hub = os.path.join(ROOT, "notes/hubbard_2026-11-11/README.md")
     out = {"results_in_reproduce": len(R), "results_with_rows": len(covered), "rows": rows, "skipped": skipped,
            "check1_all_results_have_rows": len(covered) == len(R),
            "check2_verdict_mismatches": bad, "check3_paper8_cz": [list(p) for p in pairs],
            "check3_mismatches": [list(p) for p in mism],
+           "check4_not_read_rows": len(notread), "check4_not_read_in_figure_a": len(plotted),
+           "check5_cone_qubits_network_vs_report": [list(c) for c in cone_bad], "check5_rows": len(cone_rows),
            "planned_not_in_table": "notes/hubbard_2026-11-11/README.md (1D Hubbard; no device result yet)"
            if os.path.exists(hub) else None}
     def ex(o):  # floats as exponent strings (4 significant digits), so that no number with 4 decimals appears
@@ -329,7 +364,10 @@ def main():
          f"2. Verdict words read again from each scores.json at their key paths: "
          f"{sum(len(r['verdict_path']) for r in rows)} looked up, {len(bad)} mismatches.",
          f"3. CZ against notes/paper8/out/tables.json (Tables 1, 2, 3, 6, 8, 9): {len(pairs)} pairs, {len(mism)} mismatches."
-         + ("" if not mism else f" {mism}"), "",
+         + ("" if not mism else f" {mism}"),
+         f"4. Rows that DO NOT READ: {len(notread)}; in figure (a): {len(plotted)}.",
+         f"5. Light-cone qubits from network_diag against report.json cone_qubits: {len(cone_rows)} rows, "
+         f"{len(cone_bad)} mismatches.", "",
          "## Table", "",
          "| result | unit | qubits | CZ | CZ/qubit | CZ layers | verdict (declared) | common | mirror | floor | cone qubits / CZ |",
          "|---|---|---|---|---|---|---|---|---|---|---|"]
@@ -351,23 +389,43 @@ def main():
         import matplotlib
         matplotlib.use("Agg")
         import matplotlib.pyplot as plt
+        def mark(ax, pts_of, xlabel, title, path):
+            for reads, mk, lab in ((True, "o", "READS"), (False, "x", "DOES NOT READ")):
+                pts = pts_of(reads)
+                if pts:
+                    ax.scatter(*zip(*pts), marker=mk, s=40, label=f"{lab} ({len(pts)})", alpha=0.75)
+            ax.set_xlabel(xlabel)
+            ax.set_ylabel("MSE / mean square of exact")
+            ax.set_yscale("log")
+            ax.axhline(0.5, color="grey", lw=0.6, ls=":")
+            ax.legend()
+            ax.set_title(title, fontsize=10)
+            fig.tight_layout()
+            fig.savefig(os.path.join(HERE, path), dpi=150)
+
         fig, ax = plt.subplots(figsize=(7, 4.5))
-        for reads, mk, lab in ((True, "o", "READS"), (False, "x", "DOES NOT READ")):
-            pts = [(r["cz_per_qubit"], r["common"]) for r in rows if r["cz_per_qubit"] and r["common"] is not None
-                   and (("DOES NOT READ" not in r["verdict"]) == reads)]
-            if pts:
-                ax.scatter(*zip(*pts), marker=mk, label=f"{lab} ({len(pts)})", alpha=0.7)
-        ax.set_xlabel("CZ per qubit (whole circuit)")
-        ax.set_ylabel("MSE / mean square of exact")
-        ax.set_yscale("log")
-        ax.legend()
-        ax.set_title("Raw device records, no mitigation (one device, one day per point)")
-        fig.tight_layout()
-        fig.savefig(os.path.join(HERE, "boundary.png"), dpi=150)
+        mark(ax, lambda reads: [(r["cz_per_qubit"], r["common"]) for r in rows if r["cz_per_qubit"]
+                                and r["common"] is not None and (("DOES NOT READ" not in r["verdict"]) == reads)],
+             "CZ / qubits (whole circuit)",
+             "(a) Raw device records, no mitigation (one device, one day per point)\n"
+             "dotted: the READS line 0.5",
+             "boundary_a_whole.png")
+        fig, ax = plt.subplots(figsize=(7, 4.5))
+        mark(ax, lambda reads: [(r["cone_cz"], r["common"]) for r in cone_rows
+                                if (("DOES NOT READ" not in r["verdict"]) == reads)],
+             "CZ inside the light cone",
+             "(b) IBM 2023 observables on ibm_fez 2026-11-10 (raw); label: cone qubits", "boundary_b_cone.png")
+        ax.set_xlim(0, 1.3 * max(r["cone_cz"] for r in cone_rows))
+        for i, r in enumerate(sorted(cone_rows, key=lambda r: r["common"])):
+            ax.annotate(f"{r['unit']} ({r['cone_qubits']} q)", (r["cone_cz"], r["common"]), fontsize=8,
+                        xytext=(6, 6 if i % 2 else -10), textcoords="offset points")
+        fig.savefig(os.path.join(HERE, "boundary_b_cone.png"), dpi=150)
     except ImportError:
         pass
     print(f"rows {len(rows)}; results {len(covered)}/{len(R)}; check2 mismatches {len(bad)}; "
-          f"check3 {len(pairs)} pairs, {len(mism)} mismatches; skipped {skipped}")
+          f"check3 {len(pairs)} pairs, {len(mism)} mismatches; skipped {skipped}; "
+          f"check4 not-read rows {len(notread)}, in figure (a) {len(plotted)}; "
+          f"check5 cone qubits {len(cone_rows)} rows, {len(cone_bad)} mismatches")
     for m in mism:
         print("  check3:", m)
 

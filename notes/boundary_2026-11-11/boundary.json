@@ -6647,9 +6647,9 @@
   {
    "result": "utility-fez-2026-11-10",
    "unit": "z106_t4",
-   "qubits": null,
+   "qubits": 127,
    "cz": 564,
-   "cz_per_qubit": null,
+   "cz_per_qubit": "4.441e+00",
    "cz_layers": null,
    "verdict": "READS, AGREES 7 of 17",
    "verdict_path": [
@@ -6668,16 +6668,17 @@
    "mirror": "5.040e-01",
    "floor": "9.910e-01",
    "cone_qubits": 17,
-   "cone_cz": null,
+   "cone_cz": 36,
    "source": "results/utility-2026-11-10/ibm_fez/scores.json",
-   "note": "CZ = cz in scores (= report cz_per_circuit, the whole circuit: Eagle's graph embedded, gates on failed elements outside the cone left out); the circuit's qubit count and the CZ inside the light cone are not in scores/report, so qubits, CZ/qubit and cone CZ are empty"
+   "note": "qubits = the nodes of Eagle's graph (utility_exact.eagle_edges), the whole circuit; CZ = cz in scores (= report cz_per_circuit), whole circuit, with the gates on failed elements left out (they are outside the light cone); cone CZ = R_ZZ inside the light cone from gpu/utility_tn_diag.network_diag (half its 'zzd' slots), cone qubits from report.json (network_diag gives the same)",
+   "cone_qubits_by_network": 17
   },
   {
    "result": "utility-fez-2026-11-10",
    "unit": "w10_t5",
-   "qubits": null,
+   "qubits": 127,
    "cz": 705,
-   "cz_per_qubit": null,
+   "cz_per_qubit": "5.551e+00",
    "cz_layers": null,
    "verdict": "READS, AGREES 11 of 17",
    "verdict_path": [
@@ -6696,16 +6697,17 @@
    "mirror": "1.220e-01",
    "floor": "8.515e-01",
    "cone_qubits": 37,
-   "cone_cz": null,
+   "cone_cz": 131,
    "source": "results/utility-2026-11-10/ibm_fez/scores.json",
-   "note": "CZ = cz in scores (= report cz_per_circuit, the whole circuit: Eagle's graph embedded, gates on failed elements outside the cone left out); the circuit's qubit count and the CZ inside the light cone are not in scores/report, so qubits, CZ/qubit and cone CZ are empty"
+   "note": "qubits = the nodes of Eagle's graph (utility_exact.eagle_edges), the whole circuit; CZ = cz in scores (= report cz_per_circuit), whole circuit, with the gates on failed elements left out (they are outside the light cone); cone CZ = R_ZZ inside the light cone from gpu/utility_tn_diag.network_diag (half its 'zzd' slots), cone qubits from report.json (network_diag gives the same)",
+   "cone_qubits_by_network": 37
   },
   {
    "result": "utility-fez-2026-11-10",
    "unit": "w17_t5",
-   "qubits": null,
+   "qubits": 127,
    "cz": 690,
-   "cz_per_qubit": null,
+   "cz_per_qubit": "5.433e+00",
    "cz_layers": null,
    "verdict": "DOES NOT READ, AGREES 12 of 17",
    "verdict_path": [
@@ -6724,16 +6726,17 @@
    "mirror": "-3.500e-03",
    "floor": "3.100e-01",
    "cone_qubits": 68,
-   "cone_cz": null,
+   "cone_cz": 253,
    "source": "results/utility-2026-11-10/ibm_fez/scores.json",
-   "note": "CZ = cz in scores (= report cz_per_circuit, the whole circuit: Eagle's graph embedded, gates on failed elements outside the cone left out); the circuit's qubit count and the CZ inside the light cone are not in scores/report, so qubits, CZ/qubit and cone CZ are empty"
+   "note": "qubits = the nodes of Eagle's graph (utility_exact.eagle_edges), the whole circuit; CZ = cz in scores (= report cz_per_circuit), whole circuit, with the gates on failed elements left out (they are outside the light cone); cone CZ = R_ZZ inside the light cone from gpu/utility_tn_diag.network_diag (half its 'zzd' slots), cone qubits from report.json (network_diag gives the same)",
+   "cone_qubits_by_network": 68
   },
   {
    "result": "utility-fez-2026-11-10",
    "unit": "w17b_t5x",
-   "qubits": null,
+   "qubits": 127,
    "cz": 690,
-   "cz_per_qubit": null,
+   "cz_per_qubit": "5.433e+00",
    "cz_layers": null,
    "verdict": "DOES NOT READ, AGREES 12 of 17",
    "verdict_path": [
@@ -6752,9 +6755,10 @@
    "mirror": "-9.000e-03",
    "floor": "3.055e-01",
    "cone_qubits": 68,
-   "cone_cz": null,
+   "cone_cz": 253,
    "source": "results/utility-2026-11-10/ibm_fez/scores.json",
-   "note": "CZ = cz in scores (= report cz_per_circuit, the whole circuit: Eagle's graph embedded, gates on failed elements outside the cone left out); the circuit's qubit count and the CZ inside the light cone are not in scores/report, so qubits, CZ/qubit and cone CZ are empty"
+   "note": "qubits = the nodes of Eagle's graph (utility_exact.eagle_edges), the whole circuit; CZ = cz in scores (= report cz_per_circuit), whole circuit, with the gates on failed elements left out (they are outside the light cone); cone CZ = R_ZZ inside the light cone from gpu/utility_tn_diag.network_diag (half its 'zzd' slots), cone qubits from report.json (network_diag gives the same)",
+   "cone_qubits_by_network": 68
   }
  ],
  "skipped": [],
@@ -7213,5 +7217,9 @@
   ]
  ],
  "check3_mismatches": [],
+ "check4_not_read_rows": 4,
+ "check4_not_read_in_figure_a": 4,
+ "check5_cone_qubits_network_vs_report": [],
+ "check5_rows": 4,
  "planned_not_in_table": "notes/hubbard_2026-11-11/README.md (1D Hubbard; no device result yet)"
 }
