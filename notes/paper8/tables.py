@@ -19,6 +19,7 @@ usage: python notes/paper8/tables.py [OUT_DIR]   (writes tables.md, tables.tex, 
 from __future__ import annotations
 
 import json
+import re
 import os
 import sys
 
@@ -235,6 +236,7 @@ def md_table(head, rows):
 
 def tex_table(head, rows, caption):
     esc = lambda s: str(s).replace("_", r"\_").replace("%", r"\%")
+    caption = re.sub(r"^Table \d+\.\s*", "", caption)  # LaTeX numbers the table itself (workplace, 2026-11-11)
     cols = "l" * len(head)
     body = "\n".join(" & ".join(esc(c) for c in r) + r" \\" for r in rows)
     return (f"\\begin{{table}}[htbp]\\centering\\small\n\\caption{{{esc(caption)}}}\n"
