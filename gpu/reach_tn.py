@@ -3,7 +3,7 @@ of utility_tn_diag, a sliced contraction tree so that the largest intermediate f
 to OUT.jsonl one by one and never printed (they may become the sealed answers of a later job).
 Checks printed: theta_h = 0 and pi/2 against Aer's stabilizer method on the whole 127-qubit Eagle circuit (Clifford
 points); |imag| of every value.
-usage: python gpu/reach_tn.py OBS T OUT.jsonl [--extra-rx] [--max-time 300] [--target 27] [--ks 0-16] [--par 2]
+usage: python gpu/reach_tn.py OBS T OUT.jsonl [--extra-rx] [--max-time 300] [--target 27] [--ks 0-16 | 16,0,8,1-7,9-15] [--par 2]
 OBS: z62 | z106 | w10 | w17 | w17b; T: number of steps; --target: log2 of the largest intermediate (complex128:
 2^27 = 2 GB, 2^29 = 8 GB)."""
 import argparse
@@ -71,8 +71,12 @@ def sliced_contract(arrays, inputs, output, size, tree):
 
 
 def ks_of(s):
-    a, b = (s.split("-") + [s])[:2]
-    return list(range(int(a), int(b) + 1))
+    """'0-16' or a comma list of numbers and ranges in the order to compute, e.g. '16,0,8,1-7,9-15'."""
+    out = []
+    for part in s.split(","):
+        a, b = (part.split("-") + [part])[:2]
+        out += [k for k in range(int(a), int(b) + 1) if k not in out]
+    return out
 
 
 def main():
