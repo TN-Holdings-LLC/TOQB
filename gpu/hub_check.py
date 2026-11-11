@@ -50,6 +50,16 @@ def z_of(qc):
     return np.array([float(np.real(d[f"z{k}"])) for k in range(n)]), method
 
 
+def z_quimb(qc, chi=1024):
+    """Per-qubit <Z> by quimb's CircuitMPS on two-qubit blocks (as gpu/hub_answers.py, but on the compiled circuit).
+    11-11 night: Aer's MPS took about 25 min for L 30 at 4 steps here; quimb is used above --mps-steps."""
+    import sys as _s
+    _s.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "notes", "hubbard_2026-11-11"))
+    import hub_cost as HC
+    z, bond, err = HC.run_quimb(HC.blocks(qc), chi)
+    return np.asarray(z), f"quimb chi {chi} (bond {bond}, error estimate {err:.1e})"
+
+
 def cz_depth(c):
     return c.depth(filter_function=lambda i: i.operation.name == "cz")
 
@@ -59,6 +69,7 @@ def main():
     ap.add_argument("out")
     ap.add_argument("answers")
     ap.add_argument("--mps-steps", type=int, default=2)
+    ap.add_argument("--quimb-steps", type=int, default=0, help="steps above --mps-steps up to this by quimb")
     ap.add_argument("--only", nargs="*", default=None, help="tags to check (default: all)")
     a = ap.parse_args()
     b = json.load(open(os.path.join(a.out, "build.json")))
@@ -75,13 +86,14 @@ def main():
         phys = [int(m[str(q)]) for q in chain]
         cu = load(os.path.join(runs, f"p2d_{tag}.qpy"))
         r = dict(cz=b["cz"][tag], cz_depth=cz_depth(cu))
-        if 2 * L <= 12 or s <= a.mps_steps:
-            z, method = z_of(reduced(cu, phys))
+        if 2 * L <= 12 or s <= a.mps_steps or s <= a.quimb_steps:
+            use_q = not (2 * L <= 12 or s <= a.mps_steps)
+            z, method = (z_quimb if use_q else z_of)(reduced(cu, phys))
             e = np.array([ans[tag][str(q)] for q in chain])
             tol = 1e-9 if method == "statevector" else 1e-6
             r.update(method=method, worst=float(np.abs(z - e).max()))
             good = r["worst"] < tol
-            zm, _ = z_of(reduced(load(os.path.join(runs, f"p2d_{tag}_mirror.qpy")), phys))
+            zm, _ = (z_quimb if use_q else z_of)(reduced(load(os.path.join(runs, f"p2d_{tag}_mirror.qpy")), phys))
             r["mirror_worst"] = float(np.abs(zm - 1.0).max())
             good &= r["mirror_worst"] < tol
             r["ok"] = bool(good)
