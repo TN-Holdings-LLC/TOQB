@@ -5,6 +5,9 @@
 #   the whole run at most BUDGET_HOURS (default 5.5 h): no new case starts after that, the rest is written "skipped";
 #   a quimb chi that hits its limit skips the larger chi of the same (L, steps);
 #   an Aer run that hits its limit skips Aer for the larger steps of the same L.
+#   (2026-11-11c) a case already finished in STEM_report.jsonl (a row with "seconds") is not run again, so a run
+#   stopped part way (or one begun with an earlier kit) can be resumed in the same folder with the same STEM;
+#   pass as BUDGET_HOURS only the hours that are left.
 # The script does NOT stop or delete the POD: delete it yourself when it ends (or use your own stopper).
 set -e
 python3 -m venv /root/venv 2>/dev/null || true; export PATH=/root/venv/bin:$PATH
@@ -17,16 +20,34 @@ START=$(date +%s)
 left() { echo $(( BUDGET - ($(date +%s) - START) )); }
 note() { echo "{\"L\": $1, \"steps\": $2, \"method\": \"$3\", \"chi\": $4, \"stopped\": \"$5\"}" >> $STEM_REPORT; }
 STEM_REPORT=$4_report.jsonl
+done_already() {  # L S method chi -> exit 0 if a finished row exists
+  [ -f "$STEM_REPORT" ] || return 1
+  python3 - "$STEM_REPORT" "$1" "$2" "$3" "$4" <<'PY'
+import json, sys
+f, L, S, m, c = sys.argv[1:]
+c = None if c in ("null", "0") else int(c)
+for line in open(f):
+    try:
+        r = json.loads(line)
+    except Exception:
+        continue
+    if "seconds" in r and r["L"] == int(L) and r["steps"] == int(S) and r["method"] == m and (m == "aer" or r.get("chi") == c):
+        sys.exit(0)
+sys.exit(1)
+PY
+}
 for L in $1; do
   AER_OK=1
   for S in $2; do
     CHI_OK=1
     for C in $3; do
+      if done_already $L $S quimb $C; then echo "L $L steps $S quimb $C: already done"; continue; fi
       if [ $(left) -le 0 ]; then note $L $S quimb $C "skipped: run budget spent"; continue; fi
       if [ $CHI_OK -eq 0 ]; then note $L $S quimb $C "skipped: a smaller chi hit its limit"; continue; fi
       T=$(( $(left) < 7200 ? $(left) : 7200 ))
       timeout $T python3 hub_cost.py $L $S quimb $C $4_report.jsonl $4_values.npz || { note $L $S quimb $C "limit ${T} s or error"; CHI_OK=0; }
     done
+    if done_already $L $S aer null; then echo "L $L steps $S aer: already done"; continue; fi
     if [ $(left) -le 0 ]; then note $L $S aer null "skipped: run budget spent"; continue; fi
     if [ $AER_OK -eq 0 ]; then note $L $S aer null "skipped: fewer steps hit the limit"; continue; fi
     T=$(( $(left) < 7200 ? $(left) : 7200 ))
