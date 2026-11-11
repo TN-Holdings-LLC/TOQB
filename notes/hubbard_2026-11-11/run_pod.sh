@@ -14,6 +14,17 @@ python3 -m venv /root/venv 2>/dev/null || true; export PATH=/root/venv/bin:$PATH
 pip install -q "qiskit==2.6.1" "qiskit-aer==0.18.2" "quimb==1.16.0" numpy scipy
 python -c "import qiskit, qiskit_aer, quimb; print('qiskit', qiskit.__version__, 'aer', qiskit_aer.__version__, 'quimb', quimb.__version__)"
 nproc; free -g | head -2
+# CPU threads (2026-11-11d): the cores this container may use (cgroup cpu.max), not the host's; numpy/BLAS (quimb)
+# and Aer are given that number, so a 32-core share of a 128-core host does not run 128 threads.
+NCPU=$(python3 -c "
+import os
+try:
+    q, p = open('/sys/fs/cgroup/cpu.max').read().split()
+    print(max(1, int(int(q) // int(p))) if q != 'max' else len(os.sched_getaffinity(0)))
+except Exception:
+    print(len(os.sched_getaffinity(0)))")
+export OMP_NUM_THREADS=$NCPU OPENBLAS_NUM_THREADS=$NCPU MKL_NUM_THREADS=$NCPU NUMEXPR_NUM_THREADS=$NCPU
+echo "threads: $NCPU (nproc $(nproc))"
 TZ=Europe/Zurich date
 BUDGET=$(python3 -c "print(int(float('${5:-5.5}') * 3600))")
 START=$(date +%s)
@@ -51,7 +62,7 @@ for L in $1; do
     if [ $(left) -le 0 ]; then note $L $S aer null "skipped: run budget spent"; continue; fi
     if [ $AER_OK -eq 0 ]; then note $L $S aer null "skipped: fewer steps hit the limit"; continue; fi
     T=$(( $(left) < 7200 ? $(left) : 7200 ))
-    timeout $T python3 hub_cost.py $L $S aer $4_report.jsonl $4_values.npz --threads $(nproc) || { note $L $S aer null "limit ${T} s or error"; AER_OK=0; }
+    timeout $T python3 hub_cost.py $L $S aer $4_report.jsonl $4_values.npz --threads $NCPU || { note $L $S aer null "limit ${T} s or error"; AER_OK=0; }
   done
 done
 TZ=Europe/Zurich date

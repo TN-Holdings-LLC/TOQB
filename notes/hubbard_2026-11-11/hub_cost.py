@@ -10,6 +10,9 @@ half filling, sum over up modes - sum over down modes = 0) and, between cases of
 difference of the per-mode <Z>. **The per-mode <Z> values themselves go only to VALUES_OUT** (they are a future
 declaration's answers; never put them in a report).
 
+Kit d (2026-11-11): runs of gates on the same qubit pair are merged into single two-qubit unitaries before
+simulation (`blocks`), so truncation happens once per block (about a third as often as per CX); rows carry kit="d".
+
 usage: python hub_cost.py L STEPS METHOD [CHI] REPORT.jsonl VALUES_OUT.npz [--threads N]
 """
 import argparse
@@ -43,7 +46,20 @@ def circuit(L, steps):
                 qc.append(XXPlusYYGate(-2 * J * DT), [2 * i + 2, 2 * i + 3])
                 qc.swap(2 * i + 1, 2 * i + 2)
                 qc.cz(2 * i + 1, 2 * i + 2)
-    return transpile(qc, basis_gates=["cx", "u", "rz", "x"], optimization_level=1)
+    return qc
+
+
+def blocks(qc):
+    """The circuit with every run of gates on the same two qubits merged into one 2x2-qubit unitary (and single-qubit
+    gates absorbed into them): each MPS method then truncates once per merged block, not once per CX (2026-11-11d)."""
+    from qiskit.transpiler import PassManager
+    from qiskit.transpiler.passes import Collect2qBlocks, ConsolidateBlocks
+    return PassManager([Collect2qBlocks(), ConsolidateBlocks(force_consolidate=True)]).run(qc)
+
+
+def cx_count(qc):
+    from qiskit import transpile
+    return int(transpile(qc, basis_gates=["cx", "u", "rz", "x"], optimization_level=1).count_ops().get("cx", 0))
 
 
 def run_aer(qc, threads):
@@ -88,7 +104,8 @@ def main():
     ap.add_argument("values_out")
     ap.add_argument("--threads", type=int, default=os.cpu_count())
     a = ap.parse_args()
-    qc = circuit(a.L, a.steps)
+    logical = circuit(a.L, a.steps)
+    qc = blocks(logical)
     t0 = time.time()
     z, bond, err = run_aer(qc, a.threads) if a.method == "aer" else run_quimb(qc, a.chi)
     sec = time.time() - t0
@@ -96,7 +113,8 @@ def main():
     row = dict(L=a.L, qubits=2 * a.L, steps=a.steps, Jt=a.steps * DT, method=a.method, chi=a.chi or None,
                seconds=round(sec, 1), peak_rss_gb=round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1e6, 2),
                max_bond=bond, error_estimate=err, check_sum_z=float(z.sum()), check_sz=float(up - dn),
-               cx_transpiled=int(qc.count_ops().get("cx", 0)))
+               cx_transpiled=cx_count(logical), two_qubit_blocks=sum(1 for i in qc.data if len(i.qubits) == 2),
+               kit="d")
     key = f"L{a.L}_s{a.steps}_{a.method}{a.chi or ''}"
     old = dict(np.load(a.values_out)) if os.path.exists(a.values_out) else {}
     old[key] = z
