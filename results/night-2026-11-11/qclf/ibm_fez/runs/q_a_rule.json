@@ -1,0 +1,3978 @@
+{
+ "kind": "qclf",
+ "psfos_role": "user",
+ "points": [
+  {
+   "input": "p0",
+   "setting": "X"
+  },
+  {
+   "input": "p0",
+   "setting": "Y"
+  },
+  {
+   "input": "p0",
+   "setting": "Z"
+  },
+  {
+   "input": "p1",
+   "setting": "X"
+  },
+  {
+   "input": "p1",
+   "setting": "Y"
+  },
+  {
+   "input": "p1",
+   "setting": "Z"
+  },
+  {
+   "input": "p2",
+   "setting": "X"
+  },
+  {
+   "input": "p2",
+   "setting": "Y"
+  },
+  {
+   "input": "p2",
+   "setting": "Z"
+  },
+  {
+   "input": "p3",
+   "setting": "X"
+  },
+  {
+   "input": "p3",
+   "setting": "Y"
+  },
+  {
+   "input": "p3",
+   "setting": "Z"
+  },
+  {
+   "input": "p4",
+   "setting": "X"
+  },
+  {
+   "input": "p4",
+   "setting": "Y"
+  },
+  {
+   "input": "p4",
+   "setting": "Z"
+  },
+  {
+   "input": "p5",
+   "setting": "X"
+  },
+  {
+   "input": "p5",
+   "setting": "Y"
+  },
+  {
+   "input": "p5",
+   "setting": "Z"
+  },
+  {
+   "input": "p6",
+   "setting": "X"
+  },
+  {
+   "input": "p6",
+   "setting": "Y"
+  },
+  {
+   "input": "p6",
+   "setting": "Z"
+  },
+  {
+   "input": "p7",
+   "setting": "X"
+  },
+  {
+   "input": "p7",
+   "setting": "Y"
+  },
+  {
+   "input": "p7",
+   "setting": "Z"
+  },
+  {
+   "input": "p8",
+   "setting": "X"
+  },
+  {
+   "input": "p8",
+   "setting": "Y"
+  },
+  {
+   "input": "p8",
+   "setting": "Z"
+  },
+  {
+   "input": "p9",
+   "setting": "X"
+  },
+  {
+   "input": "p9",
+   "setting": "Y"
+  },
+  {
+   "input": "p9",
+   "setting": "Z"
+  },
+  {
+   "input": "p10",
+   "setting": "X"
+  },
+  {
+   "input": "p10",
+   "setting": "Y"
+  },
+  {
+   "input": "p10",
+   "setting": "Z"
+  },
+  {
+   "input": "p11",
+   "setting": "X"
+  },
+  {
+   "input": "p11",
+   "setting": "Y"
+  },
+  {
+   "input": "p11",
+   "setting": "Z"
+  },
+  {
+   "input": "p12",
+   "setting": "X"
+  },
+  {
+   "input": "p12",
+   "setting": "Y"
+  },
+  {
+   "input": "p12",
+   "setting": "Z"
+  },
+  {
+   "input": "p13",
+   "setting": "X"
+  },
+  {
+   "input": "p13",
+   "setting": "Y"
+  },
+  {
+   "input": "p13",
+   "setting": "Z"
+  },
+  {
+   "input": "p14",
+   "setting": "X"
+  },
+  {
+   "input": "p14",
+   "setting": "Y"
+  },
+  {
+   "input": "p14",
+   "setting": "Z"
+  },
+  {
+   "input": "p15",
+   "setting": "X"
+  },
+  {
+   "input": "p15",
+   "setting": "Y"
+  },
+  {
+   "input": "p15",
+   "setting": "Z"
+  },
+  {
+   "input": "p16",
+   "setting": "X"
+  },
+  {
+   "input": "p16",
+   "setting": "Y"
+  },
+  {
+   "input": "p16",
+   "setting": "Z"
+  },
+  {
+   "input": "p17",
+   "setting": "X"
+  },
+  {
+   "input": "p17",
+   "setting": "Y"
+  },
+  {
+   "input": "p17",
+   "setting": "Z"
+  },
+  {
+   "input": "p18",
+   "setting": "X"
+  },
+  {
+   "input": "p18",
+   "setting": "Y"
+  },
+  {
+   "input": "p18",
+   "setting": "Z"
+  },
+  {
+   "input": "p19",
+   "setting": "X"
+  },
+  {
+   "input": "p19",
+   "setting": "Y"
+  },
+  {
+   "input": "p19",
+   "setting": "Z"
+  },
+  {
+   "input": "p20",
+   "setting": "X"
+  },
+  {
+   "input": "p20",
+   "setting": "Y"
+  },
+  {
+   "input": "p20",
+   "setting": "Z"
+  },
+  {
+   "input": "p21",
+   "setting": "X"
+  },
+  {
+   "input": "p21",
+   "setting": "Y"
+  },
+  {
+   "input": "p21",
+   "setting": "Z"
+  },
+  {
+   "input": "p22",
+   "setting": "X"
+  },
+  {
+   "input": "p22",
+   "setting": "Y"
+  },
+  {
+   "input": "p22",
+   "setting": "Z"
+  },
+  {
+   "input": "p23",
+   "setting": "X"
+  },
+  {
+   "input": "p23",
+   "setting": "Y"
+  },
+  {
+   "input": "p23",
+   "setting": "Z"
+  },
+  {
+   "input": "p24",
+   "setting": "X"
+  },
+  {
+   "input": "p24",
+   "setting": "Y"
+  },
+  {
+   "input": "p24",
+   "setting": "Z"
+  },
+  {
+   "input": "p25",
+   "setting": "X"
+  },
+  {
+   "input": "p25",
+   "setting": "Y"
+  },
+  {
+   "input": "p25",
+   "setting": "Z"
+  },
+  {
+   "input": "p26",
+   "setting": "X"
+  },
+  {
+   "input": "p26",
+   "setting": "Y"
+  },
+  {
+   "input": "p26",
+   "setting": "Z"
+  },
+  {
+   "input": "p27",
+   "setting": "X"
+  },
+  {
+   "input": "p27",
+   "setting": "Y"
+  },
+  {
+   "input": "p27",
+   "setting": "Z"
+  },
+  {
+   "input": "p28",
+   "setting": "X"
+  },
+  {
+   "input": "p28",
+   "setting": "Y"
+  },
+  {
+   "input": "p28",
+   "setting": "Z"
+  },
+  {
+   "input": "p29",
+   "setting": "X"
+  },
+  {
+   "input": "p29",
+   "setting": "Y"
+  },
+  {
+   "input": "p29",
+   "setting": "Z"
+  },
+  {
+   "input": "p30",
+   "setting": "X"
+  },
+  {
+   "input": "p30",
+   "setting": "Y"
+  },
+  {
+   "input": "p30",
+   "setting": "Z"
+  },
+  {
+   "input": "p31",
+   "setting": "X"
+  },
+  {
+   "input": "p31",
+   "setting": "Y"
+  },
+  {
+   "input": "p31",
+   "setting": "Z"
+  },
+  {
+   "input": "p32",
+   "setting": "X"
+  },
+  {
+   "input": "p32",
+   "setting": "Y"
+  },
+  {
+   "input": "p32",
+   "setting": "Z"
+  },
+  {
+   "input": "p33",
+   "setting": "X"
+  },
+  {
+   "input": "p33",
+   "setting": "Y"
+  },
+  {
+   "input": "p33",
+   "setting": "Z"
+  },
+  {
+   "input": "p34",
+   "setting": "X"
+  },
+  {
+   "input": "p34",
+   "setting": "Y"
+  },
+  {
+   "input": "p34",
+   "setting": "Z"
+  },
+  {
+   "input": "p35",
+   "setting": "X"
+  },
+  {
+   "input": "p35",
+   "setting": "Y"
+  },
+  {
+   "input": "p35",
+   "setting": "Z"
+  },
+  {
+   "input": "p36",
+   "setting": "X"
+  },
+  {
+   "input": "p36",
+   "setting": "Y"
+  },
+  {
+   "input": "p36",
+   "setting": "Z"
+  },
+  {
+   "input": "p37",
+   "setting": "X"
+  },
+  {
+   "input": "p37",
+   "setting": "Y"
+  },
+  {
+   "input": "p37",
+   "setting": "Z"
+  },
+  {
+   "input": "p38",
+   "setting": "X"
+  },
+  {
+   "input": "p38",
+   "setting": "Y"
+  },
+  {
+   "input": "p38",
+   "setting": "Z"
+  },
+  {
+   "input": "p39",
+   "setting": "X"
+  },
+  {
+   "input": "p39",
+   "setting": "Y"
+  },
+  {
+   "input": "p39",
+   "setting": "Z"
+  },
+  {
+   "input": "p40",
+   "setting": "X"
+  },
+  {
+   "input": "p40",
+   "setting": "Y"
+  },
+  {
+   "input": "p40",
+   "setting": "Z"
+  },
+  {
+   "input": "p41",
+   "setting": "X"
+  },
+  {
+   "input": "p41",
+   "setting": "Y"
+  },
+  {
+   "input": "p41",
+   "setting": "Z"
+  },
+  {
+   "input": "p42",
+   "setting": "X"
+  },
+  {
+   "input": "p42",
+   "setting": "Y"
+  },
+  {
+   "input": "p42",
+   "setting": "Z"
+  },
+  {
+   "input": "p43",
+   "setting": "X"
+  },
+  {
+   "input": "p43",
+   "setting": "Y"
+  },
+  {
+   "input": "p43",
+   "setting": "Z"
+  },
+  {
+   "input": "p44",
+   "setting": "X"
+  },
+  {
+   "input": "p44",
+   "setting": "Y"
+  },
+  {
+   "input": "p44",
+   "setting": "Z"
+  },
+  {
+   "input": "p45",
+   "setting": "X"
+  },
+  {
+   "input": "p45",
+   "setting": "Y"
+  },
+  {
+   "input": "p45",
+   "setting": "Z"
+  },
+  {
+   "input": "p46",
+   "setting": "X"
+  },
+  {
+   "input": "p46",
+   "setting": "Y"
+  },
+  {
+   "input": "p46",
+   "setting": "Z"
+  },
+  {
+   "input": "p47",
+   "setting": "X"
+  },
+  {
+   "input": "p47",
+   "setting": "Y"
+  },
+  {
+   "input": "p47",
+   "setting": "Z"
+  },
+  {
+   "input": "p48",
+   "setting": "X"
+  },
+  {
+   "input": "p48",
+   "setting": "Y"
+  },
+  {
+   "input": "p48",
+   "setting": "Z"
+  },
+  {
+   "input": "p49",
+   "setting": "X"
+  },
+  {
+   "input": "p49",
+   "setting": "Y"
+  },
+  {
+   "input": "p49",
+   "setting": "Z"
+  },
+  {
+   "input": "p50",
+   "setting": "X"
+  },
+  {
+   "input": "p50",
+   "setting": "Y"
+  },
+  {
+   "input": "p50",
+   "setting": "Z"
+  },
+  {
+   "input": "p51",
+   "setting": "X"
+  },
+  {
+   "input": "p51",
+   "setting": "Y"
+  },
+  {
+   "input": "p51",
+   "setting": "Z"
+  },
+  {
+   "input": "p52",
+   "setting": "X"
+  },
+  {
+   "input": "p52",
+   "setting": "Y"
+  },
+  {
+   "input": "p52",
+   "setting": "Z"
+  },
+  {
+   "input": "p53",
+   "setting": "X"
+  },
+  {
+   "input": "p53",
+   "setting": "Y"
+  },
+  {
+   "input": "p53",
+   "setting": "Z"
+  },
+  {
+   "input": "p54",
+   "setting": "X"
+  },
+  {
+   "input": "p54",
+   "setting": "Y"
+  },
+  {
+   "input": "p54",
+   "setting": "Z"
+  },
+  {
+   "input": "p55",
+   "setting": "X"
+  },
+  {
+   "input": "p55",
+   "setting": "Y"
+  },
+  {
+   "input": "p55",
+   "setting": "Z"
+  },
+  {
+   "input": "p56",
+   "setting": "X"
+  },
+  {
+   "input": "p56",
+   "setting": "Y"
+  },
+  {
+   "input": "p56",
+   "setting": "Z"
+  },
+  {
+   "input": "p57",
+   "setting": "X"
+  },
+  {
+   "input": "p57",
+   "setting": "Y"
+  },
+  {
+   "input": "p57",
+   "setting": "Z"
+  },
+  {
+   "input": "p58",
+   "setting": "X"
+  },
+  {
+   "input": "p58",
+   "setting": "Y"
+  },
+  {
+   "input": "p58",
+   "setting": "Z"
+  },
+  {
+   "input": "p59",
+   "setting": "X"
+  },
+  {
+   "input": "p59",
+   "setting": "Y"
+  },
+  {
+   "input": "p59",
+   "setting": "Z"
+  },
+  {
+   "input": "p60",
+   "setting": "X"
+  },
+  {
+   "input": "p60",
+   "setting": "Y"
+  },
+  {
+   "input": "p60",
+   "setting": "Z"
+  },
+  {
+   "input": "p61",
+   "setting": "X"
+  },
+  {
+   "input": "p61",
+   "setting": "Y"
+  },
+  {
+   "input": "p61",
+   "setting": "Z"
+  },
+  {
+   "input": "p62",
+   "setting": "X"
+  },
+  {
+   "input": "p62",
+   "setting": "Y"
+  },
+  {
+   "input": "p62",
+   "setting": "Z"
+  },
+  {
+   "input": "p63",
+   "setting": "X"
+  },
+  {
+   "input": "p63",
+   "setting": "Y"
+  },
+  {
+   "input": "p63",
+   "setting": "Z"
+  },
+  {
+   "input": "p64",
+   "setting": "X"
+  },
+  {
+   "input": "p64",
+   "setting": "Y"
+  },
+  {
+   "input": "p64",
+   "setting": "Z"
+  },
+  {
+   "input": "p65",
+   "setting": "X"
+  },
+  {
+   "input": "p65",
+   "setting": "Y"
+  },
+  {
+   "input": "p65",
+   "setting": "Z"
+  },
+  {
+   "input": "p66",
+   "setting": "X"
+  },
+  {
+   "input": "p66",
+   "setting": "Y"
+  },
+  {
+   "input": "p66",
+   "setting": "Z"
+  },
+  {
+   "input": "p67",
+   "setting": "X"
+  },
+  {
+   "input": "p67",
+   "setting": "Y"
+  },
+  {
+   "input": "p67",
+   "setting": "Z"
+  },
+  {
+   "input": "p68",
+   "setting": "X"
+  },
+  {
+   "input": "p68",
+   "setting": "Y"
+  },
+  {
+   "input": "p68",
+   "setting": "Z"
+  },
+  {
+   "input": "p69",
+   "setting": "X"
+  },
+  {
+   "input": "p69",
+   "setting": "Y"
+  },
+  {
+   "input": "p69",
+   "setting": "Z"
+  },
+  {
+   "input": "p70",
+   "setting": "X"
+  },
+  {
+   "input": "p70",
+   "setting": "Y"
+  },
+  {
+   "input": "p70",
+   "setting": "Z"
+  },
+  {
+   "input": "p71",
+   "setting": "X"
+  },
+  {
+   "input": "p71",
+   "setting": "Y"
+  },
+  {
+   "input": "p71",
+   "setting": "Z"
+  },
+  {
+   "input": "p72",
+   "setting": "X"
+  },
+  {
+   "input": "p72",
+   "setting": "Y"
+  },
+  {
+   "input": "p72",
+   "setting": "Z"
+  },
+  {
+   "input": "p73",
+   "setting": "X"
+  },
+  {
+   "input": "p73",
+   "setting": "Y"
+  },
+  {
+   "input": "p73",
+   "setting": "Z"
+  },
+  {
+   "input": "p74",
+   "setting": "X"
+  },
+  {
+   "input": "p74",
+   "setting": "Y"
+  },
+  {
+   "input": "p74",
+   "setting": "Z"
+  },
+  {
+   "input": "p75",
+   "setting": "X"
+  },
+  {
+   "input": "p75",
+   "setting": "Y"
+  },
+  {
+   "input": "p75",
+   "setting": "Z"
+  },
+  {
+   "input": "p76",
+   "setting": "X"
+  },
+  {
+   "input": "p76",
+   "setting": "Y"
+  },
+  {
+   "input": "p76",
+   "setting": "Z"
+  },
+  {
+   "input": "p77",
+   "setting": "X"
+  },
+  {
+   "input": "p77",
+   "setting": "Y"
+  },
+  {
+   "input": "p77",
+   "setting": "Z"
+  },
+  {
+   "input": "p78",
+   "setting": "X"
+  },
+  {
+   "input": "p78",
+   "setting": "Y"
+  },
+  {
+   "input": "p78",
+   "setting": "Z"
+  },
+  {
+   "input": "p79",
+   "setting": "X"
+  },
+  {
+   "input": "p79",
+   "setting": "Y"
+  },
+  {
+   "input": "p79",
+   "setting": "Z"
+  },
+  {
+   "input": "p80",
+   "setting": "X"
+  },
+  {
+   "input": "p80",
+   "setting": "Y"
+  },
+  {
+   "input": "p80",
+   "setting": "Z"
+  },
+  {
+   "input": "p81",
+   "setting": "X"
+  },
+  {
+   "input": "p81",
+   "setting": "Y"
+  },
+  {
+   "input": "p81",
+   "setting": "Z"
+  },
+  {
+   "input": "p82",
+   "setting": "X"
+  },
+  {
+   "input": "p82",
+   "setting": "Y"
+  },
+  {
+   "input": "p82",
+   "setting": "Z"
+  },
+  {
+   "input": "p83",
+   "setting": "X"
+  },
+  {
+   "input": "p83",
+   "setting": "Y"
+  },
+  {
+   "input": "p83",
+   "setting": "Z"
+  },
+  {
+   "input": "p84",
+   "setting": "X"
+  },
+  {
+   "input": "p84",
+   "setting": "Y"
+  },
+  {
+   "input": "p84",
+   "setting": "Z"
+  },
+  {
+   "input": "p85",
+   "setting": "X"
+  },
+  {
+   "input": "p85",
+   "setting": "Y"
+  },
+  {
+   "input": "p85",
+   "setting": "Z"
+  },
+  {
+   "input": "p86",
+   "setting": "X"
+  },
+  {
+   "input": "p86",
+   "setting": "Y"
+  },
+  {
+   "input": "p86",
+   "setting": "Z"
+  },
+  {
+   "input": "p87",
+   "setting": "X"
+  },
+  {
+   "input": "p87",
+   "setting": "Y"
+  },
+  {
+   "input": "p87",
+   "setting": "Z"
+  },
+  {
+   "input": "p88",
+   "setting": "X"
+  },
+  {
+   "input": "p88",
+   "setting": "Y"
+  },
+  {
+   "input": "p88",
+   "setting": "Z"
+  },
+  {
+   "input": "p89",
+   "setting": "X"
+  },
+  {
+   "input": "p89",
+   "setting": "Y"
+  },
+  {
+   "input": "p89",
+   "setting": "Z"
+  },
+  {
+   "input": "p90",
+   "setting": "X"
+  },
+  {
+   "input": "p90",
+   "setting": "Y"
+  },
+  {
+   "input": "p90",
+   "setting": "Z"
+  },
+  {
+   "input": "p91",
+   "setting": "X"
+  },
+  {
+   "input": "p91",
+   "setting": "Y"
+  },
+  {
+   "input": "p91",
+   "setting": "Z"
+  },
+  {
+   "input": "p92",
+   "setting": "X"
+  },
+  {
+   "input": "p92",
+   "setting": "Y"
+  },
+  {
+   "input": "p92",
+   "setting": "Z"
+  },
+  {
+   "input": "p93",
+   "setting": "X"
+  },
+  {
+   "input": "p93",
+   "setting": "Y"
+  },
+  {
+   "input": "p93",
+   "setting": "Z"
+  },
+  {
+   "input": "p94",
+   "setting": "X"
+  },
+  {
+   "input": "p94",
+   "setting": "Y"
+  },
+  {
+   "input": "p94",
+   "setting": "Z"
+  },
+  {
+   "input": "p95",
+   "setting": "X"
+  },
+  {
+   "input": "p95",
+   "setting": "Y"
+  },
+  {
+   "input": "p95",
+   "setting": "Z"
+  },
+  {
+   "input": "p96",
+   "setting": "X"
+  },
+  {
+   "input": "p96",
+   "setting": "Y"
+  },
+  {
+   "input": "p96",
+   "setting": "Z"
+  },
+  {
+   "input": "p97",
+   "setting": "X"
+  },
+  {
+   "input": "p97",
+   "setting": "Y"
+  },
+  {
+   "input": "p97",
+   "setting": "Z"
+  },
+  {
+   "input": "p98",
+   "setting": "X"
+  },
+  {
+   "input": "p98",
+   "setting": "Y"
+  },
+  {
+   "input": "p98",
+   "setting": "Z"
+  },
+  {
+   "input": "p99",
+   "setting": "X"
+  },
+  {
+   "input": "p99",
+   "setting": "Y"
+  },
+  {
+   "input": "p99",
+   "setting": "Z"
+  },
+  {
+   "input": "p100",
+   "setting": "X"
+  },
+  {
+   "input": "p100",
+   "setting": "Y"
+  },
+  {
+   "input": "p100",
+   "setting": "Z"
+  },
+  {
+   "input": "p101",
+   "setting": "X"
+  },
+  {
+   "input": "p101",
+   "setting": "Y"
+  },
+  {
+   "input": "p101",
+   "setting": "Z"
+  },
+  {
+   "input": "p102",
+   "setting": "X"
+  },
+  {
+   "input": "p102",
+   "setting": "Y"
+  },
+  {
+   "input": "p102",
+   "setting": "Z"
+  },
+  {
+   "input": "p103",
+   "setting": "X"
+  },
+  {
+   "input": "p103",
+   "setting": "Y"
+  },
+  {
+   "input": "p103",
+   "setting": "Z"
+  },
+  {
+   "input": "p104",
+   "setting": "X"
+  },
+  {
+   "input": "p104",
+   "setting": "Y"
+  },
+  {
+   "input": "p104",
+   "setting": "Z"
+  },
+  {
+   "input": "p105",
+   "setting": "X"
+  },
+  {
+   "input": "p105",
+   "setting": "Y"
+  },
+  {
+   "input": "p105",
+   "setting": "Z"
+  },
+  {
+   "input": "p106",
+   "setting": "X"
+  },
+  {
+   "input": "p106",
+   "setting": "Y"
+  },
+  {
+   "input": "p106",
+   "setting": "Z"
+  },
+  {
+   "input": "p107",
+   "setting": "X"
+  },
+  {
+   "input": "p107",
+   "setting": "Y"
+  },
+  {
+   "input": "p107",
+   "setting": "Z"
+  },
+  {
+   "input": "p108",
+   "setting": "X"
+  },
+  {
+   "input": "p108",
+   "setting": "Y"
+  },
+  {
+   "input": "p108",
+   "setting": "Z"
+  },
+  {
+   "input": "p109",
+   "setting": "X"
+  },
+  {
+   "input": "p109",
+   "setting": "Y"
+  },
+  {
+   "input": "p109",
+   "setting": "Z"
+  },
+  {
+   "input": "p110",
+   "setting": "X"
+  },
+  {
+   "input": "p110",
+   "setting": "Y"
+  },
+  {
+   "input": "p110",
+   "setting": "Z"
+  },
+  {
+   "input": "p111",
+   "setting": "X"
+  },
+  {
+   "input": "p111",
+   "setting": "Y"
+  },
+  {
+   "input": "p111",
+   "setting": "Z"
+  },
+  {
+   "input": "p112",
+   "setting": "X"
+  },
+  {
+   "input": "p112",
+   "setting": "Y"
+  },
+  {
+   "input": "p112",
+   "setting": "Z"
+  },
+  {
+   "input": "p113",
+   "setting": "X"
+  },
+  {
+   "input": "p113",
+   "setting": "Y"
+  },
+  {
+   "input": "p113",
+   "setting": "Z"
+  },
+  {
+   "input": "p114",
+   "setting": "X"
+  },
+  {
+   "input": "p114",
+   "setting": "Y"
+  },
+  {
+   "input": "p114",
+   "setting": "Z"
+  },
+  {
+   "input": "p115",
+   "setting": "X"
+  },
+  {
+   "input": "p115",
+   "setting": "Y"
+  },
+  {
+   "input": "p115",
+   "setting": "Z"
+  },
+  {
+   "input": "p116",
+   "setting": "X"
+  },
+  {
+   "input": "p116",
+   "setting": "Y"
+  },
+  {
+   "input": "p116",
+   "setting": "Z"
+  },
+  {
+   "input": "p117",
+   "setting": "X"
+  },
+  {
+   "input": "p117",
+   "setting": "Y"
+  },
+  {
+   "input": "p117",
+   "setting": "Z"
+  },
+  {
+   "input": "p118",
+   "setting": "X"
+  },
+  {
+   "input": "p118",
+   "setting": "Y"
+  },
+  {
+   "input": "p118",
+   "setting": "Z"
+  },
+  {
+   "input": "p119",
+   "setting": "X"
+  },
+  {
+   "input": "p119",
+   "setting": "Y"
+  },
+  {
+   "input": "p119",
+   "setting": "Z"
+  },
+  {
+   "input": "p120",
+   "setting": "X"
+  },
+  {
+   "input": "p120",
+   "setting": "Y"
+  },
+  {
+   "input": "p120",
+   "setting": "Z"
+  },
+  {
+   "input": "p121",
+   "setting": "X"
+  },
+  {
+   "input": "p121",
+   "setting": "Y"
+  },
+  {
+   "input": "p121",
+   "setting": "Z"
+  },
+  {
+   "input": "p122",
+   "setting": "X"
+  },
+  {
+   "input": "p122",
+   "setting": "Y"
+  },
+  {
+   "input": "p122",
+   "setting": "Z"
+  },
+  {
+   "input": "p123",
+   "setting": "X"
+  },
+  {
+   "input": "p123",
+   "setting": "Y"
+  },
+  {
+   "input": "p123",
+   "setting": "Z"
+  },
+  {
+   "input": "p124",
+   "setting": "X"
+  },
+  {
+   "input": "p124",
+   "setting": "Y"
+  },
+  {
+   "input": "p124",
+   "setting": "Z"
+  },
+  {
+   "input": "p125",
+   "setting": "X"
+  },
+  {
+   "input": "p125",
+   "setting": "Y"
+  },
+  {
+   "input": "p125",
+   "setting": "Z"
+  },
+  {
+   "input": "p126",
+   "setting": "X"
+  },
+  {
+   "input": "p126",
+   "setting": "Y"
+  },
+  {
+   "input": "p126",
+   "setting": "Z"
+  },
+  {
+   "input": "p127",
+   "setting": "X"
+  },
+  {
+   "input": "p127",
+   "setting": "Y"
+  },
+  {
+   "input": "p127",
+   "setting": "Z"
+  },
+  {
+   "input": "p128",
+   "setting": "X"
+  },
+  {
+   "input": "p128",
+   "setting": "Y"
+  },
+  {
+   "input": "p128",
+   "setting": "Z"
+  },
+  {
+   "input": "p129",
+   "setting": "X"
+  },
+  {
+   "input": "p129",
+   "setting": "Y"
+  },
+  {
+   "input": "p129",
+   "setting": "Z"
+  },
+  {
+   "input": "p130",
+   "setting": "X"
+  },
+  {
+   "input": "p130",
+   "setting": "Y"
+  },
+  {
+   "input": "p130",
+   "setting": "Z"
+  },
+  {
+   "input": "p131",
+   "setting": "X"
+  },
+  {
+   "input": "p131",
+   "setting": "Y"
+  },
+  {
+   "input": "p131",
+   "setting": "Z"
+  },
+  {
+   "input": "p132",
+   "setting": "X"
+  },
+  {
+   "input": "p132",
+   "setting": "Y"
+  },
+  {
+   "input": "p132",
+   "setting": "Z"
+  },
+  {
+   "input": "p133",
+   "setting": "X"
+  },
+  {
+   "input": "p133",
+   "setting": "Y"
+  },
+  {
+   "input": "p133",
+   "setting": "Z"
+  },
+  {
+   "input": "p134",
+   "setting": "X"
+  },
+  {
+   "input": "p134",
+   "setting": "Y"
+  },
+  {
+   "input": "p134",
+   "setting": "Z"
+  },
+  {
+   "input": "p135",
+   "setting": "X"
+  },
+  {
+   "input": "p135",
+   "setting": "Y"
+  },
+  {
+   "input": "p135",
+   "setting": "Z"
+  },
+  {
+   "input": "p136",
+   "setting": "X"
+  },
+  {
+   "input": "p136",
+   "setting": "Y"
+  },
+  {
+   "input": "p136",
+   "setting": "Z"
+  },
+  {
+   "input": "p137",
+   "setting": "X"
+  },
+  {
+   "input": "p137",
+   "setting": "Y"
+  },
+  {
+   "input": "p137",
+   "setting": "Z"
+  },
+  {
+   "input": "p138",
+   "setting": "X"
+  },
+  {
+   "input": "p138",
+   "setting": "Y"
+  },
+  {
+   "input": "p138",
+   "setting": "Z"
+  },
+  {
+   "input": "p139",
+   "setting": "X"
+  },
+  {
+   "input": "p139",
+   "setting": "Y"
+  },
+  {
+   "input": "p139",
+   "setting": "Z"
+  },
+  {
+   "input": "p140",
+   "setting": "X"
+  },
+  {
+   "input": "p140",
+   "setting": "Y"
+  },
+  {
+   "input": "p140",
+   "setting": "Z"
+  },
+  {
+   "input": "p141",
+   "setting": "X"
+  },
+  {
+   "input": "p141",
+   "setting": "Y"
+  },
+  {
+   "input": "p141",
+   "setting": "Z"
+  },
+  {
+   "input": "p142",
+   "setting": "X"
+  },
+  {
+   "input": "p142",
+   "setting": "Y"
+  },
+  {
+   "input": "p142",
+   "setting": "Z"
+  },
+  {
+   "input": "p143",
+   "setting": "X"
+  },
+  {
+   "input": "p143",
+   "setting": "Y"
+  },
+  {
+   "input": "p143",
+   "setting": "Z"
+  },
+  {
+   "input": "p144",
+   "setting": "X"
+  },
+  {
+   "input": "p144",
+   "setting": "Y"
+  },
+  {
+   "input": "p144",
+   "setting": "Z"
+  },
+  {
+   "input": "p145",
+   "setting": "X"
+  },
+  {
+   "input": "p145",
+   "setting": "Y"
+  },
+  {
+   "input": "p145",
+   "setting": "Z"
+  },
+  {
+   "input": "p146",
+   "setting": "X"
+  },
+  {
+   "input": "p146",
+   "setting": "Y"
+  },
+  {
+   "input": "p146",
+   "setting": "Z"
+  },
+  {
+   "input": "p147",
+   "setting": "X"
+  },
+  {
+   "input": "p147",
+   "setting": "Y"
+  },
+  {
+   "input": "p147",
+   "setting": "Z"
+  },
+  {
+   "input": "p148",
+   "setting": "X"
+  },
+  {
+   "input": "p148",
+   "setting": "Y"
+  },
+  {
+   "input": "p148",
+   "setting": "Z"
+  },
+  {
+   "input": "p149",
+   "setting": "X"
+  },
+  {
+   "input": "p149",
+   "setting": "Y"
+  },
+  {
+   "input": "p149",
+   "setting": "Z"
+  },
+  {
+   "input": "p150",
+   "setting": "X"
+  },
+  {
+   "input": "p150",
+   "setting": "Y"
+  },
+  {
+   "input": "p150",
+   "setting": "Z"
+  },
+  {
+   "input": "p151",
+   "setting": "X"
+  },
+  {
+   "input": "p151",
+   "setting": "Y"
+  },
+  {
+   "input": "p151",
+   "setting": "Z"
+  },
+  {
+   "input": "p152",
+   "setting": "X"
+  },
+  {
+   "input": "p152",
+   "setting": "Y"
+  },
+  {
+   "input": "p152",
+   "setting": "Z"
+  },
+  {
+   "input": "p153",
+   "setting": "X"
+  },
+  {
+   "input": "p153",
+   "setting": "Y"
+  },
+  {
+   "input": "p153",
+   "setting": "Z"
+  },
+  {
+   "input": "p154",
+   "setting": "X"
+  },
+  {
+   "input": "p154",
+   "setting": "Y"
+  },
+  {
+   "input": "p154",
+   "setting": "Z"
+  },
+  {
+   "input": "p155",
+   "setting": "X"
+  },
+  {
+   "input": "p155",
+   "setting": "Y"
+  },
+  {
+   "input": "p155",
+   "setting": "Z"
+  },
+  {
+   "input": "p156",
+   "setting": "X"
+  },
+  {
+   "input": "p156",
+   "setting": "Y"
+  },
+  {
+   "input": "p156",
+   "setting": "Z"
+  },
+  {
+   "input": "p157",
+   "setting": "X"
+  },
+  {
+   "input": "p157",
+   "setting": "Y"
+  },
+  {
+   "input": "p157",
+   "setting": "Z"
+  },
+  {
+   "input": "p158",
+   "setting": "X"
+  },
+  {
+   "input": "p158",
+   "setting": "Y"
+  },
+  {
+   "input": "p158",
+   "setting": "Z"
+  },
+  {
+   "input": "p159",
+   "setting": "X"
+  },
+  {
+   "input": "p159",
+   "setting": "Y"
+  },
+  {
+   "input": "p159",
+   "setting": "Z"
+  },
+  {
+   "input": "p160",
+   "setting": "X"
+  },
+  {
+   "input": "p160",
+   "setting": "Y"
+  },
+  {
+   "input": "p160",
+   "setting": "Z"
+  },
+  {
+   "input": "p161",
+   "setting": "X"
+  },
+  {
+   "input": "p161",
+   "setting": "Y"
+  },
+  {
+   "input": "p161",
+   "setting": "Z"
+  },
+  {
+   "input": "p162",
+   "setting": "X"
+  },
+  {
+   "input": "p162",
+   "setting": "Y"
+  },
+  {
+   "input": "p162",
+   "setting": "Z"
+  },
+  {
+   "input": "p163",
+   "setting": "X"
+  },
+  {
+   "input": "p163",
+   "setting": "Y"
+  },
+  {
+   "input": "p163",
+   "setting": "Z"
+  },
+  {
+   "input": "p164",
+   "setting": "X"
+  },
+  {
+   "input": "p164",
+   "setting": "Y"
+  },
+  {
+   "input": "p164",
+   "setting": "Z"
+  },
+  {
+   "input": "p165",
+   "setting": "X"
+  },
+  {
+   "input": "p165",
+   "setting": "Y"
+  },
+  {
+   "input": "p165",
+   "setting": "Z"
+  },
+  {
+   "input": "p166",
+   "setting": "X"
+  },
+  {
+   "input": "p166",
+   "setting": "Y"
+  },
+  {
+   "input": "p166",
+   "setting": "Z"
+  },
+  {
+   "input": "p167",
+   "setting": "X"
+  },
+  {
+   "input": "p167",
+   "setting": "Y"
+  },
+  {
+   "input": "p167",
+   "setting": "Z"
+  },
+  {
+   "input": "p168",
+   "setting": "X"
+  },
+  {
+   "input": "p168",
+   "setting": "Y"
+  },
+  {
+   "input": "p168",
+   "setting": "Z"
+  },
+  {
+   "input": "p169",
+   "setting": "X"
+  },
+  {
+   "input": "p169",
+   "setting": "Y"
+  },
+  {
+   "input": "p169",
+   "setting": "Z"
+  },
+  {
+   "input": "p170",
+   "setting": "X"
+  },
+  {
+   "input": "p170",
+   "setting": "Y"
+  },
+  {
+   "input": "p170",
+   "setting": "Z"
+  },
+  {
+   "input": "p171",
+   "setting": "X"
+  },
+  {
+   "input": "p171",
+   "setting": "Y"
+  },
+  {
+   "input": "p171",
+   "setting": "Z"
+  },
+  {
+   "input": "p172",
+   "setting": "X"
+  },
+  {
+   "input": "p172",
+   "setting": "Y"
+  },
+  {
+   "input": "p172",
+   "setting": "Z"
+  },
+  {
+   "input": "p173",
+   "setting": "X"
+  },
+  {
+   "input": "p173",
+   "setting": "Y"
+  },
+  {
+   "input": "p173",
+   "setting": "Z"
+  },
+  {
+   "input": "p174",
+   "setting": "X"
+  },
+  {
+   "input": "p174",
+   "setting": "Y"
+  },
+  {
+   "input": "p174",
+   "setting": "Z"
+  },
+  {
+   "input": "p175",
+   "setting": "X"
+  },
+  {
+   "input": "p175",
+   "setting": "Y"
+  },
+  {
+   "input": "p175",
+   "setting": "Z"
+  },
+  {
+   "input": "p176",
+   "setting": "X"
+  },
+  {
+   "input": "p176",
+   "setting": "Y"
+  },
+  {
+   "input": "p176",
+   "setting": "Z"
+  },
+  {
+   "input": "p177",
+   "setting": "X"
+  },
+  {
+   "input": "p177",
+   "setting": "Y"
+  },
+  {
+   "input": "p177",
+   "setting": "Z"
+  },
+  {
+   "input": "p178",
+   "setting": "X"
+  },
+  {
+   "input": "p178",
+   "setting": "Y"
+  },
+  {
+   "input": "p178",
+   "setting": "Z"
+  },
+  {
+   "input": "p179",
+   "setting": "X"
+  },
+  {
+   "input": "p179",
+   "setting": "Y"
+  },
+  {
+   "input": "p179",
+   "setting": "Z"
+  },
+  {
+   "input": "p180",
+   "setting": "X"
+  },
+  {
+   "input": "p180",
+   "setting": "Y"
+  },
+  {
+   "input": "p180",
+   "setting": "Z"
+  },
+  {
+   "input": "p181",
+   "setting": "X"
+  },
+  {
+   "input": "p181",
+   "setting": "Y"
+  },
+  {
+   "input": "p181",
+   "setting": "Z"
+  },
+  {
+   "input": "p182",
+   "setting": "X"
+  },
+  {
+   "input": "p182",
+   "setting": "Y"
+  },
+  {
+   "input": "p182",
+   "setting": "Z"
+  },
+  {
+   "input": "p183",
+   "setting": "X"
+  },
+  {
+   "input": "p183",
+   "setting": "Y"
+  },
+  {
+   "input": "p183",
+   "setting": "Z"
+  },
+  {
+   "input": "p184",
+   "setting": "X"
+  },
+  {
+   "input": "p184",
+   "setting": "Y"
+  },
+  {
+   "input": "p184",
+   "setting": "Z"
+  },
+  {
+   "input": "p185",
+   "setting": "X"
+  },
+  {
+   "input": "p185",
+   "setting": "Y"
+  },
+  {
+   "input": "p185",
+   "setting": "Z"
+  },
+  {
+   "input": "p186",
+   "setting": "X"
+  },
+  {
+   "input": "p186",
+   "setting": "Y"
+  },
+  {
+   "input": "p186",
+   "setting": "Z"
+  },
+  {
+   "input": "p187",
+   "setting": "X"
+  },
+  {
+   "input": "p187",
+   "setting": "Y"
+  },
+  {
+   "input": "p187",
+   "setting": "Z"
+  },
+  {
+   "input": "p188",
+   "setting": "X"
+  },
+  {
+   "input": "p188",
+   "setting": "Y"
+  },
+  {
+   "input": "p188",
+   "setting": "Z"
+  },
+  {
+   "input": "p189",
+   "setting": "X"
+  },
+  {
+   "input": "p189",
+   "setting": "Y"
+  },
+  {
+   "input": "p189",
+   "setting": "Z"
+  },
+  {
+   "input": "p190",
+   "setting": "X"
+  },
+  {
+   "input": "p190",
+   "setting": "Y"
+  },
+  {
+   "input": "p190",
+   "setting": "Z"
+  },
+  {
+   "input": "p191",
+   "setting": "X"
+  },
+  {
+   "input": "p191",
+   "setting": "Y"
+  },
+  {
+   "input": "p191",
+   "setting": "Z"
+  },
+  {
+   "input": "p192",
+   "setting": "X"
+  },
+  {
+   "input": "p192",
+   "setting": "Y"
+  },
+  {
+   "input": "p192",
+   "setting": "Z"
+  },
+  {
+   "input": "p193",
+   "setting": "X"
+  },
+  {
+   "input": "p193",
+   "setting": "Y"
+  },
+  {
+   "input": "p193",
+   "setting": "Z"
+  },
+  {
+   "input": "p194",
+   "setting": "X"
+  },
+  {
+   "input": "p194",
+   "setting": "Y"
+  },
+  {
+   "input": "p194",
+   "setting": "Z"
+  },
+  {
+   "input": "p195",
+   "setting": "X"
+  },
+  {
+   "input": "p195",
+   "setting": "Y"
+  },
+  {
+   "input": "p195",
+   "setting": "Z"
+  },
+  {
+   "input": "p196",
+   "setting": "X"
+  },
+  {
+   "input": "p196",
+   "setting": "Y"
+  },
+  {
+   "input": "p196",
+   "setting": "Z"
+  },
+  {
+   "input": "p197",
+   "setting": "X"
+  },
+  {
+   "input": "p197",
+   "setting": "Y"
+  },
+  {
+   "input": "p197",
+   "setting": "Z"
+  },
+  {
+   "input": "p198",
+   "setting": "X"
+  },
+  {
+   "input": "p198",
+   "setting": "Y"
+  },
+  {
+   "input": "p198",
+   "setting": "Z"
+  },
+  {
+   "input": "p199",
+   "setting": "X"
+  },
+  {
+   "input": "p199",
+   "setting": "Y"
+  },
+  {
+   "input": "p199",
+   "setting": "Z"
+  },
+  {
+   "input": "p200",
+   "setting": "X"
+  },
+  {
+   "input": "p200",
+   "setting": "Y"
+  },
+  {
+   "input": "p200",
+   "setting": "Z"
+  },
+  {
+   "input": "p201",
+   "setting": "X"
+  },
+  {
+   "input": "p201",
+   "setting": "Y"
+  },
+  {
+   "input": "p201",
+   "setting": "Z"
+  },
+  {
+   "input": "p202",
+   "setting": "X"
+  },
+  {
+   "input": "p202",
+   "setting": "Y"
+  },
+  {
+   "input": "p202",
+   "setting": "Z"
+  },
+  {
+   "input": "p203",
+   "setting": "X"
+  },
+  {
+   "input": "p203",
+   "setting": "Y"
+  },
+  {
+   "input": "p203",
+   "setting": "Z"
+  },
+  {
+   "input": "p204",
+   "setting": "X"
+  },
+  {
+   "input": "p204",
+   "setting": "Y"
+  },
+  {
+   "input": "p204",
+   "setting": "Z"
+  },
+  {
+   "input": "p205",
+   "setting": "X"
+  },
+  {
+   "input": "p205",
+   "setting": "Y"
+  },
+  {
+   "input": "p205",
+   "setting": "Z"
+  },
+  {
+   "input": "p206",
+   "setting": "X"
+  },
+  {
+   "input": "p206",
+   "setting": "Y"
+  },
+  {
+   "input": "p206",
+   "setting": "Z"
+  },
+  {
+   "input": "p207",
+   "setting": "X"
+  },
+  {
+   "input": "p207",
+   "setting": "Y"
+  },
+  {
+   "input": "p207",
+   "setting": "Z"
+  },
+  {
+   "input": "p208",
+   "setting": "X"
+  },
+  {
+   "input": "p208",
+   "setting": "Y"
+  },
+  {
+   "input": "p208",
+   "setting": "Z"
+  },
+  {
+   "input": "p209",
+   "setting": "X"
+  },
+  {
+   "input": "p209",
+   "setting": "Y"
+  },
+  {
+   "input": "p209",
+   "setting": "Z"
+  },
+  {
+   "input": "p210",
+   "setting": "X"
+  },
+  {
+   "input": "p210",
+   "setting": "Y"
+  },
+  {
+   "input": "p210",
+   "setting": "Z"
+  },
+  {
+   "input": "p211",
+   "setting": "X"
+  },
+  {
+   "input": "p211",
+   "setting": "Y"
+  },
+  {
+   "input": "p211",
+   "setting": "Z"
+  },
+  {
+   "input": "p212",
+   "setting": "X"
+  },
+  {
+   "input": "p212",
+   "setting": "Y"
+  },
+  {
+   "input": "p212",
+   "setting": "Z"
+  },
+  {
+   "input": "p213",
+   "setting": "X"
+  },
+  {
+   "input": "p213",
+   "setting": "Y"
+  },
+  {
+   "input": "p213",
+   "setting": "Z"
+  },
+  {
+   "input": "p214",
+   "setting": "X"
+  },
+  {
+   "input": "p214",
+   "setting": "Y"
+  },
+  {
+   "input": "p214",
+   "setting": "Z"
+  },
+  {
+   "input": "p215",
+   "setting": "X"
+  },
+  {
+   "input": "p215",
+   "setting": "Y"
+  },
+  {
+   "input": "p215",
+   "setting": "Z"
+  },
+  {
+   "input": "p216",
+   "setting": "X"
+  },
+  {
+   "input": "p216",
+   "setting": "Y"
+  },
+  {
+   "input": "p216",
+   "setting": "Z"
+  },
+  {
+   "input": "p217",
+   "setting": "X"
+  },
+  {
+   "input": "p217",
+   "setting": "Y"
+  },
+  {
+   "input": "p217",
+   "setting": "Z"
+  },
+  {
+   "input": "p218",
+   "setting": "X"
+  },
+  {
+   "input": "p218",
+   "setting": "Y"
+  },
+  {
+   "input": "p218",
+   "setting": "Z"
+  },
+  {
+   "input": "p219",
+   "setting": "X"
+  },
+  {
+   "input": "p219",
+   "setting": "Y"
+  },
+  {
+   "input": "p219",
+   "setting": "Z"
+  },
+  {
+   "input": "p220",
+   "setting": "X"
+  },
+  {
+   "input": "p220",
+   "setting": "Y"
+  },
+  {
+   "input": "p220",
+   "setting": "Z"
+  },
+  {
+   "input": "p221",
+   "setting": "X"
+  },
+  {
+   "input": "p221",
+   "setting": "Y"
+  },
+  {
+   "input": "p221",
+   "setting": "Z"
+  },
+  {
+   "input": "p222",
+   "setting": "X"
+  },
+  {
+   "input": "p222",
+   "setting": "Y"
+  },
+  {
+   "input": "p222",
+   "setting": "Z"
+  },
+  {
+   "input": "p223",
+   "setting": "X"
+  },
+  {
+   "input": "p223",
+   "setting": "Y"
+  },
+  {
+   "input": "p223",
+   "setting": "Z"
+  },
+  {
+   "input": "p224",
+   "setting": "X"
+  },
+  {
+   "input": "p224",
+   "setting": "Y"
+  },
+  {
+   "input": "p224",
+   "setting": "Z"
+  },
+  {
+   "input": "p225",
+   "setting": "X"
+  },
+  {
+   "input": "p225",
+   "setting": "Y"
+  },
+  {
+   "input": "p225",
+   "setting": "Z"
+  },
+  {
+   "input": "p226",
+   "setting": "X"
+  },
+  {
+   "input": "p226",
+   "setting": "Y"
+  },
+  {
+   "input": "p226",
+   "setting": "Z"
+  },
+  {
+   "input": "p227",
+   "setting": "X"
+  },
+  {
+   "input": "p227",
+   "setting": "Y"
+  },
+  {
+   "input": "p227",
+   "setting": "Z"
+  },
+  {
+   "input": "p228",
+   "setting": "X"
+  },
+  {
+   "input": "p228",
+   "setting": "Y"
+  },
+  {
+   "input": "p228",
+   "setting": "Z"
+  },
+  {
+   "input": "p229",
+   "setting": "X"
+  },
+  {
+   "input": "p229",
+   "setting": "Y"
+  },
+  {
+   "input": "p229",
+   "setting": "Z"
+  },
+  {
+   "input": "p230",
+   "setting": "X"
+  },
+  {
+   "input": "p230",
+   "setting": "Y"
+  },
+  {
+   "input": "p230",
+   "setting": "Z"
+  },
+  {
+   "input": "p231",
+   "setting": "X"
+  },
+  {
+   "input": "p231",
+   "setting": "Y"
+  },
+  {
+   "input": "p231",
+   "setting": "Z"
+  },
+  {
+   "input": "p232",
+   "setting": "X"
+  },
+  {
+   "input": "p232",
+   "setting": "Y"
+  },
+  {
+   "input": "p232",
+   "setting": "Z"
+  },
+  {
+   "input": "p233",
+   "setting": "X"
+  },
+  {
+   "input": "p233",
+   "setting": "Y"
+  },
+  {
+   "input": "p233",
+   "setting": "Z"
+  },
+  {
+   "input": "p234",
+   "setting": "X"
+  },
+  {
+   "input": "p234",
+   "setting": "Y"
+  },
+  {
+   "input": "p234",
+   "setting": "Z"
+  },
+  {
+   "input": "p235",
+   "setting": "X"
+  },
+  {
+   "input": "p235",
+   "setting": "Y"
+  },
+  {
+   "input": "p235",
+   "setting": "Z"
+  },
+  {
+   "input": "p236",
+   "setting": "X"
+  },
+  {
+   "input": "p236",
+   "setting": "Y"
+  },
+  {
+   "input": "p236",
+   "setting": "Z"
+  },
+  {
+   "input": "p237",
+   "setting": "X"
+  },
+  {
+   "input": "p237",
+   "setting": "Y"
+  },
+  {
+   "input": "p237",
+   "setting": "Z"
+  },
+  {
+   "input": "p238",
+   "setting": "X"
+  },
+  {
+   "input": "p238",
+   "setting": "Y"
+  },
+  {
+   "input": "p238",
+   "setting": "Z"
+  },
+  {
+   "input": "p239",
+   "setting": "X"
+  },
+  {
+   "input": "p239",
+   "setting": "Y"
+  },
+  {
+   "input": "p239",
+   "setting": "Z"
+  },
+  {
+   "input": "p240",
+   "setting": "X"
+  },
+  {
+   "input": "p240",
+   "setting": "Y"
+  },
+  {
+   "input": "p240",
+   "setting": "Z"
+  },
+  {
+   "input": "p241",
+   "setting": "X"
+  },
+  {
+   "input": "p241",
+   "setting": "Y"
+  },
+  {
+   "input": "p241",
+   "setting": "Z"
+  },
+  {
+   "input": "p242",
+   "setting": "X"
+  },
+  {
+   "input": "p242",
+   "setting": "Y"
+  },
+  {
+   "input": "p242",
+   "setting": "Z"
+  },
+  {
+   "input": "p243",
+   "setting": "X"
+  },
+  {
+   "input": "p243",
+   "setting": "Y"
+  },
+  {
+   "input": "p243",
+   "setting": "Z"
+  },
+  {
+   "input": "p244",
+   "setting": "X"
+  },
+  {
+   "input": "p244",
+   "setting": "Y"
+  },
+  {
+   "input": "p244",
+   "setting": "Z"
+  },
+  {
+   "input": "p245",
+   "setting": "X"
+  },
+  {
+   "input": "p245",
+   "setting": "Y"
+  },
+  {
+   "input": "p245",
+   "setting": "Z"
+  },
+  {
+   "input": "p246",
+   "setting": "X"
+  },
+  {
+   "input": "p246",
+   "setting": "Y"
+  },
+  {
+   "input": "p246",
+   "setting": "Z"
+  },
+  {
+   "input": "p247",
+   "setting": "X"
+  },
+  {
+   "input": "p247",
+   "setting": "Y"
+  },
+  {
+   "input": "p247",
+   "setting": "Z"
+  },
+  {
+   "input": "p248",
+   "setting": "X"
+  },
+  {
+   "input": "p248",
+   "setting": "Y"
+  },
+  {
+   "input": "p248",
+   "setting": "Z"
+  },
+  {
+   "input": "p249",
+   "setting": "X"
+  },
+  {
+   "input": "p249",
+   "setting": "Y"
+  },
+  {
+   "input": "p249",
+   "setting": "Z"
+  },
+  {
+   "input": "p250",
+   "setting": "X"
+  },
+  {
+   "input": "p250",
+   "setting": "Y"
+  },
+  {
+   "input": "p250",
+   "setting": "Z"
+  },
+  {
+   "input": "p251",
+   "setting": "X"
+  },
+  {
+   "input": "p251",
+   "setting": "Y"
+  },
+  {
+   "input": "p251",
+   "setting": "Z"
+  },
+  {
+   "input": "p252",
+   "setting": "X"
+  },
+  {
+   "input": "p252",
+   "setting": "Y"
+  },
+  {
+   "input": "p252",
+   "setting": "Z"
+  },
+  {
+   "input": "p253",
+   "setting": "X"
+  },
+  {
+   "input": "p253",
+   "setting": "Y"
+  },
+  {
+   "input": "p253",
+   "setting": "Z"
+  },
+  {
+   "input": "p254",
+   "setting": "X"
+  },
+  {
+   "input": "p254",
+   "setting": "Y"
+  },
+  {
+   "input": "p254",
+   "setting": "Z"
+  },
+  {
+   "input": "p255",
+   "setting": "X"
+  },
+  {
+   "input": "p255",
+   "setting": "Y"
+  },
+  {
+   "input": "p255",
+   "setting": "Z"
+  },
+  {
+   "input": "p256",
+   "setting": "X"
+  },
+  {
+   "input": "p256",
+   "setting": "Y"
+  },
+  {
+   "input": "p256",
+   "setting": "Z"
+  },
+  {
+   "input": "p257",
+   "setting": "X"
+  },
+  {
+   "input": "p257",
+   "setting": "Y"
+  },
+  {
+   "input": "p257",
+   "setting": "Z"
+  },
+  {
+   "input": "p258",
+   "setting": "X"
+  },
+  {
+   "input": "p258",
+   "setting": "Y"
+  },
+  {
+   "input": "p258",
+   "setting": "Z"
+  },
+  {
+   "input": "p259",
+   "setting": "X"
+  },
+  {
+   "input": "p259",
+   "setting": "Y"
+  },
+  {
+   "input": "p259",
+   "setting": "Z"
+  },
+  {
+   "input": "p260",
+   "setting": "X"
+  },
+  {
+   "input": "p260",
+   "setting": "Y"
+  },
+  {
+   "input": "p260",
+   "setting": "Z"
+  },
+  {
+   "input": "p261",
+   "setting": "X"
+  },
+  {
+   "input": "p261",
+   "setting": "Y"
+  },
+  {
+   "input": "p261",
+   "setting": "Z"
+  },
+  {
+   "input": "p262",
+   "setting": "X"
+  },
+  {
+   "input": "p262",
+   "setting": "Y"
+  },
+  {
+   "input": "p262",
+   "setting": "Z"
+  },
+  {
+   "input": "p263",
+   "setting": "X"
+  },
+  {
+   "input": "p263",
+   "setting": "Y"
+  },
+  {
+   "input": "p263",
+   "setting": "Z"
+  },
+  {
+   "input": "p264",
+   "setting": "X"
+  },
+  {
+   "input": "p264",
+   "setting": "Y"
+  },
+  {
+   "input": "p264",
+   "setting": "Z"
+  },
+  {
+   "input": "p265",
+   "setting": "X"
+  },
+  {
+   "input": "p265",
+   "setting": "Y"
+  },
+  {
+   "input": "p265",
+   "setting": "Z"
+  },
+  {
+   "input": "p266",
+   "setting": "X"
+  },
+  {
+   "input": "p266",
+   "setting": "Y"
+  },
+  {
+   "input": "p266",
+   "setting": "Z"
+  },
+  {
+   "input": "p267",
+   "setting": "X"
+  },
+  {
+   "input": "p267",
+   "setting": "Y"
+  },
+  {
+   "input": "p267",
+   "setting": "Z"
+  },
+  {
+   "input": "p268",
+   "setting": "X"
+  },
+  {
+   "input": "p268",
+   "setting": "Y"
+  },
+  {
+   "input": "p268",
+   "setting": "Z"
+  },
+  {
+   "input": "p269",
+   "setting": "X"
+  },
+  {
+   "input": "p269",
+   "setting": "Y"
+  },
+  {
+   "input": "p269",
+   "setting": "Z"
+  },
+  {
+   "input": "p270",
+   "setting": "X"
+  },
+  {
+   "input": "p270",
+   "setting": "Y"
+  },
+  {
+   "input": "p270",
+   "setting": "Z"
+  },
+  {
+   "input": "p271",
+   "setting": "X"
+  },
+  {
+   "input": "p271",
+   "setting": "Y"
+  },
+  {
+   "input": "p271",
+   "setting": "Z"
+  },
+  {
+   "input": "p272",
+   "setting": "X"
+  },
+  {
+   "input": "p272",
+   "setting": "Y"
+  },
+  {
+   "input": "p272",
+   "setting": "Z"
+  },
+  {
+   "input": "p273",
+   "setting": "X"
+  },
+  {
+   "input": "p273",
+   "setting": "Y"
+  },
+  {
+   "input": "p273",
+   "setting": "Z"
+  },
+  {
+   "input": "p274",
+   "setting": "X"
+  },
+  {
+   "input": "p274",
+   "setting": "Y"
+  },
+  {
+   "input": "p274",
+   "setting": "Z"
+  },
+  {
+   "input": "p275",
+   "setting": "X"
+  },
+  {
+   "input": "p275",
+   "setting": "Y"
+  },
+  {
+   "input": "p275",
+   "setting": "Z"
+  },
+  {
+   "input": "p276",
+   "setting": "X"
+  },
+  {
+   "input": "p276",
+   "setting": "Y"
+  },
+  {
+   "input": "p276",
+   "setting": "Z"
+  },
+  {
+   "input": "p277",
+   "setting": "X"
+  },
+  {
+   "input": "p277",
+   "setting": "Y"
+  },
+  {
+   "input": "p277",
+   "setting": "Z"
+  },
+  {
+   "input": "p278",
+   "setting": "X"
+  },
+  {
+   "input": "p278",
+   "setting": "Y"
+  },
+  {
+   "input": "p278",
+   "setting": "Z"
+  },
+  {
+   "input": "p279",
+   "setting": "X"
+  },
+  {
+   "input": "p279",
+   "setting": "Y"
+  },
+  {
+   "input": "p279",
+   "setting": "Z"
+  },
+  {
+   "input": "p280",
+   "setting": "X"
+  },
+  {
+   "input": "p280",
+   "setting": "Y"
+  },
+  {
+   "input": "p280",
+   "setting": "Z"
+  },
+  {
+   "input": "p281",
+   "setting": "X"
+  },
+  {
+   "input": "p281",
+   "setting": "Y"
+  },
+  {
+   "input": "p281",
+   "setting": "Z"
+  },
+  {
+   "input": "p282",
+   "setting": "X"
+  },
+  {
+   "input": "p282",
+   "setting": "Y"
+  },
+  {
+   "input": "p282",
+   "setting": "Z"
+  },
+  {
+   "input": "p283",
+   "setting": "X"
+  },
+  {
+   "input": "p283",
+   "setting": "Y"
+  },
+  {
+   "input": "p283",
+   "setting": "Z"
+  },
+  {
+   "input": "p284",
+   "setting": "X"
+  },
+  {
+   "input": "p284",
+   "setting": "Y"
+  },
+  {
+   "input": "p284",
+   "setting": "Z"
+  },
+  {
+   "input": "p285",
+   "setting": "X"
+  },
+  {
+   "input": "p285",
+   "setting": "Y"
+  },
+  {
+   "input": "p285",
+   "setting": "Z"
+  },
+  {
+   "input": "p286",
+   "setting": "X"
+  },
+  {
+   "input": "p286",
+   "setting": "Y"
+  },
+  {
+   "input": "p286",
+   "setting": "Z"
+  },
+  {
+   "input": "p287",
+   "setting": "X"
+  },
+  {
+   "input": "p287",
+   "setting": "Y"
+  },
+  {
+   "input": "p287",
+   "setting": "Z"
+  },
+  {
+   "input": "p288",
+   "setting": "X"
+  },
+  {
+   "input": "p288",
+   "setting": "Y"
+  },
+  {
+   "input": "p288",
+   "setting": "Z"
+  },
+  {
+   "input": "p289",
+   "setting": "X"
+  },
+  {
+   "input": "p289",
+   "setting": "Y"
+  },
+  {
+   "input": "p289",
+   "setting": "Z"
+  },
+  {
+   "input": "p290",
+   "setting": "X"
+  },
+  {
+   "input": "p290",
+   "setting": "Y"
+  },
+  {
+   "input": "p290",
+   "setting": "Z"
+  },
+  {
+   "input": "p291",
+   "setting": "X"
+  },
+  {
+   "input": "p291",
+   "setting": "Y"
+  },
+  {
+   "input": "p291",
+   "setting": "Z"
+  },
+  {
+   "input": "p292",
+   "setting": "X"
+  },
+  {
+   "input": "p292",
+   "setting": "Y"
+  },
+  {
+   "input": "p292",
+   "setting": "Z"
+  },
+  {
+   "input": "p293",
+   "setting": "X"
+  },
+  {
+   "input": "p293",
+   "setting": "Y"
+  },
+  {
+   "input": "p293",
+   "setting": "Z"
+  },
+  {
+   "input": "p294",
+   "setting": "X"
+  },
+  {
+   "input": "p294",
+   "setting": "Y"
+  },
+  {
+   "input": "p294",
+   "setting": "Z"
+  },
+  {
+   "input": "p295",
+   "setting": "X"
+  },
+  {
+   "input": "p295",
+   "setting": "Y"
+  },
+  {
+   "input": "p295",
+   "setting": "Z"
+  },
+  {
+   "input": "p296",
+   "setting": "X"
+  },
+  {
+   "input": "p296",
+   "setting": "Y"
+  },
+  {
+   "input": "p296",
+   "setting": "Z"
+  },
+  {
+   "input": "p297",
+   "setting": "X"
+  },
+  {
+   "input": "p297",
+   "setting": "Y"
+  },
+  {
+   "input": "p297",
+   "setting": "Z"
+  },
+  {
+   "input": "p298",
+   "setting": "X"
+  },
+  {
+   "input": "p298",
+   "setting": "Y"
+  },
+  {
+   "input": "p298",
+   "setting": "Z"
+  },
+  {
+   "input": "p299",
+   "setting": "X"
+  },
+  {
+   "input": "p299",
+   "setting": "Y"
+  },
+  {
+   "input": "p299",
+   "setting": "Z"
+  },
+  {
+   "input": "p300",
+   "setting": "X"
+  },
+  {
+   "input": "p300",
+   "setting": "Y"
+  },
+  {
+   "input": "p300",
+   "setting": "Z"
+  },
+  {
+   "input": "p301",
+   "setting": "X"
+  },
+  {
+   "input": "p301",
+   "setting": "Y"
+  },
+  {
+   "input": "p301",
+   "setting": "Z"
+  },
+  {
+   "input": "p302",
+   "setting": "X"
+  },
+  {
+   "input": "p302",
+   "setting": "Y"
+  },
+  {
+   "input": "p302",
+   "setting": "Z"
+  },
+  {
+   "input": "p303",
+   "setting": "X"
+  },
+  {
+   "input": "p303",
+   "setting": "Y"
+  },
+  {
+   "input": "p303",
+   "setting": "Z"
+  },
+  {
+   "input": "p304",
+   "setting": "X"
+  },
+  {
+   "input": "p304",
+   "setting": "Y"
+  },
+  {
+   "input": "p304",
+   "setting": "Z"
+  },
+  {
+   "input": "p305",
+   "setting": "X"
+  },
+  {
+   "input": "p305",
+   "setting": "Y"
+  },
+  {
+   "input": "p305",
+   "setting": "Z"
+  },
+  {
+   "input": "p306",
+   "setting": "X"
+  },
+  {
+   "input": "p306",
+   "setting": "Y"
+  },
+  {
+   "input": "p306",
+   "setting": "Z"
+  },
+  {
+   "input": "p307",
+   "setting": "X"
+  },
+  {
+   "input": "p307",
+   "setting": "Y"
+  },
+  {
+   "input": "p307",
+   "setting": "Z"
+  },
+  {
+   "input": "p308",
+   "setting": "X"
+  },
+  {
+   "input": "p308",
+   "setting": "Y"
+  },
+  {
+   "input": "p308",
+   "setting": "Z"
+  },
+  {
+   "input": "p309",
+   "setting": "X"
+  },
+  {
+   "input": "p309",
+   "setting": "Y"
+  },
+  {
+   "input": "p309",
+   "setting": "Z"
+  },
+  {
+   "input": "p310",
+   "setting": "X"
+  },
+  {
+   "input": "p310",
+   "setting": "Y"
+  },
+  {
+   "input": "p310",
+   "setting": "Z"
+  },
+  {
+   "input": "p311",
+   "setting": "X"
+  },
+  {
+   "input": "p311",
+   "setting": "Y"
+  },
+  {
+   "input": "p311",
+   "setting": "Z"
+  },
+  {
+   "input": "p312",
+   "setting": "X"
+  },
+  {
+   "input": "p312",
+   "setting": "Y"
+  },
+  {
+   "input": "p312",
+   "setting": "Z"
+  },
+  {
+   "input": "p313",
+   "setting": "X"
+  },
+  {
+   "input": "p313",
+   "setting": "Y"
+  },
+  {
+   "input": "p313",
+   "setting": "Z"
+  },
+  {
+   "input": "p314",
+   "setting": "X"
+  },
+  {
+   "input": "p314",
+   "setting": "Y"
+  },
+  {
+   "input": "p314",
+   "setting": "Z"
+  },
+  {
+   "input": "p315",
+   "setting": "X"
+  },
+  {
+   "input": "p315",
+   "setting": "Y"
+  },
+  {
+   "input": "p315",
+   "setting": "Z"
+  },
+  {
+   "input": "p316",
+   "setting": "X"
+  },
+  {
+   "input": "p316",
+   "setting": "Y"
+  },
+  {
+   "input": "p316",
+   "setting": "Z"
+  },
+  {
+   "input": "p317",
+   "setting": "X"
+  },
+  {
+   "input": "p317",
+   "setting": "Y"
+  },
+  {
+   "input": "p317",
+   "setting": "Z"
+  },
+  {
+   "input": "p318",
+   "setting": "X"
+  },
+  {
+   "input": "p318",
+   "setting": "Y"
+  },
+  {
+   "input": "p318",
+   "setting": "Z"
+  },
+  {
+   "input": "p319",
+   "setting": "X"
+  },
+  {
+   "input": "p319",
+   "setting": "Y"
+  },
+  {
+   "input": "p319",
+   "setting": "Z"
+  },
+  {
+   "input": "p320",
+   "setting": "X"
+  },
+  {
+   "input": "p320",
+   "setting": "Y"
+  },
+  {
+   "input": "p320",
+   "setting": "Z"
+  },
+  {
+   "input": "p321",
+   "setting": "X"
+  },
+  {
+   "input": "p321",
+   "setting": "Y"
+  },
+  {
+   "input": "p321",
+   "setting": "Z"
+  },
+  {
+   "input": "p322",
+   "setting": "X"
+  },
+  {
+   "input": "p322",
+   "setting": "Y"
+  },
+  {
+   "input": "p322",
+   "setting": "Z"
+  },
+  {
+   "input": "p323",
+   "setting": "X"
+  },
+  {
+   "input": "p323",
+   "setting": "Y"
+  },
+  {
+   "input": "p323",
+   "setting": "Z"
+  },
+  {
+   "input": "p324",
+   "setting": "X"
+  },
+  {
+   "input": "p324",
+   "setting": "Y"
+  },
+  {
+   "input": "p324",
+   "setting": "Z"
+  },
+  {
+   "input": "p325",
+   "setting": "X"
+  },
+  {
+   "input": "p325",
+   "setting": "Y"
+  },
+  {
+   "input": "p325",
+   "setting": "Z"
+  },
+  {
+   "input": "p326",
+   "setting": "X"
+  },
+  {
+   "input": "p326",
+   "setting": "Y"
+  },
+  {
+   "input": "p326",
+   "setting": "Z"
+  },
+  {
+   "input": "p327",
+   "setting": "X"
+  },
+  {
+   "input": "p327",
+   "setting": "Y"
+  },
+  {
+   "input": "p327",
+   "setting": "Z"
+  }
+ ],
+ "shots": 250,
+ "valid": true,
+ "export": {
+  "qpy": "q_a_rule.qpy",
+  "circuits": 984,
+  "sha256": "021b2ff015aeac3a22db4e27dc64e550abc83b1d70d98fe311f2545321fbf8e3"
+ },
+ "arm": "fold:rule",
+ "task": {
+  "n": 20,
+  "layers": 19,
+  "enc": 1.5707963267948966
+ },
+ "measured_qubits": {
+  "0": 3,
+  "1": 4,
+  "2": 5,
+  "3": 6,
+  "4": 7,
+  "5": 17,
+  "6": 27,
+  "7": 26,
+  "8": 25,
+  "9": 37,
+  "10": 45,
+  "11": 44,
+  "12": 43,
+  "13": 42,
+  "14": 41,
+  "15": 36,
+  "16": 21,
+  "17": 22,
+  "18": 23,
+  "19": 16
+ },
+ "qclf_arm": true
+}
