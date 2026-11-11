@@ -1,8 +1,9 @@
 # Declared: depth scan of IBM's 2023 utility observables, raw, on the published Eagle graph embedded in Heron
 
 Home, written 2026-11-11 (owner 14:28 JST: "Aから順番に進めて", task A = where raw reading stops as the steps grow).
-DRAFT until the owner's OK and the push; declared before any device record of this run is fetched; a change after the
-push is a new declared file. Paper 9, part A.
+Owner 14:28 JST "Aから順番に進めて", 14:47 MAX 160 s, 17:03 "家に戻って実機テストできるように準備": declared with this
+commit, pushed before any device record of this run is fetched (run on the night of 11-11); a change after the push is
+a new declared file. Paper 9, part A.
 
 ## Question
 
@@ -27,6 +28,8 @@ Weight-17 is not run (it did not read at 5 steps on 11-10).
 - Per observable the first of the two embeddings (rustworkx VF2, fixed order) whose backward light cone holds no failed
   qubit or coupler; floor and mirror at k = 8 per observable; one ring sentinel; 4000 shots. A device on which the ring
   sentinel does not land counts as one on which the job cannot be built.
+- The choice is made by `gpu/utility_depth_pick.py FETCH_DIR` (this rule, coded; tested on both 11-10 records: fez,
+  all seven).
 - Build: `gpu/utility_build.py DEV OUT ANS SEALED_DIR --obs z106_t4,z106_t5,z106_t6,z106_t7,z106_t8,w10_t5,w10_t6
   --max-seconds 160`.
 
