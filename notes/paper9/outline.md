@@ -101,3 +101,13 @@ classical check reaches.
   experiment), Anand et al. (Berkeley, classical benchmarking of ZNE beyond exact verification).
 - Analog Fermi-Hubbard simulators (fermionic atoms in optical lattices, e.g. Greiner at Harvard, Bloch at MPQ) for the
   introduction only; to check before citing. Schwinger (Martinez et al. 2016, CERN QTI) is out of paper 9.
+
+## Owner's decisions, 2026-11-11 17:00 JST (home)
+
+- Hubbard declaration range: the workplace proposal accepted (L = 20 and 30, 2 / 4 / 6 steps, U = 4; 8 steps as the
+  edge; U = 0 ruler and per-site charge check beside; answers recomputed by the declaration's script and sealed, the POD
+  values as an independent second computation). Still to settle before the declaration: whether the U = 0 ruler keeps
+  cancelling CZ pairs so that its CZ count and layers match U > 0.
+- psf-os exact_tn: the gate-order light cone balloons when commuting diagonal gates are written edge by edge (home
+  check: refused at 2^83 for Z_106 at 8 steps in plain edge order; agrees with reach_tn to 1.7e-14 with colour-layer
+  order). A commuting-run cone is not scheduled (owner: no time); callers order diagonal layers by colour.
