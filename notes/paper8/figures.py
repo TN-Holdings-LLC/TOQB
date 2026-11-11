@@ -4,7 +4,7 @@
         ruler in both jobs); bars 2 SE.
   fig2  kicked Ising 4x4x3 (fez 11-07, judged place): retention of the bulk (4 sites) and the surface (44 sites) per
         theta and t; the split is the scorer's own (gpu/os3d_v31_score.py, reported beside, not judged).
-  fig3  IBM 2023 utility observables (fez 11-10): raw value and exact value against theta_h for Z_106 (4 steps), the
+  fig3  (moved to paper 9, owner 2026-11-11; kept here, not built into paper 8) IBM 2023 utility observables (fez 11-10): raw value and exact value against theta_h for Z_106 (4 steps), the
         weight-10 (5 steps), the weight-17 (5 steps) and the Fig. 4a product.
 usage: python notes/paper8/figures.py [OUT_DIR]
 """
@@ -100,5 +100,4 @@ if __name__ == "__main__":
     os.makedirs(out, exist_ok=True)
     fig1(out)
     fig2(out)
-    fig3(out)
     print("written", sorted(f for f in os.listdir(out) if f.startswith("fig")))

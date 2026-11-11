@@ -13,7 +13,10 @@ Hubbard model with the ruler in the same job. Schwinger at larger N and the XX c
 - New exact reach (`notes/reach_2026-11-11/`): Z_106 to 8 steps and weight-10 to 6 steps computed (Clifford points
   checked against Aer stabilizer on 127 qubits; values sealed); Z_62 8, weight-10 7, weight-17 6 on the home PC (VS).
 - Device test to declare: depth scan per observable (where the device stops reading as steps grow), answers sealed.
-- Open: does the 11-10 result move from paper 8 to paper 9 (owner)?
+- Moved from paper 8 (owner 13:23 JST): section text verbatim in `part_a_from_paper8.tex`; table 10 and the figure
+  are `notes/paper8/tables.py` t10_utility and `figures.py` fig3. Items the workplace read-through could not confirm
+  travel with it: "small mid-range values near zero in every product", and "on kingston only the weight-10 cone was
+  clear" (`notes/paper8/review_workplace_2026-11-11.md`).
 
 **Ruler note (home):** the U = 0 ruler has fewer CZ (8L - 8 against 10L - 8) and layers (10 against 12) than U > 0,
 so it carries less noise; paper 8's h = 0 ruler had exactly the target's gates. Proposal: at U = 0 keep two mutually

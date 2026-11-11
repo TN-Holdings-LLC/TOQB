@@ -206,14 +206,3 @@
 | 4x3x2 | 1 | 4 | 936 / 504 | 0.2696 | 0.3897 | +0.1201 | yes |
 
 *From the committed records named in each caption; raw device values, no mitigation; verdicts as declared before each run; after-the-fact numbers are marked so.*
-
-## Table 10. IBM's 2023 utility observables (Kim et al. 2023) on the Eagle graph embedded in ibm_fez, 2026-11-10, raw, 4000 shots, 17 values of theta_h; sentinel DEAD (results/utility-2026-11-10)
-
-| observable | embedding | CZ | verdict (MSE / mean sq.) | AGREES of 17 | theta_h = pi/2: raw / exact | floor / mirror parity |
-|---|---|---|---|---|---|---|
-| Z_106, 4 steps (Fig. 2) | 0 | 564 | READS (0.0207 / 0.4145) | 7 | +0.14 / +0.00 | 0.991 / 0.504 |
-| weight-10, 5 steps (Fig. 3) | 0 | 705 | READS (0.0226 / 0.1672) | 11 | +0.61 / +1.00 | 0.852 / 0.122 |
-| weight-17, 5 steps (Fig. 3) | 1 | 690 | DOES NOT READ (0.1091 / 0.1348) | 12 | -0.09 / -1.00 | 0.310 / -0.004 |
-| Fig. 4a product, 5 steps + R_X | 1 | 690 | DOES NOT READ (0.1023 / 0.1200) | 12 | -0.07 / -1.00 | 0.305 / -0.009 |
-
-*From the committed records named in each caption; raw device values, no mitigation; verdicts as declared before each run; after-the-fact numbers are marked so.*

@@ -1,0 +1,27 @@
+% Moved from paper 8 DRAFT 3 (owner 2026-11-11 13:23 JST: the IBM 2023 reproduction goes to paper 9), verbatim;
+% Table 10 is tables.py t10_utility, the figure is figures.py fig3 (both kept in notes/paper8 for now).
+\section{Where raw reading stops: IBM's 2023 utility observables}\label{sec:utility}
+\texttt{results/utility-2026-11-10}, prereg/utility\_2026-11-11.md. Kim et al.\ (2023) ran a kicked Ising circuit on
+ibm\_kyiv (Eagle, 127 qubits) and reported error-mitigated values; here four of their observables were run raw, with
+the published circuit on the published graph. Eagle's graph embeds in Heron r2's in two ways. All $R_{ZZ}$ commute, so
+after $t$ steps an observable depends only on the gates within $t$ edges of its support; per observable, the first
+embedding whose light cone holds no failed element was used, the gates on failed elements (outside the cone) were left
+out, and the observable's exact value is the published circuit's. Exact values came from a tensor-network contraction
+of the light-cone network, computed twice independently (agreement $2\times10^{-15}$) and checked against the
+stabilizer method on all 127 qubits at $\theta_h = 0$ and $\pi/2$; they were sealed before the run.
+
+On ibm\_fez (ibm\_marrakesh had no clear cone for any observable), 17 values of $\theta_h$, 4000 shots
+(Table~10, Figure~\ref{fig:util}): $\langle Z_{106}\rangle$ after 4 steps (564 CZ) READS; the weight-10 product after 5
+steps (705 CZ) READS and keeps 0.61 of its exact $+1$ at $\theta_h = \pi/2$; the weight-17 product and the Fig.~4a product
+(690 CZ) do not read: at $\theta_h = \pi/2$ they keep their sign and 7 to 9\% of the exact $-1$. Each product's own
+mirror falls the same way (parity 0.50, 0.12, about 0). Small mid-range values are near zero in every product, as
+predicted. On this device and day, the boundary of raw reading for these observables lies between weight 10 and
+weight 17. No comparison is made with IBM's mitigated values.
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\textwidth]{out/fig3_utility_observables.pdf}
+\caption{IBM's 2023 utility observables on the Eagle graph embedded in ibm\_fez (10 Nov), raw: device value (two
+standard errors) and exact value against $\theta_h$.}
+\label{fig:util}
+\end{figure}
+
