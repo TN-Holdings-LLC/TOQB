@@ -4,8 +4,24 @@ Status: skeleton only. Built from paper 8 draft 3 (the policy and the "ruler in 
 the Hubbard numbers of `notes/hubbard_2026-11-11/`. No result exists yet: the classical side waits for the VS POD
 (`指示書_ハバード検算POD_2026-11-11.md`), the device side waits for a declaration. Author: TN Holdings.
 
-**Working title:** *Fermions without mitigation: the 1D Hubbard model at 40 to 60 qubits, with its own free-fermion
-ruler in every job.*
+**Owner's decision (2026-11-11 13:21 JST):** paper 9 = the reproduction of IBM's 2023 utility experiment + the 1D
+Hubbard model with the ruler in the same job. Schwinger at larger N and the XX chain alone stay out (own papers).
+
+**Part A, IBM 2023 reproduction (home, added 05:30 CET):**
+- Exists: 11-10 ibm_fez, raw, Eagle graph embedded in Heron r2: Z_106 (4 steps) READS, weight-10 (5 steps) READS,
+  weight-17 and Fig. 4a do not read (`results/utility-2026-11-10/`; now section and table 10 of paper 8 draft 3).
+- New exact reach (`notes/reach_2026-11-11/`): Z_106 to 8 steps and weight-10 to 6 steps computed (Clifford points
+  checked against Aer stabilizer on 127 qubits; values sealed); Z_62 8, weight-10 7, weight-17 6 on the home PC (VS).
+- Device test to declare: depth scan per observable (where the device stops reading as steps grow), answers sealed.
+- Open: does the 11-10 result move from paper 8 to paper 9 (owner)?
+
+**Ruler note (home):** the U = 0 ruler has fewer CZ (8L - 8 against 10L - 8) and layers (10 against 12) than U > 0,
+so it carries less noise; paper 8's h = 0 ruler had exactly the target's gates. Proposal: at U = 0 keep two mutually
+cancelling CZ at each onsite position (kept from optimisation), so CZ and layers match while the answer stays free-
+fermion exact. To decide before the declaration.
+
+**Working title (Part B, as drafted):** *Fermions without mitigation: the 1D Hubbard model at 40 to 60 qubits, with its
+own free-fermion ruler in every job.* (a joint title for A + B to be set)
 
 **Central question:** paper 8 read spin chains (dual-unitary, 91 qubits) and 3D spin lattices, and checked the device
 against an exact ruler run in the same job (h = 0). Does the same policy (placement by fixed rules from the coupling
