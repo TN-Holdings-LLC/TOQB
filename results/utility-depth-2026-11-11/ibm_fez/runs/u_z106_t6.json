@@ -1,0 +1,91 @@
+{
+ "kind": "qclf",
+ "psfos_role": "user",
+ "points": [
+  {
+   "input": "k00",
+   "setting": "z106_t6"
+  },
+  {
+   "input": "k01",
+   "setting": "z106_t6"
+  },
+  {
+   "input": "k02",
+   "setting": "z106_t6"
+  },
+  {
+   "input": "k03",
+   "setting": "z106_t6"
+  },
+  {
+   "input": "k04",
+   "setting": "z106_t6"
+  },
+  {
+   "input": "k05",
+   "setting": "z106_t6"
+  },
+  {
+   "input": "k06",
+   "setting": "z106_t6"
+  },
+  {
+   "input": "k07",
+   "setting": "z106_t6"
+  },
+  {
+   "input": "k08",
+   "setting": "z106_t6"
+  },
+  {
+   "input": "k09",
+   "setting": "z106_t6"
+  },
+  {
+   "input": "k10",
+   "setting": "z106_t6"
+  },
+  {
+   "input": "k11",
+   "setting": "z106_t6"
+  },
+  {
+   "input": "k12",
+   "setting": "z106_t6"
+  },
+  {
+   "input": "k13",
+   "setting": "z106_t6"
+  },
+  {
+   "input": "k14",
+   "setting": "z106_t6"
+  },
+  {
+   "input": "k15",
+   "setting": "z106_t6"
+  },
+  {
+   "input": "k16",
+   "setting": "z106_t6"
+  }
+ ],
+ "shots": 4000,
+ "valid": true,
+ "export": {
+  "qpy": "u_z106_t6.qpy",
+  "circuits": 17,
+  "sha256": "4ea171b8a4d06136980a03f617226e69fdd2b083e9f8653ab765b62c2a84ad6a"
+ },
+ "observable": "z106_t6",
+ "embedding": 0,
+ "eagle_support": [
+  106
+ ],
+ "measured_qubits": {
+  "0": 103
+ },
+ "t": 6,
+ "extra_rx": false
+}

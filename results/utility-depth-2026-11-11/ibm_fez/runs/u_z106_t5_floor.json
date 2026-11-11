@@ -1,0 +1,27 @@
+{
+ "kind": "qclf",
+ "psfos_role": "floor",
+ "points": [
+  {
+   "input": "k08",
+   "setting": "z106_t5"
+  }
+ ],
+ "shots": 4000,
+ "valid": true,
+ "export": {
+  "qpy": "u_z106_t5_floor.qpy",
+  "circuits": 1,
+  "sha256": "46002f32b367fd67915d68d81ef26212422d40093e85841256205cd25aa2cf69"
+ },
+ "observable": "z106_t5",
+ "embedding": 0,
+ "eagle_support": [
+  106
+ ],
+ "measured_qubits": {
+  "0": 103
+ },
+ "t": 5,
+ "extra_rx": false
+}

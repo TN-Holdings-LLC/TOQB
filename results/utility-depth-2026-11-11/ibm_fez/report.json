@@ -1,0 +1,102 @@
+{
+ "device": "ibm_fez",
+ "embeddings": 2,
+ "observables": {
+  "z106_t4": {
+   "embedding": 0,
+   "cone_qubits": 17,
+   "cz_per_circuit": 564,
+   "circuits": 17,
+   "measured": {
+    "0": 103
+   },
+   "mirror_cz": 1128
+  },
+  "z106_t5": {
+   "embedding": 0,
+   "cone_qubits": 25,
+   "cz_per_circuit": 705,
+   "circuits": 17,
+   "measured": {
+    "0": 103
+   },
+   "mirror_cz": 1410
+  },
+  "z106_t6": {
+   "embedding": 0,
+   "cone_qubits": 31,
+   "cz_per_circuit": 846,
+   "circuits": 17,
+   "measured": {
+    "0": 103
+   },
+   "mirror_cz": 1692
+  },
+  "z106_t7": {
+   "embedding": 0,
+   "cone_qubits": 38,
+   "cz_per_circuit": 987,
+   "circuits": 17,
+   "measured": {
+    "0": 103
+   },
+   "mirror_cz": 1974
+  },
+  "z106_t8": {
+   "embedding": 0,
+   "cone_qubits": 43,
+   "cz_per_circuit": 1128,
+   "circuits": 17,
+   "measured": {
+    "0": 103
+   },
+   "mirror_cz": 2256
+  },
+  "w10_t5": {
+   "embedding": 0,
+   "cone_qubits": 37,
+   "cz_per_circuit": 705,
+   "circuits": 17,
+   "measured": {
+    "0": 7,
+    "1": 6,
+    "2": 3,
+    "3": 2,
+    "4": 16,
+    "5": 25,
+    "6": 24,
+    "7": 23,
+    "8": 22,
+    "9": 21
+   },
+   "mirror_cz": 1410
+  },
+  "w10_t6": {
+   "embedding": 0,
+   "cone_qubits": 42,
+   "cz_per_circuit": 846,
+   "circuits": 17,
+   "measured": {
+    "0": 7,
+    "1": 6,
+    "2": 3,
+    "3": 2,
+    "4": 16,
+    "5": 25,
+    "6": 24,
+    "7": 23,
+    "8": 22,
+    "9": 21
+   },
+   "mirror_cz": 1692
+  }
+ },
+ "circuits": 137,
+ "qpu_seconds_model": 155.9,
+ "gate_hash": {
+  "circuits": 137,
+  "gate_sha256": "f441622378dd233167da200d37b4ed6359f55f46f44aa26dfd04ff92bee2fb0a"
+ },
+ "answers_sha256": "8a2b697a21aaee8605f0e869e9059e82e859304ccb9214cde5891cf13eec52a5",
+ "shots": 4000
+}

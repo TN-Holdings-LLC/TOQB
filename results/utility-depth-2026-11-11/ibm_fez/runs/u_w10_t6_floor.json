@@ -1,0 +1,45 @@
+{
+ "kind": "qclf",
+ "psfos_role": "floor",
+ "points": [
+  {
+   "input": "k08",
+   "setting": "w10_t6"
+  }
+ ],
+ "shots": 4000,
+ "valid": true,
+ "export": {
+  "qpy": "u_w10_t6_floor.qpy",
+  "circuits": 1,
+  "sha256": "9fb8b5eabaa4ba9202f82fa66f298b428b0607cd257917cc6bf715562fd159b5"
+ },
+ "observable": "w10_t6",
+ "embedding": 0,
+ "eagle_support": [
+  8,
+  9,
+  12,
+  13,
+  17,
+  28,
+  29,
+  30,
+  31,
+  32
+ ],
+ "measured_qubits": {
+  "0": 7,
+  "1": 6,
+  "2": 3,
+  "3": 2,
+  "4": 16,
+  "5": 25,
+  "6": 24,
+  "7": 23,
+  "8": 22,
+  "9": 21
+ },
+ "t": 6,
+ "extra_rx": false
+}

@@ -1,0 +1,27 @@
+{
+ "kind": "qclf",
+ "psfos_role": "mirror",
+ "points": [
+  {
+   "input": "k08",
+   "setting": "z106_t8"
+  }
+ ],
+ "shots": 4000,
+ "valid": true,
+ "export": {
+  "qpy": "u_z106_t8_mirror.qpy",
+  "circuits": 1,
+  "sha256": "2f88be1e854c08a2b7b6fce42820563baead25c2a71614b3b25a0cdeb7fa4625"
+ },
+ "observable": "z106_t8",
+ "embedding": 0,
+ "eagle_support": [
+  106
+ ],
+ "measured_qubits": {
+  "0": 103
+ },
+ "t": 8,
+ "extra_rx": false
+}

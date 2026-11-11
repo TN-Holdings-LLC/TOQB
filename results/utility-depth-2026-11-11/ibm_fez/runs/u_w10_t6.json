@@ -1,0 +1,109 @@
+{
+ "kind": "qclf",
+ "psfos_role": "user",
+ "points": [
+  {
+   "input": "k00",
+   "setting": "w10_t6"
+  },
+  {
+   "input": "k01",
+   "setting": "w10_t6"
+  },
+  {
+   "input": "k02",
+   "setting": "w10_t6"
+  },
+  {
+   "input": "k03",
+   "setting": "w10_t6"
+  },
+  {
+   "input": "k04",
+   "setting": "w10_t6"
+  },
+  {
+   "input": "k05",
+   "setting": "w10_t6"
+  },
+  {
+   "input": "k06",
+   "setting": "w10_t6"
+  },
+  {
+   "input": "k07",
+   "setting": "w10_t6"
+  },
+  {
+   "input": "k08",
+   "setting": "w10_t6"
+  },
+  {
+   "input": "k09",
+   "setting": "w10_t6"
+  },
+  {
+   "input": "k10",
+   "setting": "w10_t6"
+  },
+  {
+   "input": "k11",
+   "setting": "w10_t6"
+  },
+  {
+   "input": "k12",
+   "setting": "w10_t6"
+  },
+  {
+   "input": "k13",
+   "setting": "w10_t6"
+  },
+  {
+   "input": "k14",
+   "setting": "w10_t6"
+  },
+  {
+   "input": "k15",
+   "setting": "w10_t6"
+  },
+  {
+   "input": "k16",
+   "setting": "w10_t6"
+  }
+ ],
+ "shots": 4000,
+ "valid": true,
+ "export": {
+  "qpy": "u_w10_t6.qpy",
+  "circuits": 17,
+  "sha256": "7360db08c07b5ba73b303dae20d41809ad919ad9165c9e1066ec71195b8a6a98"
+ },
+ "observable": "w10_t6",
+ "embedding": 0,
+ "eagle_support": [
+  8,
+  9,
+  12,
+  13,
+  17,
+  28,
+  29,
+  30,
+  31,
+  32
+ ],
+ "measured_qubits": {
+  "0": 7,
+  "1": 6,
+  "2": 3,
+  "3": 2,
+  "4": 16,
+  "5": 25,
+  "6": 24,
+  "7": 23,
+  "8": 22,
+  "9": 21
+ },
+ "t": 6,
+ "extra_rx": false
+}
