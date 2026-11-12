@@ -1,0 +1,7 @@
+A0 (phi 0.0000, H 0.0): bond max 472; M mean t3 0.802, t6 1.662; exponent 3->6 1.051; per-shot variance t3 / t6: bound 3.14 / 3.55, sampled 0.45 / 0.70; free fermions max |dZ| 1.3e-07  (87 s)
+A1 (phi 1.5708, H 0.0): bond max 1303; M mean t3 0.619, t6 0.977; exponent 3->6 0.660; per-shot variance t3 / t6: bound 3.34 / 3.73, sampled 0.41 / 0.69  (427 s)
+A2 (phi 1.5708, H 1.0): bond max 1361; M mean t3 0.443, t6 0.676; exponent 3->6 0.609; per-shot variance t3 / t6: bound 3.32 / 3.64, sampled 0.38 / 0.55  (810 s)
+shots 500:; A0 exponent shot error 0.029 (string resample spread 0.078); A1 exponent shot error 0.042 (string resample spread 0.051); A2 exponent shot error 0.059 (string resample spread 0.050); A1 - A2 = 0.050 +- 0.072 (ratio 0.7; criterion >= 3)
+shots 1000:; A0 exponent shot error 0.021 (string resample spread 0.078); A1 exponent shot error 0.030 (string resample spread 0.051); A2 exponent shot error 0.042 (string resample spread 0.050); A1 - A2 = 0.050 +- 0.051 (ratio 1.0; criterion >= 3)
+shots 2000:; A0 exponent shot error 0.015 (string resample spread 0.078); A1 exponent shot error 0.021 (string resample spread 0.051); A2 exponent shot error 0.029 (string resample spread 0.050); A1 - A2 = 0.050 +- 0.036 (ratio 1.4; criterion >= 3)
+shots 4000:; A0 exponent shot error 0.010 (string resample spread 0.078); A1 exponent shot error 0.015 (string resample spread 0.051); A2 exponent shot error 0.021 (string resample spread 0.050); A1 - A2 = 0.050 +- 0.025 (ratio 2.0; criterion >= 3)
