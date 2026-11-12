@@ -89,6 +89,15 @@ RESULTS = {
     "utility-fez-2026-11-10": ("results/utility-2026-11-10", ["ibm_fez", "answers"],
                                ["gpu/utility_score.py", "{T}/ibm_fez", "{T}/answers/answers_ibm_fez.json"],
                                "ibm_fez/scores.json"),
+    "utility-depth-fez-2026-11-11": ("results/utility-depth-2026-11-11", ["ibm_fez", "answers"],
+                                     ["gpu/utility_score.py", "{T}/ibm_fez", "{T}/answers/answers.json"],
+                                     "ibm_fez/scores.json"),
+    "hubbard-fez-2026-11-11": ("results/hubbard-2026-11-11", ["ibm_fez", "answers"],
+                               ["gpu/hub_score.py", "{T}/ibm_fez", "{T}/answers/hub_ibm_fez_ans.json"],
+                               "ibm_fez/scores.json"),
+    "hubbard-big-fez-2026-11-11": ("results/hubbard-big-2026-11-11", ["ibm_fez", "answers"],
+                                   ["gpu/hub_score.py", "{T}/ibm_fez", "{T}/answers/hubB_ibm_fez_ans.json"],
+                                   "ibm_fez/scores.json"),
 }
 
 
