@@ -111,3 +111,13 @@ classical check reaches.
 - psf-os exact_tn: the gate-order light cone balloons when commuting diagonal gates are written edge by edge (home
   check: refused at 2^83 for Z_106 at 8 steps in plain edge order; agrees with reach_tn to 1.7e-14 with colour-layer
   order). A commuting-run cone is not scheduled (owner: no time); callers order diagonal layers by colour.
+
+## Correction of the common thread (home, 2026-11-12, from the workplace VS's boundary figure (c), 1637dbe)
+
+The 11-11 statement "the readable range is set by depth, not size" holds **within a problem family** (Hubbard: 40 to
+120 qubits all read at 4 steps / 48 CZ layers, none at 6 steps / 72; utility: cone CZ 36 and 131 read, 253 not), but
+**not across families**: other records read up to 187 CZ layers (`notes/boundary_2026-11-12`, figure (c)). The Hubbard
+signal shrinks fast with time (mean square of the answer 0.18 -> 0.05 -> 0.02 at 2 / 4 / 6 steps), so the same device
+error gives a larger error / signal ratio sooner. Thread for paper 9: "per family the boundary lies along depth; where
+it lies depends on how fast the exact signal shrinks". To check before writing: plot MSE (not MSE / mean square)
+against CZ layers across families.
