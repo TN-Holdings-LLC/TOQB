@@ -27,8 +27,10 @@ the Ohmic t^(1/2) in linear response; home 11-12)?
 - Each circuit with its floor and mirror (mirror: compiled circuit, barrier, its inverse, as gpu/hub_build), one ring
   sentinel; S shots.
 
-**Open (from the design scan):** m, K, S. With the time model (0.036 s + 0.00027 s per shot per circuit, 3 s per job)
-and 160 s, the job holds 3 arms x 2 cycle counts x 2K strings x 3 circuits + 4: K 14 at S 1000, K 24 at S 500.
+**Settings (from the design scan, `notes/ohm_2026-11-12/job6_design.md` section 5):** m 0.5, K 14 strings and their
+complements (seed 20261112, to be confirmed by home), 1000 shots: 3 arms x 2 cycle counts x 28 strings = 168 user
+circuits, 508 with floors, mirrors and the sentinel, 158.4 s by the time model (0.036 s + 0.00027 s per shot per
+circuit, 3 s per job; limit 160 s). Full try-build on the 11-11 fez record: builds, A1 = A2 for all 28 strings.
 
 ## Device and placement (no quality number)
 
@@ -63,12 +65,13 @@ per-qubit <Z> verdict of every circuit; floor, mirror, sentinel, CZ.
 
 ## Prediction (before any data; not rewritten if wrong)
 
-- Every arm READS at 3 cycles; at 6 cycles (36 CZ layers for A1 and A2) READS for A0 and A1, A2 open (to be written).
-- The device's exponents keep the exact ordering A0 > A1 > A2. **Open:** the design check (workplace, N 40, K 30) found
-  the exact A1 - A2 gap of the K-string mean far smaller than in linear response (m 0.5: 0.66 against 0.61) and below
-  the shot error a 160 s job reaches (ratio 1.0 at 1000 shots), while A0 against A1 (about 0.4) is well resolved. Unless
-  the design scan finds a setting with a gap at least three times the shot error, the prediction should name only
-  A0 > A1 and A0 > A2, with A1 against A2 beside.
+- Every arm READS at 3 and at 6 cycles (6 cycles: 24 CZ layers for A0, 36 for A1 and A2, inside the 48 that read on
+  11-11).
+- The exponents of W from 3 to 6 cycles on the device keep the exact ordering A0 > A1 > A2 (design, m 0.5, K 100:
+  1.03 / 0.70 / 0.45; the A1 - A2 gap is 5 shot errors at K 14 and 1000 shots by the variance bound). The exact
+  ordering of the declared strings is checked from the sealed answers before the run (printed as a yes / no only).
+- Why W and not the plain mean M: the complement turns the period-3 field into its negative, so M of A2 carries a part
+  even in m (design: M exponent 0.61 against W 0.45); W keeps the transport part.
 
 ## Limits
 
