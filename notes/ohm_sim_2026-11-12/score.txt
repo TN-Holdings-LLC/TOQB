@@ -1,0 +1,8 @@
+== chain: qubits [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 19, 35, 34, 33, 32, 31, 30, 29]; floor share with a 1 0.216; W_mixed 1.833
+chain t3: M MSE/msq 2.245 (DOES NOT READ), AGREES 2/12, per-qubit READS 12/12, W 1.297 (exact 0.537), p 0.586, kept 0.221 (from 40 shots), M SE 0.134; CZ 207, CZ layers 18, fSim layers per cycle 2; exact total Z vs initial worst 8.2e-13
+chain t6: M MSE/msq 1.714 (DOES NOT READ), AGREES 1/12, per-qubit READS 9/12, W 1.674 (exact 0.807), p 0.845, kept 0.185 (from 40 shots), M SE 0.138; CZ 414, CZ layers 36, fSim layers per cycle 2; exact total Z vs initial worst 1.4e-12
+chain: exponent log2(W6/W3) noisy 0.36847298420555885, exact 0.588
+== honeycomb: qubits [0, 20, 1, 21, 2, 22, 3, 16, 23, 4, 24, 5, 25, 6, 26, 7, 17, 27, 8, 28, 9, 29, 10, 30]; floor share with a 1 0.165; W_mixed 1.833
+honeycomb t3: M MSE/msq 0.588 (DOES NOT READ), AGREES 2/12, per-qubit READS 12/12, W 1.490 (exact 0.994), p 0.591, kept 0.204 (from 40 shots), M SE 0.113; CZ 216, CZ layers 27, fSim layers per cycle 3; exact total Z vs initial worst 3.0e-13
+honeycomb t6: M MSE/msq 0.325 (READS), AGREES 1/12, per-qubit READS 10/12, W 1.757 (exact 1.479), p 0.784, kept 0.196 (from 40 shots), M SE 0.111; CZ 432, CZ layers 54, fSim layers per cycle 3; exact total Z vs initial worst 8.2e-13
+honeycomb: exponent log2(W6/W3) noisy 0.2377337000759913, exact 0.573
