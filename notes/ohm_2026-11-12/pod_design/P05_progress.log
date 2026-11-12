@@ -1,0 +1,20 @@
+03:41:59 configs 0/6 busy_workers 32 load 41.89 45.40 43.40 max_rss_mb 199
+03:42:59 configs 1/6 busy_workers 32 load 55.49 48.96 44.77 max_rss_mb 854
+03:43:59 configs 1/6 busy_workers 32 load 64.80 52.70 46.31 max_rss_mb 805
+03:44:59 configs 2/6 busy_workers 32 load 86.84 61.18 49.63 max_rss_mb 685
+03:46:00 configs 2/6 busy_workers 32 load 89.35 66.58 52.21 max_rss_mb 965
+03:47:00 configs 2/6 busy_workers 32 load 76.69 67.40 53.41 max_rss_mb 912
+03:48:00 configs 3/6 busy_workers 26 load 63.57 65.59 53.69 max_rss_mb 432
+03:49:00 configs 3/6 busy_workers 32 load 77.47 69.16 55.66 max_rss_mb 839
+03:50:00 configs 3/6 busy_workers 32 load 85.20 74.23 58.33 max_rss_mb 846
+03:51:00 configs 3/6 busy_workers 31 load 53.69 67.31 56.95 max_rss_mb 959
+03:52:00 configs 4/6 busy_workers 31 load 44.45 61.35 55.50 max_rss_mb 750
+03:53:00 configs 4/6 busy_workers 32 load 78.90 68.37 58.29 max_rss_mb 997
+03:54:00 configs 4/6 busy_workers 32 load 80.34 71.07 59.87 max_rss_mb 1259
+03:55:00 configs 4/6 busy_workers 32 load 70.69 70.10 60.25 max_rss_mb 1222
+03:56:00 configs 4/6 busy_workers 29 load 61.10 67.37 59.92 max_rss_mb 1259
+03:57:00 configs 5/6 busy_workers 28 load 57.69 65.00 59.56 max_rss_mb 787
+03:58:00 configs 5/6 busy_workers 30 load 59.78 64.31 59.67 max_rss_mb 1184
+03:59:00 configs 5/6 busy_workers 30 load 51.59 61.61 59.06 max_rss_mb 1256
+04:00:00 configs 5/6 busy_workers 25 load 48.84 58.41 58.08 max_rss_mb 1118
+04:01:00 run_pod_m.sh ended

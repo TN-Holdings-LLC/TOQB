@@ -69,3 +69,27 @@ One string pair (seed 999): chain by shape S1; CZ (CZ layers) A0 234 (12) / 468 
   (1e-12 here, 1e-10 in samples6.py) and the design run sharing the two cores. Not continued: the answers depend on
   m, K and the seed, which wait for the design scan; they are cheap on a POD or at home (`gpu/ohm_answers.py`, about
   10-20 min on one core at cutoff 1e-12).
+
+## 5. The POD design scan (VS, 11-12 03:38-04:36 CET; `pod_design/`) and why it disagreed with section 1
+
+VS's scan (N 40, K 100 and complements, m 0.2 / 0.3 / 0.5, six arms, four windows) found A1 - A2 about 0.25 in the
+exponent of W from 3 to 6 cycles (m 0.5: 0.696 against 0.446), where section 1 had 0.05. Checked here against the scan's
+own rows (`P1_design.jsonl`, which keeps the plain mean M beside W and W per string):
+
+- **The two scripts make the same circuits.** Both draw the strings from seed 11 in the same order and insert the field
+  the same way (RZ(H p_k) after each cycle; samples6w applies RZ(0) on the zero sites, design_pod leaves them out).
+  On the first 30 strings the scan's W exponent equals section 1's for A0 (1.051) and A1 (0.660) to three digits; for
+  these arms W and M coincide (the scan's M and W exponents are equal for A0, A1, B1, B2).
+- **The difference is the estimator.** Section 1 used the plain mean M of the strings; the scan, W = (M_s - M_c)/2
+  with the complement. For A2 they differ: m 0.5, K 100, M 0.610 against W 0.446 (section 1: M 0.609 at K 30); also
+  A2h2. Reason: the complement turns the period-3 field (1, -1, 0) into (-1, 1, 0), so a string and its complement do
+  not see mirror-image dynamics and M carries a part even in m; W keeps the part odd in m, the transport, and comes
+  near the linear-response 0.50 (home). Without the field (A0, A1) or at phi = pi (B1, B2) the complement is an exact
+  mirror and M = W.
+- So section 1's conclusion (A1 and A2 not separable) was about M and is withdrawn for W; the job's comparison is W.
+
+With W and the proposal (m 0.5, K 14 and complements, 1000 shots), from the scan's rows: A1 - A2 gap 0.250, shot error
+of the gap 0.050 by the independent-site bound (ratio 5.0, criterion 3; with the sampled variance about 0.45 of the
+bound, about 11); among 2000 random 14-string subsets of the 100, the exact gap was positive in all (mean 0.250, sd
+0.058). At m 0.3 the ratio is 3.0 (bound) and 0.997 of the subsets keep the sign; at m 0.2, 2.0 and 0.956. So m 0.5.
+B1 (phi pi) sits 0.13 below A1: not separable at this size; not an arm.

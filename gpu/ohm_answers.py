@@ -10,7 +10,7 @@ Bit strings: K strings, each qubit of the left half |1> with probability (1 + m)
 (a weakly polarised wall), and each string's complement (the mirrored wall: the left leans to |0>), which reverses the
 sign of the transfer and of the drift that decay towards |0> adds to it. The same strings in every arm and time.
 
-Answers: per-qubit <Z> of every circuit, A1 / A2 by quimb's CircuitMPS (cutoff 1e-12, bond cap CHI), A0 by free
+Answers: per-qubit <Z> of every circuit, A1 / A2 by quimb's CircuitMPS (cutoff 1e-10 by default, bond cap CHI), A0 by free
 fermions (exact at any size: <n_x> = sum over occupied y of |W_xy|^2). Values go only to OUT.json (sealed until the
 verdicts); printed are checks only: largest bond (below the cap), quimb's error estimate, total Z (conserved exactly:
 the initial value), for A0 also quimb against free fermions on the first strings (--pipeline-check).
@@ -68,10 +68,10 @@ def circuit(N, cycles, arm, bits):
     return qc
 
 
-def z_quimb(N, cycles, arm, bits, chi):
+def z_quimb(N, cycles, arm, bits, chi, cutoff=1e-10):
     import quimb.tensor as qtn
     phi, H = ARMS[arm]
-    c = qtn.CircuitMPS(N, max_bond=chi, cutoff=1e-12)
+    c = qtn.CircuitMPS(N, max_bond=chi, cutoff=cutoff)
     X = np.array([[0, 1], [1, 0]])
     for k, b in enumerate(bits):
         if b:
@@ -115,6 +115,8 @@ def main():
     ap.add_argument("--cycles", type=int, nargs="+", default=[3, 6])
     ap.add_argument("--seed", type=int, required=True)
     ap.add_argument("--chi", type=int, default=2048)
+    ap.add_argument("--cutoff", type=float, default=1e-10, help="quimb's singular-value cutoff (1e-12 took 104 s for one "
+                    "6-cycle string here, 2026-11-12; samples6.py and design_pod.py use 1e-10)")
     ap.add_argument("--pipeline-check", type=int, default=0, help="A0 by quimb too on the first this many strings")
     a = ap.parse_args()
     if os.path.exists(a.out):
@@ -129,11 +131,11 @@ def main():
                 if arm == "A0":
                     z = z_free(a.N, t, bits)
                     if i < a.pipeline_check:
-                        zq, bond, err = z_quimb(a.N, t, arm, bits, a.chi)
+                        zq, bond, err = z_quimb(a.N, t, arm, bits, a.chi, a.cutoff)
                         worst["pipeline"] = max(worst["pipeline"], float(np.abs(zq - z).max()))
                 else:
                     t1 = time.time()
-                    z, bond, err = z_quimb(a.N, t, arm, bits, a.chi)
+                    z, bond, err = z_quimb(a.N, t, arm, bits, a.chi, a.cutoff)
                     worst["bond"] = max(worst["bond"], bond)
                     worst["err"] = max(worst["err"], err or 0.0)
                     worst["seconds"] = max(worst["seconds"], time.time() - t1)
@@ -143,7 +145,7 @@ def main():
                   f"(cap {a.chi}), error estimate {worst['err']:.1e}, |total Z - initial| {worst['totz']:.1e}, "
                   f"slowest {worst['seconds']:.1f} s" + (f", A0 quimb against free fermions {worst['pipeline']:.1e}"
                                                          if arm == "A0" and a.pipeline_check else ""), flush=True)
-    meta = dict(N=a.N, K=a.K, m=a.m, cycles=a.cycles, seed=a.seed, chi=a.chi, theta=THETA,
+    meta = dict(N=a.N, K=a.K, m=a.m, cycles=a.cycles, seed=a.seed, chi=a.chi, cutoff=a.cutoff, theta=THETA,
                 arms={k: dict(phi=v[0], H=v[1]) for k, v in ARMS.items()}, pattern=PATTERN,
                 strings={n: "".join(map(str, b)) for n, b in strs}, checks=worst)
     json.dump(dict(meta=meta, z=vals), open(a.out, "w"), sort_keys=True)
