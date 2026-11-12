@@ -28,7 +28,7 @@ def main(out, answers_file):
         z = np.array([q[lab]["z"] for lab in chain])
         e = np.array([q[lab]["exact"] for lab in chain])
         mse, msq = float(np.mean((z - e) ** 2)), float(np.mean(e ** 2))
-        charge = np.abs(z[0::2] + z[1::2])
+        charge = np.abs(z[0::2] + z[1::2]) if len(chain) % 2 == 0 else np.zeros(1)  # odd chains (XX): no pairs
         r = dict(cz=b["cz"][tag], mse=mse, mean_square=msq, reads="READS" if mse <= msq / 2 else "DOES NOT READ",
                  agrees=int(np.sum(np.abs(z - e) <= 0.05)), qubits=len(chain),
                  amplitude_ratio=float(np.dot(z, e) / np.dot(e, e)) if msq > 0 else None,
