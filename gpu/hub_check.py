@@ -79,7 +79,8 @@ def main():
     for tag in sorted(b["cz"]):
         if a.only and tag not in a.only:
             continue
-        L, s = int(tag.split("_")[0][1:]), int(tag.split("_")[1][1:])
+        parts = tag.split("_")
+        L, s = int(parts[0][1:]), int(next(p for p in parts[1:] if p.startswith("s"))[1:])
         rec = json.load(open(os.path.join(runs, f"p2d_{tag}.json")))
         m = rec["mapping"] if isinstance(rec["mapping"], dict) else ast.literal_eval(rec["mapping"])
         chain = b["chains"][str(L)]["labels"]
