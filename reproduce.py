@@ -104,6 +104,9 @@ RESULTS = {
     "ohm-fez-2026-11-12": ("results/ohm-2026-11-12", ["ibm_fez", "answers"],
                            ["gpu/ohm_score.py", "{T}/ibm_fez", "{T}/answers/ohm_ibm_fez_ans.json"],
                            "ibm_fez/scores.json"),
+    "ohm-kingston-2026-11-12": ("results/ohm-kingston-2026-11-12", ["ibm_kingston", "answers"],
+                                ["gpu/ohm_score.py", "{T}/ibm_kingston", "{T}/answers/ohm_ibm_kingston_ans.json"],
+                                "ibm_kingston/scores.json"),
 }
 
 
