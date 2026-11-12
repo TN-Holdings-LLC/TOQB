@@ -1,0 +1,82 @@
+{
+ "device": "ibm_fez",
+ "chains": {
+  "20": {
+   "labels": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    19,
+    35,
+    34,
+    33,
+    32,
+    31,
+    30,
+    29,
+    28,
+    27,
+    26,
+    25,
+    24,
+    23,
+    22,
+    21,
+    36,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+   ],
+   "rule": "shape",
+   "shape": "S1",
+   "passed_over": [
+    {
+     "shape": "S1",
+     "copies_passed": [
+      {
+       "drow": 0,
+       "dcol": 0,
+       "why": [
+        "qubit 32 suspect",
+        "qubit 33 suspect",
+        "coupler (32, 33) not working"
+       ]
+      },
+      {
+       "drow": 2,
+       "dcol": 0,
+       "why": [
+        "qubit 72 failed"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "cz": {
+  "L20_T1.0_s2": 384,
+  "L20_T1.0_s4": 768,
+  "L20_T0.5_s1": 192,
+  "L20_T0.5_s2": 384
+ },
+ "circuits": 16,
+ "qpu_seconds_model": 20.9
+}

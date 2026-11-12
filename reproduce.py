@@ -98,6 +98,12 @@ RESULTS = {
     "hubbard-big-fez-2026-11-11": ("results/hubbard-big-2026-11-11", ["ibm_fez", "answers"],
                                    ["gpu/hub_score.py", "{T}/ibm_fez", "{T}/answers/hubB_ibm_fez_ans.json"],
                                    "ibm_fez/scores.json"),
+    "hub-dt-fez-2026-11-12": ("results/hub-dt-2026-11-12", ["ibm_fez", "answers"],
+                              ["gpu/hub_score.py", "{T}/ibm_fez", "{T}/answers/dt_ibm_fez_ans_circuit.json"],
+                              "ibm_fez/scores.json"),
+    "ohm-fez-2026-11-12": ("results/ohm-2026-11-12", ["ibm_fez", "answers"],
+                           ["gpu/ohm_score.py", "{T}/ibm_fez", "{T}/answers/ohm_ibm_fez_ans.json"],
+                           "ibm_fez/scores.json"),
 }
 
 
