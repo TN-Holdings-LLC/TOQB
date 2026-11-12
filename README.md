@@ -1,4 +1,13 @@
-# TOQB: Task-Oriented Quantum Benchmark
+# psf-os-lab-notebook: declared, raw device tests of psf-os on IBM Heron (formerly TOQB)
+
+This repository holds the declared device tests behind papers 7, 8 and 9 of TN Holdings: every test declared
+(`prereg/`) before its calibration was fetched, raw counts and scores committed, answers sealed until the verdicts,
+every result re-scorable without IBM (`python reproduce.py`). Until 2026-11-12 it was named TOQB (Task-Oriented
+Quantum Benchmark, a compiler benchmark: layers 1-3 and standard runs 1-2, kept under `results/` and `toqb/`); the old
+URL github.com/TN-Holdings-LLC/TOQB redirects here, and the papers' commit hashes are unchanged.
+The readable-depth metric now lives in [TN-Holdings-LLC/readable-depth](https://github.com/TN-Holdings-LLC/readable-depth).
+
+## The original TOQB (kept as it was)
 
 TOQB compares quantum compilers on the quality of what they return within a time budget, from the circuit's
 structure to a task's accuracy on a noisy device.

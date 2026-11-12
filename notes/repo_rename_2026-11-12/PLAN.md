@@ -44,3 +44,8 @@ Metric (new repository):
 - Papers 7 and 8 stay as published (the redirect keeps their links working).
 - Paper 9 and later cite the new name, with "(formerly TOQB)" once.
 - notes/paper8/ZENODO.md, notes/paper7/ZENODO.md: add a line with the new URL.
+
+## Done (home, 2026-11-12 evening)
+
+- Owner: TOQB renamed to `psf-os-lab-notebook`; new empty repository `readable-depth` (public).
+- Home: this README head, the Zenodo notes, and the first commit of readable-depth (a separate bundle).

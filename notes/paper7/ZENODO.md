@@ -12,3 +12,6 @@ Published by the owner on 2026-11-08: **doi:10.5281/zenodo.24046673** (https://d
 - Related identifiers: is supplemented by https://github.com/TN-Holdings-LLC/TOQB (data, code, raw counts) and
   https://github.com/TN-Holdings-LLC/psf-os; continues doi:10.5281/zenodo.23883938 (paper 6).
 - Licence: as papers 1-6.
+
+- Repository renamed on 2026-11-12: github.com/TN-Holdings-LLC/TOQB is now github.com/TN-Holdings-LLC/psf-os-lab-notebook
+  (the old URL redirects; commit hashes cited in the paper are unchanged).

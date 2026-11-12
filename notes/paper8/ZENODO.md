@@ -20,3 +20,6 @@ Uploaded file name: `TN-Holdings_Paper8_v1_Readable-Quantum-Dynamics-Without-Err
 - DOI: 10.5281/zenodo.24136512 (version 1.0); all versions: 10.5281/zenodo.24136511
 - Title corrected on Zenodo by the owner (22:14 JST): the first upload carried the file-name form; metadata edit only,
   same DOI and file.
+
+- Repository renamed on 2026-11-12: github.com/TN-Holdings-LLC/TOQB is now github.com/TN-Holdings-LLC/psf-os-lab-notebook
+  (the old URL redirects; commit hashes cited in the paper are unchanged).
