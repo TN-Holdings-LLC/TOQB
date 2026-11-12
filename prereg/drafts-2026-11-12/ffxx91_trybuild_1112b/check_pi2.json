@@ -1,0 +1,51 @@
+{
+ "N91_th1571_s02": {
+  "cz": 360,
+  "cz_depth": 8,
+  "method": "matrix_product_state",
+  "worst": 1.709743457922741e-14,
+  "mirror_worst": 1.9095836023552692e-14,
+  "ok": true
+ },
+ "N91_th1571_s04": {
+  "cz": 720,
+  "cz_depth": 16,
+  "method": "matrix_product_state",
+  "worst": 4.440892098500626e-15,
+  "mirror_worst": 8.393286066166183e-14,
+  "ok": true
+ },
+ "N91_th1571_s08": {
+  "cz": 1440,
+  "cz_depth": 32,
+  "method": "matrix_product_state",
+  "worst": 6.88338275267597e-14,
+  "mirror_worst": 5.595524044110789e-14,
+  "ok": true
+ },
+ "N91_th1571_s12": {
+  "cz": 2160,
+  "cz_depth": 48,
+  "method": "matrix_product_state",
+  "worst": 5.773159728050814e-15,
+  "mirror_worst": 1.84297022087776e-14,
+  "ok": true
+ },
+ "N91_th1571_s16": {
+  "cz": 2880,
+  "cz_depth": 64,
+  "method": "matrix_product_state",
+  "worst": 2.6645352591003757e-14,
+  "mirror_worst": 2.708944180085382e-14,
+  "ok": true
+ },
+ "N91_th1571_s20": {
+  "cz": 3600,
+  "cz_depth": 80,
+  "method": "matrix_product_state",
+  "worst": 1.9984014443252818e-14,
+  "mirror_worst": 4.218847493575595e-15,
+  "ok": true
+ },
+ "ALL": "PASS"
+}
