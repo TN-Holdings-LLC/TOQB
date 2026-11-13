@@ -35,6 +35,8 @@ def main():
     ap.add_argument("--steps", default="2,4,6,8,10,12")
     ap.add_argument("--max-seconds", type=float, default=160)
     ap.add_argument("--twin", action="store_true", help="add each circuit's Clifford twin (psf_os.twin); answers to ANS_twin.json")
+    ap.add_argument("--sentinel-fallback", default=None, choices=[None, "same_qubits"],
+                    help="psf-os sentinel fallback (2026-11-13); default: none, as before")
     a = ap.parse_args()
     for p in (a.out, a.ans_out):
         if os.path.exists(p):
@@ -48,11 +50,13 @@ def main():
             items.append((t, HB.on_chain(F.circuit(a.n, s, th, measure=False), labels, dev.num_qubits)))
             answers[t] = {str(q): float(z) for q, z in zip(labels, F.z_exact(a.n, s, th))}
     HB._mirror_from_compiled(dev, U)
-    rep = U.build_batch(dev, items, a.out, shots=4000, max_seconds=a.max_seconds, **(dict(twin=True) if a.twin else {}))
+    rep = U.build_batch(dev, items, a.out, shots=4000, max_seconds=a.max_seconds,
+                        sentinel_spec=HB.sentinel_spec_of(a.sentinel_fallback), **(dict(twin=True) if a.twin else {}))
     cz = {t: r["cz"] for t, r in rep["items"].items()}
     json.dump(answers, open(a.ans_out, "w"), indent=1, sort_keys=True)
     json.dump(dict(device=dev.name, chains={str(a.n): dict(labels=labels, **how)}, cz=cz, circuits=rep["circuits"],
-                   qpu_seconds_model=rep["qpu_seconds_model"]), open(os.path.join(a.out, "build.json"), "w"), indent=1)
+                   qpu_seconds_model=rep["qpu_seconds_model"], **HB.sentinel_fallback_report(a.out, a.sentinel_fallback)),
+              open(os.path.join(a.out, "build.json"), "w"), indent=1)
     for t in sorted(cz):
         print(f"{t}: CZ {cz[t]}, copy {rep['items'][t]['copy']}")
     print(f"chain by rule {how['rule']}; circuits {rep['circuits']}  model {rep['qpu_seconds_model']} s")

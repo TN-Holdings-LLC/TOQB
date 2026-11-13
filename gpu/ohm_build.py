@@ -38,6 +38,8 @@ def main():
     ap.add_argument("ans_out")
     ap.add_argument("--shots", type=int, default=1000)
     ap.add_argument("--max-seconds", type=float, default=160)
+    ap.add_argument("--sentinel-fallback", default=None, choices=[None, "same_qubits"],
+                    help="psf-os sentinel fallback (2026-11-13); default: none, as before")
     a = ap.parse_args()
     for p in (a.out, a.ans_out):
         if os.path.exists(p):
@@ -58,7 +60,8 @@ def main():
                 items.append((tg, HB.on_chain(OA.circuit(N, t, arm, bits), labels, dev.num_qubits)))
                 answers[tg] = {str(q): v for q, v in zip(labels, vals[tg])}
     HB._mirror_from_compiled(dev, U)
-    rep = U.build_batch(dev, items, a.out, shots=a.shots, max_seconds=a.max_seconds)
+    rep = U.build_batch(dev, items, a.out, shots=a.shots, max_seconds=a.max_seconds,
+                        sentinel_spec=HB.sentinel_spec_of(a.sentinel_fallback))
     cz = {t: r["cz"] for t, r in rep["items"].items()}
     runs = os.path.join(a.out, "runs")
     depth = {t: cz_depth(qpy.load(open(os.path.join(runs, f"p2d_{t}.qpy"), "rb"))[0]) for t in cz}
@@ -72,7 +75,8 @@ def main():
         json.dump(dict(meta=meta, z=answers), f, indent=1, sort_keys=True)
     json.dump(dict(device=dev.name, chain=dict(labels=labels, **how), cz=cz, cz_depth=depth, shots=a.shots,
                    strings=meta["strings"], N=N, K=K, m=meta["m"], cycles=meta["cycles"], seed=meta["seed"],
-                   circuits=rep["circuits"], qpu_seconds_model=rep["qpu_seconds_model"]),
+                   circuits=rep["circuits"], qpu_seconds_model=rep["qpu_seconds_model"],
+                   **HB.sentinel_fallback_report(a.out, a.sentinel_fallback)),
               open(os.path.join(a.out, "build.json"), "w"), indent=1)
     print(f"chain by rule {how['rule']} ({how.get('shape', how.get('start'))}), {labels[:3]}..{labels[-2:]}")
     for arm in OA.ARMS:
