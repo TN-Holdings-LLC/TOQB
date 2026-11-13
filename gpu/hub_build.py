@@ -76,6 +76,24 @@ def _mirror_from_compiled(dev, U):
     U.M.mirror = mirror
 
 
+def sentinel_spec_of(fallback):
+    """sentinel_spec for user2d.build_batch: None (as before) or the sentinel's job with psf-os's fallback (2026-11-13,
+    psf_os.sentinel.build: "same_qubits" keeps a sentinel whose ring has the user's qubits in another order)."""
+    if not fallback:
+        return None
+    from psf_os import sentinel
+    return dict(sentinel.SENTINEL_JOB, fallback=fallback)
+
+
+def sentinel_fallback_report(out, fallback):
+    """{} when no fallback was asked (build.json as before); else what was asked and whether the record used it."""
+    if not fallback:
+        return {}
+    import glob
+    used = any("fallback" in json.load(open(f)) for f in glob.glob(os.path.join(out, "runs", "ksent_*.json")))
+    return dict(sentinel_fallback=dict(asked=fallback, used=bool(used)))
+
+
 def chain_of(dev, n):
     pl = X.place(dev, n)
     if pl["shape"] is not None:
@@ -97,6 +115,8 @@ def main():
     ap.add_argument("--L", type=int, nargs="+", default=[20])
     ap.add_argument("--steps", type=int, nargs="+", default=[2, 4, 6])
     ap.add_argument("--max-seconds", type=float, default=60)
+    ap.add_argument("--sentinel-fallback", default=None, choices=[None, "same_qubits"],
+                    help="psf-os sentinel fallback (2026-11-13); default: none, as before")
     a = ap.parse_args()
     for p in (a.out, a.ans_out):
         if os.path.exists(p):
@@ -113,7 +133,8 @@ def main():
                 items.append((tag, on_chain(logical(L, s, arm), labels, dev.num_qubits)))
                 answers[tag] = {str(q): v for q, v in zip(labels, vals[tag])}
     _mirror_from_compiled(dev, U)
-    rep = U.build_batch(dev, items, a.out, shots=4000, max_seconds=a.max_seconds)
+    rep = U.build_batch(dev, items, a.out, shots=4000, max_seconds=a.max_seconds,
+                        sentinel_spec=sentinel_spec_of(a.sentinel_fallback))
     cz = {t: r["cz"] for t, r in rep["items"].items()}
     for L in a.L:
         for s in a.steps:
@@ -123,7 +144,8 @@ def main():
     with open(a.ans_out, "w") as f:
         json.dump(answers, f, indent=1, sort_keys=True)
     json.dump(dict(device=dev.name, chains={str(k): v for k, v in chains.items()}, cz=cz,
-                   circuits=rep["circuits"], qpu_seconds_model=rep["qpu_seconds_model"]),
+                   circuits=rep["circuits"], qpu_seconds_model=rep["qpu_seconds_model"],
+                   **sentinel_fallback_report(a.out, a.sentinel_fallback)),
               open(os.path.join(a.out, "build.json"), "w"), indent=1)
     for L, c in chains.items():
         print(f"L {L}: chain by rule {c['rule']} ({c.get('shape', c.get('start'))}), {c['labels'][:3]}..{c['labels'][-2:]}")

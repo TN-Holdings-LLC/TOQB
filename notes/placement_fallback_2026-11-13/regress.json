@@ -1,0 +1,263 @@
+[
+ {
+  "job": "hubbard-2026-11-11",
+  "device": "ibm_fez",
+  "fallback": null,
+  "built": true,
+  "same_gates": true,
+  "gate_hash": "1af20d01467a24aa",
+  "recorded_gate_hash": "1af20d01467a24aa",
+  "same_qpy_bytes": false,
+  "tail": [
+   "answers sha256 13b6bc72a5ae9880a62b27fe730109abaddbdb418666e2e39439ad7cb52aaf5c"
+  ]
+ },
+ {
+  "job": "hubbard-2026-11-11",
+  "device": "ibm_fez",
+  "fallback": "same_qubits",
+  "built": true,
+  "same_gates": true,
+  "gate_hash": "1af20d01467a24aa",
+  "recorded_gate_hash": "1af20d01467a24aa",
+  "same_qpy_bytes": false,
+  "tail": [
+   "answers sha256 13b6bc72a5ae9880a62b27fe730109abaddbdb418666e2e39439ad7cb52aaf5c"
+  ]
+ },
+ {
+  "job": "hubbard-big-2026-11-11",
+  "device": "ibm_fez",
+  "fallback": null,
+  "built": true,
+  "same_gates": true,
+  "gate_hash": "ebe6b5c27190b872",
+  "recorded_gate_hash": "ebe6b5c27190b872",
+  "same_qpy_bytes": false,
+  "tail": [
+   "answers sha256 eceb7754c6525be429017a97e8a4b3f9750f2609f6a4886c99d6468d20ddbb3f"
+  ]
+ },
+ {
+  "job": "hubbard-big-2026-11-11",
+  "device": "ibm_fez",
+  "fallback": "same_qubits",
+  "built": true,
+  "same_gates": true,
+  "gate_hash": "ebe6b5c27190b872",
+  "recorded_gate_hash": "ebe6b5c27190b872",
+  "same_qpy_bytes": false,
+  "tail": [
+   "answers sha256 eceb7754c6525be429017a97e8a4b3f9750f2609f6a4886c99d6468d20ddbb3f"
+  ]
+ },
+ {
+  "job": "hub-dt-2026-11-12",
+  "device": "ibm_fez",
+  "fallback": null,
+  "built": true,
+  "same_gates": true,
+  "gate_hash": "6e1c537652c28428",
+  "recorded_gate_hash": "6e1c537652c28428",
+  "same_qpy_bytes": false,
+  "tail": [
+   "continuum answers sha256 fcea179f0a51997b9355e6aab263bdafe8edea01605b0b35bc233c1738f56560"
+  ]
+ },
+ {
+  "job": "hub-dt-2026-11-12",
+  "device": "ibm_fez",
+  "fallback": "same_qubits",
+  "built": true,
+  "same_gates": true,
+  "gate_hash": "6e1c537652c28428",
+  "recorded_gate_hash": "6e1c537652c28428",
+  "same_qpy_bytes": false,
+  "tail": [
+   "continuum answers sha256 fcea179f0a51997b9355e6aab263bdafe8edea01605b0b35bc233c1738f56560"
+  ]
+ },
+ {
+  "job": "ohm-2026-11-12",
+  "device": "ibm_fez",
+  "fallback": null,
+  "built": true,
+  "same_gates": true,
+  "gate_hash": "860d31336b97d2d1",
+  "recorded_gate_hash": "860d31336b97d2d1",
+  "same_qpy_bytes": false,
+  "tail": [
+   "answers by chain label sha256 126e99ba7293a8e4b8b9bb57d62415eefe14c7630f2438c4e782cf241085be99"
+  ]
+ },
+ {
+  "job": "ohm-2026-11-12",
+  "device": "ibm_fez",
+  "fallback": "same_qubits",
+  "built": true,
+  "same_gates": true,
+  "gate_hash": "860d31336b97d2d1",
+  "recorded_gate_hash": "860d31336b97d2d1",
+  "same_qpy_bytes": false,
+  "tail": [
+   "answers by chain label sha256 126e99ba7293a8e4b8b9bb57d62415eefe14c7630f2438c4e782cf241085be99"
+  ]
+ },
+ {
+  "job": "ohm-kingston-2026-11-12",
+  "device": "ibm_kingston",
+  "fallback": null,
+  "built": true,
+  "same_gates": true,
+  "gate_hash": "138851f7f748750b",
+  "recorded_gate_hash": "138851f7f748750b",
+  "same_qpy_bytes": false,
+  "tail": [
+   "answers by chain label sha256 126e99ba7293a8e4b8b9bb57d62415eefe14c7630f2438c4e782cf241085be99"
+  ]
+ },
+ {
+  "job": "ohm-kingston-2026-11-12",
+  "device": "ibm_kingston",
+  "fallback": "same_qubits",
+  "built": true,
+  "same_gates": true,
+  "gate_hash": "138851f7f748750b",
+  "recorded_gate_hash": "138851f7f748750b",
+  "same_qpy_bytes": false,
+  "tail": [
+   "answers by chain label sha256 126e99ba7293a8e4b8b9bb57d62415eefe14c7630f2438c4e782cf241085be99"
+  ]
+ },
+ {
+  "job": "xx91-2026-11-12",
+  "device": "ibm_fez",
+  "fallback": null,
+  "built": true,
+  "same_gates": true,
+  "gate_hash": "9e8330a96154f469",
+  "recorded_gate_hash": "9e8330a96154f469",
+  "same_qpy_bytes": false,
+  "tail": [
+   "answers sha256 30e296047aabdac4f539a834828d4feb5637bbfd48be1d5790b6631ade6b25d7"
+  ]
+ },
+ {
+  "job": "xx91-2026-11-12",
+  "device": "ibm_fez",
+  "fallback": "same_qubits",
+  "built": true,
+  "same_gates": true,
+  "gate_hash": "9e8330a96154f469",
+  "recorded_gate_hash": "9e8330a96154f469",
+  "same_qpy_bytes": false,
+  "tail": [
+   "answers sha256 30e296047aabdac4f539a834828d4feb5637bbfd48be1d5790b6631ade6b25d7"
+  ]
+ },
+ {
+  "job": "ohm-2026-11-12",
+  "device": "ibm_marrakesh",
+  "fallback": null,
+  "built": false,
+  "tail": [
+   "RuntimeError: the sentinel did not land on the user's ring"
+  ],
+  "circuits": null,
+  "seconds": null,
+  "sentinel_fallback": null
+ },
+ {
+  "job": "ohm-2026-11-12",
+  "device": "ibm_marrakesh",
+  "fallback": "same_qubits",
+  "built": true,
+  "tail": [
+   "answers by chain label sha256 636e2302b7e77cb2275c4d939937023095a558f197774e5befa56f45706c7f22"
+  ],
+  "circuits": 508,
+  "seconds": 158.4,
+  "sentinel_fallback": {
+   "asked": "same_qubits",
+   "used": true
+  }
+ },
+ {
+  "job": "ohm-kingston-2026-11-12",
+  "device": "ibm_marrakesh",
+  "fallback": null,
+  "built": false,
+  "tail": [
+   "RuntimeError: the sentinel did not land on the user's ring"
+  ],
+  "circuits": null,
+  "seconds": null,
+  "sentinel_fallback": null
+ },
+ {
+  "job": "ohm-kingston-2026-11-12",
+  "device": "ibm_marrakesh",
+  "fallback": "same_qubits",
+  "built": true,
+  "tail": [
+   "answers by chain label sha256 636e2302b7e77cb2275c4d939937023095a558f197774e5befa56f45706c7f22"
+  ],
+  "circuits": 508,
+  "seconds": 158.4,
+  "sentinel_fallback": {
+   "asked": "same_qubits",
+   "used": true
+  }
+ },
+ {
+  "job": "xx91-2026-11-12",
+  "device": "ibm_marrakesh",
+  "fallback": null,
+  "built": false,
+  "tail": [
+   "psf_os.chain.Refused: rule C: no start reaches 91 sites; longest 84"
+  ],
+  "circuits": null,
+  "seconds": null,
+  "sentinel_fallback": null
+ },
+ {
+  "job": "xx91-2026-11-12",
+  "device": "ibm_marrakesh",
+  "fallback": "same_qubits",
+  "built": false,
+  "tail": [
+   "psf_os.chain.Refused: rule C: no start reaches 91 sites; longest 84"
+  ],
+  "circuits": null,
+  "seconds": null,
+  "sentinel_fallback": null
+ },
+ {
+  "job": "hubbard-2026-11-11",
+  "device": "ibm_marrakesh",
+  "fallback": null,
+  "built": false,
+  "tail": [
+   "RuntimeError: the sentinel did not land on the user's ring"
+  ],
+  "circuits": null,
+  "seconds": null,
+  "sentinel_fallback": null
+ },
+ {
+  "job": "hubbard-2026-11-11",
+  "device": "ibm_marrakesh",
+  "fallback": "same_qubits",
+  "built": true,
+  "tail": [
+   "answers sha256 1264a31ca9beafb546513a0a9b7c4ab433009caac4f743686aa3d7dfe734a10d"
+  ],
+  "circuits": 40,
+  "seconds": 47.6,
+  "sentinel_fallback": {
+   "asked": "same_qubits",
+   "used": true
+  }
+ }
+]
