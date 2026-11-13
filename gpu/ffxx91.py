@@ -34,6 +34,7 @@ def main():
     ap.add_argument("--thetas", default="0.7853981633974483,1.5707963267948966")
     ap.add_argument("--steps", default="2,4,6,8,10,12")
     ap.add_argument("--max-seconds", type=float, default=160)
+    ap.add_argument("--twin", action="store_true", help="add each circuit's Clifford twin (psf_os.twin); answers to ANS_twin.json")
     a = ap.parse_args()
     for p in (a.out, a.ans_out):
         if os.path.exists(p):
@@ -47,7 +48,7 @@ def main():
             items.append((t, HB.on_chain(F.circuit(a.n, s, th, measure=False), labels, dev.num_qubits)))
             answers[t] = {str(q): float(z) for q, z in zip(labels, F.z_exact(a.n, s, th))}
     HB._mirror_from_compiled(dev, U)
-    rep = U.build_batch(dev, items, a.out, shots=4000, max_seconds=a.max_seconds)
+    rep = U.build_batch(dev, items, a.out, shots=4000, max_seconds=a.max_seconds, **(dict(twin=True) if a.twin else {}))
     cz = {t: r["cz"] for t, r in rep["items"].items()}
     json.dump(answers, open(a.ans_out, "w"), indent=1, sort_keys=True)
     json.dump(dict(device=dev.name, chains={str(a.n): dict(labels=labels, **how)}, cz=cz, circuits=rep["circuits"],
@@ -56,6 +57,9 @@ def main():
         print(f"{t}: CZ {cz[t]}, copy {rep['items'][t]['copy']}")
     print(f"chain by rule {how['rule']}; circuits {rep['circuits']}  model {rep['qpu_seconds_model']} s")
     print("answers sha256", hashlib.sha256(open(a.ans_out, "rb").read()).hexdigest())
+    if a.twin:
+        from twin_util import twin_answers
+        twin_answers(a.out, sorted(cz), a.ans_out[:-5] + "_twin.json")
 
 
 if __name__ == "__main__":

@@ -97,6 +97,8 @@ def main():
     ap.add_argument("--L", type=int, nargs="+", default=[20])
     ap.add_argument("--steps", type=int, nargs="+", default=[2, 4, 6])
     ap.add_argument("--max-seconds", type=float, default=60)
+    ap.add_argument("--arms", default="U4,U0", help="arms to build (default both)")
+    ap.add_argument("--twin", action="store_true", help="add each circuit's Clifford twin (psf_os.twin); answers to ANS_twin.json")
     a = ap.parse_args()
     for p in (a.out, a.ans_out):
         if os.path.exists(p):
@@ -108,16 +110,16 @@ def main():
         labels, how = chain_of(dev, 2 * L)
         chains[L] = dict(labels=labels, **how)
         for s in a.steps:
-            for arm in ("U4", "U0"):
+            for arm in a.arms.split(","):
                 tag = f"L{L}_s{s}_{arm}"
                 items.append((tag, on_chain(logical(L, s, arm), labels, dev.num_qubits)))
                 answers[tag] = {str(q): v for q, v in zip(labels, vals[tag])}
     _mirror_from_compiled(dev, U)
-    rep = U.build_batch(dev, items, a.out, shots=4000, max_seconds=a.max_seconds)
+    rep = U.build_batch(dev, items, a.out, shots=4000, max_seconds=a.max_seconds, **(dict(twin=True) if a.twin else {}))
     cz = {t: r["cz"] for t, r in rep["items"].items()}
     for L in a.L:
         for s in a.steps:
-            if cz[f"L{L}_s{s}_U4"] != cz[f"L{L}_s{s}_U0"]:
+            if f"L{L}_s{s}_U0" in cz and cz[f"L{L}_s{s}_U4"] != cz[f"L{L}_s{s}_U0"]:
                 raise SystemExit(f"REFUSED: CZ differ between the arms at L {L} steps {s}: "
                                  f"{cz[f'L{L}_s{s}_U4']} and {cz[f'L{L}_s{s}_U0']}")
     with open(a.ans_out, "w") as f:
@@ -131,6 +133,9 @@ def main():
         print(f"{t}: CZ {cz[t]}, copy {rep['items'][t]['copy']}")
     print(f"circuits {rep['circuits']}  model {rep['qpu_seconds_model']} s")
     print("answers sha256", hashlib.sha256(open(a.ans_out, "rb").read()).hexdigest())
+    if a.twin:
+        from twin_util import twin_answers
+        twin_answers(a.out, sorted(cz), a.ans_out[:-5] + "_twin.json")
 
 
 if __name__ == "__main__":
