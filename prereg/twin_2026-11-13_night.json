@@ -1,0 +1,19 @@
+{
+ "name": "twin-2026-11-13",
+ "declaration": "prereg/twin_2026-11-13.md",
+ "tie_order": ["ibm_marrakesh", "ibm_fez", "ibm_kingston"],
+ "jobs": [
+  {"key": "xx",
+   "build": ["gpu/ffxx91.py", "{DEV}", "{OUT}", "{ANS}", "--thetas", "0.7853981633974483", "--steps", "4,8,12", "--twin", "--sentinel-fallback", "same_qubits"],
+   "checks": [["gpu/twin_check.py", "{OUT}", "{ANS_TWIN}"], ["gpu/hub_check.py", "{OUT}", "{ANS}", "--mps-steps", "4"]],
+   "checked": {"28163dcd8a5c79d87e34aba0354de36d39c99627ad30f145be459721fe572eba": "notes/twin_2026-11-13/trybuild/xx_twin"},
+   "score": ["gpu/twin_score.py", "{OUT}", "{ANS}", "{ANS_TWIN}"], "scores_file": "twin_scores.json",
+   "answers": ["{ANS}", "{ANS_TWIN}"]},
+  {"key": "hub",
+   "build": ["gpu/hub_build.py", "{DEV}", "{OUT}", "results/hubbard-2026-11-11/answers/hub_answers_home.json", "{ANS}", "--L", "20", "--steps", "2", "4", "6", "--arms", "U4", "--twin", "--sentinel-fallback", "same_qubits"],
+   "checks": [["gpu/twin_check.py", "{OUT}", "{ANS_TWIN}"], ["gpu/hub_check.py", "{OUT}", "{ANS}", "--mps-steps", "4", "--quimb-steps", "6"]],
+   "checked": {"a2922e31a84dda702657c55707b3c590579fb22b997177d1623bee6896e7c9bd": "notes/twin_2026-11-13/trybuild/hub_twin"},
+   "score": ["gpu/twin_score.py", "{OUT}", "{ANS}", "{ANS_TWIN}"], "scores_file": "twin_scores.json",
+   "answers": ["{ANS}", "{ANS_TWIN}"]}
+ ]
+}
