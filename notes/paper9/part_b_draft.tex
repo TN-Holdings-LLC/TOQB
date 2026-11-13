@@ -1,0 +1,99 @@
+% Paper 9, Part B (Hubbard and the free-fermion XX chain), DRAFT, workplace 2026-11-13 (handover 11-12 item 2-3).
+% Every number is copied from the results' README and checked against its scores.json (workplace, 2026-11-13: all
+% MSE, mean square, verdict, AGREES and r equal). Ohm is left out (owner's decision pending). Author: TN Holdings.
+
+\section{The one-dimensional Fermi--Hubbard model, raw}\label{sec:hubbard}
+
+\subsection{Circuit, ruler and classical check}
+$L$ sites on $2L$ qubits in the interleaved Jordan--Wigner order (up and down of site $i$ on qubits $2i$, $2i+1$), N\'eel
+start (site $i$ holds an up fermion if $i$ is even, a down fermion if odd), $J = 1$, first-order Trotter steps of
+$dt = 0.25$: onsite $R_{ZZ}(U\,dt/2)$ and $R_Z(-U\,dt/2)$, then even and odd bonds by fermionic swaps and $XX+YY$
+hopping. The step was checked against the fermion operators ($5.6\times10^{-16}$ at $L = 3$); on a line it needs
+$10L-8$ CZ and 12 CZ layers per step and no routing. Two exact checks ride along: from the N\'eel start the charge of
+every site stays exactly 1 at any $U$, so $\langle Z_{i\uparrow}\rangle + \langle Z_{i\downarrow}\rangle = 0$ on every
+site; and at $U = 0$ the circuit is free fermions, exact at any size from a $2L\times2L$ single-particle matrix (the
+\emph{ruler}). In the declared jobs the ruler carried the same CZ count and CZ depth as the $U = 4$ arm: each onsite
+$R_{ZZ}$ was written as two cancelling CZ separated by a barrier.
+
+The answers at $U = 4$ come from matrix-product states. Before any device run a POD measured how far that check
+reaches, with a criterion fixed beforehand: for $L = 20$, 24, 30 and 4, 6, 8 steps, all nine were checked (4 and 6
+steps by an untruncated MPS against a truncated one, differences $2.5\times10^{-8}$ and $7.8\times10^{-8}$; 8 steps by
+neighbouring bond dimensions 1024 and 2048 differing by at most $8\times10^{-10}$). The bond dimension did not grow
+with $L$ (214, 610, 1722 at 4, 6, 8 steps): at fixed depth, size does not make this check hard.
+
+\subsection{40 to 120 qubits}
+\texttt{results/hubbard-2026-11-11} and \texttt{hubbard-big-2026-11-11}, ibm\_fez, 4000 shots; declarations
+prereg/hubbard\_2026-11-11.md and hubbard\_big\_2026-11-11.md; answers sealed before each run. Verdicts per circuit over
+its $2L$ qubits (READS: MSE of $\langle Z\rangle$ at most half the mean square of the exact values):
+
+\begin{center}\small
+\begin{tabular}{rrrrcc}
+\hline
+$L$ (qubits) & steps & CZ & CZ per qubit & $U=4$: MSE / mean square & ruler: MSE / mean square \\
+\hline
+20 (40) & 2 & 384 & 9.6 & 0.0094 / 0.1814 READS & 0.0063 / 0.0824 READS \\
+20 (40) & 4 & 768 & 19.2 & 0.0080 / 0.0460 READS & 0.0395 / 0.1316 READS \\
+20 (40) & 6 & 1152 & 28.8 & 0.0141 / 0.0219 does not read & 0.0480 / 0.0512 does not read \\
+30 (60) & 2 & 584 & 9.7 & 0.0093 / 0.1725 READS & 0.0043 / 0.0742 READS \\
+30 (60) & 4 & 1168 & 19.5 & 0.0068 / 0.0375 READS & 0.0422 / 0.1312 READS \\
+30 (60) & 6 & 1752 & 29.2 & 0.0125 / 0.0176 does not read & 0.0361 / 0.0452 does not read \\
+45 (90) & 2 & 884 & 9.8 & 0.0191 / 0.1672 READS & 0.0110 / 0.0697 READS \\
+45 (90) & 4 & 1768 & 19.6 & 0.0101 / 0.0325 READS & 0.0324 / 0.1383 READS \\
+60 (120) & 2 & 1184 & 9.9 & 0.0132 / 0.1637 READS & 0.0062 / 0.0661 READS \\
+60 (120) & 4 & 2368 & 19.7 & 0.0073 / 0.0290 READS & 0.0307 / 0.1308 READS \\
+\hline
+\end{tabular}
+\end{center}
+
+Every size from 40 to 120 qubits read at 2 and 4 steps (48 CZ layers at 4 steps); neither $L$ run at 6 steps (72
+layers) read. Within this family the boundary lies along depth, not size. The predictions that $U = 4$ would read at 6
+steps and that the ruler would keep the same share of its pattern as $U = 4$ (ratio of amplitude ratios
+$r(U4)/r(U0)$ within 0.9--1.1) failed: the ratio held at 2 steps (0.90--0.94) and not at 4 or 6 (1.00--3.40). With
+equal gate counts the ruler kept less of its pattern from 4 steps on; its exact pattern spreads ballistically while
+the $U = 4$ N\'eel pattern decays slowly, so the two arms compare different signals, and the ruler as built is not a
+stand-in for the noise felt by the $U = 4$ pattern beyond 2 steps. It stayed beside the verdicts and corrected
+nothing. The exactly-zero site charge read 0.05--0.10 on average: a raw gauge of the device's error on this circuit.
+
+\subsection{One time, two step sizes}
+\texttt{results/hub-dt-2026-11-12}, ibm\_fez, prereg/hub\_dt\_2026-11-12.md. At $L = 20$, the same time reached in two
+step sizes, each arm scored against its own circuit's answers (all four READ) and, as declared, against the continuum
+limit (Richardson extrapolation): at $Jt = 1$ the 2-step circuit was closer than the 4-step one (MSE 0.0049 against
+0.0057; the difference 0.0009 is 1.7 shot standard errors, small and one device-day); at $Jt = 0.5$ the 2-step circuit
+was closer than the 1-step one by 0.0172 (17 shot standard errors), the 1-step circuit's Trotter error (0.0164) being
+larger than the 2-step circuit's whole device error. The 4-step circuit is the 11-11 $L = 20$ circuit: its device error
+against its own answers was 0.0080 on 11-11 and 0.0065 on 11-12.
+
+\section{The free-fermion XX chain at 91 qubits: a depth scan}\label{sec:xx91}
+\texttt{results/xx91-2026-11-12}, ibm\_fez (rule C chain; ibm\_marrakesh reached 84 sites), 4000 shots,
+prereg/ffxx91\_2026-11-12.md. The XX brickwork is the ruler's circuit at one species: exact at any size. Steps 2 to 20
+(8 to 80 CZ layers), $\theta = \pi/4$ judged and $\theta = \pi/2$ beside:
+
+\begin{center}\small
+\begin{tabular}{rrrcc}
+\hline
+steps & CZ layers & CZ & $\theta=\pi/4$: MSE / mean square, $r$ & $\theta=\pi/2$: MSE / mean square, $r$ \\
+\hline
+2 & 8 & 360 & 0.0170 / 0.2589 READS, 0.806 & 0.0475 / 1 READS, 0.817 \\
+4 & 16 & 720 & 0.0306 / 0.2032 READS, 0.681 & 0.1255 / 1 READS, 0.690 \\
+8 & 32 & 1440 & 0.0555 / 0.1760 READS, 0.500 & 0.3173 / 1 READS, 0.467 \\
+12 & 48 & 2160 & 0.0862 / 0.1703 does not read, 0.327 & 0.5035 / 1 does not read, 0.308 \\
+16 & 64 & 2880 & 0.1111 / 0.1725 does not read, 0.219 & 0.6639 / 1 does not read, 0.194 \\
+20 & 80 & 3600 & 0.1337 / 0.1774 does not read, 0.143 & 0.8018 / 1 does not read, 0.107 \\
+\hline
+\end{tabular}
+\end{center}
+
+The readable depth at $\theta = \pi/4$ is 8 steps (32 CZ layers); at 12 steps both angles miss the line narrowly
+(0.506 and 0.504). Both predictions (that $\pi/2$ would read at every step and $\pi/4$ to at least 12) failed. The share
+$r$ of the exact pattern kept by the device is nearly the same for both angles and falls by $e$ every 41 CZ layers from
+16 to 80. An observation within these records, not a general claim: if the device only shrank the signal ($z = r e$),
+MSE / mean square would equal $(1-r)^2$ and the line would sit at $r = 1 - 1/\sqrt2 \approx 0.29$ whatever the signal's
+size; $r$ crosses 0.29 near 52 layers and the verdicts turn between 32 and 48, and the larger signal of $\theta = \pi/4$
+(mean square 0.17, against Hubbard's 0.05 at 48 layers) did not move the boundary. Per qubit, the last reading step
+had 15.8 CZ and the first non-reading 23.7, while Hubbard read at 19.2--19.7 and not at 28.8: the XX brickwork keeps 90
+of 91 qubits busy in every CZ layer, Hubbard about 0.8 of them, so per CZ layer the XX chain loses more.
+
+% Open for home / owner: whether the common thread is written as "within a family the boundary lies along depth;
+% where it lies depends on how fast the exact signal shrinks" (outline, 11-12 correction) together with the XX
+% observation above (a multiplicative error makes the signal's size cancel out of the line) - the two read together
+% say the boundary is set by the share kept, which falls with CZ layers at a family-dependent rate.

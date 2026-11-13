@@ -1,0 +1,35 @@
+% Paper 9, Part A addition: the 11-11 depth scan of IBM's 2023 utility observables. DRAFT, workplace 2026-11-13
+% (handover 11-12 item 2-3). Follows part_a_from_paper8.tex (the 11-10 run). Numbers from
+% results/utility-depth-2026-11-11/README.md, checked against its scores.json (MSE, verdict, AGREES equal).
+
+\subsection{How deep the observables read}\label{sec:utility-depth}
+\texttt{results/utility-depth-2026-11-11}, ibm\_fez (ibm\_marrakesh placed no clear cone), prereg/utility\_depth\_2026-11-11.md.
+The exact values were extended past the 11-10 depths by a light-cone tensor-network contraction (checked against the
+stabilizer method on all 127 qubits at the Clifford points) and sealed before the run. One job of 137 circuits,
+17 values of $\theta_h$ per observable:
+
+\begin{center}\small
+\begin{tabular}{lrrrcc}
+\hline
+observable & steps & CZ & light cone (qubits) & MSE / mean square & AGREES (of 17) \\
+\hline
+$Z_{106}$ & 4 & 564 & 17 & 0.0198 / 0.4145 READS & 7 \\
+$Z_{106}$ & 5 & 705 & 25 & 0.0149 / 0.4073 READS & 7 \\
+$Z_{106}$ & 6 & 846 & 31 & 0.0117 / 0.4005 READS & 8 \\
+$Z_{106}$ & 7 & 987 & 38 & 0.0110 / 0.3968 READS & 8 \\
+$Z_{106}$ & 8 & 1128 & 43 & 0.0108 / 0.3921 READS & 8 \\
+weight-10 & 5 & 705 & 37 & 0.0238 / 0.1672 READS & 11 \\
+weight-10 & 6 & 846 & 42 & 0.0005 / 0.0038 READS & 17 \\
+\hline
+\end{tabular}
+\end{center}
+
+$Z_{106}$ read at every depth run (4 to 8 steps), weight-10 at 5 and 6. The prediction that weight-10 would not read at
+6 steps failed. Both readings need care. The exact $Z_{106}$ curve changes little with depth (the 4- and 8-step
+curves differ by at most 0.11), and the MSE falls with depth because the device's tail at large $\theta_h$ shrinks: this
+is reading a slowly changing answer, not a test of a fast-changing one. Weight-10 at 6 steps is a small signal (mean
+square 0.0038, largest exact value 0.13): the device beats the all-zero guess (MSE 0.0005 against 0.0038) and puts its
+largest values at the same $\theta_h$, but the READS line was not written for so small a signal; the verdict is given
+as declared. Against 11-10 on the same device and circuits, $Z_{106}$ at 4 steps had MSE 0.0198 (0.0207) and weight-10
+at 5 steps 0.0238 (0.0226). The mirror of each circuit fell with depth (0.48 to 0.32 for $Z_{106}$, 0.11 and 0.05 for
+weight-10).
