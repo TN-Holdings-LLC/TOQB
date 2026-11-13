@@ -25,7 +25,7 @@
   "recorded_circuits": 40,
   "seconds": 47.6,
   "recorded_seconds": 47.6,
-  "wall_s": 17.5
+  "wall_s": 20.1
  },
  {
   "job": "xx91",
@@ -47,7 +47,7 @@
   "recorded_circuits": 40,
   "seconds": 47.6,
   "recorded_seconds": 47.6,
-  "wall_s": 23.3
+  "wall_s": 31.4
  },
  {
   "job": "ohm",
@@ -69,7 +69,7 @@
   "recorded_circuits": 508,
   "seconds": 158.4,
   "recorded_seconds": 158.4,
-  "wall_s": 84.8
+  "wall_s": 86.4
  },
  {
   "job": "ohm-kingston",
@@ -91,7 +91,7 @@
   "recorded_circuits": 508,
   "seconds": 158.4,
   "recorded_seconds": 158.4,
-  "wall_s": 84.9
+  "wall_s": 71.5
  },
  {
   "job": "hubbard-big",
@@ -119,6 +119,46 @@
   "recorded_circuits": 28,
   "seconds": 34.2,
   "recorded_seconds": 34.2,
-  "wall_s": 13.9
+  "wall_s": 14.1
+ },
+ {
+  "job": "3d",
+  "result": "os3d-physA-2026-11-07",
+  "part": "j1_4x4x3",
+  "device": "ibm_fez",
+  "records_same": 162,
+  "records_differ": 0,
+  "differ": [],
+  "wall_s": 64.5
+ },
+ {
+  "job": "3d",
+  "result": "os3d-physA-2026-11-07",
+  "part": "j2_4x2x2",
+  "device": "ibm_fez",
+  "records_same": 270,
+  "records_differ": 0,
+  "differ": [],
+  "wall_s": 68.4
+ },
+ {
+  "job": "3d",
+  "result": "os3d-kingston-top-2026-11-07",
+  "part": "mid_4x4x3",
+  "device": "ibm_kingston",
+  "records_same": 54,
+  "records_differ": 0,
+  "differ": [],
+  "wall_s": 19.2
+ },
+ {
+  "job": "3d",
+  "result": "os3d-kingston-top-2026-11-07",
+  "part": "big_4x6x3",
+  "device": "ibm_kingston",
+  "records_same": 18,
+  "records_differ": 0,
+  "differ": [],
+  "wall_s": 5.8
  }
 ]

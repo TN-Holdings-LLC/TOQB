@@ -4,8 +4,13 @@ recorded job by psf-os's gate hash (psf_os.gatehash; the QPY bytes change with t
 written by label compared with the recorded answers file (workplace, 2026-11-13; desk only, no device).
 The entrance is called with the declared builders' settings (shots, max_seconds; mirror "compiled" is the entrance's
 default and what the builders patched in; no sentinel fallback, no twin, no special).
+3D (added 2026-11-13g): the declared kicked-Ising 3D jobs (os3d-physA-2026-11-07 j1 / j2 on ibm_fez, os3d-kingston-top-
+2026-11-07 mid / big on ibm_kingston): every 3D arm (user, floor, mirror) rebuilt through the entrance from
+grid3d.logical(4, M, N, t, theta) at the arm's recorded translation (at3d) and fold version, and every 2D arm (hex
+patch on labels, user2d's own mirror) through the entrance, compared record by record by gate hash with the recorded
+runs. The probes and the sentinel of those jobs are made by the builder (gpu/os3d_v31_build.py), not by the entrance.
 usage: PYTHONPATH=<psf-os>:<lab-notebook> python regress_entrance.py WORK_DIR [job ...]   (jobs: hubbard xx91 ohm
-       ohm-kingston hubbard-big; default all)"""
+       ohm-kingston hubbard-big 3d; default all but 3d)"""
 import gzip
 import json
 import os
@@ -79,12 +84,66 @@ def recorded_qpy(res, devname, work):
     return qf
 
 
+JOBS3D = [("os3d-physA-2026-11-07", "j1_4x4x3"), ("os3d-physA-2026-11-07", "j2_4x2x2"),
+          ("os3d-kingston-top-2026-11-07", "mid_4x4x3"), ("os3d-kingston-top-2026-11-07", "big_4x6x3")]
+
+
+def main3d(work):
+    import glob
+    import os3d_v31_build as HX
+    from psf_os import device as Dv
+    from psf_os import entrance as E
+    from psf_os import gatehash
+    from psf_os import grid3d as G
+    rows = []
+    for res, job in JOBS3D:
+        t0 = time.time()
+        dev = Dv.Device.load(os.path.join(RES, res, "dev"))
+        runs = os.path.join(RES, res, job, "runs")
+        recs = sorted(glob.glob(os.path.join(runs, "p2d_*.json")))
+        same = differ = 0
+        bad = []
+        for f in recs:
+            r = json.load(open(f))
+            tag = r.get("tag")
+            if f.endswith(("_floor.json", "_mirror.json")):
+                continue
+            out = os.path.join(work, f"e3d_{res}_{job}_{tag}")
+            if "grid3d" in r:
+                g = r["grid3d"]
+                qc = G.logical(4, g["M"], g["N"], g["t"], g["theta"])
+                E.build(dev, [(tag, qc)], out, shots=r.get("shots", 4000), max_seconds=10 ** 6,
+                        fold=g.get("fold_version", "v3.1"), at3d=[(g["r0"], g["c0"])])
+            else:  # the 2D hex arm: written on labels, user2d's own mirror
+                t, th = r.get("t"), None
+                import re
+                m = re.match(r"hex_(?:th(\d\d)_)?t(\d+)$", tag)
+                th = int(m.group(1)) / 10 if m.group(1) else 0.8
+                qc = HX.hex_circuit(int(m.group(2)), th)
+                E.build(dev, [(tag, qc)], out, shots=r.get("shots", 4000), max_seconds=10 ** 6, mirror="logical")
+            for suf in ("", "_floor", "_mirror"):
+                a = gatehash.qpy_hash(os.path.join(runs, f"p2d_{tag}{suf}.qpy"))["gate_sha256"]
+                b = gatehash.qpy_hash(os.path.join(out, "runs", f"p2d_{tag}{suf}.qpy"))["gate_sha256"]
+                if a == b:
+                    same += 1
+                else:
+                    differ += 1
+                    bad.append(tag + suf)
+        rows.append(dict(job="3d", result=res, part=job, device=dev.name, records_same=same, records_differ=differ,
+                         differ=bad[:10], wall_s=round(time.time() - t0, 1)))
+        print(json.dumps(rows[-1]), flush=True)
+    return rows
+
+
 def main(work, names):
     from psf_os import device as Dv
     from psf_os import entrance as E
     from psf_os import gatehash
     os.makedirs(work, exist_ok=True)
     rows = []
+    if "3d" in names:
+        rows += main3d(work)
+        names = [n for n in names if n != "3d"]
     for name in names:
         res, devname, make, shots, maxs, ans_name = JOBS[name]
         t0 = time.time()
@@ -108,7 +167,7 @@ def main(work, names):
         print(json.dumps(rows[-1]), flush=True)
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "regress_entrance.json")
     old = json.load(open(path)) if os.path.exists(path) else []
-    keep = [r for r in old if r["job"] not in names]
+    keep = [r for r in old if r["job"] not in names and not (r["job"] == "3d" and any(x["job"] == "3d" for x in rows))]
     json.dump(keep + rows, open(path, "w"), indent=1)
 
 
