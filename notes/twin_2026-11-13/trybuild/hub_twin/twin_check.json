@@ -1,0 +1,24 @@
+{
+ "L20_s2_U4": {
+  "same_schedule": true,
+  "rz_quarter_turns": true,
+  "worst": 0.0,
+  "cz": 384,
+  "ok": true
+ },
+ "L20_s4_U4": {
+  "same_schedule": true,
+  "rz_quarter_turns": true,
+  "worst": 0.0,
+  "cz": 768,
+  "ok": true
+ },
+ "L20_s6_U4": {
+  "same_schedule": true,
+  "rz_quarter_turns": true,
+  "worst": 0.0,
+  "cz": 1152,
+  "ok": true
+ },
+ "ALL": "PASS"
+}

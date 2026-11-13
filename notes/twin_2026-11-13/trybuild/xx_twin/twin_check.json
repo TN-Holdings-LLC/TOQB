@@ -1,0 +1,24 @@
+{
+ "N91_th0785_s04": {
+  "same_schedule": true,
+  "rz_quarter_turns": true,
+  "worst": 0.0,
+  "cz": 720,
+  "ok": true
+ },
+ "N91_th0785_s08": {
+  "same_schedule": true,
+  "rz_quarter_turns": true,
+  "worst": 0.0,
+  "cz": 1440,
+  "ok": true
+ },
+ "N91_th0785_s12": {
+  "same_schedule": true,
+  "rz_quarter_turns": true,
+  "worst": 0.0,
+  "cz": 2160,
+  "ok": true
+ },
+ "ALL": "PASS"
+}

@@ -1,0 +1,19 @@
+{
+ "N91_th0785_s04": {
+  "cz": 720,
+  "cz_depth": 16,
+  "method": "matrix_product_state",
+  "worst": 4.578670775856608e-11,
+  "mirror_worst": 1.4432899320127035e-13,
+  "ok": true
+ },
+ "N91_th0785_s08": {
+  "cz": 1440,
+  "cz_depth": 32
+ },
+ "N91_th0785_s12": {
+  "cz": 2160,
+  "cz_depth": 48
+ },
+ "ALL": "PASS"
+}

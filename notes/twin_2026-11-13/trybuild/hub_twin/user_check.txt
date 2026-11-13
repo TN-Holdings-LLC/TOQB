@@ -1,0 +1,4 @@
+L20_s2_U4: CZ 384 depth 24; matrix_product_state against the answers worst 9.4e-11, mirror 1.7e-14 PASS
+L20_s4_U4: CZ 768 depth 48; matrix_product_state against the answers worst 2.3e-08, mirror 1.0e-12 PASS
+L20_s6_U4: CZ 1152 depth 72; quimb chi 1024 (bond 625, error estimate 2.9e-10) against the answers worst 1.3e-14, mirror 0.0e+00 PASS
+ALL PASS
