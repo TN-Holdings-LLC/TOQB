@@ -21,7 +21,7 @@ Spec (JSON), placeholders {DEV} (device record folder), {OUT} (job folder), {ANS
              "answers": ["{ANS}", "{ANS_TWIN}"]}, ...]}
 
 usage:
-  PYTHONPATH=<psf-os>:<notebook>:<notebook>/gpu python gpu/night.py prepare SPEC FETCH WORK
+  PYTHONPATH=<psf-os>:<notebook>:<notebook>/gpu python gpu/night.py prepare SPEC FETCH WORK [--device ibm_fez]
   PYTHONPATH=... python gpu/night.py record SPEC WORK RESULT_ZIP --pushed "<reflog line of the push>"
 """
 import argparse
@@ -94,6 +94,10 @@ def prepare(a):
     os.makedirs(a.work, exist_ok=True)
     fetch = unpack(a.fetch, os.path.join(a.work, "fetch_in"))
     order, queue = device_order(fetch, spec["tie_order"])
+    if a.device:  # a companion job that must run on the device the main jobs of the night chose
+        if a.device not in order:
+            raise SystemExit(f"STOP: {a.device} is not in this fetch")
+        order = [a.device]
     log = os.path.join(a.work, "prepare.log")
     print(f"queue read {queue['read']}; pending {queue['pending']}; order {order}")
     chosen, built = None, {}
@@ -120,6 +124,8 @@ def prepare(a):
         carried = spec.get("checked", {}).get(h) or job.get("checked", {}).get(h)
         if carried:
             status = f"PASS carried over from {carried}"
+        elif not job.get("checks"):
+            status = "no pre-run check declared (measurement record)"
         else:
             status = "checks run now"
             for c in job.get("checks", []):
@@ -258,6 +264,7 @@ def main():
     p.add_argument("spec")
     p.add_argument("fetch")
     p.add_argument("work")
+    p.add_argument("--device", default=None, help="build only on this device (companion job of the night)")
     r = sub.add_parser("record")
     r.add_argument("spec")
     r.add_argument("work")

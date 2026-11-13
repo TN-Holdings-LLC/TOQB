@@ -1,0 +1,13 @@
+{
+ "name": "full-floor-2026-11-13",
+ "declaration": "prereg/full_floor_2026-11-13.md",
+ "tie_order": ["ibm_marrakesh", "ibm_fez", "ibm_kingston"],
+ "jobs": [
+  {"key": "floor",
+   "build": ["gpu/full_floor.py", "build", "{DEV}", "{OUT}", "{ANS}"],
+   "checks": [],
+   "checked": {},
+   "score": ["gpu/full_floor.py", "score", "{OUT}", "{ANS}"], "scores_file": "full_floor.json",
+   "answers": []}
+ ]
+}
