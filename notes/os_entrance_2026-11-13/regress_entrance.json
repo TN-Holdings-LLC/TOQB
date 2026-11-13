@@ -1,0 +1,124 @@
+[
+ {
+  "job": "hubbard",
+  "result": "hubbard-2026-11-11",
+  "device": "ibm_fez",
+  "same_gates": true,
+  "gate_hash": "1af20d01467a24aa",
+  "recorded_gate_hash": "1af20d01467a24aa",
+  "same_answers_by_label": true,
+  "families": [
+   [
+    "chain",
+    40,
+    "shape",
+    "S1"
+   ],
+   [
+    "chain",
+    60,
+    "shape",
+    "S3"
+   ]
+  ],
+  "circuits": 40,
+  "recorded_circuits": 40,
+  "seconds": 47.6,
+  "recorded_seconds": 47.6,
+  "wall_s": 17.5
+ },
+ {
+  "job": "xx91",
+  "result": "xx91-2026-11-12",
+  "device": "ibm_fez",
+  "same_gates": true,
+  "gate_hash": "9e8330a96154f469",
+  "recorded_gate_hash": "9e8330a96154f469",
+  "same_answers_by_label": true,
+  "families": [
+   [
+    "chain",
+    91,
+    "C",
+    null
+   ]
+  ],
+  "circuits": 40,
+  "recorded_circuits": 40,
+  "seconds": 47.6,
+  "recorded_seconds": 47.6,
+  "wall_s": 23.3
+ },
+ {
+  "job": "ohm",
+  "result": "ohm-2026-11-12",
+  "device": "ibm_fez",
+  "same_gates": true,
+  "gate_hash": "860d31336b97d2d1",
+  "recorded_gate_hash": "860d31336b97d2d1",
+  "same_answers_by_label": true,
+  "families": [
+   [
+    "chain",
+    40,
+    "shape",
+    "S1"
+   ]
+  ],
+  "circuits": 508,
+  "recorded_circuits": 508,
+  "seconds": 158.4,
+  "recorded_seconds": 158.4,
+  "wall_s": 84.8
+ },
+ {
+  "job": "ohm-kingston",
+  "result": "ohm-kingston-2026-11-12",
+  "device": "ibm_kingston",
+  "same_gates": true,
+  "gate_hash": "138851f7f748750b",
+  "recorded_gate_hash": "138851f7f748750b",
+  "same_answers_by_label": true,
+  "families": [
+   [
+    "chain",
+    40,
+    "shape",
+    "S1"
+   ]
+  ],
+  "circuits": 508,
+  "recorded_circuits": 508,
+  "seconds": 158.4,
+  "recorded_seconds": 158.4,
+  "wall_s": 84.9
+ },
+ {
+  "job": "hubbard-big",
+  "result": "hubbard-big-2026-11-11",
+  "device": "ibm_fez",
+  "same_gates": true,
+  "gate_hash": "ebe6b5c27190b872",
+  "recorded_gate_hash": "ebe6b5c27190b872",
+  "same_answers_by_label": true,
+  "families": [
+   [
+    "chain",
+    90,
+    "C",
+    null
+   ],
+   [
+    "chain",
+    120,
+    "C",
+    null
+   ]
+  ],
+  "circuits": 28,
+  "recorded_circuits": 28,
+  "seconds": 34.2,
+  "recorded_seconds": 34.2,
+  "wall_s": 13.9
+ }
+]
