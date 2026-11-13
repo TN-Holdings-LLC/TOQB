@@ -121,3 +121,13 @@ signal shrinks fast with time (mean square of the answer 0.18 -> 0.05 -> 0.02 at
 error gives a larger error / signal ratio sooner. Thread for paper 9: "per family the boundary lies along depth; where
 it lies depends on how fast the exact signal shrinks". To check before writing: plot MSE (not MSE / mean square)
 against CZ layers across families.
+
+## Check of the r thread (workplace, 2026-11-13; `notes/paper9/r_thread_2026-11-13/`)
+
+107 units with per-qubit (or per-point) z and e, split exactly as MSE / mean square = (1 - r)^2 + rest. Where the
+error is mostly a uniform shrink (XX91: rest 0.12-0.19 of the ratio; IBM weight-10 / 17; isingL; Ohm at the Z level)
+the line r = 0.293 gives the verdict (the two misses, XX91 at 12 steps, sit on the line: ratio 0.504-0.506). Hubbard
+U4 does not: at 6 steps r 0.38-0.42 but the rest (0.30-0.32, a wrong shape) is as large as the shrink, so it does not
+read; about half of its error is rest at every depth. r falls by e every 30 (ruler) to 279 (isingL) CZ layers. So the
+thread holds as "the share kept sets the line where the error is a shrink; where the shape is also wrong, the line
+comes earlier" - within these records, mostly one device and day; 187 units of the boundary table could not be had.

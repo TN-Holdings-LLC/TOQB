@@ -1,0 +1,118 @@
+units 107; decomposition identity worst 2.1e-16; recomputed MSE / mean square against stored: worst 6.6e-05 over 95 units; not obtainable 187
+Hubbard ruler U0: 10 units (8 READS); r >= 0.293 matches the verdict in 10/10; rest's share of MSE / mean square, mean 0.52; r falls by e every 30 CZ layers
+   L20_s2_U0                          layers   24 r +0.896 (1-r)^2 0.011 rest 0.066 ratio 0.077 READS
+   L20_s4_U0                          layers   48 r +0.581 (1-r)^2 0.176 rest 0.125 ratio 0.300 READS
+   L20_s6_U0                          layers   72 r +0.122 (1-r)^2 0.770 rest 0.167 ratio 0.938 not
+   L30_s2_U0                          layers   24 r +0.913 (1-r)^2 0.008 rest 0.050 ratio 0.058 READS
+   L30_s4_U0                          layers   48 r +0.501 (1-r)^2 0.249 rest 0.073 ratio 0.322 READS
+   L30_s6_U0                          layers   72 r +0.213 (1-r)^2 0.620 rest 0.179 ratio 0.799 not
+   L45_s2_U0                          layers   24 r +0.884 (1-r)^2 0.013 rest 0.145 ratio 0.158 READS
+   L45_s4_U0                          layers   48 r +0.604 (1-r)^2 0.157 rest 0.077 ratio 0.234 READS
+   L60_s2_U0                          layers   24 r +0.899 (1-r)^2 0.010 rest 0.084 ratio 0.094 READS
+   L60_s4_U0                          layers   48 r +0.582 (1-r)^2 0.175 rest 0.060 ratio 0.235 READS
+Hubbard U4: 10 units (8 READS); r >= 0.293 matches the verdict in 8/10; rest's share of MSE / mean square, mean 0.52; r falls by e every 71 CZ layers
+   L20_s2_U4                          layers   24 r +0.838 (1-r)^2 0.026 rest 0.026 ratio 0.052 READS
+   L20_s4_U4                          layers   48 r +0.753 (1-r)^2 0.061 rest 0.113 ratio 0.174 READS
+   L20_s6_U4                          layers   72 r +0.416 (1-r)^2 0.341 rest 0.304 ratio 0.645 not  <- r line disagrees
+   L30_s2_U4                          layers   24 r +0.821 (1-r)^2 0.032 rest 0.022 ratio 0.054 READS
+   L30_s4_U4                          layers   48 r +0.692 (1-r)^2 0.095 rest 0.086 ratio 0.181 READS
+   L30_s6_U4                          layers   72 r +0.375 (1-r)^2 0.390 rest 0.321 ratio 0.711 not  <- r line disagrees
+   L45_s2_U4                          layers   24 r +0.795 (1-r)^2 0.042 rest 0.072 ratio 0.114 READS
+   L45_s4_U4                          layers   48 r +0.604 (1-r)^2 0.157 rest 0.154 ratio 0.311 READS
+   L60_s2_U4                          layers   24 r +0.814 (1-r)^2 0.035 rest 0.046 ratio 0.081 READS
+   L60_s4_U4                          layers   48 r +0.665 (1-r)^2 0.113 rest 0.140 ratio 0.253 READS
+Hubbard U4 (dt): 4 units (4 READS); r >= 0.293 matches the verdict in 4/4; rest's share of MSE / mean square, mean 0.49; r falls by e every 149 CZ layers
+   L20_T0.5_s1                        layers   12 r +0.891 (1-r)^2 0.012 rest 0.021 ratio 0.033 READS
+   L20_T0.5_s2                        layers   24 r +0.867 (1-r)^2 0.018 rest 0.026 ratio 0.044 READS
+   L20_T1.0_s2                        layers   24 r +0.744 (1-r)^2 0.065 rest 0.038 ratio 0.103 READS
+   L20_T1.0_s4                        layers   48 r +0.695 (1-r)^2 0.093 rest 0.049 ratio 0.142 READS
+XX91 theta pi/4: 6 units (3 READS); r >= 0.293 matches the verdict in 5/6; rest's share of MSE / mean square, mean 0.19; r falls by e every 42 CZ layers
+   N91_th0785_s02                     layers    8 r +0.806 (1-r)^2 0.038 rest 0.028 ratio 0.066 READS
+   N91_th0785_s04                     layers   16 r +0.681 (1-r)^2 0.102 rest 0.049 ratio 0.151 READS
+   N91_th0785_s08                     layers   32 r +0.500 (1-r)^2 0.250 rest 0.065 ratio 0.315 READS
+   N91_th0785_s12                     layers   48 r +0.327 (1-r)^2 0.453 rest 0.053 ratio 0.506 not  <- r line disagrees
+   N91_th0785_s16                     layers   64 r +0.219 (1-r)^2 0.610 rest 0.034 ratio 0.644 not
+   N91_th0785_s20                     layers   80 r +0.143 (1-r)^2 0.735 rest 0.019 ratio 0.754 not
+XX91 theta pi/2 (ruler): 6 units (3 READS); r >= 0.293 matches the verdict in 5/6; rest's share of MSE / mean square, mean 0.12; r falls by e every 36 CZ layers
+   N91_th1571_s02                     layers    8 r +0.817 (1-r)^2 0.034 rest 0.014 ratio 0.047 READS
+   N91_th1571_s04                     layers   16 r +0.690 (1-r)^2 0.096 rest 0.030 ratio 0.126 READS
+   N91_th1571_s08                     layers   32 r +0.467 (1-r)^2 0.284 rest 0.033 ratio 0.317 READS
+   N91_th1571_s12                     layers   48 r +0.308 (1-r)^2 0.478 rest 0.025 ratio 0.504 not  <- r line disagrees
+   N91_th1571_s16                     layers   64 r +0.194 (1-r)^2 0.650 rest 0.014 ratio 0.664 not
+   N91_th1571_s20                     layers   80 r +0.107 (1-r)^2 0.797 rest 0.005 ratio 0.802 not
+IBM 2023 utility (points over theta): 11 units (9 READS); r >= 0.293 matches the verdict in 11/11; rest's share of MSE / mean square, mean 0.59; r falls by e every - CZ layers
+   z106_t4                            layers None r +1.036 (1-r)^2 0.001 rest 0.049 ratio 0.050 READS
+   w10_t5                             layers None r +0.634 (1-r)^2 0.134 rest 0.001 ratio 0.135 READS
+   w17_t5                             layers None r +0.101 (1-r)^2 0.808 rest 0.002 ratio 0.809 not
+   w17b_t5x                           layers None r +0.077 (1-r)^2 0.851 rest 0.001 ratio 0.852 not
+   z106_t4                            layers None r +1.030 (1-r)^2 0.001 rest 0.047 ratio 0.048 READS
+   z106_t5                            layers None r +1.034 (1-r)^2 0.001 rest 0.035 ratio 0.036 READS
+   z106_t6                            layers None r +1.016 (1-r)^2 0.000 rest 0.029 ratio 0.029 READS
+   z106_t7                            layers None r +1.015 (1-r)^2 0.000 rest 0.027 ratio 0.028 READS
+   z106_t8                            layers None r +1.005 (1-r)^2 0.000 rest 0.028 ratio 0.028 READS
+   w10_t5                             layers None r +0.624 (1-r)^2 0.141 rest 0.001 ratio 0.143 READS
+   w10_t6                             layers None r +0.754 (1-r)^2 0.061 rest 0.074 ratio 0.134 READS
+Ising 3D (isingL): 48 units (48 READS); r >= 0.293 matches the verdict in 48/48; rest's share of MSE / mean square, mean 0.38; r falls by e every 279 CZ layers
+   q22f0_t1                           layers   28 r +0.895 (1-r)^2 0.011 rest 0.004 ratio 0.015 READS
+   q22f0_t2                           layers   55 r +0.891 (1-r)^2 0.012 rest 0.012 ratio 0.024 READS
+   q22f0_t3                           layers   82 r +0.801 (1-r)^2 0.040 rest 0.025 ratio 0.065 READS
+   q22f0_t4                           layers  109 r +0.721 (1-r)^2 0.078 rest 0.027 ratio 0.104 READS
+   q22f1_t1                           layers   28 r +0.884 (1-r)^2 0.013 rest 0.006 ratio 0.019 READS
+   q22f1_t2                           layers   55 r +0.882 (1-r)^2 0.014 rest 0.009 ratio 0.023 READS
+   q22f1_t3                           layers   82 r +0.776 (1-r)^2 0.050 rest 0.045 ratio 0.095 READS
+   q22f1_t4                           layers  109 r +0.678 (1-r)^2 0.104 rest 0.081 ratio 0.185 READS
+   q22f2_t1                           layers   28 r +0.886 (1-r)^2 0.013 rest 0.004 ratio 0.017 READS
+   q22f2_t2                           layers   55 r +0.881 (1-r)^2 0.014 rest 0.015 ratio 0.030 READS
+   q22f2_t3                           layers   82 r +0.835 (1-r)^2 0.027 rest 0.031 ratio 0.058 READS
+   q22f2_t4                           layers  109 r +0.760 (1-r)^2 0.058 rest 0.043 ratio 0.100 READS
+   q22f3_t1                           layers   28 r +0.895 (1-r)^2 0.011 rest 0.004 ratio 0.015 READS
+   q22f3_t2                           layers   55 r +0.891 (1-r)^2 0.012 rest 0.007 ratio 0.019 READS
+   q22f3_t3                           layers   82 r +0.842 (1-r)^2 0.025 rest 0.016 ratio 0.041 READS
+   q22f3_t4                           layers  109 r +0.771 (1-r)^2 0.053 rest 0.021 ratio 0.073 READS
+   q22l0_t1                           layers   18 r +0.895 (1-r)^2 0.011 rest 0.003 ratio 0.014 READS
+   q22l0_t2                           layers   36 r +0.881 (1-r)^2 0.014 rest 0.016 ratio 0.030 READS
+   q22l0_t3                           layers   54 r +0.770 (1-r)^2 0.053 rest 0.042 ratio 0.094 READS
+   q22l0_t4                           layers   72 r +0.677 (1-r)^2 0.104 rest 0.046 ratio 0.150 READS
+   q22l1_t1                           layers   18 r +0.905 (1-r)^2 0.009 rest 0.003 ratio 0.012 READS
+   q22l1_t2                           layers   36 r +0.909 (1-r)^2 0.008 rest 0.009 ratio 0.018 READS
+   q22l1_t3                           layers   54 r +0.875 (1-r)^2 0.016 rest 0.022 ratio 0.038 READS
+   q22l1_t4                           layers   72 r +0.828 (1-r)^2 0.029 rest 0.048 ratio 0.078 READS
+   q22l2_t1                           layers   18 r +0.884 (1-r)^2 0.014 rest 0.006 ratio 0.019 READS
+   q22l2_t2                           layers   36 r +0.880 (1-r)^2 0.014 rest 0.014 ratio 0.029 READS
+   q22l2_t3                           layers   54 r +0.820 (1-r)^2 0.032 rest 0.015 ratio 0.048 READS
+   q22l2_t4                           layers   72 r +0.793 (1-r)^2 0.043 rest 0.018 ratio 0.061 READS
+   q22l3_t1                           layers   18 r +0.902 (1-r)^2 0.010 rest 0.004 ratio 0.014 READS
+   q22l3_t2                           layers   36 r +0.900 (1-r)^2 0.010 rest 0.007 ratio 0.017 READS
+   q22l3_t3                           layers   54 r +0.877 (1-r)^2 0.015 rest 0.017 ratio 0.032 READS
+   q22l3_t4                           layers   72 r +0.826 (1-r)^2 0.030 rest 0.018 ratio 0.049 READS
+   q32f0_t1                           layers   33 r +0.835 (1-r)^2 0.027 rest 0.006 ratio 0.033 READS
+   q32f0_t2                           layers   64 r +0.834 (1-r)^2 0.028 rest 0.020 ratio 0.048 READS
+   q32f0_t3                           layers   95 r +0.742 (1-r)^2 0.066 rest 0.041 ratio 0.107 READS
+   q32f0_t4                           layers  126 r +0.624 (1-r)^2 0.142 rest 0.062 ratio 0.204 READS
+   q32f1_t1                           layers   33 r +0.833 (1-r)^2 0.028 rest 0.005 ratio 0.033 READS
+   q32f1_t2                           layers   64 r +0.817 (1-r)^2 0.033 rest 0.010 ratio 0.043 READS
+   q32f1_t3                           layers   95 r +0.703 (1-r)^2 0.088 rest 0.047 ratio 0.135 READS
+   q32f1_t4                           layers  126 r +0.574 (1-r)^2 0.181 rest 0.088 ratio 0.270 READS
+   q32l0_t1                           layers   30 r +0.845 (1-r)^2 0.024 rest 0.012 ratio 0.036 READS
+   q32l0_t2                           layers   60 r +0.794 (1-r)^2 0.042 rest 0.082 ratio 0.125 READS
+   q32l0_t3                           layers   90 r +0.678 (1-r)^2 0.104 rest 0.085 ratio 0.188 READS
+   q32l0_t4                           layers  120 r +0.597 (1-r)^2 0.162 rest 0.085 ratio 0.248 READS
+   q32l1_t1                           layers   30 r +0.802 (1-r)^2 0.039 rest 0.025 ratio 0.064 READS
+   q32l1_t2                           layers   60 r +0.759 (1-r)^2 0.058 rest 0.059 ratio 0.117 READS
+   q32l1_t3                           layers   90 r +0.597 (1-r)^2 0.163 rest 0.121 ratio 0.283 READS
+   q32l1_t4                           layers  120 r +0.471 (1-r)^2 0.280 rest 0.110 ratio 0.390 READS
+Ohm Z level (A0): 4 units (4 READS); r >= 0.293 matches the verdict in 4/4; rest's share of MSE / mean square, mean 0.27; r falls by e every 81 CZ layers
+   A0_t3 (28 circuits)                layers   12 r +0.793 (1-r)^2 0.043 rest 0.030 ratio 0.073 READS
+   A0_t6 (28 circuits)                layers   24 r +0.662 (1-r)^2 0.114 rest 0.046 ratio 0.160 READS
+   A0_t3 (28 circuits)                layers   12 r +0.878 (1-r)^2 0.015 rest 0.004 ratio 0.019 READS
+   A0_t6 (28 circuits)                layers   24 r +0.783 (1-r)^2 0.047 rest 0.007 ratio 0.055 READS
+Ohm Z level (A1): 4 units (4 READS); r >= 0.293 matches the verdict in 4/4; rest's share of MSE / mean square, mean 0.27; r falls by e every 110 CZ layers
+   A1_t3 (28 circuits)                layers   18 r +0.763 (1-r)^2 0.056 rest 0.029 ratio 0.085 READS
+   A1_t6 (28 circuits)                layers   36 r +0.626 (1-r)^2 0.140 rest 0.037 ratio 0.177 READS
+   A1_t3 (28 circuits)                layers   18 r +0.852 (1-r)^2 0.022 rest 0.009 ratio 0.031 READS
+   A1_t6 (28 circuits)                layers   36 r +0.749 (1-r)^2 0.063 rest 0.017 ratio 0.080 READS
+Ohm Z level (A2): 4 units (4 READS); r >= 0.293 matches the verdict in 4/4; rest's share of MSE / mean square, mean 0.25; r falls by e every 141 CZ layers
+   A2_t3 (28 circuits)                layers   18 r +0.767 (1-r)^2 0.054 rest 0.030 ratio 0.084 READS
+   A2_t6 (28 circuits)                layers   36 r +0.654 (1-r)^2 0.120 rest 0.033 ratio 0.153 READS
+   A2_t3 (28 circuits)                layers   18 r +0.853 (1-r)^2 0.022 rest 0.007 ratio 0.029 READS
+   A2_t6 (28 circuits)                layers   36 r +0.775 (1-r)^2 0.051 rest 0.012 ratio 0.062 READS
