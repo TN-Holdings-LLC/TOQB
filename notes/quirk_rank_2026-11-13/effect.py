@@ -3,9 +3,11 @@ declared, nothing placed or run).
 
 For every ibm_fez ledger day D that has an earlier ledger day:
   - the device record of day D (a committed fez device.json in a results folder dated D) gives the candidates for
-    chains of n = 20 (Hubbard L 20), 40 and 91 (XX91): first the default chain (as gpu/hub_build.chain_of: du91 shape,
-    else psf-os rule C), then the rule C chain from every start of chain.START_ORDER that reaches n, in that order
-    (a chain whose qubit set equals an earlier candidate's is left out);
+    chains of n = 20 (Hubbard L 20), 40 and 91 (XX91) by psf_os.quirk_chain.candidates: the chain rule's chains,
+    one per start, in its own order (du91 shape copies, then rule C from every start); the first is the default
+    chain chain_of chooses, on physical qubits.
+    Corrected 2026-11-13 g: the first version took a shape's own snake labels as the default chain; on fez 11-05 at
+    n = 20 and 40 the qualifying copy is shifted by 2 and 4 rows, so those two default rows were on the wrong qubits.
   - quirk.rank orders them with the ledger before D (it reads only the latest day before D);
   - the chosen chain and the default chain are compared on day D's own floor (the ledger's day D values), which the
     ranking never saw: mean floor loss over the chain qubits measured on D, how many of them were measured, and how
@@ -32,31 +34,10 @@ def device_record(day):
     return hits[0] if hits else None
 
 
-def chain_of(dev, n):
-    """The default chain, as gpu/hub_build.chain_of (copied here: hub_build imports the Unix-only module resource
-    through hub_cost): the first du91 shape with a qualifying copy, else psf-os rule C."""
-    from daily import du91 as X
-    from psf_os import chain as CH
-    pl = X.place(dev, n)
-    if pl["shape"] is not None:
-        shape = next(s for s in X.SHAPES if s[0] == pl["shape"])
-        return list(X.snake(n, shape)), dict(rule="shape", shape=pl["shape"])
-    return list(CH.place(dev, n)["chain"]), dict(rule="C")
-
-
 def candidates(dev, n):
-    sys.path.insert(0, ROOT)
-    from psf_os import chain as CH
-    out, seen = [], set()
-    lab, how = chain_of(dev, n)
-    out.append(dict(name=f"default ({how['rule']})", qubits=[int(x) for x in lab]))
-    seen.add(frozenset(lab))
-    for st in CH.START_ORDER:
-        ch, _, why = CH.walk(dev, n, *st)
-        if why is None and frozenset(ch) not in seen:
-            seen.add(frozenset(ch))
-            out.append(dict(name=f"rule C start {tuple(st)}", qubits=[int(x) for x in ch]))
-    return out
+    """psf_os.quirk_chain.candidates (2026-11-13 g; the first is chain_of's chain on physical qubits)."""
+    from psf_os import quirk_chain as QC
+    return [dict(name=c["name"], qubits=c["qubits"]) for c in QC.candidates(dev, n)]
 
 
 def judge(day_rows, qubits):

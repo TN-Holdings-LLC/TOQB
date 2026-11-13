@@ -6,47 +6,47 @@
    "day": "2026-11-05",
    "n": 20,
    "ledger_day": "2026-11-04",
-   "candidates": 17,
+   "candidates": 28,
    "device_record": "results/daily/2026-11-05/ibm_fez/dev/device.json",
    "marked": 30,
    "chosen": "rule C start (1, 3, 15)",
-   "default": "default (shape)",
+   "default": "shape S1 dr2 dc0",
    "marks_chosen": 1,
-   "marks_default": 4,
+   "marks_default": 7,
    "chosen_on_D": {
     "measured": 16,
     "mean_floor": "2.303e-02",
     "weak_fifth": 2
    },
    "default_on_D": {
-    "measured": 7,
-    "mean_floor": "7.143e-03",
-    "weak_fifth": 0
+    "measured": 8,
+    "mean_floor": "4.381e-02",
+    "weak_fifth": 3
    },
-   "median_candidate_mean_floor": "3.180e-02"
+   "median_candidate_mean_floor": "3.223e-02"
   },
   {
    "day": "2026-11-05",
    "n": 40,
    "ledger_day": "2026-11-04",
-   "candidates": 16,
+   "candidates": 21,
    "device_record": "results/daily/2026-11-05/ibm_fez/dev/device.json",
    "marked": 30,
-   "chosen": "rule C start (1, 6, 0)",
-   "default": "default (shape)",
+   "chosen": "shape S3 dr4 dc4",
+   "default": "shape S1 dr4 dc0",
    "marks_chosen": 6,
-   "marks_default": 11,
+   "marks_default": 8,
    "chosen_on_D": {
-    "measured": 24,
-    "mean_floor": "2.973e-02",
+    "measured": 23,
+    "mean_floor": "2.172e-02",
     "weak_fifth": 4
    },
    "default_on_D": {
-    "measured": 26,
-    "mean_floor": "3.533e-02",
-    "weak_fifth": 5
+    "measured": 32,
+    "mean_floor": "3.205e-02",
+    "weak_fifth": 8
    },
-   "median_candidate_mean_floor": "3.275e-02"
+   "median_candidate_mean_floor": "3.269e-02"
   },
   {
    "day": "2026-11-05",
@@ -56,7 +56,7 @@
    "device_record": "results/daily/2026-11-05/ibm_fez/dev/device.json",
    "marked": 30,
    "chosen": "rule C start (1, 0, 15)",
-   "default": "default (shape)",
+   "default": "shape S3 dr0 dc0",
    "marks_chosen": 19,
    "marks_default": 25,
    "chosen_on_D": {
@@ -75,47 +75,47 @@
    "day": "2026-11-07",
    "n": 20,
    "ledger_day": "2026-11-05",
-   "candidates": 17,
+   "candidates": 28,
    "device_record": "results/daily/2026-11-07/ibm_fez/dev/device.json",
    "marked": 13,
-   "chosen": "default (shape)",
-   "default": "default (shape)",
+   "chosen": "shape S1 dr6 dc0",
+   "default": "shape S1 dr2 dc0",
    "marks_chosen": 0,
-   "marks_default": 0,
+   "marks_default": 3,
    "chosen_on_D": {
-    "measured": 12,
-    "mean_floor": "2.078e-02",
-    "weak_fifth": 1
+    "measured": 16,
+    "mean_floor": "3.639e-02",
+    "weak_fifth": 4
    },
    "default_on_D": {
     "measured": 12,
-    "mean_floor": "2.078e-02",
-    "weak_fifth": 1
+    "mean_floor": "9.575e-02",
+    "weak_fifth": 3
    },
-   "median_candidate_mean_floor": "4.052e-02"
+   "median_candidate_mean_floor": "4.062e-02"
   },
   {
    "day": "2026-11-07",
    "n": 40,
    "ledger_day": "2026-11-05",
-   "candidates": 16,
+   "candidates": 21,
    "device_record": "results/daily/2026-11-07/ibm_fez/dev/device.json",
    "marked": 13,
    "chosen": "rule C start (1, 7, 0)",
-   "default": "default (shape)",
+   "default": "shape S1 dr4 dc0",
    "marks_chosen": 2,
-   "marks_default": 5,
+   "marks_default": 8,
    "chosen_on_D": {
     "measured": 22,
     "mean_floor": "3.811e-02",
     "weak_fifth": 6
    },
    "default_on_D": {
-    "measured": 31,
-    "mean_floor": "2.519e-02",
-    "weak_fifth": 4
+    "measured": 39,
+    "mean_floor": "4.087e-02",
+    "weak_fifth": 8
    },
-   "median_candidate_mean_floor": "4.385e-02"
+   "median_candidate_mean_floor": "4.370e-02"
   },
   {
    "day": "2026-11-07",
@@ -125,7 +125,7 @@
    "device_record": "results/daily/2026-11-07/ibm_fez/dev/device.json",
    "marked": 13,
    "chosen": "rule C start (1, 0, 15)",
-   "default": "default (shape)",
+   "default": "shape S3 dr0 dc0",
    "marks_chosen": 7,
    "marks_default": 11,
    "chosen_on_D": {
@@ -144,47 +144,47 @@
    "day": "2026-11-08",
    "n": 20,
    "ledger_day": "2026-11-07",
-   "candidates": 17,
+   "candidates": 25,
    "device_record": "results/os3d-heisB-2026-11-08/fetch_in/ibm_fez/dev/device.json",
    "marked": 20,
-   "chosen": "default (shape)",
-   "default": "default (shape)",
+   "chosen": "shape S3 dr0 dc0",
+   "default": "shape S1 dr2 dc0",
    "marks_chosen": 1,
-   "marks_default": 1,
+   "marks_default": 3,
    "chosen_on_D": {
-    "measured": 0,
-    "mean_floor": null,
-    "weak_fifth": 0
+    "measured": 8,
+    "mean_floor": "4.799e-02",
+    "weak_fifth": 1
    },
    "default_on_D": {
-    "measured": 0,
-    "mean_floor": null,
-    "weak_fifth": 0
+    "measured": 12,
+    "mean_floor": "7.859e-02",
+    "weak_fifth": 3
    },
-   "median_candidate_mean_floor": "5.594e-02"
+   "median_candidate_mean_floor": "7.277e-02"
   },
   {
    "day": "2026-11-08",
    "n": 40,
    "ledger_day": "2026-11-07",
-   "candidates": 16,
+   "candidates": 20,
    "device_record": "results/os3d-heisB-2026-11-08/fetch_in/ibm_fez/dev/device.json",
    "marked": 20,
-   "chosen": "default (shape)",
-   "default": "default (shape)",
-   "marks_chosen": 4,
-   "marks_default": 4,
+   "chosen": "shape S3 dr0 dc0",
+   "default": "shape S1 dr4 dc0",
+   "marks_chosen": 5,
+   "marks_default": 8,
    "chosen_on_D": {
-    "measured": 18,
-    "mean_floor": "4.941e-02",
-    "weak_fifth": 4
+    "measured": 26,
+    "mean_floor": "5.831e-02",
+    "weak_fifth": 5
    },
    "default_on_D": {
-    "measured": 18,
-    "mean_floor": "4.941e-02",
-    "weak_fifth": 4
+    "measured": 12,
+    "mean_floor": "1.262e-01",
+    "weak_fifth": 3
    },
-   "median_candidate_mean_floor": "7.859e-02"
+   "median_candidate_mean_floor": "8.500e-02"
   },
   {
    "day": "2026-11-08",
@@ -193,8 +193,8 @@
    "candidates": 16,
    "device_record": "results/os3d-heisB-2026-11-08/fetch_in/ibm_fez/dev/device.json",
    "marked": 20,
-   "chosen": "default (C)",
-   "default": "default (C)",
+   "chosen": "rule C start (1, 0, 0)",
+   "default": "rule C start (1, 0, 0)",
    "marks_chosen": 12,
    "marks_default": 12,
    "chosen_on_D": {
@@ -213,47 +213,47 @@
    "day": "2026-11-10",
    "n": 20,
    "ledger_day": "2026-11-08",
-   "candidates": 17,
+   "candidates": 25,
    "device_record": "results/night-2026-11-10/fetch_in/ibm_fez/dev/device.json",
    "marked": 9,
-   "chosen": "default (shape)",
-   "default": "default (shape)",
+   "chosen": "shape S1 dr6 dc0",
+   "default": "shape S1 dr2 dc0",
    "marks_chosen": 0,
-   "marks_default": 0,
+   "marks_default": 3,
    "chosen_on_D": {
-    "measured": 12,
-    "mean_floor": "4.751e-02",
+    "measured": 16,
+    "mean_floor": "2.788e-02",
     "weak_fifth": 2
    },
    "default_on_D": {
-    "measured": 12,
-    "mean_floor": "4.751e-02",
-    "weak_fifth": 2
+    "measured": 20,
+    "mean_floor": "4.008e-02",
+    "weak_fifth": 7
    },
-   "median_candidate_mean_floor": "3.473e-02"
+   "median_candidate_mean_floor": "3.471e-02"
   },
   {
    "day": "2026-11-10",
    "n": 40,
    "ledger_day": "2026-11-08",
-   "candidates": 16,
+   "candidates": 20,
    "device_record": "results/night-2026-11-10/fetch_in/ibm_fez/dev/device.json",
    "marked": 9,
    "chosen": "rule C start (1, 3, 15)",
-   "default": "default (shape)",
+   "default": "shape S1 dr4 dc0",
    "marks_chosen": 0,
-   "marks_default": 4,
+   "marks_default": 3,
    "chosen_on_D": {
     "measured": 37,
     "mean_floor": "3.091e-02",
     "weak_fifth": 8
    },
    "default_on_D": {
-    "measured": 31,
-    "mean_floor": "3.679e-02",
-    "weak_fifth": 6
+    "measured": 36,
+    "mean_floor": "3.154e-02",
+    "weak_fifth": 7
    },
-   "median_candidate_mean_floor": "3.481e-02"
+   "median_candidate_mean_floor": "3.304e-02"
   },
   {
    "day": "2026-11-10",
@@ -263,7 +263,7 @@
    "device_record": "results/night-2026-11-10/fetch_in/ibm_fez/dev/device.json",
    "marked": 9,
    "chosen": "rule C start (1, 0, 15)",
-   "default": "default (C)",
+   "default": "rule C start (1, 0, 0)",
    "marks_chosen": 4,
    "marks_default": 5,
    "chosen_on_D": {
@@ -282,22 +282,22 @@
    "day": "2026-11-11",
    "n": 20,
    "ledger_day": "2026-11-10",
-   "candidates": 17,
+   "candidates": 25,
    "device_record": "results/hubbard-2026-11-11/fetch_in/ibm_fez/dev/device.json",
    "marked": 23,
-   "chosen": "default (shape)",
-   "default": "default (shape)",
+   "chosen": "shape S1 dr6 dc0",
+   "default": "shape S1 dr2 dc0",
    "marks_chosen": 2,
-   "marks_default": 2,
+   "marks_default": 7,
    "chosen_on_D": {
-    "measured": 18,
-    "mean_floor": "2.258e-02",
-    "weak_fifth": 2
+    "measured": 19,
+    "mean_floor": "2.779e-02",
+    "weak_fifth": 3
    },
    "default_on_D": {
-    "measured": 18,
-    "mean_floor": "2.258e-02",
-    "weak_fifth": 2
+    "measured": 19,
+    "mean_floor": "5.354e-02",
+    "weak_fifth": 9
    },
    "median_candidate_mean_floor": "3.130e-02"
   },
@@ -305,22 +305,22 @@
    "day": "2026-11-11",
    "n": 40,
    "ledger_day": "2026-11-10",
-   "candidates": 16,
+   "candidates": 20,
    "device_record": "results/hubbard-2026-11-11/fetch_in/ibm_fez/dev/device.json",
    "marked": 23,
-   "chosen": "rule C start (1, 6, 0)",
-   "default": "default (shape)",
+   "chosen": "shape S4 dr4 dc0",
+   "default": "shape S1 dr4 dc0",
    "marks_chosen": 4,
-   "marks_default": 6,
+   "marks_default": 7,
    "chosen_on_D": {
-    "measured": 38,
-    "mean_floor": "3.170e-02",
+    "measured": 39,
+    "mean_floor": "3.079e-02",
     "weak_fifth": 5
    },
    "default_on_D": {
-    "measured": 37,
-    "mean_floor": "3.062e-02",
-    "weak_fifth": 6
+    "measured": 40,
+    "mean_floor": "3.099e-02",
+    "weak_fifth": 7
    },
    "median_candidate_mean_floor": "3.134e-02"
   },
@@ -331,8 +331,8 @@
    "candidates": 16,
    "device_record": "results/hubbard-2026-11-11/fetch_in/ibm_fez/dev/device.json",
    "marked": 23,
-   "chosen": "default (C)",
-   "default": "default (C)",
+   "chosen": "rule C start (1, 0, 0)",
+   "default": "rule C start (1, 0, 0)",
    "marks_chosen": 17,
    "marks_default": 17,
    "chosen_on_D": {
@@ -351,47 +351,47 @@
    "day": "2026-11-12",
    "n": 20,
    "ledger_day": "2026-11-11",
-   "candidates": 17,
+   "candidates": 25,
    "device_record": "results/hub-dt-2026-11-12/fetch_in/ibm_fez/dev/device.json",
    "marked": 27,
-   "chosen": "default (shape)",
-   "default": "default (shape)",
+   "chosen": "shape S3 dr0 dc0",
+   "default": "shape S1 dr2 dc0",
    "marks_chosen": 2,
-   "marks_default": 2,
+   "marks_default": 9,
    "chosen_on_D": {
-    "measured": 12,
-    "mean_floor": "1.926e-02",
+    "measured": 20,
+    "mean_floor": "1.780e-02",
     "weak_fifth": 2
    },
    "default_on_D": {
-    "measured": 12,
-    "mean_floor": "1.926e-02",
-    "weak_fifth": 2
+    "measured": 19,
+    "mean_floor": "5.946e-02",
+    "weak_fifth": 7
    },
-   "median_candidate_mean_floor": "2.968e-02"
+   "median_candidate_mean_floor": "3.759e-02"
   },
   {
    "day": "2026-11-12",
    "n": 40,
    "ledger_day": "2026-11-11",
-   "candidates": 16,
+   "candidates": 20,
    "device_record": "results/hub-dt-2026-11-12/fetch_in/ibm_fez/dev/device.json",
    "marked": 27,
    "chosen": "rule C start (1, 7, 0)",
-   "default": "default (shape)",
+   "default": "shape S1 dr4 dc0",
    "marks_chosen": 4,
-   "marks_default": 6,
+   "marks_default": 7,
    "chosen_on_D": {
     "measured": 37,
     "mean_floor": "2.223e-02",
     "weak_fifth": 5
    },
    "default_on_D": {
-    "measured": 31,
-    "mean_floor": "2.985e-02",
-    "weak_fifth": 5
+    "measured": 40,
+    "mean_floor": "3.403e-02",
+    "weak_fifth": 8
    },
-   "median_candidate_mean_floor": "3.181e-02"
+   "median_candidate_mean_floor": "3.249e-02"
   },
   {
    "day": "2026-11-12",
@@ -400,8 +400,8 @@
    "candidates": 16,
    "device_record": "results/hub-dt-2026-11-12/fetch_in/ibm_fez/dev/device.json",
    "marked": 27,
-   "chosen": "default (C)",
-   "default": "default (C)",
+   "chosen": "rule C start (1, 0, 0)",
+   "default": "rule C start (1, 0, 0)",
    "marks_chosen": 17,
    "marks_default": 17,
    "chosen_on_D": {

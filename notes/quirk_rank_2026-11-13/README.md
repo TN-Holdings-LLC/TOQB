@@ -37,30 +37,36 @@ default behaviour is unchanged (quirk.rank is called by nobody yet).
 
 **For every fez ledger day D with an earlier ledger day (6 days, 11-05 to 11-12):**
 
-- **Candidates:** chains of 20, 40 and 91 qubits on day D's own committed device record.
-  - First the default chain: the du91 shape, else rule C, as `gpu/hub_build.chain_of`.
-  - Then the rule C chain from every start that reaches n, in START_ORDER, dropping repeated qubit sets.
-  - That gives 16 or 17 candidates.
+- **Candidates:** chains of 20, 40 and 91 qubits on day D's own committed device record, from
+  `psf_os.quirk_chain.candidates`: the chain rule's chains, one per start, in its own order (du91 shape copies, then
+  rule C from every start). The first is chain_of's chain on physical qubits. That gives 16 to 28 candidates.
 - **Ordering:** quirk.rank orders them with the ledger before D.
 - **Scoring:** the chosen chain and the default chain are compared on day D's floor, which the ranking never saw.
 
-**Result:**
+**Correction (2026-11-13 g).** The first version of this check (commit fe73c515) took a du91 shape's own snake
+labels as the default chain. On ibm_fez the shape's qualifying copy is shifted (for example by 4 rows on 11-11 at
+n = 20: labels 0, 1, 2 ... placed on 80, 81, 82 ..., as the hubbard record's mapping shows), so the default rows at
+n = 20 and 40 were on the wrong qubits. Its result ("moved 9 of 18, better in 4 of 9, no effect") is withdrawn.
 
-- **Moves:** the ranking moved the choice in 9 of 18 (day, n) cases.
-- **Mean floor:** of those 9, the chosen chain's mean floor on day D was lower than the default's in **4** and
-  higher in 5.
-- **Weakest fifth:** it held fewer of day D's weakest fifth in 4, more in 4, and the same in 1.
+**Result (corrected):**
 
-**On these records the reordering did not make the next day's floor better.** The full table is in effect.md.
+- **Moves:** the ranking moved the choice in 15 of 18 (day, n) cases. It did not move at n = 91 on 11-08, 11-11 and
+  11-12.
+- **Mean floor:** of those 15, the chosen chain's mean floor on day D was lower than the default's in **13** and
+  higher in 2 (11-07 and 11-10, both at n = 91).
+- **Weakest fifth:** it held fewer of day D's weakest fifth in 11, more in 4, and never the same.
+- At n = 20 the chosen chain's mean floor on D was lower every time (6 of 6), for example 0.059 to 0.018 on 11-12.
 
-**Why this can differ from the ledger's 0.60 persistence:**
+**On these records the reordering lowered the next day's floor of the chosen chain in most cases.** The full table
+is in effect.md. This is a desk check, not a verdict, and nothing was placed by it.
 
-- **Day D's floor is known only on the qubits day D's jobs used.** The chosen chain often runs over qubits that day
-  D did not measure. The two chains are then scored on different numbers of qubits: 16 for the chosen against 7 for
-  the default on 11-05 at n = 20, and 22 against 31 on 11-07 at n = 40.
-- **The default chain already holds few marked qubits.** It holds 0 to 6 at n = 20 and 40.
-- **Swapping a few marked qubits brings in others.** The newly used qubits can be just as weak. The 0.60 says the
-  weakest stay weak, but most of the floor's spread lies elsewhere.
+**Cautions:**
+
+- **Day D's floor is known only on the qubits day D's jobs used.** The two chains are often scored on different
+  numbers of qubits (for example 39 for the default against 22 for the chosen on 11-07 at n = 40). A qubit that day
+  D did not measure does not count.
+- **The defaults were the chains day D's own jobs used,** so they are fully measured where those jobs ran, and the
+  chosen chains are partly unmeasured. The comparison can lean either way.
 - **A fair test needs a planned measurement.** One floor job on all 156 qubits on day D (a single short circuit)
   would score every candidate fully.
 
