@@ -1,0 +1,11 @@
+{
+ "L20_s6_U4": {
+  "cz": 1152,
+  "cz_depth": 72,
+  "method": "quimb chi 1024 (bond 625, error estimate 2.9e-10)",
+  "worst": 1.2989609388114332e-14,
+  "mirror_worst": 0.0,
+  "ok": true
+ },
+ "ALL": "PASS"
+}

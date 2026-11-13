@@ -107,6 +107,9 @@ def prepare(a):
             out = os.path.join(a.work, d, job["key"])
             ans = os.path.join(a.work, d, job["key"] + "_ans.json")
             kw = dict(DEV=os.path.join(fetch, d, "dev"), OUT=out, ANS=ans, ANS_TWIN=ans[:-5] + "_twin.json")
+            if a.resume and os.path.exists(os.path.join(out, "job", "manifest.json")):
+                built[job["key"]] = kw  # built earlier in this work folder (a prepare that was interrupted)
+                continue
             if run(subst(job["build"], **kw), log) != 0 or not os.path.exists(os.path.join(out, "job", "manifest.json")):
                 print(f"{d}: job {job['key']} does not build (see {log}); next device")
                 break
@@ -121,7 +124,8 @@ def prepare(a):
         kw = built[job["key"]]
         man = json.load(open(os.path.join(kw["OUT"], "job", "manifest.json")))
         h = man["circuits_sha256"]
-        carried = spec.get("checked", {}).get(h) or job.get("checked", {}).get(h)
+        extra = json.load(open(a.checked)) if a.checked else {}
+        carried = spec.get("checked", {}).get(h) or job.get("checked", {}).get(h) or extra.get(h)
         if carried:
             status = f"PASS carried over from {carried}"
         elif not job.get("checks"):
@@ -189,6 +193,8 @@ def record(a):
         key = job["key"]
         j = prep["jobs"][key]
         got = os.path.join(res, f"{spec['name']}_{key}_job", "job")
+        if os.path.basename(os.path.normpath(res)) == f"{spec['name']}_{key}_job":  # a zip holding this one job folder
+            got = os.path.join(res, "job")
         for f in ("circuits.qpy", "manifest.json"):
             if not filecmp.cmp(os.path.join(got, f), os.path.join(j["out"], "job", f), shallow=False):
                 raise SystemExit(f"STOP: {key}/{f} differs from what was built")
@@ -265,6 +271,8 @@ def main():
     p.add_argument("fetch")
     p.add_argument("work")
     p.add_argument("--device", default=None, help="build only on this device (companion job of the night)")
+    p.add_argument("--resume", action="store_true", help="reuse jobs already built in WORK (after an interrupted prepare)")
+    p.add_argument("--checked", default=None, help="JSON {circuits_sha256: where its passing check is recorded}")
     r = sub.add_parser("record")
     r.add_argument("spec")
     r.add_argument("work")

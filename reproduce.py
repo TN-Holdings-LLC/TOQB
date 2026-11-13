@@ -110,6 +110,15 @@ RESULTS = {
     "xx91-fez-2026-11-12": ("results/xx91-2026-11-12", ["ibm_fez", "answers"],
                             ["gpu/hub_score.py", "{T}/ibm_fez", "{T}/answers/xx91_ibm_fez_ans.json"],
                             "ibm_fez/scores.json"),
+    "twin-2026-11-13-xx": ("results/twin-2026-11-13", ["ibm_marrakesh_xx", "answers"],
+        ["gpu/twin_score.py", "{T}/ibm_marrakesh_xx", "{T}/answers/xx_xx_ans.json", "{T}/answers/xx_xx_ans_twin.json"],
+        "ibm_marrakesh_xx/twin_scores.json"),
+    "twin-2026-11-13-hub": ("results/twin-2026-11-13", ["ibm_marrakesh_hub", "answers"],
+        ["gpu/twin_score.py", "{T}/ibm_marrakesh_hub", "{T}/answers/hub_hub_ans.json", "{T}/answers/hub_hub_ans_twin.json"],
+        "ibm_marrakesh_hub/twin_scores.json"),
+    "full-floor-2026-11-13-floor": ("results/full-floor-2026-11-13", ["ibm_marrakesh_floor", "answers"],
+        ["gpu/full_floor.py", "score", "{T}/ibm_marrakesh_floor", "{T}/answers/floor_floor_ans.json"],
+        "ibm_marrakesh_floor/full_floor.json"),
 }
 
 

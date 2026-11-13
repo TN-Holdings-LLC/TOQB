@@ -1,0 +1,67 @@
+{
+ "pairs": {
+  "L20_s2_U4": {
+   "user": {
+    "mse": 0.0073673212481585315,
+    "mean_square": 0.1814070396633543,
+    "reads": "READS",
+    "agrees": 19,
+    "r": 0.8539767468235271
+   },
+   "twin": {
+    "mse": 0.05031975625,
+    "mean_square": 1.0,
+    "reads": "READS",
+    "agrees": 0,
+    "r": 0.8026624999999997
+   },
+   "r_diff": -0.051314246823527365,
+   "twin_line": true,
+   "line_matches": true,
+   "floor": 0.9725625000000001,
+   "mirror": 0.6078
+  },
+  "L20_s4_U4": {
+   "user": {
+    "mse": 0.008459927914009253,
+    "mean_square": 0.04599222757004525,
+    "reads": "READS",
+    "agrees": 17,
+    "r": 0.7211094750196151
+   },
+   "twin": {
+    "mse": 0.13532497500000001,
+    "mean_square": 1.0,
+    "reads": "READS",
+    "agrees": 0,
+    "r": 0.67425
+   },
+   "r_diff": -0.04685947501961507,
+   "twin_line": true,
+   "line_matches": true,
+   "floor": 0.9733750000000001,
+   "mirror": 0.2664125
+  },
+  "L20_s6_U4": {
+   "user": {
+    "mse": 0.011055310682638136,
+    "mean_square": 0.02186039433927576,
+    "reads": "DOES NOT READ",
+    "agrees": 16,
+    "r": 0.5137350694146207
+   },
+   "twin": {
+    "mse": 0.24506531875000004,
+    "mean_square": 1.0,
+    "reads": "READS",
+    "agrees": 0,
+    "r": 0.5529125
+   },
+   "r_diff": 0.03917743058537937,
+   "twin_line": true,
+   "line_matches": false,
+   "floor": 0.9730125,
+   "mirror": 0.0987875
+  }
+ }
+}
