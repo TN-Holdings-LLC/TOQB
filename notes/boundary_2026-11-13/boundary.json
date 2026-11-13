@@ -1,0 +1,8828 @@
+{
+ "results_in_reproduce": 31,
+ "results_with_rows": 31,
+ "rows": [
+  {
+   "result": "p6-fez-2026-11-04",
+   "unit": "angle 0.3, steps 1-9",
+   "qubits": 35,
+   "cz": null,
+   "cz_per_qubit": null,
+   "cz_layers": null,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "0.3",
+     "full",
+     "reads"
+    ],
+    [
+     "0.3",
+     "full",
+     "agrees"
+    ]
+   ],
+   "common": "4.798e-02",
+   "mirror": null,
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/p6-device-2026-11-04/scores.json",
+   "note": "CZ per circuit not in scores/report (build.json counts per cell, not per unit)"
+  },
+  {
+   "result": "p6-fez-2026-11-04",
+   "unit": "angle 0.53, steps 1-9",
+   "qubits": 35,
+   "cz": null,
+   "cz_per_qubit": null,
+   "cz_layers": null,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "0.53",
+     "full",
+     "reads"
+    ],
+    [
+     "0.53",
+     "full",
+     "agrees"
+    ]
+   ],
+   "common": "6.118e-02",
+   "mirror": null,
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/p6-device-2026-11-04/scores.json",
+   "note": "CZ per circuit not in scores/report (build.json counts per cell, not per unit)"
+  },
+  {
+   "result": "p6-fez-2026-11-04",
+   "unit": "angle 0.8, steps 1-9",
+   "qubits": 35,
+   "cz": null,
+   "cz_per_qubit": null,
+   "cz_layers": null,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "0.8",
+     "full",
+     "reads"
+    ],
+    [
+     "0.8",
+     "full",
+     "agrees"
+    ]
+   ],
+   "common": "7.706e-02",
+   "mirror": null,
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/p6-device-2026-11-04/scores.json",
+   "note": "CZ per circuit not in scores/report (build.json counts per cell, not per unit)"
+  },
+  {
+   "result": "p6-marrakesh-2026-11-04",
+   "unit": "angle 0.3, steps 1-9",
+   "qubits": 35,
+   "cz": null,
+   "cz_per_qubit": null,
+   "cz_layers": null,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "0.3",
+     "full",
+     "reads"
+    ],
+    [
+     "0.3",
+     "full",
+     "agrees"
+    ]
+   ],
+   "common": "1.245e-01",
+   "mirror": null,
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/p6-marrakesh-2026-11-04/scores.json",
+   "note": "CZ per circuit not in scores/report (build.json counts per cell, not per unit)"
+  },
+  {
+   "result": "p6-marrakesh-2026-11-04",
+   "unit": "angle 0.53, steps 1-9",
+   "qubits": 35,
+   "cz": null,
+   "cz_per_qubit": null,
+   "cz_layers": null,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "0.53",
+     "full",
+     "reads"
+    ],
+    [
+     "0.53",
+     "full",
+     "agrees"
+    ]
+   ],
+   "common": "1.701e-01",
+   "mirror": null,
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/p6-marrakesh-2026-11-04/scores.json",
+   "note": "CZ per circuit not in scores/report (build.json counts per cell, not per unit)"
+  },
+  {
+   "result": "p6-marrakesh-2026-11-04",
+   "unit": "angle 0.8, steps 1-9",
+   "qubits": 35,
+   "cz": null,
+   "cz_per_qubit": null,
+   "cz_layers": null,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "0.8",
+     "full",
+     "reads"
+    ],
+    [
+     "0.8",
+     "full",
+     "agrees"
+    ]
+   ],
+   "common": "2.128e-01",
+   "mirror": null,
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/p6-marrakesh-2026-11-04/scores.json",
+   "note": "CZ per circuit not in scores/report (build.json counts per cell, not per unit)"
+  },
+  {
+   "result": "os2d-fez-2026-11-04",
+   "unit": "P6, steps 1-5",
+   "qubits": 35,
+   "cz": null,
+   "cz_per_qubit": null,
+   "cz_layers": null,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "P6",
+     "reads"
+    ],
+    [
+     "P6",
+     "agrees"
+    ]
+   ],
+   "common": "3.952e-02",
+   "mirror": null,
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os2d-2026-11-04/scores.json",
+   "note": "CZ per circuit not in scores/report"
+  },
+  {
+   "result": "corr-fez-2026-11-04",
+   "unit": "angle 0.3, steps 1-9",
+   "qubits": 35,
+   "cz": null,
+   "cz_per_qubit": null,
+   "cz_layers": null,
+   "verdict": "raw READS; corrected AGREES",
+   "verdict_path": [
+    [
+     "0.3",
+     "raw",
+     "reads"
+    ],
+    [
+     "0.3",
+     "corrected",
+     "agrees"
+    ]
+   ],
+   "common": null,
+   "mirror": null,
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/corr-2026-11-04/scores.json",
+   "note": "common measure: no mean square of the exact values in scores; CZ per circuit not in scores/report"
+  },
+  {
+   "result": "corr-fez-2026-11-04",
+   "unit": "angle 0.53, steps 1-9",
+   "qubits": 35,
+   "cz": null,
+   "cz_per_qubit": null,
+   "cz_layers": null,
+   "verdict": "raw READS; corrected AGREES",
+   "verdict_path": [
+    [
+     "0.53",
+     "raw",
+     "reads"
+    ],
+    [
+     "0.53",
+     "corrected",
+     "agrees"
+    ]
+   ],
+   "common": null,
+   "mirror": null,
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/corr-2026-11-04/scores.json",
+   "note": "common measure: no mean square of the exact values in scores; CZ per circuit not in scores/report"
+  },
+  {
+   "result": "corr-fez-2026-11-04",
+   "unit": "angle 0.8, steps 1-9",
+   "qubits": 35,
+   "cz": null,
+   "cz_per_qubit": null,
+   "cz_layers": null,
+   "verdict": "raw READS; corrected DIFFERS",
+   "verdict_path": [
+    [
+     "0.8",
+     "raw",
+     "reads"
+    ],
+    [
+     "0.8",
+     "corrected",
+     "agrees"
+    ]
+   ],
+   "common": null,
+   "mirror": null,
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/corr-2026-11-04/scores.json",
+   "note": "common measure: no mean square of the exact values in scores; CZ per circuit not in scores/report"
+  },
+  {
+   "result": "corr-marrakesh-2026-11-04",
+   "unit": "angle 0.3, steps 1-9",
+   "qubits": 35,
+   "cz": null,
+   "cz_per_qubit": null,
+   "cz_layers": null,
+   "verdict": "raw READS; corrected DIFFERS",
+   "verdict_path": [
+    [
+     "0.3",
+     "raw",
+     "reads"
+    ],
+    [
+     "0.3",
+     "corrected",
+     "agrees"
+    ]
+   ],
+   "common": null,
+   "mirror": null,
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/corr-marrakesh-2026-11-04/scores.json",
+   "note": "common measure: no mean square of the exact values in scores; CZ per circuit not in scores/report"
+  },
+  {
+   "result": "corr-marrakesh-2026-11-04",
+   "unit": "angle 0.53, steps 1-9",
+   "qubits": 35,
+   "cz": null,
+   "cz_per_qubit": null,
+   "cz_layers": null,
+   "verdict": "raw READS; corrected DIFFERS",
+   "verdict_path": [
+    [
+     "0.53",
+     "raw",
+     "reads"
+    ],
+    [
+     "0.53",
+     "corrected",
+     "agrees"
+    ]
+   ],
+   "common": null,
+   "mirror": null,
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/corr-marrakesh-2026-11-04/scores.json",
+   "note": "common measure: no mean square of the exact values in scores; CZ per circuit not in scores/report"
+  },
+  {
+   "result": "corr-marrakesh-2026-11-04",
+   "unit": "angle 0.8, steps 1-9",
+   "qubits": 35,
+   "cz": null,
+   "cz_per_qubit": null,
+   "cz_layers": null,
+   "verdict": "raw READS; corrected AGREES",
+   "verdict_path": [
+    [
+     "0.8",
+     "raw",
+     "reads"
+    ],
+    [
+     "0.8",
+     "corrected",
+     "agrees"
+    ]
+   ],
+   "common": null,
+   "mirror": null,
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/corr-marrakesh-2026-11-04/scores.json",
+   "note": "common measure: no mean square of the exact values in scores; CZ per circuit not in scores/report"
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p4_b0.485_t02",
+   "qubits": 33,
+   "cz": 80,
+   "cz_per_qubit": "2.424e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.485_t02",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t02",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t02",
+     "beats"
+    ]
+   ],
+   "common": "1.062e-02",
+   "mirror": "7.955e-01",
+   "floor": "9.680e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p4_b0.485_t04",
+   "qubits": 33,
+   "cz": 144,
+   "cz_per_qubit": "4.364e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.485_t04",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t04",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t04",
+     "beats"
+    ]
+   ],
+   "common": "1.983e-02",
+   "mirror": "6.347e-01",
+   "floor": "9.684e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p4_b0.485_t08",
+   "qubits": 33,
+   "cz": 272,
+   "cz_per_qubit": "8.242e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.485_t08",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t08",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t08",
+     "beats"
+    ]
+   ],
+   "common": "6.174e-02",
+   "mirror": "3.484e-01",
+   "floor": "9.689e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p4_b0.485_t12",
+   "qubits": 33,
+   "cz": 400,
+   "cz_per_qubit": "1.212e+01",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.485_t12",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t12",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t12",
+     "beats"
+    ]
+   ],
+   "common": "4.720e-02",
+   "mirror": "1.874e-01",
+   "floor": "9.710e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p4_b0.485_t16",
+   "qubits": 33,
+   "cz": 528,
+   "cz_per_qubit": "1.600e+01",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.485_t16",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t16",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t16",
+     "beats"
+    ]
+   ],
+   "common": "7.226e-02",
+   "mirror": "1.116e-01",
+   "floor": "9.720e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p4_b0.735_t02",
+   "qubits": 33,
+   "cz": 80,
+   "cz_per_qubit": "2.424e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.735_t02",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t02",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t02",
+     "beats"
+    ]
+   ],
+   "common": "3.555e-02",
+   "mirror": "7.893e-01",
+   "floor": "9.706e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p4_b0.735_t04",
+   "qubits": 33,
+   "cz": 144,
+   "cz_per_qubit": "4.364e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.735_t04",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t04",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t04",
+     "beats"
+    ]
+   ],
+   "common": "2.678e-02",
+   "mirror": "6.055e-01",
+   "floor": "9.703e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p4_b0.735_t08",
+   "qubits": 33,
+   "cz": 272,
+   "cz_per_qubit": "8.242e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.735_t08",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t08",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t08",
+     "beats"
+    ]
+   ],
+   "common": "4.399e-02",
+   "mirror": "2.878e-01",
+   "floor": "9.698e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p4_b0.735_t12",
+   "qubits": 33,
+   "cz": 400,
+   "cz_per_qubit": "1.212e+01",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.735_t12",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t12",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t12",
+     "beats"
+    ]
+   ],
+   "common": "6.330e-02",
+   "mirror": "1.244e-01",
+   "floor": "9.706e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p4_b0.735_t16",
+   "qubits": 33,
+   "cz": 528,
+   "cz_per_qubit": "1.600e+01",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.735_t16",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t16",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t16",
+     "beats"
+    ]
+   ],
+   "common": "1.310e-01",
+   "mirror": "5.315e-02",
+   "floor": "9.687e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p5_tx0.4_t2",
+   "qubits": 151,
+   "cz": 332,
+   "cz_per_qubit": "2.199e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, DOES NOT BEAT",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx0.4_t2",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx0.4_t2",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx0.4_t2",
+     "beats"
+    ]
+   ],
+   "common": "1.235e-02",
+   "mirror": "9.336e-01",
+   "floor": "9.566e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p5_tx0.4_t4",
+   "qubits": 151,
+   "cz": 664,
+   "cz_per_qubit": "4.397e+00",
+   "cz_layers": null,
+   "verdict": "READS, DIFFERS, DOES NOT BEAT",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx0.4_t4",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx0.4_t4",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx0.4_t4",
+     "beats"
+    ]
+   ],
+   "common": "1.382e-02",
+   "mirror": "9.095e-01",
+   "floor": "9.578e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p5_tx0.4_t6",
+   "qubits": 151,
+   "cz": 996,
+   "cz_per_qubit": "6.596e+00",
+   "cz_layers": null,
+   "verdict": "READS, DIFFERS, DOES NOT BEAT",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx0.4_t6",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx0.4_t6",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx0.4_t6",
+     "beats"
+    ]
+   ],
+   "common": "1.337e-02",
+   "mirror": "8.847e-01",
+   "floor": "9.573e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p5_tx0.4_t8",
+   "qubits": 75,
+   "cz": 1328,
+   "cz_per_qubit": "1.771e+01",
+   "cz_layers": null,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx0.4_t8",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx0.4_t8",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx0.4_t8",
+     "beats"
+    ]
+   ],
+   "common": "1.553e-02",
+   "mirror": "8.599e-01",
+   "floor": "9.571e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p5_tx0.8_t2",
+   "qubits": 151,
+   "cz": 332,
+   "cz_per_qubit": "2.199e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx0.8_t2",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx0.8_t2",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx0.8_t2",
+     "beats"
+    ]
+   ],
+   "common": "1.536e-02",
+   "mirror": "8.623e-01",
+   "floor": "9.566e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p5_tx0.8_t4",
+   "qubits": 151,
+   "cz": 664,
+   "cz_per_qubit": "4.397e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx0.8_t4",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx0.8_t4",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx0.8_t4",
+     "beats"
+    ]
+   ],
+   "common": "1.795e-02",
+   "mirror": "7.049e-01",
+   "floor": "9.580e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p5_tx0.8_t6",
+   "qubits": 151,
+   "cz": 996,
+   "cz_per_qubit": "6.596e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx0.8_t6",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx0.8_t6",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx0.8_t6",
+     "beats"
+    ]
+   ],
+   "common": "1.452e-02",
+   "mirror": "5.643e-01",
+   "floor": "9.572e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p5_tx0.8_t8",
+   "qubits": 75,
+   "cz": 1328,
+   "cz_per_qubit": "1.771e+01",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx0.8_t8",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx0.8_t8",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx0.8_t8",
+     "beats"
+    ]
+   ],
+   "common": "2.792e-02",
+   "mirror": "4.530e-01",
+   "floor": "9.572e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p5_tx1.0_t2",
+   "qubits": 151,
+   "cz": 332,
+   "cz_per_qubit": "2.199e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx1.0_t2",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx1.0_t2",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx1.0_t2",
+     "beats"
+    ]
+   ],
+   "common": "1.944e-02",
+   "mirror": "8.135e-01",
+   "floor": "9.573e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p5_tx1.0_t4",
+   "qubits": 151,
+   "cz": 664,
+   "cz_per_qubit": "4.397e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx1.0_t4",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx1.0_t4",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx1.0_t4",
+     "beats"
+    ]
+   ],
+   "common": "3.333e-02",
+   "mirror": "5.572e-01",
+   "floor": "9.568e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p5_tx1.0_t6",
+   "qubits": 151,
+   "cz": 996,
+   "cz_per_qubit": "6.596e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx1.0_t6",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx1.0_t6",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx1.0_t6",
+     "beats"
+    ]
+   ],
+   "common": "2.888e-02",
+   "mirror": "3.449e-01",
+   "floor": "9.570e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-marrakesh-2026-11-04",
+   "unit": "p5_tx1.0_t8",
+   "qubits": 75,
+   "cz": 1328,
+   "cz_per_qubit": "1.771e+01",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx1.0_t8",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx1.0_t8",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx1.0_t8",
+     "beats"
+    ]
+   ],
+   "common": "3.482e-02",
+   "mirror": "2.141e-01",
+   "floor": "9.567e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p4_b0.485_t02",
+   "qubits": 33,
+   "cz": 80,
+   "cz_per_qubit": "2.424e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.485_t02",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t02",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t02",
+     "beats"
+    ]
+   ],
+   "common": "3.305e-02",
+   "mirror": "7.496e-01",
+   "floor": "9.597e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p4_b0.485_t04",
+   "qubits": 33,
+   "cz": 144,
+   "cz_per_qubit": "4.364e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.485_t04",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t04",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t04",
+     "beats"
+    ]
+   ],
+   "common": "4.718e-02",
+   "mirror": "6.167e-01",
+   "floor": "9.597e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p4_b0.485_t08",
+   "qubits": 33,
+   "cz": 272,
+   "cz_per_qubit": "8.242e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.485_t08",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t08",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t08",
+     "beats"
+    ]
+   ],
+   "common": "1.384e-01",
+   "mirror": "3.988e-01",
+   "floor": "9.603e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p4_b0.485_t12",
+   "qubits": 33,
+   "cz": 400,
+   "cz_per_qubit": "1.212e+01",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.485_t12",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t12",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t12",
+     "beats"
+    ]
+   ],
+   "common": "1.442e-01",
+   "mirror": "2.391e-01",
+   "floor": "9.585e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p4_b0.485_t16",
+   "qubits": 33,
+   "cz": 528,
+   "cz_per_qubit": "1.600e+01",
+   "cz_layers": null,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.485_t16",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t16",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.485_t16",
+     "beats"
+    ]
+   ],
+   "common": "2.592e-01",
+   "mirror": "1.491e-01",
+   "floor": "9.598e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p4_b0.735_t02",
+   "qubits": 33,
+   "cz": 80,
+   "cz_per_qubit": "2.424e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.735_t02",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t02",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t02",
+     "beats"
+    ]
+   ],
+   "common": "4.771e-02",
+   "mirror": "7.240e-01",
+   "floor": "9.578e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p4_b0.735_t04",
+   "qubits": 33,
+   "cz": 144,
+   "cz_per_qubit": "4.364e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.735_t04",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t04",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t04",
+     "beats"
+    ]
+   ],
+   "common": "4.068e-02",
+   "mirror": "5.645e-01",
+   "floor": "9.595e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p4_b0.735_t08",
+   "qubits": 33,
+   "cz": 272,
+   "cz_per_qubit": "8.242e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.735_t08",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t08",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t08",
+     "beats"
+    ]
+   ],
+   "common": "7.845e-02",
+   "mirror": "3.086e-01",
+   "floor": "9.575e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p4_b0.735_t12",
+   "qubits": 33,
+   "cz": 400,
+   "cz_per_qubit": "1.212e+01",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.735_t12",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t12",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t12",
+     "beats"
+    ]
+   ],
+   "common": "1.430e-01",
+   "mirror": "1.369e-01",
+   "floor": "9.594e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p4_b0.735_t16",
+   "qubits": 33,
+   "cz": 528,
+   "cz_per_qubit": "1.600e+01",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p4_b0.735_t16",
+     "reads"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t16",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p4_b0.735_t16",
+     "beats"
+    ]
+   ],
+   "common": "2.098e-01",
+   "mirror": "6.380e-02",
+   "floor": "9.588e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p5_tx0.4_t2",
+   "qubits": 153,
+   "cz": 340,
+   "cz_per_qubit": "2.222e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx0.4_t2",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx0.4_t2",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx0.4_t2",
+     "beats"
+    ]
+   ],
+   "common": "8.477e-03",
+   "mirror": "9.394e-01",
+   "floor": "9.628e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p5_tx0.4_t4",
+   "qubits": 153,
+   "cz": 680,
+   "cz_per_qubit": "4.444e+00",
+   "cz_layers": null,
+   "verdict": "READS, DIFFERS, DOES NOT BEAT",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx0.4_t4",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx0.4_t4",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx0.4_t4",
+     "beats"
+    ]
+   ],
+   "common": "1.144e-02",
+   "mirror": "9.171e-01",
+   "floor": "9.636e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p5_tx0.4_t6",
+   "qubits": 153,
+   "cz": 1020,
+   "cz_per_qubit": "6.667e+00",
+   "cz_layers": null,
+   "verdict": "READS, DIFFERS, DOES NOT BEAT",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx0.4_t6",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx0.4_t6",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx0.4_t6",
+     "beats"
+    ]
+   ],
+   "common": "1.351e-02",
+   "mirror": "8.953e-01",
+   "floor": "9.637e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p5_tx0.4_t8",
+   "qubits": 72,
+   "cz": 1360,
+   "cz_per_qubit": "1.889e+01",
+   "cz_layers": null,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx0.4_t8",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx0.4_t8",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx0.4_t8",
+     "beats"
+    ]
+   ],
+   "common": "8.509e-03",
+   "mirror": "8.682e-01",
+   "floor": "9.634e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p5_tx0.8_t2",
+   "qubits": 153,
+   "cz": 340,
+   "cz_per_qubit": "2.222e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx0.8_t2",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx0.8_t2",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx0.8_t2",
+     "beats"
+    ]
+   ],
+   "common": "1.126e-02",
+   "mirror": "8.583e-01",
+   "floor": "9.632e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p5_tx0.8_t4",
+   "qubits": 153,
+   "cz": 680,
+   "cz_per_qubit": "4.444e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx0.8_t4",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx0.8_t4",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx0.8_t4",
+     "beats"
+    ]
+   ],
+   "common": "1.975e-02",
+   "mirror": "7.007e-01",
+   "floor": "9.631e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p5_tx0.8_t6",
+   "qubits": 153,
+   "cz": 1020,
+   "cz_per_qubit": "6.667e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx0.8_t6",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx0.8_t6",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx0.8_t6",
+     "beats"
+    ]
+   ],
+   "common": "2.437e-02",
+   "mirror": "5.554e-01",
+   "floor": "9.631e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p5_tx0.8_t8",
+   "qubits": 72,
+   "cz": 1360,
+   "cz_per_qubit": "1.889e+01",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx0.8_t8",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx0.8_t8",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx0.8_t8",
+     "beats"
+    ]
+   ],
+   "common": "1.987e-02",
+   "mirror": "4.382e-01",
+   "floor": "9.631e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p5_tx1.0_t2",
+   "qubits": 153,
+   "cz": 340,
+   "cz_per_qubit": "2.222e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx1.0_t2",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx1.0_t2",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx1.0_t2",
+     "beats"
+    ]
+   ],
+   "common": "1.690e-02",
+   "mirror": "7.994e-01",
+   "floor": "9.631e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p5_tx1.0_t4",
+   "qubits": 153,
+   "cz": 680,
+   "cz_per_qubit": "4.444e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx1.0_t4",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx1.0_t4",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx1.0_t4",
+     "beats"
+    ]
+   ],
+   "common": "5.014e-02",
+   "mirror": "5.424e-01",
+   "floor": "9.623e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p5_tx1.0_t6",
+   "qubits": 153,
+   "cz": 1020,
+   "cz_per_qubit": "6.667e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx1.0_t6",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx1.0_t6",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx1.0_t6",
+     "beats"
+    ]
+   ],
+   "common": "1.240e-01",
+   "mirror": "3.302e-01",
+   "floor": "9.629e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "practice-fez-2026-11-04",
+   "unit": "p5_tx1.0_t8",
+   "qubits": 72,
+   "cz": 1360,
+   "cz_per_qubit": "1.889e+01",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "p5_tx1.0_t8",
+     "reads"
+    ],
+    [
+     "problems",
+     "p5_tx1.0_t8",
+     "agrees"
+    ],
+    [
+     "problems",
+     "p5_tx1.0_t8",
+     "beats"
+    ]
+   ],
+   "common": "1.177e-01",
+   "mirror": "1.946e-01",
+   "floor": "9.632e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/practice-fez-2026-11-04/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "daily-2026-11-05-marrakesh",
+   "unit": "D02",
+   "qubits": 32,
+   "cz": 256,
+   "cz_per_qubit": "8.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "D02",
+     "reads"
+    ],
+    [
+     "problems",
+     "D02",
+     "agrees"
+    ],
+    [
+     "problems",
+     "D02",
+     "beats"
+    ]
+   ],
+   "common": "2.529e-02",
+   "mirror": "7.079e-01",
+   "floor": "9.537e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/daily/2026-11-05/ibm_marrakesh/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "daily-2026-11-05-marrakesh",
+   "unit": "FX-A",
+   "qubits": 33,
+   "cz": 400,
+   "cz_per_qubit": "1.212e+01",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "FX-A",
+     "reads"
+    ],
+    [
+     "problems",
+     "FX-A",
+     "agrees"
+    ],
+    [
+     "problems",
+     "FX-A",
+     "beats"
+    ]
+   ],
+   "common": "8.535e-02",
+   "mirror": "2.135e-01",
+   "floor": "9.519e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/daily/2026-11-05/ibm_marrakesh/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "daily-2026-11-05-fez",
+   "unit": "D02",
+   "qubits": 32,
+   "cz": 256,
+   "cz_per_qubit": "8.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "D02",
+     "reads"
+    ],
+    [
+     "problems",
+     "D02",
+     "agrees"
+    ],
+    [
+     "problems",
+     "D02",
+     "beats"
+    ]
+   ],
+   "common": "5.537e-02",
+   "mirror": "6.632e-01",
+   "floor": "9.695e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/daily/2026-11-05/ibm_fez/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "daily-2026-11-05-fez",
+   "unit": "FX-A",
+   "qubits": 33,
+   "cz": 400,
+   "cz_per_qubit": "1.212e+01",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "FX-A",
+     "reads"
+    ],
+    [
+     "problems",
+     "FX-A",
+     "agrees"
+    ],
+    [
+     "problems",
+     "FX-A",
+     "beats"
+    ]
+   ],
+   "common": "1.253e-01",
+   "mirror": "2.337e-01",
+   "floor": "9.685e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/daily/2026-11-05/ibm_fez/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "daily-2026-11-06-marrakesh",
+   "unit": "user",
+   "qubits": 33,
+   "cz": 400,
+   "cz_per_qubit": "1.212e+01",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "user",
+     "reads"
+    ],
+    [
+     "problems",
+     "user",
+     "agrees"
+    ],
+    [
+     "problems",
+     "user",
+     "beats"
+    ]
+   ],
+   "common": "6.092e-02",
+   "mirror": "2.322e-01",
+   "floor": "9.768e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/daily/2026-11-06/ibm_marrakesh/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "daily-2026-11-07-fez",
+   "unit": "D04",
+   "qubits": 32,
+   "cz": 192,
+   "cz_per_qubit": "6.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "D04",
+     "reads"
+    ],
+    [
+     "problems",
+     "D04",
+     "agrees"
+    ],
+    [
+     "problems",
+     "D04",
+     "beats"
+    ]
+   ],
+   "common": "1.287e-02",
+   "mirror": "6.131e-01",
+   "floor": "9.780e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/daily/2026-11-07/ibm_fez/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "daily-2026-11-07-fez",
+   "unit": "FX-A",
+   "qubits": 33,
+   "cz": 400,
+   "cz_per_qubit": "1.212e+01",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "problems",
+     "FX-A",
+     "reads"
+    ],
+    [
+     "problems",
+     "FX-A",
+     "agrees"
+    ],
+    [
+     "problems",
+     "FX-A",
+     "beats"
+    ]
+   ],
+   "common": "1.477e-01",
+   "mirror": "1.635e-01",
+   "floor": "9.658e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/daily/2026-11-07/ibm_fez/run/scores.json",
+   "note": ""
+  },
+  {
+   "result": "du51-kingston-2026-11-07",
+   "unit": "N 51, h 0.0, t 4-24",
+   "qubits": 51,
+   "cz": 1225,
+   "cz_per_qubit": "2.402e+01",
+   "cz_layers": null,
+   "verdict": "READS (all h); readable depth 24",
+   "verdict_path": [
+    [
+     "reads"
+    ],
+    [
+     "readable_depth",
+     "0.0"
+    ]
+   ],
+   "common": "6.419e-02",
+   "mirror": "1.562e-01",
+   "floor": "9.785e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/du51-2026-11-07/ibm_kingston/run/scores.json",
+   "note": "common measure over this h's points (after the fact; the declared READS is over all h); CZ, mirror, floor at the deepest t"
+  },
+  {
+   "result": "du51-kingston-2026-11-07",
+   "unit": "N 51, h 0.05, t 4-24",
+   "qubits": 51,
+   "cz": 1225,
+   "cz_per_qubit": "2.402e+01",
+   "cz_layers": null,
+   "verdict": "rate AGREES; readable depth 24",
+   "verdict_path": [
+    [
+     "rate",
+     "0.05",
+     "verdict"
+    ],
+    [
+     "readable_depth",
+     "0.05"
+    ]
+   ],
+   "common": "6.589e-02",
+   "mirror": "1.071e-01",
+   "floor": "9.783e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/du51-2026-11-07/ibm_kingston/run/scores.json",
+   "note": "common measure over this h's points (after the fact; the declared READS is over all h); CZ, mirror, floor at the deepest t"
+  },
+  {
+   "result": "du51-kingston-2026-11-07",
+   "unit": "N 51, h 0.1, t 4-24",
+   "qubits": 51,
+   "cz": 1225,
+   "cz_per_qubit": "2.402e+01",
+   "cz_layers": null,
+   "verdict": "rate AGREES; readable depth 24",
+   "verdict_path": [
+    [
+     "rate",
+     "0.1",
+     "verdict"
+    ],
+    [
+     "readable_depth",
+     "0.1"
+    ]
+   ],
+   "common": "4.931e-02",
+   "mirror": "6.552e-02",
+   "floor": "9.771e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/du51-2026-11-07/ibm_kingston/run/scores.json",
+   "note": "common measure over this h's points (after the fact; the declared READS is over all h); CZ, mirror, floor at the deepest t"
+  },
+  {
+   "result": "du51-kingston-2026-11-07",
+   "unit": "N 51, h 0.15, t 4-24",
+   "qubits": 51,
+   "cz": 1225,
+   "cz_per_qubit": "2.402e+01",
+   "cz_layers": null,
+   "verdict": "rate AGREES; readable depth 24",
+   "verdict_path": [
+    [
+     "rate",
+     "0.15",
+     "verdict"
+    ],
+    [
+     "readable_depth",
+     "0.15"
+    ]
+   ],
+   "common": "3.077e-02",
+   "mirror": "3.466e-02",
+   "floor": "9.771e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/du51-2026-11-07/ibm_kingston/run/scores.json",
+   "note": "common measure over this h's points (after the fact; the declared READS is over all h); CZ, mirror, floor at the deepest t"
+  },
+  {
+   "result": "du71-kingston-2026-11-07",
+   "unit": "N 71, h 0.0, t 4-24",
+   "qubits": 71,
+   "cz": 1715,
+   "cz_per_qubit": "2.415e+01",
+   "cz_layers": null,
+   "verdict": "READS (all h); readable depth 24",
+   "verdict_path": [
+    [
+     "reads"
+    ],
+    [
+     "readable_depth",
+     "0.0"
+    ]
+   ],
+   "common": "8.220e-02",
+   "mirror": "8.247e-02",
+   "floor": "9.766e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/du71-2026-11-07/ibm_kingston/run/scores.json",
+   "note": "common measure over this h's points (after the fact; the declared READS is over all h); CZ, mirror, floor at the deepest t"
+  },
+  {
+   "result": "du71-kingston-2026-11-07",
+   "unit": "N 71, h 0.05, t 4-24",
+   "qubits": 71,
+   "cz": 1715,
+   "cz_per_qubit": "2.415e+01",
+   "cz_layers": null,
+   "verdict": "rate AGREES; readable depth 24",
+   "verdict_path": [
+    [
+     "rate",
+     "0.05",
+     "verdict"
+    ],
+    [
+     "readable_depth",
+     "0.05"
+    ]
+   ],
+   "common": "7.356e-02",
+   "mirror": "6.099e-02",
+   "floor": "9.761e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/du71-2026-11-07/ibm_kingston/run/scores.json",
+   "note": "common measure over this h's points (after the fact; the declared READS is over all h); CZ, mirror, floor at the deepest t"
+  },
+  {
+   "result": "du71-kingston-2026-11-07",
+   "unit": "N 71, h 0.1, t 4-24",
+   "qubits": 71,
+   "cz": 1715,
+   "cz_per_qubit": "2.415e+01",
+   "cz_layers": null,
+   "verdict": "rate AGREES; readable depth 24",
+   "verdict_path": [
+    [
+     "rate",
+     "0.1",
+     "verdict"
+    ],
+    [
+     "readable_depth",
+     "0.1"
+    ]
+   ],
+   "common": "6.716e-02",
+   "mirror": "2.756e-02",
+   "floor": "9.759e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/du71-2026-11-07/ibm_kingston/run/scores.json",
+   "note": "common measure over this h's points (after the fact; the declared READS is over all h); CZ, mirror, floor at the deepest t"
+  },
+  {
+   "result": "du71-kingston-2026-11-07",
+   "unit": "N 71, h 0.15, t 4-24",
+   "qubits": 71,
+   "cz": 1715,
+   "cz_per_qubit": "2.415e+01",
+   "cz_layers": null,
+   "verdict": "rate AGREES; readable depth 24",
+   "verdict_path": [
+    [
+     "rate",
+     "0.15",
+     "verdict"
+    ],
+    [
+     "readable_depth",
+     "0.15"
+    ]
+   ],
+   "common": "5.143e-02",
+   "mirror": "1.268e-02",
+   "floor": "9.764e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/du71-2026-11-07/ibm_kingston/run/scores.json",
+   "note": "common measure over this h's points (after the fact; the declared READS is over all h); CZ, mirror, floor at the deepest t"
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "g3d1_th04_t1 (3D, place 1)",
+   "qubits": 48,
+   "cz": 488,
+   "cz_per_qubit": "1.017e+01",
+   "cz_layers": 34,
+   "verdict": "READS, DIFFERS, DOES NOT BEAT",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t1",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t1",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t1",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "9.060e-02",
+   "mirror": "7.305e-01",
+   "floor": "9.479e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "hex_th04_t1 (2D, place -)",
+   "qubits": 16,
+   "cz": 16,
+   "cz_per_qubit": "1.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t1",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t1",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t1",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "2.217e-04",
+   "mirror": "9.798e-01",
+   "floor": "9.888e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "g3d1_th04_t2 (3D, place 1)",
+   "qubits": 48,
+   "cz": 976,
+   "cz_per_qubit": "2.033e+01",
+   "cz_layers": 67,
+   "verdict": "READS, DIFFERS, DOES NOT BEAT",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t2",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t2",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t2",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "6.141e-02",
+   "mirror": "5.658e-01",
+   "floor": "9.499e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "hex_th04_t2 (2D, place -)",
+   "qubits": 16,
+   "cz": 32,
+   "cz_per_qubit": "2.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t2",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t2",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t2",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "3.707e-04",
+   "mirror": "9.647e-01",
+   "floor": "9.887e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "g3d1_th04_t3 (3D, place 1)",
+   "qubits": 48,
+   "cz": 1464,
+   "cz_per_qubit": "3.050e+01",
+   "cz_layers": 100,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t3",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t3",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t3",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "1.076e-01",
+   "mirror": "4.367e-01",
+   "floor": "9.466e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "hex_th04_t3 (2D, place -)",
+   "qubits": 16,
+   "cz": 48,
+   "cz_per_qubit": "3.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t3",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t3",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t3",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "1.220e-03",
+   "mirror": "9.531e-01",
+   "floor": "9.877e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "g3d1_th06_t1 (3D, place 1)",
+   "qubits": 48,
+   "cz": 488,
+   "cz_per_qubit": "1.017e+01",
+   "cz_layers": 34,
+   "verdict": "READS, DIFFERS, DOES NOT BEAT",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t1",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t1",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t1",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "8.915e-02",
+   "mirror": "7.325e-01",
+   "floor": "9.492e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "hex_th06_t1 (2D, place -)",
+   "qubits": 16,
+   "cz": 16,
+   "cz_per_qubit": "1.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t1",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t1",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t1",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "2.017e-04",
+   "mirror": "9.740e-01",
+   "floor": "9.883e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "g3d1_th06_t2 (3D, place 1)",
+   "qubits": 48,
+   "cz": 976,
+   "cz_per_qubit": "2.033e+01",
+   "cz_layers": 67,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t2",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t2",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t2",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "5.763e-02",
+   "mirror": "5.132e-01",
+   "floor": "9.484e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "hex_th06_t2 (2D, place -)",
+   "qubits": 16,
+   "cz": 32,
+   "cz_per_qubit": "2.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t2",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t2",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t2",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "5.361e-04",
+   "mirror": "9.485e-01",
+   "floor": "9.892e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "g3d1_th06_t3 (3D, place 1)",
+   "qubits": 48,
+   "cz": 1464,
+   "cz_per_qubit": "3.050e+01",
+   "cz_layers": 100,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t3",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t3",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t3",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "1.135e-01",
+   "mirror": "3.374e-01",
+   "floor": "9.467e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "hex_th06_t3 (2D, place -)",
+   "qubits": 16,
+   "cz": 48,
+   "cz_per_qubit": "3.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t3",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t3",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t3",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "1.506e-03",
+   "mirror": "9.077e-01",
+   "floor": "9.887e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "g3d1_th08_t1 (3D, place 1)",
+   "qubits": 48,
+   "cz": 488,
+   "cz_per_qubit": "1.017e+01",
+   "cz_layers": 34,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t1",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t1",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t1",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "9.116e-02",
+   "mirror": "7.291e-01",
+   "floor": "9.511e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "hex_th08_t1 (2D, place -)",
+   "qubits": 16,
+   "cz": 16,
+   "cz_per_qubit": "1.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t1",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t1",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t1",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "3.604e-04",
+   "mirror": "9.693e-01",
+   "floor": "9.882e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "g3d1_th08_t2 (3D, place 1)",
+   "qubits": 48,
+   "cz": 976,
+   "cz_per_qubit": "2.033e+01",
+   "cz_layers": 67,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t2",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t2",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t2",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "4.707e-02",
+   "mirror": "4.451e-01",
+   "floor": "9.477e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "hex_th08_t2 (2D, place -)",
+   "qubits": 16,
+   "cz": 32,
+   "cz_per_qubit": "2.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t2",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t2",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t2",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "1.088e-03",
+   "mirror": "9.147e-01",
+   "floor": "9.883e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "g3d1_th08_t3 (3D, place 1)",
+   "qubits": 48,
+   "cz": 1464,
+   "cz_per_qubit": "3.050e+01",
+   "cz_layers": 100,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t3",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t3",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t3",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "1.133e-01",
+   "mirror": "2.354e-01",
+   "floor": "9.474e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x4x3-fez-2026-11-07",
+   "unit": "hex_th08_t3 (2D, place -)",
+   "qubits": 16,
+   "cz": 48,
+   "cz_per_qubit": "3.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t3",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t3",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t3",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "3.864e-03",
+   "mirror": "8.293e-01",
+   "floor": "9.870e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j1_4x4x3/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th04_t1 (3D, place 3)",
+   "qubits": 16,
+   "cz": 108,
+   "cz_per_qubit": "6.750e+00",
+   "cz_layers": 28,
+   "verdict": "READS, DIFFERS, DOES NOT BEAT",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t1",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t1",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t1",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "1.259e-02",
+   "mirror": "8.438e-01",
+   "floor": "9.766e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th04_t1 (2D, place -)",
+   "qubits": 16,
+   "cz": 16,
+   "cz_per_qubit": "1.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t1",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t1",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t1",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "2.296e-04",
+   "mirror": "9.784e-01",
+   "floor": "9.890e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th04_t2 (3D, place 3)",
+   "qubits": 16,
+   "cz": 216,
+   "cz_per_qubit": "1.350e+01",
+   "cz_layers": 55,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t2",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t2",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t2",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "1.756e-02",
+   "mirror": "7.480e-01",
+   "floor": "9.747e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th04_t2 (2D, place -)",
+   "qubits": 16,
+   "cz": 32,
+   "cz_per_qubit": "2.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t2",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t2",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t2",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "4.203e-04",
+   "mirror": "9.681e-01",
+   "floor": "9.882e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th04_t3 (3D, place 3)",
+   "qubits": 16,
+   "cz": 324,
+   "cz_per_qubit": "2.025e+01",
+   "cz_layers": 82,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t3",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t3",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t3",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "3.214e-02",
+   "mirror": "6.381e-01",
+   "floor": "9.758e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th04_t3 (2D, place -)",
+   "qubits": 16,
+   "cz": 48,
+   "cz_per_qubit": "3.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t3",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t3",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t3",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "9.224e-04",
+   "mirror": "9.528e-01",
+   "floor": "9.885e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th04_t4 (3D, place 3)",
+   "qubits": 16,
+   "cz": 432,
+   "cz_per_qubit": "2.700e+01",
+   "cz_layers": 109,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t4",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t4",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t4",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "4.719e-02",
+   "mirror": "5.239e-01",
+   "floor": "9.762e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th04_t4 (2D, place -)",
+   "qubits": 16,
+   "cz": 64,
+   "cz_per_qubit": "4.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t4",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t4",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t4",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "1.605e-03",
+   "mirror": "9.335e-01",
+   "floor": "9.875e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th04_t5 (3D, place 3)",
+   "qubits": 16,
+   "cz": 540,
+   "cz_per_qubit": "3.375e+01",
+   "cz_layers": 136,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t5",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t5",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t5",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "6.949e-02",
+   "mirror": "4.345e-01",
+   "floor": "9.743e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th04_t5 (2D, place -)",
+   "qubits": 16,
+   "cz": 80,
+   "cz_per_qubit": "5.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t5",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t5",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t5",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "1.541e-03",
+   "mirror": "9.153e-01",
+   "floor": "9.887e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th04_t6 (3D, place 3)",
+   "qubits": 16,
+   "cz": 648,
+   "cz_per_qubit": "4.050e+01",
+   "cz_layers": 163,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t6",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t6",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t6",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "9.000e-02",
+   "mirror": "3.425e-01",
+   "floor": "9.758e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th04_t6 (2D, place -)",
+   "qubits": 16,
+   "cz": 96,
+   "cz_per_qubit": "6.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th04_t6",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th04_t6",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th04_t6",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "2.080e-03",
+   "mirror": "9.002e-01",
+   "floor": "9.874e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th06_t1 (3D, place 3)",
+   "qubits": 16,
+   "cz": 108,
+   "cz_per_qubit": "6.750e+00",
+   "cz_layers": 28,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t1",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t1",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t1",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "1.291e-02",
+   "mirror": "8.380e-01",
+   "floor": "9.762e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th06_t1 (2D, place -)",
+   "qubits": 16,
+   "cz": 16,
+   "cz_per_qubit": "1.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t1",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t1",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t1",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "2.830e-04",
+   "mirror": "9.738e-01",
+   "floor": "9.872e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th06_t2 (3D, place 3)",
+   "qubits": 16,
+   "cz": 216,
+   "cz_per_qubit": "1.350e+01",
+   "cz_layers": 55,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t2",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t2",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t2",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "1.875e-02",
+   "mirror": "7.168e-01",
+   "floor": "9.754e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th06_t2 (2D, place -)",
+   "qubits": 16,
+   "cz": 32,
+   "cz_per_qubit": "2.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t2",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t2",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t2",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "6.059e-04",
+   "mirror": "9.448e-01",
+   "floor": "9.891e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th06_t3 (3D, place 3)",
+   "qubits": 16,
+   "cz": 324,
+   "cz_per_qubit": "2.025e+01",
+   "cz_layers": 82,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t3",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t3",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t3",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "4.013e-02",
+   "mirror": "5.334e-01",
+   "floor": "9.744e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th06_t3 (2D, place -)",
+   "qubits": 16,
+   "cz": 48,
+   "cz_per_qubit": "3.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t3",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t3",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t3",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "1.837e-03",
+   "mirror": "9.055e-01",
+   "floor": "9.878e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th06_t4 (3D, place 3)",
+   "qubits": 16,
+   "cz": 432,
+   "cz_per_qubit": "2.700e+01",
+   "cz_layers": 109,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t4",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t4",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t4",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "7.247e-02",
+   "mirror": "3.907e-01",
+   "floor": "9.755e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th06_t4 (2D, place -)",
+   "qubits": 16,
+   "cz": 64,
+   "cz_per_qubit": "4.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t4",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t4",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t4",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "1.978e-03",
+   "mirror": "8.517e-01",
+   "floor": "9.878e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th06_t5 (3D, place 3)",
+   "qubits": 16,
+   "cz": 540,
+   "cz_per_qubit": "3.375e+01",
+   "cz_layers": 136,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t5",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t5",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t5",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "6.934e-02",
+   "mirror": "2.775e-01",
+   "floor": "9.753e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th06_t5 (2D, place -)",
+   "qubits": 16,
+   "cz": 80,
+   "cz_per_qubit": "5.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t5",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t5",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t5",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "2.668e-03",
+   "mirror": "8.016e-01",
+   "floor": "9.875e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th06_t6 (3D, place 3)",
+   "qubits": 16,
+   "cz": 648,
+   "cz_per_qubit": "4.050e+01",
+   "cz_layers": 163,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t6",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t6",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t6",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "1.178e-01",
+   "mirror": "2.065e-01",
+   "floor": "9.764e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th06_t6 (2D, place -)",
+   "qubits": 16,
+   "cz": 96,
+   "cz_per_qubit": "6.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th06_t6",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th06_t6",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th06_t6",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "4.864e-03",
+   "mirror": "7.563e-01",
+   "floor": "9.888e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th08_t1 (3D, place 3)",
+   "qubits": 16,
+   "cz": 108,
+   "cz_per_qubit": "6.750e+00",
+   "cz_layers": 28,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t1",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t1",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t1",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "1.522e-02",
+   "mirror": "8.456e-01",
+   "floor": "9.753e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th08_t1 (2D, place -)",
+   "qubits": 16,
+   "cz": 16,
+   "cz_per_qubit": "1.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t1",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t1",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t1",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "5.679e-04",
+   "mirror": "9.708e-01",
+   "floor": "9.877e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th08_t2 (3D, place 3)",
+   "qubits": 16,
+   "cz": 216,
+   "cz_per_qubit": "1.350e+01",
+   "cz_layers": 55,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t2",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t2",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t2",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "1.789e-02",
+   "mirror": "6.521e-01",
+   "floor": "9.746e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th08_t2 (2D, place -)",
+   "qubits": 16,
+   "cz": 32,
+   "cz_per_qubit": "2.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t2",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t2",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t2",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "1.084e-03",
+   "mirror": "9.146e-01",
+   "floor": "9.880e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th08_t3 (3D, place 3)",
+   "qubits": 16,
+   "cz": 324,
+   "cz_per_qubit": "2.025e+01",
+   "cz_layers": 82,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t3",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t3",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t3",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "2.635e-02",
+   "mirror": "4.268e-01",
+   "floor": "9.750e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th08_t3 (2D, place -)",
+   "qubits": 16,
+   "cz": 48,
+   "cz_per_qubit": "3.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t3",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t3",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t3",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "2.945e-03",
+   "mirror": "8.304e-01",
+   "floor": "9.868e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th08_t4 (3D, place 3)",
+   "qubits": 16,
+   "cz": 432,
+   "cz_per_qubit": "2.700e+01",
+   "cz_layers": 109,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t4",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t4",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t4",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "7.663e-02",
+   "mirror": "2.518e-01",
+   "floor": "9.734e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th08_t4 (2D, place -)",
+   "qubits": 16,
+   "cz": 64,
+   "cz_per_qubit": "4.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t4",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t4",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t4",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "3.210e-03",
+   "mirror": "7.201e-01",
+   "floor": "9.872e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th08_t5 (3D, place 3)",
+   "qubits": 16,
+   "cz": 540,
+   "cz_per_qubit": "3.375e+01",
+   "cz_layers": 136,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t5",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t5",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t5",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "1.503e-01",
+   "mirror": "1.406e-01",
+   "floor": "9.750e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th08_t5 (2D, place -)",
+   "qubits": 16,
+   "cz": 80,
+   "cz_per_qubit": "5.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t5",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t5",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t5",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "5.759e-03",
+   "mirror": "6.297e-01",
+   "floor": "9.868e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "g3d3_th08_t6 (3D, place 3)",
+   "qubits": 16,
+   "cz": 648,
+   "cz_per_qubit": "4.050e+01",
+   "cz_layers": 163,
+   "verdict": "READS, DIFFERS, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t6",
+     "3D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t6",
+     "3D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t6",
+     "3D",
+     "beats"
+    ]
+   ],
+   "common": "2.053e-01",
+   "mirror": "9.997e-02",
+   "floor": "9.747e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "physA-4x2x2-fez-2026-11-07",
+   "unit": "hex_th08_t6 (2D, place -)",
+   "qubits": 16,
+   "cz": 96,
+   "cz_per_qubit": "6.000e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES, BEATS",
+   "verdict_path": [
+    [
+     "judged",
+     "th08_t6",
+     "2D",
+     "reads"
+    ],
+    [
+     "judged",
+     "th08_t6",
+     "2D",
+     "agrees"
+    ],
+    [
+     "judged",
+     "th08_t6",
+     "2D",
+     "beats"
+    ]
+   ],
+   "common": "8.508e-03",
+   "mirror": "5.500e-01",
+   "floor": "9.879e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-physA-2026-11-07/j2_4x2x2/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisB-fez-2026-11-08",
+   "unit": "h3d0_t1 (place 0)",
+   "qubits": 16,
+   "cz": 176,
+   "cz_per_qubit": "1.100e+01",
+   "cz_layers": 49,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3d0_t1",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3d0_t1",
+     "agrees"
+    ]
+   ],
+   "common": "8.755e-02",
+   "mirror": "5.281e-01",
+   "floor": "9.477e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisB-2026-11-08/fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisB-fez-2026-11-08",
+   "unit": "h3d0_t2 (place 0)",
+   "qubits": 16,
+   "cz": 348,
+   "cz_per_qubit": "2.175e+01",
+   "cz_layers": 95,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3d0_t2",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3d0_t2",
+     "agrees"
+    ]
+   ],
+   "common": "1.627e-01",
+   "mirror": "2.733e-01",
+   "floor": "9.472e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisB-2026-11-08/fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisB-fez-2026-11-08",
+   "unit": "h3d0_t3 (place 0)",
+   "qubits": 16,
+   "cz": 520,
+   "cz_per_qubit": "3.250e+01",
+   "cz_layers": 141,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3d0_t3",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3d0_t3",
+     "agrees"
+    ]
+   ],
+   "common": "2.990e-01",
+   "mirror": "1.195e-01",
+   "floor": "9.455e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisB-2026-11-08/fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisB-fez-2026-11-08",
+   "unit": "h3d0_t4 (place 0)",
+   "qubits": 16,
+   "cz": 692,
+   "cz_per_qubit": "4.325e+01",
+   "cz_layers": 187,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3d0_t4",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3d0_t4",
+     "agrees"
+    ]
+   ],
+   "common": "3.692e-01",
+   "mirror": "3.866e-02",
+   "floor": "9.477e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisB-2026-11-08/fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-marrakesh-2026-11-08",
+   "unit": "h3c1_t1 (place 1, carry)",
+   "qubits": 16,
+   "cz": 152,
+   "cz_per_qubit": "9.500e+00",
+   "cz_layers": 46,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3c1_t1",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3c1_t1",
+     "agrees"
+    ]
+   ],
+   "common": "4.035e-02",
+   "mirror": "6.494e-01",
+   "floor": "9.666e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-2026-11-08/marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-marrakesh-2026-11-08",
+   "unit": "h3c1_t2 (place 1, carry)",
+   "qubits": 16,
+   "cz": 300,
+   "cz_per_qubit": "1.875e+01",
+   "cz_layers": 89,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3c1_t2",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3c1_t2",
+     "agrees"
+    ]
+   ],
+   "common": "9.428e-02",
+   "mirror": "3.363e-01",
+   "floor": "9.682e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-2026-11-08/marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-marrakesh-2026-11-08",
+   "unit": "h3c1_t3 (place 1, carry)",
+   "qubits": 16,
+   "cz": 448,
+   "cz_per_qubit": "2.800e+01",
+   "cz_layers": 132,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3c1_t3",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3c1_t3",
+     "agrees"
+    ]
+   ],
+   "common": "1.818e-01",
+   "mirror": "1.311e-01",
+   "floor": "9.667e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-2026-11-08/marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-marrakesh-2026-11-08",
+   "unit": "h3c1_t4 (place 1, carry)",
+   "qubits": 16,
+   "cz": 596,
+   "cz_per_qubit": "3.725e+01",
+   "cz_layers": 175,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3c1_t4",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3c1_t4",
+     "agrees"
+    ]
+   ],
+   "common": "3.521e-01",
+   "mirror": "2.572e-02",
+   "floor": "9.686e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-2026-11-08/marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-marrakesh-2026-11-08",
+   "unit": "h3d1_t1 (place 1, old)",
+   "qubits": 16,
+   "cz": 176,
+   "cz_per_qubit": "1.100e+01",
+   "cz_layers": 49,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3d1_t1",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3d1_t1",
+     "agrees"
+    ]
+   ],
+   "common": "4.630e-02",
+   "mirror": "6.056e-01",
+   "floor": "9.678e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-2026-11-08/marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-marrakesh-2026-11-08",
+   "unit": "h3d1_t2 (place 1, old)",
+   "qubits": 16,
+   "cz": 348,
+   "cz_per_qubit": "2.175e+01",
+   "cz_layers": 95,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3d1_t2",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3d1_t2",
+     "agrees"
+    ]
+   ],
+   "common": "1.178e-01",
+   "mirror": "2.883e-01",
+   "floor": "9.692e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-2026-11-08/marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-marrakesh-2026-11-08",
+   "unit": "h3d1_t3 (place 1, old)",
+   "qubits": 16,
+   "cz": 520,
+   "cz_per_qubit": "3.250e+01",
+   "cz_layers": 141,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3d1_t3",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3d1_t3",
+     "agrees"
+    ]
+   ],
+   "common": "2.293e-01",
+   "mirror": "9.766e-02",
+   "floor": "9.688e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-2026-11-08/marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-marrakesh-2026-11-08",
+   "unit": "h3d1_t4 (place 1, old)",
+   "qubits": 16,
+   "cz": 692,
+   "cz_per_qubit": "4.325e+01",
+   "cz_layers": 187,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3d1_t4",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3d1_t4",
+     "agrees"
+    ]
+   ],
+   "common": "4.248e-01",
+   "mirror": "2.275e-02",
+   "floor": "9.707e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-2026-11-08/marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-marrakesh-2026-11-08",
+   "unit": "h3l1_t1 (place 1, line)",
+   "qubits": 16,
+   "cz": 116,
+   "cz_per_qubit": "7.250e+00",
+   "cz_layers": 37,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3l1_t1",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3l1_t1",
+     "agrees"
+    ]
+   ],
+   "common": "3.113e-02",
+   "mirror": "7.051e-01",
+   "floor": "9.677e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-2026-11-08/marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-marrakesh-2026-11-08",
+   "unit": "h3l1_t2 (place 1, line)",
+   "qubits": 16,
+   "cz": 212,
+   "cz_per_qubit": "1.325e+01",
+   "cz_layers": 67,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3l1_t2",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3l1_t2",
+     "agrees"
+    ]
+   ],
+   "common": "7.489e-02",
+   "mirror": "4.720e-01",
+   "floor": "9.681e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-2026-11-08/marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-marrakesh-2026-11-08",
+   "unit": "h3l1_t3 (place 1, line)",
+   "qubits": 16,
+   "cz": 308,
+   "cz_per_qubit": "1.925e+01",
+   "cz_layers": 97,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3l1_t3",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3l1_t3",
+     "agrees"
+    ]
+   ],
+   "common": "1.324e-01",
+   "mirror": "2.613e-01",
+   "floor": "9.703e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-2026-11-08/marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-marrakesh-2026-11-08",
+   "unit": "h3l1_t4 (place 1, line)",
+   "qubits": 16,
+   "cz": 404,
+   "cz_per_qubit": "2.525e+01",
+   "cz_layers": 127,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3l1_t4",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3l1_t4",
+     "agrees"
+    ]
+   ],
+   "common": "2.666e-01",
+   "mirror": "1.435e-01",
+   "floor": "9.702e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-2026-11-08/marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-kingston-2026-11-08",
+   "unit": "h3c1_t1 (place 1, carry)",
+   "qubits": 16,
+   "cz": 152,
+   "cz_per_qubit": "9.500e+00",
+   "cz_layers": 46,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3c1_t1",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3c1_t1",
+     "agrees"
+    ]
+   ],
+   "common": "4.097e-02",
+   "mirror": "6.886e-01",
+   "floor": "9.872e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-kingston-2026-11-08/kingston/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-kingston-2026-11-08",
+   "unit": "h3c1_t2 (place 1, carry)",
+   "qubits": 16,
+   "cz": 300,
+   "cz_per_qubit": "1.875e+01",
+   "cz_layers": 89,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3c1_t2",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3c1_t2",
+     "agrees"
+    ]
+   ],
+   "common": "1.206e-01",
+   "mirror": "4.209e-01",
+   "floor": "9.859e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-kingston-2026-11-08/kingston/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-kingston-2026-11-08",
+   "unit": "h3c1_t3 (place 1, carry)",
+   "qubits": 16,
+   "cz": 448,
+   "cz_per_qubit": "2.800e+01",
+   "cz_layers": 132,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3c1_t3",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3c1_t3",
+     "agrees"
+    ]
+   ],
+   "common": "2.365e-01",
+   "mirror": "2.360e-01",
+   "floor": "9.871e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-kingston-2026-11-08/kingston/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-kingston-2026-11-08",
+   "unit": "h3c1_t4 (place 1, carry)",
+   "qubits": 16,
+   "cz": 596,
+   "cz_per_qubit": "3.725e+01",
+   "cz_layers": 175,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3c1_t4",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3c1_t4",
+     "agrees"
+    ]
+   ],
+   "common": "4.168e-01",
+   "mirror": "1.071e-01",
+   "floor": "9.853e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-kingston-2026-11-08/kingston/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-kingston-2026-11-08",
+   "unit": "h3d1_t1 (place 1, old)",
+   "qubits": 16,
+   "cz": 176,
+   "cz_per_qubit": "1.100e+01",
+   "cz_layers": 49,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3d1_t1",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3d1_t1",
+     "agrees"
+    ]
+   ],
+   "common": "4.310e-02",
+   "mirror": "6.715e-01",
+   "floor": "9.869e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-kingston-2026-11-08/kingston/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-kingston-2026-11-08",
+   "unit": "h3d1_t2 (place 1, old)",
+   "qubits": 16,
+   "cz": 348,
+   "cz_per_qubit": "2.175e+01",
+   "cz_layers": 95,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3d1_t2",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3d1_t2",
+     "agrees"
+    ]
+   ],
+   "common": "1.283e-01",
+   "mirror": "3.992e-01",
+   "floor": "9.872e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-kingston-2026-11-08/kingston/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-kingston-2026-11-08",
+   "unit": "h3d1_t3 (place 1, old)",
+   "qubits": 16,
+   "cz": 520,
+   "cz_per_qubit": "3.250e+01",
+   "cz_layers": 141,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3d1_t3",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3d1_t3",
+     "agrees"
+    ]
+   ],
+   "common": "2.496e-01",
+   "mirror": "2.059e-01",
+   "floor": "9.858e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-kingston-2026-11-08/kingston/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-kingston-2026-11-08",
+   "unit": "h3d1_t4 (place 1, old)",
+   "qubits": 16,
+   "cz": 692,
+   "cz_per_qubit": "4.325e+01",
+   "cz_layers": 187,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3d1_t4",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3d1_t4",
+     "agrees"
+    ]
+   ],
+   "common": "4.662e-01",
+   "mirror": "8.663e-02",
+   "floor": "9.863e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-kingston-2026-11-08/kingston/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-kingston-2026-11-08",
+   "unit": "h3l1_t1 (place 1, line)",
+   "qubits": 16,
+   "cz": 116,
+   "cz_per_qubit": "7.250e+00",
+   "cz_layers": 37,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3l1_t1",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3l1_t1",
+     "agrees"
+    ]
+   ],
+   "common": "3.537e-02",
+   "mirror": "7.207e-01",
+   "floor": "9.870e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-kingston-2026-11-08/kingston/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-kingston-2026-11-08",
+   "unit": "h3l1_t2 (place 1, line)",
+   "qubits": 16,
+   "cz": 212,
+   "cz_per_qubit": "1.325e+01",
+   "cz_layers": 67,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3l1_t2",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3l1_t2",
+     "agrees"
+    ]
+   ],
+   "common": "8.979e-02",
+   "mirror": "5.099e-01",
+   "floor": "9.859e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-kingston-2026-11-08/kingston/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-kingston-2026-11-08",
+   "unit": "h3l1_t3 (place 1, line)",
+   "qubits": 16,
+   "cz": 308,
+   "cz_per_qubit": "1.925e+01",
+   "cz_layers": 97,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3l1_t3",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3l1_t3",
+     "agrees"
+    ]
+   ],
+   "common": "1.858e-01",
+   "mirror": "3.102e-01",
+   "floor": "9.876e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-kingston-2026-11-08/kingston/scores.json",
+   "note": ""
+  },
+  {
+   "result": "heisE-kingston-2026-11-08",
+   "unit": "h3l1_t4 (place 1, line)",
+   "qubits": 16,
+   "cz": 404,
+   "cz_per_qubit": "2.525e+01",
+   "cz_layers": 127,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "h3l1_t4",
+     "reads"
+    ],
+    [
+     "arms",
+     "h3l1_t4",
+     "agrees"
+    ]
+   ],
+   "common": "4.549e-01",
+   "mirror": "1.698e-01",
+   "floor": "9.866e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/os3d-heisE-kingston-2026-11-08/kingston/scores.json",
+   "note": ""
+  },
+  {
+   "result": "du91-marrakesh-2026-11-09",
+   "unit": "N 91, h 0.0, t 4-24",
+   "qubits": 91,
+   "cz": 2205,
+   "cz_per_qubit": "2.423e+01",
+   "cz_layers": null,
+   "verdict": "READS (all h); readable depth 24",
+   "verdict_path": [
+    [
+     "reads"
+    ],
+    [
+     "readable_depth",
+     "0.0"
+    ]
+   ],
+   "common": "6.409e-02",
+   "mirror": "7.450e-02",
+   "floor": "9.364e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/du91-2026-11-09/ibm_marrakesh/run/scores.json",
+   "note": "common measure over this h's points (after the fact; the declared READS is over all h); CZ, mirror, floor at the deepest t"
+  },
+  {
+   "result": "du91-marrakesh-2026-11-09",
+   "unit": "N 91, h 0.05, t 4-24",
+   "qubits": 91,
+   "cz": 2205,
+   "cz_per_qubit": "2.423e+01",
+   "cz_layers": null,
+   "verdict": "rate AGREES; readable depth 24",
+   "verdict_path": [
+    [
+     "rate",
+     "0.05",
+     "verdict"
+    ],
+    [
+     "readable_depth",
+     "0.05"
+    ]
+   ],
+   "common": "6.336e-02",
+   "mirror": "4.296e-02",
+   "floor": "9.370e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/du91-2026-11-09/ibm_marrakesh/run/scores.json",
+   "note": "common measure over this h's points (after the fact; the declared READS is over all h); CZ, mirror, floor at the deepest t"
+  },
+  {
+   "result": "du91-marrakesh-2026-11-09",
+   "unit": "N 91, h 0.1, t 4-24",
+   "qubits": 91,
+   "cz": 2205,
+   "cz_per_qubit": "2.423e+01",
+   "cz_layers": null,
+   "verdict": "rate AGREES; readable depth 24",
+   "verdict_path": [
+    [
+     "rate",
+     "0.1",
+     "verdict"
+    ],
+    [
+     "readable_depth",
+     "0.1"
+    ]
+   ],
+   "common": "4.734e-02",
+   "mirror": "2.858e-02",
+   "floor": "9.404e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/du91-2026-11-09/ibm_marrakesh/run/scores.json",
+   "note": "common measure over this h's points (after the fact; the declared READS is over all h); CZ, mirror, floor at the deepest t"
+  },
+  {
+   "result": "du91-marrakesh-2026-11-09",
+   "unit": "N 91, h 0.15, t 4-24",
+   "qubits": 91,
+   "cz": 2205,
+   "cz_per_qubit": "2.423e+01",
+   "cz_layers": null,
+   "verdict": "rate AGREES; readable depth 24",
+   "verdict_path": [
+    [
+     "rate",
+     "0.15",
+     "verdict"
+    ],
+    [
+     "readable_depth",
+     "0.15"
+    ]
+   ],
+   "common": "3.014e-02",
+   "mirror": "1.481e-02",
+   "floor": "9.400e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/du91-2026-11-09/ibm_marrakesh/run/scores.json",
+   "note": "common measure over this h's points (after the fact; the declared READS is over all h); CZ, mirror, floor at the deepest t"
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw6_M1_s1",
+   "qubits": 6,
+   "cz": 45,
+   "cz_per_qubit": "7.500e+00",
+   "cz_layers": null,
+   "verdict": "READS, BEATS, nu AGREES",
+   "verdict_path": [
+    [
+     "items",
+     "sw6_M1_s1",
+     "reads"
+    ],
+    [
+     "items",
+     "sw6_M1_s1",
+     "beats"
+    ],
+    [
+     "items",
+     "sw6_M1_s1",
+     "nu_agrees"
+    ]
+   ],
+   "common": "9.010e-03",
+   "mirror": "8.218e-01",
+   "floor": "9.833e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw6_M1_s2",
+   "qubits": 6,
+   "cz": 90,
+   "cz_per_qubit": "1.500e+01",
+   "cz_layers": null,
+   "verdict": "READS, BEATS, nu AGREES",
+   "verdict_path": [
+    [
+     "items",
+     "sw6_M1_s2",
+     "reads"
+    ],
+    [
+     "items",
+     "sw6_M1_s2",
+     "beats"
+    ],
+    [
+     "items",
+     "sw6_M1_s2",
+     "nu_agrees"
+    ]
+   ],
+   "common": "2.880e-02",
+   "mirror": "6.771e-01",
+   "floor": "9.791e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw6_M1_s5",
+   "qubits": 6,
+   "cz": 225,
+   "cz_per_qubit": "3.750e+01",
+   "cz_layers": null,
+   "verdict": "READS, BEATS, nu DIFFERS",
+   "verdict_path": [
+    [
+     "items",
+     "sw6_M1_s5",
+     "reads"
+    ],
+    [
+     "items",
+     "sw6_M1_s5",
+     "beats"
+    ],
+    [
+     "items",
+     "sw6_M1_s5",
+     "nu_agrees"
+    ]
+   ],
+   "common": "4.465e-01",
+   "mirror": "3.586e-01",
+   "floor": "9.843e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw6_M2_s1",
+   "qubits": 6,
+   "cz": 45,
+   "cz_per_qubit": "7.500e+00",
+   "cz_layers": null,
+   "verdict": "READS, BEATS, nu AGREES",
+   "verdict_path": [
+    [
+     "items",
+     "sw6_M2_s1",
+     "reads"
+    ],
+    [
+     "items",
+     "sw6_M2_s1",
+     "beats"
+    ],
+    [
+     "items",
+     "sw6_M2_s1",
+     "nu_agrees"
+    ]
+   ],
+   "common": "1.269e-02",
+   "mirror": "8.356e-01",
+   "floor": "9.800e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw6_M2_s2",
+   "qubits": 6,
+   "cz": 90,
+   "cz_per_qubit": "1.500e+01",
+   "cz_layers": null,
+   "verdict": "READS, BEATS, nu AGREES",
+   "verdict_path": [
+    [
+     "items",
+     "sw6_M2_s2",
+     "reads"
+    ],
+    [
+     "items",
+     "sw6_M2_s2",
+     "beats"
+    ],
+    [
+     "items",
+     "sw6_M2_s2",
+     "nu_agrees"
+    ]
+   ],
+   "common": "1.955e-02",
+   "mirror": "6.894e-01",
+   "floor": "9.822e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw6_M2_s5",
+   "qubits": 6,
+   "cz": 225,
+   "cz_per_qubit": "3.750e+01",
+   "cz_layers": null,
+   "verdict": "READS, BEATS, nu AGREES",
+   "verdict_path": [
+    [
+     "items",
+     "sw6_M2_s5",
+     "reads"
+    ],
+    [
+     "items",
+     "sw6_M2_s5",
+     "beats"
+    ],
+    [
+     "items",
+     "sw6_M2_s5",
+     "nu_agrees"
+    ]
+   ],
+   "common": "1.884e-01",
+   "mirror": "3.639e-01",
+   "floor": "9.800e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw6_M3_s1",
+   "qubits": 6,
+   "cz": 45,
+   "cz_per_qubit": "7.500e+00",
+   "cz_layers": null,
+   "verdict": "READS, BEATS, nu AGREES",
+   "verdict_path": [
+    [
+     "items",
+     "sw6_M3_s1",
+     "reads"
+    ],
+    [
+     "items",
+     "sw6_M3_s1",
+     "beats"
+    ],
+    [
+     "items",
+     "sw6_M3_s1",
+     "nu_agrees"
+    ]
+   ],
+   "common": "7.900e-03",
+   "mirror": "8.232e-01",
+   "floor": "9.811e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw6_M3_s2",
+   "qubits": 6,
+   "cz": 90,
+   "cz_per_qubit": "1.500e+01",
+   "cz_layers": null,
+   "verdict": "READS, BEATS, nu AGREES",
+   "verdict_path": [
+    [
+     "items",
+     "sw6_M3_s2",
+     "reads"
+    ],
+    [
+     "items",
+     "sw6_M3_s2",
+     "beats"
+    ],
+    [
+     "items",
+     "sw6_M3_s2",
+     "nu_agrees"
+    ]
+   ],
+   "common": "2.178e-02",
+   "mirror": "6.756e-01",
+   "floor": "9.826e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw6_M3_s5",
+   "qubits": 6,
+   "cz": 225,
+   "cz_per_qubit": "3.750e+01",
+   "cz_layers": null,
+   "verdict": "READS, BEATS, nu DIFFERS",
+   "verdict_path": [
+    [
+     "items",
+     "sw6_M3_s5",
+     "reads"
+    ],
+    [
+     "items",
+     "sw6_M3_s5",
+     "beats"
+    ],
+    [
+     "items",
+     "sw6_M3_s5",
+     "nu_agrees"
+    ]
+   ],
+   "common": "3.844e-01",
+   "mirror": "3.465e-01",
+   "floor": "9.802e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw8_M1_s1",
+   "qubits": 8,
+   "cz": 84,
+   "cz_per_qubit": "1.050e+01",
+   "cz_layers": null,
+   "verdict": "READS, BEATS, nu AGREES",
+   "verdict_path": [
+    [
+     "items",
+     "sw8_M1_s1",
+     "reads"
+    ],
+    [
+     "items",
+     "sw8_M1_s1",
+     "beats"
+    ],
+    [
+     "items",
+     "sw8_M1_s1",
+     "nu_agrees"
+    ]
+   ],
+   "common": "1.497e-02",
+   "mirror": "7.800e-01",
+   "floor": "9.804e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw8_M1_s2",
+   "qubits": 8,
+   "cz": 168,
+   "cz_per_qubit": "2.100e+01",
+   "cz_layers": null,
+   "verdict": "READS, BEATS, nu AGREES",
+   "verdict_path": [
+    [
+     "items",
+     "sw8_M1_s2",
+     "reads"
+    ],
+    [
+     "items",
+     "sw8_M1_s2",
+     "beats"
+    ],
+    [
+     "items",
+     "sw8_M1_s2",
+     "nu_agrees"
+    ]
+   ],
+   "common": "3.620e-02",
+   "mirror": "6.142e-01",
+   "floor": "9.811e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw8_M1_s5",
+   "qubits": 8,
+   "cz": 420,
+   "cz_per_qubit": "5.250e+01",
+   "cz_layers": null,
+   "verdict": "DOES NOT READ, BEATS, nu DIFFERS",
+   "verdict_path": [
+    [
+     "items",
+     "sw8_M1_s5",
+     "reads"
+    ],
+    [
+     "items",
+     "sw8_M1_s5",
+     "beats"
+    ],
+    [
+     "items",
+     "sw8_M1_s5",
+     "nu_agrees"
+    ]
+   ],
+   "common": "6.766e-01",
+   "mirror": "2.555e-01",
+   "floor": "9.801e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw8_M2_s1",
+   "qubits": 8,
+   "cz": 84,
+   "cz_per_qubit": "1.050e+01",
+   "cz_layers": null,
+   "verdict": "READS, BEATS, nu AGREES",
+   "verdict_path": [
+    [
+     "items",
+     "sw8_M2_s1",
+     "reads"
+    ],
+    [
+     "items",
+     "sw8_M2_s1",
+     "beats"
+    ],
+    [
+     "items",
+     "sw8_M2_s1",
+     "nu_agrees"
+    ]
+   ],
+   "common": "1.262e-02",
+   "mirror": "7.973e-01",
+   "floor": "9.807e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw8_M2_s2",
+   "qubits": 8,
+   "cz": 168,
+   "cz_per_qubit": "2.100e+01",
+   "cz_layers": null,
+   "verdict": "READS, BEATS, nu AGREES",
+   "verdict_path": [
+    [
+     "items",
+     "sw8_M2_s2",
+     "reads"
+    ],
+    [
+     "items",
+     "sw8_M2_s2",
+     "beats"
+    ],
+    [
+     "items",
+     "sw8_M2_s2",
+     "nu_agrees"
+    ]
+   ],
+   "common": "4.596e-02",
+   "mirror": "6.252e-01",
+   "floor": "9.792e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw8_M2_s5",
+   "qubits": 8,
+   "cz": 420,
+   "cz_per_qubit": "5.250e+01",
+   "cz_layers": null,
+   "verdict": "READS, BEATS, nu AGREES",
+   "verdict_path": [
+    [
+     "items",
+     "sw8_M2_s5",
+     "reads"
+    ],
+    [
+     "items",
+     "sw8_M2_s5",
+     "beats"
+    ],
+    [
+     "items",
+     "sw8_M2_s5",
+     "nu_agrees"
+    ]
+   ],
+   "common": "2.339e-01",
+   "mirror": "2.648e-01",
+   "floor": "9.791e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw8_M3_s1",
+   "qubits": 8,
+   "cz": 84,
+   "cz_per_qubit": "1.050e+01",
+   "cz_layers": null,
+   "verdict": "READS, BEATS, nu AGREES",
+   "verdict_path": [
+    [
+     "items",
+     "sw8_M3_s1",
+     "reads"
+    ],
+    [
+     "items",
+     "sw8_M3_s1",
+     "beats"
+    ],
+    [
+     "items",
+     "sw8_M3_s1",
+     "nu_agrees"
+    ]
+   ],
+   "common": "1.559e-02",
+   "mirror": "7.777e-01",
+   "floor": "9.803e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw8_M3_s2",
+   "qubits": 8,
+   "cz": 168,
+   "cz_per_qubit": "2.100e+01",
+   "cz_layers": null,
+   "verdict": "READS, BEATS, nu AGREES",
+   "verdict_path": [
+    [
+     "items",
+     "sw8_M3_s2",
+     "reads"
+    ],
+    [
+     "items",
+     "sw8_M3_s2",
+     "beats"
+    ],
+    [
+     "items",
+     "sw8_M3_s2",
+     "nu_agrees"
+    ]
+   ],
+   "common": "4.389e-02",
+   "mirror": "6.169e-01",
+   "floor": "9.819e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "schw-marrakesh-2026-11-09",
+   "unit": "sw8_M3_s5",
+   "qubits": 8,
+   "cz": 420,
+   "cz_per_qubit": "5.250e+01",
+   "cz_layers": null,
+   "verdict": "DOES NOT READ, BEATS, nu DIFFERS",
+   "verdict_path": [
+    [
+     "items",
+     "sw8_M3_s5",
+     "reads"
+    ],
+    [
+     "items",
+     "sw8_M3_s5",
+     "beats"
+    ],
+    [
+     "items",
+     "sw8_M3_s5",
+     "nu_agrees"
+    ]
+   ],
+   "common": "5.656e-01",
+   "mirror": "2.442e-01",
+   "floor": "9.803e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/schw-2026-11-09/ibm_marrakesh/scores.json",
+   "note": ""
+  },
+  {
+   "result": "lc3d-marrakesh-2026-11-09",
+   "unit": "place 0, t 1",
+   "qubits": 16,
+   "cz": 116,
+   "cz_per_qubit": "7.250e+00",
+   "cz_layers": 37,
+   "verdict": "4 of 5 distances AGREE (d 0-4: DIFFERS/AGREES/AGREES/AGREES/AGREES)",
+   "verdict_path": [
+    [
+     "candidates",
+     "0",
+     "rows",
+     "1",
+     "d",
+     "0",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "1",
+     "d",
+     "1",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "1",
+     "d",
+     "2",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "1",
+     "d",
+     "3",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "1",
+     "d",
+     "4",
+     "agrees"
+    ]
+   ],
+   "common": null,
+   "mirror": "7.266e-01",
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/lc3d-2026-11-09/ibm_marrakesh/scores.json",
+   "note": "common measure: no mean square of the exact values in scores; mirror = mirror_flip"
+  },
+  {
+   "result": "lc3d-marrakesh-2026-11-09",
+   "unit": "place 0, t 2",
+   "qubits": 16,
+   "cz": 212,
+   "cz_per_qubit": "1.325e+01",
+   "cz_layers": 67,
+   "verdict": "3 of 5 distances AGREE (d 0-4: DIFFERS/DIFFERS/AGREES/AGREES/AGREES)",
+   "verdict_path": [
+    [
+     "candidates",
+     "0",
+     "rows",
+     "2",
+     "d",
+     "0",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "2",
+     "d",
+     "1",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "2",
+     "d",
+     "2",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "2",
+     "d",
+     "3",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "2",
+     "d",
+     "4",
+     "agrees"
+    ]
+   ],
+   "common": null,
+   "mirror": "5.837e-01",
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/lc3d-2026-11-09/ibm_marrakesh/scores.json",
+   "note": "common measure: no mean square of the exact values in scores; mirror = mirror_flip"
+  },
+  {
+   "result": "lc3d-marrakesh-2026-11-09",
+   "unit": "place 0, t 3",
+   "qubits": 16,
+   "cz": 308,
+   "cz_per_qubit": "1.925e+01",
+   "cz_layers": 97,
+   "verdict": "3 of 5 distances AGREE (d 0-4: DIFFERS/DIFFERS/AGREES/AGREES/AGREES)",
+   "verdict_path": [
+    [
+     "candidates",
+     "0",
+     "rows",
+     "3",
+     "d",
+     "0",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "3",
+     "d",
+     "1",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "3",
+     "d",
+     "2",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "3",
+     "d",
+     "3",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "3",
+     "d",
+     "4",
+     "agrees"
+    ]
+   ],
+   "common": null,
+   "mirror": "4.534e-01",
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/lc3d-2026-11-09/ibm_marrakesh/scores.json",
+   "note": "common measure: no mean square of the exact values in scores; mirror = mirror_flip"
+  },
+  {
+   "result": "lc3d-marrakesh-2026-11-09",
+   "unit": "place 0, t 4",
+   "qubits": 16,
+   "cz": 404,
+   "cz_per_qubit": "2.525e+01",
+   "cz_layers": 127,
+   "verdict": "3 of 5 distances AGREE (d 0-4: DIFFERS/DIFFERS/AGREES/AGREES/AGREES)",
+   "verdict_path": [
+    [
+     "candidates",
+     "0",
+     "rows",
+     "4",
+     "d",
+     "0",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "4",
+     "d",
+     "1",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "4",
+     "d",
+     "2",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "4",
+     "d",
+     "3",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "4",
+     "d",
+     "4",
+     "agrees"
+    ]
+   ],
+   "common": null,
+   "mirror": "3.473e-01",
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/lc3d-2026-11-09/ibm_marrakesh/scores.json",
+   "note": "common measure: no mean square of the exact values in scores; mirror = mirror_flip"
+  },
+  {
+   "result": "lc3d-marrakesh-2026-11-09",
+   "unit": "place 0, t 5",
+   "qubits": 16,
+   "cz": 500,
+   "cz_per_qubit": "3.125e+01",
+   "cz_layers": 157,
+   "verdict": "2 of 5 distances AGREE (d 0-4: DIFFERS/DIFFERS/DIFFERS/AGREES/AGREES)",
+   "verdict_path": [
+    [
+     "candidates",
+     "0",
+     "rows",
+     "5",
+     "d",
+     "0",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "5",
+     "d",
+     "1",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "5",
+     "d",
+     "2",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "5",
+     "d",
+     "3",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "5",
+     "d",
+     "4",
+     "agrees"
+    ]
+   ],
+   "common": null,
+   "mirror": "2.409e-01",
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/lc3d-2026-11-09/ibm_marrakesh/scores.json",
+   "note": "common measure: no mean square of the exact values in scores; mirror = mirror_flip"
+  },
+  {
+   "result": "lc3d-marrakesh-2026-11-09",
+   "unit": "place 0, t 6",
+   "qubits": 16,
+   "cz": 596,
+   "cz_per_qubit": "3.725e+01",
+   "cz_layers": 187,
+   "verdict": "1 of 5 distances AGREE (d 0-4: DIFFERS/DIFFERS/DIFFERS/DIFFERS/AGREES)",
+   "verdict_path": [
+    [
+     "candidates",
+     "0",
+     "rows",
+     "6",
+     "d",
+     "0",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "6",
+     "d",
+     "1",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "6",
+     "d",
+     "2",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "6",
+     "d",
+     "3",
+     "agrees"
+    ],
+    [
+     "candidates",
+     "0",
+     "rows",
+     "6",
+     "d",
+     "4",
+     "agrees"
+    ]
+   ],
+   "common": null,
+   "mirror": "1.746e-01",
+   "floor": null,
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/lc3d-2026-11-09/ibm_marrakesh/scores.json",
+   "note": "common measure: no mean square of the exact values in scores; mirror = mirror_flip"
+  },
+  {
+   "result": "du91r-fez-2026-11-10",
+   "unit": "N 91, h 0.05, t 4-24",
+   "qubits": 91,
+   "cz": 2205,
+   "cz_per_qubit": "2.423e+01",
+   "cz_layers": null,
+   "verdict": "rate AGREES; readable depth 24",
+   "verdict_path": [
+    [
+     "rate",
+     "0.05",
+     "verdict"
+    ],
+    [
+     "readable_depth",
+     "0.05"
+    ]
+   ],
+   "common": "3.827e-01",
+   "mirror": "-8.027e-03",
+   "floor": "9.664e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/du91r/ibm_fez/scores.json",
+   "note": "common measure over this h's points (after the fact; the declared READS is over all h); CZ, mirror, floor at the deepest t"
+  },
+  {
+   "result": "du91r-fez-2026-11-10",
+   "unit": "N 91, h 0.10, t 4-24",
+   "qubits": 91,
+   "cz": 2205,
+   "cz_per_qubit": "2.423e+01",
+   "cz_layers": null,
+   "verdict": "rate AGREES; readable depth 16",
+   "verdict_path": [
+    [
+     "rate",
+     "0.10",
+     "verdict"
+    ],
+    [
+     "readable_depth",
+     "0.10"
+    ]
+   ],
+   "common": "3.342e-01",
+   "mirror": "-8.440e-03",
+   "floor": "9.666e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/du91r/ibm_fez/scores.json",
+   "note": "common measure over this h's points (after the fact; the declared READS is over all h); CZ, mirror, floor at the deepest t"
+  },
+  {
+   "result": "du91r-fez-2026-11-10",
+   "unit": "N 91, h 0.15, t 4-24",
+   "qubits": 91,
+   "cz": 2205,
+   "cz_per_qubit": "2.423e+01",
+   "cz_layers": null,
+   "verdict": "rate AGREES; readable depth 24",
+   "verdict_path": [
+    [
+     "rate",
+     "0.15",
+     "verdict"
+    ],
+    [
+     "readable_depth",
+     "0.15"
+    ]
+   ],
+   "common": "2.230e-01",
+   "mirror": "-1.471e-02",
+   "floor": "9.667e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/du91r/ibm_fez/scores.json",
+   "note": "common measure over this h's points (after the fact; the declared READS is over all h); CZ, mirror, floor at the deepest t"
+  },
+  {
+   "result": "du91r-fez-2026-11-10",
+   "unit": "N 91, h A0, t 4-24",
+   "qubits": 91,
+   "cz": 2205,
+   "cz_per_qubit": "2.423e+01",
+   "cz_layers": null,
+   "verdict": "READS (all h); readable depth 24",
+   "verdict_path": [
+    [
+     "reads"
+    ],
+    [
+     "readable_depth",
+     "A0"
+    ]
+   ],
+   "common": "3.985e-01",
+   "mirror": "-1.692e-03",
+   "floor": "9.671e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/du91r/ibm_fez/scores.json",
+   "note": "common measure over this h's points (after the fact; the declared READS is over all h); CZ, mirror, floor at the deepest t"
+  },
+  {
+   "result": "du91r-fez-2026-11-10",
+   "unit": "N 91, h B0, t 4-24",
+   "qubits": 91,
+   "cz": 2205,
+   "cz_per_qubit": "2.423e+01",
+   "cz_layers": null,
+   "verdict": "READS (all h); readable depth 24",
+   "verdict_path": [
+    [
+     "reads"
+    ],
+    [
+     "readable_depth",
+     "B0"
+    ]
+   ],
+   "common": "4.321e-01",
+   "mirror": "-4.253e-03",
+   "floor": "9.675e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/du91r/ibm_fez/scores.json",
+   "note": "common measure over this h's points (after the fact; the declared READS is over all h); CZ, mirror, floor at the deepest t"
+  },
+  {
+   "result": "isingL-fez-2026-11-10",
+   "unit": "q22f3_t1 (place 3, fold)",
+   "qubits": 18,
+   "cz": 108,
+   "cz_per_qubit": "6.000e+00",
+   "cz_layers": 28,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "q22f3_t1",
+     "reads"
+    ],
+    [
+     "arms",
+     "q22f3_t1",
+     "agrees"
+    ]
+   ],
+   "common": "1.455e-02",
+   "mirror": "8.371e-01",
+   "floor": "9.729e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/isingL/ibm_fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "isingL-fez-2026-11-10",
+   "unit": "q22f3_t2 (place 3, fold)",
+   "qubits": 18,
+   "cz": 216,
+   "cz_per_qubit": "1.200e+01",
+   "cz_layers": 55,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "q22f3_t2",
+     "reads"
+    ],
+    [
+     "arms",
+     "q22f3_t2",
+     "agrees"
+    ]
+   ],
+   "common": "1.889e-02",
+   "mirror": "6.836e-01",
+   "floor": "9.722e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/isingL/ibm_fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "isingL-fez-2026-11-10",
+   "unit": "q22f3_t3 (place 3, fold)",
+   "qubits": 18,
+   "cz": 324,
+   "cz_per_qubit": "1.800e+01",
+   "cz_layers": 82,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "q22f3_t3",
+     "reads"
+    ],
+    [
+     "arms",
+     "q22f3_t3",
+     "agrees"
+    ]
+   ],
+   "common": "4.057e-02",
+   "mirror": "5.147e-01",
+   "floor": "9.714e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/isingL/ibm_fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "isingL-fez-2026-11-10",
+   "unit": "q22f3_t4 (place 3, fold)",
+   "qubits": 18,
+   "cz": 432,
+   "cz_per_qubit": "2.400e+01",
+   "cz_layers": 109,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "q22f3_t4",
+     "reads"
+    ],
+    [
+     "arms",
+     "q22f3_t4",
+     "agrees"
+    ]
+   ],
+   "common": "7.315e-02",
+   "mirror": "3.744e-01",
+   "floor": "9.721e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/isingL/ibm_fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "isingL-fez-2026-11-10",
+   "unit": "q22l3_t1 (place 3, line)",
+   "qubits": 18,
+   "cz": 60,
+   "cz_per_qubit": "3.333e+00",
+   "cz_layers": 18,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "q22l3_t1",
+     "reads"
+    ],
+    [
+     "arms",
+     "q22l3_t1",
+     "agrees"
+    ]
+   ],
+   "common": "1.386e-02",
+   "mirror": "8.504e-01",
+   "floor": "9.738e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/isingL/ibm_fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "isingL-fez-2026-11-10",
+   "unit": "q22l3_t2 (place 3, line)",
+   "qubits": 18,
+   "cz": 120,
+   "cz_per_qubit": "6.667e+00",
+   "cz_layers": 36,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "q22l3_t2",
+     "reads"
+    ],
+    [
+     "arms",
+     "q22l3_t2",
+     "agrees"
+    ]
+   ],
+   "common": "1.664e-02",
+   "mirror": "7.316e-01",
+   "floor": "9.735e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/isingL/ibm_fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "isingL-fez-2026-11-10",
+   "unit": "q22l3_t3 (place 3, line)",
+   "qubits": 18,
+   "cz": 180,
+   "cz_per_qubit": "1.000e+01",
+   "cz_layers": 54,
+   "verdict": "READS, AGREES",
+   "verdict_path": [
+    [
+     "arms",
+     "q22l3_t3",
+     "reads"
+    ],
+    [
+     "arms",
+     "q22l3_t3",
+     "agrees"
+    ]
+   ],
+   "common": "3.234e-02",
+   "mirror": "5.884e-01",
+   "floor": "9.737e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/isingL/ibm_fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "isingL-fez-2026-11-10",
+   "unit": "q22l3_t4 (place 3, line)",
+   "qubits": 18,
+   "cz": 240,
+   "cz_per_qubit": "1.333e+01",
+   "cz_layers": 72,
+   "verdict": "READS, AGREES",
+   "verdict_path": [
+    [
+     "arms",
+     "q22l3_t4",
+     "reads"
+    ],
+    [
+     "arms",
+     "q22l3_t4",
+     "agrees"
+    ]
+   ],
+   "common": "4.873e-02",
+   "mirror": "4.564e-01",
+   "floor": "9.727e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/isingL/ibm_fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "isingL-fez-2026-11-10",
+   "unit": "q32f0_t1 (place 0, fold)",
+   "qubits": 28,
+   "cz": 234,
+   "cz_per_qubit": "8.357e+00",
+   "cz_layers": 33,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "q32f0_t1",
+     "reads"
+    ],
+    [
+     "arms",
+     "q32f0_t1",
+     "agrees"
+    ]
+   ],
+   "common": "3.316e-02",
+   "mirror": "7.214e-01",
+   "floor": "9.762e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/isingL/ibm_fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "isingL-fez-2026-11-10",
+   "unit": "q32f0_t2 (place 0, fold)",
+   "qubits": 28,
+   "cz": 468,
+   "cz_per_qubit": "1.671e+01",
+   "cz_layers": 64,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "q32f0_t2",
+     "reads"
+    ],
+    [
+     "arms",
+     "q32f0_t2",
+     "agrees"
+    ]
+   ],
+   "common": "4.759e-02",
+   "mirror": "5.107e-01",
+   "floor": "9.772e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/isingL/ibm_fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "isingL-fez-2026-11-10",
+   "unit": "q32f0_t3 (place 0, fold)",
+   "qubits": 28,
+   "cz": 702,
+   "cz_per_qubit": "2.507e+01",
+   "cz_layers": 95,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "q32f0_t3",
+     "reads"
+    ],
+    [
+     "arms",
+     "q32f0_t3",
+     "agrees"
+    ]
+   ],
+   "common": "1.072e-01",
+   "mirror": "3.306e-01",
+   "floor": "9.750e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/isingL/ibm_fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "isingL-fez-2026-11-10",
+   "unit": "q32f0_t4 (place 0, fold)",
+   "qubits": 28,
+   "cz": 936,
+   "cz_per_qubit": "3.343e+01",
+   "cz_layers": 126,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "q32f0_t4",
+     "reads"
+    ],
+    [
+     "arms",
+     "q32f0_t4",
+     "agrees"
+    ]
+   ],
+   "common": "2.038e-01",
+   "mirror": "2.296e-01",
+   "floor": "9.744e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/isingL/ibm_fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "isingL-fez-2026-11-10",
+   "unit": "q32l0_t1 (place 0, line)",
+   "qubits": 28,
+   "cz": 126,
+   "cz_per_qubit": "4.500e+00",
+   "cz_layers": 30,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "q32l0_t1",
+     "reads"
+    ],
+    [
+     "arms",
+     "q32l0_t1",
+     "agrees"
+    ]
+   ],
+   "common": "3.577e-02",
+   "mirror": "7.477e-01",
+   "floor": "9.760e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/isingL/ibm_fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "isingL-fez-2026-11-10",
+   "unit": "q32l0_t2 (place 0, line)",
+   "qubits": 28,
+   "cz": 252,
+   "cz_per_qubit": "9.000e+00",
+   "cz_layers": 60,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "q32l0_t2",
+     "reads"
+    ],
+    [
+     "arms",
+     "q32l0_t2",
+     "agrees"
+    ]
+   ],
+   "common": "1.248e-01",
+   "mirror": "5.528e-01",
+   "floor": "9.764e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/isingL/ibm_fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "isingL-fez-2026-11-10",
+   "unit": "q32l0_t3 (place 0, line)",
+   "qubits": 28,
+   "cz": 378,
+   "cz_per_qubit": "1.350e+01",
+   "cz_layers": 90,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "q32l0_t3",
+     "reads"
+    ],
+    [
+     "arms",
+     "q32l0_t3",
+     "agrees"
+    ]
+   ],
+   "common": "1.884e-01",
+   "mirror": "3.420e-01",
+   "floor": "9.750e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/isingL/ibm_fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "isingL-fez-2026-11-10",
+   "unit": "q32l0_t4 (place 0, line)",
+   "qubits": 28,
+   "cz": 504,
+   "cz_per_qubit": "1.800e+01",
+   "cz_layers": 120,
+   "verdict": "READS, DIFFERS",
+   "verdict_path": [
+    [
+     "arms",
+     "q32l0_t4",
+     "reads"
+    ],
+    [
+     "arms",
+     "q32l0_t4",
+     "agrees"
+    ]
+   ],
+   "common": "2.477e-01",
+   "mirror": "2.365e-01",
+   "floor": "9.737e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/night-2026-11-10/isingL/ibm_fez/scores.json",
+   "note": ""
+  },
+  {
+   "result": "utility-fez-2026-11-10",
+   "unit": "z106_t4",
+   "qubits": 127,
+   "cz": 564,
+   "cz_per_qubit": "4.441e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES 7 of 17",
+   "verdict_path": [
+    [
+     "observables",
+     "z106_t4",
+     "reads"
+    ],
+    [
+     "observables",
+     "z106_t4",
+     "agrees"
+    ]
+   ],
+   "common": "4.984e-02",
+   "mirror": "5.040e-01",
+   "floor": "9.910e-01",
+   "cone_qubits": 17,
+   "cone_cz": 36,
+   "source": "results/utility-2026-11-10/ibm_fez/scores.json",
+   "note": "qubits = the nodes of Eagle's graph (utility_exact.eagle_edges), the whole circuit; CZ = cz in scores (= report cz_per_circuit), whole circuit, with the gates on failed elements left out (they are outside the light cone); cone CZ = R_ZZ inside the light cone from gpu/utility_tn_diag.network_diag (half its 'zzd' slots), cone qubits from report.json (network_diag gives the same)",
+   "cone_qubits_by_network": 17
+  },
+  {
+   "result": "utility-fez-2026-11-10",
+   "unit": "w10_t5",
+   "qubits": 127,
+   "cz": 705,
+   "cz_per_qubit": "5.551e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES 11 of 17",
+   "verdict_path": [
+    [
+     "observables",
+     "w10_t5",
+     "reads"
+    ],
+    [
+     "observables",
+     "w10_t5",
+     "agrees"
+    ]
+   ],
+   "common": "1.350e-01",
+   "mirror": "1.220e-01",
+   "floor": "8.515e-01",
+   "cone_qubits": 37,
+   "cone_cz": 131,
+   "source": "results/utility-2026-11-10/ibm_fez/scores.json",
+   "note": "qubits = the nodes of Eagle's graph (utility_exact.eagle_edges), the whole circuit; CZ = cz in scores (= report cz_per_circuit), whole circuit, with the gates on failed elements left out (they are outside the light cone); cone CZ = R_ZZ inside the light cone from gpu/utility_tn_diag.network_diag (half its 'zzd' slots), cone qubits from report.json (network_diag gives the same)",
+   "cone_qubits_by_network": 37
+  },
+  {
+   "result": "utility-fez-2026-11-10",
+   "unit": "w17_t5",
+   "qubits": 127,
+   "cz": 690,
+   "cz_per_qubit": "5.433e+00",
+   "cz_layers": null,
+   "verdict": "DOES NOT READ, AGREES 12 of 17",
+   "verdict_path": [
+    [
+     "observables",
+     "w17_t5",
+     "reads"
+    ],
+    [
+     "observables",
+     "w17_t5",
+     "agrees"
+    ]
+   ],
+   "common": "8.091e-01",
+   "mirror": "-3.500e-03",
+   "floor": "3.100e-01",
+   "cone_qubits": 68,
+   "cone_cz": 253,
+   "source": "results/utility-2026-11-10/ibm_fez/scores.json",
+   "note": "qubits = the nodes of Eagle's graph (utility_exact.eagle_edges), the whole circuit; CZ = cz in scores (= report cz_per_circuit), whole circuit, with the gates on failed elements left out (they are outside the light cone); cone CZ = R_ZZ inside the light cone from gpu/utility_tn_diag.network_diag (half its 'zzd' slots), cone qubits from report.json (network_diag gives the same)",
+   "cone_qubits_by_network": 68
+  },
+  {
+   "result": "utility-fez-2026-11-10",
+   "unit": "w17b_t5x",
+   "qubits": 127,
+   "cz": 690,
+   "cz_per_qubit": "5.433e+00",
+   "cz_layers": null,
+   "verdict": "DOES NOT READ, AGREES 12 of 17",
+   "verdict_path": [
+    [
+     "observables",
+     "w17b_t5x",
+     "reads"
+    ],
+    [
+     "observables",
+     "w17b_t5x",
+     "agrees"
+    ]
+   ],
+   "common": "8.524e-01",
+   "mirror": "-9.000e-03",
+   "floor": "3.055e-01",
+   "cone_qubits": 68,
+   "cone_cz": 253,
+   "source": "results/utility-2026-11-10/ibm_fez/scores.json",
+   "note": "qubits = the nodes of Eagle's graph (utility_exact.eagle_edges), the whole circuit; CZ = cz in scores (= report cz_per_circuit), whole circuit, with the gates on failed elements left out (they are outside the light cone); cone CZ = R_ZZ inside the light cone from gpu/utility_tn_diag.network_diag (half its 'zzd' slots), cone qubits from report.json (network_diag gives the same)",
+   "cone_qubits_by_network": 68
+  },
+  {
+   "result": "utility-depth-fez-2026-11-11",
+   "unit": "z106_t4",
+   "qubits": 127,
+   "cz": 564,
+   "cz_per_qubit": "4.441e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES 7 of 17",
+   "verdict_path": [
+    [
+     "observables",
+     "z106_t4",
+     "reads"
+    ],
+    [
+     "observables",
+     "z106_t4",
+     "agrees"
+    ]
+   ],
+   "common": "4.788e-02",
+   "mirror": "4.845e-01",
+   "floor": "9.915e-01",
+   "cone_qubits": 17,
+   "cone_cz": 36,
+   "source": "results/utility-depth-2026-11-11/ibm_fez/scores.json",
+   "note": "qubits = the nodes of Eagle's graph (utility_exact.eagle_edges), the whole circuit; CZ = cz in scores (= report cz_per_circuit), whole circuit, with the gates on failed elements left out (they are outside the light cone); cone CZ = R_ZZ inside the light cone from gpu/utility_tn_diag.network_diag (half its 'zzd' slots), cone qubits from report.json (network_diag gives the same)",
+   "cone_qubits_by_network": 17
+  },
+  {
+   "result": "utility-depth-fez-2026-11-11",
+   "unit": "z106_t5",
+   "qubits": 127,
+   "cz": 705,
+   "cz_per_qubit": "5.551e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES 7 of 17",
+   "verdict_path": [
+    [
+     "observables",
+     "z106_t5",
+     "reads"
+    ],
+    [
+     "observables",
+     "z106_t5",
+     "agrees"
+    ]
+   ],
+   "common": "3.646e-02",
+   "mirror": "4.060e-01",
+   "floor": "9.910e-01",
+   "cone_qubits": 25,
+   "cone_cz": 60,
+   "source": "results/utility-depth-2026-11-11/ibm_fez/scores.json",
+   "note": "qubits = the nodes of Eagle's graph (utility_exact.eagle_edges), the whole circuit; CZ = cz in scores (= report cz_per_circuit), whole circuit, with the gates on failed elements left out (they are outside the light cone); cone CZ = R_ZZ inside the light cone from gpu/utility_tn_diag.network_diag (half its 'zzd' slots), cone qubits from report.json (network_diag gives the same)",
+   "cone_qubits_by_network": 25
+  },
+  {
+   "result": "utility-depth-fez-2026-11-11",
+   "unit": "z106_t6",
+   "qubits": 127,
+   "cz": 846,
+   "cz_per_qubit": "6.661e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES 8 of 17",
+   "verdict_path": [
+    [
+     "observables",
+     "z106_t6",
+     "reads"
+    ],
+    [
+     "observables",
+     "z106_t6",
+     "agrees"
+    ]
+   ],
+   "common": "2.917e-02",
+   "mirror": "3.635e-01",
+   "floor": "9.910e-01",
+   "cone_qubits": 31,
+   "cone_cz": 92,
+   "source": "results/utility-depth-2026-11-11/ibm_fez/scores.json",
+   "note": "qubits = the nodes of Eagle's graph (utility_exact.eagle_edges), the whole circuit; CZ = cz in scores (= report cz_per_circuit), whole circuit, with the gates on failed elements left out (they are outside the light cone); cone CZ = R_ZZ inside the light cone from gpu/utility_tn_diag.network_diag (half its 'zzd' slots), cone qubits from report.json (network_diag gives the same)",
+   "cone_qubits_by_network": 31
+  },
+  {
+   "result": "utility-depth-fez-2026-11-11",
+   "unit": "z106_t7",
+   "qubits": 127,
+   "cz": 987,
+   "cz_per_qubit": "7.772e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES 8 of 17",
+   "verdict_path": [
+    [
+     "observables",
+     "z106_t7",
+     "reads"
+    ],
+    [
+     "observables",
+     "z106_t7",
+     "agrees"
+    ]
+   ],
+   "common": "2.769e-02",
+   "mirror": "3.600e-01",
+   "floor": "9.880e-01",
+   "cone_qubits": 38,
+   "cone_cz": 131,
+   "source": "results/utility-depth-2026-11-11/ibm_fez/scores.json",
+   "note": "qubits = the nodes of Eagle's graph (utility_exact.eagle_edges), the whole circuit; CZ = cz in scores (= report cz_per_circuit), whole circuit, with the gates on failed elements left out (they are outside the light cone); cone CZ = R_ZZ inside the light cone from gpu/utility_tn_diag.network_diag (half its 'zzd' slots), cone qubits from report.json (network_diag gives the same)",
+   "cone_qubits_by_network": 38
+  },
+  {
+   "result": "utility-depth-fez-2026-11-11",
+   "unit": "z106_t8",
+   "qubits": 127,
+   "cz": 1128,
+   "cz_per_qubit": "8.882e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES 8 of 17",
+   "verdict_path": [
+    [
+     "observables",
+     "z106_t8",
+     "reads"
+    ],
+    [
+     "observables",
+     "z106_t8",
+     "agrees"
+    ]
+   ],
+   "common": "2.760e-02",
+   "mirror": "3.150e-01",
+   "floor": "9.940e-01",
+   "cone_qubits": 43,
+   "cone_cz": 177,
+   "source": "results/utility-depth-2026-11-11/ibm_fez/scores.json",
+   "note": "qubits = the nodes of Eagle's graph (utility_exact.eagle_edges), the whole circuit; CZ = cz in scores (= report cz_per_circuit), whole circuit, with the gates on failed elements left out (they are outside the light cone); cone CZ = R_ZZ inside the light cone from gpu/utility_tn_diag.network_diag (half its 'zzd' slots), cone qubits from report.json (network_diag gives the same)",
+   "cone_qubits_by_network": 43
+  },
+  {
+   "result": "utility-depth-fez-2026-11-11",
+   "unit": "w10_t5",
+   "qubits": 127,
+   "cz": 705,
+   "cz_per_qubit": "5.551e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES 11 of 17",
+   "verdict_path": [
+    [
+     "observables",
+     "w10_t5",
+     "reads"
+    ],
+    [
+     "observables",
+     "w10_t5",
+     "agrees"
+    ]
+   ],
+   "common": "1.426e-01",
+   "mirror": "1.085e-01",
+   "floor": "8.705e-01",
+   "cone_qubits": 37,
+   "cone_cz": 131,
+   "source": "results/utility-depth-2026-11-11/ibm_fez/scores.json",
+   "note": "qubits = the nodes of Eagle's graph (utility_exact.eagle_edges), the whole circuit; CZ = cz in scores (= report cz_per_circuit), whole circuit, with the gates on failed elements left out (they are outside the light cone); cone CZ = R_ZZ inside the light cone from gpu/utility_tn_diag.network_diag (half its 'zzd' slots), cone qubits from report.json (network_diag gives the same)",
+   "cone_qubits_by_network": 37
+  },
+  {
+   "result": "utility-depth-fez-2026-11-11",
+   "unit": "w10_t6",
+   "qubits": 127,
+   "cz": 846,
+   "cz_per_qubit": "6.661e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES 17 of 17",
+   "verdict_path": [
+    [
+     "observables",
+     "w10_t6",
+     "reads"
+    ],
+    [
+     "observables",
+     "w10_t6",
+     "agrees"
+    ]
+   ],
+   "common": "1.342e-01",
+   "mirror": "4.550e-02",
+   "floor": "8.785e-01",
+   "cone_qubits": 42,
+   "cone_cz": 176,
+   "source": "results/utility-depth-2026-11-11/ibm_fez/scores.json",
+   "note": "qubits = the nodes of Eagle's graph (utility_exact.eagle_edges), the whole circuit; CZ = cz in scores (= report cz_per_circuit), whole circuit, with the gates on failed elements left out (they are outside the light cone); cone CZ = R_ZZ inside the light cone from gpu/utility_tn_diag.network_diag (half its 'zzd' slots), cone qubits from report.json (network_diag gives the same)",
+   "cone_qubits_by_network": 42
+  },
+  {
+   "result": "hubbard-fez-2026-11-11",
+   "unit": "L20_s2_U0 (L 20, 2 steps, U 0)",
+   "qubits": 40,
+   "cz": 384,
+   "cz_per_qubit": "9.600e+00",
+   "cz_layers": 24,
+   "verdict": "READS, AGREES 26 of 40",
+   "verdict_path": [
+    [
+     "circuits",
+     "L20_s2_U0",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L20_s2_U0",
+     "agrees"
+    ]
+   ],
+   "common": "7.659e-02",
+   "mirror": "5.836e-01",
+   "floor": "9.708e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U0"
+  },
+  {
+   "result": "hubbard-fez-2026-11-11",
+   "unit": "L20_s2_U4 (L 20, 2 steps, U 4)",
+   "qubits": 40,
+   "cz": 384,
+   "cz_per_qubit": "9.600e+00",
+   "cz_layers": 24,
+   "verdict": "READS, AGREES 17 of 40",
+   "verdict_path": [
+    [
+     "circuits",
+     "L20_s2_U4",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L20_s2_U4",
+     "agrees"
+    ]
+   ],
+   "common": "5.208e-02",
+   "mirror": "5.876e-01",
+   "floor": "9.707e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U4"
+  },
+  {
+   "result": "hubbard-fez-2026-11-11",
+   "unit": "L20_s4_U0 (L 20, 4 steps, U 0)",
+   "qubits": 40,
+   "cz": 768,
+   "cz_per_qubit": "1.920e+01",
+   "cz_layers": 48,
+   "verdict": "READS, AGREES 7 of 40",
+   "verdict_path": [
+    [
+     "circuits",
+     "L20_s4_U0",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L20_s4_U0",
+     "agrees"
+    ]
+   ],
+   "common": "3.002e-01",
+   "mirror": "2.792e-01",
+   "floor": "9.701e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U0"
+  },
+  {
+   "result": "hubbard-fez-2026-11-11",
+   "unit": "L20_s4_U4 (L 20, 4 steps, U 4)",
+   "qubits": 40,
+   "cz": 768,
+   "cz_per_qubit": "1.920e+01",
+   "cz_layers": 48,
+   "verdict": "READS, AGREES 20 of 40",
+   "verdict_path": [
+    [
+     "circuits",
+     "L20_s4_U4",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L20_s4_U4",
+     "agrees"
+    ]
+   ],
+   "common": "1.739e-01",
+   "mirror": "2.799e-01",
+   "floor": "9.709e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U4"
+  },
+  {
+   "result": "hubbard-fez-2026-11-11",
+   "unit": "L20_s6_U0 (L 20, 6 steps, U 0)",
+   "qubits": 40,
+   "cz": 1152,
+   "cz_per_qubit": "2.880e+01",
+   "cz_layers": 72,
+   "verdict": "DOES NOT READ, AGREES 4 of 40",
+   "verdict_path": [
+    [
+     "circuits",
+     "L20_s6_U0",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L20_s6_U0",
+     "agrees"
+    ]
+   ],
+   "common": "9.378e-01",
+   "mirror": "1.116e-01",
+   "floor": "9.709e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U0"
+  },
+  {
+   "result": "hubbard-fez-2026-11-11",
+   "unit": "L20_s6_U4 (L 20, 6 steps, U 4)",
+   "qubits": 40,
+   "cz": 1152,
+   "cz_per_qubit": "2.880e+01",
+   "cz_layers": 72,
+   "verdict": "DOES NOT READ, AGREES 12 of 40",
+   "verdict_path": [
+    [
+     "circuits",
+     "L20_s6_U4",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L20_s6_U4",
+     "agrees"
+    ]
+   ],
+   "common": "6.448e-01",
+   "mirror": "1.009e-01",
+   "floor": "9.698e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U4"
+  },
+  {
+   "result": "hubbard-fez-2026-11-11",
+   "unit": "L30_s2_U0 (L 30, 2 steps, U 0)",
+   "qubits": 60,
+   "cz": 584,
+   "cz_per_qubit": "9.733e+00",
+   "cz_layers": 24,
+   "verdict": "READS, AGREES 45 of 60",
+   "verdict_path": [
+    [
+     "circuits",
+     "L30_s2_U0",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L30_s2_U0",
+     "agrees"
+    ]
+   ],
+   "common": "5.751e-02",
+   "mirror": "4.875e-01",
+   "floor": "9.701e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U0"
+  },
+  {
+   "result": "hubbard-fez-2026-11-11",
+   "unit": "L30_s2_U4 (L 30, 2 steps, U 4)",
+   "qubits": 60,
+   "cz": 584,
+   "cz_per_qubit": "9.733e+00",
+   "cz_layers": 24,
+   "verdict": "READS, AGREES 21 of 60",
+   "verdict_path": [
+    [
+     "circuits",
+     "L30_s2_U4",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L30_s2_U4",
+     "agrees"
+    ]
+   ],
+   "common": "5.397e-02",
+   "mirror": "5.060e-01",
+   "floor": "9.687e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U4"
+  },
+  {
+   "result": "hubbard-fez-2026-11-11",
+   "unit": "L30_s4_U0 (L 30, 4 steps, U 0)",
+   "qubits": 60,
+   "cz": 1168,
+   "cz_per_qubit": "1.947e+01",
+   "cz_layers": 48,
+   "verdict": "READS, AGREES 2 of 60",
+   "verdict_path": [
+    [
+     "circuits",
+     "L30_s4_U0",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L30_s4_U0",
+     "agrees"
+    ]
+   ],
+   "common": "3.219e-01",
+   "mirror": "1.686e-01",
+   "floor": "9.688e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U0"
+  },
+  {
+   "result": "hubbard-fez-2026-11-11",
+   "unit": "L30_s4_U4 (L 30, 4 steps, U 4)",
+   "qubits": 60,
+   "cz": 1168,
+   "cz_per_qubit": "1.947e+01",
+   "cz_layers": 48,
+   "verdict": "READS, AGREES 30 of 60",
+   "verdict_path": [
+    [
+     "circuits",
+     "L30_s4_U4",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L30_s4_U4",
+     "agrees"
+    ]
+   ],
+   "common": "1.812e-01",
+   "mirror": "1.811e-01",
+   "floor": "9.678e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U4"
+  },
+  {
+   "result": "hubbard-fez-2026-11-11",
+   "unit": "L30_s6_U0 (L 30, 6 steps, U 0)",
+   "qubits": 60,
+   "cz": 1752,
+   "cz_per_qubit": "2.920e+01",
+   "cz_layers": 72,
+   "verdict": "DOES NOT READ, AGREES 3 of 60",
+   "verdict_path": [
+    [
+     "circuits",
+     "L30_s6_U0",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L30_s6_U0",
+     "agrees"
+    ]
+   ],
+   "common": "7.989e-01",
+   "mirror": "4.343e-02",
+   "floor": "9.656e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U0"
+  },
+  {
+   "result": "hubbard-fez-2026-11-11",
+   "unit": "L30_s6_U4 (L 30, 6 steps, U 4)",
+   "qubits": 60,
+   "cz": 1752,
+   "cz_per_qubit": "2.920e+01",
+   "cz_layers": 72,
+   "verdict": "DOES NOT READ, AGREES 16 of 60",
+   "verdict_path": [
+    [
+     "circuits",
+     "L30_s6_U4",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L30_s6_U4",
+     "agrees"
+    ]
+   ],
+   "common": "7.109e-01",
+   "mirror": "3.695e-02",
+   "floor": "9.667e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U4"
+  },
+  {
+   "result": "hubbard-big-fez-2026-11-11",
+   "unit": "L45_s2_U0 (L 45, 2 steps, U 0)",
+   "qubits": 90,
+   "cz": 884,
+   "cz_per_qubit": "9.822e+00",
+   "cz_layers": 24,
+   "verdict": "READS, AGREES 56 of 90",
+   "verdict_path": [
+    [
+     "circuits",
+     "L45_s2_U0",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L45_s2_U0",
+     "agrees"
+    ]
+   ],
+   "common": "1.582e-01",
+   "mirror": "5.675e-01",
+   "floor": "9.693e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-big-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U0"
+  },
+  {
+   "result": "hubbard-big-fez-2026-11-11",
+   "unit": "L45_s2_U4 (L 45, 2 steps, U 4)",
+   "qubits": 90,
+   "cz": 884,
+   "cz_per_qubit": "9.822e+00",
+   "cz_layers": 24,
+   "verdict": "READS, AGREES 40 of 90",
+   "verdict_path": [
+    [
+     "circuits",
+     "L45_s2_U4",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L45_s2_U4",
+     "agrees"
+    ]
+   ],
+   "common": "1.143e-01",
+   "mirror": "5.654e-01",
+   "floor": "9.700e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-big-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U4"
+  },
+  {
+   "result": "hubbard-big-fez-2026-11-11",
+   "unit": "L45_s4_U0 (L 45, 4 steps, U 0)",
+   "qubits": 90,
+   "cz": 1768,
+   "cz_per_qubit": "1.964e+01",
+   "cz_layers": 48,
+   "verdict": "READS, AGREES 7 of 90",
+   "verdict_path": [
+    [
+     "circuits",
+     "L45_s4_U0",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L45_s4_U0",
+     "agrees"
+    ]
+   ],
+   "common": "2.340e-01",
+   "mirror": "2.479e-01",
+   "floor": "9.689e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-big-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U0"
+  },
+  {
+   "result": "hubbard-big-fez-2026-11-11",
+   "unit": "L45_s4_U4 (L 45, 4 steps, U 4)",
+   "qubits": 90,
+   "cz": 1768,
+   "cz_per_qubit": "1.964e+01",
+   "cz_layers": 48,
+   "verdict": "READS, AGREES 45 of 90",
+   "verdict_path": [
+    [
+     "circuits",
+     "L45_s4_U4",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L45_s4_U4",
+     "agrees"
+    ]
+   ],
+   "common": "3.111e-01",
+   "mirror": "2.456e-01",
+   "floor": "9.691e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-big-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U4"
+  },
+  {
+   "result": "hubbard-big-fez-2026-11-11",
+   "unit": "L60_s2_U0 (L 60, 2 steps, U 0)",
+   "qubits": 120,
+   "cz": 1184,
+   "cz_per_qubit": "9.867e+00",
+   "cz_layers": 24,
+   "verdict": "READS, AGREES 81 of 120",
+   "verdict_path": [
+    [
+     "circuits",
+     "L60_s2_U0",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L60_s2_U0",
+     "agrees"
+    ]
+   ],
+   "common": "9.393e-02",
+   "mirror": "5.536e-01",
+   "floor": "9.660e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-big-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U0"
+  },
+  {
+   "result": "hubbard-big-fez-2026-11-11",
+   "unit": "L60_s2_U4 (L 60, 2 steps, U 4)",
+   "qubits": 120,
+   "cz": 1184,
+   "cz_per_qubit": "9.867e+00",
+   "cz_layers": 24,
+   "verdict": "READS, AGREES 56 of 120",
+   "verdict_path": [
+    [
+     "circuits",
+     "L60_s2_U4",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L60_s2_U4",
+     "agrees"
+    ]
+   ],
+   "common": "8.074e-02",
+   "mirror": "5.607e-01",
+   "floor": "9.653e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-big-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U4"
+  },
+  {
+   "result": "hubbard-big-fez-2026-11-11",
+   "unit": "L60_s4_U0 (L 60, 4 steps, U 0)",
+   "qubits": 120,
+   "cz": 2368,
+   "cz_per_qubit": "1.973e+01",
+   "cz_layers": 48,
+   "verdict": "READS, AGREES 7 of 120",
+   "verdict_path": [
+    [
+     "circuits",
+     "L60_s4_U0",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L60_s4_U0",
+     "agrees"
+    ]
+   ],
+   "common": "2.350e-01",
+   "mirror": "2.396e-01",
+   "floor": "9.670e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-big-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U0"
+  },
+  {
+   "result": "hubbard-big-fez-2026-11-11",
+   "unit": "L60_s4_U4 (L 60, 4 steps, U 4)",
+   "qubits": 120,
+   "cz": 2368,
+   "cz_per_qubit": "1.973e+01",
+   "cz_layers": 48,
+   "verdict": "READS, AGREES 59 of 120",
+   "verdict_path": [
+    [
+     "circuits",
+     "L60_s4_U4",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L60_s4_U4",
+     "agrees"
+    ]
+   ],
+   "common": "2.530e-01",
+   "mirror": "2.377e-01",
+   "floor": "9.654e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hubbard-big-2026-11-11/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "U4"
+  },
+  {
+   "result": "hub-dt-fez-2026-11-12",
+   "unit": "L20_T0.5_s1 (L 20, time 0.5, 1 steps, U 4)",
+   "qubits": 40,
+   "cz": 192,
+   "cz_per_qubit": "4.800e+00",
+   "cz_layers": 12,
+   "verdict": "READS, AGREES 29 of 40",
+   "verdict_path": [
+    [
+     "circuits",
+     "L20_T0.5_s1",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L20_T0.5_s1",
+     "agrees"
+    ]
+   ],
+   "common": "3.276e-02",
+   "mirror": "7.396e-01",
+   "floor": "9.657e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hub-dt-2026-11-12/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "dt"
+  },
+  {
+   "result": "hub-dt-fez-2026-11-12",
+   "unit": "L20_T0.5_s2 (L 20, time 0.5, 2 steps, U 4)",
+   "qubits": 40,
+   "cz": 384,
+   "cz_per_qubit": "9.600e+00",
+   "cz_layers": 24,
+   "verdict": "READS, AGREES 24 of 40",
+   "verdict_path": [
+    [
+     "circuits",
+     "L20_T0.5_s2",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L20_T0.5_s2",
+     "agrees"
+    ]
+   ],
+   "common": "4.370e-02",
+   "mirror": "6.298e-01",
+   "floor": "9.651e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hub-dt-2026-11-12/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "dt"
+  },
+  {
+   "result": "hub-dt-fez-2026-11-12",
+   "unit": "L20_T1.0_s2 (L 20, time 1.0, 2 steps, U 4)",
+   "qubits": 40,
+   "cz": 384,
+   "cz_per_qubit": "9.600e+00",
+   "cz_layers": 24,
+   "verdict": "READS, AGREES 22 of 40",
+   "verdict_path": [
+    [
+     "circuits",
+     "L20_T1.0_s2",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L20_T1.0_s2",
+     "agrees"
+    ]
+   ],
+   "common": "1.033e-01",
+   "mirror": "4.914e-01",
+   "floor": "9.643e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hub-dt-2026-11-12/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "dt"
+  },
+  {
+   "result": "hub-dt-fez-2026-11-12",
+   "unit": "L20_T1.0_s4 (L 20, time 1.0, 4 steps, U 4)",
+   "qubits": 40,
+   "cz": 768,
+   "cz_per_qubit": "1.920e+01",
+   "cz_layers": 48,
+   "verdict": "READS, AGREES 20 of 40",
+   "verdict_path": [
+    [
+     "circuits",
+     "L20_T1.0_s4",
+     "reads"
+    ],
+    [
+     "circuits",
+     "L20_T1.0_s4",
+     "agrees"
+    ]
+   ],
+   "common": "1.423e-01",
+   "mirror": "3.165e-01",
+   "floor": "9.661e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/hub-dt-2026-11-12/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "dt"
+  },
+  {
+   "result": "ohm-fez-2026-11-12",
+   "unit": "A0_t3: M per circuit (sum over 20 qubits), 28 circuits",
+   "qubits": 40,
+   "cz": 234,
+   "cz_per_qubit": "5.850e+00",
+   "cz_layers": 12,
+   "verdict": "DOES NOT READ, AGREES 0 of 28",
+   "verdict_path": [
+    [
+     "arms",
+     "A0_t3",
+     "reads"
+    ],
+    [
+     "arms",
+     "A0_t3",
+     "agrees"
+    ]
+   ],
+   "common": "2.352e+00",
+   "mirror": "6.720e-01",
+   "floor": "9.650e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/ohm-2026-11-12/ibm_fez/scores.json",
+   "note": "unit: M per circuit (sum over the right half's 20 qubits); CZ and CZ layers from build.json; mirror and floor are means over the arm's circuits",
+   "arm": "ohm"
+  },
+  {
+   "result": "ohm-fez-2026-11-12",
+   "unit": "A0_t6: M per circuit (sum over 20 qubits), 28 circuits",
+   "qubits": 40,
+   "cz": 468,
+   "cz_per_qubit": "1.170e+01",
+   "cz_layers": 24,
+   "verdict": "DOES NOT READ, AGREES 0 of 28",
+   "verdict_path": [
+    [
+     "arms",
+     "A0_t6",
+     "reads"
+    ],
+    [
+     "arms",
+     "A0_t6",
+     "agrees"
+    ]
+   ],
+   "common": "1.570e+00",
+   "mirror": "4.434e-01",
+   "floor": "9.661e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/ohm-2026-11-12/ibm_fez/scores.json",
+   "note": "unit: M per circuit (sum over the right half's 20 qubits); CZ and CZ layers from build.json; mirror and floor are means over the arm's circuits",
+   "arm": "ohm"
+  },
+  {
+   "result": "ohm-fez-2026-11-12",
+   "unit": "A1_t3: M per circuit (sum over 20 qubits), 28 circuits",
+   "qubits": 40,
+   "cz": 351,
+   "cz_per_qubit": "8.775e+00",
+   "cz_layers": 18,
+   "verdict": "DOES NOT READ, AGREES 0 of 28",
+   "verdict_path": [
+    [
+     "arms",
+     "A1_t3",
+     "reads"
+    ],
+    [
+     "arms",
+     "A1_t3",
+     "agrees"
+    ]
+   ],
+   "common": "4.164e+00",
+   "mirror": "5.684e-01",
+   "floor": "9.661e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/ohm-2026-11-12/ibm_fez/scores.json",
+   "note": "unit: M per circuit (sum over the right half's 20 qubits); CZ and CZ layers from build.json; mirror and floor are means over the arm's circuits",
+   "arm": "ohm"
+  },
+  {
+   "result": "ohm-fez-2026-11-12",
+   "unit": "A1_t6: M per circuit (sum over 20 qubits), 28 circuits",
+   "qubits": 40,
+   "cz": 702,
+   "cz_per_qubit": "1.755e+01",
+   "cz_layers": 36,
+   "verdict": "DOES NOT READ, AGREES 0 of 28",
+   "verdict_path": [
+    [
+     "arms",
+     "A1_t6",
+     "reads"
+    ],
+    [
+     "arms",
+     "A1_t6",
+     "agrees"
+    ]
+   ],
+   "common": "4.134e+00",
+   "mirror": "2.882e-01",
+   "floor": "9.667e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/ohm-2026-11-12/ibm_fez/scores.json",
+   "note": "unit: M per circuit (sum over the right half's 20 qubits); CZ and CZ layers from build.json; mirror and floor are means over the arm's circuits",
+   "arm": "ohm"
+  },
+  {
+   "result": "ohm-fez-2026-11-12",
+   "unit": "A2_t3: M per circuit (sum over 20 qubits), 28 circuits",
+   "qubits": 40,
+   "cz": 351,
+   "cz_per_qubit": "8.775e+00",
+   "cz_layers": 18,
+   "verdict": "DOES NOT READ, AGREES 1 of 28",
+   "verdict_path": [
+    [
+     "arms",
+     "A2_t3",
+     "reads"
+    ],
+    [
+     "arms",
+     "A2_t3",
+     "agrees"
+    ]
+   ],
+   "common": "5.792e+00",
+   "mirror": "5.757e-01",
+   "floor": "9.671e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/ohm-2026-11-12/ibm_fez/scores.json",
+   "note": "unit: M per circuit (sum over the right half's 20 qubits); CZ and CZ layers from build.json; mirror and floor are means over the arm's circuits",
+   "arm": "ohm"
+  },
+  {
+   "result": "ohm-fez-2026-11-12",
+   "unit": "A2_t6: M per circuit (sum over 20 qubits), 28 circuits",
+   "qubits": 40,
+   "cz": 702,
+   "cz_per_qubit": "1.755e+01",
+   "cz_layers": 36,
+   "verdict": "DOES NOT READ, AGREES 0 of 28",
+   "verdict_path": [
+    [
+     "arms",
+     "A2_t6",
+     "reads"
+    ],
+    [
+     "arms",
+     "A2_t6",
+     "agrees"
+    ]
+   ],
+   "common": "7.206e+00",
+   "mirror": "3.053e-01",
+   "floor": "9.671e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/ohm-2026-11-12/ibm_fez/scores.json",
+   "note": "unit: M per circuit (sum over the right half's 20 qubits); CZ and CZ layers from build.json; mirror and floor are means over the arm's circuits",
+   "arm": "ohm"
+  },
+  {
+   "result": "ohm-kingston-2026-11-12",
+   "unit": "A0_t3: M per circuit (sum over 20 qubits), 28 circuits",
+   "qubits": 40,
+   "cz": 234,
+   "cz_per_qubit": "5.850e+00",
+   "cz_layers": 12,
+   "verdict": "DOES NOT READ, AGREES 1 of 28",
+   "verdict_path": [
+    [
+     "arms",
+     "A0_t3",
+     "reads"
+    ],
+    [
+     "arms",
+     "A0_t3",
+     "agrees"
+    ]
+   ],
+   "common": "6.834e-01",
+   "mirror": "7.521e-01",
+   "floor": "9.822e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/ohm-kingston-2026-11-12/ibm_kingston/scores.json",
+   "note": "unit: M per circuit (sum over the right half's 20 qubits); CZ and CZ layers from build.json; mirror and floor are means over the arm's circuits",
+   "arm": "ohm"
+  },
+  {
+   "result": "ohm-kingston-2026-11-12",
+   "unit": "A0_t6: M per circuit (sum over 20 qubits), 28 circuits",
+   "qubits": 40,
+   "cz": 468,
+   "cz_per_qubit": "1.170e+01",
+   "cz_layers": 24,
+   "verdict": "READS, AGREES 1 of 28",
+   "verdict_path": [
+    [
+     "arms",
+     "A0_t6",
+     "reads"
+    ],
+    [
+     "arms",
+     "A0_t6",
+     "agrees"
+    ]
+   ],
+   "common": "3.749e-01",
+   "mirror": "5.387e-01",
+   "floor": "9.806e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/ohm-kingston-2026-11-12/ibm_kingston/scores.json",
+   "note": "unit: M per circuit (sum over the right half's 20 qubits); CZ and CZ layers from build.json; mirror and floor are means over the arm's circuits",
+   "arm": "ohm"
+  },
+  {
+   "result": "ohm-kingston-2026-11-12",
+   "unit": "A1_t3: M per circuit (sum over 20 qubits), 28 circuits",
+   "qubits": 40,
+   "cz": 351,
+   "cz_per_qubit": "8.775e+00",
+   "cz_layers": 18,
+   "verdict": "DOES NOT READ, AGREES 2 of 28",
+   "verdict_path": [
+    [
+     "arms",
+     "A1_t3",
+     "reads"
+    ],
+    [
+     "arms",
+     "A1_t3",
+     "agrees"
+    ]
+   ],
+   "common": "1.470e+00",
+   "mirror": "6.622e-01",
+   "floor": "9.818e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/ohm-kingston-2026-11-12/ibm_kingston/scores.json",
+   "note": "unit: M per circuit (sum over the right half's 20 qubits); CZ and CZ layers from build.json; mirror and floor are means over the arm's circuits",
+   "arm": "ohm"
+  },
+  {
+   "result": "ohm-kingston-2026-11-12",
+   "unit": "A1_t6: M per circuit (sum over 20 qubits), 28 circuits",
+   "qubits": 40,
+   "cz": 702,
+   "cz_per_qubit": "1.755e+01",
+   "cz_layers": 36,
+   "verdict": "DOES NOT READ, AGREES 0 of 28",
+   "verdict_path": [
+    [
+     "arms",
+     "A1_t6",
+     "reads"
+    ],
+    [
+     "arms",
+     "A1_t6",
+     "agrees"
+    ]
+   ],
+   "common": "1.376e+00",
+   "mirror": "3.891e-01",
+   "floor": "9.796e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/ohm-kingston-2026-11-12/ibm_kingston/scores.json",
+   "note": "unit: M per circuit (sum over the right half's 20 qubits); CZ and CZ layers from build.json; mirror and floor are means over the arm's circuits",
+   "arm": "ohm"
+  },
+  {
+   "result": "ohm-kingston-2026-11-12",
+   "unit": "A2_t3: M per circuit (sum over 20 qubits), 28 circuits",
+   "qubits": 40,
+   "cz": 351,
+   "cz_per_qubit": "8.775e+00",
+   "cz_layers": 18,
+   "verdict": "DOES NOT READ, AGREES 1 of 28",
+   "verdict_path": [
+    [
+     "arms",
+     "A2_t3",
+     "reads"
+    ],
+    [
+     "arms",
+     "A2_t3",
+     "agrees"
+    ]
+   ],
+   "common": "1.795e+00",
+   "mirror": "6.739e-01",
+   "floor": "9.820e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/ohm-kingston-2026-11-12/ibm_kingston/scores.json",
+   "note": "unit: M per circuit (sum over the right half's 20 qubits); CZ and CZ layers from build.json; mirror and floor are means over the arm's circuits",
+   "arm": "ohm"
+  },
+  {
+   "result": "ohm-kingston-2026-11-12",
+   "unit": "A2_t6: M per circuit (sum over 20 qubits), 28 circuits",
+   "qubits": 40,
+   "cz": 702,
+   "cz_per_qubit": "1.755e+01",
+   "cz_layers": 36,
+   "verdict": "DOES NOT READ, AGREES 0 of 28",
+   "verdict_path": [
+    [
+     "arms",
+     "A2_t6",
+     "reads"
+    ],
+    [
+     "arms",
+     "A2_t6",
+     "agrees"
+    ]
+   ],
+   "common": "2.267e+00",
+   "mirror": "4.122e-01",
+   "floor": "9.798e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/ohm-kingston-2026-11-12/ibm_kingston/scores.json",
+   "note": "unit: M per circuit (sum over the right half's 20 qubits); CZ and CZ layers from build.json; mirror and floor are means over the arm's circuits",
+   "arm": "ohm"
+  },
+  {
+   "result": "xx91-fez-2026-11-12",
+   "unit": "N91_th0785_s02 (N 91, theta 0.785, 2 steps)",
+   "qubits": 91,
+   "cz": 360,
+   "cz_per_qubit": "3.956e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES 26 of 91",
+   "verdict_path": [
+    [
+     "circuits",
+     "N91_th0785_s02",
+     "reads"
+    ],
+    [
+     "circuits",
+     "N91_th0785_s02",
+     "agrees"
+    ]
+   ],
+   "common": "6.578e-02",
+   "mirror": "6.843e-01",
+   "floor": "9.661e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/xx91-2026-11-12/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "xx"
+  },
+  {
+   "result": "xx91-fez-2026-11-12",
+   "unit": "N91_th0785_s04 (N 91, theta 0.785, 4 steps)",
+   "qubits": 91,
+   "cz": 720,
+   "cz_per_qubit": "7.912e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES 8 of 91",
+   "verdict_path": [
+    [
+     "circuits",
+     "N91_th0785_s04",
+     "reads"
+    ],
+    [
+     "circuits",
+     "N91_th0785_s04",
+     "agrees"
+    ]
+   ],
+   "common": "1.506e-01",
+   "mirror": "4.543e-01",
+   "floor": "9.664e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/xx91-2026-11-12/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "xx"
+  },
+  {
+   "result": "xx91-fez-2026-11-12",
+   "unit": "N91_th0785_s08 (N 91, theta 0.785, 8 steps)",
+   "qubits": 91,
+   "cz": 1440,
+   "cz_per_qubit": "1.582e+01",
+   "cz_layers": null,
+   "verdict": "READS, AGREES 1 of 91",
+   "verdict_path": [
+    [
+     "circuits",
+     "N91_th0785_s08",
+     "reads"
+    ],
+    [
+     "circuits",
+     "N91_th0785_s08",
+     "agrees"
+    ]
+   ],
+   "common": "3.153e-01",
+   "mirror": "1.779e-01",
+   "floor": "9.654e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/xx91-2026-11-12/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "xx"
+  },
+  {
+   "result": "xx91-fez-2026-11-12",
+   "unit": "N91_th0785_s12 (N 91, theta 0.785, 12 steps)",
+   "qubits": 91,
+   "cz": 2160,
+   "cz_per_qubit": "2.374e+01",
+   "cz_layers": null,
+   "verdict": "DOES NOT READ, AGREES 2 of 91",
+   "verdict_path": [
+    [
+     "circuits",
+     "N91_th0785_s12",
+     "reads"
+    ],
+    [
+     "circuits",
+     "N91_th0785_s12",
+     "agrees"
+    ]
+   ],
+   "common": "5.061e-01",
+   "mirror": "7.136e-02",
+   "floor": "9.645e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/xx91-2026-11-12/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "xx"
+  },
+  {
+   "result": "xx91-fez-2026-11-12",
+   "unit": "N91_th0785_s16 (N 91, theta 0.785, 16 steps)",
+   "qubits": 91,
+   "cz": 2880,
+   "cz_per_qubit": "3.165e+01",
+   "cz_layers": null,
+   "verdict": "DOES NOT READ, AGREES 0 of 91",
+   "verdict_path": [
+    [
+     "circuits",
+     "N91_th0785_s16",
+     "reads"
+    ],
+    [
+     "circuits",
+     "N91_th0785_s16",
+     "agrees"
+    ]
+   ],
+   "common": "6.442e-01",
+   "mirror": "2.429e-02",
+   "floor": "9.641e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/xx91-2026-11-12/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "xx"
+  },
+  {
+   "result": "xx91-fez-2026-11-12",
+   "unit": "N91_th0785_s20 (N 91, theta 0.785, 20 steps)",
+   "qubits": 91,
+   "cz": 3600,
+   "cz_per_qubit": "3.956e+01",
+   "cz_layers": null,
+   "verdict": "DOES NOT READ, AGREES 2 of 91",
+   "verdict_path": [
+    [
+     "circuits",
+     "N91_th0785_s20",
+     "reads"
+    ],
+    [
+     "circuits",
+     "N91_th0785_s20",
+     "agrees"
+    ]
+   ],
+   "common": "7.539e-01",
+   "mirror": "-3.071e-03",
+   "floor": "9.639e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/xx91-2026-11-12/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "xx"
+  },
+  {
+   "result": "xx91-fez-2026-11-12",
+   "unit": "N91_th1571_s02 (N 91, theta 1.571, 2 steps)",
+   "qubits": 91,
+   "cz": 360,
+   "cz_per_qubit": "3.956e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES 0 of 91",
+   "verdict_path": [
+    [
+     "circuits",
+     "N91_th1571_s02",
+     "reads"
+    ],
+    [
+     "circuits",
+     "N91_th1571_s02",
+     "agrees"
+    ]
+   ],
+   "common": "4.747e-02",
+   "mirror": "7.405e-01",
+   "floor": "9.648e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/xx91-2026-11-12/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "xx"
+  },
+  {
+   "result": "xx91-fez-2026-11-12",
+   "unit": "N91_th1571_s04 (N 91, theta 1.571, 4 steps)",
+   "qubits": 91,
+   "cz": 720,
+   "cz_per_qubit": "7.912e+00",
+   "cz_layers": null,
+   "verdict": "READS, AGREES 0 of 91",
+   "verdict_path": [
+    [
+     "circuits",
+     "N91_th1571_s04",
+     "reads"
+    ],
+    [
+     "circuits",
+     "N91_th1571_s04",
+     "agrees"
+    ]
+   ],
+   "common": "1.255e-01",
+   "mirror": "5.621e-01",
+   "floor": "9.647e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/xx91-2026-11-12/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "xx"
+  },
+  {
+   "result": "xx91-fez-2026-11-12",
+   "unit": "N91_th1571_s08 (N 91, theta 1.571, 8 steps)",
+   "qubits": 91,
+   "cz": 1440,
+   "cz_per_qubit": "1.582e+01",
+   "cz_layers": null,
+   "verdict": "READS, AGREES 0 of 91",
+   "verdict_path": [
+    [
+     "circuits",
+     "N91_th1571_s08",
+     "reads"
+    ],
+    [
+     "circuits",
+     "N91_th1571_s08",
+     "agrees"
+    ]
+   ],
+   "common": "3.173e-01",
+   "mirror": "2.807e-01",
+   "floor": "9.648e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/xx91-2026-11-12/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "xx"
+  },
+  {
+   "result": "xx91-fez-2026-11-12",
+   "unit": "N91_th1571_s12 (N 91, theta 1.571, 12 steps)",
+   "qubits": 91,
+   "cz": 2160,
+   "cz_per_qubit": "2.374e+01",
+   "cz_layers": null,
+   "verdict": "DOES NOT READ, AGREES 0 of 91",
+   "verdict_path": [
+    [
+     "circuits",
+     "N91_th1571_s12",
+     "reads"
+    ],
+    [
+     "circuits",
+     "N91_th1571_s12",
+     "agrees"
+    ]
+   ],
+   "common": "5.035e-01",
+   "mirror": "1.142e-01",
+   "floor": "9.648e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/xx91-2026-11-12/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "xx"
+  },
+  {
+   "result": "xx91-fez-2026-11-12",
+   "unit": "N91_th1571_s16 (N 91, theta 1.571, 16 steps)",
+   "qubits": 91,
+   "cz": 2880,
+   "cz_per_qubit": "3.165e+01",
+   "cz_layers": null,
+   "verdict": "DOES NOT READ, AGREES 0 of 91",
+   "verdict_path": [
+    [
+     "circuits",
+     "N91_th1571_s16",
+     "reads"
+    ],
+    [
+     "circuits",
+     "N91_th1571_s16",
+     "agrees"
+    ]
+   ],
+   "common": "6.639e-01",
+   "mirror": "3.636e-02",
+   "floor": "9.643e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/xx91-2026-11-12/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "xx"
+  },
+  {
+   "result": "xx91-fez-2026-11-12",
+   "unit": "N91_th1571_s20 (N 91, theta 1.571, 20 steps)",
+   "qubits": 91,
+   "cz": 3600,
+   "cz_per_qubit": "3.956e+01",
+   "cz_layers": null,
+   "verdict": "DOES NOT READ, AGREES 0 of 91",
+   "verdict_path": [
+    [
+     "circuits",
+     "N91_th1571_s20",
+     "reads"
+    ],
+    [
+     "circuits",
+     "N91_th1571_s20",
+     "agrees"
+    ]
+   ],
+   "common": "8.018e-01",
+   "mirror": "-4.764e-03",
+   "floor": "9.635e-01",
+   "cone_qubits": null,
+   "cone_cz": null,
+   "source": "results/xx91-2026-11-12/ibm_fez/scores.json",
+   "note": "CZ layers = cz_depth in check_trybuild.json where it exists (xx91: no record, empty); U 0 is the free-fermion ruler",
+   "arm": "xx"
+  }
+ ],
+ "skipped": [],
+ "check1_new_results_rows": {
+  "hub-dt-fez-2026-11-12": 4,
+  "ohm-fez-2026-11-12": 6,
+  "ohm-kingston-2026-11-12": 6,
+  "xx91-fez-2026-11-12": 12
+ },
+ "check2_verdict_mismatches": [],
+ "check3_rows_of_11_12": 234,
+ "check3_missing": [],
+ "check3_changed": [],
+ "paper8_cz": [
+  [
+   "Table 1",
+   "N 51 ibm_kingston",
+   1225,
+   1225
+  ],
+  [
+   "Table 1",
+   "N 71 ibm_kingston",
+   1715,
+   1715
+  ],
+  [
+   "Table 1",
+   "N 91 ibm_marrakesh",
+   2205,
+   2205
+  ],
+  [
+   "Table 1",
+   "N 91 ibm_fez (2nd run, ruler in both jobs)",
+   2205,
+   2205
+  ],
+  [
+   "Table 2",
+   "4x4x3 place 1 t 1",
+   488,
+   488
+  ],
+  [
+   "Table 2",
+   "4x4x3 place 1 t 2",
+   976,
+   976
+  ],
+  [
+   "Table 2",
+   "4x4x3 place 1 t 3",
+   1464,
+   1464
+  ],
+  [
+   "Table 2",
+   "4x4x3 place 1 t 1",
+   488,
+   488
+  ],
+  [
+   "Table 2",
+   "4x4x3 place 1 t 2",
+   976,
+   976
+  ],
+  [
+   "Table 2",
+   "4x4x3 place 1 t 3",
+   1464,
+   1464
+  ],
+  [
+   "Table 2",
+   "4x4x3 place 1 t 1",
+   488,
+   488
+  ],
+  [
+   "Table 2",
+   "4x4x3 place 1 t 2",
+   976,
+   976
+  ],
+  [
+   "Table 2",
+   "4x4x3 place 1 t 3",
+   1464,
+   1464
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 1",
+   108,
+   108
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 2",
+   216,
+   216
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 3",
+   324,
+   324
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 4",
+   432,
+   432
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 5",
+   540,
+   540
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 6",
+   648,
+   648
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 1",
+   108,
+   108
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 2",
+   216,
+   216
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 3",
+   324,
+   324
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 4",
+   432,
+   432
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 5",
+   540,
+   540
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 6",
+   648,
+   648
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 1",
+   108,
+   108
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 2",
+   216,
+   216
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 3",
+   324,
+   324
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 4",
+   432,
+   432
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 5",
+   540,
+   540
+  ],
+  [
+   "Table 2",
+   "4x2x2 place 3 t 6",
+   648,
+   648
+  ],
+  [
+   "Table 3",
+   "heisB t 1",
+   176,
+   176
+  ],
+  [
+   "Table 3",
+   "heisB t 2",
+   348,
+   348
+  ],
+  [
+   "Table 3",
+   "heisB t 3",
+   520,
+   520
+  ],
+  [
+   "Table 3",
+   "heisB t 4",
+   692,
+   692
+  ],
+  [
+   "Table 6",
+   "sw6_M1_s1",
+   45,
+   45
+  ],
+  [
+   "Table 6",
+   "sw6_M1_s2",
+   90,
+   90
+  ],
+  [
+   "Table 6",
+   "sw6_M1_s5",
+   225,
+   225
+  ],
+  [
+   "Table 6",
+   "sw6_M2_s1",
+   45,
+   45
+  ],
+  [
+   "Table 6",
+   "sw6_M2_s2",
+   90,
+   90
+  ],
+  [
+   "Table 6",
+   "sw6_M2_s5",
+   225,
+   225
+  ],
+  [
+   "Table 6",
+   "sw6_M3_s1",
+   45,
+   45
+  ],
+  [
+   "Table 6",
+   "sw6_M3_s2",
+   90,
+   90
+  ],
+  [
+   "Table 6",
+   "sw6_M3_s5",
+   225,
+   225
+  ],
+  [
+   "Table 6",
+   "sw8_M1_s1",
+   84,
+   84
+  ],
+  [
+   "Table 6",
+   "sw8_M1_s2",
+   168,
+   168
+  ],
+  [
+   "Table 6",
+   "sw8_M1_s5",
+   420,
+   420
+  ],
+  [
+   "Table 6",
+   "sw8_M2_s1",
+   84,
+   84
+  ],
+  [
+   "Table 6",
+   "sw8_M2_s2",
+   168,
+   168
+  ],
+  [
+   "Table 6",
+   "sw8_M2_s5",
+   420,
+   420
+  ],
+  [
+   "Table 6",
+   "sw8_M3_s1",
+   84,
+   84
+  ],
+  [
+   "Table 6",
+   "sw8_M3_s2",
+   168,
+   168
+  ],
+  [
+   "Table 6",
+   "sw8_M3_s5",
+   420,
+   420
+  ],
+  [
+   "Table 8",
+   "lc3d t 1",
+   116,
+   116
+  ],
+  [
+   "Table 8",
+   "lc3d t 2",
+   212,
+   212
+  ],
+  [
+   "Table 8",
+   "lc3d t 3",
+   308,
+   308
+  ],
+  [
+   "Table 8",
+   "lc3d t 4",
+   404,
+   404
+  ],
+  [
+   "Table 8",
+   "lc3d t 5",
+   500,
+   500
+  ],
+  [
+   "Table 8",
+   "lc3d t 6",
+   596,
+   596
+  ],
+  [
+   "Table 9",
+   "4x2x2 cz_fold place 3 t 1",
+   108,
+   108
+  ],
+  [
+   "Table 9",
+   "4x2x2 cz_line place 3 t 1",
+   60,
+   60
+  ],
+  [
+   "Table 9",
+   "4x2x2 cz_fold place 3 t 2",
+   216,
+   216
+  ],
+  [
+   "Table 9",
+   "4x2x2 cz_line place 3 t 2",
+   120,
+   120
+  ],
+  [
+   "Table 9",
+   "4x2x2 cz_fold place 3 t 3",
+   324,
+   324
+  ],
+  [
+   "Table 9",
+   "4x2x2 cz_line place 3 t 3",
+   180,
+   180
+  ],
+  [
+   "Table 9",
+   "4x2x2 cz_fold place 3 t 4",
+   432,
+   432
+  ],
+  [
+   "Table 9",
+   "4x2x2 cz_line place 3 t 4",
+   240,
+   240
+  ],
+  [
+   "Table 9",
+   "4x3x2 cz_fold place 0 t 1",
+   234,
+   234
+  ],
+  [
+   "Table 9",
+   "4x3x2 cz_line place 0 t 1",
+   126,
+   126
+  ],
+  [
+   "Table 9",
+   "4x3x2 cz_fold place 0 t 2",
+   468,
+   468
+  ],
+  [
+   "Table 9",
+   "4x3x2 cz_line place 0 t 2",
+   252,
+   252
+  ],
+  [
+   "Table 9",
+   "4x3x2 cz_fold place 0 t 3",
+   702,
+   702
+  ],
+  [
+   "Table 9",
+   "4x3x2 cz_line place 0 t 3",
+   378,
+   378
+  ],
+  [
+   "Table 9",
+   "4x3x2 cz_fold place 0 t 4",
+   936,
+   936
+  ],
+  [
+   "Table 9",
+   "4x3x2 cz_line place 0 t 4",
+   504,
+   504
+  ]
+ ],
+ "paper8_cz_mismatches": [],
+ "not_read_rows": 25,
+ "not_read_in_figure_a": 25,
+ "cone_qubits_network_vs_report": [],
+ "cone_rows": 11,
+ "figure_c_points": 107
+}
