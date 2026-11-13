@@ -1,0 +1,420 @@
+{
+ "device": "ibm_fez",
+ "rule": "floor-fifth v1",
+ "rows": [
+  {
+   "day": "2026-11-05",
+   "n": 20,
+   "ledger_day": "2026-11-04",
+   "candidates": 17,
+   "device_record": "results/daily/2026-11-05/ibm_fez/dev/device.json",
+   "marked": 30,
+   "chosen": "rule C start (1, 3, 15)",
+   "default": "default (shape)",
+   "marks_chosen": 1,
+   "marks_default": 4,
+   "chosen_on_D": {
+    "measured": 16,
+    "mean_floor": "2.303e-02",
+    "weak_fifth": 2
+   },
+   "default_on_D": {
+    "measured": 7,
+    "mean_floor": "7.143e-03",
+    "weak_fifth": 0
+   },
+   "median_candidate_mean_floor": "3.180e-02"
+  },
+  {
+   "day": "2026-11-05",
+   "n": 40,
+   "ledger_day": "2026-11-04",
+   "candidates": 16,
+   "device_record": "results/daily/2026-11-05/ibm_fez/dev/device.json",
+   "marked": 30,
+   "chosen": "rule C start (1, 6, 0)",
+   "default": "default (shape)",
+   "marks_chosen": 6,
+   "marks_default": 11,
+   "chosen_on_D": {
+    "measured": 24,
+    "mean_floor": "2.973e-02",
+    "weak_fifth": 4
+   },
+   "default_on_D": {
+    "measured": 26,
+    "mean_floor": "3.533e-02",
+    "weak_fifth": 5
+   },
+   "median_candidate_mean_floor": "3.275e-02"
+  },
+  {
+   "day": "2026-11-05",
+   "n": 91,
+   "ledger_day": "2026-11-04",
+   "candidates": 17,
+   "device_record": "results/daily/2026-11-05/ibm_fez/dev/device.json",
+   "marked": 30,
+   "chosen": "rule C start (1, 0, 15)",
+   "default": "default (shape)",
+   "marks_chosen": 19,
+   "marks_default": 25,
+   "chosen_on_D": {
+    "measured": 41,
+    "mean_floor": "3.105e-02",
+    "weak_fifth": 7
+   },
+   "default_on_D": {
+    "measured": 50,
+    "mean_floor": "3.363e-02",
+    "weak_fifth": 11
+   },
+   "median_candidate_mean_floor": "3.363e-02"
+  },
+  {
+   "day": "2026-11-07",
+   "n": 20,
+   "ledger_day": "2026-11-05",
+   "candidates": 17,
+   "device_record": "results/daily/2026-11-07/ibm_fez/dev/device.json",
+   "marked": 13,
+   "chosen": "default (shape)",
+   "default": "default (shape)",
+   "marks_chosen": 0,
+   "marks_default": 0,
+   "chosen_on_D": {
+    "measured": 12,
+    "mean_floor": "2.078e-02",
+    "weak_fifth": 1
+   },
+   "default_on_D": {
+    "measured": 12,
+    "mean_floor": "2.078e-02",
+    "weak_fifth": 1
+   },
+   "median_candidate_mean_floor": "4.052e-02"
+  },
+  {
+   "day": "2026-11-07",
+   "n": 40,
+   "ledger_day": "2026-11-05",
+   "candidates": 16,
+   "device_record": "results/daily/2026-11-07/ibm_fez/dev/device.json",
+   "marked": 13,
+   "chosen": "rule C start (1, 7, 0)",
+   "default": "default (shape)",
+   "marks_chosen": 2,
+   "marks_default": 5,
+   "chosen_on_D": {
+    "measured": 22,
+    "mean_floor": "3.811e-02",
+    "weak_fifth": 6
+   },
+   "default_on_D": {
+    "measured": 31,
+    "mean_floor": "2.519e-02",
+    "weak_fifth": 4
+   },
+   "median_candidate_mean_floor": "4.385e-02"
+  },
+  {
+   "day": "2026-11-07",
+   "n": 91,
+   "ledger_day": "2026-11-05",
+   "candidates": 17,
+   "device_record": "results/daily/2026-11-07/ibm_fez/dev/device.json",
+   "marked": 13,
+   "chosen": "rule C start (1, 0, 15)",
+   "default": "default (shape)",
+   "marks_chosen": 7,
+   "marks_default": 11,
+   "chosen_on_D": {
+    "measured": 69,
+    "mean_floor": "4.431e-02",
+    "weak_fifth": 14
+   },
+   "default_on_D": {
+    "measured": 79,
+    "mean_floor": "4.001e-02",
+    "weak_fifth": 17
+   },
+   "median_candidate_mean_floor": "4.461e-02"
+  },
+  {
+   "day": "2026-11-08",
+   "n": 20,
+   "ledger_day": "2026-11-07",
+   "candidates": 17,
+   "device_record": "results/os3d-heisB-2026-11-08/fetch_in/ibm_fez/dev/device.json",
+   "marked": 20,
+   "chosen": "default (shape)",
+   "default": "default (shape)",
+   "marks_chosen": 1,
+   "marks_default": 1,
+   "chosen_on_D": {
+    "measured": 0,
+    "mean_floor": null,
+    "weak_fifth": 0
+   },
+   "default_on_D": {
+    "measured": 0,
+    "mean_floor": null,
+    "weak_fifth": 0
+   },
+   "median_candidate_mean_floor": "5.594e-02"
+  },
+  {
+   "day": "2026-11-08",
+   "n": 40,
+   "ledger_day": "2026-11-07",
+   "candidates": 16,
+   "device_record": "results/os3d-heisB-2026-11-08/fetch_in/ibm_fez/dev/device.json",
+   "marked": 20,
+   "chosen": "default (shape)",
+   "default": "default (shape)",
+   "marks_chosen": 4,
+   "marks_default": 4,
+   "chosen_on_D": {
+    "measured": 18,
+    "mean_floor": "4.941e-02",
+    "weak_fifth": 4
+   },
+   "default_on_D": {
+    "measured": 18,
+    "mean_floor": "4.941e-02",
+    "weak_fifth": 4
+   },
+   "median_candidate_mean_floor": "7.859e-02"
+  },
+  {
+   "day": "2026-11-08",
+   "n": 91,
+   "ledger_day": "2026-11-07",
+   "candidates": 16,
+   "device_record": "results/os3d-heisB-2026-11-08/fetch_in/ibm_fez/dev/device.json",
+   "marked": 20,
+   "chosen": "default (C)",
+   "default": "default (C)",
+   "marks_chosen": 12,
+   "marks_default": 12,
+   "chosen_on_D": {
+    "measured": 22,
+    "mean_floor": "6.670e-02",
+    "weak_fifth": 5
+   },
+   "default_on_D": {
+    "measured": 22,
+    "mean_floor": "6.670e-02",
+    "weak_fifth": 5
+   },
+   "median_candidate_mean_floor": "8.298e-02"
+  },
+  {
+   "day": "2026-11-10",
+   "n": 20,
+   "ledger_day": "2026-11-08",
+   "candidates": 17,
+   "device_record": "results/night-2026-11-10/fetch_in/ibm_fez/dev/device.json",
+   "marked": 9,
+   "chosen": "default (shape)",
+   "default": "default (shape)",
+   "marks_chosen": 0,
+   "marks_default": 0,
+   "chosen_on_D": {
+    "measured": 12,
+    "mean_floor": "4.751e-02",
+    "weak_fifth": 2
+   },
+   "default_on_D": {
+    "measured": 12,
+    "mean_floor": "4.751e-02",
+    "weak_fifth": 2
+   },
+   "median_candidate_mean_floor": "3.473e-02"
+  },
+  {
+   "day": "2026-11-10",
+   "n": 40,
+   "ledger_day": "2026-11-08",
+   "candidates": 16,
+   "device_record": "results/night-2026-11-10/fetch_in/ibm_fez/dev/device.json",
+   "marked": 9,
+   "chosen": "rule C start (1, 3, 15)",
+   "default": "default (shape)",
+   "marks_chosen": 0,
+   "marks_default": 4,
+   "chosen_on_D": {
+    "measured": 37,
+    "mean_floor": "3.091e-02",
+    "weak_fifth": 8
+   },
+   "default_on_D": {
+    "measured": 31,
+    "mean_floor": "3.679e-02",
+    "weak_fifth": 6
+   },
+   "median_candidate_mean_floor": "3.481e-02"
+  },
+  {
+   "day": "2026-11-10",
+   "n": 91,
+   "ledger_day": "2026-11-08",
+   "candidates": 16,
+   "device_record": "results/night-2026-11-10/fetch_in/ibm_fez/dev/device.json",
+   "marked": 9,
+   "chosen": "rule C start (1, 0, 15)",
+   "default": "default (C)",
+   "marks_chosen": 4,
+   "marks_default": 5,
+   "chosen_on_D": {
+    "measured": 80,
+    "mean_floor": "3.451e-02",
+    "weak_fifth": 18
+   },
+   "default_on_D": {
+    "measured": 91,
+    "mean_floor": "3.127e-02",
+    "weak_fifth": 17
+   },
+   "median_candidate_mean_floor": "3.519e-02"
+  },
+  {
+   "day": "2026-11-11",
+   "n": 20,
+   "ledger_day": "2026-11-10",
+   "candidates": 17,
+   "device_record": "results/hubbard-2026-11-11/fetch_in/ibm_fez/dev/device.json",
+   "marked": 23,
+   "chosen": "default (shape)",
+   "default": "default (shape)",
+   "marks_chosen": 2,
+   "marks_default": 2,
+   "chosen_on_D": {
+    "measured": 18,
+    "mean_floor": "2.258e-02",
+    "weak_fifth": 2
+   },
+   "default_on_D": {
+    "measured": 18,
+    "mean_floor": "2.258e-02",
+    "weak_fifth": 2
+   },
+   "median_candidate_mean_floor": "3.130e-02"
+  },
+  {
+   "day": "2026-11-11",
+   "n": 40,
+   "ledger_day": "2026-11-10",
+   "candidates": 16,
+   "device_record": "results/hubbard-2026-11-11/fetch_in/ibm_fez/dev/device.json",
+   "marked": 23,
+   "chosen": "rule C start (1, 6, 0)",
+   "default": "default (shape)",
+   "marks_chosen": 4,
+   "marks_default": 6,
+   "chosen_on_D": {
+    "measured": 38,
+    "mean_floor": "3.170e-02",
+    "weak_fifth": 5
+   },
+   "default_on_D": {
+    "measured": 37,
+    "mean_floor": "3.062e-02",
+    "weak_fifth": 6
+   },
+   "median_candidate_mean_floor": "3.134e-02"
+  },
+  {
+   "day": "2026-11-11",
+   "n": 91,
+   "ledger_day": "2026-11-10",
+   "candidates": 16,
+   "device_record": "results/hubbard-2026-11-11/fetch_in/ibm_fez/dev/device.json",
+   "marked": 23,
+   "chosen": "default (C)",
+   "default": "default (C)",
+   "marks_chosen": 17,
+   "marks_default": 17,
+   "chosen_on_D": {
+    "measured": 90,
+    "mean_floor": "2.963e-02",
+    "weak_fifth": 17
+   },
+   "default_on_D": {
+    "measured": 90,
+    "mean_floor": "2.963e-02",
+    "weak_fifth": 17
+   },
+   "median_candidate_mean_floor": "3.400e-02"
+  },
+  {
+   "day": "2026-11-12",
+   "n": 20,
+   "ledger_day": "2026-11-11",
+   "candidates": 17,
+   "device_record": "results/hub-dt-2026-11-12/fetch_in/ibm_fez/dev/device.json",
+   "marked": 27,
+   "chosen": "default (shape)",
+   "default": "default (shape)",
+   "marks_chosen": 2,
+   "marks_default": 2,
+   "chosen_on_D": {
+    "measured": 12,
+    "mean_floor": "1.926e-02",
+    "weak_fifth": 2
+   },
+   "default_on_D": {
+    "measured": 12,
+    "mean_floor": "1.926e-02",
+    "weak_fifth": 2
+   },
+   "median_candidate_mean_floor": "2.968e-02"
+  },
+  {
+   "day": "2026-11-12",
+   "n": 40,
+   "ledger_day": "2026-11-11",
+   "candidates": 16,
+   "device_record": "results/hub-dt-2026-11-12/fetch_in/ibm_fez/dev/device.json",
+   "marked": 27,
+   "chosen": "rule C start (1, 7, 0)",
+   "default": "default (shape)",
+   "marks_chosen": 4,
+   "marks_default": 6,
+   "chosen_on_D": {
+    "measured": 37,
+    "mean_floor": "2.223e-02",
+    "weak_fifth": 5
+   },
+   "default_on_D": {
+    "measured": 31,
+    "mean_floor": "2.985e-02",
+    "weak_fifth": 5
+   },
+   "median_candidate_mean_floor": "3.181e-02"
+  },
+  {
+   "day": "2026-11-12",
+   "n": 91,
+   "ledger_day": "2026-11-11",
+   "candidates": 16,
+   "device_record": "results/hub-dt-2026-11-12/fetch_in/ibm_fez/dev/device.json",
+   "marked": 27,
+   "chosen": "default (C)",
+   "default": "default (C)",
+   "marks_chosen": 17,
+   "marks_default": 17,
+   "chosen_on_D": {
+    "measured": 91,
+    "mean_floor": "3.293e-02",
+    "weak_fifth": 16
+   },
+   "default_on_D": {
+    "measured": 91,
+    "mean_floor": "3.293e-02",
+    "weak_fifth": 16
+   },
+   "median_candidate_mean_floor": "3.645e-02"
+  }
+ ]
+}
