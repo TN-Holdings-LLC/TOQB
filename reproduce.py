@@ -138,6 +138,12 @@ RESULTS = {
     "xxsize-2026-11-14-fez-n81": ("results/xxsize-2026-11-14-fez", ["ibm_fez_n81", "answers"],
         ["gpu/hub_score.py", "{T}/ibm_fez_n81", "{T}/answers/n81_n81_ans.json"],
         "ibm_fez_n81/scores.json"),
+    "xxcone-2026-11-14-n33": ("results/xxcone-2026-11-14", ["ibm_marrakesh_n33", "answers"],
+        ["gpu/hub_score.py", "{T}/ibm_marrakesh_n33", "{T}/answers/n33_n33_ans.json"],
+        "ibm_marrakesh_n33/scores.json"),
+    "xxcone-2026-11-14-n81": ("results/xxcone-2026-11-14", ["ibm_marrakesh_n81", "answers"],
+        ["gpu/hub_score.py", "{T}/ibm_marrakesh_n81", "{T}/answers/n81_n81_ans.json"],
+        "ibm_marrakesh_n81/scores.json"),
 }
 
 
