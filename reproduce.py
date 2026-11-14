@@ -126,6 +126,18 @@ RESULTS = {
     "full-floor-2026-11-14-floor": ("results/full-floor-2026-11-14", ["ibm_marrakesh_floor", "answers"],
         ["gpu/full_floor.py", "score", "{T}/ibm_marrakesh_floor", "{T}/answers/floor_floor_ans.json"],
         "ibm_marrakesh_floor/full_floor.json"),
+    "xxsize-2026-11-14-marrakesh-n33": ("results/xxsize-2026-11-14-marrakesh", ["ibm_marrakesh_n33", "answers"],
+        ["gpu/hub_score.py", "{T}/ibm_marrakesh_n33", "{T}/answers/n33_n33_ans.json"],
+        "ibm_marrakesh_n33/scores.json"),
+    "xxsize-2026-11-14-marrakesh-n81": ("results/xxsize-2026-11-14-marrakesh", ["ibm_marrakesh_n81", "answers"],
+        ["gpu/hub_score.py", "{T}/ibm_marrakesh_n81", "{T}/answers/n81_n81_ans.json"],
+        "ibm_marrakesh_n81/scores.json"),
+    "xxsize-2026-11-14-fez-n33": ("results/xxsize-2026-11-14-fez", ["ibm_fez_n33", "answers"],
+        ["gpu/hub_score.py", "{T}/ibm_fez_n33", "{T}/answers/n33_n33_ans.json"],
+        "ibm_fez_n33/scores.json"),
+    "xxsize-2026-11-14-fez-n81": ("results/xxsize-2026-11-14-fez", ["ibm_fez_n81", "answers"],
+        ["gpu/hub_score.py", "{T}/ibm_fez_n81", "{T}/answers/n81_n81_ans.json"],
+        "ibm_fez_n81/scores.json"),
 }
 
 

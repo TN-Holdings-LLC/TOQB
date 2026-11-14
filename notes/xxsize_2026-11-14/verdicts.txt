@@ -1,0 +1,26 @@
+device N steps layers | pi/4 MSE/msq verdict r | pi/2 MSE/msq verdict r
+marrakesh  33  2  8 | 0.046 READS         0.830 | 0.033 READS         0.847
+marrakesh  33  4 16 | 0.099 READS         0.732 | 0.052 READS         0.787
+marrakesh  33  8 32 | 0.172 READS         0.617 | 0.124 READS         0.657
+marrakesh  33 12 48 | 0.260 READS         0.505 | 0.191 READS         0.570
+marrakesh  33 16 64 | 0.362 READS         0.411 | 0.284 READS         0.471
+marrakesh  81  2  8 | 0.088 READS         0.799 | 0.049 READS         0.832
+marrakesh  81  4 16 | 0.159 READS         0.693 | 0.083 READS         0.752
+marrakesh  81  8 32 | 0.286 READS         0.540 | 0.172 READS         0.614
+marrakesh  81 12 48 | 0.404 READS         0.427 | 0.277 READS         0.498
+marrakesh  81 16 64 | 0.496 READS         0.345 | 0.393 READS         0.392
+fez        33  2  8 | 0.056 READS         0.819 | 0.040 READS         0.831
+fez        33  4 16 | 0.097 READS         0.739 | 0.091 READS         0.732
+fez        33  8 32 | 0.251 READS         0.547 | 0.224 READS         0.562
+fez        33 12 48 | 0.359 READS         0.428 | 0.369 READS         0.418
+fez        33 16 64 | 0.470 READS         0.334 | 0.531 DOES NOT READ 0.285
+fez        81  2  8 | 0.070 READS         0.793 | 0.056 READS         0.804
+fez        81  4 16 | 0.154 READS         0.674 | 0.149 READS         0.657
+fez        81  8 32 | 0.343 READS         0.464 | 0.371 READS         0.416
+fez        81 12 48 | 0.539 DOES NOT READ 0.292 | 0.593 DOES NOT READ 0.236
+fez        81 16 64 | 0.658 DOES NOT READ 0.201 | 0.762 DOES NOT READ 0.130
+1 angle: FAILED (12 of 20 within 0.05; largest 0.074)
+2 size: FAILED (7 of 20 within 0.05; largest 0.181)
+3 line: held (20 of 20)
+beside: ibm_marrakesh lambda 78 CZ layers, A 0.912
+beside: ibm_fez lambda 43 CZ layers, A 1.005
