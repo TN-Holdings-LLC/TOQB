@@ -1,0 +1,6 @@
+local noise: p2 0.003, p1 0.0003, readout 0.015; 20000 shots; theta pi/2
+   8 layers: r33 0.941 r81 0.940 | gap far -0.001 mid +0.001 near -0.001
+  16 layers: r33 0.914 r81 0.913 | gap far -0.000 mid +0.002 near +0.001
+  32 layers: r33 0.860 r81 0.860 | gap far -0.000 mid +0.000 near +0.002
+  48 layers: r33 0.811 r81 0.809 | gap far +0.000 mid +0.002 near +0.002
+  64 layers: r33 0.765 r81 0.762 | gap far +0.003 mid +0.002 near +0.004

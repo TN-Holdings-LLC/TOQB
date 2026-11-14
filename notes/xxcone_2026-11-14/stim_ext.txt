@@ -1,0 +1,6 @@
+CZ error 0.003, x3.0 on couplers touching the extension (qubits 48); theta pi/2
+   8 layers: gap far -0.001 mid +0.006 near -0.002
+  16 layers: gap far +0.001 mid +0.016 near +0.003
+  32 layers: gap far +0.000 mid +0.035 near +0.026
+  48 layers: gap far -0.000 mid +0.071 near +0.057
+  64 layers: gap far +0.024 mid +0.101 near +0.086

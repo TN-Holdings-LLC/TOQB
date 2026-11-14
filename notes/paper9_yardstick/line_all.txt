@@ -1,0 +1,12 @@
+120 results; the line matches the verdict in 114
+  Hubbard                 28 of  31   reads 26
+  XX chain                72 of  75   reads 63
+  daily (P4 chain)        11 of  11   reads 11
+  dual-unitary (curve)     3 of   3   reads 3
+misses (family, record, item, r, MSE/msq, rest, verdict):
+  Hubbard              hubbard-2026-11-11                 ibm_fez:L20_s6_U4            r 0.416 ratio 0.645 rest +0.304 DOES NOT READ
+  Hubbard              hubbard-2026-11-11                 ibm_fez:L30_s6_U4            r 0.375 ratio 0.711 rest +0.321 DOES NOT READ
+  XX chain             xx91-2026-11-12                    ibm_fez:N91_th0785_s12       r 0.327 ratio 0.506 rest +0.053 DOES NOT READ
+  XX chain             xx91-2026-11-12                    ibm_fez:N91_th1571_s12       r 0.308 ratio 0.504 rest +0.025 DOES NOT READ
+  XX chain             xxcone-2026-11-14                  ibm_marrakesh_n81:N81_th0785_s16 r 0.325 ratio 0.518 rest +0.063 DOES NOT READ
+  Hubbard              twin-2026-11-13                    L20_s6_U4                    r 0.514 ratio 0.506 rest +0.269 DOES NOT READ
