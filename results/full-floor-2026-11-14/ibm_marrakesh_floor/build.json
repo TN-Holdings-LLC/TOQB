@@ -1,0 +1,13 @@
+{
+ "device": "ibm_marrakesh",
+ "qubits": 151,
+ "failed": [
+  82,
+  94,
+  113,
+  119,
+  130
+ ],
+ "circuits": 2,
+ "qpu_seconds_model": 5.2
+}

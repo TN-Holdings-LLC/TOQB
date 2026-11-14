@@ -225,6 +225,12 @@ def record(a):
         os.makedirs(os.path.join(dest, "answers"), exist_ok=True)
         for p in job.get("answers", []):
             shutil.copy(p.format(**kw), os.path.join(dest, "answers", f"{key}_" + os.path.basename(p.format(**kw))))
+        # The scorer is called with {ANS} even when the spec releases no answers (a measurement record writes a stub):
+        # keep that file too, so answers/ is never empty and reproduce.py runs from a fresh clone (git keeps no empty
+        # folder; the 2026-11-13 floor record lacked it).
+        ans = os.path.join(dest, "answers", f"{key}_" + os.path.basename(kw["ANS"]))
+        if os.path.exists(kw["ANS"]) and not os.path.exists(ans):
+            shutil.copy(kw["ANS"], ans)
     shutil.copytree(prep["fetch"], os.path.join(dest, "fetch_in"))
     gz_big(dest)
     # README skeleton

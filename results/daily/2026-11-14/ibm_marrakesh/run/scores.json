@@ -1,0 +1,67 @@
+{
+ "sentinel": "DEAD",
+ "problems": {
+  "D05": {
+   "beats": "BEATS",
+   "trivial_guess_mse": 0.005198162878098901,
+   "n": 33,
+   "M": 0.06943939393939394,
+   "M_exact": 0.06461732406198797,
+   "diff": 0.004822069877405966,
+   "two_se": 0.005488441920975983,
+   "mse": 0.0009952342901754223,
+   "mean_square_answer": 0.005198162878098901,
+   "reads": "READS",
+   "agrees": "AGREES",
+   "floor_mean": 0.981469696969697,
+   "mirror_mean": 0.1396060606060606,
+   "mirror_flags": [],
+   "worst": [
+    23,
+    26,
+    13,
+    9,
+    33
+   ],
+   "within_2se": 0.696969696969697,
+   "guessable": false,
+   "retention": null,
+   "norm_error": 0.07462503202361198,
+   "slope": 0.9757392244370837,
+   "mse_after_scale": 0.0009921747282774871,
+   "cz_layers": 21,
+   "decay_per_layer": 0.0011695198260426973
+  },
+  "FX-A": {
+   "beats": "BEATS",
+   "trivial_guess_mse": 0.02638359907661984,
+   "n": 33,
+   "M": 0.1466060606060606,
+   "M_exact": 0.15877866971732527,
+   "diff": -0.012172609111264665,
+   "two_se": 0.0054427606699014,
+   "mse": 0.0013146893954468586,
+   "mean_square_answer": 0.02638359907661984,
+   "reads": "READS",
+   "agrees": "AGREES",
+   "floor_mean": 0.9825151515151516,
+   "mirror_mean": 0.16565151515151516,
+   "mirror_flags": [],
+   "worst": [
+    4,
+    27,
+    24,
+    2,
+    29
+   ],
+   "within_2se": 0.6060606060606061,
+   "guessable": false,
+   "retention": 0.9233359925931132,
+   "norm_error": 0.07666400740688685,
+   "slope": 0.8999656779012618,
+   "mse_after_scale": 0.001050672265502095,
+   "cz_layers": 25,
+   "decay_per_layer": 0.004215946082010957
+  }
+ }
+}
