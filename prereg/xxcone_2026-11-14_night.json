@@ -1,0 +1,111 @@
+{
+ "name": "xxcone-2026-11-14",
+ "declaration": "prereg/xxcone_2026-11-14.md",
+ "tie_order": [
+  "ibm_marrakesh",
+  "ibm_fez",
+  "ibm_kingston"
+ ],
+ "jobs": [
+  {
+   "key": "n33",
+   "build": [
+    "gpu/ffxx91.py",
+    "{DEV}",
+    "{OUT}",
+    "{ANS}",
+    "--n",
+    "33",
+    "--steps",
+    "2,4,8,12,16"
+   ],
+   "checks": [
+    [
+     "gpu/hub_check.py",
+     "{OUT}",
+     "{ANS}",
+     "--mps-steps",
+     "16",
+     "--only",
+     "N33_th1571_s02",
+     "N33_th1571_s04",
+     "N33_th1571_s08",
+     "N33_th1571_s12",
+     "N33_th1571_s16"
+    ],
+    [
+     "gpu/hub_check.py",
+     "{OUT}",
+     "{ANS}",
+     "--mps-steps",
+     "4",
+     "--only",
+     "N33_th0785_s02",
+     "N33_th0785_s04"
+    ]
+   ],
+   "checked": {
+    "e039d7463d9baa3365682f410cff9751158392ca6212da4caeded0c0838b4fc5": "notes/xxsize_2026-11-14/trybuild/ibm_marrakesh_N33"
+   },
+   "score": [
+    "gpu/hub_score.py",
+    "{OUT}",
+    "{ANS}"
+   ],
+   "scores_file": "scores.json",
+   "answers": [
+    "{ANS}"
+   ]
+  },
+  {
+   "key": "n81",
+   "build": [
+    "gpu/ffxx91.py",
+    "{DEV}",
+    "{OUT}",
+    "{ANS}",
+    "--n",
+    "81",
+    "--steps",
+    "2,4,8,12,16"
+   ],
+   "checks": [
+    [
+     "gpu/hub_check.py",
+     "{OUT}",
+     "{ANS}",
+     "--mps-steps",
+     "16",
+     "--only",
+     "N81_th1571_s02",
+     "N81_th1571_s04",
+     "N81_th1571_s08",
+     "N81_th1571_s12",
+     "N81_th1571_s16"
+    ],
+    [
+     "gpu/hub_check.py",
+     "{OUT}",
+     "{ANS}",
+     "--mps-steps",
+     "4",
+     "--only",
+     "N81_th0785_s02",
+     "N81_th0785_s04"
+    ]
+   ],
+   "checked": {
+    "e4d434d6df05711d33d2895732f066c5020bb5c471c257d48c1de0d1eac2f899": "notes/xxsize_2026-11-14/trybuild/ibm_marrakesh_N81"
+   },
+   "score": [
+    "gpu/hub_score.py",
+    "{OUT}",
+    "{ANS}"
+   ],
+   "scores_file": "scores.json",
+   "answers": [
+    "{ANS}"
+   ]
+  }
+ ]
+}
