@@ -1,5 +1,7 @@
-120 results; the line matches the verdict in 114
+179 results; the line matches the verdict in 173
   Hubbard                 28 of  31   reads 26
+  IBM 2023 utility        11 of  11   reads 9
+  Ising 3D (isingL)       48 of  48   reads 48
   XX chain                72 of  75   reads 63
   daily (P4 chain)        11 of  11   reads 11
   dual-unitary (curve)     3 of   3   reads 3

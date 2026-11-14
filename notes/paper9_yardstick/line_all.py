@@ -4,7 +4,8 @@ results): does "r >= 1 - 1/sqrt 2 = 0.293" tell whether the result READS (MSE <=
 r = sum z e / sum e^2 over the circuit's measured values (z) and exact values (e). With a pure shrink z = r e the two
 agree exactly; a miss means the error that is not a shrink (rest = MSE / mean square - (1 - r)^2) decided the verdict.
 Families: the hub_score records (XX chains, Hubbard, the dt test), the twin test's user circuits, the daily record,
-the 11-04 practice tests, and the dual-unitary curves (one verdict per curve: r from the correlation points).
+the dual-unitary curves (one verdict per curve: r from the correlation points), and, from the workplace r-thread's
+collection, IBM's 2023 utility observables and the 3D Ising arms.
 usage: python notes/paper9_yardstick/line_all.py   (from the repository root; writes line_all.json)
 """
 import glob
@@ -71,6 +72,14 @@ for f in sorted(glob.glob("results/du*-2026-11-*/*/run/scores.json")):
     on, ex = np.array([p["on"] for p in pts]), np.array([p["exact"] for p in pts])
     add("dual-unitary (curve)", f.split("/")[1] + "/" + f.split("/")[2], "curve", float(np.dot(on, ex) / np.dot(ex, ex)),
         j["mse"], j["mean_square_exact"], j["reads"] == "READS")
+
+# IBM 2023 utility (points over theta, 11-10 and 11-11) and the 3D Ising arms (isingL 11-10): their units as collected
+# by notes/paper9/r_thread_2026-11-13/r_thread.py (the same r and ratio; read from its JSON, not recomputed here).
+# Its Ohm units are left out: they are Z-level regroupings, not the declared unit (M per circuit).
+for u in json.load(open("notes/paper9/r_thread_2026-11-13/r_thread.json"))["units"]:
+    if u["family"].startswith("IBM 2023") or u["family"].startswith("Ising 3D"):
+        fam = "IBM 2023 utility" if u["family"].startswith("IBM") else "Ising 3D (isingL)"
+        add(fam, u["result"], u["unit"], u["r"], u["ratio"], 1.0, u["reads"])
 
 json.dump(rows, open("notes/paper9_yardstick/line_all.json", "w"), indent=1)
 print(f"{len(rows)} results; the line matches the verdict in {sum(r['match'] for r in rows)}")
