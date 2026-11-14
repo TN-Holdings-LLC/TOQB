@@ -1,0 +1,6 @@
+N81_th1571_s02: CZ 320 depth 8; matrix_product_state against the answers worst 1.5e-14, mirror 1.7e-14 PASS
+N81_th1571_s04: CZ 640 depth 16; matrix_product_state against the answers worst 4.4e-15, mirror 7.3e-14 PASS
+N81_th1571_s08: CZ 1280 depth 32; matrix_product_state against the answers worst 5.8e-14, mirror 4.9e-14 PASS
+N81_th1571_s12: CZ 1920 depth 48; matrix_product_state against the answers worst 3.1e-15, mirror 3.4e-14 PASS
+N81_th1571_s16: CZ 2560 depth 64; matrix_product_state against the answers worst 2.0e-14, mirror 3.8e-15 PASS
+ALL PASS

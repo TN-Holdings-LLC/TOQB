@@ -1,0 +1,3 @@
+N33_th0785_s02: CZ 128 depth 8; matrix_product_state against the answers worst 1.6e-11, mirror 3.2e-14 PASS
+N33_th0785_s04: CZ 256 depth 16; matrix_product_state against the answers worst 4.6e-11, mirror 3.5e-14 PASS
+ALL PASS
