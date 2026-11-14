@@ -44,3 +44,21 @@ Sentinel: marrakesh CLEAN with N = 33, DEAD with N = 81; fez DEAD with both.
 The declared reading "r is set by the CZ layers alone, not by size or angle" does not hold: at equal layers r falls
 with the length of the chain, and depends a little on the angle. The reading "whether a result reads is told by r
 (the 0.293 line)" held in every cell.
+
+## Exploratory, after the verdicts (not declared): size, or the qubits?
+
+`split.py` (output `split.txt`) computes r on subsets of qubits. On marrakesh the N = 33 chain is exactly the first 33
+qubits of the N = 81 chain, in the same order; on fez the two chains share 23 qubits.
+
+- **The same qubits keep less in the longer circuit.** marrakesh, pi/4: on the 33 shared qubits r = 0.617 in the
+  N = 33 circuit and 0.558 in the N = 81 circuit at 32 layers; 0.411 and 0.343 at 64 layers. fez, pi/4, on its 23
+  shared qubits: 0.519 and 0.423 at 32 layers; 0.326 and 0.169 at 64.
+- **The added qubits are not the cause on marrakesh.** In the N = 81 circuit, r on its 48 other qubits is close to r on
+  the shared ones (pi/4: 0.527 against 0.558 at 32 layers, 0.347 against 0.343 at 64).
+- The gap is small at 8 layers (marrakesh 0.830 against 0.821) and grows with depth.
+
+A reading to test, not tested here: in this circuit an error spreads along the chain with the dynamics, so the
+shrink of a qubit's value counts the errors inside its light cone; in a 33-qubit chain the light cone stops at the
+chain's ends, in an 81-qubit chain it keeps growing with depth. That would make r depend on depth and on size until the
+light cone passes the chain's length, and would explain why the gap grows with depth. A declared test would compare
+N = 33 and N = 81 at depths below and above the light cone's crossing of 33 sites.
