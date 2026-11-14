@@ -1,0 +1,5 @@
+{
+ "job": "ibm_marrakesh_floor",
+ "answers": "none: a measurement record, no verdict",
+ "note": "re-made 2026-11-14: the build wrote this stub on 2026-11-13 but it was not committed; gpu/full_floor.py score does not read it"
+}
